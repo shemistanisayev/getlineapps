@@ -17,7 +17,9 @@ test.describe('hitline extension', () => {
   test('manifest has exactly the SPEC permissions and no host access', () => {
     const m = readManifest('hitline');
     expect(m.manifest_version).toBe(3);
-    expect(m.name).toBe('Hitline');
+    expect(m.name).toBe('Hitline: Tracking Debugger for GA4, Meta, TikTok & More');
+    expect(String(m.name).length).toBeLessThanOrEqual(75);
+    expect(m.short_name).toBe('Hitline');
     expect(m.permissions).toEqual(['activeTab', 'scripting', 'storage']);
     expect(m.devtools_page).toBe('devtools.html');
     for (const key of [

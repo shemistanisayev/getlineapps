@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Hitline: GA4, Meta və TikTok üçün pulsuz tracking yoxlayıcısı",
+    "title": "Hitline: GA4, Meta, TikTok və s. üçün pulsuz tracking debugger",
     "description": "Pulsuz Chrome extension. GA4, Google Ads, Meta və TikTok eventlərinin hamısını gör, server-side GTM-i tap və consent sızmalarını Chrome DevTools-un içində tut.",
     "ogAlt": "Hitline: tracking-in işləyir? Bir paneldə sübut et."
   },
@@ -34,14 +34,36 @@
     "trust": ["Hesab lazım deyil", "Heç nə brauzerdən çıxmır", "Açıq mənbə"],
     "mockLabel": "DevTools › Hitline",
     "tabs": [
-      { "label": "Eventlər", "count": "14", "warn": false },
-      { "label": "GTM", "count": "24", "warn": false },
-      { "label": "Consent", "count": "2", "warn": true },
-      { "label": "Atribusiya", "count": "1", "warn": true }
+      {
+        "label": "Eventlər",
+        "count": "14",
+        "warn": false
+      },
+      {
+        "label": "GTM",
+        "count": "24",
+        "warn": false
+      },
+      {
+        "label": "Consent",
+        "count": "2",
+        "warn": true
+      },
+      {
+        "label": "Atribusiya",
+        "count": "1",
+        "warn": true
+      }
     ],
     "live": "Canlı",
     "rows": [
-      { "time": "18.204", "platform": "ga", "name": "GA4", "event": "page_view", "route": "sgtm" },
+      {
+        "time": "18.204",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "page_view",
+        "route": "sgtm"
+      },
       {
         "time": "18.310",
         "platform": "meta",
@@ -92,7 +114,12 @@
         "route": "page"
       }
     ],
-    "routes": { "sgtm": "sGTM", "browser": "Brauzer", "page": "Səhifə", "bad": "Dəyər yoxdur" },
+    "routes": {
+      "sgtm": "sGTM",
+      "browser": "Brauzer",
+      "page": "Səhifə",
+      "bad": "Dəyər yoxdur"
+    },
     "sgtmTitle": "Server-side GTM",
     "sgtmVia": "data.example.com ilə",
     "tags": "4 tag",
@@ -102,14 +129,38 @@
   "marquee": {
     "title": "Artıq istifadə etdiyin tag-ları oxuyur",
     "items": [
-      { "platform": "ga", "label": "GA4" },
-      { "platform": "ads", "label": "Google Ads" },
-      { "platform": "meta", "label": "Meta Pixel" },
-      { "platform": "tt", "label": "TikTok Pixel" },
-      { "platform": "dl", "label": "Google Tag Manager" },
-      { "platform": "sgtm", "label": "Server-side GTM" },
-      { "platform": "hj", "label": "Hotjar" },
-      { "platform": "datalayer", "label": "dataLayer" }
+      {
+        "platform": "ga",
+        "label": "GA4"
+      },
+      {
+        "platform": "ads",
+        "label": "Google Ads"
+      },
+      {
+        "platform": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "platform": "tt",
+        "label": "TikTok Pixel"
+      },
+      {
+        "platform": "dl",
+        "label": "Google Tag Manager"
+      },
+      {
+        "platform": "sgtm",
+        "label": "Server-side GTM"
+      },
+      {
+        "platform": "hj",
+        "label": "Hotjar"
+      },
+      {
+        "platform": "datalayer",
+        "label": "dataLayer"
+      }
     ]
   },
   "problem": {
@@ -160,10 +211,22 @@
         "platform": "GA4",
         "via": "sGTM ilə",
         "params": [
-          { "k": "currency", "v": "USD" },
-          { "k": "value", "v": "89.90" },
-          { "k": "items[0].item_id", "v": "LUMO-PRO-X" },
-          { "k": "items[0].price", "v": "89.90" }
+          {
+            "k": "currency",
+            "v": "USD"
+          },
+          {
+            "k": "value",
+            "v": "89.90"
+          },
+          {
+            "k": "items[0].item_id",
+            "v": "LUMO-PRO-X"
+          },
+          {
+            "k": "items[0].price",
+            "v": "89.90"
+          }
         ],
         "issueStrong": "Meta AddToCart",
         "issueText": "eyni klikdə dəyərsiz gedir."
@@ -204,14 +267,24 @@
         "title": "\"Reject all\"-dan sonra",
         "count": "3 sorğu",
         "rows": [
-          { "platform": "ga", "label": "GA4 view_item", "status": "Cookieless ping", "ok": true },
+          {
+            "platform": "ga",
+            "label": "GA4 view_item",
+            "status": "Cookieless ping",
+            "ok": true
+          },
           {
             "platform": "tt",
             "label": "TikTok ViewContent",
             "status": "Rədddən sonra getdi",
             "ok": false
           },
-          { "platform": "hj", "label": "Hotjar", "status": "Yüklənmədi", "ok": true }
+          {
+            "platform": "hj",
+            "label": "Hotjar",
+            "status": "Yüklənmədi",
+            "ok": true
+          }
         ]
       }
     },
@@ -231,21 +304,51 @@
           {
             "label": "gclid",
             "cells": [
-              { "v": "var", "ok": true },
-              { "v": "var", "ok": true },
-              { "v": "var", "ok": true },
-              { "v": "itdi", "ok": false },
-              { "v": "var", "ok": true }
+              {
+                "v": "var",
+                "ok": true
+              },
+              {
+                "v": "var",
+                "ok": true
+              },
+              {
+                "v": "var",
+                "ok": true
+              },
+              {
+                "v": "itdi",
+                "ok": false
+              },
+              {
+                "v": "var",
+                "ok": true
+              }
             ]
           },
           {
             "label": "source",
             "cells": [
-              { "v": "cpc", "ok": true },
-              { "v": "cpc", "ok": true },
-              { "v": "cpc", "ok": true },
-              { "v": "itdi", "ok": false },
-              { "v": "referral", "ok": false }
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "itdi",
+                "ok": false
+              },
+              {
+                "v": "referral",
+                "ok": false
+              }
             ]
           }
         ]
@@ -265,13 +368,30 @@
         "file": "lumo-tracking-plan.csv",
         "count": "8 event",
         "bars": [
-          { "label": "Uyğun", "n": 4 },
-          { "label": "İtkin", "n": 2 },
-          { "label": "Səhv parametrlər", "n": 2 }
+          {
+            "label": "Uyğun",
+            "n": 4
+          },
+          {
+            "label": "İtkin",
+            "n": 2
+          },
+          {
+            "label": "Səhv parametrlər",
+            "n": 2
+          }
         ],
         "rows": [
-          { "event": "generate_lead", "status": "İtkin", "tone": "bad" },
-          { "event": "sign_up", "status": "Səhv parametrlər", "tone": "warn" }
+          {
+            "event": "generate_lead",
+            "status": "İtkin",
+            "tone": "bad"
+          },
+          {
+            "event": "sign_up",
+            "status": "Səhv parametrlər",
+            "tone": "warn"
+          }
         ]
       }
     }
@@ -314,7 +434,10 @@
       "host": "example.com",
       "high": "high priority",
       "medium": "medium priority",
-      "levels": { "high": "High", "medium": "Medium" },
+      "levels": {
+        "high": "High",
+        "medium": "Medium"
+      },
       "items": [
         {
           "level": "high",
@@ -410,7 +533,11 @@
       }
     }
   },
-  "footer": { "builtBy": "Müəllif:", "privacy": "Məxfilik siyasəti", "source": "Mənbə kodu" },
+  "footer": {
+    "builtBy": "Müəllif:",
+    "privacy": "Məxfilik siyasəti",
+    "source": "Mənbə kodu"
+  },
   "uninstall": {
     "meta": {
       "title": "Getməyinə təəssüf edirik | Hitline",

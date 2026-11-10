@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Hitline: free tracking checker for GA4, Meta and TikTok",
+    "title": "Hitline: Free Tracking Debugger for GA4, Meta, TikTok & More",
     "description": "Free Chrome extension. See every GA4, Google Ads, Meta and TikTok event, spot server-side GTM and catch consent leaks inside Chrome DevTools.",
     "ogAlt": "Hitline: is your tracking working? Prove it in one panel."
   },
@@ -34,14 +34,36 @@
     "trust": ["No account", "Nothing leaves your browser", "Open source"],
     "mockLabel": "DevTools › Hitline",
     "tabs": [
-      { "label": "Events", "count": "14", "warn": false },
-      { "label": "GTM", "count": "24", "warn": false },
-      { "label": "Consent", "count": "2", "warn": true },
-      { "label": "Attribution", "count": "1", "warn": true }
+      {
+        "label": "Events",
+        "count": "14",
+        "warn": false
+      },
+      {
+        "label": "GTM",
+        "count": "24",
+        "warn": false
+      },
+      {
+        "label": "Consent",
+        "count": "2",
+        "warn": true
+      },
+      {
+        "label": "Attribution",
+        "count": "1",
+        "warn": true
+      }
     ],
     "live": "Live",
     "rows": [
-      { "time": "18.204", "platform": "ga", "name": "GA4", "event": "page_view", "route": "sgtm" },
+      {
+        "time": "18.204",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "page_view",
+        "route": "sgtm"
+      },
       {
         "time": "18.310",
         "platform": "meta",
@@ -92,7 +114,12 @@
         "route": "page"
       }
     ],
-    "routes": { "sgtm": "sGTM", "browser": "Browser", "page": "Page", "bad": "No value" },
+    "routes": {
+      "sgtm": "sGTM",
+      "browser": "Browser",
+      "page": "Page",
+      "bad": "No value"
+    },
     "sgtmTitle": "Server-side GTM",
     "sgtmVia": "via data.example.com",
     "tags": "4 tags",
@@ -102,14 +129,38 @@
   "marquee": {
     "title": "Reads the tags you already use",
     "items": [
-      { "platform": "ga", "label": "GA4" },
-      { "platform": "ads", "label": "Google Ads" },
-      { "platform": "meta", "label": "Meta Pixel" },
-      { "platform": "tt", "label": "TikTok Pixel" },
-      { "platform": "dl", "label": "Google Tag Manager" },
-      { "platform": "sgtm", "label": "Server-side GTM" },
-      { "platform": "hj", "label": "Hotjar" },
-      { "platform": "datalayer", "label": "dataLayer" }
+      {
+        "platform": "ga",
+        "label": "GA4"
+      },
+      {
+        "platform": "ads",
+        "label": "Google Ads"
+      },
+      {
+        "platform": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "platform": "tt",
+        "label": "TikTok Pixel"
+      },
+      {
+        "platform": "dl",
+        "label": "Google Tag Manager"
+      },
+      {
+        "platform": "sgtm",
+        "label": "Server-side GTM"
+      },
+      {
+        "platform": "hj",
+        "label": "Hotjar"
+      },
+      {
+        "platform": "datalayer",
+        "label": "dataLayer"
+      }
     ]
   },
   "problem": {
@@ -160,10 +211,22 @@
         "platform": "GA4",
         "via": "via sGTM",
         "params": [
-          { "k": "currency", "v": "USD" },
-          { "k": "value", "v": "89.90" },
-          { "k": "items[0].item_id", "v": "LUMO-PRO-X" },
-          { "k": "items[0].price", "v": "89.90" }
+          {
+            "k": "currency",
+            "v": "USD"
+          },
+          {
+            "k": "value",
+            "v": "89.90"
+          },
+          {
+            "k": "items[0].item_id",
+            "v": "LUMO-PRO-X"
+          },
+          {
+            "k": "items[0].price",
+            "v": "89.90"
+          }
         ],
         "issueStrong": "Meta AddToCart",
         "issueText": "on the same click has no value."
@@ -204,14 +267,24 @@
         "title": "After \"Reject all\"",
         "count": "3 requests",
         "rows": [
-          { "platform": "ga", "label": "GA4 view_item", "status": "Cookieless ping", "ok": true },
+          {
+            "platform": "ga",
+            "label": "GA4 view_item",
+            "status": "Cookieless ping",
+            "ok": true
+          },
           {
             "platform": "tt",
             "label": "TikTok ViewContent",
             "status": "Sent after rejection",
             "ok": false
           },
-          { "platform": "hj", "label": "Hotjar", "status": "Not loaded", "ok": true }
+          {
+            "platform": "hj",
+            "label": "Hotjar",
+            "status": "Not loaded",
+            "ok": true
+          }
         ]
       }
     },
@@ -231,21 +304,51 @@
           {
             "label": "gclid",
             "cells": [
-              { "v": "yes", "ok": true },
-              { "v": "yes", "ok": true },
-              { "v": "yes", "ok": true },
-              { "v": "lost", "ok": false },
-              { "v": "yes", "ok": true }
+              {
+                "v": "yes",
+                "ok": true
+              },
+              {
+                "v": "yes",
+                "ok": true
+              },
+              {
+                "v": "yes",
+                "ok": true
+              },
+              {
+                "v": "lost",
+                "ok": false
+              },
+              {
+                "v": "yes",
+                "ok": true
+              }
             ]
           },
           {
             "label": "source",
             "cells": [
-              { "v": "cpc", "ok": true },
-              { "v": "cpc", "ok": true },
-              { "v": "cpc", "ok": true },
-              { "v": "lost", "ok": false },
-              { "v": "referral", "ok": false }
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "lost",
+                "ok": false
+              },
+              {
+                "v": "referral",
+                "ok": false
+              }
             ]
           }
         ]
@@ -265,13 +368,30 @@
         "file": "lumo-tracking-plan.csv",
         "count": "8 events",
         "bars": [
-          { "label": "Match", "n": 4 },
-          { "label": "Missing", "n": 2 },
-          { "label": "Wrong parameters", "n": 2 }
+          {
+            "label": "Match",
+            "n": 4
+          },
+          {
+            "label": "Missing",
+            "n": 2
+          },
+          {
+            "label": "Wrong parameters",
+            "n": 2
+          }
         ],
         "rows": [
-          { "event": "generate_lead", "status": "Missing", "tone": "bad" },
-          { "event": "sign_up", "status": "Wrong parameters", "tone": "warn" }
+          {
+            "event": "generate_lead",
+            "status": "Missing",
+            "tone": "bad"
+          },
+          {
+            "event": "sign_up",
+            "status": "Wrong parameters",
+            "tone": "warn"
+          }
         ]
       }
     }
@@ -314,7 +434,10 @@
       "host": "example.com",
       "high": "high priority",
       "medium": "medium priority",
-      "levels": { "high": "High", "medium": "Medium" },
+      "levels": {
+        "high": "High",
+        "medium": "Medium"
+      },
       "items": [
         {
           "level": "high",
@@ -410,7 +533,11 @@
       }
     }
   },
-  "footer": { "builtBy": "Built by", "privacy": "Privacy policy", "source": "Source code" },
+  "footer": {
+    "builtBy": "Built by",
+    "privacy": "Privacy policy",
+    "source": "Source code"
+  },
   "uninstall": {
     "meta": {
       "title": "Sorry to see you go | Hitline",

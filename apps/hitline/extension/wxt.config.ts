@@ -17,7 +17,9 @@ export default defineConfig({
   // pdf-lib is one large chunk, loaded only when an audit PDF is made.
   vite: () => ({ build: { chunkSizeWarningLimit: 1600 } }),
   manifest: {
-    name: 'Hitline',
+    // Store title (max 75): brand first, then what people search for. Toolbar and menus use short_name.
+    name: 'Hitline: Tracking Debugger for GA4, Meta, TikTok & More',
+    short_name: 'Hitline',
     description:
       'See every GA4, Google Ads, Meta and TikTok event, spot server-side GTM and catch consent leaks in DevTools.',
     permissions: ['activeTab', 'scripting', 'storage'],

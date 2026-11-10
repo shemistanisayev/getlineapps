@@ -7,17 +7,17 @@ Everything to paste into the Chrome Web Store Developer Dashboard for Hitline 1.
 | Field | Value |
 |---|---|
 | File | `store/hitline/hitline-1.0.0.zip` |
-| Name | Hitline |
+| Name | Hitline: Tracking Debugger for GA4, Meta, TikTok & More (manifest name; short name Hitline) |
 | Version | 1.0.0 |
 | Category | Developer Tools |
 | Language | English (default), Azerbaijani (second listing language) |
 
 ## Store listing (English, default)
 
-**Name**
+**Name** (from the manifest; the store uses it as the listing title, 75 characters max)
 
 ```
-Hitline
+Hitline: Tracking Debugger for GA4, Meta, TikTok & More
 ```
 
 **Short description** (from the manifest, 107 of 132 characters)

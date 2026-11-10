@@ -340,7 +340,7 @@ Qeydlər:
 
 | Açar | English | Azərbaycanca |
 |---|---|---|
-| `meta.title` | Hitline: free tracking checker for GA4, Meta and TikTok | Hitline: GA4, Meta və TikTok üçün pulsuz tracking yoxlayıcısı |
+| `meta.title` | Hitline: Free Tracking Debugger for GA4, Meta, TikTok & More | Hitline: GA4, Meta, TikTok və s. üçün pulsuz tracking debugger |
 | `meta.description` | Free Chrome extension. See every GA4, Google Ads, Meta and TikTok event, spot server-side GTM and catch consent leaks inside Chrome DevTools. | Pulsuz Chrome extension. GA4, Google Ads, Meta və TikTok eventlərinin hamısını gör, server-side GTM-i tap və consent sızmalarını Chrome DevTools-un içində tut. |
 | `meta.ogAlt` | Hitline: is your tracking working? Prove it in one panel. | Hitline: tracking-in işləyir? Bir paneldə sübut et. |
 | `nav.label` | Hitline sections | Hitline bölmələri |
