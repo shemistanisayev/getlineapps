@@ -99,8 +99,10 @@ export function Logo({
     <span
       className={className}
       style={wrap(m.gap)}
-      role="img"
-      aria-label={label ?? b.name}
+      // label="": decorative (the name is already visible next to it).
+      role={label === '' ? undefined : 'img'}
+      aria-label={label === '' ? undefined : (label ?? b.name)}
+      aria-hidden={label === '' ? true : undefined}
       data-brand={brand}
       data-theme={theme}
     >
@@ -141,8 +143,9 @@ export function HubLogo({
     <span
       className={className}
       style={wrap(m.gap)}
-      role="img"
-      aria-label={label ?? 'Line apps'}
+      role={label === '' ? undefined : 'img'}
+      aria-label={label === '' ? undefined : (label ?? 'Line apps')}
+      aria-hidden={label === '' ? true : undefined}
       data-theme={theme}
     >
       <span style={tile(m.size, m.radius, c.tileBg, c.ring)}>

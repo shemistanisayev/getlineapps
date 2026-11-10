@@ -8,11 +8,12 @@
  * - events:  returning visitor who accepted; Events, GTM, Plan and the popup artboards
  * - consent: first visit, "Reject all"; the Consent artboard
  * - journey: campaign link to order confirmation over 5 pages; the Attribution artboard
+ * - clean:   the same shop set up correctly; QA proof that Hitline raises no false alarms
  */
 import type { SessionInput } from '../../src/hitline/types.ts';
 
 export type Trigger = 'load' | 'add' | 'cart' | 'checkout' | 'signup' | 'reject' | 'accept';
-export type RunId = 'events' | 'consent' | 'journey';
+export type RunId = 'events' | 'consent' | 'journey' | 'clean';
 
 export interface RequestStep {
   t: string;
@@ -411,7 +412,62 @@ const journey: Scenario = {
   ],
 };
 
-export const LUMO_SCENARIOS: Record<RunId, Scenario> = { events, consent, journey };
+/** Correct setup: consent respected, every ecommerce event with value and currency. */
+const clean: Scenario = {
+  id: 'clean',
+  pages: [
+    {
+      at: '10:45:00.000',
+      url: PRODUCT_URL,
+      title: 'Wireless Headphones Pro X | Lumo',
+      cookies: SHOP_COOKIES,
+      steps: [
+        dl('10:45:00.100', 'load', ['consent', 'default', { ...DENIED, wait_for_update: 500 }]),
+        dl('10:45:00.110', 'load', ['consent', 'update', GRANTED]),
+        config('10:45:00.120'),
+        gtmLoad('10:45:00.150'),
+        ga4('10:45:00.300', 'load', 'page_view', {
+          page: PRODUCT_URL,
+          granted: true,
+          updated: true,
+        }),
+        meta('10:45:00.400', 'load', 'PageView', PRODUCT_URL),
+        tiktok('10:45:00.450', 'load', 'Pageview', PRODUCT_URL),
+        dl('10:45:01.000', 'load', ecommerce('view_item')),
+        ga4('10:45:01.100', 'load', 'view_item', {
+          page: PRODUCT_URL,
+          granted: true,
+          updated: true,
+          ecommerce: true,
+        }),
+        meta('10:45:01.150', 'load', 'ViewContent', PRODUCT_URL, [
+          ['content_ids', '["LUMO-PRO-X"]'],
+          ['value', '89.90'],
+          ['currency', 'USD'],
+        ]),
+        dl('10:45:05.000', 'add', ecommerce('add_to_cart')),
+        ga4('10:45:05.080', 'add', 'add_to_cart', {
+          page: PRODUCT_URL,
+          granted: true,
+          updated: true,
+          ecommerce: true,
+        }),
+        meta('10:45:05.120', 'add', 'AddToCart', PRODUCT_URL, [
+          ['content_ids', '["LUMO-PRO-X"]'],
+          ['value', '89.90'],
+          ['currency', 'USD'],
+        ]),
+        tiktok('10:45:05.160', 'add', 'AddToCart', PRODUCT_URL, {
+          value: 89.9,
+          currency: 'USD',
+          contents: [{ content_id: 'LUMO-PRO-X', quantity: 1 }],
+        }),
+      ],
+    },
+  ],
+};
+
+export const LUMO_SCENARIOS: Record<RunId, Scenario> = { events, consent, journey, clean };
 
 /** The 8-event plan from design/hitline/Plan.dc.html. */
 export const LUMO_PLAN_CSV = `event,platform,parameters

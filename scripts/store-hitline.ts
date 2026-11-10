@@ -191,7 +191,12 @@ try {
   await page.close();
 } finally {
   await ext.close();
-  for (const c of children) c.kill();
+  // Stop the whole tree: pnpm starts tsx, which starts node (a plain kill leaves the server running).
+  for (const c of children) {
+    if (process.platform === 'win32' && c.pid)
+      spawn('taskkill', ['/pid', String(c.pid), '/T', '/F'], { stdio: 'ignore' });
+    else c.kill();
+  }
 }
 
 // 2. Promo tiles (SVG -> PNG, brand fonts only)

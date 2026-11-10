@@ -164,6 +164,12 @@ const RUNS: Record<RunId, (page: Page, rec: Recorder) => Promise<void>> = {
     await step(page, rec, 'reject', () => page.getByRole('button', { name: 'Reject all' }).click());
     await rec.snapshot();
   },
+  clean: async (page, rec) => {
+    await page.goto(shopUrl('/products/wireless-headphones-pro-x?run=clean'));
+    await step(page, rec, 'load');
+    await step(page, rec, 'add', () => page.getByRole('button', { name: 'Add to cart' }).click());
+    await rec.snapshot();
+  },
   journey: async (page, rec) => {
     await page.goto(
       shopUrl(
@@ -189,6 +195,10 @@ test.describe('hitline: Lumo fixture in a real browser', () => {
       const expected = analyze(lumoSession(run), { plan });
       expect(rec.leaks).toEqual([]);
       expect(shape(live)).toEqual(shape(expected));
+      // QA: a correct setup raises nothing (the Lumo plan lists events this run never sends).
+      if (run === 'clean') {
+        expect(live.issues.filter((i) => i.severity !== 'info' && i.tab !== 'plan')).toEqual([]);
+      }
     });
   }
 });

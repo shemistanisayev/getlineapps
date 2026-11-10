@@ -282,3 +282,17 @@ describe('hitline core: empty session', () => {
     expect(a.sgtm.detected).toBe(false);
   });
 });
+
+describe('hitline core: Lumo "clean" run (QA: no false positives)', () => {
+  it('a correct setup raises no high or medium issue, with or without the popup', () => {
+    const a = analyze(lumoSession('clean'));
+    expect(a.issues.filter((i) => i.severity !== 'info')).toEqual([]);
+    expect(a.counts).toMatchObject({ consent: 0, attribution: 0, plan: 0 });
+    expect(a.consent.model.choice?.kind).toBe('accept');
+    expect(a.consent.timeline.every((r) => r.status === 'granted')).toBe(true);
+    expect(a.sgtm.detected).toBe(true);
+    const p = analyzePopup(probeFor('clean'));
+    expect(p.issues).toEqual([]);
+    expect(p.platforms.every((x) => x.issues === 0)).toBe(true);
+  });
+});
