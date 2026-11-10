@@ -1,0 +1,11 @@
+---
+import { TOOL_SLUGS, type ToolSlug } from '@line/core/site';
+import PrivacyPage from '../../components/PrivacyPage.astro';
+
+export function getStaticPaths() {
+  return TOOL_SLUGS.map((slug) => ({ params: { slug } }));
+}
+const slug = Astro.params.slug as ToolSlug;
+---
+
+<PrivacyPage locale="en" slug={slug} />

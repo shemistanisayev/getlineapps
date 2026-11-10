@@ -1,0 +1,44 @@
+{
+  "summary": "Foldline olduğunuz landing səhifəni konversiya problemlərinə görə yoxlayır. Səhifəni brauzerinizdə oxuyur və bizə heç nə göndərmir.",
+  "reads": [
+    "Cari tabın düzülüşünü, mətnini, düymələrini və şəkillərini, ikona basandan sonra.",
+    "Forma sahələrinin növlərini və adlarını, heç vaxt onlara yazılanları yox.",
+    "Bu ziyarətin yüklənmə sürəti göstəricilərini, brauzerinizdən."
+  ],
+  "stores": [
+    "Kompüterinizdə ayarlar: görünüş, telefon ölçüsü, fold xətti açarı və dil.",
+    "Mobile görünüşündə pəncərənizin ölçüsünü qısa müddətə, Foldline onu geri qaytara bilsin deyə."
+  ],
+  "never": [
+    "Formalara yazdıqlarınızı oxumaq",
+    "Səhifənin özünü dəyişmək",
+    "Səhifələri və ya nəticələri hansısa serverə göndərmək",
+    "Yoxladığınız saytların tarixçəsini saxlamaq"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "İkona basandan sonra cari tabı oxumaq."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Yoxlamaları işə salmaq və həmin tabda fold xəttini çəkmək."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Foldline-ı səhifənin yanında göstərmək."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarınızı kompüterinizdə saxlamaq."
+    }
+  ],
+  "notes": [
+    "Fold xətti yalnız panel açıq olanda səhifənin üstündə çəkilir və paneli bağlayanda silinir.",
+    "Mobile görünüşü pəncərəni daraldır və geri keçəndə və ya paneli bağlayanda əvvəlki ölçüsünü qaytarır. Bunun üçün əlavə icazə lazım deyil."
+  ]
+}

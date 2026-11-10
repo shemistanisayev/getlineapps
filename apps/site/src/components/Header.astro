@@ -1,0 +1,48 @@
+---
+/** Sticky dark header (docs/line-family-colors.md, Shared landing rules). */
+import HubLogo from './HubLogo.astro';
+import { getShared, localePath, type Locale } from '../lib/site.ts';
+
+interface Props {
+  locale: Locale;
+  /** Links in the middle of the bar. */
+  links?: Array<{ href: string; label: string }>;
+  linksLabel?: string;
+  /** Path of this page in the other language. */
+  altPath: string;
+  /** Contact CTA on the right. */
+  cta?: { href: string; label: string };
+  wide?: boolean;
+}
+const { locale, links = [], linksLabel, altPath, cta, wide = true } = Astro.props;
+const t = await getShared(locale);
+const other: Locale = locale === 'en' ? 'az' : 'en';
+---
+
+<header class="nav">
+  <div class:list={['wrap', { 'wrap-wide': wide }]}>
+    <a class="fam" href={localePath(locale, '/')}>
+      <HubLogo theme="dark" size={32} label="" />
+      <span class="sr-only">{t.nav.home}</span>
+    </a>
+    {links.length > 0 && (
+      <nav class="links" aria-label={linksLabel ?? t.nav.main}>
+        {links.map((l) => (
+          <a class="nl" href={l.href}>
+            {l.label}
+          </a>
+        ))}
+      </nav>
+    )}
+    <span class="grow"></span>
+    <a class="nl lang" href={localePath(other, altPath)} hreflang={other} lang={other}>
+      <span aria-hidden="true">{t.switchTo.short}</span>
+      <span class="sr-only">{t.switchTo.label}</span>
+    </a>
+    {cta && (
+      <a class="btn btn-l cta-n" href={cta.href}>
+        {cta.label}
+      </a>
+    )}
+  </div>
+</header>

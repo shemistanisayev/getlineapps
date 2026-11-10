@@ -1,0 +1,53 @@
+{
+  "lang": "az",
+  "htmlLang": "az",
+  "switchTo": { "label": "In English", "short": "EN" },
+  "skip": "Məzmuna keç",
+  "nav": {
+    "home": "Line apps ana səhifə",
+    "main": "Əsas",
+    "tools": "Alətlər",
+    "together": "Nəyi yoxlayırlar",
+    "webTools": "Pulsuz veb alətlər",
+    "faq": "Suallar",
+    "cta": "Görüş təyin et",
+    "toolsLabel": "Alətlər"
+  },
+  "footer": {
+    "label": "Səhifənin sonu",
+    "tagline": "Marketoloqlar, SEO mütəxəssisləri və agentliklər üçün pulsuz Chrome alətləri.",
+    "extensions": "Genişlənmələr",
+    "webTools": "Pulsuz veb alətlər",
+    "about": "Haqqında",
+    "privacy": "Məxfilik siyasəti",
+    "contact": "Əlaqə",
+    "source": "Mənbə kodu",
+    "cookies": "Cookie ayarları",
+    "allTools": "Bütün alətlər",
+    "builtBy": "Müəllif:",
+    "trademark": "Chrome Google LLC-nin ticarət nişanıdır."
+  },
+  "status": {
+    "soon": "Tezliklə",
+    "add": "Chrome-a əlavə et",
+    "learnMore": "Ətraflı",
+    "openTool": "Aləti aç"
+  },
+  "consent": {
+    "text": "Bu sayt analitika cookie-lərini yalnız siz razılıq versəniz istifadə edir.",
+    "accept": "Qəbul et",
+    "reject": "Rədd et",
+    "privacyLabel": "Məxfilik siyasəti"
+  },
+  "notFound": {
+    "metaTitle": "Səhifə tapılmadı: Line apps",
+    "metaDescription": "Bu səhifə getlineapps.com-da yoxdur.",
+    "code": "404",
+    "title": "Belə səhifə yoxdur",
+    "text": "Link köhnə və ya səhv yazılmış ola bilər. Beş alət və onların məxfilik siyasətləri bir klik uzaqlıqdadır.",
+    "home": "Bütün alətlər",
+    "privacy": "Məxfilik siyasəti"
+  },
+  "ownerLogo": "Şəmistan İsayevin loqosu",
+  "ownerName": "Şəmistan İsayev"
+}

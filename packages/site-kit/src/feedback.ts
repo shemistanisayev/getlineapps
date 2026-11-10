@@ -129,7 +129,10 @@ export function createFeedbackHandler(opts: FeedbackOptions = {}) {
     try {
       const host = new URL(origin).hostname;
       return (
-        host === 'localhost' || host === '127.0.0.1' || host.endsWith('.getlineapps.pages.dev')
+        host === 'localhost' ||
+        host === '127.0.0.1' ||
+        host === 'getlineapps.pages.dev' ||
+        host.endsWith('.getlineapps.pages.dev')
       );
     } catch {
       return false;

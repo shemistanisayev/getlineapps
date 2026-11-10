@@ -1,0 +1,44 @@
+{
+  "summary": "Rivaline olduğunuz saytın marketinq alətlərini, reklam kitabxanası linklərini və brend üslubunu göstərir. Səhifəni brauzerinizdə oxuyur və bizə heç nə göndərmir.",
+  "reads": [
+    "Skript ünvanlarını, yüklənən faylların adlarını, meta teqləri və səhifədəki cookie-lərin adlarını, heç vaxt dəyərlərini yox. Yalnız ikona basandan sonra.",
+    "Həmin səhifənin rənglərini, şriftlərini və əsas düymənin üslubunu.",
+    "Tabın görünən hissəsinin ekran şəklini, yalnız loqonu kəsmək üçün, dərhal sonra atılır."
+  ],
+  "stores": [
+    "Kompüterinizdə ayarlar: susmaya görə ölkə və dil.",
+    "Nəticələr yan paneli bağlayana qədər orada qalır."
+  ],
+  "never": [
+    "Cookie dəyərlərini və ya formalara yazdıqlarınızı oxumaq",
+    "Şrift fayllarını yükləmək",
+    "Səhifələri və ya nəticələri hansısa serverə göndərmək",
+    "Yoxladığınız saytların tarixçəsini saxlamaq"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "İkona basandan sonra cari tabı oxumaq."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Oxuma funksiyasını həmin tabda işə salmaq."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Rivaline-ı səhifənin yanında göstərmək."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarınızı kompüterinizdə saxlamaq."
+    }
+  ],
+  "notes": [
+    "Reklam kitabxanası düymələri Meta, Google, TikTok və LinkedIn-i yeni tablarda açır. O saytların öz məxfilik siyasətləri var.",
+    "Brend eksportları və PDF brauzerinizdə hazırlanır."
+  ]
+}

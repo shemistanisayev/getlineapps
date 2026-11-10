@@ -1,0 +1,44 @@
+{
+  "summary": "Hitline yoxladığınız səhifənin tracking teqlərini və eventlərini göstərir. Sizin və ya yoxladığınız səhifələr haqqında heç bir məlumat toplamır, saxlamır və göndərmir.",
+  "reads": [
+    "Yoxlanılan tabın şəbəkə sorğularını və teqlərini, yalnız Chrome DevTools-da Hitline tabı açıq olanda.",
+    "Cari tabdakı səhifəni, yalnız popup-ı açmaq üçün Hitline ikonuna basandan sonra.",
+    "Tracking plan faylını, yalnız onu yükləməyi seçsəniz. Fayl brauzerinizdə oxunur."
+  ],
+  "stores": [
+    "Dil kimi ayarlarınızı, kompüterinizdəki Chrome yaddaşında.",
+    "Nəticələr açıq paneldə qalır və DevTools-u və ya popup-ı bağlayanda silinir."
+  ],
+  "never": [
+    "Hitline-ı açmadığınız tabları oxumaq",
+    "Formalara yazdıqlarınızı oxumaq",
+    "Eventləri, səhifələri və ya nəticələri hansısa serverə göndərmək",
+    "Yoxladığınız saytların tarixçəsini saxlamaq"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Cari tabı oxumaq, həm də yalnız ikona basandan sonra."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Oxuma funksiyasını həmin tabda işə salmaq."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarınızı kompüterinizdə saxlamaq."
+    },
+    {
+      "name": "devtools_page",
+      "manifest": "key:devtools_page",
+      "why": "Hitline tabını DevTools-a əlavə etmək. Chrome yoxlanılan tabın sorğularını ona yalnız DevTools açıq olanda verir."
+    }
+  ],
+  "notes": [
+    "Audit PDF brauzerinizdə hazırlanır və seçdiyiniz yerdə saxlanılır.",
+    "Hitline özü heç bir şəbəkə sorğusu göndərmir."
+  ]
+}

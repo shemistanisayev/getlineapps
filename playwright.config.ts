@@ -13,5 +13,12 @@ export default defineConfig({
       reuseExistingServer: !process.env.CI,
       timeout: 60_000,
     },
+    {
+      // Serves apps/site/dist: run `pnpm build` first.
+      command: 'pnpm --filter @line/site preview',
+      url: 'http://localhost:4321',
+      reuseExistingServer: !process.env.CI,
+      timeout: 60_000,
+    },
   ],
 });

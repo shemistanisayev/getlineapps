@@ -1,0 +1,28 @@
+---
+/** Short footer of the privacy and 404 pages: design/hub/Privacy.dc.html. */
+import HubLogo from './HubLogo.astro';
+import { contact, getShared, localePath, type Locale } from '../lib/site.ts';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = await getShared(locale);
+const gtm = Boolean((import.meta.env.PUBLIC_GTM_ID as string | undefined)?.trim());
+---
+
+<footer class="foot-c">
+  <div class="wrap">
+    <HubLogo theme="dark" size={26} />
+    <span class="grow"></span>
+    <nav class="fl" aria-label={t.footer.label}>
+      <a href={localePath(locale, '/')}>{t.footer.allTools}</a>
+      {gtm && (
+        <button type="button" data-cookie-settings>
+          {t.footer.cookies}
+        </button>
+      )}
+      <a href={contact('footer')}>{t.footer.contact}</a>
+    </nav>
+  </div>
+</footer>

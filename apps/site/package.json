@@ -1,0 +1,29 @@
+{
+  "name": "@line/site",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 4321",
+    "build": "astro build",
+    "preview": "astro preview --port 4321",
+    "typecheck": "astro check",
+    "pages:dev": "wrangler pages dev dist --port 8788",
+    "deploy": "wrangler pages deploy dist --project-name getlineapps --branch main",
+    "gen:og": "tsx scripts/og.ts",
+    "screens": "tsx scripts/screens.ts"
+  },
+  "dependencies": {
+    "@line/core": "workspace:*",
+    "@line/site-kit": "workspace:*",
+    "@line/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@resvg/resvg-js": "^2.6.2",
+    "astro": "^7.4.8",
+    "typescript": "~6.0.3",
+    "wrangler": "^4.153.0"
+  }
+}

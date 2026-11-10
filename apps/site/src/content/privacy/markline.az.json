@@ -1,0 +1,39 @@
+{
+  "summary": "Markline olduğunuz səhifənin şəklini çəkir ki, üstündə qeydlər edə biləsiniz. Şəkillər kompüterinizdə qalır, Markline heç nə yükləmir.",
+  "reads": [
+    "Cari tabı, ikona basandan və ya şəkil çəkmə qısayolunu sıxandan sonra.",
+    "Səhifədə e-mail və telefon nömrələrinin harada olduğunu, onları bulanıqlaşdırmaq üçün. Yalnız yerləri istifadə olunur.",
+    "Redaktora atdığınız, yapışdırdığınız və ya seçdiyiniz şəkli."
+  ],
+  "stores": [
+    "Kompüterinizdə ayarlar: avtomatik bulanıqlıq, bulanıqlıq üslubu, eksport ayarları və dil.",
+    "Çəkilən şəkil redaktor tabına brauzer yaddaşı vasitəsilə ötürülür və bir neçə saniyəyə silinir. Redaktor tabını bağlamaq şəkli silir."
+  ],
+  "never": [
+    "Şəkilləri yükləmək və ya paylaşma linkləri yaratmaq",
+    "Ekranınızı video kimi yazmaq",
+    "Səhifələri, şəkilləri və ya qeydləri hansısa serverə göndərmək",
+    "Çəkdiyiniz şəkillərin tarixçəsini saxlamaq"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Klikdən və ya qısayoldan sonra cari tabın şəklini çəkmək və onu oxumaq."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Bulanıqlaşdırmaq üçün e-mail və telefon nömrələrini tapmaq, sahə və element seçicisini göstərmək və bütün səhifənin şəkli üçün scroll etmək."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarınızı kompüterinizdə saxlamaq."
+    }
+  ],
+  "notes": [
+    "Səhifə məlumatları (ünvan, brauzer, pəncərə ölçüsü, vaxt) eksporta yalnız bu açar yanılı olanda əlavə olunur.",
+    "Şəkillərdəki “Made with Markline” sətri istəyə bağlıdır və ayarlarda söndürülə bilər."
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "summary": "Foldline checks the landing page you are on for conversion problems. It reads the page in your browser and sends nothing to us.",
+  "reads": [
+    "The layout, text, buttons and images of the current tab, after you click the icon.",
+    "Form field types and labels, never what is typed in them.",
+    "Load speed timings of this visit, from your browser."
+  ],
+  "stores": [
+    "Settings on your computer: view, phone size, fold line switch and language.",
+    "In Mobile view, your window size for a short time, so Foldline can put it back."
+  ],
+  "never": [
+    "Read what you type into forms",
+    "Change the page itself",
+    "Send pages or results to any server",
+    "Keep a history of the sites you checked"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Read the current tab after you click the icon."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Run the checks and draw the fold line in that tab."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Show Foldline next to the page."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Save your settings on your computer."
+    }
+  ],
+  "notes": [
+    "The fold line is drawn on top of the page only while the panel is open, and removed when you close it.",
+    "Mobile view makes the window narrower and restores it when you switch back or close the panel. This needs no extra permission."
+  ]
+}

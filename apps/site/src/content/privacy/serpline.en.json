@@ -1,0 +1,49 @@
+{
+  "summary": "Serpline checks the SEO and AI crawler access of the page you are on. Everything is worked out in your browser, and nothing is sent to us.",
+  "reads": [
+    "The page in the current tab, after you click the icon or press the shortcut.",
+    "The raw HTML of that same page, and the robots.txt and llms.txt of that site, fetched straight from the site.",
+    "The status of internal links on the page, only when you press Check links or turn that setting on. These requests go to the same site."
+  ],
+  "stores": [
+    "Settings on your computer: language, Google preview device and the link check switch.",
+    "Results stay in the side panel until you close it."
+  ],
+  "never": [
+    "Crawl a whole site or check pages you did not open it on",
+    "Send pages or results to any server",
+    "Keep a history of the sites you checked",
+    "Read what you type into forms"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Read the current tab after you click the icon."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Run the reading function in that tab."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Show Serpline next to the page."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Save your settings on your computer."
+    },
+    {
+      "name": "Site access (optional)",
+      "manifest": "optional_host:https://*/*",
+      "why": "Asked for one site at a time, only when you press Check this page. Chrome shows its own prompt, and you can remove it in Chrome settings."
+    }
+  ],
+  "notes": [
+    "Requests to the site you check work like reloading the page: your browser sends that site’s own cookies, as it always does.",
+    "The audit PDF is made in your browser."
+  ]
+}

@@ -1,0 +1,203 @@
+---
+/**
+ * /privacy/<slug> (and /az/privacy/<slug>): design/hub/Privacy.dc.html.
+ * One static page per tool; the five tabs are links between them.
+ */
+import '../styles/privacy.css';
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import FooterCompact from './FooterCompact.astro';
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { BRANDS } from '@line/ui/brand';
+import { privacyUrl, type ToolSlug } from '@line/core/site';
+import {
+  contact,
+  fill,
+  getPrivacy,
+  getPrivacyPage,
+  getShared,
+  getTools,
+  localePath,
+  type Locale,
+} from '../lib/site.ts';
+
+interface Props {
+  locale: Locale;
+  slug: ToolSlug;
+}
+const { locale, slug } = Astro.props;
+const t = await getShared(locale);
+const pg = await getPrivacyPage(locale);
+const cur = await getPrivacy(slug, locale);
+const tools = await getTools();
+const b = BRANDS[slug];
+const name = b.name;
+const path = `/privacy/${slug}`;
+// Markline's tint on this page is the lighter yellow from the artboard.
+const tint = slug === 'markline' ? '#FEFCE8' : b.tint;
+const tabTint = (s: ToolSlug) => (s === 'markline' ? '#FEFCE8' : BRANDS[s].tint);
+
+const sections = [
+  { num: '01', title: fill(pg.headings.reads, { name }), items: cur.reads, kind: 'list' },
+  { num: '02', title: pg.headings.stores, items: cur.stores, kind: 'list' },
+  { num: '03', title: fill(pg.headings.never, { name }), items: cur.never, kind: 'no' },
+] as const;
+
+const seo = {
+  title: fill(pg.meta.title, { name }),
+  description: fill(pg.meta.description, { name }),
+  path: localePath(locale, path),
+  alternates: { en: path, az: `/az${path}` },
+};
+---
+
+<Base locale={locale} seo={seo} page="privacy">
+  <Header
+    locale={locale}
+    altPath={path}
+    wide
+    linksLabel={t.nav.toolsLabel}
+    links={tools
+      .filter((x) => x.landing)
+      .map((x) => ({ href: localePath(locale, `/${x.slug}`), label: BRANDS[x.slug].name }))}
+  />
+
+  <main id="main">
+    <section class="top">
+      <div
+        class="glow"
+        style="width:420px;height:420px;right:-100px;top:-160px;background:rgba(147,197,253,.16)"
+      ></div>
+      <div
+        class="glow"
+        style="width:380px;height:380px;left:-140px;bottom:-200px;background:rgba(198,243,107,.16)"
+      ></div>
+      <div class="wrap pp-wrap top-in">
+        <span class="eyebrow">{pg.eyebrow}</span>
+        <h1 class="disp h1">{pg.title}</h1>
+        <p class="top-lead">{pg.lead}</p>
+        <span class="updated">
+          {pg.updatedLabel} {pg.updated}
+        </span>
+      </div>
+    </section>
+
+    <div class="wrap pp-wrap body">
+      <nav class="tabs" aria-label={pg.tabsLabel}>
+        {tools.map((x) => {
+          const on = x.slug === slug;
+          const tb = BRANDS[x.slug];
+          return (
+            <a
+              class:list={['tb', { on }]}
+              href={localePath(locale, `/privacy/${x.slug}`)}
+              aria-current={on ? 'page' : undefined}
+              aria-label={fill(pg.tabLabel, { name: tb.name })}
+              style={`--c:${tb.accent};--tint:${tabTint(x.slug)}`}
+            >
+              <Logo brand={x.slug} size={32} word={false} label="" />
+              <span>{tb.name}</span>
+            </a>
+          );
+        })}
+      </nav>
+
+      <article
+        class="doc"
+        aria-label={fill(pg.tabLabel, { name })}
+        style={`--c:${b.accent};--tint:${tint}`}
+      >
+        <div class="lede">
+          <div class="lede-main">
+            <h2 class="sr-only">{fill(pg.tabLabel, { name })}</h2>
+            <Logo brand={slug} size={40} />
+            <p class="p p-lead">{cur.summary}</p>
+            <span class="mono store">{privacyUrl(slug).replace('https://', '')}</span>
+          </div>
+          <ul class="facts">
+            {pg.facts.map((f) => (
+              <li class="fact">
+                <i>
+                  <Icon name="check" size={14} stroke={3} />
+                </i>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {sections.map((s, i) => (
+          <section class:list={['sec', { first: i === 0 }]}>
+            <div>
+              <span class="num">{s.num}</span>
+              <h2>{s.title}</h2>
+            </div>
+            <ul class:list={['ul', { no: s.kind === 'no' }]}>
+              {s.items.map((x) => (
+                <li>{x}</li>
+              ))}
+            </ul>
+          </section>
+        ))}
+
+        <section class="sec">
+          <div>
+            <span class="num">04</span>
+            <h2>{pg.headings.perms}</h2>
+          </div>
+          <dl class="perm">
+            {cur.perms.map((p) => (
+              <div class="pr">
+                <dt>
+                  <code>{p.name}</code>
+                </dt>
+                <dd>{p.why}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section class="sec">
+          <div>
+            <span class="num">05</span>
+            <h2>{pg.headings.notes}</h2>
+          </div>
+          <ul class="ul">
+            {cur.notes.map((x) => (
+              <li>{x}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="sec">
+          <div>
+            <span class="num">06</span>
+            <h2>{pg.headings.site}</h2>
+          </div>
+          <div class="paras">
+            {pg.site.map((x) => (
+              <p class="p">{x}</p>
+            ))}
+          </div>
+        </section>
+
+        <section class="sec">
+          <div>
+            <span class="num">07</span>
+            <h2>{pg.headings.changes}</h2>
+          </div>
+          <div class="paras">
+            <p class="p">{pg.changes}</p>
+            <p class="p">
+              {pg.contactBefore} <a href={contact('privacy')}>{pg.contactLink}</a>
+              {pg.contactAfter}
+            </p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <FooterCompact locale={locale} />
+</Base>

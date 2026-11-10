@@ -1,0 +1,44 @@
+{
+  "summary": "Rivaline shows the marketing tools, ad library links and brand style of the site you are on. It reads that page in your browser and sends nothing to us.",
+  "reads": [
+    "Script addresses, loaded file names, meta tags and the names of cookies on the page, never their values. Only after you click the icon.",
+    "Colors, fonts and the main button styles of that page.",
+    "A screenshot of the visible part of the tab, used only to cut out the logo and thrown away right after."
+  ],
+  "stores": [
+    "Settings on your computer: default country and language.",
+    "Results stay in the side panel until you close it."
+  ],
+  "never": [
+    "Read cookie values or what you type into forms",
+    "Download font files",
+    "Send pages or results to any server",
+    "Keep a history of the sites you checked"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Read the current tab after you click the icon."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Run the reading function in that tab."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Show Rivaline next to the page."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Save your settings on your computer."
+    }
+  ],
+  "notes": [
+    "The ad library buttons open Meta, Google, TikTok and LinkedIn in new tabs. Those sites have their own privacy policies.",
+    "Brand exports and the PDF are made in your browser."
+  ]
+}

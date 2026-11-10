@@ -1,0 +1,137 @@
+---
+/** Shared 404 for every path on getlineapps.com. English first, Azerbaijani below. */
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import FooterCompact from '../components/FooterCompact.astro';
+import Icon from '../components/Icon.astro';
+import { getShared, localePath, LOCALES } from '../lib/site.ts';
+
+const en = await getShared('en');
+const all = await Promise.all(LOCALES.map(async (l) => ({ l, t: await getShared(l) })));
+---
+
+<Base
+  locale="en"
+  page="nf"
+  seo={{
+    title: en.notFound.metaTitle,
+    description: en.notFound.metaDescription,
+    path: '/404',
+    noindex: true,
+  }}
+>
+  <style>
+    .nf-main {
+      position: relative;
+      min-height: calc(100vh - 72px - 106px);
+      padding: 96px 0;
+      background: var(--night);
+      color: #ffffff;
+      overflow: hidden;
+    }
+    .nf-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 30%, #000 30%, transparent 75%);
+      mask-image: radial-gradient(ellipse 70% 80% at 50% 30%, #000 30%, transparent 75%);
+    }
+    .nf-in {
+      position: relative;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+    .nf-block {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .nf-code {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: #b9b4d0;
+    }
+    .nf-code::before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      width: 30px;
+      height: 3px;
+      margin-right: 10px;
+      border-radius: 2px;
+      background: var(--specb);
+    }
+    .nf-h {
+      margin: 0;
+      font-family: var(--disp);
+      font-size: 56px;
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+    .nf-block h2.nf-h {
+      font-size: 32px;
+    }
+    .nf-p {
+      margin: 0;
+      max-width: 600px;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--soft);
+    }
+    .nf-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    @media (max-width: 640px) {
+      .nf-main {
+        padding: 56px 0;
+      }
+      .nf-h {
+        font-size: 40px;
+      }
+    }
+  </style>
+  <Header locale="en" altPath="/" />
+  <main id="main" class="nf-main dark-focus">
+    <div
+      class="glow"
+      style="width:420px;height:420px;right:-100px;top:-160px;background:rgba(250,167,224,.16)"
+    ></div>
+    <div
+      class="glow"
+      style="width:380px;height:380px;left:-140px;bottom:-200px;background:rgba(198,243,107,.16)"
+    ></div>
+    <div class="wrap nf-in">
+      {all.map(({ l, t }, i) => (
+        <div class="nf-block" lang={t.htmlLang}>
+          {i === 0 && <span class="nf-code">{t.notFound.code}</span>}
+          {i === 0 ? (
+            <h1 class="nf-h">{t.notFound.title}</h1>
+          ) : (
+            <h2 class="nf-h">{t.notFound.title}</h2>
+          )}
+          <p class="nf-p">{t.notFound.text}</p>
+          <div class="nf-btns">
+            <a class="btn btn-w" href={localePath(l, '/')}>
+              {t.notFound.home}
+              <Icon name="arrow" class="arr" />
+            </a>
+            <a class="btn btn-o" href={localePath(l, '/privacy/hitline')}>
+              {t.notFound.privacy}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+  <FooterCompact locale="en" />
+</Base>

@@ -154,6 +154,26 @@ describe('feedback handler', () => {
         )
       ).status,
     ).toBe(200);
+    for (const origin of [
+      'https://getlineapps.pages.dev',
+      'https://abc123.getlineapps.pages.dev',
+    ]) {
+      expect(
+        (await handle(post({ tool: 'site', message: 'x' }, { origin }), env)).status,
+        origin,
+      ).toBe(200);
+    }
+    expect(
+      (
+        await handle(
+          post(
+            { tool: 'site', message: 'x' },
+            { origin: 'https://getlineapps.pages.dev.evil.example' },
+          ),
+          env,
+        )
+      ).status,
+    ).toBe(403);
     expect((await handle(new Request('https://getlineapps.com/api/feedback'), env)).status).toBe(
       405,
     );

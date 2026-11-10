@@ -1,0 +1,72 @@
+---
+/** Tool logo, same rules as @line/ui Logo and design/<tool>/Logo.dc.html. */
+import {
+  BRANDS,
+  LOGO_GLYPHS,
+  LOGO_STROKE,
+  logoColors,
+  logoMetrics,
+  type LogoTheme,
+  type ToolSlug,
+} from '@line/ui/brand';
+
+interface Props {
+  brand: ToolSlug;
+  theme?: LogoTheme;
+  size?: number;
+  word?: boolean;
+  /** Accessible name. Pass "" when the tool name is already visible next to the logo. */
+  label?: string;
+  class?: string;
+}
+const { brand, theme = 'light', size = 32, word = true, label, class: cls } = Astro.props;
+const m = logoMetrics(size);
+const c = logoColors(brand, theme);
+const b = BRANDS[brand];
+const name = label ?? b.name;
+const hl = c.lineHighlight;
+const accentStyle = `color:${c.wordAccent}${hl ? `;background:${hl};padding:0 .04em;display:inline-block` : ''}`;
+---
+
+<span
+  class:list={['logo', cls]}
+  style={`gap:${m.gap}px`}
+  role={name ? 'img' : undefined}
+  aria-label={name || undefined}
+  aria-hidden={name ? undefined : 'true'}
+>
+  <span
+    class="logo-tile"
+    style={`width:${m.size}px;height:${m.size}px;border-radius:${m.radius}px;background:${c.tileBg}`}
+  >
+    <svg
+      width={m.glyph}
+      height={m.glyph}
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke={c.glyph}
+      stroke-width={LOGO_STROKE}
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      {LOGO_GLYPHS[brand].map((p) =>
+        p.fill ? (
+          <path d={p.d} fill={c.glyph} stroke="none" />
+        ) : (
+          <path d={p.d} opacity={p.opacity} stroke-dasharray={p.dash?.join(' ')} />
+        ),
+      )}
+    </svg>
+  </span>
+  {word && (
+    <span
+      class="logo-word"
+      style={`font-size:${m.wordSize}px;color:${c.wordInk}`}
+      aria-hidden="true"
+    >
+      {b.first}
+      <span style={accentStyle}>line</span>
+    </span>
+  )}
+</span>

@@ -1,0 +1,623 @@
+---
+/** The hub (/ and /az): design/hub/Main.dc.html. Every text comes from src/content/hub and shared. */
+import '../styles/hub.css';
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import HubLogo from './HubLogo.astro';
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import OwnerMark from './OwnerMark.astro';
+import { BRANDS } from '@line/ui/brand';
+import { faqPageJsonLd, websiteJsonLd } from '@line/site-kit/seo';
+import {
+  SOURCE_URL,
+  contact,
+  fill,
+  getHub,
+  getShared,
+  getTools,
+  localePath,
+  type Locale,
+} from '../lib/site.ts';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = await getShared(locale);
+const h = await getHub(locale);
+const tools = await getTools();
+const gtm = Boolean((import.meta.env.PUBLIC_GTM_ID as string | undefined)?.trim());
+const lp = (path: string) => localePath(locale, path);
+const toolBySlug = new Map(tools.map((x) => [x.slug, x]));
+const big = new Set(['hitline', 'serpline']);
+const allRole = h.tools.roles[0]!;
+
+// Pin places on the example page, from the artboard.
+const pinStyle: Record<string, string> = {
+  serpline: 'top:-8px;right:-14px',
+  rivaline: 'top:-14px;right:-30px',
+  hitline: 'top:-14px;right:-14px',
+  markline: 'top:-12px;right:-12px',
+  foldline: 'top:-4px;left:22px',
+};
+const spotBySlug = new Map(h.together.spots.map((s) => [s.slug, s]));
+const pin = (slug: 'serpline' | 'rivaline' | 'markline' | 'hitline' | 'foldline') => {
+  const s = spotBySlug.get(slug)!;
+  const b = BRANDS[slug];
+  return {
+    num: s.num,
+    label: `${s.num}: ${b.name}, ${s.pin}`,
+    style: `--zc:${b.accent};--zt:${b.onAccent};${pinStyle[slug]}`,
+    on: slug === h.together.spots[0]!.slug,
+  };
+};
+const first = h.together.spots[0]!.slug;
+const laneDelays = ['0s', '-2.8s', '-5.1s', '-1.4s', '-4.2s'];
+
+const seo = {
+  title: h.meta.title,
+  description: h.meta.description,
+  path: lp('/'),
+  imageAlt: h.meta.ogAlt,
+  alternates: { en: '/', az: '/az' },
+  jsonLd: [
+    websiteJsonLd(h.meta.description),
+    faqPageJsonLd(h.faq.items.map((i) => ({ q: i.q, a: i.a }))),
+  ],
+};
+---
+
+<Base locale={locale} seo={seo} page="hub">
+  <Header
+    locale={locale}
+    altPath="/"
+    links={[
+      { href: '#tools', label: t.nav.tools },
+      { href: '#together', label: t.nav.together },
+      { href: '#web-tools', label: t.nav.webTools },
+      { href: '#faq', label: t.nav.faq },
+    ]}
+    cta={{ href: contact('hub_nav'), label: t.nav.cta }}
+  />
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div
+        class="glow"
+        style="width:420px;height:420px;right:-80px;top:-160px;background:rgba(103,232,249,.16)"
+      ></div>
+      <div
+        class="glow"
+        style="width:380px;height:380px;right:26%;bottom:-200px;background:rgba(250,167,224,.14)"
+      ></div>
+      <div
+        class="glow"
+        style="width:420px;height:420px;left:-160px;bottom:-180px;background:rgba(198,243,107,.18)"
+      ></div>
+      <div class="lanes" aria-hidden="true">
+        {tools.map((x, i) => (
+          <span class="lane" style={`--c:${BRANDS[x.slug].bright}`}>
+            <i style={`animation-delay:${laneDelays[i]}`} />
+          </span>
+        ))}
+      </div>
+      <div class="wrap h-grid">
+        <div class="hero-copy">
+          <span class="hero-pill rise">
+            <span class="live-g"></span>
+            {h.hero.pill}
+          </span>
+          <h1 class="disp h1 rise" style="animation-delay:.08s">
+            {h.hero.titleStart} <span class="hl">{h.hero.titleHighlight}</span>
+            {h.hero.titleEnd && ` ${h.hero.titleEnd}`}
+          </h1>
+          <p class="lead rise" style="animation-delay:.16s">
+            {h.hero.lead}
+          </p>
+          <div class="btns rise" style="animation-delay:.24s">
+            <a class="btn btn-w" href="#tools">
+              {h.hero.primary}
+              <Icon name="arrow" class="arr" />
+            </a>
+            <a class="btn btn-o" href="#web-tools">
+              {h.hero.secondary}
+            </a>
+          </div>
+          <ul class="trusts rise" style="animation-delay:.32s">
+            {h.hero.trust.map((x) => (
+              <li class="trust">
+                <i>
+                  <Icon name="check" size={11} stroke={3.4} />
+                </i>
+                {x}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="mock-wrap rise" style="animation-delay:.2s">
+          <div class="mock">
+            <div class="mbar">
+              <span class="url">
+                <Icon name="lock" size={13} />
+                {h.hero.mockUrl}
+              </span>
+              <span class="exts">
+                {tools.map((x) => (
+                  <Logo brand={x.slug} size={24} word={false} label="" />
+                ))}
+              </span>
+            </div>
+            <div class="mock-label">{h.hero.mockLabel}</div>
+            {tools.map((x, i) => {
+              const c = h.tools.cards[x.slug]!;
+              return (
+                <div class="q" style={`animation-delay:${i * 2}s`}>
+                  <Logo brand={x.slug} size={36} word={false} label="" />
+                  <span>
+                    <b>{c.question}</b>
+                    <small>
+                      {BRANDS[x.slug].name}: {c.answer}
+                    </small>
+                  </span>
+                  <span class="k mono">{c.surface}</span>
+                </div>
+              );
+            })}
+          </div>
+          <div class="float" aria-hidden="true">
+            <span>
+              <Icon name="doc" size={16} />
+            </span>
+            {h.hero.float}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="tools">
+      <div class="wrap stack" style="gap:36px">
+        <div class="sec-head" style="max-width:640px">
+          <span class="eyebrow">{h.tools.eyebrow}</span>
+          <h2 class="disp h2">{h.tools.title}</h2>
+          <p class="lead">{h.tools.lead}</p>
+        </div>
+
+        <div class="roles-box" data-roles-box>
+          <span class="roles-title" id="roles-title">
+            {h.tools.rolesTitle}
+          </span>
+          <div class="roles" role="group" aria-label={h.tools.rolesLabel}>
+            {h.tools.roles.map((r, i) => (
+              <button
+                type="button"
+                class="rc"
+                aria-pressed={i === 0 ? 'true' : 'false'}
+                data-role={r.id}
+                data-tools={r.tools.join(' ')}
+                data-hint={r.hint}
+              >
+                {r.label}
+              </button>
+            ))}
+          </div>
+          <p class="hint" role="status">
+            <Icon name="info" stroke={2.2} />
+            <span data-hint-text>{allRole.hint}</span>
+          </p>
+        </div>
+
+        <div class="tg">
+          {tools.map((x) => {
+            const b = BRANDS[x.slug];
+            const c = h.tools.cards[x.slug]!;
+            return (
+              <article
+                class:list={['tc', { big: big.has(x.slug) }]}
+                data-tool={x.slug}
+                style={`--c:${b.accent};--on:${b.onAccent};--tint:${b.tint};--tink:${b.tintInk}`}
+              >
+                <div class="top">
+                  <Logo brand={x.slug} size={32} />
+                  <span class="for">{c.forWho}</span>
+                </div>
+                <h3 class="disp tq">{c.question}</h3>
+                <p class="td">{c.desc}</p>
+                <ul class="bl">
+                  {c.bullets.map((bl) => (
+                    <li>
+                      <i>
+                        <Icon name="check" size={12} stroke={3.2} />
+                      </i>
+                      {bl}
+                    </li>
+                  ))}
+                </ul>
+                <div class="acts">
+                  {x.status === 'live' && x.storeUrl ? (
+                    <a class="btn add" href={x.storeUrl} target="_blank" rel="noopener">
+                      <Icon name="chrome" stroke={2.2} />
+                      {t.status.add}
+                      <span class="sr-only">: {b.name}</span>
+                    </a>
+                  ) : (
+                    <span class="soon">
+                      <Icon name="clock" size={16} stroke={2.4} />
+                      {t.status.soon}
+                    </span>
+                  )}
+                  {x.landing && (
+                    <a class="more" href={lp(`/${x.slug}`)}>
+                      {t.status.learnMore}
+                      <span class="sr-only">: {b.name}</span>
+                      <Icon name="arrow" size={14} />
+                    </a>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <section class="night sec" id="together">
+      <div
+        class="glow"
+        style="width:480px;height:480px;right:-160px;top:-200px;background:rgba(147,197,253,.18)"
+      ></div>
+      <div class="wrap stack" style="position:relative;gap:44px">
+        <div class="sec-head" style="max-width:720px">
+          <span class="eyebrow">{h.together.eyebrow}</span>
+          <h2 class="disp h2">{h.together.title}</h2>
+          <p class="lead">{h.together.lead}</p>
+        </div>
+        <div class="sg" data-spots>
+          {(() => {
+            const p = h.together.page;
+            const s1 = pin('serpline');
+            const s2 = pin('rivaline');
+            const s3 = pin('markline');
+            const s4 = pin('hitline');
+            const s5 = pin('foldline');
+            return (
+              <div class="pg" role="group" aria-label={h.together.pageLabel}>
+                <div class="pg-bar">
+                  <div
+                    class:list={['pg-tab z', { on: s1.on }]}
+                    data-z="serpline"
+                    style="--zc:#2563EB"
+                  >
+                    <Icon name="circle" size={14} />
+                    <span>{p.tab}</span>
+                    <button
+                      type="button"
+                      class="pin"
+                      style={s1.style}
+                      aria-label={s1.label}
+                      aria-pressed={s1.on ? 'true' : 'false'}
+                      data-spot="serpline"
+                    >
+                      {s1.num}
+                    </button>
+                  </div>
+                </div>
+                <div class="pg-nav">
+                  <span
+                    class:list={['pg-brand z', { on: s2.on }]}
+                    data-z="rivaline"
+                    style="--zc:#0E7490"
+                  >
+                    <i />
+                    {p.brand}
+                    <button
+                      type="button"
+                      class="pin"
+                      style={s2.style}
+                      aria-label={s2.label}
+                      aria-pressed={s2.on ? 'true' : 'false'}
+                      data-spot="rivaline"
+                    >
+                      {s2.num}
+                    </button>
+                  </span>
+                  <span class="grow" />
+                  {p.nav.map((n) => (
+                    <span>{n}</span>
+                  ))}
+                </div>
+                <div class="pg-hero">
+                  <div>
+                    <p class="pg-h">{p.headline}</p>
+                    <div class="pg-l" style="width:92%" />
+                    <div class="pg-l" style="width:74%" />
+                    <span
+                      class:list={['pg-btn z', { on: s4.on }]}
+                      data-z="hitline"
+                      style="--zc:#7F56D9"
+                    >
+                      {p.button}
+                      <button
+                        type="button"
+                        class="pin"
+                        style={s4.style}
+                        aria-label={s4.label}
+                        aria-pressed={s4.on ? 'true' : 'false'}
+                        data-spot="hitline"
+                      >
+                        {s4.num}
+                      </button>
+                    </span>
+                  </div>
+                  <div
+                    class:list={['pg-img z', { on: s3.on }]}
+                    data-z="markline"
+                    style="--zc:#101828"
+                  >
+                    <Icon name="plant" size={64} />
+                    <button
+                      type="button"
+                      class="pin"
+                      style={s3.style}
+                      aria-label={s3.label}
+                      aria-pressed={s3.on ? 'true' : 'false'}
+                      data-spot="markline"
+                    >
+                      {s3.num}
+                    </button>
+                  </div>
+                </div>
+                <div class:list={['pg-fold', { on: s5.on }]} data-z="foldline">
+                  <em aria-hidden="true">{p.fold}</em>
+                  <button
+                    type="button"
+                    class="pin"
+                    style={s5.style}
+                    aria-label={s5.label}
+                    aria-pressed={s5.on ? 'true' : 'false'}
+                    data-spot="foldline"
+                  >
+                    {s5.num}
+                  </button>
+                </div>
+                <div class="pg-below">
+                  <div />
+                  <div />
+                  <div />
+                </div>
+              </div>
+            );
+          })()}
+
+          <div class="sp">
+            <div class="sp-tabs" role="group" aria-label={h.together.tabsLabel}>
+              {h.together.spots.map((s) => (
+                <button
+                  type="button"
+                  class="sp-t"
+                  style={`--c:${BRANDS[s.slug].bright}`}
+                  aria-pressed={s.slug === first ? 'true' : 'false'}
+                  aria-label={`${s.num}: ${BRANDS[s.slug].name}`}
+                  data-spot={s.slug}
+                >
+                  <b>{s.num}</b>
+                </button>
+              ))}
+            </div>
+            {h.together.spots.map((s) => {
+              const b = BRANDS[s.slug];
+              return (
+                <div
+                  class="sp-panel"
+                  data-panel={s.slug}
+                  hidden={s.slug !== first}
+                  style={`--c:${b.bright}`}
+                >
+                  <div class="sp-block">
+                    <span class="sp-lbl">{s.where}</span>
+                    <h3 class="disp sp-q">{s.question}</h3>
+                  </div>
+                  <div class="sp-block">
+                    <span class="sp-lbl">{fill(h.together.tellsYou, { name: b.name })}</span>
+                    <ul class="sp-f">
+                      {s.finds.map((f) => (
+                        <li>
+                          <i />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="sp-foot">
+                    <Logo brand={s.slug} theme="dark" size={28} />
+                    <span class="grow" />
+                    {toolBySlug.get(s.slug)?.landing && (
+                      <a class="sp-more" href={lp(`/${s.slug}`)}>
+                        {t.status.learnMore}
+                        <span class="sr-only">: {b.name}</span>
+                        <Icon name="arrow" size={14} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="priv">
+      <div class="wrap stack" style="gap:40px">
+        <div class="sec-head">
+          <span class="eyebrow">{h.promise.eyebrow}</span>
+          <h2 class="disp h2">{h.promise.title}</h2>
+        </div>
+        <div class="r-4">
+          {h.promise.items.map((p) => (
+            <div class="pv">
+              <span class="ic">
+                <Icon name={p.icon} size={22} stroke={2.2} />
+              </span>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="web-tools">
+      <div class="wrap stack" style="gap:40px">
+        <div class="sec-head">
+          <span class="eyebrow">{h.webTools.eyebrow}</span>
+          <h2 class="disp h2">{h.webTools.title}</h2>
+          <p class="lead">{h.webTools.lead}</p>
+        </div>
+        <div class="r-4">
+          {h.webTools.items.map((w) => {
+            const b = BRANDS[w.slug];
+            const tink = w.slug === 'markline' ? '#101828' : b.tintInk;
+            const accent = w.slug === 'markline' ? '#101828' : b.accent;
+            const style = `--c:${accent};--tink:${tink}`;
+            return toolBySlug.get(w.slug)?.landing ? (
+              <a class="wt" style={style} href={`${lp(`/${w.slug}`)}#${w.fragment}`}>
+                <Logo brand={w.slug} size={36} word={false} />
+                <h3>{w.title}</h3>
+                <p>{w.text}</p>
+                <span class="go">
+                  {t.status.openTool}
+                  <Icon name="arrow" size={14} />
+                </span>
+              </a>
+            ) : (
+              <div class="wt" style={style}>
+                <Logo brand={w.slug} size={36} word={false} />
+                <h3>{w.title}</h3>
+                <p>{w.text}</p>
+                <span class="soon">
+                  <Icon name="clock" size={15} stroke={2.4} />
+                  {t.status.soon}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-sec" id="faq">
+      <div class="wrap r-ab">
+        <div class="faq-head">
+          <span class="eyebrow">{h.faq.eyebrow}</span>
+          <h2 class="disp h2">{h.faq.title}</h2>
+          <p class="lead">
+            {h.faq.askBefore} <a href={contact('faq')}>{h.faq.askLink}</a>
+            {h.faq.askAfter}
+          </p>
+        </div>
+        <div class="faq">
+          {h.faq.items.map((f, i) => (
+            <details open={i === 0}>
+              <summary>
+                {f.q}
+                <span class="pm">
+                  <Icon name="plus" size={16} stroke={2.6} />
+                </span>
+              </summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="night about" aria-labelledby="about-title">
+    <div
+      class="glow"
+      style="width:460px;height:460px;left:-160px;top:-120px;background:rgba(198,243,107,.16)"
+    ></div>
+    <div
+      class="glow"
+      style="width:460px;height:460px;right:-140px;bottom:-200px;background:rgba(250,167,224,.16)"
+    ></div>
+    <div class="wrap about-in">
+      <div class="about-row">
+        <div class="about-me">
+          <OwnerMark id="si-about" size={88} label={t.ownerLogo} />
+          <div class="stack" style="gap:14px">
+            <span class="eyebrow">{h.about.eyebrow}</span>
+            <h2 class="disp h2" id="about-title">
+              {h.about.title}
+            </h2>
+            <p class="lead">{h.about.text}</p>
+          </div>
+        </div>
+        <div class="about-cta">
+          <a class="btn btn-l" href={contact('hub_cta')}>
+            {h.about.cta}
+            <Icon name="arrow" class="arr" />
+          </a>
+          <span>{h.about.from}</span>
+        </div>
+      </div>
+
+      <footer class="foot">
+        <div class="r-3">
+          <div class="foot-brand">
+            <HubLogo theme="dark" size={30} />
+            <p>{t.footer.tagline}</p>
+          </div>
+          <nav class="fl" aria-label={t.footer.extensions}>
+            <span class="fh">{t.footer.extensions}</span>
+            {tools.map((x) =>
+              x.landing ? (
+                <a href={lp(`/${x.slug}`)}>{BRANDS[x.slug].name}</a>
+              ) : (
+                <span class="muted">{BRANDS[x.slug].name}</span>
+              ),
+            )}
+          </nav>
+          <nav class="fl" aria-label={t.footer.webTools}>
+            <span class="fh">{t.footer.webTools}</span>
+            {h.webTools.items.map((w) =>
+              toolBySlug.get(w.slug)?.landing ? (
+                <a href={`${lp(`/${w.slug}`)}#${w.fragment}`}>{w.title}</a>
+              ) : (
+                <span class="muted">{w.title}</span>
+              ),
+            )}
+          </nav>
+          <nav class="fl" aria-label={t.footer.about}>
+            <span class="fh">{t.footer.about}</span>
+            <a href={lp('/privacy/hitline')}>{t.footer.privacy}</a>
+            <a href={contact('footer')}>{t.footer.contact}</a>
+            <a href={SOURCE_URL}>{t.footer.source}</a>
+            {gtm && (
+              <button type="button" data-cookie-settings>
+                {t.footer.cookies}
+              </button>
+            )}
+          </nav>
+        </div>
+        <div class="foot-bottom">
+          <span>
+            {t.footer.builtBy}
+            <a href={contact('footer')}>
+              <OwnerMark id="si-foot" size={22} />
+              {t.ownerName}
+            </a>
+          </span>
+          <span>{t.footer.trademark}</span>
+        </div>
+      </footer>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { initHub } from '../scripts/hub.ts';
+  initHub(document);
+</script>

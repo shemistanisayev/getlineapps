@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "{name} məxfilik siyasəti: Line apps",
+    "description": "{name} nəyi oxuyur, kompüterinizdə nəyi saxlayır və heç vaxt nə etmir. Hesab yoxdur, heç nə satılmır, bizə heç nə göndərilmir."
+  },
+  "eyebrow": "Məxfilik",
+  "title": "Məxfilik siyasəti",
+  "lead": "Hər Line alətinin öz siyasəti var, çünki hər biri fərqli şey oxuyur. Aləti seçin. Qısa variantı beşi üçün də eynidir: hesab yoxdur, heç nə satılmır, bizə heç nə göndərilmir.",
+  "updatedLabel": "Son yenilənmə",
+  "updated": "10 noyabr 2026",
+  "tabsLabel": "Aləti seçin",
+  "tabLabel": "{name} məxfilik siyasəti",
+  "facts": [
+    "Şəxsi məlumat toplanmır",
+    "Serverlərimizə heç nə göndərilmir",
+    "Heç nə satılmır və paylaşılmır"
+  ],
+  "headings": {
+    "reads": "{name} nəyi və nə vaxt oxuyur",
+    "stores": "Kompüterinizdə nə saxlanılır",
+    "never": "{name} heç vaxt nə etmir",
+    "perms": "İcazələr və səbəbləri",
+    "notes": "Bilməyə dəyər",
+    "site": "Bu sayt",
+    "changes": "Dəyişikliklər və əlaqə"
+  },
+  "site": [
+    "getlineapps.com cookie banner-də razılıq verməyincə heç bir analitika yükləmir. Seçiminizi istənilən vaxt footer-dəki linkdən dəyişə bilərsiniz.",
+    "Genişlənməni sildikdən sonra formanı doldursanız, səbəb və yazdığınız mətn aləti yaxşılaşdırmağım üçün mənə e-maillə gəlir. Başqa heç nə əlavə olunmur və marketinq üçün istifadə edilmir."
+  ],
+  "changes": "Bu siyasət dəyişsə, yeni versiya yeni tarixlə burada yerləşdirilir. Daha çox məlumat toplayan dəyişiklik buraxılışdan əvvəl genişlənmənin yenilik qeydlərində də izah olunur.",
+  "contactBefore": "Məxfiliklə bağlı sualınız var?",
+  "contactLink": "Şəmistan İsayevlə əlaqə saxlayın",
+  "contactAfter": "."
+}

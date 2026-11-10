@@ -54,6 +54,17 @@ describe('consent banner', () => {
     expect(gtmScripts()).toHaveLength(0);
   });
 
+  it('shows the banner again from Cookie settings, once', () => {
+    const el = mountConsentBanner({ gtmId: 'GTM-ABC123', texts })!;
+    (el.querySelector('.line-consent-reject') as HTMLButtonElement).click();
+    expect(mountConsentBanner({ gtmId: 'GTM-ABC123', texts, force: true })).not.toBeNull();
+    mountConsentBanner({ gtmId: 'GTM-ABC123', texts, force: true });
+    expect(document.querySelectorAll('.line-consent')).toHaveLength(1);
+    (document.querySelector('.line-consent-accept') as HTMLButtonElement).click();
+    expect(readConsent(localStorage)).toBe('granted');
+    expect(gtmScripts()).toHaveLength(1);
+  });
+
   it('defaults Consent Mode v2 to denied', () => {
     const s = consentDefaultsScript();
     for (const k of ['ad_storage', 'ad_user_data', 'ad_personalization', 'analytics_storage']) {

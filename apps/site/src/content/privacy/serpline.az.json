@@ -1,0 +1,49 @@
+{
+  "summary": "Serpline olduğunuz səhifənin SEO-sunu və AI crawler girişini yoxlayır. Hər şey brauzerinizdə hesablanır və bizə heç nə göndərilmir.",
+  "reads": [
+    "Cari tabdakı səhifəni, ikona basandan və ya qısayolu sıxandan sonra.",
+    "Həmin səhifənin xam HTML-ini, həmçinin saytın robots.txt və llms.txt fayllarını, birbaşa saytın özündən.",
+    "Səhifədəki daxili linklərin statusunu, yalnız Check links düyməsinə basanda və ya bu ayarı yandıranda. Bu sorğular eyni sayta gedir."
+  ],
+  "stores": [
+    "Kompüterinizdə ayarlar: dil, Google önizləməsinin cihazı və link yoxlaması açarı.",
+    "Nəticələr yan paneli bağlayana qədər orada qalır."
+  ],
+  "never": [
+    "Bütün saytı gəzmək və ya onu açmadığınız səhifələri yoxlamaq",
+    "Səhifələri və ya nəticələri hansısa serverə göndərmək",
+    "Yoxladığınız saytların tarixçəsini saxlamaq",
+    "Formalara yazdıqlarınızı oxumaq"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "İkona basandan sonra cari tabı oxumaq."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Oxuma funksiyasını həmin tabda işə salmaq."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Serpline-ı səhifənin yanında göstərmək."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarınızı kompüterinizdə saxlamaq."
+    },
+    {
+      "name": "Sayta giriş (istəyə bağlı)",
+      "manifest": "optional_host:https://*/*",
+      "why": "Hər dəfə bir sayt üçün, yalnız Check this page düyməsinə basanda soruşulur. Chrome öz pəncərəsini göstərir və icazəni Chrome ayarlarından silə bilərsiniz."
+    }
+  ],
+  "notes": [
+    "Yoxladığınız sayta gedən sorğular səhifəni yeniləmək kimi işləyir: brauzeriniz həmişəki kimi həmin saytın öz cookie-lərini göndərir.",
+    "Audit PDF brauzerinizdə hazırlanır."
+  ]
+}

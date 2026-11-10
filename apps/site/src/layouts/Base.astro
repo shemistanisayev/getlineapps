@@ -1,0 +1,68 @@
+---
+/** Shared shell of getlineapps.com: head (SEO, fonts), skip link, consent banner. */
+import '@line/ui/fonts.css';
+import '../styles/base.css';
+import interLatin from '@line/ui/fonts/inter-latin-wght-normal.woff2?url';
+import jakartaLatin from '@line/ui/fonts/plus-jakarta-sans-latin-wght-normal.woff2?url';
+import { consentDefaultsScript, renderSeoHead, type SeoInput } from '@line/site-kit';
+import { getShared, localePath, type Locale } from '../lib/site.ts';
+
+interface Props {
+  locale: Locale;
+  seo: Omit<SeoInput, 'locale'>;
+  /** Class on <body>, sets the page's own styles. */
+  page: string;
+}
+const { locale, seo, page } = Astro.props;
+const t = await getShared(locale);
+const gtmId = (import.meta.env.PUBLIC_GTM_ID as string | undefined)?.trim() || '';
+const head = renderSeoHead({
+  image: '/og/line-apps.png',
+  ...seo,
+  locale,
+});
+const consentTexts = JSON.stringify({
+  text: t.consent.text,
+  accept: t.consent.accept,
+  reject: t.consent.reject,
+  privacyLabel: t.consent.privacyLabel,
+  privacyHref: localePath(locale, '/privacy/hitline'),
+});
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#120D24" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={jakartaLatin} as="font" type="font/woff2" crossorigin />
+    {gtmId && <script is:inline set:html={consentDefaultsScript()} />}
+    <Fragment set:html={head} />
+    <link rel="sitemap" href="/sitemap.xml" />
+  </head>
+  <body class={page} data-gtm={gtmId || undefined} data-consent={gtmId ? consentTexts : undefined}>
+    <a class="skip" href="#main">
+      {t.skip}
+    </a>
+    <slot />
+    {gtmId && <script>
+      import '@line/site-kit/consent.css';
+      import { mountConsentBanner } from '@line/site-kit/consent';
+      const body = document.body;
+      const gtmId = body.dataset.gtm ?? '';
+      const texts = JSON.parse(body.dataset.consent ?? '{}');
+      mountConsentBanner({ gtmId, texts });
+      document.querySelectorAll('[data-cookie-settings]').forEach((el) =>
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          mountConsentBanner({ gtmId, texts, force: true })?.querySelector('button')?.focus();
+        }),
+      );
+    </script>}
+  </body>
+</html>

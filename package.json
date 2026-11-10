@@ -16,7 +16,8 @@
     "test": "vitest run",
     "build": "pnpm -r --if-present build",
     "e2e": "playwright test",
-    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build"
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
+    "lighthouse": "node scripts/lighthouse.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -26,7 +27,9 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.14.0",
     "happy-dom": "^21.0.4",
+    "lighthouse": "^12.8.2",
     "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.2",
     "tsx": "^4.23.15",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.1",

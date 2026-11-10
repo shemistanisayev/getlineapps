@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "{name} privacy policy: Line apps",
+    "description": "What {name} reads, what it saves on your computer and what it never does. No account, nothing sold, nothing sent to us."
+  },
+  "eyebrow": "Privacy",
+  "title": "Privacy policy",
+  "lead": "Each Line app has its own policy, because each one reads something different. Pick a tool. The short version is the same for all five: no account, nothing sold, nothing sent to us.",
+  "updatedLabel": "Last updated",
+  "updated": "10 November 2026",
+  "tabsLabel": "Choose a tool",
+  "tabLabel": "{name} privacy policy",
+  "facts": ["No personal data collected", "Nothing sent to our servers", "Nothing sold or shared"],
+  "headings": {
+    "reads": "What {name} reads, and when",
+    "stores": "What is saved on your computer",
+    "never": "What {name} never does",
+    "perms": "Permissions and why",
+    "notes": "Good to know",
+    "site": "This website",
+    "changes": "Changes and contact"
+  },
+  "site": [
+    "getlineapps.com loads no analytics until you accept them in the cookie banner. You can change your choice at any time from the link in the footer.",
+    "If you fill in the form after removing an extension, the reason and the text you write are emailed to me so I can improve the tool. Nothing else is attached, and it is not used for marketing."
+  ],
+  "changes": "If this policy changes, the new version is posted here with a new date. A change that collects more data would also be described in the extension's release notes before it ships.",
+  "contactBefore": "Questions about privacy?",
+  "contactLink": "Contact Shamistan Isayev",
+  "contactAfter": "."
+}

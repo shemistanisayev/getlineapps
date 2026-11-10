@@ -76,6 +76,8 @@ export interface ConsentOptions {
   texts: ConsentTexts;
   doc?: Document;
   storage?: Storage | null;
+  /** Show the banner even when a choice is saved (the "Cookie settings" link). */
+  force?: boolean;
 }
 
 /** Shows the banner if needed. Returns the banner element, or null when none is shown. */
@@ -84,8 +86,10 @@ export function mountConsentBanner({
   texts,
   doc = document,
   storage,
+  force = false,
 }: ConsentOptions): HTMLElement | null {
   if (!gtmId) return null;
+  doc.querySelector('.line-consent')?.remove();
   let store: Storage | null = null;
   try {
     store = storage === undefined ? (doc.defaultView?.localStorage ?? null) : storage;
@@ -93,11 +97,11 @@ export function mountConsentBanner({
     store = null;
   }
   const choice = readConsent(store);
-  if (choice === 'granted') {
+  if (choice === 'granted' && !force) {
     grant(gtmId, doc);
     return null;
   }
-  if (choice === 'denied') return null;
+  if (choice === 'denied' && !force) return null;
 
   const el = doc.createElement('section');
   el.className = 'line-consent';
@@ -124,6 +128,16 @@ export function mountConsentBanner({
 
   reject.addEventListener('click', () => {
     writeConsent(store, 'denied');
+    if (choice === 'granted') {
+      // Tags already loaded cannot be unloaded: tell them, and reload so nothing more runs.
+      gtag(doc.defaultView as DataLayerWindow, 'consent', 'update', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+      });
+      doc.defaultView?.location.reload();
+    }
     el.remove();
   });
   accept.addEventListener('click', () => {

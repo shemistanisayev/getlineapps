@@ -1,0 +1,53 @@
+{
+  "lang": "en",
+  "htmlLang": "en",
+  "switchTo": { "label": "Azərbaycan dilində", "short": "AZ" },
+  "skip": "Skip to content",
+  "nav": {
+    "home": "Line apps home",
+    "main": "Main",
+    "tools": "Tools",
+    "together": "What they check",
+    "webTools": "Free web tools",
+    "faq": "FAQ",
+    "cta": "Book a call",
+    "toolsLabel": "Tools"
+  },
+  "footer": {
+    "label": "Footer",
+    "tagline": "Free Chrome tools for marketers, SEO specialists and agencies.",
+    "extensions": "Extensions",
+    "webTools": "Free web tools",
+    "about": "About",
+    "privacy": "Privacy policy",
+    "contact": "Contact",
+    "source": "Source code",
+    "cookies": "Cookie settings",
+    "allTools": "All tools",
+    "builtBy": "Built by",
+    "trademark": "Chrome is a trademark of Google LLC."
+  },
+  "status": {
+    "soon": "Coming soon",
+    "add": "Add to Chrome",
+    "learnMore": "Learn more",
+    "openTool": "Open tool"
+  },
+  "consent": {
+    "text": "This site uses analytics cookies only if you accept them.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "privacyLabel": "Privacy policy"
+  },
+  "notFound": {
+    "metaTitle": "Page not found: Line apps",
+    "metaDescription": "This page does not exist on getlineapps.com.",
+    "code": "404",
+    "title": "This page does not exist",
+    "text": "The link may be old or mistyped. The five tools and their privacy policies are one click away.",
+    "home": "See all tools",
+    "privacy": "Privacy policy"
+  },
+  "ownerLogo": "Shamistan Isayev logo",
+  "ownerName": "Shamistan Isayev"
+}

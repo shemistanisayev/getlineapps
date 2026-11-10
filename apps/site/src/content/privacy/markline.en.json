@@ -1,0 +1,39 @@
+{
+  "summary": "Markline captures the page you are on so you can mark it up. Captures stay on your computer, and Markline uploads nothing.",
+  "reads": [
+    "The current tab, after you click the icon or press a capture shortcut.",
+    "Where emails and phone numbers sit on the page, so they can be blurred. Only their position is used.",
+    "An image you drop, paste or choose in the editor."
+  ],
+  "stores": [
+    "Settings on your computer: auto blur, blur style, export defaults and language.",
+    "A capture is passed to the editor tab through browser storage and deleted within seconds. Closing the editor tab removes the capture."
+  ],
+  "never": [
+    "Upload captures or create share links",
+    "Record your screen",
+    "Send pages, images or notes to any server",
+    "Keep a history of what you captured"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Capture and read the current tab after you click or press a shortcut."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Find emails and phone numbers to blur, show the area and element picker, and scroll for a full page capture."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Save your settings on your computer."
+    }
+  ],
+  "notes": [
+    "Page details (address, browser, window size, time) are added to an export only if that switch is on.",
+    "The “Made with Markline” line on images is optional and can be turned off in settings."
+  ]
+}

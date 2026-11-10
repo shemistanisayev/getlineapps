@@ -1,0 +1,58 @@
+---
+/** "Line apps" logo, same rules as @line/ui HubLogo and design/hub/HubLogo.dc.html. */
+import {
+  HUB_LOGO_PATHS,
+  HUB_LOGO_STROKE,
+  hubLogoColors,
+  logoMetrics,
+  type LogoTheme,
+} from '@line/ui/brand';
+
+interface Props {
+  theme?: LogoTheme;
+  size?: number;
+  word?: boolean;
+  /** Accessible name. Pass "" when a parent link already names it. */
+  label?: string;
+}
+const { theme = 'light', size = 32, word = true, label = 'Line apps' } = Astro.props;
+const m = logoMetrics(size);
+const c = hubLogoColors(theme);
+---
+
+<span
+  class="logo"
+  style={`gap:${m.gap}px`}
+  role={label ? 'img' : undefined}
+  aria-label={label || undefined}
+  aria-hidden={label ? undefined : 'true'}
+>
+  <span
+    class="logo-tile"
+    style={`width:${m.size}px;height:${m.size}px;border-radius:${m.radius}px;background:${c.tileBg};box-shadow:${c.ring}`}
+  >
+    <svg
+      width={m.glyph}
+      height={m.glyph}
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke-width={HUB_LOGO_STROKE}
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      {HUB_LOGO_PATHS.map((d, i) => (
+        <path d={d} stroke={c.lines[i]} />
+      ))}
+    </svg>
+  </span>
+  {word && (
+    <span
+      class="logo-word"
+      style={`font-size:${m.wordSize}px;color:${c.wordInk}`}
+      aria-hidden="true"
+    >
+      Line<span style={`color:${c.wordSoft};font-weight:600`}>apps</span>
+    </span>
+  )}
+</span>
