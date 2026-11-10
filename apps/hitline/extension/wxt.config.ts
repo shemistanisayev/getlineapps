@@ -12,6 +12,8 @@ export default defineConfig({
   modules: ['@wxt-dev/module-react'],
   srcDir: '.',
   outDir: '.output',
+  // Store upload: .output/hitline-<version>.zip (copied to store/hitline by the store script).
+  zip: { artifactTemplate: 'hitline-{{version}}.zip' },
   // pdf-lib is one large chunk, loaded only when an audit PDF is made.
   vite: () => ({ build: { chunkSizeWarningLimit: 1600 } }),
   manifest: {

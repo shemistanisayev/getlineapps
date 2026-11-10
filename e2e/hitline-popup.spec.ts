@@ -172,7 +172,7 @@ test.describe('hitline popup', () => {
       'href',
       'https://shamistanisayev.com/?utm_source=hitline&utm_medium=extension&utm_campaign=settings',
     );
-    await expect(page.locator('.set-foot')).toContainText('Version 0.1.0');
+    await expect(page.locator('.set-foot')).toContainText('Version 1.0.0');
     await page.evaluate(() => document.fonts.ready);
     if (SHOTS)
       await page.screenshot({ path: `${SHOTS}/hitline-popup-settings.png`, fullPage: true });

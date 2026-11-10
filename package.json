@@ -17,11 +17,13 @@
     "build": "pnpm -r --if-present build",
     "e2e": "playwright test",
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
-    "lighthouse": "node scripts/lighthouse.mjs"
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "store:hitline": "tsx scripts/store-hitline.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.65.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^26.6.6",
     "eslint": "^10.14.0",
     "eslint-plugin-react-hooks": "^7.1.1",
