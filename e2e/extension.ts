@@ -37,6 +37,8 @@ export async function loadExtension(
   const launch = (channel: string) =>
     chromium.launchPersistentContext(profile, {
       channel,
+      // Fixture times are UTC (packages/core/fixtures/hitline/lumo.ts): show them as in the design.
+      timezoneId: 'UTC',
       args: [`--disable-extensions-except=${dir}`, `--load-extension=${dir}`, ...extraArgs],
     });
   // Playwright Chromium first (CI). LINE_EXT_CHANNEL=msedge forces Edge; on some Windows builds

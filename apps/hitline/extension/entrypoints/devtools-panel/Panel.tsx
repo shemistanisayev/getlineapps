@@ -1,19 +1,34 @@
 import { Logo } from '@line/ui';
 import { useState } from 'react';
-import type { MessageKey } from '../../src/i18n/index.ts';
+import { useCapture } from '../../src/capture/useCapture.ts';
 import { useT } from '../../src/useLang.ts';
+import { EmptyState } from './EmptyState.tsx';
+import { EventsTab } from './EventsTab.tsx';
+import { GtmTab } from './GtmTab.tsx';
 
-const TABS = ['events', 'gtm', 'consent', 'attribution', 'plan'] as const;
-type Tab = (typeof TABS)[number];
+export const TABS = ['events', 'gtm', 'consent', 'attribution', 'plan'] as const;
+export type Tab = (typeof TABS)[number];
 
-/** Step 2 scaffold: header with tabs and the first-open state. Tabs get content from step 4. */
+/** DevTools panel: PanelHeader + the active tab (design/hitline/PanelHeader, Empty, Events, Gtm). */
 export function Panel() {
   const { t } = useT();
   const [tab, setTab] = useState<Tab>('events');
+  const { audit, empty, reload, clear } = useCapture();
+  const counts = audit.counts;
+  const warn: Record<Tab, boolean> = {
+    events: false,
+    gtm: false,
+    consent: counts.consent > 0,
+    attribution: counts.attribution > 0,
+    plan: counts.plan > 0,
+  };
 
-  const reload = () => {
-    // Only available inside DevTools; the panel page opened directly has no inspected window.
-    browser.devtools?.inspectedWindow.reload({});
+  const onKey = (e: React.KeyboardEvent, i: number) => {
+    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!d) return;
+    const next = TABS[(i + d + TABS.length) % TABS.length]!;
+    setTab(next);
+    document.getElementById(`tab-${next}`)?.focus();
   };
 
   return (
@@ -23,37 +38,49 @@ export function Panel() {
           <Logo brand="hitline" theme="light" size={22} word />
         </div>
         <nav aria-label={t('panel.tabsLabel')} className="ph-tabs" role="tablist">
-          {TABS.map((id) => (
+          {TABS.map((id, i) => (
             <button
               key={id}
+              id={`tab-${id}`}
               type="button"
               role="tab"
               aria-selected={tab === id}
+              aria-controls={`pane-${id}`}
+              tabIndex={tab === id ? 0 : -1}
               className="ph-tab"
               onClick={() => setTab(id)}
+              onKeyDown={(e) => onKey(e, i)}
             >
-              {t(`panel.tab.${id}` as MessageKey)}
-              <span className="ph-badge">0</span>
+              {t(`panel.tab.${id}`)}
+              <span className={`ph-badge${warn[id] ? ' warn' : ''}`}>{empty ? 0 : counts[id]}</span>
             </button>
           ))}
         </nav>
         <div className="ph-grow" />
         <div className="ph-actions">
-          <button type="button" className="btn-s">
+          <span className="rec-pill">
+            <span className="rec-dot" aria-hidden="true" />
+            {t('panel.recording')}
+          </span>
+          <button type="button" className="btn-s" onClick={clear}>
             {t('panel.clear')}
           </button>
-          <button type="button" className="btn-p">
+          <button type="button" className="btn-p" disabled={empty}>
             {t('panel.auditPdf')}
           </button>
         </div>
       </header>
-      <section className="empty" role="tabpanel">
-        <h2 className="disp">{t('panel.empty.title')}</h2>
-        <p>{t('panel.empty.text')}</p>
-        <button type="button" className="btn-p btn-l" onClick={reload}>
-          {t('panel.empty.reload')}
-        </button>
-      </section>
+      <main className="pane" id={`pane-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
+        {empty ? (
+          <EmptyState onReload={reload} onPlan={() => setTab('plan')} />
+        ) : tab === 'events' ? (
+          <EventsTab audit={audit} />
+        ) : tab === 'gtm' ? (
+          <GtmTab audit={audit} />
+        ) : (
+          <p className="next">{t('panel.next')}</p>
+        )}
+      </main>
     </div>
   );
 }

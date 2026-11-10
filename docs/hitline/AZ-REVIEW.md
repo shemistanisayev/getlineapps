@@ -2,12 +2,15 @@
 
 Agent yazıb, sən yoxlayırsan. Dəyişmək istədiyin sətri burada və ya `apps/hitline/extension/src/i18n/az.ts` faylında düzəlt (və ya agentə yaz). Tool, event və parametr adları (GA4, page_view, consent) tərcümə olunmur.
 
-## Extension (addım 2: skelet)
+## Extension (popup, panel, welcome)
+
+Fayl: `apps/hitline/extension/src/i18n/az.ts`. {platform}, {event} kimi yerlər avtomatik dolur.
 
 | Açar | English | Azərbaycanca |
 |---|---|---|
 | `popup.settings` | Settings | Ayarlar |
 | `popup.f12Hint` | Full analysis in DevTools: press F12, open the Hitline tab | Tam analiz DevTools-dadır: F12 bas, Hitline tabını aç |
+| `list.and` | and | və |
 | `panel.tabsLabel` | Hitline sections | Hitline bölmələri |
 | `panel.tab.events` | Events | Eventlər |
 | `panel.tab.gtm` | GTM | GTM |
@@ -17,13 +20,82 @@ Agent yazıb, sən yoxlayırsan. Dəyişmək istədiyin sətri burada və ya `ap
 | `panel.recording` | Recording | Yazılır |
 | `panel.clear` | Clear | Təmizlə |
 | `panel.auditPdf` | Audit PDF | Audit PDF |
+| `panel.next` | This view arrives with the next update of Hitline. | Bu görünüş Hitline-ın növbəti yeniləməsi ilə gələcək. |
 | `panel.empty.title` | Reload the page to start recording | Yazmağa başlamaq üçün səhifəni yenilə |
 | `panel.empty.text` | Hitline records tracking requests while DevTools is open. Reload once to catch everything the page sends on load, including page_view and consent defaults. | Hitline DevTools açıq olanda tracking sorğularını yazır. Səhifənin yüklənəndə göndərdiyi hər şeyi, page_view və consent default-ları da daxil, tutmaq üçün bir dəfə yenilə. |
 | `panel.empty.reload` | Reload page | Səhifəni yenilə |
+| `panel.empty.loadPlan` | Load tracking plan | Tracking planı yüklə |
+| `panel.empty.shortcut` | Shortcut | Qısayol |
+| `panel.empty.watches` | What Hitline watches | Hitline nəyi izləyir |
+| `panel.empty.w.ga4` | GA4 and Google Tag | GA4 və Google Tag |
+| `panel.empty.w.ads` | Google Ads conversions | Google Ads konversiyaları |
+| `panel.empty.w.meta` | Meta Pixel | Meta Pixel |
+| `panel.empty.w.tiktok` | TikTok Pixel | TikTok Pixel |
+| `panel.empty.w.gtm` | dataLayer and GTM containers | dataLayer və GTM konteynerləri |
+| `panel.empty.w.sgtm` | Server-side GTM endpoints | Server-side GTM endpoint-ləri |
+| `events.all` | All | Hamısı |
+| `events.filtersLabel` | Filter by platform | Platformaya görə süz |
+| `events.search` | Search events or parameters | Event və ya parametr axtar |
+| `events.th.time` | Time | Vaxt |
+| `events.th.platform` | Platform | Platforma |
+| `events.th.event` | Event | Event |
+| `events.th.route` | Route | Yol |
+| `events.th.status` | Status | Status |
+| `events.listLabel` | Recorded events | Yazılan eventlər |
+| `events.noMatch` | No events match this filter. | Bu süzgəcə uyğun event yoxdur. |
+| `route.sgtm` | sGTM | sGTM |
+| `route.browser` | Browser | Brauzer |
+| `route.page` | Page | Səhifə |
+| `route.viaSgtm` | via sGTM | sGTM ilə |
+| `status.ok` | OK | OK |
+| `status.noValue` | No value | Dəyər yoxdur |
+| `status.beforeConsent` | Before consent | Consent-dən əvvəl |
+| `status.afterReject` | After rejection | Rədddən sonra |
+| `status.mismatch` | Wrong signal | Səhv siqnal |
+| `detail.params` | Parameters | Parametrlər |
+| `detail.noParams` | This hit carries no event parameters. | Bu hit-də event parametri yoxdur. |
+| `consent.granted` | Consent granted | Consent verilib |
+| `consent.cookieless` | Cookieless ping | Cookieless ping |
+| `consent.before` | Sent before any consent | Heç bir consent-dən əvvəl getdi |
+| `consent.after` | Sent after rejection | Rədddən sonra getdi |
+| `consent.mismatch` | Signals do not match the choice | Siqnallar seçimə uyğun deyil |
+| `consent.noSignal` | No consent signal on this hit | Bu hit-də consent siqnalı yoxdur |
+| `consent.unknown` | No Consent Mode on this page | Bu səhifədə Consent Mode yoxdur |
+| `issue.sameClick.title` | The same click sends {platform} {event} without a value | Eyni klik {platform} {event} eventini dəyərsiz göndərir |
+| `issue.sameClick.text` | {own} gets {value}, {platform} gets no value. {platform} ad optimization can’t see the cart value. | {own} {value} alır, {platform} isə dəyər almır. {platform} reklam optimizasiyası səbətin dəyərini görmür. |
+| `issue.self.title` | {platform} {event} is sent without a value | {platform} {event} dəyərsiz göndərilir |
+| `issue.self.text` | Pass value and currency from the dataLayer to this tag. | value və currency-ni dataLayer-dən bu tag-a ötür. |
+| `gtm.container` | Container | Konteyner |
+| `gtm.tags` | Tags | Tag-lar |
+| `gtm.triggers` | Triggers | Trigger-lər |
+| `gtm.variables` | Variables | Dəyişənlər |
+| `gtm.estimated` | estimated from the hits | hit-lərə görə təxmini |
+| `gtm.th.tag` | Tag | Tag |
+| `gtm.th.type` | Type | Növ |
+| `gtm.th.trigger` | Trigger | Trigger |
+| `gtm.th.status` | Status | Status |
+| `gtm.status.fired` | Fired | İşlədi |
+| `gtm.status.missing_value` | Missing value | Dəyər yoxdur |
+| `gtm.status.no_consent_check` | No consent check | Consent yoxlaması yoxdur |
+| `gtm.status.waiting_consent` | Waiting for consent | Consent gözləyir |
+| `gtm.status.not_fired` | Not fired yet | Hələ işləməyib |
+| `gtm.none` | No GTM container on this page yet. | Bu səhifədə hələ GTM konteyneri yoxdur. |
+| `sgtm.title` | Server-side GTM | Server-side GTM |
+| `sgtm.detected` | Detected | Tapıldı |
+| `sgtm.notDetected` | Not detected | Tapılmadı |
+| `sgtm.own_subdomain` | Requests go to the site’s own subdomain | Sorğular saytın öz subdomeninə gedir |
+| `sgtm.ga4_path` | Path uses the GA4 format | Yol GA4 formatındadır |
+| `sgtm.server_container_url` | Google Tag sets server_container_url | Google Tag server_container_url qurur |
+| `sgtm.fpid_cookie` | FPID cookie set by the server | FPID cookie-ni server yazır |
+| `sgtm.fpidDays` | HttpOnly, {days} days | HttpOnly, {days} gün |
+| `sgtm.notFound` | Not found | Tapılmadı |
+| `sgtm.browserOnly.title` | Only {server} goes server-side | Server-side yalnız {server} gedir |
+| `sgtm.browserOnly.text` | {browser} still send from the browser. Ad blockers and browser limits can drop part of these events. | {browser} hələ də brauzerdən göndərir. Reklam blokerləri və brauzer limitləri bu eventlərin bir hissəsini itirə bilər. |
+| `sgtm.cta.move` | Move {browser} server-side too? | {browser} da server-side-a keçsin? |
+| `sgtm.cta.setup` | Want server-side tracking set up? | Server-side tracking qurulsun? |
+| `cta.contact` | Get in touch | Əlaqə saxla |
 | `welcome.title` | Hitline is ready. Every hit, in plain sight. | Hitline hazırdır. Hər hit göz önündə. |
 | `welcome.lead` | Three steps and you will see every event your site sends, where it goes and whether it respects consent. | Üç addım və saytının göndərdiyi hər eventi, hara getdiyini və consent-ə əməl edib-etmədiyini görəcəksən. |
-
-Sonrakı addımlarda yeni sətirlər bu cədvələ əlavə olunacaq.
 
 ## Sayt: /hitline landing və /hitline/uninstalled (addım 3B)
 
