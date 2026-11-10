@@ -1,0 +1,80 @@
+---
+/**
+ * Platform badge from the Hitline artboards (.pf): a tinted square with the brand mark, then a label.
+ * Marks come from @line/ui (Simple Icons, CC0), shown only to name what Hitline reads.
+ */
+import { MARKS, type MarkName } from '@line/ui/marks';
+
+export type PfKey = 'ga' | 'ads' | 'meta' | 'tt' | 'dl' | 'hj' | 'sgtm' | 'datalayer';
+const BRAND: Partial<Record<PfKey, MarkName>> = {
+  ga: 'googleanalytics',
+  ads: 'googleads',
+  meta: 'meta',
+  tt: 'tiktok',
+  dl: 'googletagmanager',
+  hj: 'hotjar',
+};
+const CLASS: Record<PfKey, string> = {
+  ga: 'pf-ga',
+  ads: 'pf-ads',
+  meta: 'pf-meta',
+  tt: 'pf-tt',
+  dl: 'pf-dl',
+  hj: 'pf-hj',
+  sgtm: 'pf-nt',
+  datalayer: 'pf-nt',
+};
+
+interface Props {
+  p: PfKey;
+  /** Text after the mark. Empty for an icon only. */
+  label?: string;
+  class?: string;
+}
+const { p, label = '', class: cls } = Astro.props;
+const name = BRAND[p];
+const mark = name ? MARKS[name] : null;
+---
+
+<span class:list={['pf', CLASS[p], cls]}>
+  <i>
+    {mark ? (
+      <svg
+        viewBox="0 0 24 24"
+        width="62%"
+        height="62%"
+        fill={mark.fill ?? 'none'}
+        aria-hidden="true"
+        set:html={mark.svg}
+      />
+    ) : p === 'sgtm' ? (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <rect x="3" y="4" width="18" height="7" rx="2" />
+        <rect x="3" y="13" width="18" height="7" rx="2" />
+        <path d="M7 7.5h.01M7 16.5h.01" />
+      </svg>
+    ) : (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M8 4H7a2 2 0 0 0-2 2v4l-2 2 2 2v4a2 2 0 0 0 2 2h1M16 4h1a2 2 0 0 1 2 2v4l2 2-2 2v4a2 2 0 0 1-2 2h-1" />
+      </svg>
+    )}
+  </i>
+  {label}
+  <slot />
+</span>

@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import {
+  hitlineSchema,
   hubSchema,
   privacyPageSchema,
   privacyToolSchema,
@@ -44,5 +45,10 @@ export const collections = {
       generateId: byFileName,
     }),
     schema: privacyToolSchema,
+  }),
+  /** Hitline landing and uninstall page: hitline/en.json, hitline/az.json. */
+  hitline: defineCollection({
+    loader: glob({ pattern: '*.json', base: 'src/content/hitline', generateId: byFileName }),
+    schema: hitlineSchema,
   }),
 };

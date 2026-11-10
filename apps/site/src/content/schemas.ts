@@ -201,7 +201,188 @@ export const privacyToolSchema = z.object({
   notes: list,
 });
 
+/** Platform badge keys used by the Hitline landing (brand marks from @line/ui). */
+const platform = z.enum(['ga', 'ads', 'meta', 'tt', 'dl', 'hj', 'sgtm', 'datalayer']);
+const pillTone = z.enum(['ok', 'bad', 'warn', 'mute', 'pur']);
+const bullets3 = z.array(text).length(3);
+const featureTab = z.object({
+  label: text,
+  eyebrow: text,
+  title: text,
+  lead: text,
+  bullets: bullets3,
+});
+
+/** The Hitline landing (/hitline): design/hitline/Landing.dc.html. */
+export const hitlineSchema = z.object({
+  meta: z.object({ title: text, description: text, ogAlt: text }),
+  nav: z.object({ label: text, features: text, how: text, privacy: text, faq: text }),
+  add: z.object({ nav: text, hero: text, soonNav: text, soonHero: text }),
+  sample: z.object({ eyebrow: text, title: text, note: text, download: text, close: text }),
+  hero: z.object({
+    pill: text,
+    titleStart: text,
+    titleHighlight: text,
+    titleEnd: text,
+    lead: text,
+    secondary: text,
+    trust: z.array(text).length(3),
+    mockLabel: text,
+    tabs: z.array(z.object({ label: text, count: text, warn: z.boolean() })).length(4),
+    live: text,
+    rows: z
+      .array(
+        z.object({
+          time: text,
+          platform,
+          name: text,
+          event: text,
+          route: z.enum(['sgtm', 'browser', 'page', 'bad']),
+        }),
+      )
+      .min(4),
+    routes: z.object({ sgtm: text, browser: text, page: text, bad: text }),
+    sgtmTitle: text,
+    sgtmVia: text,
+    tags: text,
+    issueLabel: text,
+    issueText: text,
+  }),
+  marquee: z.object({ title: text, items: z.array(z.object({ platform, label: text })).min(4) }),
+  problem: z.object({
+    eyebrow: text,
+    title: text,
+    lead: text,
+    cards: z.array(z.object({ title: text, text })).length(3),
+    mini: z.object({
+      ga4Event: text,
+      ga4Value: text,
+      metaEvent: text,
+      metaValue: text,
+      reject: text,
+      gclid: text,
+      host: text,
+      referral: text,
+    }),
+  }),
+  features: z.object({
+    eyebrow: text,
+    title: text,
+    tabsLabel: text,
+    events: featureTab.extend({
+      demo: z.object({
+        event: text,
+        platform: text,
+        via: text,
+        params: z.array(z.object({ k: text, v: text })).min(1),
+        issueStrong: text,
+        issueText: text,
+      }),
+    }),
+    gtm: featureTab.extend({
+      demo: z.object({ title: text, detected: text, signals: z.array(text).length(4) }),
+    }),
+    consent: featureTab.extend({
+      demo: z.object({
+        title: text,
+        count: text,
+        rows: z.array(z.object({ platform, label: text, status: text, ok: z.boolean() })).min(1),
+      }),
+    }),
+    attribution: featureTab.extend({
+      demo: z.object({
+        steps: z.array(text).length(5),
+        rows: z
+          .array(
+            z.object({
+              label: text,
+              cells: z.array(z.object({ v: text, ok: z.boolean() })).length(5),
+            }),
+          )
+          .min(1),
+      }),
+    }),
+    plan: featureTab.extend({
+      demo: z.object({
+        file: text,
+        count: text,
+        bars: z.array(z.object({ label: text, n: z.number().int().min(0) })).length(3),
+        rows: z.array(z.object({ event: text, status: text, tone: pillTone })).min(1),
+      }),
+    }),
+  }),
+  how: z.object({
+    eyebrow: text,
+    title: text,
+    steps: z
+      .array(z.object({ title: text, key: z.string(), titleEnd: z.string(), text }))
+      .length(3),
+  }),
+  audit: z.object({
+    eyebrow: text,
+    titleStart: text,
+    titleHighlight: text,
+    titleEnd: text,
+    lead: text,
+    cta: text,
+    from: text,
+    paper: z.object({
+      date: text,
+      eyebrow: text,
+      host: text,
+      high: text,
+      medium: text,
+      levels: z.object({ high: text, medium: text }),
+      items: z.array(z.object({ level: z.enum(['high', 'medium']), strong: text, text })).length(3),
+    }),
+  }),
+  privacy: z.object({
+    eyebrow: text,
+    title: text,
+    items: z
+      .array(z.object({ icon: z.enum(['server', 'lock', 'eye', 'code']), title: text, text }))
+      .length(4),
+  }),
+  faq: z.object({
+    eyebrow: text,
+    title: text,
+    askBefore: text,
+    askLink: text,
+    items: z.array(z.object({ q: text, a: text })).min(1),
+  }),
+  more: z.object({
+    eyebrow: text,
+    title: text,
+    tools: z.object({
+      serpline: z.object({ text, open: text }),
+      rivaline: z.object({ text, open: text }),
+      foldline: z.object({ text, open: text }),
+      markline: z.object({ text, open: text }),
+    }),
+  }),
+  footer: z.object({ builtBy: text, privacy: text, source: text }),
+  uninstall: z.object({
+    meta: z.object({ title: text, description: text }),
+    titleStart: text,
+    titleEnd: text,
+    lead: text,
+    reasonsLabel: text,
+    reasons: z.array(text).length(4),
+    moreLabel: text,
+    optional: text,
+    placeholder: text,
+    send: text,
+    sending: text,
+    thanks: text,
+    error: text,
+    pickOne: text,
+    reinstall: text,
+    card: z.object({ eyebrow: text, title: text, text, cta: text, sub: text }),
+  }),
+});
+
 export type Tools = z.infer<typeof toolsSchema>;
+export type Hitline = z.infer<typeof hitlineSchema>;
 export type Shared = z.infer<typeof sharedSchema>;
 export type Hub = z.infer<typeof hubSchema>;
 export type PrivacyPage = z.infer<typeof privacyPageSchema>;

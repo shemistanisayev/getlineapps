@@ -1,0 +1,72 @@
+---
+/**
+ * The audit PDF as HTML (design/hitline/Report.dc.html), built from the same config as the
+ * sample PDF (@line/report hitlineSample), so the modal and /hitline/sample-audit.pdf never drift.
+ */
+import { hitlineSample, type ReportFonts } from '@line/report';
+import { BRANDS } from '@line/ui/brand';
+import Logo from './Logo.astro';
+
+// Fonts are only needed to draw the PDF; the HTML mock uses the site fonts.
+const cfg = hitlineSample({} as ReportFonts);
+const footer = cfg.footer ?? `Made with ${BRANDS[cfg.tool].name}. No data left the browser.`;
+const tone = (t?: string) => (t === 'high' ? 'hi' : t === 'medium' ? 'md' : '');
+---
+
+<div class="rp">
+  <div class="rp-top">
+    <Logo brand={cfg.tool} theme="light" size={30} />
+    <span class="rp-date">{cfg.dateLabel}</span>
+  </div>
+  <div class="rp-head">
+    <span class="rp-eye">{cfg.eyebrow}</span>
+    <span class="rp-host">{cfg.host}</span>
+    <span class="rp-sub">{cfg.subline}</span>
+  </div>
+  <div class="rp-tiles">
+    {cfg.tiles.map((t) => (
+      <div class:list={['rp-tile', tone(t.tone)]}>
+        <div class="rp-n">{t.value}</div>
+        <div class="rp-l">{t.label}</div>
+      </div>
+    ))}
+  </div>
+  <div class="rp-sec">
+    <span class="rp-h">{cfg.keyValue.title}</span>
+    <div class="rp-kv">
+      {cfg.keyValue.rows.map((r) => (
+        <Fragment>
+          <span class="k">{r.k}</span>
+          <span>{r.v}</span>
+        </Fragment>
+      ))}
+    </div>
+  </div>
+  <div class="rp-sec">
+    <span class="rp-h">{cfg.severity.title}</span>
+    <div class="rp-sev">
+      {cfg.severity.items.map((i) => (
+        <Fragment>
+          <span class:list={['rp-pill', tone(i.level)]}>
+            {i.level === 'high' ? 'High' : i.level === 'medium' ? 'Medium' : 'Low'}
+          </span>
+          <div>
+            <b>{i.lead}</b> {i.text}
+          </div>
+        </Fragment>
+      ))}
+    </div>
+  </div>
+  <div class="rp-grow"></div>
+  <div class="rp-cta">
+    <div>
+      <span class="rp-ct">{cfg.cta.title}</span>
+      <span class="rp-cs">{cfg.cta.sub}</span>
+    </div>
+    <span class="rp-cb">{cfg.cta.label}</span>
+  </div>
+  <div class="rp-foot">
+    <span>{footer}</span>
+    <span>Page 1 of 1</span>
+  </div>
+</div>

@@ -62,3 +62,13 @@ export async function getPrivacy(slug: ToolSlug, locale: Locale) {
   return (await must(getEntry('privacy', `${slug}.${locale}`), `privacy/${slug}.${locale}.json`))
     .data;
 }
+export async function getHitline(locale: Locale) {
+  return (await must(getEntry('hitline', locale), `hitline/${locale}.json`)).data;
+}
+
+/** Store button state from tools.json: a live tool links to its listing, a soon tool says so. */
+export async function getTool(slug: ToolSlug) {
+  const tool = (await getTools()).find((t) => t.slug === slug);
+  if (!tool) throw new Error(`tools.json has no entry for ${slug}`);
+  return tool;
+}

@@ -12,10 +12,12 @@
     "pages:dev": "wrangler pages dev dist --port 8788",
     "deploy": "wrangler pages deploy dist --project-name getlineapps --branch main",
     "gen:og": "tsx scripts/og.ts",
-    "screens": "tsx scripts/screens.ts"
+    "screens": "tsx scripts/screens.ts",
+    "gen:hitline": "tsx scripts/hitline-assets.ts"
   },
   "dependencies": {
     "@line/core": "workspace:*",
+    "@line/report": "workspace:*",
     "@line/site-kit": "workspace:*",
     "@line/ui": "workspace:*"
   },

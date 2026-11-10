@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { TOOL_SLUGS, type ToolSlug } from '@line/core/site';
 import {
+  hitlineSchema,
   hubSchema,
   privacyPageSchema,
   privacyToolSchema,
@@ -50,6 +51,7 @@ describe('site content', () => {
       hubSchema.parse(read(`hub/${l}.json`));
       privacyPageSchema.parse(read(`privacy/page.${l}.json`));
       for (const s of TOOL_SLUGS) privacyToolSchema.parse(read(`privacy/${s}.${l}.json`));
+      hitlineSchema.parse(read(`hitline/${l}.json`));
     }
   });
 
@@ -129,6 +131,18 @@ function manifestEntries(m: {
       .map((p) => `optional_host:${p}`),
   ].sort();
 }
+
+describe('hitline landing content', () => {
+  it('has no links or UTM in the copy, and the plan bars add up to the plan count', () => {
+    for (const l of ['en', 'az']) {
+      const h = hitlineSchema.parse(read(`hitline/${l}.json`));
+      for (const s of allStrings(h)) expect(s).not.toMatch(/https?:|utm_/);
+      const total = h.features.plan.demo.bars.reduce((n, b) => n + b.n, 0);
+      expect(h.features.plan.demo.count).toMatch(new RegExp(`^${total} `));
+      expect(h.hero.rows.some((r) => r.route === 'bad')).toBe(true);
+    }
+  });
+});
 
 describe('privacy permissions', () => {
   for (const slug of TOOL_SLUGS) {

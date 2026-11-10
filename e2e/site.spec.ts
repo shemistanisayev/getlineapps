@@ -5,7 +5,7 @@ import { TOOL_SLUGS } from '../packages/core/src/site.ts';
 const SITE = 'http://localhost:4321';
 
 test.describe('site', () => {
-  test('hub shows five tools, all coming soon, with no link to a missing landing', async ({
+  test('hub shows five tools, all coming soon, and links only to landings that exist', async ({
     page,
   }) => {
     await page.goto(`${SITE}/`);
@@ -14,7 +14,11 @@ test.describe('site', () => {
     await expect(page.locator('.tc')).toHaveCount(5);
     await expect(page.locator('.tc .soon')).toHaveCount(5);
     await expect(page.locator('.tc a.add')).toHaveCount(0);
-    for (const slug of TOOL_SLUGS) await expect(page.locator(`a[href="/${slug}"]`)).toHaveCount(0);
+    // Hitline has its landing since Faza 3; the others get one in their own phase.
+    await expect(page.locator('a[href="/hitline"]').first()).toBeVisible();
+    for (const slug of TOOL_SLUGS.filter((s) => s !== 'hitline')) {
+      await expect(page.locator(`a[href="/${slug}"]`)).toHaveCount(0);
+    }
   });
 
   test('role filter dims the cards that do not fit', async ({ page }) => {

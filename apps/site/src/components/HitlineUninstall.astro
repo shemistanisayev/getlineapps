@@ -1,0 +1,403 @@
+---
+/**
+ * /hitline/uninstalled: design/hitline/Uninstall.dc.html. Opened by chrome.runtime.setUninstallURL
+ * with ?utm_source=hitline&utm_medium=extension&utm_campaign=uninstall&v=<version>.
+ * The form posts to /api/feedback (Resend, honeypot, rate limit in @line/site-kit). No database.
+ */
+import Base from '../layouts/Base.astro';
+import Logo from './Logo.astro';
+import { HONEYPOT_FIELD } from '@line/site-kit/feedback';
+import { contactUrl } from '@line/core/site';
+import { getHitline, getTool, localePath, type Locale } from '../lib/site.ts';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const c = await getHitline(locale);
+const u = c.uninstall;
+const tool = await getTool('hitline');
+const reinstall =
+  tool.status === 'live' && tool.storeUrl ? tool.storeUrl : localePath(locale, '/hitline');
+const audit = contactUrl({ source: 'hitline', medium: 'extension', campaign: 'uninstall' });
+const seo = {
+  title: u.meta.title,
+  description: u.meta.description,
+  path: localePath(locale, '/hitline/uninstalled'),
+  alternates: { en: '/hitline/uninstalled', az: '/az/hitline/uninstalled' },
+  noindex: true,
+};
+---
+
+<Base locale={locale} seo={seo} page="un-page">
+  <main id="main" class="un">
+    <div class="un-left">
+      <a href={localePath(locale, '/hitline')} class="un-logo">
+        <Logo brand="hitline" theme="light" size={36} />
+      </a>
+      <h1 class="disp">
+        {u.titleStart}
+        <br />
+        {u.titleEnd}
+      </h1>
+      <p class="un-lead">{u.lead}</p>
+      <form
+        class="un-form"
+        method="post"
+        action="/api/feedback"
+        data-feedback
+        data-sending={u.sending}
+        data-thanks={u.thanks}
+        data-error={u.error}
+        data-pick={u.pickOne}
+      >
+        <input type="hidden" name="tool" value="hitline" />
+        <input type="hidden" name="v" value="" data-version />
+        <input type="hidden" name="page" value="/hitline/uninstalled" />
+        <div class="hp" aria-hidden="true">
+          <label>
+            Website <input type="text" name={HONEYPOT_FIELD} tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+        <fieldset class="reasons">
+          <legend class="sr-only">{u.reasonsLabel}</legend>
+          {u.reasons.map((r) => (
+            <label class="reason">
+              <input type="radio" name="reason" value={r} />
+              <span class="dot" aria-hidden="true" />
+              {r}
+            </label>
+          ))}
+        </fieldset>
+        <div class="more">
+          <label for="more">
+            {u.moreLabel} <span class="opt">{u.optional}</span>
+          </label>
+          <textarea
+            id="more"
+            name="message"
+            maxlength="2000"
+            placeholder={u.placeholder}
+          ></textarea>
+        </div>
+        <div class="actions">
+          <button type="submit" class="send">
+            {u.send}
+          </button>
+          <a class="lnk" href={reinstall}>
+            {u.reinstall}
+          </a>
+        </div>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <aside class="un-card">
+      <span class="glow-c" aria-hidden="true"></span>
+      <span class="eye">{u.card.eyebrow}</span>
+      <span class="disp ct">{u.card.title}</span>
+      <span class="cx">{u.card.text}</span>
+      <a class="cb" href={audit}>
+        {u.card.cta}
+      </a>
+      <span class="cs">{u.card.sub}</span>
+    </aside>
+  </main>
+</Base>
+
+<style>
+  :global(body.un-page) {
+    background: #efedf5;
+  }
+  .un {
+    max-width: 1248px;
+    margin: 0 auto;
+    padding: 72px 32px;
+    display: flex;
+    gap: 56px;
+    align-items: flex-start;
+    color: #101828;
+  }
+  .un-left {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .un-logo {
+    align-self: flex-start;
+  }
+  h1 {
+    margin: 0;
+    font-size: 46px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+  .un-lead {
+    margin: 0;
+    font-size: 16px;
+    color: #344054;
+  }
+  .un-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .reasons {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .reason {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 52px;
+    padding: 0 16px;
+    border-radius: 12px;
+    border: 1.5px solid #8e8a9d;
+    background: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .reason:hover {
+    background: #f7f6fb;
+  }
+  .reason input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid #98a2b3;
+    flex-shrink: 0;
+    background: #ffffff;
+  }
+  .reason:has(input:checked) {
+    border-color: #7f56d9;
+    background: #faf8ff;
+    box-shadow: 0 0 0 4px #f4ebff;
+    font-weight: 600;
+  }
+  .reason:has(input:checked) .dot {
+    border: 5px solid #7f56d9;
+  }
+  .reason:has(input:focus-visible) {
+    outline: 2px solid #7f56d9;
+    outline-offset: 2px;
+  }
+  .more {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .more label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #344054;
+  }
+  .opt {
+    color: #667085;
+    font-weight: 500;
+  }
+  textarea {
+    height: 84px;
+    border: 1px solid #8e8a9d;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 14px;
+    resize: vertical;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .send {
+    height: 46px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 12px;
+    background: #7f56d9;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(83, 56, 158, 0.3);
+  }
+  .send:hover {
+    background: #6941c6;
+  }
+  .send[disabled] {
+    opacity: 0.7;
+    cursor: default;
+  }
+  .lnk {
+    font-size: 14px;
+    font-weight: 600;
+    color: #53389e;
+  }
+  .status {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 20px;
+  }
+  .status[data-tone='ok'] {
+    color: #067647;
+  }
+  .status[data-tone='bad'] {
+    color: #b42318;
+  }
+  .un-card {
+    width: 520px;
+    flex-shrink: 0;
+    background: #101828;
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .glow-c {
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(127, 86, 217, 0.55), rgba(127, 86, 217, 0) 70%);
+  }
+  .un-card > :not(.glow-c) {
+    position: relative;
+  }
+  .eye {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #c6f36b;
+  }
+  .ct {
+    font-size: 30px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+  }
+  .cx {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #d0d5dd;
+  }
+  .cb {
+    height: 48px;
+    border-radius: 12px;
+    background: #c6f36b;
+    color: #1a2e05;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cb:focus-visible {
+    outline: 2px solid #c6f36b;
+    outline-offset: 3px;
+  }
+  .cs {
+    font-size: 13px;
+    color: #98a2b3;
+  }
+  @media (max-width: 1024px) {
+    .un {
+      flex-direction: column;
+      padding: 48px 32px;
+    }
+    .un-left,
+    .un-card {
+      width: 100%;
+    }
+  }
+  @media (max-width: 640px) {
+    .un {
+      padding: 32px 16px;
+      gap: 32px;
+    }
+    h1 {
+      font-size: 34px;
+    }
+    .reasons {
+      grid-template-columns: 1fr;
+    }
+    .un-card {
+      padding: 24px;
+    }
+    .ct {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('form[data-feedback]');
+  if (form) {
+    const v = new URLSearchParams(location.search).get('v') ?? '';
+    const versionInput = form.querySelector<HTMLInputElement>('[data-version]');
+    if (versionInput && /^[0-9A-Za-z.+-]{1,20}$/.test(v)) versionInput.value = v;
+    const status = form.querySelector<HTMLElement>('.status')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    const label = button.textContent ?? '';
+    const say = (text: string, tone: 'ok' | 'bad' | '') => {
+      status.textContent = text;
+      status.dataset.tone = tone;
+    };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      if (!data.reason && !String(data.message ?? '').trim()) {
+        say(form.dataset.pick ?? '', 'bad');
+        return;
+      }
+      button.disabled = true;
+      button.textContent = form.dataset.sending ?? label;
+      say('', '');
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.querySelector('fieldset')!.setAttribute('disabled', '');
+        form.querySelector('textarea')!.setAttribute('disabled', '');
+        button.textContent = label;
+        say(form.dataset.thanks ?? '', 'ok');
+      } catch {
+        button.disabled = false;
+        button.textContent = label;
+        say(form.dataset.error ?? '', 'bad');
+      }
+    });
+  }
+</script>
