@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Welcome to Serpline</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.wl{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.step{display:flex;gap:18px;align-items:flex-start;padding:22px 24px;border-radius:16px;background:#FFFFFF;box-shadow:0 0 0 1px #DCD9E6,0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12);transition:transform .25s}
+.step:hover{transform:translateY(-3px)}
+.num{width:40px;height:40px;border-radius:12px;background:#EFF6FF;color:#1D4ED8;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.chip{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 13px;border-radius:999px;background:#FFFFFF;box-shadow:0 0 0 1px #DCD9E6;font-size:13px;font-weight:600;color:#344054}
+.chip svg{color:#2563EB}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;background:#FFFFFF;color:#1E40AF;border-radius:5px;padding:1px 6px}
+a.lk{color:#1D4ED8;font-weight:700;text-decoration:none}
+a.lk:hover{color:#1E40AF;text-decoration:underline}
+</style>
+</helmet>
+<div class="wl" style="width: 1440px; height: 900px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: #F3F1F9">
+<div style="width: 100%; height: 84px; flex-shrink: 0; position: relative; z-index: 2"><dc-import name="BrowserBar" favicon="serpline" host="chrome-extension://" path="pflkmcgjdhnaobekhimlnodbeakgdhoe/welcome.html" tab="Welcome to Serpline" hint-size="100%,84px"></dc-import></div>
+<div style="flex-grow: 1; position: relative; display: flex; align-items: center; justify-content: center; padding: 0 96px; background: radial-gradient(circle at 85% 90%, rgba(198, 243, 107, 0.45), rgba(198, 243, 107, 0) 40%), radial-gradient(circle at 10% 0%, rgba(147, 197, 253, 0.35), rgba(147, 197, 253, 0) 45%), #F3F1F9">
+<div style="width: 100%; max-width: 1248px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: 96px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<dc-import name="Logo" brand="serpline" theme="light" size="44" word="true" hint-size="200px,44px"></dc-import>
+<h1 class="disp" style="margin: 0; font-size: 58px; line-height: 1.04; letter-spacing: -0.04em; font-weight: 800">Serpline is ready.<br><span style="color: #2563EB">See what Google and AI see.</span></h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #344054; max-width: 520px">Open any page and Serpline shows the SEO basics, the content that needs JavaScript and which AI crawlers are allowed in.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Free</span>
+<span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>No account</span>
+<span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Nothing leaves your browser</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div class="step"><span class="num">1</span><div style="display: flex; flex-direction: column; gap: 5px"><span style="font-size: 17px; font-weight: 700">Pin Serpline to the toolbar</span><span style="font-size: 14.5px; line-height: 1.5; color: #344054">Click the puzzle icon next to the address bar and pin Serpline.</span></div></div>
+<div class="step"><span class="num">2</span><div style="display: flex; flex-direction: column; gap: 5px"><span style="font-size: 17px; font-weight: 700">Open a page, click the icon</span><span style="font-size: 14.5px; line-height: 1.5; color: #344054">The side panel opens with the score, the checks and a Google preview.</span></div></div>
+<div class="step" style="background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%); box-shadow: 0 20px 40px -20px rgba(30, 64, 175, 0.7); color: #FFFFFF"><span class="num" style="background: #C6F36B; color: #1A2E05">3</span><div style="display: flex; flex-direction: column; gap: 5px"><span style="font-size: 17px; font-weight: 700">Open the Render and AI tabs</span><span style="font-size: 14.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.9)">See what needs JavaScript and which AI bots can read the page. Next time press <span class="kbd">Alt+Shift+S</span>.</span></div></div>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 4px 0; font-size: 13.5px; color: #475467"><span>Built by Shamistan Isayev</span><a class="lk" href="https://shamistanisayev.com/?utm_source=serpline&amp;utm_medium=extension&amp;utm_campaign=welcome">Need a technical SEO audit? Get in touch</a></div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markline tool glyph</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<span title="{{title}}" style="width: {{size}}px; height: {{size}}px; border-radius: {{radius}}px; background: {{tint}}; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; vertical-align: middle">
+<svg viewBox="0 0 24 24" width="{{glyph}}" height="{{glyph}}" fill="none" stroke="{{ink}}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{d}}"></path><path d="{{d2}}" stroke-dasharray="2.2 3"></path></svg>
+</span>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"kind":{"editor":"enum","options":["visible","fullpage","area","element","select","arrow","box","number","text","highlight","blur","email","phone","details","png","pdf","copy","notes","undo","keyboard","lock","download"],"default":"visible"},"tone":{"editor":"enum","options":["neutral","brand","solid","ink","bad","ok","dark"],"default":"brand"},"size":{"editor":"int","min":16,"max":64,"default":28},"$preview":{"width":220,"height":60}}'>
+class Component extends DCLogic {
+renderVals() {
+var R = function (x, y, w, h, r) { return 'M' + (x + r) + ' ' + y + 'h' + (w - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + r + 'v' + (h - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 -' + r + ' ' + r + 'h-' + (w - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 -' + r + ' -' + r + 'v-' + (h - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' -' + r + 'z'; };
+var C = function (cx, cy, r) { return 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 -' + (2 * r) + ' 0z'; };
+var K = {
+visible: ['Visible area', R(3, 5, 18, 14, 2.5) + 'M3 9.5h18', ''],
+fullpage: ['Full page', R(5, 2.5, 12, 19, 2) + 'M8 7h6M8 11h6M8 15h4', 'M20.5 5v14'],
+area: ['Selected area', 'M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5', ''],
+element: ['Element', R(3, 3, 13, 10, 2) + 'M12 12l8 3-3.4 1.4L15 20z', ''],
+select: ['Select', 'M5.5 3.5l12.5 6.3-5.4 1.8-1.8 5.4z', ''],
+arrow: ['Arrow', 'M5 19L19 5M10 5h9v9', ''],
+box: ['Box', R(4, 5, 16, 14, 2), ''],
+number: ['Numbered note', C(12, 12, 8.5) + 'M10.5 9.5l2-1.5V16', ''],
+text: ['Text', 'M5 6.5V4.5h14v2M12 4.5v15M9 19.5h6', ''],
+highlight: ['Highlight', 'M14.5 4l5.5 5.5-8 8H6.5V12z', 'M4 21h16'],
+blur: ['Blur', 'M4 4h4v4H4zM10 4h4v4h-4zM16 4h4v4h-4zM4 10h4v4H4zM16 10h4v4h-4zM4 16h4v4H4zM10 16h4v4h-4zM16 16h4v4h-4z', ''],
+email: ['Email found', C(12, 12, 3.5) + 'M15.5 12v1.5a2.5 2.5 0 0 0 5 0V12a8.5 8.5 0 1 0-3.3 6.7', ''],
+phone: ['Phone found', 'M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2v3.5a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z', ''],
+details: ['Page details', C(12, 12, 9) + 'M12 11v5.5M12 7.5h.01', ''],
+png: ['PNG image', R(3, 5, 18, 14, 2.5) + C(9, 10, 1.6) + 'M21 15.5l-5-5-9 8.5', ''],
+pdf: ['PDF summary', 'M7 3h7l4 4v14H7z' + 'M14 3v4h4M10 13h5M10 17h5', ''],
+copy: ['Copy', R(8, 8, 12, 12, 2) + 'M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8', ''],
+notes: ['Notes list', 'M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01', ''],
+undo: ['Undo', 'M9 14L4 9l5-5M4 9h10.5a5.5 5.5 0 0 1 0 11H11', ''],
+keyboard: ['Shortcuts', R(2.5, 6, 19, 12, 2.5) + 'M6.5 10h1M10.5 10h1M14.5 10h1M8 14h8', ''],
+lock: ['Local only', R(5, 11, 14, 9.5, 2.2) + 'M8 11V8a4 4 0 0 1 8 0v3', ''],
+download: ['Download', 'M12 4v11M7 10l5 5 5-5M5 20h14', '']
+};
+var kind = K[this.props.kind] ? this.props.kind : 'visible';
+var T = {
+neutral: ['#EEEDF3', '#475467'],
+brand: ['#FEF9C3', '#101828'],
+solid: ['#FACC15', '#101828'],
+ink: ['#101828', '#FACC15'],
+bad: ['#FEF3F2', '#B42318'],
+ok: ['#ECFDF3', '#067647'],
+dark: ['rgba(255,255,255,.14)', '#FFFFFF']
+};
+var t = T[this.props.tone] || T.brand;
+var size = Number(this.props.size || 28);
+var k = K[kind];
+return {
+title: k[0], d: k[1], d2: k[2],
+tint: t[0], ink: t[1],
+size: size,
+radius: Math.round(size * 0.27),
+glyph: Math.round(size * 0.62)
+};
+}
+}
+</script>
+</body>
+</html>

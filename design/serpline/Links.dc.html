@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Serpline side panel: Links</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.sx{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.sx button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap;flex-shrink:0}
+.ok{background:#ECFDF3;color:#067647}
+.bad{background:#FEF3F2;color:#B42318}
+.warn{background:#FFFAEB;color:#B54708}
+.mute{background:#EEEDF3;color:#475467}
+.btn{height:32px;padding:0 14px;border-radius:9px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.tile{border-radius:10px;background:#F7F6FB;padding:9px 10px;display:flex;flex-direction:column;gap:2px}
+.tile b{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif;font-size:20px;font-weight:800}
+.tile span{font-size:11.5px;color:#475467}
+.chip{height:28px;padding:0 10px;border-radius:999px;border:1px solid #DCD9E6;background:#FFFFFF;font-size:12px;font-weight:600;color:#344054;display:inline-flex;align-items:center;gap:6px}
+.chip i{font-style:normal;font-weight:500;color:#667085}
+.chip.on{background:#101828;border-color:#101828;color:#FFFFFF}
+.chip.on i{color:#D0D5DD}
+.lrow{display:flex;align-items:center;gap:10px;padding:8px 14px;border-top:1px solid #EAE8F0;transition:background .15s}
+.lrow:hover{background:#F7F6FB}
+.lt{flex-grow:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.lt b{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lt span{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#667085;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; background: #E9EDF3">
+<div style="flex: 1 1 auto; min-width: 0; height: 816px; overflow: hidden"><dc-import name="SitePage" hint-size="100%,820px"></dc-import></div>
+<div style="width: 412px; flex-shrink: 0; box-sizing: border-box; padding: 6px; display: flex">
+<aside aria-label="Serpline side panel" style="flex-grow: 1; width: 400px; background: #FFFFFF; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 0 1px #D3DAE5">
+<div style="height: 132px; flex-shrink: 0"><dc-import name="PanelHeader" tab="links" hint-size="400px,132px"></dc-import></div>
+<div style="flex-grow: 1; min-height: 0; overflow: hidden; background: #EFEDF5; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="card" style="flex-shrink: 0; padding: 12px 14px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<div class="tile"><b>64</b><span>links</span></div>
+<div class="tile"><b>52</b><span>internal</span></div>
+<div class="tile"><b>9</b><span>external</span></div>
+<div class="tile"><b>3</b><span>nofollow</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 7px; border-top: 1px solid #EAE8F0; padding-top: 11px">
+<div style="display: flex; justify-content: space-between; font-size: 12.5px"><span style="font-weight: 600">52 internal links checked</span><span style="color: #475467">49 OK, 2 redirects, 1 broken</span></div>
+<div style="height: 8px; border-radius: 999px; background: #EEEDF3; overflow: hidden; display: flex" role="img" aria-label="49 OK, 2 redirects, 1 broken"><span style="width: 94.2%; background: #12B76A"></span><span style="width: 3.9%; background: #F79009"></span><span style="width: 1.9%; background: #D92D20"></span></div>
+<span style="font-size: 11.5px; color: #667085">Checked from this page, one request per link. External links are listed, not checked.</span>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0">
+<button type="button" class="chip">All <i>64</i></button>
+<button type="button" class="chip on">Issues <i>3</i></button>
+<button type="button" class="chip">Internal <i>52</i></button>
+<button type="button" class="chip">External <i>9</i></button>
+</div>
+<div class="card" style="flex-shrink: 0; overflow: hidden">
+<div class="lrow" style="border-top: none; background: #FFFBFA"><div class="lt"><b>Earbuds Mini</b><span>/products/earbuds-mini-old</span></div><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg>404</span></div>
+<div class="lrow"><div class="lt"><b>Headphones</b><span>/headphones to /electronics/headphones</span></div><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>301</span></div>
+<div class="lrow"><div class="lt"><b>Free returns</b><span>/returns to /help/returns</span></div><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>301</span></div>
+</div>
+<div class="card" style="flex-shrink: 0; padding: 12px 14px; display: flex; gap: 12px; border-color: #FECDCA; background: #FFFBFA">
+<span style="width: 26px; height: 26px; border-radius: 8px; background: #D92D20; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; line-height: 1.45; color: #344054"><b style="font-size: 13px; color: #B42318">A link on this page leads to a 404</b><span>"Earbuds Mini" points to a removed product. Visitors hit a dead end and crawlers spend time on a page that no longer exists.</span><span style="color: #101828"><b>Fix:</b> link to the current product URL, or redirect the old one with a 301.</span></div>
+</div>
+</div>
+<div style="flex-shrink: 0; background: #101828; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px"><span style="font-size: 12.5px; color: #D0D5DD">Need help fixing these?</span><a class="btn" href="https://shamistanisayev.com/?utm_source=serpline&amp;utm_medium=extension&amp;utm_campaign=panel_cta" style="height: 28px; padding: 0 12px; background: #C6F36B; color: #1A2E05; font-size: 12.5px; text-decoration: none">Get in touch</a></div>
+</aside>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

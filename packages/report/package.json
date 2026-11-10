@@ -1,0 +1,22 @@
+{
+  "name": "@line/report",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./node": "./src/fonts-node.ts",
+    "./fonts/*": "./fonts/*"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "sample": "tsx scripts/sample.ts"
+  },
+  "dependencies": {
+    "@line/core": "workspace:*",
+    "@line/ui": "workspace:*",
+    "@pdf-lib/fontkit": "^1.1.1",
+    "pdf-lib": "^1.17.1"
+  }
+}

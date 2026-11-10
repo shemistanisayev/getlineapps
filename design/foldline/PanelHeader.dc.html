@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foldline panel header</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+.ph button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.ph-ib{width:32px;height:32px;border-radius:9px;border:1px solid #C9C5D6;background:#FFFFFF;color:#344054;display:inline-flex;align-items:center;justify-content:center;padding:0;transition:background .15s}
+.ph-ib:hover{background:#F9FAFB}
+.ph-ib:disabled{color:#98A2B3;background:#F7F6FB;cursor:default}
+.ph-pdf{height:32px;padding:0 12px;border:none;border-radius:9px;background:#C11574;color:#FFFFFF;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;box-shadow:0 1px 2px rgba(133,22,81,.35);transition:background .15s}
+.ph-pdf:hover{background:#9E165F}
+.ph-pdf:disabled{background:#EAE8F0;color:#667085;box-shadow:none;cursor:default}
+.ph-tab{border:none;background:transparent;padding:0 12px;display:flex;align-items:center;gap:7px;font-size:13.5px;transition:color .15s}
+.ph-tab:hover{color:#101828}
+</style>
+</helmet>
+<div class="ph" style="width: 100%; box-sizing: border-box; background: #FFFFFF; border-bottom: 1px solid #DCD9E6; font-family: Inter, Arial, sans-serif; color: #101828; display: flex; flex-direction: column">
+<div style="height: 52px; display: flex; align-items: center; gap: 8px; padding: 0 14px 0 16px">
+<dc-import name="Logo" brand="foldline" theme="light" size="24" word="true" hint-size="104px,24px"></dc-import>
+<span style="flex-grow: 1"></span>
+<button type="button" class="ph-ib" aria-label="Check again" disabled="{{empty}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"></path><path d="M20 4v5h-5"></path></svg></button>
+<button type="button" class="ph-ib" aria-label="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>
+<button type="button" class="ph-pdf" disabled="{{empty}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="M7 10l5 5 5-5"></path><path d="M5 20h14"></path></svg>Audit PDF</button>
+</div>
+<nav aria-label="Foldline sections" style="height: 42px; display: flex; align-items: stretch; gap: 2px; padding: 0 6px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+<button type="button" class="ph-tab" aria-current="{{t.current}}" style="font-weight: {{t.weight}}; color: {{t.color}}; box-shadow: {{t.line}}">{{t.label}}<sc-if value="{{t.has}}" hint-placeholder-val="{{true}}"><span style="font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: {{t.badgeBg}}; color: {{t.badgeInk}}">{{t.count}}</span></sc-if></button>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tab":{"editor":"enum","options":["overview","issues","checks"],"default":"overview"},"empty":{"editor":"boolean","default":false},"counts":{"editor":"text","default":"6,23"},"$preview":{"width":400,"height":96}}'>
+class Component extends DCLogic {
+renderVals() {
+var active = this.props.tab || 'overview';
+var e = this.props.empty;
+var empty = e === true || e === 'true';
+var c = String(this.props.counts ?? '6,23').split(',');
+var list = [
+{ id: 'overview', label: 'Overview', count: '' },
+{ id: 'issues', label: 'Issues', count: c[0] || '' },
+{ id: 'checks', label: 'Checks', count: c[1] || '' }
+];
+var tabs = list.map(function (t) {
+var on = t.id === active && !empty;
+var bg = t.red ? '#D92D20' : (on ? '#C11574' : '#EEEDF3');
+var ink = t.red || on ? '#FFFFFF' : '#475467';
+return {
+label: t.label, count: t.count, has: !empty && t.count !== '',
+current: on ? 'page' : 'false',
+weight: on ? '700' : '500',
+color: on ? '#851651' : '#475467',
+line: on ? 'inset 0 -3px 0 #C11574' : 'none',
+badgeBg: bg,
+badgeInk: ink
+};
+});
+return { tabs: tabs, empty: empty };
+}
+}
+</script>
+</body>
+</html>

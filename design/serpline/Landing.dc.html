@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Serpline: see your page the way Google and AI do</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.lp{--ink:#101828;--ink2:#344054;--mut:#667085;--line:#DCD9E6;--p:#2563EB;--pd:#1D4ED8;--pi:#1E40AF;--pt:#EFF6FF;--pb:#93C5FD;--lime:#C6F36B;--night:#120D24;
+font-family:Inter,Arial,sans-serif;color:var(--ink);background:#F3F1F9;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.lp *{box-sizing:border-box}
+.lp a{text-decoration:none}.lp a:not(.btn){color:inherit}
+.lp button,.lp input,.lp textarea{font-family:inherit}
+.lp button{cursor:pointer}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 32px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pi)}
+.eyebrow:before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor}
+.h2{margin:0;font-size:52px;line-height:1.04;letter-spacing:-.035em;font-weight:800}
+.lead{margin:0;font-size:18px;line-height:1.6;color:var(--ink2)}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;font-size:16px;font-weight:700;border:none;transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s}
+.btn svg{transition:transform .2s}
+.btn:hover .arr,.btn:focus-visible .arr{transform:translateX(4px)}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--p);color:#FFFFFF;box-shadow:0 10px 24px -10px rgba(37, 99, 235,.8),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-p:hover{background:var(--pd);transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(37, 99, 235,.9)}
+.btn-p:after,.btn-l:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0));transform:skewX(-20deg);transition:left .6s}
+.btn-p:hover:after,.btn-l:hover:after{left:120%}
+.btn-g{background:#FFFFFF;color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.05)}
+.btn-g:hover{transform:translateY(-2px);box-shadow:0 0 0 1px #D0D5DD,0 10px 20px -12px rgba(16,24,40,.25)}
+.btn-l{background:var(--lime);color:#1A2E05;box-shadow:0 12px 30px -12px rgba(198,243,107,.7)}
+.btn-l:hover{transform:translateY(-2px) scale(1.02)}
+.btn-o{background:rgba(255,255,255,.06);color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.btn-o:hover{background:rgba(255,255,255,.12);transform:translateY(-2px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.45)}
+.lp a.btn.btn-p,.lp a.btn.btn-p:link,.lp a.btn.btn-p:visited,.lp a.btn.btn-p:hover,.lp a.btn.btn-p:focus,.lp a.btn.btn-p:active,.lp a.btn.btn-o,.lp a.btn.btn-o:link,.lp a.btn.btn-o:visited,.lp a.btn.btn-o:hover,.lp a.btn.btn-o:focus,.lp a.btn.btn-o:active{color:#FFFFFF}
+.lp a.btn.btn-l,.lp a.btn.btn-l:link,.lp a.btn.btn-l:visited,.lp a.btn.btn-l:hover,.lp a.btn.btn-l:focus,.lp a.btn.btn-l:active{color:#1A2E05}
+.lp a.btn.btn-g,.lp a.btn.btn-g:link,.lp a.btn.btn-g:visited,.lp a.btn.btn-g:hover,.lp a.btn.btn-g:focus,.lp a.btn.btn-g:active{color:#101828}
+.lp a:focus-visible,.lp button:focus-visible,.lp label:focus-visible,.lp summary:focus-visible,.lp input:focus-visible,.lp textarea:focus-visible{outline:3px solid #2563EB;outline-offset:3px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);background:rgba(18,13,36,.94);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{height:72px;display:flex;align-items:center;gap:36px}
+.lp a.nl{position:relative;font-size:14.5px;font-weight:500;color:#D0CBE6;padding:6px 0;transition:color .2s}
+.nl:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;border-radius:2px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.lp a.nl:hover{color:#FFFFFF}.nl:hover:after{transform:scaleX(1)}
+
+/* hero */
+.hero{position:relative;padding:72px 0 104px;background:var(--night);color:#FFFFFF;overflow:clip}
+.hero .mock,.hero .r-float{color:#101828}
+.hero .lead{color:#D0CBE6}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 60% 40%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 70% 70% at 60% 40%,#000 30%,transparent 75%)}
+.glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.rise{opacity:0;animation:lp-rise .8s cubic-bezier(.2,.8,.2,1) forwards}
+.marker{position:relative;white-space:nowrap;color:#93C5FD}
+.marker:after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:6px;border-radius:6px;background:var(--lime);z-index:-1;transform:scaleX(0);transform-origin:left;animation:lp-mark .9s .9s cubic-bezier(.2,.8,.2,1) forwards}
+.chip{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 13px;border-radius:999px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line);font-size:13px;font-weight:600;color:var(--ink2);transition:transform .2s,box-shadow .2s}
+.chip:hover{transform:translateY(-2px);box-shadow:0 0 0 1px #D0D5DD,0 8px 16px -10px rgba(16,24,40,.3)}
+.chip svg{color:#2563EB}
+.calls{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px 24px}
+.call{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;line-height:20px;color:#D0CBE6;white-space:nowrap}
+.ci{width:20px;height:20px;border-radius:50%;background:#C6F36B;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.call:hover .ci{transform:scale(1.15) rotate(-12deg)}
+.live{width:8px;height:8px;border-radius:50%;background:#12B76A;box-shadow:0 0 0 0 rgba(18,183,106,.55);animation:lp-ping 1.6s infinite;flex-shrink:0}
+.pill-free{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px 0 12px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:13px;font-weight:600;color:#FFFFFF}
+
+/* hero mock */
+.mock{position:relative;background:#FFFFFF;border-radius:20px;box-shadow:0 0 0 1px rgba(16,24,40,.08),0 40px 80px -30px rgba(30, 64, 175,.45);overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.mock:hover{transform:translateY(-4px) rotate(-.3deg)}
+.mbar{height:42px;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid var(--line);background:#F7F6FB}
+.mgrid{display:grid;grid-template-columns:minmax(0,1fr) 214px;height:356px}
+.mpage{position:relative;padding:18px;display:flex;flex-direction:column;gap:10px;background:#FBFAF7;overflow:hidden}
+.sk{border-radius:6px;background:#E9E5DA}
+.jsb{outline:1.5px dashed transparent;outline-offset:2px;animation:lp-js 8s infinite}
+.scan{position:absolute;left:0;right:0;top:0;height:2px;background:#2563EB;box-shadow:0 0 0 4px rgba(37, 99, 235,.12),0 0 24px 6px rgba(147, 197, 253,.6);animation:lp-scan 4s ease-in-out infinite}
+.mode{position:absolute;right:12px;top:12px;height:24px;border-radius:999px;background:#101828;color:#FFFFFF;font-size:11px;font-weight:700;display:flex;align-items:center;padding:0 10px;min-width:96px;justify-content:center}
+.mode span{position:absolute}
+.m-r{animation:lp-mr 8s infinite}
+.m-h{animation:lp-mh 8s infinite;opacity:0}
+.mpan{border-left:1px solid var(--line);background:#EFEDF5;padding:10px;display:flex;flex-direction:column;gap:8px}
+.mcard{background:#FFFFFF;border:1px solid var(--line);border-radius:10px}
+.ring{stroke-dasharray:170;stroke-dashoffset:170;animation:lp-ring 1.6s .6s cubic-bezier(.2,.8,.2,1) forwards}
+.mrow{display:flex;align-items:center;justify-content:space-between;gap:6px;height:27px;padding:0 9px;border-top:1px solid #EAE8F0;font-size:10.5px}
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;width:max-content;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.pill.sm{height:17px;padding:0 6px;font-size:9.5px;gap:3px}
+.ok{background:#ECFDF3;color:#067647}.bad{background:#FEF3F2;color:#B42318}.warn{background:#FFFAEB;color:#B54708}.mute{background:#EEEDF3;color:#475467}
+.float{animation:lp-float 6s ease-in-out infinite}
+.seq{opacity:0;animation:lp-seq 7s infinite}
+
+/* marquee */
+.marq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq-in{display:flex;gap:14px;width:max-content;animation:lp-marq 40s linear infinite}
+.marq:hover .marq-in{animation-play-state:paused}
+.tag{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 12px;border-radius:14px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#EDEAF8;font-size:15px;font-weight:600;white-space:nowrap;transition:transform .2s,box-shadow .2s,background .2s}
+.tag>span:first-child{box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.tag:hover{transform:translateY(-3px);background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.26),0 12px 20px -14px rgba(0,0,0,.7)}
+.tag .code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;font-weight:500}
+
+/* cards */
+.card{background:#FFFFFF;border-radius:22px;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.lift:hover{transform:translateY(-6px);box-shadow:0 0 0 1px var(--pb),0 24px 40px -24px rgba(30, 64, 175,.45)}
+.num{font-size:13px;font-weight:700;color:var(--mut)}
+.mini{height:150px;border-radius:16px;background:#F4F7F2;display:flex;align-items:center;justify-content:center;padding:18px;overflow:hidden;position:relative}
+.bar-f{transform-origin:left;animation:lp-fill 2.4s cubic-bezier(.2,.8,.2,1) infinite alternate}
+.blinkv{animation:lp-blinkv 1.2s steps(1) infinite}
+.bounce{animation:lp-bounce 2.4s cubic-bezier(.5,0,.5,1) infinite}
+
+/* serp tool */
+.tool-card{background:#FFFFFF;border-radius:24px;box-shadow:0 0 0 1px var(--line),0 30px 60px -36px rgba(30, 64, 175,.45)}
+.fld{display:flex;flex-direction:column;gap:8px}
+.fld label{font-size:14px;font-weight:700;color:var(--ink)}
+.inp{width:100%;border:1px solid #8E8A9D;border-radius:12px;background:#FFFFFF;padding:12px 14px;font-size:15px;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.inp:hover{border-color:#667085}
+.inp:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 4px rgba(37, 99, 235,.15)}
+.meter{height:6px;border-radius:999px;background:#EEEDF3;overflow:hidden}
+.meter span{display:block;height:100%;border-radius:999px;transition:width .25s,background .25s}
+.mtxt{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--mut)}
+.seg{display:inline-flex;padding:4px;border-radius:12px;background:#EEEDF3}
+.seg button{height:34px;padding:0 14px;border:none;border-radius:9px;background:transparent;font-size:13.5px;font-weight:600;color:#475467;display:inline-flex;align-items:center;gap:7px;transition:background .15s,color .15s}
+.seg button:hover{color:var(--ink)}
+.seg .on{background:#FFFFFF;color:var(--ink);box-shadow:0 1px 2px rgba(16,24,40,.12)}
+.gres{font-family:Arial,sans-serif;background:#FFFFFF;display:flex;flex-direction:column;gap:6px}
+.gres .gt{color:#1A0DAB;font-size:20px;line-height:26px;cursor:pointer}
+.gres .gt:hover{text-decoration:underline}
+.gres .gd{color:#4D5156;font-size:14px;line-height:22px}
+
+/* tabs showcase */
+.tabs-in{position:absolute;opacity:0;pointer-events:none}
+.tbar{display:inline-flex;gap:4px;padding:5px;border-radius:16px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line)}
+.tbar label{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:12px;font-size:14.5px;font-weight:600;color:var(--ink2);cursor:pointer;transition:background .2s,color .2s}
+.tbar label:hover{background:#F9FAFB;color:var(--ink)}
+.pane{display:none;animation:lp-pane .5s cubic-bezier(.2,.8,.2,1)}
+#tb-su:checked~.tbar-w label[for=tb-su],#tb-he:checked~.tbar-w label[for=tb-he],#tb-li:checked~.tbar-w label[for=tb-li],#tb-re:checked~.tbar-w label[for=tb-re],#tb-ai:checked~.tbar-w label[for=tb-ai]{background:var(--night);color:#FFFFFF}
+#tb-su:checked~.panes .p-su,#tb-he:checked~.panes .p-he,#tb-li:checked~.panes .p-li,#tb-re:checked~.panes .p-re,#tb-ai:checked~.panes .p-ai{display:grid}
+.bul{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.bul span:first-child{width:24px;height:24px;border-radius:8px;background:var(--pt);color:var(--pd);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stage{position:relative;border-radius:24px;padding:28px;background:radial-gradient(circle at 80% 0%,rgba(37, 99, 235,.18),rgba(37, 99, 235,0) 55%),radial-gradient(circle at 0% 100%,rgba(198,243,107,.4),rgba(198,243,107,0) 50%),#EEF5EC;min-height:440px;display:flex;align-items:center;justify-content:center}
+.pcard{width:100%;max-width:420px;background:#FFFFFF;border-radius:16px;box-shadow:0 0 0 1px var(--line),0 24px 48px -28px rgba(30, 64, 175,.5);overflow:hidden}
+.prow{display:flex;align-items:center;gap:10px;min-height:40px;padding:0 16px;border-top:1px solid #EAE8F0;font-size:13.5px}
+.lv{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;width:26px;height:20px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.pf{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;font-weight:800;color:#344054}
+.hlrow{animation:lp-hl 6s infinite}
+
+/* steps */
+.step{position:relative;padding:32px;display:flex;flex-direction:column;gap:14px}
+.stepn{width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:var(--pt);color:var(--pd);transition:transform .3s,background .3s,color .3s}
+.step:hover .stepn{transform:rotate(-8deg) scale(1.08);background:var(--p);color:#FFFFFF}
+.dash{position:absolute;top:60px;left:15%;right:15%;height:2px;background-image:linear-gradient(90deg,#93C5FD 50%,transparent 50%);background-size:14px 2px;animation:lp-dash 1s linear infinite}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.85em;background:#EAE8F0;border-radius:6px;padding:1px 7px}
+
+/* night */
+.night{background:var(--night);color:#FFFFFF;position:relative;overflow:hidden}
+.night .soft{color:#D0CBE6}
+.paper{transform:rotate(-5deg) translateY(10px);transition:transform .5s cubic-bezier(.2,.8,.2,1);box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.paper-w:hover .paper{transform:rotate(0) translateY(-6px) scale(1.02)}
+.paper-w:hover .paper2{transform:rotate(7deg) translate(36px,8px)}
+.paper2{transition:transform .5s cubic-bezier(.2,.8,.2,1);transform:rotate(4deg) translate(24px,20px)}
+
+/* privacy */
+.priv{background:var(--lime);color:#1A2E05}
+.pv{padding:26px;border-radius:20px;background:rgba(255,255,255,.55);display:flex;flex-direction:column;gap:10px;transition:background .25s,transform .25s}
+.pv:hover{background:#FFFFFF;transform:translateY(-4px)}
+.pv .ic{width:44px;height:44px;border-radius:14px;background:#1A2E05;color:var(--lime);display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pv:hover .ic{transform:rotate(-10deg) scale(1.08)}
+
+/* faq */
+.faq details{border-radius:18px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12);transition:box-shadow .25s}
+.faq details:hover{box-shadow:0 0 0 1px var(--pb)}
+.faq details[open]{box-shadow:0 0 0 2px var(--p)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;font-size:17px;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq .pm{width:32px;height:32px;border-radius:10px;background:var(--pt);color:var(--pd);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s,color .3s}
+.faq details[open] .pm{transform:rotate(45deg);background:var(--p);color:#FFFFFF}
+.faq p{margin:0;padding:0 24px 22px;font-size:15.5px;line-height:1.6;color:var(--ink2);animation:lp-pane .35s ease}
+
+/* tools */
+.tool{padding:26px;display:flex;flex-direction:column;gap:14px;border-radius:22px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);transition:background .3s,transform .3s,box-shadow .3s}
+.tool:hover{transform:translateY(-6px);background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px var(--c)}
+.tool .go{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--c);opacity:.9;transition:gap .2s,opacity .2s}
+.tool:hover .go{gap:10px;opacity:1}
+
+@keyframes lp-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes lp-mark{to{transform:scaleX(1)}}
+@keyframes lp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes lp-ping{0%{box-shadow:0 0 0 0 rgba(18,183,106,.55)}80%,100%{box-shadow:0 0 0 8px rgba(18,183,106,0)}}
+@keyframes lp-scan{0%{top:0}50%{top:calc(100% - 2px)}100%{top:0}}
+@keyframes lp-js{0%,42%{background:#E9E5DA;outline-color:transparent}50%,92%{background:rgba(233,229,218,0);outline-color:#F04438}100%{background:#E9E5DA;outline-color:transparent}}
+@keyframes lp-mr{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+@keyframes lp-mh{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+@keyframes lp-ring{to{stroke-dashoffset:75}}
+@keyframes lp-seq{0%{opacity:0;transform:translateX(-8px)}10%,85%{opacity:1;transform:none}95%,100%{opacity:0}}
+@keyframes lp-marq{to{transform:translateX(-50%)}}
+@keyframes lp-fill{from{transform:scaleX(.05)}to{transform:scaleX(1)}}
+@keyframes lp-blinkv{50%{opacity:0}}
+@keyframes lp-bounce{0%,100%{transform:translateX(0)}40%{transform:translateX(64px)}50%{transform:translateX(52px)}60%{transform:translateX(64px)}}
+@keyframes lp-pane{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes lp-hl{0%,30%{background:transparent}38%,70%{background:#FEF3F2}80%,100%{background:transparent}}
+@keyframes lp-dash{to{background-position:14px 0}}
+
+@media (max-width:1024px){
+.lp section{padding-top:88px!important;padding-bottom:88px!important}
+.lp .hero{padding-top:48px!important}
+.r-hero{grid-template-columns:minmax(0,1fr)!important;gap:72px!important}
+.r-hero>div:last-child{max-width:600px;width:100%;justify-self:center}
+.r-h1{font-size:56px!important}
+.lp .h2{font-size:42px!important}
+.r-3{grid-template-columns:minmax(0,1fr)!important}
+.r-3 .dash{display:none}
+.r-4{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.r-1{grid-template-columns:minmax(0,1fr)!important;gap:40px!important}
+.r-tool{grid-template-columns:minmax(0,1fr)!important}
+.r-tool>div:first-child{border-right:none!important;border-bottom:1px solid #EAE8F0}
+.r-stack{flex-direction:column;align-items:flex-start!important;gap:16px!important}
+[data-r=pane]{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+.r-paper{height:auto!important;padding:20px 0 30px}
+.r-navl{display:none!important}
+.tbar-w{justify-content:flex-start!important;margin:0 -32px 32px!important;padding:0 32px 4px;overflow-x:auto}
+.tbar{flex-shrink:0}
+.stage{min-height:0!important}
+}
+@media (max-width:640px){
+.wrap{padding:0 16px!important}
+.lp section{padding-top:64px!important;padding-bottom:64px!important}
+.lp .hero{padding-top:32px!important;padding-bottom:80px!important}
+.r-h1{font-size:40px!important;line-height:1.05!important}
+.lp .h2{font-size:32px!important;line-height:1.1!important}
+.lp h3{font-size:26px!important}
+.lead{font-size:16px!important}
+.btn{height:48px;padding:0 18px;font-size:15px}
+.nav .wrap{height:60px;gap:12px}
+.nav .btn{height:38px!important;padding:0 12px!important;font-size:13.5px!important}
+.r-hero>div:first-child .btn{width:100%}
+.calls{gap:10px 20px}
+.mgrid{grid-template-columns:minmax(0,1fr)!important}
+.mpage{display:none!important}
+.mpan{border-left:none!important}
+.r-float{position:relative!important;left:auto!important;bottom:auto!important;width:auto!important;margin-top:16px;animation:none!important}
+.r-toast{display:none!important}
+.r-4,.r-2{grid-template-columns:minmax(0,1fr)!important}
+.tbar-w{margin:0 -16px 28px!important;padding:0 16px 4px}
+.tbar label{height:38px;padding:0 13px;font-size:13.5px}
+.stage{padding:16px!important}
+.r-pad{padding:20px!important}
+.paper2{display:none}
+.paper{transform:none!important}
+.step{padding:24px!important}
+.faq summary{padding:18px;font-size:15.5px}
+.faq p{padding:0 18px 18px}
+.marq-in .tag{height:44px;font-size:14px}
+.r-mob{max-width:100%!important}
+}
+@media (min-width:641px) and (max-width:1024px){
+.r-3>.card{display:grid!important;grid-template-columns:minmax(0,300px) minmax(0,1fr);column-gap:32px;row-gap:8px;align-content:center}
+.r-3>.card>:first-child{grid-row:1/span 3;align-self:center}
+.r-3>.step{grid-template-columns:56px minmax(0,1fr)!important;column-gap:22px;display:grid!important}
+.r-3>.step>:first-child{grid-row:1/span 2;align-self:start}
+}
+@media (prefers-reduced-motion:reduce){.lp *,.lp *:before,.lp *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}.rise,.seq{opacity:1}.ring{stroke-dashoffset:75}.marq-in{animation:none!important}}
+</style>
+</helmet>
+<div class="lp">
+<header class="nav"><div class="wrap"><dc-import name="Logo" brand="serpline" theme="dark" size="30" word="true" hint-size="140px,30px"></dc-import>
+<nav class="r-navl" aria-label="Page sections" style="display: flex; gap: 28px; margin-left: 20px"><a class="nl" href="#preview">SERP preview</a><a class="nl" href="#features">Features</a><a class="nl" href="#how">How it works</a><a class="nl" href="#privacy">Privacy</a><a class="nl" href="#faq">FAQ</a></nav>
+<span style="flex-grow: 1"></span><a class="btn btn-p" style="height: 42px; padding: 0 18px; font-size: 14.5px; border-radius: 12px" href="https://chromewebstore.google.com/">Add to Chrome<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></header>
+
+<section class="hero">
+<span class="glow" style="width: 520px; height: 520px; right: -80px; top: -120px; background: rgba(37, 99, 235, 0.55)"></span>
+<span class="glow" style="width: 380px; height: 380px; left: -120px; bottom: -80px; background: rgba(198, 243, 107, 0.22)"></span>
+<div class="wrap r-hero" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 580px; gap: 48px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 26px">
+<span class="rise pill-free" style="align-self: flex-start; animation-delay: .05s"><span class="live"></span>Free Chrome extension</span>
+<h1 class="disp rise r-h1" style="margin: 0; font-size: 64px; line-height: 1.02; letter-spacing: -.045em; font-weight: 800; animation-delay: .15s; position: relative; z-index: 0; color: #FFFFFF">See your page the way <span class="marker">Google and AI</span> do.</h1>
+<p class="lead rise" style="max-width: 540px; animation-delay: .3s">Technical SEO checks, JavaScript rendering and AI crawler access for the page you are on, in one Chrome side panel.</p>
+<div class="rise" style="display: flex; gap: 12px; flex-wrap: wrap; animation-delay: .45s"><a class="btn btn-p" href="https://chromewebstore.google.com/"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#FFFFFF" opacity=".25"></circle><circle cx="12" cy="12" r="4.2" fill="#FFFFFF"></circle><path d="M12 7.8h9.2M8.4 14.1L3.8 6.1M15.6 14.1l-4.6 8" stroke="#FFFFFF" stroke-width="2"></path></svg>Add to Chrome, it's free<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a class="btn btn-o" href="#preview">Try the SERP preview</a></div>
+<ul class="rise calls" aria-label="Serpline is" style="animation-delay: .6s"><li class="call"><span class="ci"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#1A2E05" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>No account</li><li class="call"><span class="ci"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#1A2E05" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Nothing leaves your browser</li><li class="call"><span class="ci"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#1A2E05" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Open source</li></ul>
+</div>
+<div class="rise" style="position: relative; animation-delay: .35s">
+<div class="mock">
+<div class="mbar"><span style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F57"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #FEBC2E"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #28C840"></span><span class="mono" style="margin-left: 10px; font-size: 11.5px; color: #475467; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1">example.com/products/wireless-headphones-pro-x</span><dc-import name="Logo" brand="serpline" theme="light" size="20" word="false" hint-size="20px,20px"></dc-import></div>
+<div class="mgrid">
+<div class="mpage" aria-hidden="true">
+<span class="mode"><span class="m-r">Rendered</span><span class="m-h">Raw HTML</span></span>
+<div style="display: flex; gap: 8px; align-items: center"><span style="width: 16px; height: 16px; border-radius: 4px; background: #1D2420"></span><span class="sk" style="width: 46px; height: 10px; background: #1D2420; opacity: .85"></span></div>
+<div class="sk" style="height: 112px; margin-top: 26px; display: flex; align-items: center; justify-content: center; background: #EFEBE1"><svg width="70" height="70" viewBox="0 0 200 200"><path d="M40 120V95a60 60 0 0 1 120 0v25" fill="none" stroke="#1D2420" stroke-width="12" stroke-linecap="round"></path><rect x="26" y="108" width="36" height="62" rx="16" fill="#1D2420"></rect><rect x="138" y="108" width="36" height="62" rx="16" fill="#1D2420"></rect><rect x="34" y="120" width="10" height="38" rx="5" fill="#F4C95D"></rect><rect x="156" y="120" width="10" height="38" rx="5" fill="#F4C95D"></rect></svg></div>
+<div class="sk jsb" style="height: 20px; width: 78%"></div>
+<div class="sk" style="height: 12px; width: 30%; background: #1D2420; opacity: .8"></div>
+<div class="sk jsb" style="height: 9px; width: 96%"></div>
+<div class="sk jsb" style="height: 9px; width: 88%"></div>
+<div class="sk jsb" style="height: 9px; width: 70%"></div>
+<div class="sk" style="height: 30px; width: 100%; border-radius: 999px; background: #1D2420; margin-top: 4px"></div>
+<span class="scan"></span>
+</div>
+<div class="mpan">
+<div class="mcard" style="padding: 10px; display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #2563EB, #1E40AF); border: none; color: #FFFFFF">
+<svg width="44" height="44" viewBox="0 0 64 64" role="img" aria-label="SEO score 56"><circle cx="32" cy="32" r="27" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="7"></circle><circle class="ring" cx="32" cy="32" r="27" fill="none" stroke="#C6F36B" stroke-width="7" stroke-linecap="round" transform="rotate(-90 32 32)"></circle><text x="32" y="39" text-anchor="middle" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#FFFFFF">56</text></svg>
+<span style="display: flex; flex-direction: column; gap: 2px"><b class="disp" style="font-size: 13px">Needs work</b><span style="font-size: 10.5px; opacity: .9">10 issues found</span></span>
+</div>
+<div class="mcard" style="overflow: hidden">
+<div class="mrow seq" style="border-top: none; animation-delay: .2s"><span>Title</span><span class="pill sm ok"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Fits</span></div>
+<div class="mrow seq" style="animation-delay: .5s"><span>Description</span><span class="pill sm warn"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Cut off</span></div>
+<div class="mrow seq" style="animation-delay: .8s"><span>Canonical</span><span class="pill sm ok"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>This page</span></div>
+<div class="mrow seq" style="animation-delay: 1.1s"><span>H1</span><span class="pill sm bad"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>JS only</span></div>
+<div class="mrow seq" style="animation-delay: 1.4s"><span>Alt text</span><span class="pill sm warn"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>3 missing</span></div>
+<div class="mrow seq" style="animation-delay: 1.7s"><span>Schema</span><span class="pill sm warn"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>JS only</span></div>
+<div class="mrow seq" style="animation-delay: 2s"><span>GPTBot</span><span class="pill sm ok"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Allowed</span></div>
+<div class="mrow seq" style="animation-delay: 2.3s"><span>PerplexityBot</span><span class="pill sm bad"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 7l10 10M17 7L7 17"></path></svg>Blocked</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="float r-float" style="position: absolute; left: -56px; bottom: -48px; width: 300px; background: #FFFFFF; border-radius: 16px; padding: 14px 16px; box-shadow: 0 0 0 1px rgba(16,24,40,.08), 0 24px 40px -20px rgba(30, 64, 175,.5); display: flex; flex-direction: column; gap: 5px; font-family: Arial, sans-serif">
+<span style="font-size: 12px; color: #4D5156">example.com › products</span>
+<span style="font-size: 16px; color: #1A0DAB">Wireless Headphones Pro X | Lumo</span>
+<span style="font-size: 12.5px; line-height: 18px; color: #4D5156">Active noise cancelling, 30-hour battery and fast charging<span class="blinkv"> ...</span></span>
+<span class="pill warn" style="margin-top: 4px; font-family: Inter, Arial, sans-serif"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Description cut after 107 characters</span>
+</div>
+<div class="float r-toast" style="position: absolute; right: -28px; top: -30px; animation-delay: -3s; background: #101828; color: #FFFFFF; border-radius: 14px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.16); display: flex; align-items: center; gap: 10px; box-shadow: 0 20px 36px -16px rgba(16,24,40,.6)"><span style="height: 28px; padding: 0 8px; border-radius: 8px; background: #C6F36B; color: #1A2E05; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800" class="disp">91%</span><span style="font-size: 12.5px; line-height: 1.35">of the text needs<br>JavaScript</span></div>
+</div>
+</div>
+<div class="wrap" style="position: relative; margin-top: 110px; display: flex; flex-direction: column; gap: 18px; align-items: center">
+<span style="font-size: 13px; font-weight: 600; color: #B9B4D0">Checks what search engines and AI crawlers see</span>
+<div class="marq" style="width: 100%"><div class="marq-in">
+<sc-for list="{{marq}}" as="m" hint-placeholder-count="38"><span class="tag" aria-hidden="{{m.dup}}"><dc-import name="Mark" brand="{{m.b}}" size="30" hint-size="30px,30px"></dc-import><span class="{{m.cls}}">{{m.n}}</span></span></sc-for>
+</div></div>
+</div>
+</section>
+
+
+<section style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap">
+<div class="r-stack" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; margin-bottom: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 640px"><span class="eyebrow">The problem</span><h2 class="disp h2">The page looks fine. Crawlers read something else.</h2></div>
+<p class="lead" style="max-width: 380px">Most SEO problems never show on screen, so nobody notices them until traffic drops.</p>
+</div>
+<div class="r-3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<div class="card lift" style="padding: 26px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" aria-hidden="true"><div style="width: 100%; display: flex; flex-direction: column; gap: 14px; font-size: 12px; font-weight: 600">
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between"><span>Raw HTML</span><span class="mono" style="color: #B42318; display: inline-flex; align-items: center; gap: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>38 words</span></span><div style="height: 12px; border-radius: 999px; background: #E4EADF; overflow: hidden"><span style="display: block; width: 9%; height: 100%; background: #D92D20; border-radius: 999px"></span></div></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between"><span>After JavaScript</span><span class="mono" style="color: #1E40AF">412 words</span></span><div style="height: 12px; border-radius: 999px; background: #E4EADF; overflow: hidden"><span class="bar-f" style="display: block; width: 100%; height: 100%; background: #2563EB; border-radius: 999px"></span></div></div>
+</div></div>
+<span class="num">01</span>
+<h3 class="disp" style="margin: 0; font-size: 21px; letter-spacing: -.02em">Content that needs JavaScript</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">Your browser shows the full page. The HTML a crawler downloads can be an empty shell, and most AI crawlers never run the scripts that fill it.</p>
+</div>
+<div class="card lift" style="padding: 26px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" aria-hidden="true"><div style="width: 100%; background: #FFFFFF; border-radius: 12px; padding: 12px 14px; box-shadow: 0 0 0 1px #DCD9E6; font-family: Arial, sans-serif; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 10.5px; color: #4D5156">example.com › products</span>
+<span style="font-size: 14px; color: #1A0DAB">Wireless Headphones Pro X | Lumo</span>
+<span style="font-size: 11.5px; line-height: 16px; color: #4D5156">Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two<span class="blinkv" style="font-weight: 700"> ...</span></span>
+</div></div>
+<span class="num">02</span>
+<h3 class="disp" style="margin: 0; font-size: 21px; letter-spacing: -.02em">Snippets cut off in Google</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">A long title or description ends in three dots. The line that was meant to win the click never shows.</p>
+</div>
+<div class="card lift" style="padding: 26px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" aria-hidden="true"><div style="width: 100%; display: flex; flex-direction: column; gap: 10px">
+<div class="mono" style="font-size: 11.5px; line-height: 1.7; background: #FFFFFF; border-radius: 10px; padding: 8px 12px; box-shadow: 0 0 0 1px #DCD9E6; color: #344054">User-agent: PerplexityBot<br><span style="background: #FEF3F2; color: #B42318; border-radius: 4px; padding: 0 4px">Disallow: /</span></div>
+<div style="position: relative; height: 30px"><span class="bounce" style="position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 9px; background: #E5F7F9; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="18" height="18" fill="#1FB8CD"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"></path></svg></span><span style="position: absolute; left: 100px; top: 0; bottom: 0; width: 4px; border-radius: 4px; background: #D92D20"></span><span style="position: absolute; left: 116px; top: 6px; font-size: 12px; font-weight: 700; color: #B42318; display: flex; align-items: center; gap: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 7l10 10M17 7L7 17"></path></svg>Blocked</span></div>
+</div></div>
+<span class="num">03</span>
+<h3 class="disp" style="margin: 0; font-size: 21px; letter-spacing: -.02em">AI crawlers blocked by accident</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">One old line in robots.txt can keep a site out of ChatGPT, Claude or Perplexity answers for months.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="preview" style="padding: 112px 0; position: relative">
+<span class="glow" style="width: 420px; height: 420px; right: -120px; top: 40px; background: rgba(147, 197, 253, 0.45)"></span>
+<div class="wrap" style="position: relative">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; margin-bottom: 48px">
+<span class="eyebrow">Free tool</span>
+<h2 class="disp h2" style="max-width: 760px">Preview your Google result before you publish.</h2>
+<p class="lead" style="max-width: 600px">Type a title and a description. See where Google cuts them on desktop and on mobile. It runs in this page and nothing is sent anywhere.</p>
+</div>
+<div class="tool-card r-tool" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); overflow: hidden">
+<div class="r-pad" style="padding: 36px; display: flex; flex-direction: column; gap: 22px; border-right: 1px solid #EAE8F0">
+<div class="fld"><label for="sp-title">Page title</label><input id="sp-title" class="inp" type="text" value="{{title}}" onChange="{{onTitle}}" placeholder="Wireless Headphones Pro X | Lumo"><div class="meter" aria-hidden="true"><span style="width: {{tPct}}%; background: {{tColor}}"></span></div><div class="mtxt"><span>{{tChars}} characters, {{tPx}} of 600 px</span><span style="color: {{tInk}}; font-weight: 600">{{tStatus}}</span></div></div>
+<div class="fld"><label for="sp-desc">Meta description</label><textarea id="sp-desc" class="inp" rows="4" value="{{desc}}" onChange="{{onDesc}}" placeholder="One or two sentences about the page" style="resize: vertical; line-height: 1.5"></textarea><div class="meter" aria-hidden="true"><span style="width: {{dPct}}%; background: {{dColor}}"></span></div><div class="mtxt"><span>{{dChars}} characters, {{dPx}} of {{dLimit}} px</span><span style="color: {{dInk}}; font-weight: 600">{{dStatus}}</span></div></div>
+<div class="fld"><label for="sp-url">URL</label><input id="sp-url" class="inp mono" type="text" value="{{url}}" onChange="{{onUrl}}" style="font-size: 13.5px"></div>
+</div>
+<div class="r-pad" style="padding: 36px; background: #F7F6FB; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap"><span style="font-size: 14px; font-weight: 700">Google preview</span><span class="seg" role="group" aria-label="Preview device"><button type="button" class="{{dskCls}}" onClick="{{setDesktop}}" aria-pressed="{{isDesktop}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg>Desktop</button><button type="button" class="{{mobCls}}" onClick="{{setMobile}}" aria-pressed="{{isMobile}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M11 18h2"></path></svg>Mobile</button></span></div>
+<div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; min-height: 230px">
+<div class="gres r-mob" style="width: 100%; max-width: {{resW}}px; padding: {{resPad}}; border-radius: {{resRadius}}; box-shadow: {{resShadow}}">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 28px; height: 28px; border-radius: 50%; background: #F1F3F4; border: 1px solid #DADCE0; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><span style="width: 16px; height: 16px; border-radius: 4px; background: #2563EB; color: #FFFFFF; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{initial}}</span></span><span style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 14px; color: #202124">{{site}}</span><span style="font-size: 12px; color: #4D5156; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{crumb}}</span></span></div>
+<span class="gt" style="font-size: {{tSize}}px">{{tShown}}</span>
+<span class="gd">{{dShown}}</span>
+</div>
+</div>
+<p style="margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--mut)">Limits are measured in pixels and are approximate. Google can rewrite titles and snippets.</p>
+</div>
+</div>
+<div class="r-stack" style="margin-top: 20px; border-radius: 20px; background: var(--night); color: #FFFFFF; padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px">
+<span style="font-size: 17px; font-weight: 600">Check the whole page, not just the snippet.</span>
+<a class="btn btn-l" href="https://chromewebstore.google.com/" style="height: 46px">Add Serpline to Chrome<svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</section>
+
+<section id="features" style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; margin-bottom: 40px"><span class="eyebrow">Inside the side panel</span><h2 class="disp h2" style="max-width: 760px">Five tabs. One side panel.</h2></div>
+<input class="tabs-in" type="radio" name="tabs" id="tb-su" checked>
+<input class="tabs-in" type="radio" name="tabs" id="tb-he">
+<input class="tabs-in" type="radio" name="tabs" id="tb-li">
+<input class="tabs-in" type="radio" name="tabs" id="tb-re">
+<input class="tabs-in" type="radio" name="tabs" id="tb-ai">
+<div class="tbar-w" style="display: flex; justify-content: center; margin-bottom: 40px"><div class="tbar"><label for="tb-su">Summary</label><label for="tb-he">Headings</label><label for="tb-li">Links</label><label for="tb-re">Render</label><label for="tb-ai">AI</label></div></div>
+<div class="panes">
+
+<div class="pane p-su" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 18px"><span class="eyebrow">Summary</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.12; letter-spacing: -.03em">A score and a checklist the moment the panel opens.</h3><p class="lead" style="font-size: 16.5px">Title, description, canonical, robots, H1, alt text, structured data and Open Graph, each with a clear status.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>One score out of 100, weighted by priority</span></div><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Google preview for desktop and mobile</span></div><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Audit PDF with every issue and its fix</span></div></div></div>
+<div class="stage"><div class="pcard">
+<div style="margin: 14px; padding: 14px 16px; border-radius: 12px; background: linear-gradient(135deg, #2563EB, #1E40AF); color: #FFFFFF; display: flex; align-items: center; gap: 14px"><svg width="52" height="52" viewBox="0 0 64 64" role="img" aria-label="SEO score 56"><circle cx="32" cy="32" r="27" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="6"></circle><circle cx="32" cy="32" r="27" fill="none" stroke="#C6F36B" stroke-width="6" stroke-linecap="round" stroke-dasharray="95 170" transform="rotate(-90 32 32)"></circle><text x="32" y="39" text-anchor="middle" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="19" font-weight="800" fill="#FFFFFF">56</text></svg><span style="display: flex; flex-direction: column; gap: 2px"><b class="disp" style="font-size: 16px">SEO score: needs work</b><span style="font-size: 12px; opacity: .9">2 high, 6 medium, 2 low</span></span></div>
+<div class="prow"><span style="flex-grow: 1">Title</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>32 characters</span></div>
+<div class="prow"><span style="flex-grow: 1">Meta description</span><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Cut off in Google</span></div>
+<div class="prow"><span style="flex-grow: 1">Canonical</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Points to this page</span></div>
+<div class="prow hlrow"><span style="flex-grow: 1">H1</span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Only after JavaScript</span></div>
+<div class="prow"><span style="flex-grow: 1">Open Graph</span><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>og:description missing</span></div>
+</div></div>
+</div>
+
+<div class="pane p-he" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 18px"><span class="eyebrow">Headings</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.12; letter-spacing: -.03em">The outline crawlers see, highlighted on the page.</h3><p class="lead" style="font-size: 16.5px">The H1 to H6 tree with skipped levels and duplicate H1s, plus every image without alt text.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Outlines on the page show where each heading sits</span></div><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Headings that exist only after JavaScript are marked</span></div></div></div>
+<div class="stage"><div class="pcard" style="padding-top: 6px">
+<div class="prow" style="border-top: none"><span class="lv" style="background: #2563EB; color: #FFFFFF">H1</span><span style="flex-grow: 1; font-weight: 600">Wireless Headphones Pro X</span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>JavaScript only</span></div>
+<div class="prow" style="padding-left: 34px"><span class="lv" style="background: #DBEAFE; color: #1E40AF">H2</span><span style="flex-grow: 1">Product details</span></div>
+<div class="prow" style="padding-left: 52px"><span class="lv" style="background: #EFF6FF; color: #1D4ED8">H3</span><span style="flex-grow: 1">Noise cancelling</span></div>
+<div class="prow" style="padding-left: 34px"><span class="lv" style="background: #DBEAFE; color: #1E40AF">H2</span><span style="flex-grow: 1">Specifications</span></div>
+<div class="prow hlrow" style="padding-left: 70px"><span class="lv" style="background: #FFFFFF; color: #1D4ED8; box-shadow: inset 0 0 0 1px #93C5FD">H4</span><span style="flex-grow: 1">Bluetooth 5.3</span><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Skips H3</span></div>
+<div class="prow" style="padding-left: 34px"><span class="lv" style="background: #DBEAFE; color: #1E40AF">H2</span><span style="flex-grow: 1">Reviews (128)</span></div>
+</div></div>
+</div>
+
+<div class="pane p-li" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 18px"><span class="eyebrow">Links</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.12; letter-spacing: -.03em">Broken and redirected links, found from the page itself.</h3><p class="lead" style="font-size: 16.5px">Internal, external and nofollow links with anchor text. Internal links get a real status check from your browser.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>404s and redirect chains in one list</span></div><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Only the site you are on is contacted</span></div></div></div>
+<div class="stage"><div class="pcard">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 14px"><div style="background: #F7F6FB; border-radius: 10px; padding: 10px"><b class="disp" style="font-size: 22px">52</b><div style="font-size: 12px; color: #475467">internal</div></div><div style="background: #F7F6FB; border-radius: 10px; padding: 10px"><b class="disp" style="font-size: 22px">9</b><div style="font-size: 12px; color: #475467">external</div></div><div style="background: #FEF3F2; border-radius: 10px; padding: 10px"><b class="disp" style="font-size: 22px; color: #B42318">3</b><div style="font-size: 12px; color: #B42318; display: flex; align-items: center; gap: 3px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>issues</div></div></div>
+<div class="prow hlrow"><span style="flex-grow: 1; display: flex; flex-direction: column; padding: 6px 0"><b style="font-size: 13.5px">Earbuds Mini</b><span class="mono" style="font-size: 11.5px; color: #667085">/products/earbuds-mini-old</span></span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 7l10 10M17 7L7 17"></path></svg>404</span></div>
+<div class="prow"><span style="flex-grow: 1; display: flex; flex-direction: column; padding: 6px 0"><b style="font-size: 13.5px">Headphones</b><span class="mono" style="font-size: 11.5px; color: #667085">/headphones to /electronics/headphones</span></span><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>301</span></div>
+<div class="prow"><span style="flex-grow: 1; display: flex; flex-direction: column; padding: 6px 0"><b style="font-size: 13.5px">Free returns</b><span class="mono" style="font-size: 11.5px; color: #667085">/returns to /help/returns</span></span><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>301</span></div>
+</div></div>
+</div>
+
+<div class="pane p-re" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 18px"><span class="eyebrow">Render</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.12; letter-spacing: -.03em">Raw HTML next to the rendered page.</h3><p class="lead" style="font-size: 16.5px">Serpline downloads the page source once and compares it with what JavaScript built: headings, words, links and structured data.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Shows exactly which elements need JavaScript</span></div><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>The check most SEO extensions skip</span></div></div></div>
+<div class="stage"><div class="pcard" style="padding: 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600"><span style="display: flex; justify-content: space-between"><span>Raw HTML</span><span class="mono" style="color: #B42318; display: inline-flex; align-items: center; gap: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>38 words, no H1</span></span><div style="height: 12px; border-radius: 999px; background: #EEEDF3; overflow: hidden"><span style="display: block; width: 9%; height: 100%; background: #D92D20"></span></div></div>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600"><span style="display: flex; justify-content: space-between"><span>Rendered</span><span class="mono" style="color: #1E40AF">412 words, 1 H1</span></span><div style="height: 12px; border-radius: 999px; background: #EEEDF3; overflow: hidden"><span class="bar-f" style="display: block; width: 100%; height: 100%; background: #2563EB"></span></div></div>
+<div class="mono" style="font-size: 12px; line-height: 1.75; background: #F7F6FB; border: 1px solid #DCD9E6; border-radius: 10px; padding: 10px 12px; color: #344054"><span style="color: #1E40AF">&lt;h1&gt;</span>Wireless Headphones Pro X<span style="color: #1E40AF">&lt;/h1&gt;</span><br><span style="color: #1E40AF">&lt;script</span> <span style="color: #475467">type</span>="application/ld+json"<span style="color: #1E40AF">&gt;</span> Product<br><span style="color: #1E40AF">&lt;section</span> <span style="color: #475467">id</span>="details"<span style="color: #1E40AF">&gt;</span> 374 words</div>
+</div></div>
+</div>
+
+<div class="pane p-ai" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 18px"><span class="eyebrow">AI</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.12; letter-spacing: -.03em">Which AI crawlers can read the site, and what they see.</h3><p class="lead" style="font-size: 16.5px">Rules for GPTBot, ClaudeBot, PerplexityBot, Google-Extended and more from robots.txt, split into search bots and training bots, plus llms.txt.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>The exact robots.txt line behind every block</span></div><div class="bul"><span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>How much of the page a crawler without JavaScript reads</span></div></div></div>
+<div class="stage"><div class="pcard" style="padding-top: 6px">
+<div class="prow" style="border-top: none"><span class="pf" style="background: #EEEDF3"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#412991" aria-hidden="true"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"></path></svg></span><span style="flex-grow: 1; font-weight: 600">GPTBot</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Allowed</span></div>
+<div class="prow"><span class="pf" style="background: #F4EFEA"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#191919" aria-hidden="true"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"></path></svg></span><span style="flex-grow: 1; font-weight: 600">ClaudeBot</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Allowed</span></div>
+<div class="prow hlrow"><span class="pf" style="background: #E5F7F9"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#1FB8CD" aria-hidden="true"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"></path></svg></span><span style="flex-grow: 1; font-weight: 600">PerplexityBot</span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 7l10 10M17 7L7 17"></path></svg>Blocked</span></div>
+<div class="prow"><span class="pf" style="background: #E8F0FE"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#4285F4" aria-hidden="true"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"></path></svg></span><span style="flex-grow: 1; font-weight: 600">Google-Extended</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Allowed</span></div>
+<div class="prow"><span class="pf" style="background: #EEEDF3">CC</span><span style="flex-grow: 1; font-weight: 600">CCBot</span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 7l10 10M17 7L7 17"></path></svg>Blocked</span></div>
+<div class="prow"><span class="mono" style="flex-grow: 1; font-size: 12.5px">llms.txt</span><span class="pill mute"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M6 12h12"></path></svg>Not found</span></div>
+</div></div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="how" style="padding: 112px 0">
+<div class="wrap">
+<div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px"><span class="eyebrow">How it works</span><h2 class="disp h2">Three steps, no setup.</h2></div>
+<div class="r-3" style="position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<span class="dash" aria-hidden="true"></span>
+<div class="card step"><span class="stepn disp">1</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px">Add Serpline to Chrome</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">Free from the Chrome Web Store. No account to create.</p></div></div>
+<div class="card step"><span class="stepn disp">2</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px">Open a page, click the icon</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">The side panel opens next to the page and checks it. Or press <span class="kbd">Alt+Shift+S</span>.</p></div></div>
+<div class="card step"><span class="stepn disp">3</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px">Download the audit PDF</h3><p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2)">Every issue with its fix, ready to send to a developer.</p></div></div>
+</div>
+</div>
+</section>
+
+<section id="audit" class="night" style="padding: 120px 0">
+<span class="glow" style="width: 560px; height: 560px; right: -120px; top: -160px; background: rgba(37, 99, 235, 0.45)"></span>
+<div class="wrap r-1" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<span class="eyebrow" style="color: var(--lime)">Audit PDF</span>
+<h2 class="disp h2" style="color: #FFFFFF">Found problems? <span style="color: var(--lime)">Get them fixed</span> by the person who built Serpline.</h2>
+<p class="soft" style="margin: 0; font-size: 17px; line-height: 1.6">One click turns the findings into a prioritized report. Send it to a developer, or send it to me: I fix technical SEO, server-side rendering, structured data and AI search visibility.</p>
+<div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap"><a class="btn btn-l" href="https://shamistanisayev.com/?utm_source=serpline&amp;utm_medium=landing&amp;utm_campaign=audit_cta">Book an SEO audit<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><span style="font-size: 14px; color: #FFFFFF">From <u>Shamistan Isayev</u></span></div>
+</div>
+<div class="paper-w r-paper" style="position: relative; height: 470px; display: flex; align-items: center; justify-content: center">
+<div class="paper2" style="position: absolute; width: 340px; height: 420px; border-radius: 14px; background: #2A2340"></div>
+<div class="paper" style="position: relative; width: 340px; background: #FFFFFF; color: #0B0B14; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><dc-import name="Logo" brand="serpline" theme="light" size="22" word="true" hint-size="104px,22px"></dc-import><span style="font-size: 10px; color: #667085">Nov 7, 2026</span></div>
+<div><span style="font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #1D4ED8">SEO and AI search audit</span><div class="disp" style="font-size: 20px; font-weight: 800">example.com</div></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"><div style="background: #EFF6FF; border-radius: 8px; padding: 8px"><b class="disp" style="font-size: 17px; color: #1E40AF">56</b><div style="font-size: 9.5px; color: #1D4ED8">score</div></div><div style="background: #FEF3F2; border-radius: 8px; padding: 8px"><b class="disp" style="font-size: 17px; color: #B42318">2</b><div style="font-size: 9.5px; color: #B42318; display: flex; align-items: center; gap: 3px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>high</div></div><div style="background: #FFFAEB; border-radius: 8px; padding: 8px"><b class="disp" style="font-size: 17px; color: #B54708">6</b><div style="font-size: 9.5px; color: #B54708; display: flex; align-items: center; gap: 3px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>medium</div></div></div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 10.5px; line-height: 1.45">
+<div style="display: flex; gap: 8px"><span class="pill bad" style="height: 17px; font-size: 9px; padding: 0 6px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>High</span><span><b>The H1 appears only after JavaScript.</b> Render it on the server.</span></div>
+<div style="display: flex; gap: 8px"><span class="pill bad" style="height: 17px; font-size: 9px; padding: 0 6px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>High</span><span><b>91% of the text needs JavaScript.</b></span></div>
+<div style="display: flex; gap: 8px"><span class="pill warn" style="height: 17px; font-size: 9px; padding: 0 6px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Medium</span><span><b>PerplexityBot is blocked.</b> Remove the rule in robots.txt.</span></div>
+</div>
+<div style="background: #0B0B14; color: #FFFFFF; border-radius: 10px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 10.5px; font-weight: 600"><span>Need help fixing these?</span><span style="background: #C6F36B; color: #1A2E05; border-radius: 6px; padding: 4px 8px">Get in touch</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="privacy" class="priv" style="padding: 112px 0">
+<div class="wrap r-1" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 72px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 18px"><span class="eyebrow" style="color: #1A2E05">Privacy</span><h2 class="disp h2">Your pages stay in your browser.</h2></div>
+<div class="r-2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"></rect><rect x="3" y="13" width="18" height="7" rx="2"></rect><path d="M3 3l18 18"></path></svg></span><b style="font-size: 17px">No server</b><span style="font-size: 14.5px; line-height: 1.55">Every check runs inside Chrome. Serpline has no backend to send pages to.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span><b style="font-size: 17px">Minimal permissions</b><span style="font-size: 14.5px; line-height: 1.55">The active tab, the side panel and local settings. No access to all your sites.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"></path><path d="M7 15l4-4 3 3 5-6"></path><path d="M3 3l18 18"></path></svg></span><b style="font-size: 17px">No analytics inside</b><span style="font-size: 14.5px; line-height: 1.55">The extension doesn't track you. Results disappear when you close the panel.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"></path></svg></span><b style="font-size: 17px">Open source</b><span style="font-size: 14.5px; line-height: 1.55">Read the code and check every claim on this page yourself.</span></div>
+</div>
+</div>
+</section>
+
+<section id="faq" style="padding: 112px 0">
+<div class="wrap r-1" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 72px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow">FAQ</span><h2 class="disp h2">Questions</h2><p style="margin: 0; font-size: 15.5px; color: var(--ink2)">Something else? <a href="https://shamistanisayev.com/?utm_source=serpline&amp;utm_medium=landing&amp;utm_campaign=faq" style="color: #1D4ED8; font-weight: 700; text-decoration: underline">Ask me directly</a></p></div>
+<div class="faq" style="display: flex; flex-direction: column; gap: 12px">
+<details open><summary>Is Serpline really free?<span class="pm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Yes. There is no paid plan, no account and no usage limit.</p></details>
+<details><summary>How is it different from Ahrefs or Screaming Frog?<span class="pm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Those crawl whole sites from a server or from your desktop. Serpline checks the page you are on, inside your browser, including what changes after JavaScript and what AI crawlers are allowed to read. It works well next to them.</p></details>
+<details><summary>How does it check AI search?<span class="pm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>It reads robots.txt and llms.txt on the site, matches the rules for each known AI crawler and compares the raw HTML with the rendered page, because most AI crawlers don't run JavaScript.</p></details>
+<details><summary>Does it crawl my whole site?<span class="pm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>No. It checks the open page, the site's robots.txt and llms.txt, and the status of internal links on that page.</p></details>
+<details><summary>Does it send my pages anywhere?<span class="pm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>No. Requests go only to the site you are on, from your own browser. Nothing reaches me or anyone else.</p></details>
+</div>
+</div>
+</section>
+
+<section class="night" style="padding: 104px 0 56px">
+<div class="wrap">
+<div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px"><span class="eyebrow" style="color: var(--lime)">The Line family</span><h2 class="disp h2" style="color: #FFFFFF">More free tools from the same family</h2></div>
+<div class="r-4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<a class="tool" href="{{toolLinks.hitline}}" target="_blank" rel="noopener" style="--c: #B692F6"><dc-import name="Logo" brand="hitline" theme="dark" size="30" word="true" hint-size="120px,30px"></dc-import><span class="soft" style="font-size: 14.5px; line-height: 1.55">Every tracking hit, GTM tag and consent signal in DevTools.</span><span class="go">Open Hitline<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+<a class="tool" href="{{toolLinks.rivaline}}" target="_blank" rel="noopener" style="--c: #67E8F9"><dc-import name="Logo" brand="rivaline" theme="dark" size="30" word="true" hint-size="130px,30px"></dc-import><span class="soft" style="font-size: 14.5px; line-height: 1.55">A competitor's stack, ads and brand style in one panel.</span><span class="go">Open Rivaline<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+<a class="tool" href="{{toolLinks.foldline}}" target="_blank" rel="noopener" style="--c: #FAA7E0"><dc-import name="Logo" brand="foldline" theme="dark" size="30" word="true" hint-size="130px,30px"></dc-import><span class="soft" style="font-size: 14.5px; line-height: 1.55">Find what stops a landing page from converting.</span><span class="go">Open Foldline<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+<a class="tool" href="{{toolLinks.markline}}" target="_blank" rel="noopener" style="--c: #FDE68A"><dc-import name="Logo" brand="markline" theme="dark" size="30" word="true" hint-size="140px,30px"></dc-import><span class="soft" style="font-size: 14.5px; line-height: 1.55">Screenshot, mark up and share feedback in seconds.</span><span class="go">Open Markline<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+</div>
+<div class="r-stack" style="margin-top: 72px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.12); display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 14px">
+<div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap"><dc-import name="Logo" brand="serpline" theme="dark" size="24" word="true" hint-size="110px,24px"></dc-import><span class="soft">Built by <a href="https://shamistanisayev.com/?utm_source=serpline&amp;utm_medium=landing&amp;utm_campaign=footer" style="color: #FFFFFF; font-weight: 700">Shamistan Isayev</a></span></div>
+<div style="display: flex; gap: 24px"><a class="soft" href="https://getlineapps.com/serpline/privacy">Privacy policy</a><a class="soft" href="https://github.com/">Source code</a></div>
+</div>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6936}}'>
+class Component extends DCLogic {
+renderVals() {
+var st = this.state || {};
+var self = this;
+var title = st.title != null ? st.title : 'Wireless Headphones Pro X | Lumo';
+var desc = st.desc != null ? st.desc : 'Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once. Free next-day delivery and free returns within 14 days on all Lumo Audio headphones.';
+var url = st.url != null ? st.url : 'https://example.com/products/wireless-headphones-pro-x';
+var mobile = st.device === 'mobile';
+var W = [278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,556,556,333,500,278,556,500,722,500,500,500,334,260,334,584];
+function px(s, size) { var t = 0; for (var i = 0; i < s.length; i++) { var c = s.charCodeAt(i); t += (c >= 32 && c < 127) ? W[c - 32] : 556; } return t * size / 1000; }
+function cut(s, size, limit) {
+if (px(s, size) <= limit) return { text: s, cut: false, n: s.length };
+var i = s.length;
+while (i > 0 && px(s.slice(0, i) + ' ...', size) > limit) i--;
+var part = s.slice(0, i);
+var sp = part.lastIndexOf(' ');
+if (sp > i * 0.6) part = part.slice(0, sp);
+part = part.replace(/[\s,.;:]+$/, '');
+return { text: part + ' ...', cut: true, n: part.length };
+}
+var dLimit = mobile ? 680 : 920;
+var tPx = Math.round(px(title, 20));
+var dPx = Math.round(px(desc, 14));
+var t = cut(title, 20, 600);
+var d = cut(desc, 14, dLimit);
+var clean = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+var parts = clean.split('/');
+var host = parts[0] || 'example.com';
+var segs = parts.slice(1).filter(function (x) { return x; });
+var crumb = 'https://' + host + (segs.length ? ' › ' + segs.join(' › ') : '');
+var bare = host.replace(/^www\./, '').split('.')[0] || 'Site';
+var site = bare.charAt(0).toUpperCase() + bare.slice(1);
+var okC = '#12B76A', badC = '#D92D20';
+var MQ = [
+{ b: 'google', n: 'Google preview' }, { b: 'openai', n: 'GPTBot' }, { b: 'openai', n: 'OAI-SearchBot' }, { b: 'openai', n: 'ChatGPT-User' },
+{ b: 'anthropic', n: 'ClaudeBot' }, { b: 'anthropic', n: 'Claude-SearchBot' }, { b: 'perplexity', n: 'PerplexityBot' }, { b: 'google', n: 'Google-Extended' },
+{ b: 'apple', n: 'Applebot-Extended' }, { b: 'bytedance', n: 'Bytespider' }, { b: 'meta', n: 'Meta-ExternalAgent' }, { b: 'bot', n: 'CCBot' },
+{ b: 'file', n: 'robots.txt', c: 1 }, { b: 'file', n: 'llms.txt', c: 1 }, { b: 'link', n: 'rel=canonical', c: 1 }, { b: 'eye', n: 'Meta robots' },
+{ b: 'globe', n: 'hreflang', c: 1 }, { b: 'braces', n: 'JSON-LD' }, { b: 'share', n: 'Open Graph' }
+];
+var marq = MQ.map(function (m) { return { b: m.b, n: m.n, cls: m.c ? 'code' : '', dup: 'false' }; }).concat(MQ.map(function (m) { return { b: m.b, n: m.n, cls: m.c ? 'code' : '', dup: 'true' }; }));
+var toolLinks = {
+hitline: 'https://claude.ai/code/artifact/6987e0b7-b1f7-489d-88e7-40513ec92dda',
+serpline: 'https://claude.ai/code/artifact/7a3a8959-edd5-49f7-8d98-6ef88a7c8501',
+rivaline: 'https://claude.ai/code/artifact/9b7b1f50-c085-49bd-bba7-acb04636d43d',
+foldline: 'https://claude.ai/code/artifact/e6d03b52-f741-47cb-8f3e-77ad34d24188',
+markline: 'https://claude.ai/code/artifact/411c2906-e052-4723-88bc-f357a1162e8a'
+};
+return {
+toolLinks: toolLinks,
+marq: marq,
+title: title, desc: desc, url: url,
+onTitle: function (e) { self.setState({ title: e.target.value }); },
+onDesc: function (e) { self.setState({ desc: e.target.value }); },
+onUrl: function (e) { self.setState({ url: e.target.value }); },
+setDesktop: function () { self.setState({ device: 'desktop' }); },
+setMobile: function () { self.setState({ device: 'mobile' }); },
+isDesktop: mobile ? 'false' : 'true',
+isMobile: mobile ? 'true' : 'false',
+dskCls: mobile ? '' : 'on',
+mobCls: mobile ? 'on' : '',
+tChars: title.length, tPx: tPx, tPct: Math.min(100, Math.round(tPx / 600 * 100)),
+tColor: t.cut ? badC : okC, tInk: t.cut ? '#B42318' : '#067647',
+tStatus: title.length === 0 ? 'Add a title' : (t.cut ? 'Cut after ' + t.n + ' characters' : 'Fits'),
+dChars: desc.length, dPx: dPx, dLimit: dLimit, dPct: Math.min(100, Math.round(dPx / dLimit * 100)),
+dColor: d.cut ? badC : okC, dInk: d.cut ? '#B42318' : '#067647',
+dStatus: desc.length === 0 ? 'Add a description' : (d.cut ? 'Cut after ' + d.n + ' characters' : 'Fits'),
+tShown: title.length ? t.text : 'Your page title',
+dShown: desc.length ? d.text : 'Google will pick text from the page.',
+tSize: mobile ? 18 : 20,
+resW: mobile ? 380 : 620,
+resPad: mobile ? '16px' : '20px 22px',
+resRadius: mobile ? '18px' : '14px',
+resShadow: mobile ? '0 0 0 1px #DADCE0, 0 12px 28px -18px rgba(16,24,40,.35)' : '0 0 0 1px #E8EAED',
+crumb: crumb, site: site, initial: site.charAt(0)
+};
+}
+}
+</script>
+</body>
+</html>

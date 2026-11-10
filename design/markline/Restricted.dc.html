@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markline popup: page can't be captured</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+.ml{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.ml button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.li{display:flex;align-items:center;gap:9px;font-size:13px;color:#344054}
+.li i{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ok{background:#ECFDF3;color:#067647}.no{background:#FEF3F2;color:#B42318}
+.btn{height:38px;padding:0 14px;border-radius:10px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054}
+.btn-s:hover{background:#F9FAFB}
+.cx{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif;color:#1F1F1F}
+.ec{background:#FFFFFF;border-radius:12px;box-shadow:0 1px 3px rgba(60,64,67,.3);padding:18px;display:flex;flex-direction:column;gap:14px;height:150px;box-sizing:border-box}
+.tg{width:32px;height:16px;border-radius:999px;background:#0B57D0;position:relative}
+.tg:after{content:"";position:absolute;right:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#FFFFFF}
+</style>
+</helmet>
+<div class="ml" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #F8FAFD; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" host="chrome://extensions" path="" tab="Extensions" favicon="chrome" tab2="Your order | Bramble Bakery" favicon2="bramble" ext-active="true" hint-size="100%,84px"></dc-import></div>
+<div class="cx" aria-hidden="true" style="flex-grow: 1; display: flex; flex-direction: column">
+<div style="height: 64px; display: flex; align-items: center; gap: 24px; padding: 0 24px; background: #FFFFFF; border-bottom: 1px solid #E3E3E3"><span style="font-size: 22px">Extensions</span><span style="flex-grow: 1; max-width: 680px; margin: 0 auto; height: 44px; border-radius: 999px; background: #E9EEF6; display: flex; align-items: center; padding: 0 18px; font-size: 15px; color: #474747">Search extensions</span><span style="font-size: 14px; color: #474747">Developer mode</span></div>
+<div style="display: flex; flex-grow: 1">
+<div style="width: 256px; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; font-size: 14px"><span style="height: 40px; border-radius: 999px; background: #D3E3FD; padding: 0 16px; display: flex; align-items: center">My extensions</span><span style="height: 40px; padding: 0 16px; display: flex; align-items: center">Keyboard shortcuts</span></div>
+<div style="flex-grow: 1; padding: 24px; display: grid; grid-template-columns: repeat(3, 360px); gap: 16px; align-content: start">
+<div class="ec"><div style="display: flex; gap: 14px; align-items: flex-start"><dc-import name="Logo" brand="markline" theme="light" size="40" word="false" hint-size="40px,40px"></dc-import><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 15px; font-weight: 500">Markline</b><span style="font-size: 13px; color: #474747">Screenshot, mark up and share feedback.</span></span></div><span style="flex-grow: 1"></span><div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: #0B57D0"><span>Details</span><span class="tg"></span></div></div>
+<div class="ec"><div style="display: flex; gap: 14px; align-items: flex-start"><dc-import name="Logo" brand="hitline" theme="light" size="40" word="false" hint-size="40px,40px"></dc-import><span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 15px; font-weight: 500">Hitline</b><span style="font-size: 13px; color: #474747">See what tracking a site really sends.</span></span></div><span style="flex-grow: 1"></span><div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: #0B57D0"><span>Details</span><span class="tg"></span></div></div>
+</div>
+</div>
+</div>
+<div style="position: absolute; top: 78px; right: 132px; width: 360px; background: #EFEDF5; border-radius: 16px; box-shadow: 0 24px 48px -12px rgba(16, 24, 40, 0.25), 0 0 0 1px rgba(16, 24, 40, 0.08); overflow: hidden; display: flex; flex-direction: column">
+<dc-import name="PopupHeader" hint-size="100%,56px"></dc-import>
+<div style="padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="card" style="padding: 18px 16px; display: flex; flex-direction: column; gap: 12px">
+<span style="width: 44px; height: 44px; border-radius: 13px; background: #EEEDF3; color: #475467; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"></path><path d="M4 4l16 16"></path></svg></span>
+<span class="disp" style="font-size: 18px; font-weight: 800; letter-spacing: -0.02em">Markline can't capture this page</span>
+<span style="font-size: 13px; line-height: 1.5; color: #344054">Chrome keeps its own pages, the Web Store and other extensions closed to every extension.</span>
+<div style="display: flex; flex-direction: column; gap: 7px; padding-top: 10px; border-top: 1px solid #EAE8F0"><span class="eyebrow">Works on</span><span class="li"><i class="ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Any website on http or https</span><span class="li"><i class="ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Sites on localhost while you build</span></div>
+<div style="display: flex; flex-direction: column; gap: 7px; padding-top: 10px; border-top: 1px solid #EAE8F0"><span class="eyebrow">Doesn't work on</span><span class="li"><i class="no"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg></i>chrome:// pages and settings</span><span class="li"><i class="no"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg></i>Chrome Web Store</span><span class="li"><i class="no"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg></i>Pages of other extensions</span></div>
+</div>
+<button type="button" class="btn btn-s" style="width: 100%"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><circle cx="9" cy="10" r="1.6"></circle><path d="M21 15.5l-5-5-9 8.5"></path></svg>Open an image in the editor</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

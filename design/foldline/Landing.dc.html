@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foldline landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+.lp{--ink:#101828;--ink2:#344054;--mut:#667085;--line:#DCD9E6;--p:#C11574;--pd:#9E165F;--pi:#9E165F;--deep:#851651;--tint:#FDF2FA;--tint2:#FCE7F6;--ring:#F670C7;--bright:#FAA7E0;--lime:#C6F36B;--night:#120D24;
+font-family:Inter,Arial,sans-serif;color:var(--ink);background:#F3F1F9;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.lp *{box-sizing:border-box}
+.lp a{text-decoration:none}.lp a:not(.btn){color:inherit}
+.lp button,.lp input{font-family:inherit}
+.lp button{cursor:pointer}
+.lp :focus-visible{outline:3px solid var(--p);outline-offset:2px;border-radius:6px}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 32px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pi)}
+.eyebrow:before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor}
+.h2{margin:0;font-size:52px;line-height:1.04;letter-spacing:-.035em;font-weight:800}
+.lead{margin:0;font-size:18px;line-height:1.6;color:var(--ink2)}
+.hero .lead{color:#D0CBE6}
+.hero h1{color:#FFFFFF}
+.hero .btn-g{background:rgba(255,255,255,.06);color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.hero .btn-g:hover{background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.45)}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;font-size:16px;font-weight:700;border:none;transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s}
+.btn svg.arr{transition:transform .2s}
+.btn:hover svg.arr{transform:translateX(4px)}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--p);color:#FFFFFF;box-shadow:0 10px 24px -10px rgba(133,22,81,.8),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-p:hover{background:var(--pd);transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(133,22,81,.9)}
+.btn-p:after,.btn-l:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0));transform:skewX(-20deg);transition:left .6s}
+.btn-p:hover:after,.btn-l:hover:after{left:120%}
+.lp a.btn.btn-p,.lp a.btn.btn-p:link,.lp a.btn.btn-p:visited,.lp a.btn.btn-p:hover,.lp a.btn.btn-p:focus,.lp a.btn.btn-p:active,.lp button.btn.btn-p{color:#FFFFFF}
+.lp a.btn.btn-l,.lp a.btn.btn-l:link,.lp a.btn.btn-l:visited,.lp a.btn.btn-l:hover,.lp a.btn.btn-l:focus,.lp a.btn.btn-l:active{color:#1A2E05}
+.lp .hero a.btn.btn-g,.lp .hero a.btn.btn-g:link,.lp .hero a.btn.btn-g:visited,.lp .hero a.btn.btn-g:hover,.lp .hero a.btn.btn-g:focus,.lp .hero a.btn.btn-g:active{color:#FFFFFF}
+.btn-g{background:#FFFFFF;color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.05)}
+.btn-g:hover{transform:translateY(-2px);box-shadow:0 0 0 1px #D0D5DD,0 10px 20px -12px rgba(16,24,40,.25)}
+.btn-l{background:var(--lime);color:#1A2E05;box-shadow:0 12px 30px -12px rgba(198,243,107,.7)}
+.btn-l:hover{transform:translateY(-2px) scale(1.02)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);background:rgba(18,13,36,.94);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{height:72px;display:flex;align-items:center;gap:36px}
+.nl{position:relative;font-size:14.5px;font-weight:500;color:var(--ink2);padding:6px 0}
+.nl:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;border-radius:2px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nl:hover{color:var(--ink)}.nl:hover:after{transform:scaleX(1)}
+.lp .nav a.nl,.lp .nav a.nl:visited{color:#D0CBE6}.lp .nav a.nl:hover,.lp .nav a.nl:focus{color:#FFFFFF}
+
+/* hero */
+.hero{position:relative;padding:72px 0 104px;background:var(--night);color:#FFFFFF;overflow:clip}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse 75% 80% at 60% 40%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 75% 80% at 60% 40%,#000 30%,transparent 80%)}
+.glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.rise{opacity:0;animation:lp-rise .8s cubic-bezier(.2,.8,.2,1) forwards}
+.marker{position:relative;white-space:nowrap;color:var(--bright)}
+.marker:after{content:"";position:absolute;left:0;right:0;bottom:2px;height:4px;border-radius:4px;background:rgba(250,167,224,.35);transform:scaleX(0);transform-origin:left;animation:lp-mark .9s .9s cubic-bezier(.2,.8,.2,1) forwards}
+.chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 13px;border-radius:999px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line);font-size:13px;font-weight:600;color:var(--ink2);transition:transform .2s,box-shadow .2s}
+.chip:hover{transform:translateY(-2px);box-shadow:0 0 0 1px #D0D5DD,0 8px 16px -10px rgba(16,24,40,.3)}
+.hchip{height:32px;padding:0 14px 0 12px;gap:8px;font-size:13px;font-weight:600;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);color:#EDEAF8}
+.hchip:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.live{width:8px;height:8px;border-radius:50%;background:#12B76A;box-shadow:0 0 0 0 rgba(18,183,106,.55);animation:lp-ping 1.6s infinite;flex-shrink:0}
+.trust{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#D0CBE6;cursor:default}
+.trust i{width:20px;height:20px;border-radius:50%;background:var(--lime);color:#1A2E05;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.trust:hover i{transform:scale(1.15) rotate(-12deg)}
+
+/* hero mock */
+.mock{position:relative;background:#FFFFFF;border-radius:20px;box-shadow:0 0 0 1px rgba(16,24,40,.08),0 40px 80px -30px rgba(133,22,81,.45);overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.mock:hover{transform:translateY(-4px) rotate(-.3deg)}
+.mbar{height:42px;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid var(--line);background:#F7F6FB}
+.mtab{height:38px;display:flex;align-items:center;gap:6px;padding:0 9px;font-size:12px;font-weight:500;color:var(--ink2)}
+.mtab b{font-size:10px;padding:1px 6px;border-radius:999px;background:#EAE8F0;color:#475467}
+.mtab b.r{background:#EAE8F0;color:#475467}
+.hero .mock,.hero .float,.hero .toast{color:var(--ink)}
+.mtab.on{color:var(--deep);font-weight:700;box-shadow:inset 0 -3px 0 var(--p)}
+.mrow{display:flex;align-items:center;gap:9px;height:36px;padding:0 12px;border-top:1px solid #EAE8F0;font-size:12px;font-weight:600}
+.mrow .pill{margin-left:auto}
+.seq{opacity:0;animation:lp-seq 7s infinite}
+.float{animation:lp-float 6s ease-in-out infinite}
+.toast{animation:lp-toast 8s 1.5s cubic-bezier(.2,.8,.2,1) infinite;opacity:0}
+.foldln{position:absolute;left:0;right:0;height:0;border-top:2px dashed var(--p);box-shadow:0 2px 0 rgba(250,167,224,.9);transform-origin:left;animation:lp-draw 1s .8s cubic-bezier(.2,.8,.2,1) both}
+.fpill{position:absolute;display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:var(--p);color:#FFFFFF;font-size:10px;font-weight:700;white-space:nowrap}
+.redbox{position:absolute;border:2px dashed #D92D20;border-radius:12px;animation:lp-pulse 1.8s ease-in-out infinite}
+.ring{animation:lp-ring 1.4s .7s cubic-bezier(.2,.8,.2,1) both}
+
+/* marquee */
+.marq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq-in{display:flex;gap:14px;width:max-content;animation:lp-marq 40s linear infinite}
+.marq:hover .marq-in{animation-play-state:paused}
+.tag{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 12px;border-radius:14px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#EDEAF8;font-size:15px;font-weight:600;white-space:nowrap;transition:transform .2s,box-shadow .2s,background .2s}
+.tag > span[title]{box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.tag:hover{transform:translateY(-3px);background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.26),0 12px 20px -14px rgba(0,0,0,.7)}
+
+/* cards */
+.card{background:#FFFFFF;border-radius:22px;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.lift:hover{transform:translateY(-6px);box-shadow:0 0 0 1px var(--ring),0 24px 40px -24px rgba(133,22,81,.45)}
+.num{font-size:13px;font-weight:700;color:var(--mut)}
+.mini{height:150px;border-radius:16px;background:#F7F6FB;box-shadow:inset 0 0 0 1px #EAE8F0;overflow:hidden;position:relative}
+.fieldin{opacity:0;animation:lp-field 6s infinite}
+.slide{animation:lp-slide 3.6s ease-in-out infinite}
+
+/* tabs showcase */
+.tabs-in{position:absolute;opacity:0;pointer-events:none}
+.tbar{display:inline-flex;gap:4px;padding:5px;border-radius:16px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line)}
+.tbar label{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:12px;font-size:14.5px;font-weight:600;color:var(--ink2);cursor:pointer;transition:background .2s,color .2s}
+.tbar label:hover{background:#F9FAFB;color:var(--ink)}
+.pane{display:none;animation:lp-pane .5s cubic-bezier(.2,.8,.2,1)}
+#tb-sc:checked~.tbar-w label[for=tb-sc],#tb-is:checked~.tbar-w label[for=tb-is],#tb-mo:checked~.tbar-w label[for=tb-mo],#tb-rp:checked~.tbar-w label[for=tb-rp]{background:var(--night);color:#FFFFFF}
+#tb-sc:focus-visible~.tbar-w label[for=tb-sc],#tb-is:focus-visible~.tbar-w label[for=tb-is],#tb-mo:focus-visible~.tbar-w label[for=tb-mo],#tb-rp:focus-visible~.tbar-w label[for=tb-rp]{outline:3px solid var(--p);outline-offset:2px}
+#tb-sc:checked~.panes .p-sc,#tb-is:checked~.panes .p-is,#tb-mo:checked~.panes .p-mo,#tb-rp:checked~.panes .p-rp{display:grid}
+.bul{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.bul span:first-child{width:24px;height:24px;border-radius:8px;background:var(--tint2);color:var(--pd);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stage{position:relative;border-radius:24px;padding:28px;background:radial-gradient(circle at 80% 0%,rgba(246,112,199,.22),rgba(246,112,199,0) 55%),radial-gradient(circle at 0% 100%,rgba(198,243,107,.35),rgba(198,243,107,0) 50%),#FDF2FA;min-height:440px;display:flex;align-items:center;justify-content:center}
+.srow{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #EAE8F0;font-size:13px;font-weight:600;transition:background .2s}
+.srow:hover{background:var(--tint)}
+
+/* calculator */
+.calc{position:relative;border-radius:28px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 40px 80px -40px rgba(133,22,81,.35);padding:40px;overflow:hidden}
+.calc:before{content:"";position:absolute;right:-120px;top:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(250,167,224,.35),rgba(250,167,224,0) 70%)}
+.grp{display:flex;flex-direction:column;gap:2px;padding:16px;border-radius:18px;background:#F7F6FB;box-shadow:inset 0 0 0 1px #EAE8F0;transition:background .3s,box-shadow .3s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.grp:hover{background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--ring),0 20px 30px -24px rgba(133,22,81,.45);transform:translateY(-3px)}
+.ck{display:flex;align-items:center;gap:10px;min-height:38px;padding:4px 6px;margin:0 -6px;border-radius:10px;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;transition:background .15s}
+.ck:hover{background:var(--tint)}
+.ck input{position:absolute;opacity:0;width:1px;height:1px}
+.box{width:20px;height:20px;border-radius:6px;border:1.5px solid #8E8A9D;background:#FFFFFF;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:transparent;transition:background .15s,border-color .15s,transform .15s}
+.ck input:checked+.box{background:var(--p);border-color:var(--p);color:#FFFFFF}
+.ck:active .box{transform:scale(.9)}
+.ck input:focus-visible+.box{outline:3px solid var(--p);outline-offset:2px}
+.sev{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;white-space:nowrap}
+.sev-h{background:#FEF3F2;color:#B42318}.sev-m{background:#FFFAEB;color:#B54708}.sev-l{background:#EEEDF3;color:#475467}
+.score{position:sticky;top:96px;border-radius:22px;padding:24px;background:linear-gradient(135deg,#C11574,#851651);color:#FFFFFF;display:flex;flex-direction:column;gap:16px;overflow:hidden}
+.score:after{content:"";position:absolute;right:-60px;top:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(250,167,224,.32),rgba(250,167,224,0) 70%)}
+.bar{height:10px;border-radius:999px;background:rgba(255,255,255,.2);overflow:hidden}
+.bar span{display:block;height:100%;border-radius:999px;background:var(--bright);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.lnk{font-size:14px;font-weight:700;color:var(--pd);border-bottom:2px solid var(--lime);padding-bottom:1px}
+
+/* steps */
+.step{position:relative;padding:32px;display:flex;flex-direction:column;gap:14px}
+.stepn{width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:var(--tint2);color:var(--pd);transition:transform .3s,background .3s,color .3s}
+.step:hover .stepn{transform:rotate(-8deg) scale(1.08);background:var(--p);color:#FFFFFF}
+.dash{position:absolute;top:60px;left:15%;right:15%;height:2px;background-image:linear-gradient(90deg,var(--ring) 50%,transparent 50%);background-size:14px 2px;animation:lp-dash 1s linear infinite}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:600;color:var(--ink);background:#EAE8F0;border-radius:6px;padding:1px 6px}
+
+/* night section */
+.night{background:var(--night);color:#FFFFFF;position:relative;overflow:hidden}
+.night .soft{color:#D0CBE6}
+.paper{transform:rotate(-5deg) translateY(10px);transition:transform .5s cubic-bezier(.2,.8,.2,1);box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.paper-w:hover .paper{transform:rotate(0) translateY(-6px) scale(1.02)}
+.paper-w:hover .paper2{transform:rotate(7deg) translate(36px,8px)}
+.paper2{transition:transform .5s cubic-bezier(.2,.8,.2,1);transform:rotate(4deg) translate(24px,20px)}
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;width:max-content;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.bad{background:#FEF3F2;color:#B42318}.warn{background:#FFFAEB;color:#B54708}.ok{background:#ECFDF3;color:#067647}.mute{background:#EAE8F0;color:#475467}
+
+/* privacy */
+.priv{background:var(--lime);color:#1A2E05}
+.pv{padding:26px;border-radius:20px;background:rgba(255,255,255,.55);display:flex;flex-direction:column;gap:10px;transition:background .25s,transform .25s}
+.pv:hover{background:#FFFFFF;transform:translateY(-4px)}
+.pv .ic{width:44px;height:44px;border-radius:14px;background:#1A2E05;color:var(--lime);display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pv:hover .ic{transform:rotate(-10deg) scale(1.08)}
+
+/* faq */
+.faq details{border-radius:18px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12);transition:box-shadow .25s}
+.faq details:hover{box-shadow:0 0 0 1px var(--ring)}
+.faq details[open]{box-shadow:0 0 0 2px var(--p)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;font-size:17px;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq .pm{width:32px;height:32px;border-radius:10px;background:var(--tint2);color:var(--pd);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s,color .3s}
+.faq .pm svg{transition:transform .3s}
+.faq details[open] .pm{background:var(--p);color:#FFFFFF}
+.faq details[open] .pm svg{transform:rotate(45deg)}
+.faq p{margin:0;padding:0 24px 22px;font-size:15.5px;line-height:1.6;color:var(--ink2);animation:lp-pane .35s ease}
+
+/* tools */
+.tool{padding:26px;display:flex;flex-direction:column;gap:14px;border-radius:22px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);transition:background .3s,transform .3s,box-shadow .3s}
+.tool:hover{transform:translateY(-6px);background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px var(--c)}
+.tool .go2{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--c);opacity:.9;transition:gap .2s,opacity .2s}
+.tool:hover .go2{gap:10px;opacity:1}
+
+@keyframes lp-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes lp-mark{to{transform:scaleX(1)}}
+@keyframes lp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes lp-toast{0%,8%{opacity:0;transform:translateY(16px) scale(.96)}14%,62%{opacity:1;transform:none}70%,100%{opacity:0;transform:translateY(-8px)}}
+@keyframes lp-ping{0%{box-shadow:0 0 0 0 rgba(18,183,106,.55)}80%,100%{box-shadow:0 0 0 8px rgba(18,183,106,0)}}
+@keyframes lp-blink{50%{opacity:.25}}
+@keyframes lp-marq{to{transform:translateX(-50%)}}
+@keyframes lp-seq{0%{opacity:0;transform:translateX(-8px)}8%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+@keyframes lp-draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes lp-pulse{0%,100%{box-shadow:0 0 0 0 rgba(217,45,32,.35)}50%{box-shadow:0 0 0 6px rgba(217,45,32,0)}}
+@keyframes lp-ring{from{stroke-dasharray:0 201}}
+@keyframes lp-field{0%,5%{opacity:0;transform:translateY(6px)}12%,85%{opacity:1;transform:none}95%,100%{opacity:0}}
+@keyframes lp-slide{0%,20%{transform:translateX(0)}50%,70%{transform:translateX(-26px)}100%{transform:translateX(0)}}
+@keyframes lp-pane{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes lp-dash{to{background-position:14px 0}}
+
+@media (max-width:1024px){
+.lp section{padding-top:88px!important;padding-bottom:88px!important}
+.lp .hero{padding-top:48px!important}
+.r-hero{grid-template-columns:minmax(0,1fr)!important;gap:72px!important}
+.r-hero>div:last-child{max-width:600px;width:100%;justify-self:center}
+.r-h1{font-size:56px!important}
+.lp .h2{font-size:42px!important}
+.r-3{grid-template-columns:minmax(0,1fr)!important}
+.r-3 .dash{display:none}
+.r-4{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.r-1{grid-template-columns:minmax(0,1fr)!important;gap:40px!important}
+.r-calc{grid-template-columns:minmax(0,1fr)!important}
+.r-groups{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.score{position:relative!important;top:0!important}
+.r-stack{flex-direction:column;align-items:flex-start!important;gap:16px!important}
+[data-r=pane]{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+[data-r=sticky]{position:static!important}
+.r-paper{height:auto!important;padding:20px 0 30px}
+.r-navl{display:none!important}
+.tbar-w{justify-content:flex-start!important;margin:0 -32px 32px!important;padding:0 32px 4px;overflow-x:auto}
+.tbar{flex-shrink:0}
+.stage{min-height:0!important}
+.calc{padding:32px!important}
+}
+@media (max-width:640px){
+.wrap{padding:0 16px!important}
+.lp section{padding-top:64px!important;padding-bottom:64px!important}
+.lp .hero{padding-top:32px!important;padding-bottom:96px!important}
+.r-h1{font-size:40px!important;line-height:1.05!important}
+.lp .h2{font-size:32px!important;line-height:1.1!important}
+.lp h3{font-size:24px!important}
+.lead{font-size:16px!important}
+.btn{height:48px;padding:0 18px;font-size:15px}
+.nav .wrap{height:60px;gap:12px}
+.nav .btn{height:40px!important;padding:0 14px!important;font-size:14px!important}
+.r-hero>div:first-child .btn{width:100%}
+.r-site{display:none!important}
+.r-mockb{grid-template-columns:minmax(0,1fr)!important}
+.r-float{left:12px!important;bottom:-72px!important;width:230px!important}
+.r-toast{display:none!important}
+.r-4,.r-2,.r-groups{grid-template-columns:minmax(0,1fr)!important}
+.tbar-w{margin:0 -16px 28px!important;padding:0 16px 4px}
+.tbar label{height:38px;padding:0 13px;font-size:13.5px}
+.stage{padding:16px!important}
+.paper2{display:none}
+.paper{transform:none!important}
+.step{padding:24px!important}
+.faq summary{padding:18px;font-size:15.5px}
+.faq p{padding:0 18px 18px}
+.marq-in .tag{height:44px;font-size:14px}
+.calc{padding:22px 16px!important;border-radius:22px!important}
+.score{padding:20px!important}
+}
+@media (min-width:641px) and (max-width:1024px){
+.r-3>.card{display:grid!important;grid-template-columns:minmax(0,300px) minmax(0,1fr);column-gap:32px;row-gap:8px;align-content:center}
+.r-3>.card>:first-child{grid-row:1/span 3;align-self:center}
+.r-3>.step{grid-template-columns:56px minmax(0,1fr)!important;column-gap:22px}
+.r-3>.step>:first-child{grid-row:1/span 2;align-self:start}
+}
+@media (prefers-reduced-motion:reduce){.lp *,.lp *:before,.lp *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition:none!important}.rise,.seq,.toast,.fieldin{opacity:1}}
+.pill.bad:not(:has(svg))::before,.sv-h::before{content:"!";width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;font-size:8px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.pill.warn:not(:has(svg))::before,.sv-m::before{content:"";width:10px;height:9px;background:currentColor;clip-path:polygon(50% 0,100% 100%,0 100%);flex-shrink:0}
+.pill.ok:not(:has(svg))::before{content:"\2713";font-size:11px;font-weight:800;line-height:1}
+.pill.mute:not(:has(svg))::before,.sv-l::before{content:"";width:6px;height:6px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0}
+</style>
+</helmet>
+<div class="lp">
+<header class="nav"><div class="wrap"><a href="#top" aria-label="Foldline home" style="display: flex"><dc-import name="Logo" brand="foldline" theme="dark" size="30" word="true" hint-size="140px,30px"></dc-import></a>
+<nav class="r-navl" aria-label="Main" style="display: flex; gap: 28px; margin-left: 20px"><a class="nl" href="#features">Features</a><a class="nl" href="#calculator">Score calculator</a><a class="nl" href="#how">How it works</a><a class="nl" href="#privacy">Privacy</a><a class="nl" href="#faq">FAQ</a></nav>
+<span style="flex-grow: 1"></span><a class="btn btn-p" style="height: 42px; padding: 0 18px; font-size: 14.5px; border-radius: 12px" href="https://chromewebstore.google.com/">Add to Chrome<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></header>
+
+<section id="top" class="hero">
+<span class="glow" style="width: 560px; height: 560px; right: -120px; top: -160px; background: rgba(193, 21, 116, 0.55)"></span>
+<span class="glow" style="width: 400px; height: 400px; left: -140px; bottom: -120px; background: rgba(198, 243, 107, 0.3)"></span>
+<div class="wrap r-hero" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 580px; gap: 48px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 26px">
+<span class="rise chip hchip" style="align-self: flex-start; animation-delay: .05s"><span class="live"></span>Free Chrome extension</span>
+<h1 class="disp rise r-h1" style="margin: 0; font-size: 64px; line-height: 1.02; letter-spacing: -0.045em; font-weight: 800; animation-delay: .15s; position: relative; z-index: 0">Find what stops your landing page <span class="marker">from converting.</span></h1>
+<p class="lead rise" style="max-width: 540px; animation-delay: .3s">Foldline draws the fold on your page, checks the first screen, the form, trust, mobile, speed and contact links, and tells you what to fix first. Right in Chrome's side panel.</p>
+<div class="rise" style="display: flex; gap: 12px; flex-wrap: wrap; animation-delay: .45s"><a class="btn btn-p" href="https://chromewebstore.google.com/"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#FFFFFF" opacity=".25"></circle><circle cx="12" cy="12" r="4.2" fill="#FFFFFF"></circle><path d="M12 7.8h9.2M8.4 14.1L3.8 6.1M15.6 14.1l-4.6 8" stroke="#FFFFFF" stroke-width="2"></path></svg>Add to Chrome, it's free<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a class="btn btn-g" href="#calculator">Score your page now</a></div>
+<div class="rise" style="display: flex; gap: 10px 24px; flex-wrap: wrap; animation-delay: .6s">
+<span class="trust"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>No account</span>
+<span class="trust"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Nothing leaves your browser</span>
+<span class="trust"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Open source</span>
+</div>
+</div>
+<div class="rise" style="position: relative; animation-delay: .35s">
+<div class="mock">
+<div class="mbar"><span style="width: 11px; height: 11px; border-radius: 50%; background: #FF5F57"></span><span style="width: 11px; height: 11px; border-radius: 50%; background: #FEBC2E"></span><span style="width: 11px; height: 11px; border-radius: 50%; background: #28C840"></span><span class="mono" style="margin-left: 12px; height: 26px; padding: 0 12px; border-radius: 999px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--line); font-size: 11.5px; color: var(--ink2); display: flex; align-items: center; flex-grow: 1">example.com/free-quote</span></div>
+<div class="r-mockb" style="display: grid; grid-template-columns: 220px minmax(0, 1fr); height: 400px">
+<div class="r-site" style="position: relative; background: #F3F7F6; padding: 16px; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid var(--line); overflow: hidden; font-family: Manrope, Arial, sans-serif; color: #0B2540">
+<span style="display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 800; letter-spacing: -0.03em"><span style="width: 14px; height: 14px; border-radius: 50%; background: #F2B33D; box-shadow: inset -4px -4px 0 #E08E1B"></span>sunvo</span>
+<span style="font-size: 19px; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em">Cut your power bill with solar sized for your roof.</span>
+<span style="display: flex; gap: 6px"><span style="height: 24px; padding: 0 9px; border-radius: 7px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #C5D0D6; font-size: 10px; font-weight: 700; display: flex; align-items: center">Watch video</span><span style="height: 24px; padding: 0 9px; border-radius: 7px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #C5D0D6; font-size: 10px; font-weight: 700; display: flex; align-items: center">Pricing</span></span>
+<span style="height: 72px; flex-shrink: 0; position: relative; border-radius: 12px; background: linear-gradient(180deg, #CFE7F5, #EAF4F1); overflow: hidden"><span style="position: absolute; right: 14px; top: 12px; width: 26px; height: 26px; border-radius: 50%; background: #F2B33D"></span><span style="position: absolute; left: 34px; bottom: 0; width: 100px; height: 46px; background: #FFFFFF"></span><span style="position: absolute; left: 24px; bottom: 46px; width: 120px; height: 40px; background: #1E3A52; clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%)"></span></span>
+<span class="foldln" style="top: 236px"></span>
+<span class="fpill" style="left: 10px; top: 226px">Fold 808 px</span>
+<span style="position: absolute; left: 16px; top: 250px; font-size: 13px; font-weight: 800">Ready to see your savings?</span>
+<span style="position: absolute; left: 16px; top: 276px; height: 34px; width: 150px; border-radius: 9px; background: #0E7C66; color: #FFFFFF; font-size: 11.5px; font-weight: 800; display: flex; align-items: center; justify-content: center">Get my free quote</span>
+<span class="redbox" style="left: 11px; top: 271px; width: 160px; height: 44px"></span>
+</div>
+<div style="display: flex; flex-direction: column; background: #EFEDF5; overflow: hidden">
+<div style="background: #FFFFFF; border-bottom: 1px solid var(--line)"><div style="height: 40px; display: flex; align-items: center; padding: 0 12px"><dc-import name="Logo" brand="foldline" theme="light" size="18" word="true" hint-size="80px,18px"></dc-import></div><div style="display: flex; padding: 0 4px"><span class="mtab on">Overview</span><span class="mtab">Issues <b class="r">6</b></span><span class="mtab">Checks <b>23</b></span></div></div>
+<div style="padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div style="background: linear-gradient(135deg, #C11574, #9E165F); border-radius: 12px; padding: 11px 12px; color: #FFFFFF; display: flex; align-items: center; gap: 12px">
+<span style="position: relative; width: 52px; height: 52px; flex-shrink: 0"><svg width="52" height="52" viewBox="0 0 78 78" aria-hidden="true" style="transform: rotate(-90deg)"><circle cx="39" cy="39" r="32" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="9"></circle><circle class="ring" cx="39" cy="39" r="32" fill="none" stroke="#FAA7E0" stroke-width="9" stroke-linecap="round" stroke-dasharray="112.6 201.1"></circle></svg><span class="disp" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800">56</span></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span class="disp" style="font-size: 15px; font-weight: 800">6 issues to fix</span><span style="font-size: 10.5px; font-weight: 500">2 high, 3 medium, 1 low</span></span>
+</div>
+<div style="background: #FFFFFF; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); overflow: hidden">
+<div class="mrow seq" style="border-top: none; animation-delay: .2s"><dc-import name="Glyph" kind="firstscreen" tone="brand" size="22" hint-size="22px,22px"></dc-import>First screen<span class="pill bad" style="height: 19px; font-size: 10px">2 issues</span></div>
+<div class="mrow seq" style="animation-delay: .45s"><dc-import name="Glyph" kind="form" tone="brand" size="22" hint-size="22px,22px"></dc-import>Form<span class="pill bad" style="height: 19px; font-size: 10px">2 issues</span></div>
+<div class="mrow seq" style="animation-delay: .7s"><dc-import name="Glyph" kind="trust" tone="brand" size="22" hint-size="22px,22px"></dc-import>Trust<span class="pill ok" style="height: 19px; font-size: 10px">Good</span></div>
+<div class="mrow seq" style="animation-delay: .95s"><dc-import name="Glyph" kind="speed" tone="brand" size="22" hint-size="22px,22px"></dc-import>Speed<span class="pill warn" style="height: 19px; font-size: 10px">1 issue</span></div>
+<div class="mrow seq" style="animation-delay: 1.2s"><dc-import name="Glyph" kind="contact" tone="brand" size="22" hint-size="22px,22px"></dc-import>Contact<span class="pill warn" style="height: 19px; font-size: 10px">1 issue</span></div>
+<div class="mrow seq" style="animation-delay: 1.45s"><dc-import name="Glyph" kind="mobile" tone="brand" size="22" hint-size="22px,22px"></dc-import>Mobile<span class="pill mute" style="height: 19px; font-size: 10px">Mobile view</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="float r-float" style="position: absolute; left: -64px; bottom: -80px; width: 272px; background: #FFFFFF; border-radius: 18px; padding: 14px; box-shadow: 0 0 0 1px rgba(16,24,40,.08), 0 30px 50px -20px rgba(133,22,81,.45); display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut)">Same page, two views</span></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px">
+<span style="border-radius: 12px; background: var(--tint); padding: 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 600; color: var(--pd)">Desktop</span><span class="disp" style="font-size: 22px; font-weight: 800; color: var(--pd)">56</span></span>
+<span style="border-radius: 12px; background: var(--tint); padding: 10px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 600; color: var(--pd)">Mobile</span><span class="disp" style="font-size: 22px; font-weight: 800; color: var(--pd)">44</span></span>
+</div>
+<span style="font-size: 12px; color: var(--ink2)">Mobile adds <b style="color: var(--ink)">tap targets</b> and <b style="color: var(--ink)">sideways scroll</b></span>
+</div>
+<div class="toast r-toast" style="position: absolute; right: -36px; top: -34px; width: 268px; background: #FFFFFF; border-radius: 16px; padding: 14px; box-shadow: 0 0 0 1px #FECDCA, 0 24px 40px -18px rgba(180,35,24,.35); display: flex; gap: 10px">
+<span style="width: 30px; height: 30px; border-radius: 9px; background: #D92D20; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8M12 18h.01"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #B42318">High priority</span><span style="font-size: 13.5px; font-weight: 600; line-height: 1.35">Main button is 64 px below the fold</span></span>
+</div>
+</div>
+</div>
+<div class="wrap" style="position: relative; margin-top: 110px; display: flex; flex-direction: column; gap: 18px; align-items: center">
+<span style="font-size: 13px; font-weight: 600; color: #B9B4D0">27 checks on every page</span>
+<div class="marq" style="width: 100%"><div class="marq-in">
+<sc-for list="{{marq}}" as="m" hint-placeholder-count="27"><span class="tag"><dc-import name="Glyph" kind="{{m.k}}" tone="brand" size="30" hint-size="30px,30px"></dc-import>{{m.n}}</span></sc-for>
+</div></div>
+</div>
+</section>
+
+<section id="problem" style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+<div class="r-stack" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px"><div style="display: flex; flex-direction: column; gap: 16px; max-width: 640px"><span class="eyebrow">The problem</span><h2 class="disp h2">The clicks arrive. The leads don't.</h2></div><p class="lead" style="max-width: 380px">You paid for the visit. What happens next depends on the page, and the reasons are easy to miss from your own desk.</p></div>
+<div class="r-3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<div class="card lift" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini">
+<span style="position: absolute; left: 18px; top: 18px; width: 60%; height: 12px; border-radius: 4px; background: #D9D6E5"></span>
+<span style="position: absolute; left: 18px; top: 38px; width: 42%; height: 12px; border-radius: 4px; background: #D9D6E5"></span>
+<span style="position: absolute; left: 18px; top: 60px; right: 18px; height: 30px; border-radius: 8px; background: #EAE8F0"></span>
+<span class="foldln" style="top: 102px; animation-delay: .2s"></span>
+<span class="fpill" style="right: 12px; top: 92px">Fold</span>
+<span style="position: absolute; left: 18px; top: 114px; width: 96px; height: 26px; border-radius: 8px; background: #0E7C66"></span>
+<span class="redbox" style="left: 13px; top: 109px; width: 106px; height: 36px; border-radius: 10px"></span>
+</div>
+<span class="num">01</span><h3 class="disp" style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">The button sits below the fold</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">On a big screen it looks fine. On a laptop the first screen ends before the one button that matters.</p>
+</div>
+<div class="card lift" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" style="padding: 14px 18px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; align-content: start">
+<sc-for list="{{fields}}" as="f" hint-placeholder-count="9"><span class="fieldin" style="height: 30px; border-radius: 8px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #C9C5D6; animation-delay: {{f.d}}"></span></sc-for>
+<span class="pill bad" style="position: absolute; right: 12px; bottom: 10px">9 fields</span>
+</div>
+<span class="num">02</span><h3 class="disp" style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">The form asks for too much</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Every extra field, missing label or wrong keyboard is one more reason to close the tab.</p>
+</div>
+<div class="card lift" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" style="display: flex; align-items: center; justify-content: center">
+<span style="position: relative; width: 84px; height: 128px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 0 0 3px #101828; overflow: hidden">
+<span class="slide" style="position: absolute; left: 8px; top: 14px; width: 104px; height: 34px; border-radius: 6px; background: var(--tint2); box-shadow: inset 0 0 0 1px var(--ring)"></span>
+<span style="position: absolute; left: 8px; top: 56px; width: 56px; height: 8px; border-radius: 3px; background: #D9D6E5"></span>
+<span style="position: absolute; left: 8px; top: 70px; width: 44px; height: 8px; border-radius: 3px; background: #D9D6E5"></span>
+<span style="position: absolute; left: 8px; top: 92px; width: 22px; height: 22px; border-radius: 6px; background: #0E7C66"></span>
+<span style="position: absolute; left: 36px; top: 96px; width: 14px; height: 14px; border-radius: 4px; background: #0E7C66"></span>
+</span>
+<span class="pill warn" style="position: absolute; right: 12px; bottom: 10px">Scrolls sideways</span>
+</div>
+<span class="num">03</span><h3 class="disp" style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Mobile gets checked last</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Tiny tap targets, zooming forms and sideways scroll stay hidden until someone tries it on a phone.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="features" style="padding: 120px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center"><span class="eyebrow">Inside the panel</span><h2 class="disp h2" style="max-width: 900px">One panel. Every reason a page loses leads.</h2></div>
+<div>
+<input class="tabs-in" type="radio" name="tabs" id="tb-sc" checked><input class="tabs-in" type="radio" name="tabs" id="tb-is"><input class="tabs-in" type="radio" name="tabs" id="tb-mo"><input class="tabs-in" type="radio" name="tabs" id="tb-rp">
+<div class="tbar-w" style="display: flex; justify-content: center; margin-bottom: 40px"><div class="tbar"><label for="tb-sc">Score</label><label for="tb-is">Issues</label><label for="tb-mo">Mobile view</label><label for="tb-rp">Audit PDF</label></div></div>
+<div class="panes">
+<div class="pane p-sc" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Score</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">A score out of 100, by section.</h3><p class="lead" style="font-size: 16.5px">First screen, form, trust, mobile, speed and contact. Each check is measured on the page you have open, with the number it found.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>The fold line drawn right on the page</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Real values: 872 px, 9 fields, 2.1 s</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Passed checks listed too, so you know what is fine</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 440px; background: #FFFFFF; border-radius: 18px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(133,22,81,.4); overflow: hidden">
+<div style="padding: 16px; display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #C11574, #9E165F); color: #FFFFFF"><span class="disp" style="width: 62px; height: 62px; border-radius: 50%; box-shadow: inset 0 0 0 7px rgba(250,167,224,.9); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800">56</span><span style="display: flex; flex-direction: column; gap: 2px"><span class="disp" style="font-size: 18px; font-weight: 800">Landing score</span><span style="font-size: 12.5px">17 of 23 checks passed on Desktop</span></span></div>
+<div class="srow" style="border-top: none"><dc-import name="Glyph" kind="button" tone="bad" size="28" hint-size="28px,28px"></dc-import><span style="flex-grow: 1">Main button above the fold</span><span class="mono" style="font-size: 12px; font-weight: 500; color: #B42318">872 px</span></div>
+<div class="srow"><dc-import name="Glyph" kind="fields" tone="bad" size="28" hint-size="28px,28px"></dc-import><span style="flex-grow: 1">Number of fields</span><span class="mono" style="font-size: 12px; font-weight: 500; color: #B42318">9 fields</span></div>
+<div class="srow"><dc-import name="Glyph" kind="paint" tone="ok" size="28" hint-size="28px,28px"></dc-import><span style="flex-grow: 1">Largest paint</span><span class="mono" style="font-size: 12px; font-weight: 500; color: #475467">2.1 s</span></div>
+<div class="srow"><dc-import name="Glyph" kind="reviews" tone="ok" size="28" hint-size="28px,28px"></dc-import><span style="flex-grow: 1">Reviews or rating</span><span class="mono" style="font-size: 12px; font-weight: 500; color: #475467">in hero</span></div>
+</div></div>
+</div>
+<div class="pane p-is" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Issues</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">What to fix first, and how.</h3><p class="lead" style="font-size: 16.5px">Issues are sorted by priority. Each one says why it matters, how to fix it and where it is on the page.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>"Show on page" highlights the element</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Copy one fix or share the whole list in Markdown</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Written for marketers, ready for developers</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 440px; background: #FFFFFF; border-radius: 18px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(133,22,81,.4); overflow: hidden">
+<div style="padding: 16px; background: var(--tint); box-shadow: inset 3px 0 0 var(--p); display: flex; flex-direction: column; gap: 10px">
+<span style="display: flex; gap: 8px; align-items: center"><span class="pill bad">High</span><span style="font-size: 12px; font-weight: 600; color: var(--mut)">First screen</span></span>
+<span class="disp" style="font-size: 17px; font-weight: 800">Main button is below the fold</span>
+<span style="font-size: 13.5px; line-height: 1.5; color: var(--ink2)"><b style="color: var(--deep)">Why it matters.</b> Visitors who don't scroll never see the button.</span>
+<span style="font-size: 13.5px; line-height: 1.5; color: var(--ink2)"><b style="color: var(--deep)">How to fix.</b> Move "Get my free quote" into the hero, under the headline.</span>
+<span style="display: flex; gap: 8px"><span style="height: 34px; padding: 0 12px; border-radius: 9px; background: var(--tint2); box-shadow: inset 0 0 0 1px var(--p); color: var(--deep); font-size: 12.5px; font-weight: 700; display: inline-flex; align-items: center">Show on page</span><span style="height: 34px; padding: 0 12px; border-radius: 9px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #C9C5D6; font-size: 12.5px; font-weight: 700; display: inline-flex; align-items: center">Copy fix</span></span>
+</div>
+<div class="srow"><span style="flex-grow: 1">Quote form asks for 9 fields</span><span class="pill bad">High</span></div>
+<div class="srow"><span style="flex-grow: 1">3 fields have no label</span><span class="pill warn">Medium</span></div>
+<div class="srow"><span style="flex-grow: 1">Phone number can't be tapped</span><span class="pill mute">Low</span></div>
+</div></div>
+</div>
+<div class="pane p-mo" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Mobile view</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">The phone layout, without a phone.</h3><p class="lead" style="font-size: 16.5px">One click narrows the Chrome window to 390 px, so the page shows its phone layout. Foldline checks it again and gives a mobile score.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Tap targets, text size, sideways scroll and form zoom</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Your window size comes back when you switch</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>No extra permission needed</span></div></div></div>
+<div class="stage"><div style="display: flex; gap: 18px; align-items: center">
+<div style="position: relative; width: 170px; height: 330px; border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 6px #101828, 0 30px 50px -24px rgba(16,24,40,.6); overflow: hidden; font-family: Manrope, Arial, sans-serif; color: #0B2540; flex-shrink: 0">
+<span style="position: absolute; left: 0; right: 0; top: 0; height: 196px; background: #F3F7F6"></span>
+<span style="position: absolute; left: 14px; top: 18px; font-size: 13px; font-weight: 800">sunvo</span>
+<span style="position: absolute; left: 14px; top: 44px; right: 14px; font-size: 15px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em">Cut your power bill with solar sized for your roof.</span>
+<span style="position: absolute; left: 14px; right: 14px; top: 118px; height: 70px; border-radius: 10px; background: linear-gradient(180deg, #CFE7F5, #EAF4F1)"></span>
+<span class="foldln" style="top: 214px"></span>
+<span class="fpill" style="left: 8px; top: 204px">Fold 844 px</span>
+<span style="position: absolute; left: 14px; right: 14px; top: 262px; height: 32px; border-radius: 8px; background: #0E7C66"></span>
+<span class="redbox" style="left: 10px; right: 10px; top: 258px; height: 40px; border-radius: 10px"></span>
+</div>
+<div style="width: 220px; background: #FFFFFF; border-radius: 16px; box-shadow: 0 0 0 1px var(--line), 0 24px 40px -24px rgba(133,22,81,.4); overflow: hidden">
+<div style="padding: 12px 14px; display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #C11574, #9E165F); color: #FFFFFF"><span class="disp" style="font-size: 26px; font-weight: 800">44</span><span style="font-size: 12px; line-height: 1.3">Mobile score<br>8 issues</span></div>
+<div class="srow" style="font-size: 12px; border-top: none"><span style="flex-grow: 1">7 small tap targets</span><span class="pill warn" style="height: 19px; font-size: 10px">Medium</span></div>
+<div class="srow" style="font-size: 12px"><span style="flex-grow: 1">Scrolls sideways 46 px</span><span class="pill warn" style="height: 19px; font-size: 10px">Medium</span></div>
+<div class="srow" style="font-size: 12px"><span style="flex-grow: 1">Form text 14 px</span><span class="pill mute" style="height: 19px; font-size: 10px">Low</span></div>
+</div>
+</div></div>
+</div>
+<div class="pane p-rp" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Audit PDF</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">One PDF for the client or the team.</h3><p class="lead" style="font-size: 16.5px">Desktop and mobile scores, every section and the fixes in order, on one A4 page built in your browser.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Ready to attach to a proposal</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Selectable text, no images of text</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Made on your computer, sent nowhere</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 360px; background: #FFFFFF; border-radius: 14px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(133,22,81,.4); padding: 22px; display: flex; flex-direction: column; gap: 12px; transform: rotate(-2deg)">
+<div style="display: flex; justify-content: space-between; align-items: center"><dc-import name="Logo" brand="foldline" theme="light" size="20" word="true" hint-size="92px,20px"></dc-import><span style="font-size: 10px; color: var(--mut)">Nov 7, 2026</span></div>
+<div><span style="font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--pd)">Landing page audit</span><div class="disp" style="font-size: 18px; font-weight: 800">example.com/free-quote</div></div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px"><div style="background: var(--tint); border-radius: 8px; padding: 8px"><div class="disp" style="font-size: 16px; font-weight: 800; color: var(--pd)">56</div><div style="font-size: 9.5px; color: var(--pd)">desktop</div></div><div style="background: var(--tint); border-radius: 8px; padding: 8px"><div class="disp" style="font-size: 16px; font-weight: 800; color: var(--pd)">44</div><div style="font-size: 9.5px; color: var(--pd)">mobile</div></div><div style="background: #F7F7FB; border-radius: 8px; padding: 8px"><div class="disp" style="font-size: 16px; font-weight: 800">9</div><div style="font-size: 9.5px; color: var(--ink2)">issues</div></div><div style="background: #FEF3F2; border-radius: 8px; padding: 8px"><div class="disp" style="font-size: 16px; font-weight: 800; color: #B42318">2</div><div style="font-size: 9.5px; color: #B42318"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true" style="vertical-align: -1px; margin-right: 3px"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5h.01"></path></svg>high</div></div></div>
+<div style="display: grid; grid-template-columns: 52px 1fr; gap: 8px; font-size: 11px; line-height: 1.45; padding-top: 8px; border-top: 1px solid #EAE8F0"><span class="pill bad" style="height: 18px; font-size: 10px">High</span><span><b>Main button is below the fold.</b> Move it into the hero.</span><span class="pill bad" style="height: 18px; font-size: 10px">High</span><span><b>The form asks for 9 fields.</b> Keep four.</span></div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="calculator" style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap">
+<div class="calc" style="display: flex; flex-direction: column; gap: 28px">
+<div class="r-stack" style="position: relative; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px"><div style="display: flex; flex-direction: column; gap: 14px; max-width: 680px"><span class="eyebrow">Free tool, no install</span><h2 class="disp h2" style="font-size: 46px">Landing page score calculator</h2><p class="lead" style="font-size: 17px">Tick what your page already does. The score uses the same 27 checks and weights as the extension. It runs on this page and sends nothing anywhere.</p></div><button type="button" class="btn btn-g" style="height: 44px; font-size: 14.5px; flex-shrink: 0" onClick="{{reset}}">Start from zero</button></div>
+<div class="r-calc" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start">
+<div class="r-groups" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="6">
+<fieldset class="grp" style="margin: 0; border: none; min-width: 0">
+<legend style="float: left; width: 100%; padding: 0 0 8px; display: flex; align-items: center; gap: 10px"><dc-import name="Glyph" kind="{{g.kind}}" tone="brand" size="30" hint-size="30px,30px"></dc-import><span style="font-size: 15px; font-weight: 800" class="disp">{{g.name}}</span><span style="margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--mut)">{{g.done}}</span></legend>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="5">
+<label class="ck"><input type="checkbox" checked="{{it.on}}" onChange="{{it.toggle}}"><span class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>{{it.label}}</span><span class="sev {{it.cls}} {{it.ic}}">{{it.sev}}</span></label>
+</sc-for>
+</fieldset>
+</sc-for>
+</div>
+<div class="score" aria-live="polite">
+<span style="position: relative; z-index: 1; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase">Your score</span>
+<span style="position: relative; z-index: 1; display: flex; align-items: baseline; gap: 6px"><span class="disp" style="font-size: 72px; font-weight: 800; line-height: 1; letter-spacing: -0.04em">{{score}}</span><span style="font-size: 18px; font-weight: 600">/100</span></span>
+<span class="bar" style="position: relative; z-index: 1"><span style="width: {{score}}%"></span></span>
+<span class="disp" style="position: relative; z-index: 1; font-size: 20px; font-weight: 800">{{band}}</span>
+<span style="position: relative; z-index: 1; font-size: 14px; line-height: 1.55">{{missing}}</span>
+<div style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.2)">
+<span style="font-size: 13.5px; line-height: 1.5">The extension measures all 27 on a real page, on desktop and mobile.</span>
+<a class="btn btn-l" href="https://chromewebstore.google.com/" style="height: 46px; font-size: 15px">Add to Chrome<svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="how" style="padding: 120px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow">How it works</span><h2 class="disp h2">Three steps, no setup.</h2></div>
+<div class="r-3" style="position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<span class="dash" aria-hidden="true"></span>
+<div class="card step"><span class="stepn disp">1</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">Add Foldline to Chrome</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Free from the Chrome Web Store. No account to create.</p></div></div>
+<div class="card step"><span class="stepn disp">2</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">Open your page, click the icon</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">The side panel opens and the fold line appears. Or press <span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">F</span></p></div></div>
+<div class="card step"><span class="stepn disp">3</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">Fix in order</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Start with High. Share the list with your developer or download the PDF.</p></div></div>
+</div>
+</div>
+</section>
+
+<section id="report" class="night" style="padding: 120px 0">
+<span class="glow" style="width: 600px; height: 600px; right: -200px; top: -200px; background: rgba(193,21,116, 0.55)"></span>
+<span class="glow" style="width: 400px; height: 400px; left: 30%; bottom: -260px; background: rgba(198, 243, 107, 0.18)"></span>
+<div class="wrap r-1" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 72px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<span class="eyebrow" style="color: #C6F36B">Landing page audit</span>
+<h2 class="disp h2" style="font-size: 50px">Found the leaks? <span style="color: #FAA7E0">Get them fixed</span> by the person who built Foldline.</h2>
+<p class="lead soft" style="max-width: 560px">Foldline shows what is wrong on the page. I look at the page, the form and the tracking behind it, and help you fix what costs you leads first.</p>
+<div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap"><a class="btn btn-l" href="https://shamistanisayev.com/?utm_source=foldline&amp;utm_medium=landing&amp;utm_campaign=audit_cta">Book an audit<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><span style="font-size: 14px; color: #FFFFFF">From <u>Shamistan Isayev</u></span></div>
+</div>
+<div class="paper-w r-paper" style="position: relative; height: 480px; display: flex; align-items: center; justify-content: center">
+<div class="paper2" style="position: absolute; width: 400px; height: 440px; border-radius: 14px; background: #2A2145; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"></div>
+<div class="paper" style="position: relative; border-radius: 14px"><div style="width: 400px; max-width: 100%; background: #FFFFFF; border-radius: 14px; padding: 26px; color: #101828; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><dc-import name="Logo" brand="foldline" theme="light" size="24" word="true" hint-size="110px,24px"></dc-import><span style="font-size: 10.5px; color: #667085">Nov 7, 2026</span></div>
+<div><span style="font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9E165F">Landing page audit</span><div class="disp" style="font-size: 22px; font-weight: 800">example.com/free-quote</div></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px"><div style="background: #FDF2FA; border-radius: 10px; padding: 10px 12px"><div class="disp" style="font-size: 22px; font-weight: 800; color: #9E165F">56 / 44</div><div style="font-size: 11px; color: #9E165F; font-weight: 600">desktop and mobile score</div></div><div style="background: #FEF3F2; border-radius: 10px; padding: 10px 12px"><div class="disp" style="font-size: 22px; font-weight: 800; color: #B42318">2</div><div style="font-size: 11px; color: #B42318; font-weight: 600"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true" style="vertical-align: -1px; margin-right: 3px"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5h.01"></path></svg>high priority</div></div></div>
+<div><div style="display: grid; grid-template-columns: 64px 1fr; gap: 10px; font-size: 12px; line-height: 1.45; padding: 8px 0; border-top: 1px solid #EAE8F0"><span class="pill bad" style="height: 20px; font-size: 10.5px">High</span><span><b>Main button is below the fold.</b> Move it into the hero.</span></div><div style="display: grid; grid-template-columns: 64px 1fr; gap: 10px; font-size: 12px; line-height: 1.45; padding: 8px 0; border-top: 1px solid #EAE8F0"><span class="pill bad" style="height: 20px; font-size: 10.5px">High</span><span><b>The form asks for 9 fields.</b> Keep four.</span></div><div style="display: grid; grid-template-columns: 64px 1fr; gap: 10px; font-size: 12px; line-height: 1.45; padding: 8px 0; border-top: 1px solid #EAE8F0"><span class="pill warn" style="height: 20px; font-size: 10.5px">Medium</span><span><b>7 small tap targets.</b> Make them 44 px.</span></div></div>
+<div style="background: #0B0B14; border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px"><span style="font-size: 11.5px; font-weight: 700; color: #FFFFFF">Need help fixing these issues?</span><span style="font-size: 10.5px; font-weight: 700; color: #1A2E05; background: #C6F36B; border-radius: 6px; padding: 5px 8px">shamistanisayev.com</span></div>
+</div></div>
+</div>
+</div>
+</section>
+
+<section id="privacy" class="priv" style="padding: 100px 0"><div class="wrap r-1" style="display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #1A2E05">Privacy</span><h2 class="disp h2" style="font-size: 48px">Your pages stay in your browser.</h2></div>
+<div class="r-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px">
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"></rect><rect x="3" y="13" width="18" height="7" rx="2"></rect><path d="M3 3l18 18"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">No server</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">Every check runs inside Chrome. Foldline makes no requests of its own.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">Minimal permissions</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">Side panel, active tab, scripting and local storage. No access to all your sites.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><path d="M3 3l18 18"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">No tracking inside</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">The extension doesn't track you. Results disappear when you close the tab.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5"></path><path d="M16 7l5 5-5 5"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">Open source</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">Read the code and check every claim on this page for yourself.</span></div>
+</div>
+</div></section>
+
+<section id="faq" style="padding: 120px 0"><div class="wrap r-1" style="display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 56px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px; position: sticky; top: 100px" data-r="sticky"><span class="eyebrow">FAQ</span><h2 class="disp h2" style="font-size: 48px">Questions</h2><p class="lead" style="font-size: 16px">Something else? <a href="https://shamistanisayev.com/?utm_source=foldline&amp;utm_medium=landing&amp;utm_campaign=faq" style="color: var(--pi); font-weight: 700; border-bottom: 2px solid var(--lime)">Ask me directly</a></p></div>
+<div class="faq" style="display: flex; flex-direction: column; gap: 12px">
+<details open><summary>Is Foldline really free?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Yes. There is no paid plan, no account and no usage limit.</p></details>
+<details><summary>How is the score calculated?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Every page starts at 100. A failed High check takes 12 points, Medium takes 6 and Low takes 2. Only checks that run in the current view count, so Desktop and Mobile get separate scores.</p></details>
+<details><summary>Does Mobile view use a real phone?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>No. It makes the Chrome window narrow, so the page shows its phone layout. Sites that pick a layout by device type rather than width may still show the desktop version.</p></details>
+<details><summary>Does it replace heatmaps or A/B tests?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>No. Foldline checks the page itself. It doesn't watch visitors, so it is the step before testing: fix the obvious problems, then test what is left.</p></details>
+<details><summary>Does it send any data anywhere?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>No. Foldline reads the page in your browser and keeps the result in memory until you close the tab. Only your settings are saved, and only on your computer.</p></details>
+<details><summary>Why do I click the icon again on a new tab?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Foldline uses Chrome's activeTab permission. It can read a page only after you ask, so it never has access to every site you visit.</p></details>
+</div>
+</div></section>
+
+<section class="night" style="padding: 110px 0 60px"><div class="wrap" style="display: flex; flex-direction: column; gap: 40px; position: relative">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #FAA7E0">The Line family</span><h2 class="disp h2" style="font-size: 44px">More free tools from the same family</h2></div>
+<div class="r-4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{family}}" as="f" hint-placeholder-count="4">
+<a class="tool" style="--c: {{f.c}}" href="{{f.href}}" target="_blank" rel="noopener"><dc-import name="Logo" brand="{{f.brand}}" theme="dark" size="30" word="true" hint-size="140px,30px"></dc-import><span style="font-size: 15px; line-height: 1.55; color: #D0CBE6">{{f.desc}}</span><span class="go2"><span>Open {{f.name}}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+</sc-for>
+</div>
+<div style="margin-top: 50px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.1); display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 14px; color: #D0CBE6">
+<dc-import name="Logo" brand="foldline" theme="dark" size="26" word="true" hint-size="120px,26px"></dc-import>
+<span>Built by <a href="https://shamistanisayev.com/?utm_source=foldline&amp;utm_medium=landing&amp;utm_campaign=footer" style="color: #FFFFFF; font-weight: 700">Shamistan Isayev</a></span>
+<span style="flex-grow: 1"></span>
+<a class="nl" style="color: #D0CBE6" href="https://getlineapps.com/foldline/privacy">Privacy policy</a><a class="nl" style="color: #D0CBE6" href="https://github.com/">Source code</a>
+</div>
+</div></section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7220}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { off: { h3: 1, f2: 1, f1: 1, f4: 1, m2: 1, m3: 1, c1: 1 } };
+}
+renderVals() {
+var self = this;
+var W = { High: 12, Medium: 6, Low: 2 };
+var G = [
+{ kind: 'firstscreen', name: 'First screen', items: [['h1', 'Headline above the fold', 'High'], ['h2', 'Headline under 12 words', 'Low'], ['h3', 'Main button above the fold', 'High'], ['h4', 'One clear action', 'Medium'], ['h5', 'No pop-up covering the page', 'Medium']] },
+{ kind: 'form', name: 'Form', items: [['f1', '5 fields or fewer', 'High'], ['f2', 'Every field has a label', 'Medium'], ['f3', 'Email and phone input types', 'Medium'], ['f4', 'Autofill allowed', 'Low'], ['f5', 'Button says what happens', 'Low']] },
+{ kind: 'trust', name: 'Trust', items: [['t1', 'Reviews or rating', 'Medium'], ['t2', 'Client or press logos', 'Low'], ['t3', 'Guarantee or warranty', 'Low'], ['t4', 'Privacy link near the form', 'Low'], ['t5', 'Secure connection (https)', 'High']] },
+{ kind: 'mobile', name: 'Mobile', items: [['m1', 'Viewport tag', 'High'], ['m2', 'Tap targets 44 px or more', 'Medium'], ['m3', 'No sideways scroll', 'Medium'], ['m4', 'Text 16 px or more', 'Medium'], ['m5', 'Form text 16 px, no zoom', 'Low']] },
+{ kind: 'speed', name: 'Speed', items: [['s1', 'Largest paint under 2.5 s', 'Medium'], ['s2', 'Layout shift under 0.1', 'Medium'], ['s3', 'Images not oversized', 'Medium'], ['s4', 'Lazy loading below the fold', 'Low']] },
+{ kind: 'contact', name: 'Contact', items: [['c1', 'Phone number is tap-to-call', 'Medium'], ['c2', 'WhatsApp or chat link', 'Low'], ['c3', 'Email or address shown', 'Low']] }
+];
+var off = this.state.off || {};
+var score = 100, mh = 0, mm = 0, ml = 0;
+var groups = G.map(function (g) {
+var done = 0;
+var items = g.items.map(function (it) {
+var on = !off[it[0]];
+if (on) { done += 1; } else { score -= W[it[2]]; if (it[2] === 'High') { mh += 1; } else if (it[2] === 'Medium') { mm += 1; } else { ml += 1; } }
+return { label: it[1], sev: it[2], cls: it[2] === 'High' ? 'sev-h' : (it[2] === 'Medium' ? 'sev-m' : 'sev-l'), ic: it[2] === 'High' ? 'sv-h' : (it[2] === 'Medium' ? 'sv-m' : 'sv-l'), on: on,
+toggle: function () { var n = Object.assign({}, self.state.off); if (n[it[0]]) { delete n[it[0]]; } else { n[it[0]] = 1; } self.setState({ off: n }); } };
+});
+return { kind: g.kind, name: g.name, items: items, done: done + ' of ' + g.items.length };
+});
+score = Math.max(0, score);
+var band = score >= 80 ? 'In good shape' : (score >= 50 ? 'Room to grow' : 'Losing leads');
+var parts = [];
+if (mh) { parts.push(mh + ' high'); }
+if (mm) { parts.push(mm + ' medium'); }
+if (ml) { parts.push(ml + ' low'); }
+var missing = parts.length ? 'Missing: ' + (parts.length > 1 ? parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1] : parts[0]) + '. Start with the high ones.' : 'Every check is ticked. Now confirm it on the real page.';
+// Family links: design artifacts for now. Production: 'https://getlineapps.com/' + slug (no UTM on internal links).
+var toolLinks = {
+hitline: 'https://claude.ai/code/artifact/6987e0b7-b1f7-489d-88e7-40513ec92dda',
+serpline: 'https://claude.ai/code/artifact/7a3a8959-edd5-49f7-8d98-6ef88a7c8501',
+rivaline: 'https://claude.ai/code/artifact/9b7b1f50-c085-49bd-bba7-acb04636d43d',
+foldline: 'https://claude.ai/code/artifact/e6d03b52-f741-47cb-8f3e-77ad34d24188',
+markline: 'https://claude.ai/code/artifact/411c2906-e052-4723-88bc-f357a1162e8a'
+};
+var M = [
+['headline', 'Headline above the fold'], ['text', 'Headline length'], ['button', 'Main button position'], ['buttons', 'Competing buttons'], ['popup', 'Pop-up coverage'],
+['fields', 'Form length'], ['label', 'Field labels'], ['keyboard', 'Phone keyboard'], ['autofill', 'Autofill'], ['submit', 'Button text'],
+['reviews', 'Reviews and ratings'], ['logos', 'Client logos'], ['guarantee', 'Guarantee'], ['privacy', 'Privacy link'], ['lock', 'HTTPS'],
+['viewport', 'Viewport tag'], ['tap', 'Tap target size'], ['sideways', 'Sideways scroll'], ['text', 'Text size'], ['zoom', 'Form zoom on iPhone'],
+['paint', 'Largest paint'], ['shift', 'Layout shift'], ['image', 'Image size'], ['lazy', 'Lazy loading'],
+['phone', 'Tap-to-call'], ['whatsapp', 'WhatsApp or chat'], ['mail', 'Contact details']
+].map(function (m) { return { k: m[0], n: m[1] }; });
+var fields = [];
+for (var i = 0; i < 9; i += 1) { fields.push({ d: (i * 0.35).toFixed(2) + 's' }); }
+return {
+groups: groups,
+score: score,
+band: band,
+missing: missing,
+reset: function () { var all = {}; G.forEach(function (g) { g.items.forEach(function (it) { all[it[0]] = 1; }); }); self.setState({ off: all }); },
+marq: M.concat(M),
+fields: fields,
+family: [
+{ brand: 'hitline', name: 'Hitline', c: '#B692F6', desc: 'See what tracking a site really sends, right in DevTools.', href: toolLinks.hitline },
+{ brand: 'serpline', name: 'Serpline', c: '#93C5FD', desc: 'Technical SEO and AI search checks for any page.', href: toolLinks.serpline },
+{ brand: 'rivaline', name: 'Rivaline', c: '#67E8F9', desc: 'A rival\'s stack, ads and brand kit in one panel.', href: toolLinks.rivaline },
+{ brand: 'markline', name: 'Markline', c: '#FDE68A', desc: 'Screenshot, mark up and share feedback in seconds.', href: toolLinks.markline }
+]
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Attribution.dc.html": {
+      "h": 1030,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "DevTools: Atribusiya",
+      "w": 1440,
+      "x": 0,
+      "y": 2300
+    },
+    "BrowserBar.dc.html": {
+      "h": 84,
+      "page": "hisseler",
+      "title": "Chrome tab və ünvan paneli",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Consent.dc.html": {
+      "h": 1030,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "DevTools: Consent",
+      "w": 1440,
+      "x": 1520,
+      "y": 1150
+    },
+    "DevtoolsBar.dc.html": {
+      "h": 40,
+      "page": "hisseler",
+      "title": "DevTools tab paneli",
+      "w": 1440,
+      "x": 0,
+      "y": 204
+    },
+    "Empty.dc.html": {
+      "h": 1030,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "DevTools: ilk açılış",
+      "w": 1440,
+      "x": 1520,
+      "y": 4693
+    },
+    "Events.dc.html": {
+      "h": 1030,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "DevTools: Eventlər",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "Gtm.dc.html": {
+      "h": 1030,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "DevTools: GTM və sGTM",
+      "w": 1440,
+      "x": 0,
+      "y": 1150
+    },
+    "Landing.dc.html": {
+      "h": 5839,
+      "page": "landing",
+      "title": "Landing",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "LandingMobile.dc.html": {
+      "h": 8919,
+      "page": "landing",
+      "title": "Landing: telefon",
+      "w": 390,
+      "x": 2420,
+      "y": 0
+    },
+    "LandingTablet.dc.html": {
+      "h": 7328,
+      "page": "landing",
+      "title": "Landing: planşet",
+      "w": 820,
+      "x": 1520,
+      "y": 0
+    },
+    "Logo.dc.html": {
+      "h": 160,
+      "page": "hisseler",
+      "title": "Loqo komponenti",
+      "w": 520,
+      "x": 0,
+      "y": 1458
+    },
+    "Main.dc.html": {
+      "h": 900,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "Popup",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "PanelHeader.dc.html": {
+      "h": 44,
+      "page": "hisseler",
+      "title": "Hitline panel başlığı",
+      "w": 1440,
+      "x": 0,
+      "y": 1294
+    },
+    "Plan.dc.html": {
+      "h": 1030,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "DevTools: Plan",
+      "w": 1440,
+      "x": 1520,
+      "y": 2300
+    },
+    "PlanSetup.dc.html": {
+      "h": 1030,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "DevTools: plan yükləmə",
+      "w": 1440,
+      "x": 0,
+      "y": 5843
+    },
+    "PopupEmpty.dc.html": {
+      "h": 900,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "Popup: tracking tapılmadı",
+      "w": 1440,
+      "x": 874,
+      "y": 3450
+    },
+    "PopupSettings.dc.html": {
+      "h": 900,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "Popup: ayarlar",
+      "w": 1440,
+      "x": 0,
+      "y": 4693
+    },
+    "Report.dc.html": {
+      "h": 1123,
+      "page": "ekranlar",
+      "paper": "a4",
+      "title": "Audit PDF",
+      "w": 794,
+      "x": 0,
+      "y": 3450
+    },
+    "SitePage.dc.html": {
+      "h": 820,
+      "page": "hisseler",
+      "title": "Lumo: xəyali mağaza",
+      "w": 1440,
+      "x": 0,
+      "y": 354
+    },
+    "Uninstall.dc.html": {
+      "h": 900,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "Silinmədən sonra rəy səhifəsi",
+      "w": 1440,
+      "x": 0,
+      "y": 6993
+    },
+    "Welcome.dc.html": {
+      "h": 900,
+      "page": "ekranlar",
+      "radius": 10,
+      "title": "Quraşdırmadan sonra salamlama",
+      "w": 1440,
+      "x": 1520,
+      "y": 5843
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-11-06T11:45:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "page": "ekranlar",
+    "view": "canvas"
+  },
+  "notes": {
+    "t1": {
+      "kind": "title1",
+      "maxW": 2960,
+      "page": "ekranlar",
+      "text": "Hitline: Chrome-da ekranlar",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Events.dc.html",
+    "Gtm.dc.html",
+    "Consent.dc.html",
+    "Attribution.dc.html",
+    "Plan.dc.html",
+    "Report.dc.html",
+    "PopupEmpty.dc.html",
+    "PopupSettings.dc.html",
+    "Empty.dc.html",
+    "PlanSetup.dc.html",
+    "Welcome.dc.html",
+    "Uninstall.dc.html",
+    "Landing.dc.html",
+    "LandingTablet.dc.html",
+    "LandingMobile.dc.html",
+    "BrowserBar.dc.html",
+    "DevtoolsBar.dc.html",
+    "SitePage.dc.html",
+    "PanelHeader.dc.html",
+    "Logo.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "ekranlar",
+      "name": "Ekranlar"
+    },
+    {
+      "id": "landing",
+      "name": "Landing"
+    },
+    {
+      "id": "hisseler",
+      "name": "Hissələr"
+    }
+  ],
+  "title": "Hitline: ekranlar və landing"
+}

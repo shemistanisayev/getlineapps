@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foldline side panel: Checks</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.fl{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.fl button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.pb>*{flex-shrink:0}
+.chip{height:30px;padding:0 11px;border-radius:999px;border:1px solid #DCD9E6;background:#FFFFFF;font-size:12.5px;font-weight:600;color:#344054;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0}
+.chip b{font-weight:600;color:#667085}
+.chip.on{background:#101828;border-color:#101828;color:#FFFFFF}
+.chip.on b{color:#D0D5DD}
+.grp{display:flex;align-items:center;gap:8px;padding:10px 14px 6px}
+.ck{display:flex;align-items:center;gap:10px;padding:8px 14px;border-top:1px solid #EAE8F0;transition:background .15s}
+.ck:hover{background:#F7F6FB}
+.si{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.s-ok{background:#ECFDF3;color:#067647}.s-bad{background:#FEF3F2;color:#B42318}.s-warn{background:#FFFAEB;color:#B54708}.s-mute{background:#EEEDF3;color:#475467}
+.val{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#475467;white-space:nowrap}
+.legend{display:flex;align-items:center;gap:6px;font-size:12px;color:#344054}
+.legend i{width:8px;height:8px;border-radius:2px}
+</style>
+</helmet>
+<div class="fl" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EEF1F6; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" panel-open="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; gap: 8px; padding: 0 8px 8px 0; box-sizing: border-box">
+<div style="flex-grow: 1; min-width: 0; height: 808px; overflow: hidden; border-radius: 0 0 12px 0"><dc-import name="SitePage" variant="sunvo" scroll="160" fold="true" mark="both" cta-label="Main button, 64 px below the fold" hint-size="100%,808px"></dc-import></div>
+<aside aria-label="Foldline side panel" style="width: 400px; flex-shrink: 0; height: 800px; margin-top: 8px; border-radius: 12px; overflow: hidden; background: #EFEDF5; box-shadow: 0 0 0 1px #DCD9E6; display: flex; flex-direction: column">
+<div style="height: 40px; flex-shrink: 0; border-bottom: 1px solid #EAE8F0"><dc-import name="PanelChrome" hint-size="100%,40px"></dc-import></div>
+<div style="flex-shrink: 0"><dc-import name="PanelHeader" tab="checks" hint-size="100%,96px"></dc-import></div>
+<div class="pb" style="flex-grow: 1; overflow: hidden; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="card" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 9px">
+<div style="display: flex; align-items: baseline; justify-content: space-between"><span class="disp" style="font-size: 15px; font-weight: 800">23 checks on Desktop</span><span style="font-size: 11.5px; color: #667085">4 more in Mobile view</span></div>
+<div style="display: flex; height: 8px; border-radius: 999px; overflow: hidden; gap: 2px" aria-hidden="true"><span style="flex: 17; background: #12B76A"></span><span style="flex: 2; background: #D92D20"></span><span style="flex: 4; background: #F79009"></span></div>
+<div style="display: flex; gap: 14px"><span class="legend"><i style="background: #12B76A"></i>17 passed</span><span class="legend"><i style="background: #D92D20"></i>2 high</span><span class="legend"><i style="background: #F79009"></i>4 medium or low</span></div>
+</div>
+<div style="display: flex; gap: 6px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent)">
+<button type="button" class="chip on" aria-pressed="true">All <b>23</b></button><button type="button" class="chip">First screen <b>5</b></button><button type="button" class="chip">Form <b>5</b></button><button type="button" class="chip">Trust <b>5</b></button><button type="button" class="chip">Speed <b>4</b></button><button type="button" class="chip">Contact <b>3</b></button>
+</div>
+<div class="card" style="overflow: hidden; flex-shrink: 1; min-height: 0; -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent); mask-image: linear-gradient(180deg, #000 88%, transparent)">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+<div class="grp"><dc-import name="Glyph" kind="{{g.kind}}" tone="brand" size="22" hint-size="22px,22px"></dc-import><span class="eyebrow" style="flex-grow: 1">{{g.name}}</span><span style="font-size: 11.5px; font-weight: 600; color: {{g.ink}}">{{g.sum}}</span></div>
+<sc-for list="{{g.rows}}" as="r" hint-placeholder-count="5">
+<div class="ck">
+<sc-if value="{{r.ok}}" hint-placeholder-val="{{true}}"><span class="si s-ok"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span></sc-if>
+<sc-if value="{{r.bad}}" hint-placeholder-val="{{false}}"><span class="si s-bad"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg></span></sc-if>
+<sc-if value="{{r.warn}}" hint-placeholder-val="{{false}}"><span class="si s-warn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M12 6v7M12 18h.01"></path></svg></span></sc-if>
+<span style="flex-grow: 1; min-width: 0; font-size: 13px; font-weight: 500">{{r.n}}</span><span class="val" style="color: {{r.vc}}">{{r.v}}</span>
+</div>
+</sc-for>
+</sc-for>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+var r = function (s, n, v) { return { ok: s === 'ok', bad: s === 'bad', warn: s === 'warn', n: n, v: v, vc: s === 'bad' ? '#B42318' : (s === 'warn' ? '#B54708' : '#475467') }; };
+return {
+groups: [
+{ kind: 'firstscreen', name: 'First screen', sum: '3 of 5 passed', ink: '#475467', rows: [
+r('ok', 'Headline above the fold', 'H1 at 212 px'),
+r('ok', 'Headline length', '10 words'),
+r('bad', 'Main button above the fold', '872 px'),
+r('warn', 'One clear action', '5 buttons'),
+r('ok', 'Pop-up covering the page', 'none')
+] },
+{ kind: 'form', name: 'Form', sum: '3 of 5 passed', ink: '#475467', rows: [
+r('bad', 'Number of fields', '9 fields'),
+r('warn', 'Every field has a label', '3 missing'),
+r('ok', 'Email and phone input types', 'email, tel'),
+r('ok', 'Autofill allowed', 'on'),
+r('ok', 'Button says what happens', '"Get my quote"')
+] },
+{ kind: 'trust', name: 'Trust', sum: '5 of 5 passed', ink: '#475467', rows: [
+r('ok', 'Reviews or rating', 'in hero'),
+r('ok', 'Client or press logos', '4 logos'),
+r('ok', 'Guarantee or warranty', '25-year'),
+r('ok', 'Privacy link near the form', 'found'),
+r('ok', 'Secure connection', 'https')
+] }
+]
+};
+}
+}
+</script>
+</body>
+</html>

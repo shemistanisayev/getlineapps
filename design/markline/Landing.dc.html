@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markline landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.lp{--ink:#101828;--ink2:#344054;--mut:#667085;--line:#DCD9E6;--p:#FACC15;--pd:#EAB308;--pi:#101828;--deep:#101828;--tint:#FEFCE8;--tint2:#FEF9C3;--ring:#FACC15;--bright:#FDE68A;--lime:#C6F36B;--night:#120D24;
+font-family:Inter,Arial,sans-serif;color:var(--ink);background:#F3F1F9;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.lp *{box-sizing:border-box}
+.lp a{text-decoration:none}.lp a:not(.btn){color:inherit}
+.lp button,.lp input{font-family:inherit}
+.lp button{cursor:pointer}
+.lp :focus-visible{outline:3px solid #101828;box-shadow:0 0 0 6px #FACC15;outline-offset:2px;border-radius:6px}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 32px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pi)}
+.eyebrow:before{content:"";width:18px;height:3px;border-radius:2px;background:var(--p)}
+.h2{margin:0;font-size:52px;line-height:1.04;letter-spacing:-.035em;font-weight:800}
+.lead{margin:0;font-size:18px;line-height:1.6;color:var(--ink2)}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;font-size:16px;font-weight:700;border:none;transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s}
+.btn svg{transition:transform .2s}
+.btn:hover svg.arr{transform:translateX(4px)}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--p);color:#101828;box-shadow:0 10px 24px -10px rgba(16,24,40,.8),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-p:hover{background:var(--pd);transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(16,24,40,.9)}
+.btn-p:after,.btn-l:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0));transform:skewX(-20deg);transition:left .6s}
+.btn-p:hover:after,.btn-l:hover:after{left:120%}
+.btn-g{background:#FFFFFF;color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.05)}
+.btn-g:hover{transform:translateY(-2px);box-shadow:0 0 0 1px #D0D5DD,0 10px 20px -12px rgba(16,24,40,.25)}
+.btn-l{background:var(--lime);color:#1A2E05;box-shadow:0 12px 30px -12px rgba(198,243,107,.7)}
+.btn-l:hover{transform:translateY(-2px) scale(1.02)}
+.btn-o{background:rgba(255,255,255,.06);color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.btn-o:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.lp a.btn-p,.lp a.btn-p:hover,.lp a.btn-p:focus,.lp a.btn-p:active,.lp a.btn-p:visited,.lp button.btn-p,.lp button.btn-p:hover,.lp button.btn-p:focus,.lp button.btn-p:active{color:#101828}
+.lp a.btn-o,.lp a.btn-o:hover,.lp a.btn-o:focus,.lp a.btn-o:active,.lp a.btn-o:visited{color:#FFFFFF}
+.lp a.btn-l,.lp a.btn-l:hover,.lp a.btn-l:focus,.lp a.btn-l:active,.lp a.btn-l:visited{color:#1A2E05}
+.lp a.btn-g,.lp a.btn-g:hover,.lp a.btn-g:focus,.lp a.btn-g:active,.lp a.btn-g:visited{color:var(--ink)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(18,13,36,.94);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{height:72px;display:flex;align-items:center;gap:36px}
+.lp a.nl{position:relative;font-size:14.5px;font-weight:500;color:#D0CBE6;padding:6px 0}
+.nl:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;border-radius:2px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.lp a.nl:hover{color:#FFFFFF}.nl:hover:after{transform:scaleX(1)}
+
+/* hero */
+.hero{position:relative;padding:72px 0 104px;background:var(--night);color:#FFFFFF;overflow:hidden}
+.hero .lead{color:#D0CBE6}
+.hero .mock,.hero .float{color:var(--ink)}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 70% 40%,#000 25%,transparent 75%);mask-image:radial-gradient(ellipse 60% 70% at 70% 40%,#000 25%,transparent 75%)}
+.glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.rise{opacity:0;animation:lp-rise .8s cubic-bezier(.2,.8,.2,1) forwards}
+.marker{position:relative;white-space:nowrap;color:var(--bright)}
+.marker:after{display:none;content:"";position:absolute;left:-4px;right:-4px;bottom:6px;height:16px;border-radius:6px;background:var(--lime);z-index:-1;transform:scaleX(0);transform-origin:left;animation:lp-mark .9s .9s cubic-bezier(.2,.8,.2,1) forwards}
+.chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px 0 12px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:13px;font-weight:600;color:#FFFFFF;transition:transform .2s,box-shadow .2s}
+.chip:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.live{width:8px;height:8px;border-radius:50%;background:#12B76A;box-shadow:0 0 0 0 rgba(18,183,106,.5);animation:lp-ping 1.6s infinite,lp-blink 1.6s ease-in-out infinite}
+.trust{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#D0CBE6;cursor:default}
+.trust i{width:20px;height:20px;border-radius:50%;background:var(--lime);color:#1A2E05;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.trust:hover i{transform:scale(1.15) rotate(-12deg)}
+
+/* hero mock */
+.mock{position:relative;background:#FFFFFF;border-radius:20px;box-shadow:0 0 0 1px rgba(16,24,40,.08),0 40px 80px -30px rgba(16,24,40,.45);overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.mock:hover{transform:translateY(-4px) rotate(-.3deg)}
+.mbar{height:46px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line);background:#FFFFFF}
+.mt{width:28px;height:28px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#344054}
+.mt.on{background:var(--p);color:#101828}
+.stagecrop{position:relative;overflow:hidden;background:#EFEDF5}
+.pg{position:absolute;left:0;top:0;width:1440px;height:2400px;transform-origin:0 0}
+.an-box{position:absolute;box-sizing:border-box;border:5px solid #101828;box-shadow:0 0 0 2px rgba(255,255,255,.85);border-radius:12px;transform-origin:left top;animation:lp-box 8s .4s cubic-bezier(.2,.8,.2,1) infinite both}
+.an-pin{position:absolute;width:44px;height:44px;border-radius:50%;background:var(--p);color:#101828;font-weight:800;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 3px #101828,0 0 0 4px #FFFFFF,0 6px 14px rgba(16,24,40,.35);animation:lp-pop 8s cubic-bezier(.2,.8,.2,1) infinite both}
+.an-blur{position:absolute;border-radius:6px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(226,232,240,.35);animation:lp-fade 8s 1.2s infinite both}
+.an-arrow{stroke-dasharray:320;stroke-dashoffset:320;animation:lp-draw 8s 1.8s cubic-bezier(.2,.8,.2,1) infinite both}
+.an-head{animation:lp-fade 8s 2.3s infinite both}
+.an-txt{position:absolute;font-weight:800;font-size:26px;color:#101828;white-space:nowrap;text-shadow:0 0 3px #FFFFFF,0 0 3px #FFFFFF,0 0 8px #FFFFFF;animation:lp-fade 8s 2.4s infinite both}
+.nrow{display:flex;gap:8px;align-items:flex-start;padding:9px 10px;border-radius:10px;background:#FFFFFF;box-shadow:0 0 0 1px #DCD9E6;font-size:11.5px;line-height:1.4;color:var(--ink)}
+.nrow b{width:20px;height:20px;border-radius:50%;background:var(--p);color:#101828;box-shadow:inset 0 0 0 1px #101828;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.seq{opacity:0;animation:lp-seq 8s infinite}
+.float{animation:lp-float 6s ease-in-out infinite}
+.toast{animation:lp-toast 8s 1.5s cubic-bezier(.2,.8,.2,1) infinite;opacity:0}
+
+/* marquee */
+.marq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq-in{display:flex;gap:14px;width:max-content;animation:lp-marq 40s linear infinite}
+.marq:hover .marq-in{animation-play-state:paused}
+.tag{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 12px;border-radius:14px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#EDEAF8;font-size:15px;font-weight:600;white-space:nowrap;transition:transform .2s,box-shadow .2s,background .2s}
+.tag span[title]{box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.tag:hover{transform:translateY(-3px);background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.26),0 12px 20px -14px rgba(0,0,0,.7)}
+
+/* cards */
+.card{background:#FFFFFF;border-radius:22px;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.lift:hover{transform:translateY(-6px);box-shadow:0 0 0 1px var(--ring),0 24px 40px -24px rgba(16,24,40,.45)}
+.num{font-size:13px;font-weight:700;color:var(--mut)}
+.mini{height:150px;border-radius:16px;background:#F7F6FB;box-shadow:inset 0 0 0 1px #EAE8F0;overflow:hidden;position:relative}
+.wig{animation:lp-wig 2.4s ease-in-out infinite}
+.sweep{animation:lp-sweep 4s ease-in-out infinite}
+.type{overflow:hidden;white-space:nowrap;animation:lp-type 5s steps(24) infinite}
+
+/* tabs showcase */
+.tabs-in{position:absolute;opacity:0;pointer-events:none}
+.tbar{display:inline-flex;gap:4px;padding:5px;border-radius:16px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line)}
+.tbar label{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:12px;font-size:14.5px;font-weight:600;color:var(--ink2);cursor:pointer;transition:background .2s,color .2s}
+.tbar label:hover{background:#F9FAFB;color:var(--ink)}
+.pane{display:none;animation:lp-pane .5s cubic-bezier(.2,.8,.2,1)}
+#tb-ca:checked~.tbar-w label[for=tb-ca],#tb-mk:checked~.tbar-w label[for=tb-mk],#tb-bl:checked~.tbar-w label[for=tb-bl],#tb-sh:checked~.tbar-w label[for=tb-sh]{background:var(--night);color:#FFFFFF}
+#tb-ca:focus-visible~.tbar-w label[for=tb-ca],#tb-mk:focus-visible~.tbar-w label[for=tb-mk],#tb-bl:focus-visible~.tbar-w label[for=tb-bl],#tb-sh:focus-visible~.tbar-w label[for=tb-sh]{outline:3px solid var(--p);outline-offset:2px}
+#tb-ca:checked~.panes .p-ca,#tb-mk:checked~.panes .p-mk,#tb-bl:checked~.panes .p-bl,#tb-sh:checked~.panes .p-sh{display:grid}
+.bul{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.bul span:first-child{width:24px;height:24px;border-radius:8px;background:var(--tint2);color:var(--pi);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stage{position:relative;border-radius:24px;padding:28px;background:radial-gradient(circle at 80% 0%,rgba(250,204,21,.25),rgba(250,204,21,0) 55%),radial-gradient(circle at 0% 100%,rgba(198,243,107,.35),rgba(198,243,107,0) 50%),#FBF8EC;min-height:440px;display:flex;align-items:center;justify-content:center}
+.srow{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #EAE8F0;font-size:13px;font-weight:600;transition:background .2s}
+.srow:hover{background:var(--tint)}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;color:var(--ink);background:#EAE8F0;border-radius:6px;padding:1px 6px}
+
+/* annotate tool */
+.tool-w{position:relative;border-radius:28px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 40px 80px -40px rgba(16,24,40,.35);padding:40px;overflow:hidden}
+.tool-w:before{content:"";position:absolute;right:-120px;top:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(253,230,138,.45),rgba(253,230,138,0) 70%)}
+.tb{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px;border-radius:16px;background:#F7F6FB;box-shadow:inset 0 0 0 1px #EAE8F0}
+.tbtn{height:40px;padding:0 12px;border-radius:10px;border:none;background:transparent;color:var(--ink2);font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:7px;transition:background .15s,color .15s,transform .15s}
+.tbtn:hover{background:#FFFFFF}
+.tbtn:active{transform:scale(.95)}
+.tbtn[aria-pressed=true]{background:var(--p);color:#101828}
+.csw{width:26px;height:26px;border-radius:50%;border:none;padding:0;transition:transform .15s}
+.csw:hover{transform:scale(1.12)}
+.canvas{position:relative;border-radius:16px;overflow:hidden;background:#EFEDF5;box-shadow:inset 0 0 0 1px #EAE8F0;height:420px}
+.side{border-radius:20px;padding:24px;background:#101828;color:#FFFFFF;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.side:after{content:"";position:absolute;right:-60px;top:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(250,204,21,.45),rgba(253,230,138,0) 70%)}
+.lnk{font-size:14px;font-weight:700;color:var(--pi);border-bottom:2px solid var(--lime);padding-bottom:1px}
+
+/* steps */
+.step{position:relative;padding:32px;display:flex;flex-direction:column;gap:14px}
+.stepn{width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:var(--tint2);color:var(--pi);transition:transform .3s,background .3s,color .3s}
+.step:hover .stepn{transform:rotate(-8deg) scale(1.08);background:var(--p);color:#101828}
+.dash{position:absolute;top:60px;left:15%;right:15%;height:2px;background-image:linear-gradient(90deg,var(--ring) 50%,transparent 50%);background-size:14px 2px;animation:lp-dash 1s linear infinite}
+
+/* night */
+.night{background:var(--night);color:#FFFFFF;position:relative;overflow:hidden}
+.night .soft{color:#D0CBE6}
+.paper{transform:rotate(-5deg) translateY(10px);transition:transform .5s cubic-bezier(.2,.8,.2,1);box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.paper-w:hover .paper{transform:rotate(0) translateY(-6px) scale(1.02)}
+.paper-w:hover .paper2{transform:rotate(7deg) translate(36px,8px)}
+.paper2{transition:transform .5s cubic-bezier(.2,.8,.2,1);transform:rotate(4deg) translate(24px,20px)}
+
+/* privacy */
+.priv{background:var(--lime);color:#1A2E05}
+.priv .eyebrow:before{background:currentColor}
+.pv{padding:26px;border-radius:20px;background:rgba(255,255,255,.55);display:flex;flex-direction:column;gap:10px;transition:background .25s,transform .25s}
+.pv:hover{background:#FFFFFF;transform:translateY(-4px)}
+.pv .ic{width:44px;height:44px;border-radius:14px;background:#1A2E05;color:var(--lime);display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pv:hover .ic{transform:rotate(-10deg) scale(1.08)}
+
+/* faq */
+.faq details{border-radius:18px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12);transition:box-shadow .25s}
+.faq details:hover{box-shadow:0 0 0 1px var(--ring)}
+.faq details[open]{box-shadow:0 0 0 2px #101828}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;font-size:17px;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq .pm{width:32px;height:32px;border-radius:10px;background:var(--tint2);color:var(--pi);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s,color .3s}
+.faq .pm svg{transition:transform .3s}
+.faq details[open] .pm{background:var(--p);color:#101828}
+.faq details[open] .pm svg{transform:rotate(45deg)}
+.faq p{margin:0;padding:0 24px 22px;font-size:15.5px;line-height:1.6;color:var(--ink2);animation:lp-pane .35s ease}
+
+/* tools */
+.tool{padding:26px;display:flex;flex-direction:column;gap:14px;border-radius:22px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);transition:background .3s,transform .3s,box-shadow .3s}
+.tool:hover{transform:translateY(-6px);background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px var(--c)}
+.tool .go2{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--c);opacity:.9;transition:gap .2s,opacity .2s}
+.tool:hover .go2{gap:10px;opacity:1}
+
+@keyframes lp-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes lp-mark{to{transform:scaleX(1)}}
+@keyframes lp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes lp-toast{0%,8%{opacity:0;transform:translateY(16px) scale(.96)}14%,62%{opacity:1;transform:none}70%,100%{opacity:0;transform:translateY(-8px)}}
+@keyframes lp-ping{0%{box-shadow:0 0 0 0 rgba(18,183,106,.55)}80%,100%{box-shadow:0 0 0 8px rgba(18,183,106,0)}}
+@keyframes lp-blink{50%{opacity:.25}}
+@keyframes lp-marq{to{transform:translateX(-50%)}}
+@keyframes lp-seq{0%{opacity:0;transform:translateX(-8px)}8%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+@keyframes lp-box{0%{opacity:0;transform:scale(.4)}8%,90%{opacity:1;transform:none}97%,100%{opacity:0}}
+@keyframes lp-pop{0%,6%{opacity:0;transform:scale(.2)}12%{opacity:1;transform:scale(1.15)}16%,90%{opacity:1;transform:none}97%,100%{opacity:0}}
+@keyframes lp-fade{0%,4%{opacity:0}12%,90%{opacity:1}97%,100%{opacity:0}}
+@keyframes lp-draw{0%{stroke-dashoffset:320}14%,90%{stroke-dashoffset:0;opacity:1}97%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes lp-wig{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+@keyframes lp-sweep{0%,15%{width:0}45%,85%{width:150px}100%{width:0}}
+@keyframes lp-type{0%{width:0}50%,90%{width:210px}100%{width:0}}
+@keyframes lp-pane{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes lp-dash{to{background-position:14px 0}}
+
+@media (max-width:1024px){
+.lp section{padding-top:88px!important;padding-bottom:88px!important}
+.lp .hero{padding-top:48px!important}
+.r-hero{grid-template-columns:minmax(0,1fr)!important;gap:72px!important}
+.r-hero>div:last-child{max-width:600px;width:100%;justify-self:center}
+.r-h1{font-size:56px!important}
+.lp .h2{font-size:42px!important}
+.r-3{grid-template-columns:minmax(0,1fr)!important}
+.r-3 .dash{display:none}
+.r-4{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.r-1{grid-template-columns:minmax(0,1fr)!important;gap:40px!important}
+.r-tool{grid-template-columns:minmax(0,1fr)!important}
+.r-stack{flex-direction:column;align-items:flex-start!important;gap:16px!important}
+[data-r=pane]{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+[data-r=sticky]{position:static!important}
+.r-paper{height:auto!important;padding:20px 0 30px}
+.r-navl{display:none!important}
+.tbar-w{justify-content:flex-start!important;margin:0 -32px 32px!important;padding:0 32px 4px;overflow-x:auto}
+.tbar{flex-shrink:0}
+.stage{min-height:0!important}
+.tool-w{padding:32px!important}
+}
+@media (max-width:640px){
+.wrap{padding:0 16px!important}
+.lp section{padding-top:64px!important;padding-bottom:64px!important}
+.lp .hero{padding-top:32px!important;padding-bottom:96px!important}
+.r-h1{font-size:40px!important;line-height:1.05!important}
+.lp .h2{font-size:32px!important;line-height:1.1!important}
+.lp h3{font-size:24px!important}
+.lead{font-size:16px!important}
+.btn{height:48px;padding:0 18px;font-size:15px}
+.nav .wrap{height:60px;gap:12px}
+.nav .btn{height:40px!important;padding:0 14px!important;font-size:14px!important}
+.r-hero>div:first-child .btn{width:100%}
+.r-notes{display:none!important}
+.r-mockb{grid-template-columns:minmax(0,1fr)!important}
+.r-float{left:12px!important;bottom:-72px!important;width:240px!important}
+.r-toast{display:none!important}
+.r-4,.r-2{grid-template-columns:minmax(0,1fr)!important}
+.tbar-w{margin:0 -16px 28px!important;padding:0 16px 4px}
+.tbar label{height:38px;padding:0 13px;font-size:13.5px}
+.stage{padding:16px!important}
+.paper2{display:none}
+.paper{transform:none!important}
+.step{padding:24px!important}
+.faq summary{padding:18px;font-size:15.5px}
+.faq p{padding:0 18px 18px}
+.marq-in .tag{height:44px;font-size:14px}
+.tool-w{padding:20px 16px!important;border-radius:22px!important}
+.tbtn span.tl{display:none}
+.canvas{height:300px!important}
+.r-canvas-pg{transform:scale(.3) translate(-200px,-280px)!important}
+}
+@media (min-width:641px) and (max-width:1024px){
+.r-3>.card{display:grid!important;grid-template-columns:minmax(0,300px) minmax(0,1fr);column-gap:32px;row-gap:8px;align-content:center}
+.r-3>.card>:first-child{grid-row:1/span 3;align-self:center}
+.r-3>.step{grid-template-columns:56px minmax(0,1fr)!important;column-gap:22px}
+.r-3>.step>:first-child{grid-row:1/span 2;align-self:start}
+}
+@media (prefers-reduced-motion:reduce){.lp *,.lp *:before,.lp *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition:none!important}.rise,.seq,.toast{opacity:1}.an-box,.an-pin,.an-blur,.an-head,.an-txt,.an-arrow,.wig,.sweep,.type{animation:none!important;opacity:1}.an-arrow{stroke-dashoffset:0}.sweep{width:150px}.type{width:auto}.marq-in{animation:none!important}}
+</style>
+</helmet>
+<div class="lp">
+<header class="nav"><div class="wrap"><a href="#top" aria-label="Markline home" style="display: flex"><dc-import name="Logo" brand="markline" theme="dark" size="30" word="true" hint-size="140px,30px"></dc-import></a>
+<nav class="r-navl" aria-label="Main" style="display: flex; gap: 28px; margin-left: 20px"><a class="nl" href="#features">Features</a><a class="nl" href="#annotate">Annotate an image</a><a class="nl" href="#how">How it works</a><a class="nl" href="#privacy">Privacy</a><a class="nl" href="#faq">FAQ</a></nav>
+<span style="flex-grow: 1"></span><a class="btn btn-p" style="height: 42px; padding: 0 18px; font-size: 14.5px; border-radius: 12px" href="https://chromewebstore.google.com/">Add to Chrome<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></header>
+
+<section id="top" class="hero">
+<span class="glow" style="width: 560px; height: 560px; right: -120px; top: -160px; background: rgba(253,230,138, 0.26)"></span>
+<span class="glow" style="width: 420px; height: 420px; left: -140px; bottom: -120px; background: rgba(198, 243, 107, 0.22)"></span>
+<div class="wrap r-hero" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 580px; gap: 48px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 26px">
+<span class="rise chip" style="align-self: flex-start; animation-delay: .05s"><span class="live"></span>Free Chrome extension</span>
+<h1 class="disp rise r-h1" style="margin: 0; font-size: 64px; line-height: 1.02; letter-spacing: -0.045em; font-weight: 800; animation-delay: .15s; position: relative; z-index: 0">Point at the problem. <span class="marker">Skip the long email.</span></h1>
+<p class="lead rise" style="max-width: 540px; animation-delay: .3s">Markline captures any page, lets you mark it up with arrows, boxes, numbered notes and blur, and gives you a PNG or a PDF to share. Right in Chrome, with nothing uploaded.</p>
+<div class="rise" style="display: flex; gap: 12px; flex-wrap: wrap; animation-delay: .45s"><a class="btn btn-p" href="https://chromewebstore.google.com/"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"></circle><circle cx="12" cy="12" r="3.6" fill="currentColor"></circle><path d="M12 8.4h9M8.9 13.8L4.4 6M15.1 13.8l-4.5 7.8" stroke="currentColor" stroke-width="2"></path></svg>Add to Chrome, it's free<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a class="btn btn-o" href="#annotate">Try it on an image</a></div>
+<div class="rise" style="display: flex; gap: 10px 24px; flex-wrap: wrap; animation-delay: .6s">
+<span class="trust"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>No account</span>
+<span class="trust"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Nothing is uploaded</span>
+<span class="trust"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Open source</span>
+</div>
+</div>
+<div class="rise" style="position: relative; animation-delay: .35s">
+<div class="mock">
+<div class="mbar"><dc-import name="Logo" brand="markline" theme="light" size="20" word="false" hint-size="20px,20px"></dc-import><span style="flex-grow: 1"></span>
+<span class="mt" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19L19 5M10 5h9v9"></path></svg></span><span class="mt" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"></rect></svg></span><span class="mt on" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M10.5 9.5l2-1.5V16"></path></svg></span><span class="mt" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6.5V4.5h14v2M12 4.5v15M9 19.5h6"></path></svg></span><span class="mt" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4v4H4zM10 4h4v4h-4zM16 4h4v4h-4zM4 10h4v4H4zM16 10h4v4h-4zM4 16h4v4H4zM10 16h4v4h-4zM16 16h4v4h-4z"></path></svg></span>
+<span style="flex-grow: 1"></span><span style="height: 30px; padding: 0 12px; border-radius: 9px; background: var(--p); color: #101828; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Export</span></div>
+<div class="r-mockb" style="display: grid; grid-template-columns: minmax(0, 1fr) 190px; height: 400px">
+<div class="stagecrop" aria-label="A captured page with notes" role="img">
+<div class="pg" style="transform: scale(0.5) translate(-110px, -250px)">
+<dc-import name="SitePage" hint-size="1440px,2400px"></dc-import>
+<span class="an-blur" style="left: 156px; top: 450px; width: 236px; height: 28px"></span>
+<span class="an-blur" style="left: 156px; top: 536px; width: 118px; height: 28px"></span>
+<span class="an-box" style="left: 140px; top: 604px; width: 326px; height: 64px"></span>
+<span class="an-pin" style="left: 444px; top: 582px; animation-delay: .6s">1</span>
+<svg width="1440" height="2400" viewBox="0 0 1440 2400" aria-hidden="true" style="position: absolute; left: 0; top: 0"><path class="an-arrow" d="M556 792 C 480 770, 420 742, 368 714" fill="none" stroke="#101828" stroke-width="6" stroke-linecap="round"></path><path class="an-head" d="M356 708 L 386 701 L 371 729 Z" fill="#101828" stroke="#101828" stroke-width="4" stroke-linejoin="round"></path></svg>
+<span class="an-pin" style="left: 548px; top: 778px; animation-delay: 2.2s">2</span>
+<span class="an-txt" style="left: 604px; top: 782px">Easy to miss</span>
+</div>
+</div>
+<div class="r-notes" style="background: #F7F6FB; border-left: 1px solid var(--line); padding: 12px 10px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut)">Notes</span>
+<div class="nrow seq" style="animation-delay: .7s"><b>1</b><span>Show pickup times as buttons.</span></div>
+<div class="nrow seq" style="animation-delay: 2.3s"><b>2</b><span>Make Place order full width.</span></div>
+<div class="nrow seq" style="animation-delay: 3.2s; box-shadow: 0 0 0 2px var(--p)"><b>3</b><span style="color: var(--mut)">Typing a note</span></div>
+</div>
+</div>
+</div>
+<div class="float r-float" style="position: absolute; left: -64px; bottom: -76px; width: 272px; background: #FFFFFF; border-radius: 18px; padding: 14px; box-shadow: 0 0 0 1px rgba(16,24,40,.08), 0 30px 50px -20px rgba(16,24,40,.45); display: flex; gap: 12px; align-items: center">
+<dc-import name="Glyph" kind="blur" tone="solid" size="40" hint-size="40px,40px"></dc-import>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut)">Blurred for you</span><span style="font-size: 13.5px; font-weight: 600; line-height: 1.35">2 emails and 2 phone numbers</span></span>
+</div>
+<div class="toast r-toast" style="position: absolute; right: -30px; top: -30px; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 999px; background: #101828; color: #FFFFFF; font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: 0 16px 30px -12px rgba(16,24,40,.6)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C6F36B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Image copied to clipboard</div>
+</div>
+</div>
+<div class="wrap" style="position: relative; margin-top: 110px; display: flex; flex-direction: column; gap: 18px; align-items: center">
+<span style="font-size: 13px; font-weight: 600; color: #B9B4D0">Every capture mode, tool and format</span>
+<div class="marq" style="width: 100%"><div class="marq-in">
+<sc-for list="{{marq}}" as="m" hint-placeholder-count="19"><span class="tag"><dc-import name="Glyph" kind="{{m.k}}" tone="brand" size="30" hint-size="30px,30px"></dc-import>{{m.n}}</span></sc-for>
+</div></div>
+</div>
+</section>
+
+<section id="problem" style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+<div class="r-stack" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px"><div style="display: flex; flex-direction: column; gap: 16px; max-width: 640px"><span class="eyebrow">The problem</span><h2 class="disp h2">Feedback gets lost in words.</h2></div><p class="lead" style="max-width: 400px">"The button on the right, a bit lower" turns into three more messages. A marked-up screenshot ends the thread.</p></div>
+<div class="r-3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<div class="card lift" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" style="display: flex; align-items: center; justify-content: center; gap: 14px">
+<span style="width: 74px; height: 32px; border-radius: 9px; background: #D9D6E5"></span><span class="wig" style="width: 74px; height: 32px; border-radius: 9px; background: #D9D6E5; box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 5px var(--p)"></span><span style="width: 74px; height: 32px; border-radius: 9px; background: #D9D6E5"></span>
+<span style="position: absolute; left: 50%; top: 22px; margin-left: 20px; width: 28px; height: 28px; border-radius: 50%; background: var(--p); color: #101828; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px #FFFFFF">1</span>
+</div>
+<span class="num">01</span><h3 class="disp" style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Which button, and where?</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Written feedback makes people guess. A number on the screenshot and one line next to it doesn't.</p>
+</div>
+<div class="card lift" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" style="padding: 26px 22px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 11px; font-weight: 600; color: var(--mut)">Email</span>
+<span style="position: relative; height: 36px; border-radius: 9px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #C9C5D6; display: flex; align-items: center; padding: 0 12px; font-size: 13px">jane.miller@example.com<span class="sweep" style="position: absolute; left: 8px; top: 7px; height: 22px; border-radius: 5px; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); background: rgba(226,232,240,.4)"></span></span>
+<span class="pill" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px; border-radius: 999px; background: var(--tint2); color: var(--pi); font-size: 11.5px; font-weight: 600">Blurred before sharing</span>
+</div>
+<span class="num">02</span><h3 class="disp" style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Private data rides along</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">A quick screenshot often carries a customer's email or phone number into a chat. Markline blurs them first.</p>
+</div>
+<div class="card lift" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" style="padding: 22px; display: flex; flex-direction: column; gap: 8px; font-size: 12px">
+<span class="mono" style="display: flex; justify-content: space-between"><span style="color: var(--mut)">URL</span><span class="type">example.com/order</span></span>
+<span class="mono" style="display: flex; justify-content: space-between"><span style="color: var(--mut)">Browser</span><span>Chrome 154, macOS</span></span>
+<span class="mono" style="display: flex; justify-content: space-between"><span style="color: var(--mut)">Viewport</span><span>1440 x 808, 2x</span></span>
+<span class="mono" style="display: flex; justify-content: space-between"><span style="color: var(--mut)">Captured</span><span>Nov 7, 14:32</span></span>
+</div>
+<span class="num">03</span><h3 class="disp" style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">"It works on my screen"</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Developers need the page, the browser and the screen size. Markline adds them to every capture.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="features" style="padding: 120px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center"><span class="eyebrow">Inside Markline</span><h2 class="disp h2" style="max-width: 900px">Capture, mark up, blur, share. One tab.</h2></div>
+<div>
+<input class="tabs-in" type="radio" name="tabs" id="tb-ca" checked><input class="tabs-in" type="radio" name="tabs" id="tb-mk"><input class="tabs-in" type="radio" name="tabs" id="tb-bl"><input class="tabs-in" type="radio" name="tabs" id="tb-sh">
+<div class="tbar-w" style="display: flex; justify-content: center; margin-bottom: 40px"><div class="tbar"><label for="tb-ca">Capture</label><label for="tb-mk">Mark up</label><label for="tb-bl">Blur</label><label for="tb-sh">Share</label></div></div>
+<div class="panes">
+<div class="pane p-ca" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Capture</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">Four ways to capture a page.</h3><p class="lead" style="font-size: 16.5px">What you see, the whole page, a box you drag or one element you click. The capture opens in the editor in a new tab.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Full page scrolls and joins the screens for you</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Sticky headers are hidden so they don't repeat</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>A keyboard shortcut for each mode</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 360px; background: #EFEDF5; border-radius: 18px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(16,24,40,.4); overflow: hidden">
+<div style="height: 48px; padding: 0 14px; display: flex; align-items: center; background: #FFFFFF; border-bottom: 1px solid var(--line)"><dc-import name="Logo" brand="markline" theme="light" size="20" word="true" hint-size="92px,20px"></dc-import></div>
+<div style="margin: 10px; background: #FFFFFF; border-radius: 14px; box-shadow: 0 0 0 1px var(--line); overflow: hidden">
+<div class="srow" style="border-top: none"><dc-import name="Glyph" kind="visible" tone="brand" size="30" hint-size="30px,30px"></dc-import><span style="flex-grow: 1">Visible area</span><span class="kbd">Alt Shift 1</span></div>
+<div class="srow" style="background: var(--tint)"><dc-import name="Glyph" kind="fullpage" tone="solid" size="30" hint-size="30px,30px"></dc-import><span style="flex-grow: 1">Full page</span><span class="kbd">Alt Shift 2</span></div>
+<div class="srow"><dc-import name="Glyph" kind="area" tone="brand" size="30" hint-size="30px,30px"></dc-import><span style="flex-grow: 1">Selected area</span><span class="kbd">Alt Shift 3</span></div>
+<div class="srow"><dc-import name="Glyph" kind="element" tone="brand" size="30" hint-size="30px,30px"></dc-import><span style="flex-grow: 1">Element</span></div>
+</div>
+</div></div>
+</div>
+<div class="pane p-mk" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Mark up</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">Numbers that match the notes.</h3><p class="lead" style="font-size: 16.5px">Drop a number on the image and type the note beside it. Add arrows, boxes, text and highlights where words aren't enough.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Arrow, box, number, text, highlight and blur</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Five colors, undo and redo</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Notes renumber when you delete one</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 420px; background: #F7F6FB; border-radius: 18px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(16,24,40,.4); padding: 14px; display: flex; flex-direction: column; gap: 8px">
+<span class="disp" style="font-size: 16px; font-weight: 800; padding: 2px 4px 4px">Notes</span>
+<div class="nrow" style="font-size: 13px; box-shadow: 0 0 0 2px var(--p); background: var(--tint)"><b>1</b><span>Show pickup times as buttons. A dropdown hides the choice.</span></div>
+<div class="nrow" style="font-size: 13px"><b>2</b><span>Place order is easy to miss. Make it full width and darker.</span></div>
+<div class="nrow" style="font-size: 13px"><b>3</b><span>Show the total with tax here, not only at payment.</span></div>
+<div class="nrow" style="font-size: 13px"><b>4</b><span>Turn "Have a code?" into a visible field.</span></div>
+</div></div>
+</div>
+<div class="pane p-bl" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Blur</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">Private data hidden before you share.</h3><p class="lead" style="font-size: 16.5px">Markline finds emails and phone numbers on the page and blurs them in the capture. Drag over anything else you want to hide.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Turn any found item on or off</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Blur, pixelate or a solid box</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Painted into the file, so the text can't be recovered</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 420px; background: #FFFFFF; border-radius: 18px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(16,24,40,.4); overflow: hidden">
+<div style="padding: 14px 16px 6px"><span style="font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut)">Found on the page</span></div>
+<div class="srow"><dc-import name="Glyph" kind="email" tone="brand" size="30" hint-size="30px,30px"></dc-import><span style="flex-grow: 1">Email, Your details form</span><span style="width: 34px; height: 20px; border-radius: 999px; background: #101828; position: relative"><span style="position: absolute; right: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: #FACC15"></span></span></div>
+<div class="srow"><dc-import name="Glyph" kind="phone" tone="brand" size="30" hint-size="30px,30px"></dc-import><span style="flex-grow: 1">Phone, Your details form</span><span style="width: 34px; height: 20px; border-radius: 999px; background: #101828; position: relative"><span style="position: absolute; right: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: #FACC15"></span></span></div>
+<div class="srow"><dc-import name="Glyph" kind="email" tone="neutral" size="30" hint-size="30px,30px"></dc-import><span style="flex-grow: 1; color: var(--ink2)">Email, footer</span><span style="width: 34px; height: 20px; border-radius: 999px; background: #C9C5D6; position: relative"><span style="position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: #FFFFFF"></span></span></div>
+<div style="padding: 14px 16px 18px; border-top: 1px solid #EAE8F0; display: flex; gap: 10px; align-items: center"><span style="font-size: 13px; font-weight: 600; color: var(--mut)">Email</span><span style="position: relative; flex-grow: 1; height: 36px; border-radius: 9px; box-shadow: inset 0 0 0 1px #C9C5D6; display: flex; align-items: center; padding: 0 12px; font-size: 13px">jane.miller@example.com<span style="position: absolute; left: 8px; top: 7px; width: 170px; height: 22px; border-radius: 5px; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); background: rgba(226,232,240,.4)"></span></span></div>
+</div></div>
+</div>
+<div class="pane p-sh" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Share</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">PNG, PDF or clipboard.</h3><p class="lead" style="font-size: 16.5px">Download the image, copy it straight into Slack or a ticket, or make a one-page PDF summary with the notes and page details.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Notes beside the image, page details under it</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Copy the notes as text for a ticket</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Made on your computer, sent nowhere</span></div></div></div>
+<div class="stage"><div style="display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; justify-content: center">
+<sc-for list="{{formats}}" as="f" hint-placeholder-count="3">
+<div class="card lift" style="width: 150px; padding: 18px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start"><dc-import name="Glyph" kind="{{f.k}}" tone="brand" size="44" hint-size="44px,44px"></dc-import><span class="disp" style="font-size: 16px; font-weight: 800">{{f.n}}</span><span style="font-size: 12.5px; line-height: 1.45; color: var(--ink2)">{{f.d}}</span></div>
+</sc-for>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="annotate" style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap">
+<div class="tool-w" style="display: flex; flex-direction: column; gap: 24px">
+<div class="r-stack" style="position: relative; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px"><div style="display: flex; flex-direction: column; gap: 14px; max-width: 700px"><span class="eyebrow">Free tool, no install</span><h2 class="disp h2" style="font-size: 46px">Annotate an image, right here</h2><p class="lead" style="font-size: 17px">Drop or paste a screenshot, mark it up and download it. It runs on this page and your image never leaves the browser. Try it on the sample.</p></div><span style="display: flex; gap: 10px; flex-shrink: 0"><button type="button" class="btn btn-g" style="height: 44px; font-size: 14.5px">Choose an image</button><button type="button" class="btn btn-g" style="height: 44px; font-size: 14.5px" onClick="{{clear}}">Clear</button></span></div>
+<div class="r-tool" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<div class="tb" role="toolbar" aria-label="Annotation tools">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="6">
+<button type="button" class="tbtn" aria-pressed="{{t.on}}" aria-label="{{t.n}}" onClick="{{t.pick}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.d}}"></path></svg><span class="tl">{{t.n}}</span></button>
+</sc-for>
+<span style="flex-grow: 1"></span>
+<span role="group" aria-label="Color" style="display: flex; gap: 6px; padding: 0 6px">
+<sc-for list="{{colors}}" as="c" hint-placeholder-count="4">
+<button type="button" class="csw" aria-label="{{c.n}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}" style="background: {{c.hex}}; box-shadow: {{c.ring}}"></button>
+</sc-for>
+</span>
+</div>
+<div class="canvas">
+<div class="pg r-canvas-pg" style="transform: scale(0.56) translate(-100px, -240px)">
+<dc-import name="SitePage" hint-size="1440px,2400px"></dc-import>
+<sc-if value="{{blurOn}}" hint-placeholder-val="{{true}}"><span style="position: absolute; left: 156px; top: 450px; width: 236px; height: 28px; border-radius: 5px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(226,232,240,.35)"></span><span style="position: absolute; left: 156px; top: 536px; width: 118px; height: 28px; border-radius: 5px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(226,232,240,.35)"></span></sc-if>
+<sc-if value="{{marks}}" hint-placeholder-val="{{true}}">
+<span style="position: absolute; left: 140px; top: 604px; width: 326px; height: 64px; box-sizing: border-box; border: 5px solid {{hex}}; border-radius: 12px"></span>
+<span style="position: absolute; left: 444px; top: 582px; width: 44px; height: 44px; border-radius: 50%; background: {{pinBg}}; color: {{pinInk}}; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 3px #101828, 0 0 0 4px #FFFFFF">1</span>
+<span style="position: absolute; left: 868px; top: 588px; width: 444px; height: 74px; border-radius: 8px; background: {{hl}}"></span>
+<span style="position: absolute; left: 1290px; top: 566px; width: 44px; height: 44px; border-radius: 50%; background: {{pinBg}}; color: {{pinInk}}; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 3px #101828, 0 0 0 4px #FFFFFF">2</span>
+</sc-if>
+</div>
+<span style="position: absolute; left: 12px; bottom: 12px; height: 30px; padding: 0 12px; border-radius: 999px; background: #101828; color: #FFFFFF; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center">{{hint}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center"><button type="button" class="btn btn-p" style="height: 46px; font-size: 15px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Download PNG</button><button type="button" class="btn btn-g" style="height: 46px; font-size: 15px">Copy image</button><label style="display: inline-flex; align-items: center; gap: 10px; margin-left: 6px; font-size: 14px; font-weight: 600; color: var(--ink2); cursor: pointer"><input type="checkbox" checked="{{blurOn}}" onChange="{{toggleBlur}}" style="width: 18px; height: 18px; accent-color: #101828">Blur emails and phone numbers in the sample</label></div>
+</div>
+<div class="side">
+<span style="position: relative; z-index: 1; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase">In the extension</span>
+<span class="disp" style="position: relative; z-index: 1; font-size: 22px; font-weight: 800; line-height: 1.2">Capture any page in Chrome, not only images.</span>
+<div style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 9px; font-size: 14px; line-height: 1.45">
+<span style="display: flex; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C6F36B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Full page and element capture</span>
+<span style="display: flex; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C6F36B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Emails and phones found on the real page</span>
+<span style="display: flex; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C6F36B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Page details and a PDF summary</span>
+</div>
+<a class="btn btn-l" href="https://chromewebstore.google.com/" style="position: relative; z-index: 1; height: 46px; font-size: 15px">Add to Chrome<svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="how" style="padding: 120px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow">How it works</span><h2 class="disp h2">Three steps, no setup.</h2></div>
+<div class="r-3" style="position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<span class="dash" aria-hidden="true"></span>
+<div class="card step"><span class="stepn disp">1</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">Add Markline to Chrome</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Free from the Chrome Web Store. No account to create.</p></div></div>
+<div class="card step"><span class="stepn disp">2</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">Click the icon, pick a mode</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Visible area, full page, an area or an element. Or press <span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">M</span></p></div></div>
+<div class="card step"><span class="stepn disp">3</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">Mark it up and share</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Number what needs to change, then download a PNG or PDF, or copy it.</p></div></div>
+</div>
+</div>
+</section>
+
+<section id="help" class="night" style="padding: 120px 0">
+<span class="glow" style="width: 600px; height: 600px; right: -200px; top: -200px; background: rgba(253,230,138, 0.24)"></span>
+<span class="glow" style="width: 400px; height: 400px; left: 30%; bottom: -260px; background: rgba(198, 243, 107, 0.18)"></span>
+<div class="wrap r-1" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 72px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<span class="eyebrow" style="color: #C6F36B">After the feedback</span>
+<h2 class="disp h2" style="font-size: 50px">The notes are clear. <span style="color: #FDE68A">Now the fixes</span> need to happen.</h2>
+<p class="lead soft" style="max-width: 560px">If your list is about forms, checkout, tracking or pages that lose leads, I can help you work through it in the order that pays off first.</p>
+<div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap"><a class="btn btn-l" href="https://shamistanisayev.com/?utm_source=markline&amp;utm_medium=landing&amp;utm_campaign=audit_cta">Book a call<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><span style="font-size: 14px; color: #FFFFFF">From <u>Shamistan Isayev</u></span></div>
+</div>
+<div class="paper-w r-paper" style="position: relative; height: 480px; display: flex; align-items: center; justify-content: center">
+<div class="paper2" style="position: absolute; width: 400px; height: 440px; border-radius: 14px; background: #1E2148; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"></div>
+<div class="paper" style="position: relative; border-radius: 14px"><div style="width: 400px; max-width: 100%; background: #FFFFFF; border-radius: 14px; padding: 24px; color: #101828; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><dc-import name="Logo" brand="markline" theme="light" size="24" word="true" hint-size="110px,24px"></dc-import><span style="font-size: 10.5px; color: #667085">Nov 7, 2026</span></div>
+<div><span style="font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #101828">Feedback summary</span><div class="disp" style="font-size: 22px; font-weight: 800">example.com/order</div></div>
+<div style="display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px">
+<div style="height: 200px; border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px #EAE8F0; position: relative"><div style="position: absolute; left: 0; top: 0; width: 1440px; height: 2400px; transform: scale(0.0834); transform-origin: 0 0"><dc-import name="Shot" variant="final" hint-size="1440px,2400px"></dc-import></div></div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 11.5px; line-height: 1.4">
+<span style="display: flex; gap: 7px"><b style="width: 18px; height: 18px; border-radius: 50%; background: #FACC15; color: #101828; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">1</b>Pickup times as buttons</span>
+<span style="display: flex; gap: 7px"><b style="width: 18px; height: 18px; border-radius: 50%; background: #FACC15; color: #101828; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">2</b>Place order full width</span>
+<span style="display: flex; gap: 7px"><b style="width: 18px; height: 18px; border-radius: 50%; background: #FACC15; color: #101828; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">3</b>Total with tax</span>
+<span style="display: flex; gap: 7px"><b style="width: 18px; height: 18px; border-radius: 50%; background: #FACC15; color: #101828; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">4</b>Visible code field</span>
+</div>
+</div>
+<div style="background: #0B0B14; border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px"><span style="font-size: 11.5px; font-weight: 700; color: #FFFFFF">Need a hand with the fixes?</span><span style="font-size: 10.5px; font-weight: 700; color: #1A2E05; background: #C6F36B; border-radius: 6px; padding: 5px 8px">shamistanisayev.com</span></div>
+</div></div>
+</div>
+</div>
+</section>
+
+<section id="privacy" class="priv" style="padding: 100px 0"><div class="wrap r-1" style="display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #1A2E05">Privacy</span><h2 class="disp h2" style="font-size: 48px">Your screenshots stay on your computer.</h2></div>
+<div class="r-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px">
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"></rect><rect x="3" y="13" width="18" height="7" rx="2"></rect><path d="M3 3l18 18"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">No server</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">Capturing, editing and exporting all happen inside Chrome. Markline makes no requests of its own.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">Minimal permissions</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">Active tab, scripting and local storage. No access to all your sites, no history, no downloads list.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">Nothing is kept</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">A capture lives in its editor tab. Close the tab and it is gone. Share it by downloading or copying.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5"></path><path d="M16 7l5 5-5 5"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">Open source</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">Read the code and check every claim on this page for yourself.</span></div>
+</div>
+</div></section>
+
+<section id="faq" style="padding: 120px 0"><div class="wrap r-1" style="display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 56px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px; position: sticky; top: 100px" data-r="sticky"><span class="eyebrow">FAQ</span><h2 class="disp h2" style="font-size: 48px">Questions</h2><p class="lead" style="font-size: 16px">Something else? <a href="https://shamistanisayev.com/?utm_source=markline&amp;utm_medium=landing&amp;utm_campaign=faq" style="color: var(--pi); font-weight: 700; border-bottom: 2px solid var(--lime)">Ask me directly</a></p></div>
+<div class="faq" style="display: flex; flex-direction: column; gap: 12px">
+<details open><summary>Is Markline really free?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Yes. There is no paid plan, no account, no watermark you have to pay to remove and no limit on captures.</p></details>
+<details><summary>Where do my screenshots go?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Nowhere. A capture opens in an editor tab on your computer. You share it by downloading a file or copying it to the clipboard. Close the tab and it is gone.</p></details>
+<details><summary>How does full page capture work?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Markline scrolls the page one screen at a time, takes a screenshot of each and joins them. Fixed and sticky parts are hidden after the first screen so they don't repeat. Very long pages are cut at the size Chrome can draw, and Markline tells you when that happens.</p></details>
+<details><summary>Is a blurred area really hidden?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Yes. The blur is painted into the exported image, and the original pixels under it are not in the file. For the strongest result, pick the solid style.</p></details>
+<details><summary>Can I remove the "Made with Markline" line?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Yes. Turn it off in the export window or in Settings. It is a small line of text, and it stays off once you switch it off.</p></details>
+<details><summary>Why do I click the icon again on a new tab?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Markline uses Chrome's activeTab permission. It can capture a page only after you ask, so it never has access to every site you visit.</p></details>
+</div>
+</div></section>
+
+<section class="night" style="padding: 110px 0 60px"><div class="wrap" style="display: flex; flex-direction: column; gap: 40px; position: relative">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #FDE68A">The Line family</span><h2 class="disp h2" style="font-size: 44px">More free tools from the same family</h2></div>
+<div class="r-4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{family}}" as="f" hint-placeholder-count="4">
+<a class="tool" style="--c: {{f.c}}" href="{{f.href}}" target="_blank" rel="noopener"><dc-import name="Logo" brand="{{f.brand}}" theme="dark" size="30" word="true" hint-size="140px,30px"></dc-import><span style="font-size: 15px; line-height: 1.55; color: #D0CBE6">{{f.desc}}</span><span class="go2"><span>Open {{f.name}}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+</sc-for>
+</div>
+<div style="margin-top: 50px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.1); display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 14px; color: #D0CBE6">
+<dc-import name="Logo" brand="markline" theme="dark" size="26" word="true" hint-size="120px,26px"></dc-import>
+<span>Built by <a href="https://shamistanisayev.com/?utm_source=markline&amp;utm_medium=landing&amp;utm_campaign=footer" style="color: #FFFFFF; font-weight: 700">Shamistan Isayev</a></span>
+<span style="flex-grow: 1"></span>
+<a class="nl" style="color: #D0CBE6" href="https://getlineapps.com/markline/privacy">Privacy policy</a><a class="nl" style="color: #D0CBE6" href="https://github.com/">Source code</a>
+</div>
+</div></section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7034}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { tool: 'number', color: 'ink', blur: true, marks: true };
+}
+renderVals() {
+var self = this;
+var s = this.state;
+var T = [
+['arrow', 'Arrow', 'M5 19L19 5M10 5h9v9'],
+['box', 'Box', 'M6 5h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z'],
+['number', 'Number', 'M3.5 12a8.5 8.5 0 1 0 17 0a8.5 8.5 0 1 0-17 0zM10.5 9.5l2-1.5V16'],
+['text', 'Text', 'M5 6.5V4.5h14v2M12 4.5v15M9 19.5h6'],
+['highlight', 'Highlight', 'M14.5 4l5.5 5.5-8 8H6.5V12zM4 21h16'],
+['blur', 'Blur', 'M4 4h4v4H4zM10 4h4v4h-4zM16 4h4v4h-4zM4 10h4v4H4zM16 10h4v4h-4zM4 16h4v4H4zM10 16h4v4h-4zM16 16h4v4h-4z']
+];
+var H = { arrow: 'Drag to draw an arrow', box: 'Drag to draw a box', number: 'Click to place note 3', text: 'Click to type', highlight: 'Drag over text to highlight', blur: 'Drag over anything to hide it' };
+var C = [['ink', 'Black', '#101828', 'rgba(250,204,21,.45)', '#FACC15', '#101828'], ['yellow', 'Yellow', '#FACC15', 'rgba(250,204,21,.45)', '#FACC15', '#101828'], ['blue', 'Blue', '#2563EB', 'rgba(37,99,235,.22)', '#2563EB', '#FFFFFF'], ['red', 'Red', '#D92D20', 'rgba(217,45,32,.2)', '#D92D20', '#FFFFFF']];
+var cur = C.filter(function (c) { return c[0] === s.color; })[0] || C[0];
+var M = [
+['visible', 'Visible area'], ['fullpage', 'Full page'], ['area', 'Selected area'], ['element', 'Element'],
+['arrow', 'Arrow'], ['box', 'Box'], ['number', 'Numbered notes'], ['text', 'Text'], ['highlight', 'Highlight'], ['blur', 'Blur'],
+['email', 'Auto blur for emails'], ['phone', 'Auto blur for phone numbers'], ['details', 'Page details'],
+['png', 'PNG download'], ['pdf', 'PDF summary'], ['copy', 'Copy to clipboard'], ['notes', 'Notes as text'], ['undo', 'Undo and redo'], ['keyboard', 'Keyboard shortcuts']
+].map(function (m) { return { k: m[0], n: m[1] }; });
+// Design links to each tool's canvas. For production switch to 'https://getlineapps.com/<slug>' here (no UTM on internal links).
+var toolLinks = {
+hitline: 'https://claude.ai/code/artifact/6987e0b7-b1f7-489d-88e7-40513ec92dda',
+serpline: 'https://claude.ai/code/artifact/7a3a8959-edd5-49f7-8d98-6ef88a7c8501',
+rivaline: 'https://claude.ai/code/artifact/9b7b1f50-c085-49bd-bba7-acb04636d43d',
+foldline: 'https://claude.ai/code/artifact/e6d03b52-f741-47cb-8f3e-77ad34d24188',
+markline: 'https://claude.ai/code/artifact/411c2906-e052-4723-88bc-f357a1162e8a'
+};
+return {
+tools: T.map(function (t) { return { n: t[1], d: t[2], on: s.tool === t[0] ? 'true' : 'false', pick: function () { self.setState({ tool: t[0] }); } }; }),
+colors: C.map(function (c) { var on = c[0] === s.color; return { n: c[1], hex: c[2], on: on ? 'true' : 'false', ring: on ? '0 0 0 2px #FFFFFF, 0 0 0 4px ' + c[2] : 'inset 0 0 0 1px rgba(16,24,40,.12)', pick: function () { self.setState({ color: c[0] }); } }; }),
+hex: cur[2],
+hl: cur[3],
+pinBg: cur[4],
+pinInk: cur[5],
+hint: s.marks ? H[s.tool] : 'Cleared. Pick a tool and start again.',
+blurOn: s.blur,
+marks: s.marks,
+toggleBlur: function () { self.setState({ blur: !self.state.blur }); },
+clear: function () { self.setState({ marks: false }); },
+marq: M.concat(M),
+formats: [
+{ k: 'png', n: 'PNG image', d: 'Notes beside, details under' },
+{ k: 'pdf', n: 'PDF summary', d: 'One A4 page with the notes' },
+{ k: 'copy', n: 'Clipboard', d: 'Paste into Slack or a ticket' }
+],
+family: [
+{ brand: 'hitline', name: 'Hitline', c: '#B692F6', desc: 'See what tracking a site really sends, right in DevTools.' },
+{ brand: 'serpline', name: 'Serpline', c: '#93C5FD', desc: 'Technical SEO and AI search checks for any page.' },
+{ brand: 'rivaline', name: 'Rivaline', c: '#67E8F9', desc: 'A rival\'s stack, ads and brand kit in one panel.' },
+{ brand: 'foldline', name: 'Foldline', c: '#FAA7E0', desc: 'Find what stops a landing page from converting.' }
+].filter(function (f) { return f.brand !== 'markline'; }).map(function (f) { f.href = toolLinks[f.brand]; return f; })
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "@line/site-kit",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./feedback": "./src/feedback.ts",
+    "./consent": "./src/consent.ts",
+    "./seo": "./src/seo.ts",
+    "./consent.css": "./src/consent.css"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@line/core": "workspace:*"
+  }
+}

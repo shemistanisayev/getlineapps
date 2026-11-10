@@ -1,0 +1,122 @@
+/*
+ * Line family tokens. Values only from docs/line-family-colors.md and the design artboards.
+ * Use a tool theme by adding .line-theme-<slug> (or data-line-tool="<slug>") on a container.
+ */
+:root {
+  /* type */
+  --line-font-display: 'Plus Jakarta Sans', Inter, Arial, sans-serif;
+  --line-font-ui: Inter, Arial, sans-serif;
+  --line-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* neutrals */
+  --line-ink: #101828;
+  --line-ink-2: #344054;
+  --line-muted: #667085;
+  --line-black: #0b0b14;
+  --line-paper: #f7f7fb;
+  --line-page: #f3f1f9;
+  --line-border: #dcd9e6;
+  --line-border-soft: #eeecf4;
+  --line-white: #ffffff;
+  --line-night: #120d24;
+  --line-night-2: #241c42;
+  --line-on-night: #edeaf8;
+  --line-on-night-soft: #d0cbe6;
+
+  /* shared lime: the main contact CTA in every tool */
+  --line-lime: #c6f36b;
+  --line-lime-ink: #1a2e05;
+
+  /* status (only for statuses, always with an icon and a label) */
+  --line-ok: #067647;
+  --line-ok-bg: #ecfdf3;
+  --line-ok-border: #abefc6;
+  --line-problem: #b42318;
+  --line-problem-bg: #fef3f2;
+  --line-problem-border: #fecdca;
+  --line-warning: #b54708;
+  --line-warning-bg: #fffaeb;
+  --line-warning-border: #fedf89;
+  --line-neutral: #475467;
+  --line-neutral-bg: #eeedf3;
+  --line-live-dot: #12b76a;
+
+  /* family stripe */
+  --line-spectrum: linear-gradient(
+    90deg,
+    #7f56d9 0 20%,
+    #2563eb 20% 40%,
+    #0e7490 40% 60%,
+    #c11574 60% 80%,
+    #facc15 80% 100%
+  );
+  --line-spectrum-bright: linear-gradient(
+    90deg,
+    #b692f6 0 20%,
+    #93c5fd 20% 40%,
+    #67e8f9 40% 60%,
+    #faa7e0 60% 80%,
+    #fde68a 80% 100%
+  );
+
+  /* shape */
+  --line-radius-sm: 8px;
+  --line-radius: 12px;
+  --line-radius-lg: 20px;
+  --line-radius-xl: 24px;
+  --line-radius-pill: 999px;
+  --line-shadow-card:
+    0 0 0 1px var(--line-border), 0 1px 2px rgba(16, 24, 40, 0.05),
+    0 8px 24px -14px rgba(52, 30, 120, 0.18);
+  --line-focus: 0 0 0 3px var(--line-white), 0 0 0 5px var(--line-ink);
+  --line-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* default accent: Hitline (the family's lead color) */
+  --line-accent: #7f56d9;
+  --line-bright: #b692f6;
+  --line-on-accent: #ffffff;
+  --line-tint: #f4f3ff;
+  --line-tint-ink: #53389e;
+}
+
+.line-theme-hitline,
+[data-line-tool='hitline'] {
+  --line-accent: #7f56d9;
+  --line-bright: #b692f6;
+  --line-on-accent: #ffffff;
+  --line-tint: #f4f3ff;
+  --line-tint-ink: #53389e;
+}
+.line-theme-serpline,
+[data-line-tool='serpline'] {
+  --line-accent: #2563eb;
+  --line-bright: #93c5fd;
+  --line-on-accent: #ffffff;
+  --line-tint: #eff6ff;
+  --line-tint-ink: #1d4ed8;
+}
+.line-theme-rivaline,
+[data-line-tool='rivaline'] {
+  --line-accent: #0e7490;
+  --line-bright: #67e8f9;
+  --line-on-accent: #ffffff;
+  --line-tint: #ecfeff;
+  --line-tint-ink: #155e75;
+}
+.line-theme-foldline,
+[data-line-tool='foldline'] {
+  --line-accent: #c11574;
+  --line-bright: #faa7e0;
+  --line-on-accent: #ffffff;
+  --line-tint: #fdf2fa;
+  --line-tint-ink: #9e165f;
+}
+/* Markline yellow is never text on white: text accents use ink. */
+.line-theme-markline,
+[data-line-tool='markline'] {
+  --line-accent: #facc15;
+  --line-bright: #fde68a;
+  --line-on-accent: #101828;
+  --line-tint: #fef9c3;
+  --line-tint-ink: #101828;
+}

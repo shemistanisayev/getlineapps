@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foldline side panel: share fixes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.fl{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.fl button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.chip{height:30px;padding:0 11px;border-radius:999px;border:1px solid #DCD9E6;background:#FFFFFF;font-size:12.5px;font-weight:600;color:#344054;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0}
+.chip b{font-weight:600;color:#667085}
+.chip.on{background:#101828;border-color:#101828;color:#FFFFFF}
+.chip.on b{color:#D0D5DD}
+.irow{display:flex;align-items:center;gap:10px;padding:8px 14px;border-top:1px solid #EAE8F0}
+.pill{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap}
+.bad{background:#FEF3F2;color:#B42318}.warn{background:#FFFAEB;color:#B54708}.mute{background:#EEEDF3;color:#475467}
+.seg{display:flex;gap:2px;padding:3px;border-radius:10px;background:#EEEDF3}
+.seg button{flex:1;height:30px;border:none;border-radius:8px;background:transparent;font-size:12.5px;font-weight:600;color:#475467}
+.seg button[aria-pressed=true]{background:#FFFFFF;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.12),0 0 0 1px #DCD9E6}
+.btn{height:38px;padding:0 14px;border-radius:10px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
+.btn-done{border:none;background:#067647;color:#FFFFFF}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054}
+.btn-s:hover{background:#F9FAFB}
+.md b{font-weight:600;color:#9E165F}
+@keyframes sh-up{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.toast{animation:sh-up .3s cubic-bezier(.2,.8,.2,1)}
+.pill.bad:not(:has(svg))::before,.sv-h::before{content:"!";width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;font-size:8px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.pill.warn:not(:has(svg))::before,.sv-m::before{content:"";width:10px;height:9px;background:currentColor;clip-path:polygon(50% 0,100% 100%,0 100%);flex-shrink:0}
+.pill.ok:not(:has(svg))::before{content:"\2713";font-size:11px;font-weight:800;line-height:1}
+.pill.mute:not(:has(svg))::before,.sv-l::before{content:"";width:6px;height:6px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0}
+</style>
+</helmet>
+<div class="fl" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EEF1F6; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" panel-open="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; gap: 8px; padding: 0 8px 8px 0; box-sizing: border-box">
+<div style="flex-grow: 1; min-width: 0; height: 808px; overflow: hidden; border-radius: 0 0 12px 0"><dc-import name="SitePage" variant="sunvo" scroll="160" fold="true" mark="cta" cta-label="Main button, 64 px below the fold" hint-size="100%,808px"></dc-import></div>
+<aside aria-label="Foldline side panel" style="width: 400px; flex-shrink: 0; height: 800px; margin-top: 8px; border-radius: 12px; overflow: hidden; background: #EFEDF5; box-shadow: 0 0 0 1px #DCD9E6; display: flex; flex-direction: column; position: relative">
+<div style="height: 40px; flex-shrink: 0; border-bottom: 1px solid #EAE8F0"><dc-import name="PanelChrome" hint-size="100%,40px"></dc-import></div>
+<div style="flex-shrink: 0"><dc-import name="PanelHeader" tab="issues" hint-size="100%,96px"></dc-import></div>
+<div style="flex-grow: 1; overflow: hidden; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 6px"><span class="chip on">All <b>6</b></span><span class="chip">High <b>2</b></span><span class="chip">Medium <b>3</b></span><span class="chip">Low <b>1</b></span></div>
+<div class="card" style="overflow: hidden">
+<sc-for list="{{rows}}" as="i" hint-placeholder-count="6">
+<div class="irow" style="{{i.first}}"><span style="flex-grow: 1; font-size: 13px; font-weight: 600">{{i.t}}</span><span class="pill {{i.cls}}">{{i.sev}}</span></div>
+</sc-for>
+</div>
+</div>
+<div style="position: absolute; left: 0; right: 0; top: 40px; bottom: 0; background: rgba(16,24,40,.42)"></div>
+<div role="dialog" aria-modal="true" aria-labelledby="sh-t" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 18px 18px 0 0; box-shadow: 0 -20px 40px -20px rgba(16,24,40,.5); padding: 10px 16px 16px; display: flex; flex-direction: column; gap: 12px">
+<span style="align-self: center; width: 38px; height: 4px; border-radius: 999px; background: #D0D5DD"></span>
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span id="sh-t" class="disp" style="font-size: 17px; font-weight: 800">Share fixes</span><span style="font-size: 12.5px; color: #475467">6 fixes, ready for a ticket or a chat</span></span><button type="button" aria-label="Close" style="width: 32px; height: 32px; border-radius: 9px; border: 1px solid #C9C5D6; background: #FFFFFF; color: #344054; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+<div class="seg" role="group" aria-label="Format"><button type="button" aria-pressed="false">Plain text</button><button type="button" aria-pressed="true">Markdown</button></div>
+<pre class="mono md" style="margin: 0; height: 268px; overflow: hidden; padding: 12px 14px; border-radius: 12px; background: #F7F6FB; box-shadow: inset 0 0 0 1px #DCD9E6; font-size: 11px; line-height: 1.6; color: #344054; white-space: pre-wrap; -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent)"><b>## Landing audit: example.com/free-quote</b>
+Score 56/100. Desktop, 1024 x 808.
+
+<b>### High</b>
+- [ ] Main button is below the fold
+  Button top 872 px, fold 808 px.
+  Fix: move "Get my free quote" into the hero, under the headline.
+- [ ] Quote form asks for 9 fields
+  Fix: keep name, email, phone and postcode. Ask the rest after the first call.
+
+<b>### Medium</b>
+- [ ] 3 fields have no label
+  Street address, Postcode, Monthly power bill.
+  Fix: add a visible label above each field.</pre>
+<div style="display: flex; gap: 8px"><button type="button" class="btn btn-done" style="flex: 1"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Copied</button><button type="button" class="btn btn-s" style="flex: 1"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="M7 10l5 5 5-5"></path><path d="M5 20h14"></path></svg>Download .md</button></div>
+<span style="font-size: 11.5px; line-height: 1.5; color: #667085">The list ends with one line: "Checked with Foldline". You can delete it.</span>
+</div>
+<div class="toast" role="status" style="position: absolute; left: 50%; top: 150px; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 999px; background: #101828; color: #FFFFFF; font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: 0 12px 24px -10px rgba(16,24,40,.6)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C6F36B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Markdown copied to clipboard</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+var row = function (t, sev, i) { return { t: t, sev: sev, cls: sev === 'High' ? 'bad' : (sev === 'Medium' ? 'warn' : 'mute'), first: i === 0 ? 'border-top: none' : '' }; };
+return {
+rows: [
+row('Main button is below the fold', 'High', 0),
+row('Quote form asks for 9 fields', 'High', 1),
+row('3 fields have no label', 'Medium', 2),
+row('5 buttons compete for one click', 'Medium', 3),
+row('Hero image is 7 times too large', 'Medium', 4),
+row('Phone number can\'t be tapped', 'Low', 5)
+]
+};
+}
+}
+</script>
+</body>
+</html>

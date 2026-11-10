@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hitline welcome page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.hx{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.hx button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+a.lnk{color:#53389E}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.th{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#667085}
+.row{transition:background .15s}
+.row:hover{background:#F7F6FB}
+.pf{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#101828;white-space:nowrap}
+.pf i{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:-.02em;flex-shrink:0}
+.pf-ga i{background:#FFF1E3}
+.pf-meta i{background:#E7F0FD}
+.pf-tt i{background:#EEEDF3}
+.pf-ads i{background:#E8F0FE}
+.pf-dl i{background:#E6EEFB}
+.pf-hj i{background:#FFEDE6}
+.pill{justify-self:start;width:max-content;display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.pill svg{flex-shrink:0}
+.ok{background:#ECFDF3;color:#067647}
+.bad{background:#FEF3F2;color:#B42318}
+.warn{background:#FFFAEB;color:#B54708}
+.mute{background:#EEEDF3;color:#475467}
+.pur{background:#F4F3FF;color:#5925DC}
+.btn{height:32px;padding:0 14px;border-radius:9px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s,box-shadow .15s,transform .15s}
+.btn-p{border:none;background:#7F56D9;color:#FFFFFF;box-shadow:0 1px 2px rgba(83,56,158,.35)}
+.btn-p:hover{background:#6941C6}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.btn-s:hover{background:#F9FAFB}
+.btn-ink{border:none;background:#101828;color:#FFFFFF}
+.btn-ink:hover{background:#1D2939}
+.hero{background:linear-gradient(135deg,#7F56D9 0%,#5B34B8 100%);color:#FFFFFF;border-radius:16px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-40px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),rgba(255,255,255,0) 70%)}
+.hero .soft{color:rgba(255,255,255,.86)}
+.cta{background:#C6F36B;border-radius:14px;color:#1A2E05;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.kv{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#53389E}
+.code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:1.6;color:#344054;background:#F7F6FB;border:1px solid #DCD9E6;border-radius:10px}
+@keyframes hx-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.rec{animation:hx-blink 1.6s ease-in-out infinite}
+</style>
+</helmet>
+<div class="hx" style="width: 1440px; height: 900px; overflow: hidden; background: #EFEDF5; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" host="chrome-extension://kbmaonhfpacdjhmn" path="/welcome.html" tab="Welcome to Hitline" favicon="hitline" hint-size="100%,84px"></dc-import></div>
+<div style="flex-grow: 1; position: relative; display: flex; gap: 72px; align-items: center; padding: 0 96px; background-image: radial-gradient(circle at 15% 20%, rgba(127, 86, 217, 0.12), rgba(127, 86, 217, 0) 45%), radial-gradient(circle at 90% 90%, rgba(198, 243, 107, 0.35), rgba(198, 243, 107, 0) 40%)">
+<div style="flex: 1 1 0; display: flex; flex-direction: column; gap: 24px; min-width: 0">
+<dc-import name="Logo" brand="hitline" theme="light" size="44" word="true" hint-size="180px,44px"></dc-import>
+<h1 class="disp" style="margin: 0; font-size: 54px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.05">Hitline is ready.<br><span style="color: #6941C6">Every hit, in plain sight.</span></h1>
+<p style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.6; color: #344054">Three steps and you will see every event your site sends, where it goes and whether it respects consent.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><span style="display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px; border-radius: 999px; background: #FFFFFF; border: 1px solid #DCD9E6; font-size: 13px; font-weight: 600; color: #344054"><span style="color: #067647"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Free</span><span style="display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px; border-radius: 999px; background: #FFFFFF; border: 1px solid #DCD9E6; font-size: 13px; font-weight: 600; color: #344054"><span style="color: #067647"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>No account</span><span style="display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px; border-radius: 999px; background: #FFFFFF; border: 1px solid #DCD9E6; font-size: 13px; font-weight: 600; color: #344054"><span style="color: #067647"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Nothing leaves your browser</span></div>
+</div>
+<div style="width: 560px; flex-shrink: 0; display: flex; flex-direction: column; gap: 14px">
+<div class="card row" style="padding: 22px; display: flex; gap: 18px; align-items: flex-start"><span class="disp" style="width: 40px; height: 40px; border-radius: 12px; background: #F4F3FF; color: #6941C6; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0">1</span><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 17px; font-weight: 700">Pin Hitline to the toolbar</span><span style="font-size: 14px; line-height: 1.5; color: #344054">Click the puzzle icon next to the address bar and pin Hitline.</span></div></div>
+<div class="card row" style="padding: 22px; display: flex; gap: 18px; align-items: flex-start"><span class="disp" style="width: 40px; height: 40px; border-radius: 12px; background: #F4F3FF; color: #6941C6; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0">2</span><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 17px; font-weight: 700">Open any site, click the icon</span><span style="font-size: 14px; line-height: 1.5; color: #344054">The popup shows platforms, server-side status and the top issues.</span></div></div>
+<div class="hero" style="padding: 22px; display: flex; gap: 18px; align-items: flex-start"><span class="disp" style="width: 40px; height: 40px; border-radius: 12px; background: #C6F36B; color: #1A2E05; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1">3</span><div style="display: flex; flex-direction: column; gap: 6px; position: relative; z-index: 1"><span style="font-size: 17px; font-weight: 700">Press <span class="mono" style="background: #FFFFFF; color: #3B2470; border-radius: 6px; padding: 1px 7px; font-size: 14px">F12</span> and choose the Hitline tab</span><span class="soft" style="font-size: 14px; line-height: 1.5">Events, GTM, consent, attribution and your tracking plan, live.</span></div></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 4px 0"><span style="font-size: 13px; color: #667085">Built by Shamistan Isayev</span><a class="lnk" href="https://shamistanisayev.com/?utm_source=hitline&amp;utm_medium=extension&amp;utm_campaign=welcome" style="font-size: 13px; font-weight: 700; text-decoration: none">Need a tracking setup? Get in touch <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

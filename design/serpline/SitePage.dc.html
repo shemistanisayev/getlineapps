@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lumo shop page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+button{font-family:inherit;cursor:pointer}
+a{color:#1D2420}a:hover{color:#4A5550}
+</style>
+</helmet>
+<div style="width: 100%; height: 820px; box-sizing: border-box; background: #FBFAF7; font-family: 'DM Sans', sans-serif; color: #1D2420; overflow: hidden; display: flex; flex-direction: column; position: relative">
+<div style="height: 32px; background: #1D2420; color: #F4F1E8; font-size: 12.5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">Free shipping on orders over $50</div>
+<header style="height: 68px; box-sizing: border-box; border-bottom: 1px solid #E8E4DA; display: flex; align-items: center; gap: 28px; padding: 0 32px; flex-shrink: 0; background: #FFFFFF">
+<a href="#" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: #1D2420"><span style="width: 28px; height: 28px; border-radius: 8px; background: #1D2420; color: #F4C95D; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">l</span><span style="font-weight: 700; font-size: 22px; letter-spacing: -0.03em">lumo</span></a>
+<nav aria-label="Categories" style="display: flex; gap: 20px; font-size: 14px">
+<a href="#" style="text-decoration: none; font-weight: 600">Electronics</a>
+<a href="#" style="text-decoration: none; color: #4A5550">Home &amp; kitchen</a>
+<a href="#" style="text-decoration: none; color: #4A5550">Beauty</a>
+<a href="#" style="text-decoration: none; color: #4A5550">Kids</a>
+<a href="#" style="text-decoration: none; color: #B4381A; font-weight: 600">Sale</a>
+</nav>
+<label style="flex-grow: 1; max-width: 380px; margin-left: auto; height: 40px; border-radius: 999px; background: #F3F0E8; display: flex; align-items: center; gap: 10px; padding: 0 16px; color: #6A726E; font-size: 14px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+<input aria-label="Search products" placeholder="Products, brands or categories" style="border: none; background: transparent; outline: none; font-family: inherit; font-size: 14px; width: 100%; color: #1D2420">
+</label>
+<div style="display: flex; gap: 6px">
+<a href="#" aria-label="My account" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D2420" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+<a href="#" aria-label="Cart, 1 item" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D2420" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.5 12h-11z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg><span style="position: absolute; top: 4px; right: 3px; width: 16px; height: 16px; border-radius: 50%; background: #F4C95D; color: #1D2420; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span></a>
+</div>
+</header>
+<sc-if value="{{isProduct}}" hint-placeholder-val="{{true}}">
+<main style="width: 100%; max-width: 1200px; box-sizing: border-box; margin: 0 auto; padding: 20px 40px; display: flex; flex-direction: column; gap: 18px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #6A726E">Home / Electronics / Headphones / <span style="color: #1D2420">Wireless Headphones Pro X</span></nav>
+<div style="display: flex; flex-wrap: wrap; gap: 44px">
+<div style="flex: 1 1 400px; display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<div style="height: 440px; border-radius: 20px; background: #EFEBE1; display: flex; align-items: center; justify-content: center">
+<svg width="250" height="250" viewBox="0 0 200 200" role="img" aria-label="Black wireless headphones"><path d="M40 120V95a60 60 0 0 1 120 0v25" fill="none" stroke="#1D2420" stroke-width="12" stroke-linecap="round"></path><rect x="26" y="108" width="36" height="62" rx="16" fill="#1D2420"></rect><rect x="138" y="108" width="36" height="62" rx="16" fill="#1D2420"></rect><rect x="34" y="120" width="10" height="38" rx="5" fill="#F4C95D"></rect><rect x="156" y="120" width="10" height="38" rx="5" fill="#F4C95D"></rect></svg>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<div style="height: 84px; border-radius: 12px; background: #EFEBE1; border: 2px solid #1D2420; box-sizing: border-box"></div>
+<div style="height: 84px; border-radius: 12px; background: #E9E4D8; position: relative; outline: {{altOutline}}; outline-offset: 3px"><sc-if value="{{highlight}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: -3px; top: -27px; height: 20px; padding: 0 7px; border-radius: 6px; background: #D92D20; color: #FFFFFF; font-family: Inter, Arial, sans-serif; font-size: 11px; font-weight: 700; display: flex; align-items: center; white-space: nowrap; gap: 4px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 7l10 10M17 7L7 17"></path></svg>No alt</span></sc-if></div>
+<div style="height: 84px; border-radius: 12px; background: #E4DFD2; position: relative; outline: {{altOutline}}; outline-offset: 3px"><sc-if value="{{highlight}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: -3px; top: -27px; height: 20px; padding: 0 7px; border-radius: 6px; background: #D92D20; color: #FFFFFF; font-family: Inter, Arial, sans-serif; font-size: 11px; font-weight: 700; display: flex; align-items: center; white-space: nowrap; gap: 4px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 7l10 10M17 7L7 17"></path></svg>No alt</span></sc-if></div>
+<div style="height: 84px; border-radius: 12px; background: #EFEBE1; position: relative; outline: {{altOutline}}; outline-offset: 3px"><sc-if value="{{highlight}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: -3px; top: -27px; height: 20px; padding: 0 7px; border-radius: 6px; background: #D92D20; color: #FFFFFF; font-family: Inter, Arial, sans-serif; font-size: 11px; font-weight: 700; display: flex; align-items: center; white-space: nowrap; gap: 4px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 7l10 10M17 7L7 17"></path></svg>No alt</span></sc-if></div>
+</div>
+</div>
+<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 16px; min-width: 0">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6A726E">Lumo Audio</span>
+<div style="position: relative">
+<sc-if value="{{highlight}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: -6px; top: -30px; height: 20px; padding: 0 7px; border-radius: 6px; background: #2563EB; color: #FFFFFF; font-family: Inter, Arial, sans-serif; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 6px; white-space: nowrap">H1<span style="font-weight: 500">added by JavaScript</span></span></sc-if>
+<h1 style="margin: 0; font-size: 32px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 700; outline: {{h1Outline}}; outline-offset: 5px; border-radius: 4px">Wireless Headphones Pro X</h1>
+</div>
+<div style="display: flex; align-items: baseline; gap: 12px">
+<span style="font-size: 28px; font-weight: 700">$89.90</span>
+<span style="font-size: 16px; color: #6A726E; text-decoration: line-through">$119.90</span>
+<span style="font-size: 12px; font-weight: 700; background: #F4C95D; color: #1D2420; padding: 3px 8px; border-radius: 6px">-25%</span>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A5550">Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once.</p>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600">Color: Black</span>
+<div style="display: flex; gap: 10px">
+<button aria-label="Black" style="width: 36px; height: 36px; border-radius: 50%; background: #1D2420; border: 3px solid #FBFAF7; box-shadow: 0 0 0 2px #1D2420"></button>
+<button aria-label="White" style="width: 36px; height: 36px; border-radius: 50%; background: #F4F1E8; border: 1px solid #D8D2C4"></button>
+<button aria-label="Blue" style="width: 36px; height: 36px; border-radius: 50%; background: #3D5A80; border: none"></button>
+</div>
+</div>
+<button style="height: 52px; border: none; border-radius: 999px; background: #1D2420; color: #FFFFFF; font-size: 15px; font-weight: 600">Add to cart</button>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; color: #4A5550; border-top: 1px solid #E8E4DA; padding-top: 14px">
+<span>Next-day delivery</span>
+<span>Free returns within 14 days</span>
+</div>
+</div>
+</div>
+</main>
+</sc-if>
+<sc-if value="{{isCategory}}" hint-placeholder-val="{{false}}">
+<main style="width: 100%; max-width: 1200px; box-sizing: border-box; margin: 0 auto; padding: 20px 40px; display: flex; flex-direction: column; gap: 20px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #6A726E">Home / Electronics / <span style="color: #1D2420">Headphones</span></nav>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px"><h1 style="margin: 0; font-size: 36px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 700">Headphones</h1><span style="font-size: 14px; color: #6A726E">24 products</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 13.5px">
+<span style="height: 36px; padding: 0 16px; border-radius: 999px; background: #1D2420; color: #FFFFFF; display: flex; align-items: center; font-weight: 600">All</span>
+<span style="height: 36px; padding: 0 16px; border-radius: 999px; background: #F3F0E8; display: flex; align-items: center">Over-ear</span>
+<span style="height: 36px; padding: 0 16px; border-radius: 999px; background: #F3F0E8; display: flex; align-items: center">In-ear</span>
+<span style="height: 36px; padding: 0 16px; border-radius: 999px; background: #F3F0E8; display: flex; align-items: center">Noise cancelling</span>
+<span style="height: 36px; padding: 0 16px; border-radius: 999px; background: #F3F0E8; display: flex; align-items: center">Under $100</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 240px; border-radius: 18px; background: #EFEBE1; display: flex; align-items: center; justify-content: center"><svg width="130" height="130" viewBox="0 0 200 200" aria-hidden="true"><path d="M40 120V95a60 60 0 0 1 120 0v25" fill="none" stroke="#1D2420" stroke-width="12" stroke-linecap="round"></path><rect x="26" y="108" width="36" height="62" rx="16" fill="#1D2420"></rect><rect x="138" y="108" width="36" height="62" rx="16" fill="#1D2420"></rect></svg></div><span style="font-size: 15px; font-weight: 600">Wireless Headphones Pro X</span><span style="font-size: 15px">$89.90</span></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 240px; border-radius: 18px; background: #E9E4D8; display: flex; align-items: center; justify-content: center"><svg width="130" height="130" viewBox="0 0 200 200" aria-hidden="true"><path d="M40 120V95a60 60 0 0 1 120 0v25" fill="none" stroke="#3D5A80" stroke-width="12" stroke-linecap="round"></path><rect x="26" y="108" width="36" height="62" rx="16" fill="#3D5A80"></rect><rect x="138" y="108" width="36" height="62" rx="16" fill="#3D5A80"></rect></svg></div><span style="font-size: 15px; font-weight: 600">Studio Headphones 2</span><span style="font-size: 15px">$129.00</span></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 240px; border-radius: 18px; background: #E4DFD2; display: flex; align-items: center; justify-content: center"><svg width="110" height="110" viewBox="0 0 200 200" aria-hidden="true"><circle cx="70" cy="100" r="30" fill="#1D2420"></circle><circle cx="130" cy="100" r="30" fill="#1D2420"></circle><circle cx="70" cy="100" r="10" fill="#F4C95D"></circle><circle cx="130" cy="100" r="10" fill="#F4C95D"></circle></svg></div><span style="font-size: 15px; font-weight: 600">Earbuds Mini</span><span style="font-size: 15px">$49.90</span></div>
+</div>
+</main>
+</sc-if>
+<sc-if value="{{highlight}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 8px 0 16px; border-radius: 999px; background: #101828; color: #FFFFFF; font-family: Inter, Arial, sans-serif; font-size: 13px; box-shadow: 0 12px 28px -8px rgba(16, 24, 40, 0.45); white-space: nowrap">
+<span style="width: 18px; height: 18px; border-radius: 5px; background: #2563EB; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 48 48" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" aria-hidden="true"><circle cx="21" cy="21" r="12"></circle><line x1="30" y1="30" x2="40" y2="40"></line><line x1="15" y1="21" x2="27" y2="21"></line></svg></span>
+<span>Serpline highlights: 1 heading, 3 images</span>
+<button type="button" style="height: 30px; padding: 0 12px; border: none; border-radius: 999px; background: #FFFFFF; color: #101828; font-family: Inter, Arial, sans-serif; font-size: 12.5px; font-weight: 600">Hide</button>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"page":{"editor":"enum","options":["product","category"],"default":"product"},"highlight":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":820}}'>
+class Component extends DCLogic {
+renderVals() {
+var h = this.props.highlight;
+var on = h === true || h === 'true';
+var cat = this.props.page === 'category';
+return {
+isProduct: !cat,
+isCategory: cat,
+highlight: on,
+h1Outline: on ? '2px dashed #2563EB' : 'none',
+altOutline: on ? '2px solid #D92D20' : 'none'
+};
+}
+}
+</script>
+</body>
+</html>

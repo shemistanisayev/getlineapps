@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hitline DevTools: Attribution</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.hx{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.hx button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+a.lnk{color:#53389E}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.th{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#667085}
+.row{transition:background .15s}
+.row:hover{background:#F7F6FB}
+.pf{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#101828;white-space:nowrap}
+.pf i{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:-.02em;flex-shrink:0}
+.pf-ga i{background:#FFF1E3}
+.pf-meta i{background:#E7F0FD}
+.pf-tt i{background:#EEEDF3}
+.pf-ads i{background:#E8F0FE}
+.pf-dl i{background:#E6EEFB}
+.pf-hj i{background:#FFEDE6}
+.pill{justify-self:start;width:max-content;display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.pill svg{flex-shrink:0}
+.ok{background:#ECFDF3;color:#067647}
+.bad{background:#FEF3F2;color:#B42318}
+.warn{background:#FFFAEB;color:#B54708}
+.mute{background:#EEEDF3;color:#475467}
+.pur{background:#F4F3FF;color:#5925DC}
+.btn{height:32px;padding:0 14px;border-radius:9px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s,box-shadow .15s,transform .15s}
+.btn-p{border:none;background:#7F56D9;color:#FFFFFF;box-shadow:0 1px 2px rgba(83,56,158,.35)}
+.btn-p:hover{background:#6941C6}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.btn-s:hover{background:#F9FAFB}
+.btn-ink{border:none;background:#101828;color:#FFFFFF}
+.btn-ink:hover{background:#1D2939}
+.hero{background:linear-gradient(135deg,#7F56D9 0%,#5B34B8 100%);color:#FFFFFF;border-radius:16px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-40px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),rgba(255,255,255,0) 70%)}
+.hero .soft{color:rgba(255,255,255,.86)}
+.cta{background:#C6F36B;border-radius:14px;color:#1A2E05;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.kv{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#53389E}
+.code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:1.6;color:#344054;background:#F7F6FB;border:1px solid #DCD9E6;border-radius:10px}
+@keyframes hx-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.rec{animation:hx-blink 1.6s ease-in-out infinite}
+</style>
+</helmet>
+<div class="hx" style="width: 1440px; height: 1030px; display: flex; flex-direction: column; overflow: hidden; background: #EFEDF5">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" path="/order/confirmation" hint-size="100%,84px"></dc-import></div>
+<div style="width: 100%; height: 236px; overflow: hidden; flex-shrink: 0"><dc-import name="SitePage" hint-size="100%,820px"></dc-import></div>
+<div style="width: 100%; height: 30px; flex-shrink: 0"><dc-import name="DevtoolsBar" hint-size="100%,30px"></dc-import></div>
+<div style="width: 100%; height: 44px; flex-shrink: 0"><dc-import name="PanelHeader" tab="attribution" hint-size="100%,44px"></dc-import></div>
+<div style="flex-grow: 1; min-height: 0; display: flex; flex-direction: column; background: #EFEDF5">
+<div style="flex-grow: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; padding: 16px 20px">
+<div style="display: flex; align-items: baseline; justify-content: space-between"><span class="disp" style="font-size: 18px; font-weight: 800">Visit path: 5 pages</span><span style="font-size: 12.5px; color: #667085">From the campaign link to the order confirmation</span></div>
+<div style="display: flex; align-items: stretch"><div class="card" style="flex: 1 1 0; min-width: 0; padding: 14px; display: flex; flex-direction: column; gap: 10px; "><div style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #7F56D9; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span><span style="font-size: 14px; font-weight: 700">Landing</span></div><span class="mono" style="font-size: 11.5px; line-height: 1.5; color: #344054; word-break: break-all; min-height: 34px">/campaign/fall-sale?utm_source=google&amp;utm_medium=cpc&amp;gclid=Cj0KCQ</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>UTM and gclid</span></div><div style="width: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #98A2B3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div><div class="card" style="flex: 1 1 0; min-width: 0; padding: 14px; display: flex; flex-direction: column; gap: 10px; "><div style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #7F56D9; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span><span style="font-size: 14px; font-weight: 700">Product</span></div><span class="mono" style="font-size: 11.5px; line-height: 1.5; color: #344054; word-break: break-all; min-height: 34px">/products/wireless-headphones-pro-x</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Saved in _gcl_aw</span></div><div style="width: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #98A2B3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div><div class="card" style="flex: 1 1 0; min-width: 0; padding: 14px; display: flex; flex-direction: column; gap: 10px; "><div style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #7F56D9; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">3</span><span style="font-size: 14px; font-weight: 700">Cart</span></div><span class="mono" style="font-size: 11.5px; line-height: 1.5; color: #344054; word-break: break-all; min-height: 34px">/cart</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>google / cpc</span></div><div style="width: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #D92D20"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M3 12h5M16 12h5M10 8l4 8"></path></svg></div><div class="card" style="flex: 1 1 0; min-width: 0; padding: 14px; display: flex; flex-direction: column; gap: 10px; border-color: #FECDCA; background: #FFFBFA;"><div style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #D92D20; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">4</span><span style="font-size: 14px; font-weight: 700">Payment</span></div><span class="mono" style="font-size: 11.5px; line-height: 1.5; color: #344054; word-break: break-all; min-height: 34px">pay.example.net/checkout</span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>_gl not passed</span></div><div style="width: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #98A2B3"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div><div class="card" style="flex: 1 1 0; min-width: 0; padding: 14px; display: flex; flex-direction: column; gap: 10px; border-color: #FECDCA; background: #FFFBFA;"><div style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 24px; border-radius: 50%; background: #D92D20; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">5</span><span style="font-size: 14px; font-weight: 700">Confirmation</span></div><span class="mono" style="font-size: 11.5px; line-height: 1.5; color: #344054; word-break: break-all; min-height: 34px">/order/confirmation</span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>example.net / referral</span></div></div>
+<div class="card" style="overflow: hidden">
+<div class="th" style="display: grid; grid-template-columns: 220px repeat(5, minmax(0, 1fr)); gap: 12px; align-items: center; height: 38px; padding: 0 18px; background: #F7F6FB"><span>Parameter</span><span>Landing</span><span>Product</span><span>Cart</span><span>Payment</span><span>Confirmation</span></div>
+<div class="row" style="display: grid; grid-template-columns: 220px repeat(5, minmax(0, 1fr)); gap: 12px; align-items: center; height: 42px; padding: 0 18px; border-top: 1px solid #EAE8F0"><span class="kv">utm_source, utm_medium</span><span class="pill ok">present</span><span class="pill ok">in session</span><span class="pill ok">in session</span><span class="pill bad">lost</span><span class="pill bad">referral</span></div><div class="row" style="display: grid; grid-template-columns: 220px repeat(5, minmax(0, 1fr)); gap: 12px; align-items: center; height: 42px; padding: 0 18px; border-top: 1px solid #EAE8F0"><span class="kv">gclid</span><span class="pill ok">present</span><span class="pill ok">in cookie</span><span class="pill ok">in cookie</span><span class="pill bad">lost</span><span class="pill ok">in cookie</span></div><div class="row" style="display: grid; grid-template-columns: 220px repeat(5, minmax(0, 1fr)); gap: 12px; align-items: center; height: 42px; padding: 0 18px; border-top: 1px solid #EAE8F0"><span class="kv">GA4 client_id</span><span class="pill ok">created</span><span class="pill ok">same</span><span class="pill ok">same</span><span class="pill bad">new</span><span class="pill ok">same</span></div>
+</div>
+<div style="display: flex; gap: 14px">
+<div style="flex: 1 1 0; padding: 14px 16px; border-radius: 14px; background: #FEF3F2; border: 1px solid #FECDCA; display: flex; gap: 12px"><span style="width: 26px; height: 26px; border-radius: 8px; background: #D92D20; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg></span><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13.5px; font-weight: 700; color: #912018">The sale is credited to the payment site, not the ad</span><span style="font-size: 12.5px; line-height: 1.5; color: #7A271A">Add pay.example.net to "Unwanted referrals" in GA4. If you own the payment page, set up cross-domain measurement.</span></div></div>
+<div style="width: 440px; flex-shrink: 0"><div class="cta" style="padding: 18px 16px"><span style="font-size: 13.5px; font-weight: 700; line-height: 1.35">Want attribution you can trust?</span><a class="btn btn-ink" style="text-decoration: none; flex-shrink: 0" href="https://shamistanisayev.com/?utm_source=hitline&amp;utm_medium=extension&amp;utm_campaign=panel_cta">Get in touch</a></div></div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1030}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

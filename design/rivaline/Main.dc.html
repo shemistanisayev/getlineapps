@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rivaline side panel: Stack</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.rv{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.rv button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.rv a{text-decoration:none}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.hero{background:linear-gradient(135deg,#0E7490 0%,#155E75 100%);color:#FFFFFF;border-radius:16px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-40px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),rgba(255,255,255,0) 70%)}
+.chip{height:30px;padding:0 11px;border-radius:999px;border:1px solid #DCD9E6;background:#FFFFFF;font-size:12.5px;font-weight:600;color:#344054;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;transition:border-color .15s,background .15s}
+.chip:hover{border-color:#B9B4C8}
+.chip b{font-weight:600;color:#667085}
+.chip.on{background:#101828;border-color:#101828;color:#FFFFFF}
+.chip.on b{color:#D0D5DD}
+.grp{display:flex;align-items:center;justify-content:space-between;padding:10px 14px 6px}
+.pb>*{flex-shrink:0}
+.trow{display:flex;align-items:center;gap:11px;padding:8px 14px;border-top:1px solid #EAE8F0;transition:background .15s}
+.trow:hover{background:#F7F6FB}
+.trow .nm{font-size:13.5px;font-weight:600;color:#101828}
+.trow .id{font-size:11.5px;color:#667085}
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.warnp{background:#ECFEFF;color:#155E75}
+.mute{background:#EEEDF3;color:#475467}
+.gap{display:flex;align-items:center;gap:10px;background:#FFFAEB;border:1px solid #FEDF89;border-radius:12px;padding:10px 12px;color:#B54708;transition:border-color .15s}
+.gap:hover{border-color:#FDB022}
+</style>
+</helmet>
+<div class="rv" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EEF1F6; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" panel-open="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; gap: 8px; padding: 0 8px 8px 0; box-sizing: border-box">
+<div style="flex-grow: 1; min-width: 0; height: 808px; overflow: hidden; border-radius: 0 0 12px 0"><dc-import name="SitePage" variant="kova" hint-size="100%,808px"></dc-import></div>
+<aside aria-label="Rivaline side panel" style="width: 400px; flex-shrink: 0; height: 800px; margin-top: 8px; border-radius: 12px; overflow: hidden; background: #EFEDF5; box-shadow: 0 0 0 1px #DCD9E6; display: flex; flex-direction: column">
+<div style="height: 40px; flex-shrink: 0; border-bottom: 1px solid #EAE8F0"><dc-import name="PanelChrome" hint-size="100%,40px"></dc-import></div>
+<div style="flex-shrink: 0"><dc-import name="PanelHeader" tab="stack" hint-size="100%,96px"></dc-import></div>
+<div class="pb" style="flex-grow: 1; overflow: hidden; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="hero" style="padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; font-size: 12.5px"><span style="font-weight: 600">example.com</span><span>Home page</span></div>
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; position: relative; z-index: 1">
+<div style="display: flex; flex-direction: column; gap: 3px"><span class="disp" style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em">13 tools in 8 categories</span><span style="font-size: 12.5px">Shopify store running Meta, TikTok, Google and Pinterest ads</span></div>
+</div>
+<div style="display: flex; align-items: center; gap: 4px; position: relative; z-index: 1">
+<dc-import name="Mark" brand="shopify" size="26" hint-size="26px,26px"></dc-import><dc-import name="Mark" brand="googletagmanager" size="26" hint-size="26px,26px"></dc-import><dc-import name="Mark" brand="googleanalytics" size="26" hint-size="26px,26px"></dc-import><dc-import name="Mark" brand="meta" size="26" hint-size="26px,26px"></dc-import><dc-import name="Mark" brand="tiktok" size="26" hint-size="26px,26px"></dc-import><dc-import name="Mark" brand="googleads" size="26" hint-size="26px,26px"></dc-import><dc-import name="Mark" brand="pinterest" size="26" hint-size="26px,26px"></dc-import>
+<span style="height: 26px; padding: 0 8px; border-radius: 7px; background: rgba(255,255,255,.18); font-size: 12px; font-weight: 700; display: inline-flex; align-items: center">+6</span>
+</div>
+</div>
+<a href="#gaps" class="gap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5"></path><path d="M12 16.5h.01"></path></svg><span style="flex-grow: 1; font-size: 13px; line-height: 1.35"><b>3 gaps</b><span style="color: #93370D">: server-side tracking, consent banner, CRM</span></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+<div style="display: flex; gap: 6px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent)">
+<button type="button" class="chip on">All <b>13</b></button><button type="button" class="chip">Advertising <b>4</b></button><button type="button" class="chip">Analytics <b>2</b></button><button type="button" class="chip">Payments <b>2</b></button><button type="button" class="chip">Tag management <b>1</b></button>
+</div>
+<div class="card" style="overflow: hidden; flex-shrink: 0">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+<div class="grp"><span class="eyebrow">{{g.name}}</span><span style="font-size: 11.5px; font-weight: 600; color: #667085">{{g.count}}</span></div>
+<sc-for list="{{g.tools}}" as="t" hint-placeholder-count="2">
+<div class="trow"><dc-import name="Mark" brand="{{t.mark}}" size="28" hint-size="28px,28px"></dc-import><div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span class="nm">{{t.name}}</span><span class="id mono">{{t.id}}</span></div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></div>
+</sc-for>
+</sc-for>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {
+groups: [
+{ name: 'Advertising', count: '4', tools: [
+{ mark: 'meta', name: 'Meta Pixel', id: '418273650912345' },
+{ mark: 'tiktok', name: 'TikTok Pixel', id: 'C9H3KQ7RC77U2M0V5PLG' },
+{ mark: 'googleads', name: 'Google Ads', id: 'AW-11284956' },
+{ mark: 'pinterest', name: 'Pinterest Tag', id: '2612345678901' }
+] },
+{ name: 'Analytics', count: '2', tools: [
+{ mark: 'googleanalytics', name: 'Google Analytics 4', id: 'G-8XK2LM4QPZ' },
+{ mark: 'hotjar', name: 'Hotjar', id: 'site 3918274' }
+] },
+{ name: 'Tag management', count: '1', tools: [
+{ mark: 'googletagmanager', name: 'Google Tag Manager', id: 'GTM-N4KV8R' }
+] }
+]
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chrome side panel header</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; height: 40px; box-sizing: border-box; display: flex; align-items: center; gap: 4px; padding: 0 6px 0 10px; background: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif; color: #1F1F1F">
+<span style="display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 8px 0 4px; border-radius: 8px; font-size: 13px; font-weight: 500">
+<dc-import name="Logo" brand="foldline" theme="light" size="16" word="false" hint-size="16px,16px"></dc-import>
+Foldline
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#474747" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+</span>
+<span style="flex-grow: 1"></span>
+<span title="Unpin from toolbar" style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #474747" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3l6 6-2 1-3.5 3.5L16 18l-1.5 1.5L10 15l-5 5-1-1 5-5-4.5-4.5L6 8l4.5.5L14 5z"></path></svg></span>
+<span title="Close" style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #474747" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":400,"height":40}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

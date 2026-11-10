@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rivaline side panel: Ads</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.rv{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.rv button,.rv input,.rv select{font-family:Inter,Arial,sans-serif}
+.rv button{cursor:pointer}
+.rv a{text-decoration:none}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.pb>*{flex-shrink:0}
+.fl{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:#344054}
+.in{height:36px;box-sizing:border-box;border:1px solid #8E8A9D;border-radius:9px;padding:0 11px;font-size:13px;color:#101828;background:#FFFFFF;width:100%}
+.in:focus{outline:2px solid #0E7490;outline-offset:1px}
+.lib{display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-top:1px solid #EAE8F0;transition:background .15s}
+.lib:first-child{border-top:none}
+.lib:hover{background:#F7F6FB}
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.ok{background:#ECFDF3;color:#067647}
+.mute{background:#EEEDF3;color:#475467}
+.q{background:#F7F6FB;color:#344054;border:1px solid #EAE8F0}
+.btn{height:32px;padding:0 12px;border-radius:9px;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:background .15s,transform .15s}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054}
+.btn-s:hover{background:#F9FAFB}
+.btn-p{border:none;background:#0E7490;color:#FFFFFF;box-shadow:0 1px 2px rgba(22,78,99,.35)}
+.btn-p:hover{background:#155E75}
+.go{width:32px;padding:0;color:#155E75}
+.go:hover{background:#ECFEFF}
+</style>
+</helmet>
+<div class="rv" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EEF1F6; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" panel-open="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; gap: 8px; padding: 0 8px 8px 0; box-sizing: border-box">
+<div style="flex-grow: 1; min-width: 0; height: 808px; overflow: hidden; border-radius: 0 0 12px 0"><dc-import name="SitePage" variant="kova" hint-size="100%,808px"></dc-import></div>
+<aside aria-label="Rivaline side panel" style="width: 400px; flex-shrink: 0; height: 800px; margin-top: 8px; border-radius: 12px; overflow: hidden; background: #EFEDF5; box-shadow: 0 0 0 1px #DCD9E6; display: flex; flex-direction: column">
+<div style="height: 40px; flex-shrink: 0; border-bottom: 1px solid #EAE8F0"><dc-import name="PanelChrome" hint-size="100%,40px"></dc-import></div>
+<div style="flex-shrink: 0"><dc-import name="PanelHeader" tab="ads" hint-size="100%,96px"></dc-import></div>
+<div class="pb" style="flex-grow: 1; overflow: hidden; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow">Search for</span>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px">
+<label class="fl">Brand name<input class="in" type="text" value="Kova"></label>
+<label class="fl">Domain<input class="in mono" style="font-size: 12.5px" type="text" value="example.com"></label>
+</div>
+<label class="fl">Country<select class="in" style="appearance: auto"><option>All countries</option></select></label>
+</div>
+<div class="card" style="overflow: hidden">
+<sc-for list="{{libs}}" as="l" hint-placeholder-count="4">
+<div class="lib">
+<div style="display: flex; align-items: center; gap: 11px"><dc-import name="Mark" brand="{{l.mark}}" size="30" hint-size="30px,30px"></dc-import><div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 13.5px; font-weight: 700">{{l.name}}</span><span style="font-size: 12px; color: #475467">{{l.desc}}</span></div><a class="btn btn-s go" href="#" aria-label="{{l.open}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+<div style="display: flex; gap: 6px; padding-left: 41px; flex-wrap: wrap">
+<span class="pill q"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></svg><span class="mono" style="font-size: 11px">{{l.query}}</span></span>
+<sc-if value="{{l.found}}" hint-placeholder-val="{{true}}"><span class="pill ok"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{l.status}}</span></sc-if>
+<sc-if value="{{l.none}}" hint-placeholder-val="{{false}}"><span class="pill mute"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"></path></svg>{{l.status}}</span></sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px"><button type="button" class="btn btn-p" style="height: 40px; font-size: 13.5px">Open all 4 in new tabs</button><button type="button" class="btn btn-s" style="height: 40px">Copy links</button></div>
+<p style="margin: 0; padding: 0 4px; font-size: 12px; line-height: 1.5; color: #667085">A pixel shows the site can measure ads on that channel. The library shows which ads are running now.</p>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+var L = [
+{ mark: 'meta', name: 'Meta Ad Library', desc: 'Facebook, Instagram and Messenger ads', query: 'Kova', status: 'Meta Pixel on site', found: true },
+{ mark: 'google', name: 'Google Ads Transparency Center', desc: 'Search, YouTube, Shopping and Display ads', query: 'example.com', status: 'Google Ads tag on site', found: true },
+{ mark: 'tiktok', name: 'TikTok Ad Library', desc: 'Ads shown in Europe', query: 'Kova', status: 'TikTok Pixel on site', found: true },
+{ mark: 'library', name: 'LinkedIn Ad Library', desc: 'Sponsored content on LinkedIn', query: 'Kova', status: 'No LinkedIn Insight Tag', found: false }
+];
+return { libs: L.map(function (l) { return Object.assign({}, l, { none: !l.found, open: 'Open ' + l.name }); }) };
+}
+}
+</script>
+</body>
+</html>

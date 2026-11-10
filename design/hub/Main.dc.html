@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Line apps: free Chrome tools for marketers</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.hub{position:relative;--ink:#101828;--ink2:#344054;--mut:#667085;--line:#DCD9E6;--lime:#C6F36B;--night:#120D24;
+--spec:linear-gradient(90deg,#7F56D9 0 20%,#2563EB 20% 40%,#0E7490 40% 60%,#C11574 60% 80%,#FACC15 80% 100%);
+--specb:linear-gradient(90deg,#B692F6 0 20%,#93C5FD 20% 40%,#67E8F9 40% 60%,#FAA7E0 60% 80%,#FDE68A 80% 100%);font-family:Inter,Arial,sans-serif;color:var(--ink);background:#F3F1F9;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.hub *{box-sizing:border-box}
+.hub a{text-decoration:none}.hub a:not(.btn){color:inherit}
+.hub button{font-family:inherit;cursor:pointer}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 32px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.eyebrow:before{content:"";width:30px;height:3px;border-radius:2px;background:var(--spec)}
+.night .eyebrow{color:#EDEAF8}
+.night .eyebrow:before{background:var(--specb)}
+.priv .eyebrow:before{background:#1A2E05}
+.h2{margin:0;font-size:52px;line-height:1.04;letter-spacing:-.035em;font-weight:800}
+.lead{margin:0;font-size:18px;line-height:1.6;color:var(--ink2)}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;font-size:16px;font-weight:700;border:none;white-space:nowrap;transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s}
+.btn svg{transition:transform .2s;flex-shrink:0}
+.btn:hover .arr{transform:translateX(4px)}
+.btn:active{transform:scale(.97)}
+.hub a.btn.btn-w,.hub a.btn.btn-w:hover,.hub a.btn.btn-w:focus,.hub a.btn.btn-w:active,.hub a.btn.btn-w:visited{color:#101828}
+.hub a.btn.btn-l,.hub a.btn.btn-l:hover,.hub a.btn.btn-l:focus,.hub a.btn.btn-l:active,.hub a.btn.btn-l:visited{color:#1A2E05}
+.hub a.btn.btn-o,.hub a.btn.btn-o:hover,.hub a.btn.btn-o:focus,.hub a.btn.btn-o:active,.hub a.btn.btn-o:visited{color:#FFFFFF}
+.btn-w{background:#FFFFFF;box-shadow:0 12px 28px -14px rgba(255,255,255,.5)}
+.btn-w:hover{transform:translateY(-2px);box-shadow:0 16px 32px -14px rgba(255,255,255,.6)}
+.btn-w:before{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--spec)}
+.btn-l{background:var(--lime);box-shadow:0 12px 30px -12px rgba(198,243,107,.7)}
+.btn-l:hover{transform:translateY(-2px) scale(1.02)}
+.btn-o{background:rgba(255,255,255,.06);box-shadow:0 0 0 1px rgba(255,255,255,.28)}
+.btn-o:hover{background:rgba(255,255,255,.12);box-shadow:0 0 0 1px rgba(255,255,255,.45);transform:translateY(-2px)}
+.btn-l:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0));transform:skewX(-20deg);transition:left .6s}
+.btn-l:hover:after{left:120%}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:40;-webkit-backdrop-filter:saturate(160%) blur(14px);backdrop-filter:saturate(160%) blur(14px);background:rgba(18,13,36,.94);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{height:72px;display:flex;align-items:center;gap:36px}
+.nl{position:relative;font-size:14.5px;font-weight:500;padding:6px 0}
+.nl:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;border-radius:2px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.hub .nl{color:#D0CBE6}.hub .nl:hover{color:#FFFFFF}.nl:hover:after{transform:scaleX(1)}
+.fam{display:inline-flex;align-items:center}
+
+/* hero */
+.hero{position:relative;padding:76px 0 104px;background:var(--night);color:#FFFFFF}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 60% 40%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 70% 70% at 60% 40%,#000 30%,transparent 75%)}
+.glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.hero .lead{color:#D0CBE6}
+.hl{position:relative;white-space:nowrap;color:#FFFFFF}
+.hl:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:6px;border-radius:3px;background:var(--specb);transform:scaleX(0);transform-origin:left;animation:hub-mark .9s .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes hub-mark{to{transform:scaleX(1)}}
+/* five lanes: one per tool */
+.lanes{position:absolute;top:0;bottom:0;right:4%;width:46%;display:flex;justify-content:space-between;pointer-events:none;-webkit-mask-image:linear-gradient(transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(transparent,#000 18%,#000 82%,transparent)}
+.lane{position:relative;width:1px;background:var(--c);opacity:.28}
+.lane i{position:absolute;left:-3px;top:-10%;width:7px;height:7px;border-radius:50%;background:var(--c);box-shadow:0 0 14px 3px var(--c);animation:hub-lane 7s linear infinite}
+@keyframes hub-lane{from{top:-10%}to{top:110%}}
+.hero-pill{display:inline-flex;align-items:center;height:32px;padding:0 14px 0 12px;gap:8px;border-radius:999px;font-size:13px;font-weight:600;line-height:1;background:rgba(255,255,255,.08);box-shadow:0 0 0 1px rgba(255,255,255,.16);color:#E9E5F7}
+.live-g{width:8px;height:8px;border-radius:50%;background:#12B76A;flex-shrink:0;animation:hub-ping 1.6s infinite}
+@keyframes hub-ping{0%{box-shadow:0 0 0 0 rgba(18,183,106,.55)}80%,100%{box-shadow:0 0 0 8px rgba(18,183,106,0)}}
+.trust{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#D0CBE6}
+.trust i{width:20px;height:20px;border-radius:50%;background:var(--lime);color:#1A2E05;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.trust i svg{width:11px;height:11px}
+.trust:hover i{transform:scale(1.15) rotate(-8deg)}
+.rise{opacity:0;animation:hub-rise .8s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes hub-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* hero mock: the toolbar card */
+.mock{position:relative;background:#FFFFFF;color:var(--ink);border-radius:20px;box-shadow:0 0 0 1px rgba(16,24,40,.08),0 40px 80px -30px rgba(0,0,0,.6);overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.mock:hover{transform:translateY(-4px) rotate(-.3deg)}
+.mbar{height:52px;display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid var(--line);background:#F7F6FB}
+.url{flex:1;min-width:0;height:32px;border-radius:999px;background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--line);display:flex;align-items:center;gap:8px;padding:0 12px;font-size:12.5px;color:var(--mut)}
+.exts{display:flex;gap:6px}
+.q{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 18px;border-bottom:1px solid #EAE8F0;animation:hub-q 10s infinite}
+.q:last-child{border-bottom:none}
+.q b{display:block;font-size:14.5px;font-weight:700;line-height:1.3}
+.q small{display:block;font-size:12.5px;color:var(--mut);margin-top:2px}
+.q .k{font-size:11.5px;font-weight:600;color:var(--mut);white-space:nowrap}
+@keyframes hub-q{0%,16%{background:#F2F4F7}20%,100%{background:#FFFFFF}}
+.float{position:absolute;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:#FFFFFF;color:var(--ink);font-size:13.5px;font-weight:700;box-shadow:0 0 0 1px rgba(16,24,40,.08),0 20px 40px -18px rgba(0,0,0,.6);animation:hub-float 5s ease-in-out infinite}
+@keyframes hub-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* role chips */
+.roles{display:flex;flex-wrap:wrap;gap:10px}
+.rc{height:44px;padding:0 18px;border-radius:999px;border:none;background:#FFFFFF;box-shadow:0 0 0 1px var(--line);font-size:14.5px;font-weight:600;color:var(--ink2);transition:transform .2s,box-shadow .2s,background .2s,color .2s}
+.rc:hover{transform:translateY(-2px);box-shadow:0 0 0 1px #98A2B3}
+.rc.on{background:var(--ink);color:#FFFFFF;box-shadow:0 0 0 1px var(--ink)}
+.rc:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.hint{display:flex;align-items:center;gap:10px;min-height:24px;font-size:15px;color:var(--ink2)}
+.hint b{color:var(--ink)}
+
+/* tool cards */
+.tg{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.tc{grid-column:span 2;position:relative;display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:24px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.05),0 8px 24px -14px rgba(52,30,120,.18);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,opacity .3s,filter .3s}
+.tc.big{grid-column:span 3}
+.tc:hover{transform:translateY(-6px);box-shadow:0 0 0 2px var(--c),0 20px 40px -20px rgba(52,30,120,.35)}
+.tc.dim{opacity:.38;filter:saturate(.4)}
+.tc.dim:hover{opacity:.7}
+.tc .top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.for{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:var(--tint);color:var(--tink);font-size:12px;font-weight:700;white-space:nowrap}
+.tq{margin:0;font-size:24px;line-height:1.2;letter-spacing:-.02em;font-weight:800}
+.td{margin:0;font-size:15px;line-height:1.6;color:var(--ink2)}
+.bl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.bl li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;line-height:1.45;color:var(--ink2)}
+.bl i{width:20px;height:20px;border-radius:7px;background:var(--tint);color:var(--tink);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.acts{margin-top:auto;padding-top:6px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.hub a.add,.hub a.add:hover,.hub a.add:focus,.hub a.add:visited{color:var(--on)}
+.add{height:46px;padding:0 18px;border-radius:12px;font-size:15px;background:var(--c);box-shadow:0 10px 20px -12px var(--c)}
+.add:hover{transform:translateY(-2px)}
+.hub a.more{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;color:var(--tink);transition:gap .2s}
+.hub a.more:hover{gap:10px}
+
+/* workflow */
+.night{background:var(--night);color:#FFFFFF;position:relative;overflow:hidden}
+.night .soft{color:#D0CBE6}
+/* one page, five questions */
+.sg{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:stretch}
+.pg{position:relative;border-radius:20px;background:#FFFFFF;color:var(--ink);overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px -30px rgba(0,0,0,.7)}
+.pg-bar{height:46px;display:flex;align-items:flex-end;gap:8px;padding:0 14px;background:#EEEDF3}
+.pg-tab{height:34px;display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:10px 10px 0 0;background:#FFFFFF;font-size:12.5px;font-weight:600;color:var(--ink2);max-width:62%}
+.pg-tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pg-nav{display:flex;align-items:center;gap:22px;padding:16px 28px;border-bottom:1px solid #EEEDF3;font-size:13px;color:var(--mut)}
+.pg-brand{display:inline-flex;align-items:center;gap:8px;padding:4px 6px;margin:-4px -6px;font-family:'Plus Jakarta Sans',Inter,sans-serif;font-size:16px;font-weight:800;color:var(--ink)}
+.pg-brand i{width:22px;height:22px;border-radius:7px;background:#0F766E}
+.pg-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:26px;padding:30px 28px 0}
+.pg-h{margin:0;font-family:'Plus Jakarta Sans',Inter,sans-serif;font-size:28px;line-height:1.1;letter-spacing:-.03em;font-weight:800}
+.pg-l{height:9px;border-radius:5px;background:#EAE8F0}
+.pg-btn{display:inline-flex;align-items:center;height:42px;padding:0 20px;border-radius:11px;background:#0F766E;color:#FFFFFF;font-size:14px;font-weight:700;width:max-content}
+.pg-img{height:196px;border-radius:14px;background:#E6F4F1;display:flex;align-items:center;justify-content:center;color:#0F766E}
+.pg-fold{position:relative;margin-top:44px;height:22px;display:flex;align-items:center}
+.pg-fold:before{content:"";position:absolute;left:0;right:0;top:10px;border-top:2px dashed #C11574;opacity:.45;transition:opacity .3s}
+.pg-fold.on:before{opacity:1}
+.pg-fold em{position:relative;margin-left:auto;margin-right:22px;font-style:normal;height:22px;display:inline-flex;align-items:center;padding:0 9px;border-radius:6px;background:#C11574;color:#FFFFFF;font-size:11.5px;font-weight:700;opacity:.55;transition:opacity .3s}
+.pg-fold.on em{opacity:1}
+.pg-below{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:12px 28px 30px}
+.pg-below div{height:70px;border-radius:12px;background:#F4F3F8}
+.z{position:relative;border-radius:10px;transition:box-shadow .3s}
+.z.on{box-shadow:0 0 0 3px var(--zc)}
+.pin{position:absolute;z-index:2;width:30px;height:30px;padding:0;border:none;border-radius:50%;background:var(--zc);color:var(--zt);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;box-shadow:0 0 0 3px #FFFFFF,0 6px 14px -4px rgba(16,24,40,.45);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.pin:hover{transform:scale(1.12)}
+.pin.on{transform:scale(1.18);animation:hub-pin 1.6s infinite}
+.pin:focus-visible{outline:3px solid #101828;outline-offset:3px}
+@keyframes hub-pin{0%{box-shadow:0 0 0 3px #FFFFFF,0 0 0 3px var(--zc)}80%,100%{box-shadow:0 0 0 3px #FFFFFF,0 0 0 14px rgba(255,255,255,0)}}
+.sp{display:flex;flex-direction:column;gap:22px;padding:30px;border-radius:22px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.sp-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:4px;border-radius:16px;background:rgba(0,0,0,.28);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.sp-t{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;height:52px;padding:0;border:none;border-radius:12px;background:transparent;color:#B9B4D0;font-size:12.5px;font-weight:600;transition:background .2s,color .2s}
+.sp-t:hover{background:rgba(255,255,255,.07);color:#FFFFFF}
+.sp-t b{width:30px;height:30px;border-radius:50%;background:var(--c);color:#120D24;display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13.5px;font-weight:700;flex-shrink:0}
+.sp-t.on{background:#FFFFFF;color:#101828}
+.sp-t:focus-visible{outline:3px solid #FFFFFF;outline-offset:2px}
+.sp-q{margin:0;font-size:30px;line-height:1.15;letter-spacing:-.025em;font-weight:800}
+.sp-lbl{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9B95B5}
+.sp-f{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.sp-f li{display:flex;align-items:flex-start;gap:12px;padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.04);font-size:14.5px;line-height:1.45;color:#EDEAF8;animation:hub-pane .4s ease both}
+.sp-f li:nth-child(2){animation-delay:.06s}.sp-f li:nth-child(3){animation-delay:.12s}
+.sp-f i{width:8px;height:8px;border-radius:50%;background:var(--c);margin-top:7px;flex-shrink:0}
+@keyframes hub-pane{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hub a.sp-more{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;color:var(--c);transition:gap .2s}
+.hub a.sp-more:hover{gap:10px}
+
+/* promise */
+.priv{background:var(--lime);color:#1A2E05}
+.pv{padding:26px;border-radius:20px;background:rgba(255,255,255,.55);display:flex;flex-direction:column;gap:10px;transition:background .25s,transform .25s}
+.pv:hover{background:#FFFFFF;transform:translateY(-4px)}
+.pv .ic{width:44px;height:44px;border-radius:14px;background:#1A2E05;color:var(--lime);display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pv:hover .ic{transform:rotate(-10deg) scale(1.08)}
+.pv b{font-size:17px}
+.pv p{margin:0;font-size:14.5px;line-height:1.55;color:#2F4A0C}
+
+/* web tools */
+.wt{display:flex;flex-direction:column;gap:12px;padding:24px;border-radius:20px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line);transition:transform .25s,box-shadow .25s}
+.wt:hover{transform:translateY(-4px);box-shadow:0 0 0 2px var(--c),0 16px 30px -18px rgba(52,30,120,.3)}
+.wt .path{font-size:12.5px;color:var(--mut)}
+.wt b{font-size:18px;letter-spacing:-.01em}
+.wt p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink2)}
+.wt .go{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--tink);transition:gap .2s}
+.wt:hover .go{gap:10px}
+
+/* faq */
+.faq details{border-radius:18px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.06);transition:box-shadow .25s}
+.faq details:hover{box-shadow:0 0 0 1px #98A2B3}
+.faq details[open]{box-shadow:0 0 0 2px var(--ink)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;font-size:17px;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq .pm{width:32px;height:32px;border-radius:10px;background:#EEEDF3;color:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s,color .3s}
+.faq details[open] .pm{transform:rotate(45deg);background:var(--ink);color:#FFFFFF}
+.faq p{margin:0;padding:0 24px 22px;font-size:15.5px;line-height:1.6;color:var(--ink2)}
+
+/* about */
+.av{position:relative;overflow:hidden;width:88px;height:88px;border-radius:26px;background:#241C42;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:30px;font-weight:800;color:#FFFFFF;box-shadow:0 0 0 4px rgba(198,243,107,.35);flex-shrink:0}
+.av:after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:var(--specb)}
+.fl a{font-size:14.5px;color:#D0CBE6;transition:color .2s}
+.fl a:hover{color:#FFFFFF}
+.fh{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9B95B5}
+
+@media (prefers-reduced-motion:reduce){.rise,.q,.float,.live-g,.pin,.sp-f li,.lane i{animation:none!important;opacity:1}.hl:after{animation:none;transform:none}.tc,.st,.wt,.pv,.mock{transition:none}}
+@media (max-width:1024px){
+.h-grid{grid-template-columns:1fr!important}
+.h1{font-size:54px!important}
+.tg{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tc,.tc.big{grid-column:span 1}
+.tc:last-child{grid-column:1 / -1}
+.sg{grid-template-columns:1fr}
+.r-4{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.r-ab{flex-direction:column;align-items:flex-start!important}
+.nav .links{display:none!important}
+.lanes{width:90%;right:5%;opacity:.6}
+}
+@media (max-width:640px){
+.wrap{padding:0 18px}
+.hero{padding:44px 0 72px}
+.h1{font-size:40px!important}
+.h2{font-size:34px}
+.lead{font-size:16px}
+.tg,.r-4,.r-3{grid-template-columns:1fr!important}
+.pg-hero{grid-template-columns:1fr;padding:22px 20px 0}
+.pg-img{height:120px}
+.pg-nav{padding:14px 20px;gap:14px}
+.pg-nav span:not(.pg-brand){display:none}
+.pg-h{font-size:22px}
+.pg-below{padding:12px 20px 22px}
+.sp{padding:22px}
+.sp-t{height:46px}
+.sp-t b{width:28px;height:28px;font-size:13px}
+.sp-q{font-size:24px}
+.tc:last-child{grid-column:auto}
+.tc{padding:22px}
+.tq{font-size:21px}
+.float{display:none}
+.q{grid-template-columns:32px minmax(0,1fr);padding:12px 14px}
+.q .k{display:none}
+.sec{padding-top:72px!important;padding-bottom:72px!important}
+.nav .cta-n{display:none!important}
+.btns .btn{width:100%}
+.faq summary{padding:18px;font-size:15.5px}
+.faq p{padding:0 18px 18px}
+}
+</style>
+</helmet>
+<div class="hub">
+
+<header class="nav"><div class="wrap">
+<a class="fam" href="#top" aria-label="Line apps home"><dc-import name="HubLogo" theme="dark" size="32" word="true" hint-size="122px,32px"></dc-import></a>
+<nav class="links" aria-label="Main" style="display: flex; gap: 30px; margin-left: 12px"><a class="nl" href="#tools">Tools</a><a class="nl" href="#together">What they check</a><a class="nl" href="#web-tools">Free web tools</a><a class="nl" href="#faq">FAQ</a></nav>
+<span style="flex-grow: 1"></span>
+<a class="btn btn-l cta-n" style="height: 42px; padding: 0 18px; font-size: 14.5px" href="https://shamistanisayev.com/?utm_source=getlineapps&amp;utm_medium=landing&amp;utm_campaign=hub_nav">Book a call</a>
+</div></header>
+
+<section class="hero" id="top">
+<div class="glow" style="width: 420px; height: 420px; right: -80px; top: -160px; background: rgba(103,232,249,.16)"></div>
+<div class="glow" style="width: 380px; height: 380px; right: 26%; bottom: -200px; background: rgba(250,167,224,.14)"></div>
+<div class="glow" style="width: 420px; height: 420px; left: -160px; bottom: -180px; background: rgba(198,243,107,.18)"></div>
+<div class="lanes" aria-hidden="true"><span class="lane" style="--c: #B692F6"><i style="animation-delay: 0s"></i></span><span class="lane" style="--c: #93C5FD"><i style="animation-delay: -2.8s"></i></span><span class="lane" style="--c: #67E8F9"><i style="animation-delay: -5.1s"></i></span><span class="lane" style="--c: #FAA7E0"><i style="animation-delay: -1.4s"></i></span><span class="lane" style="--c: #FDE68A"><i style="animation-delay: -4.2s"></i></span></div>
+<div class="wrap h-grid" style="position: relative; display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 26px">
+<span class="hero-pill rise" style="width: max-content"><span class="live-g"></span>5 free Chrome extensions</span>
+<h1 class="disp h1 rise" style="margin: 0; font-size: 66px; line-height: 1.02; letter-spacing: -.045em; font-weight: 800; animation-delay: .08s">Free Chrome tools to see <span class="hl">inside any website</span></h1>
+<p class="lead rise" style="max-width: 540px; animation-delay: .16s">Check your own site's tracking, SEO and conversion, see what a competitor runs, and show your developer exactly what to fix. No account, no paid plan, and nothing leaves your browser.</p>
+<div class="btns rise" style="display: flex; flex-wrap: wrap; gap: 14px; animation-delay: .24s">
+<a class="btn btn-w" href="#tools">See the 5 tools<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="btn btn-o" href="#web-tools">Try a tool in the browser</a>
+</div>
+<div class="rise" style="display: flex; flex-wrap: wrap; gap: 24px; animation-delay: .32s">
+<span class="trust"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></i>Free, no account</span>
+<span class="trust"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></i>Reads a page only after your click</span>
+<span class="trust"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></i>One-page PDF report</span>
+</div>
+</div>
+
+<div class="rise" style="position: relative; animation-delay: .2s">
+<div class="mock">
+<div class="mbar"><span class="url"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>any-website.com</span><span class="exts"><dc-import name="Logo" brand="hitline" theme="light" size="24" word="false" hint-size="24px,24px"></dc-import><dc-import name="Logo" brand="serpline" theme="light" size="24" word="false" hint-size="24px,24px"></dc-import><dc-import name="Logo" brand="rivaline" theme="light" size="24" word="false" hint-size="24px,24px"></dc-import><dc-import name="Logo" brand="foldline" theme="light" size="24" word="false" hint-size="24px,24px"></dc-import><dc-import name="Logo" brand="markline" theme="light" size="24" word="false" hint-size="24px,24px"></dc-import></span></div>
+<div style="padding: 14px 18px 6px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut)">One click answers</div>
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="5">
+<div class="q" style="animation-delay: {{t.delay}}"><dc-import name="Logo" brand="{{t.slug}}" theme="light" size="36" word="false" hint-size="36px,36px"></dc-import><span><b>{{t.question}}</b><small>{{t.name}}: {{t.answer}}</small></span><span class="k mono">{{t.surface}}</span></div>
+</sc-for>
+</div>
+<div class="float" style="left: -34px; bottom: -26px"><span style="width: 30px; height: 30px; border-radius: 10px; background: var(--lime); color: #1A2E05; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5M10 13h6M10 17h6"></path></svg></span>Every tool exports a one-page PDF</div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="tools" style="padding: 104px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
+<div class="r-ab" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
+<span class="eyebrow">The tools</span>
+<h2 class="disp h2">Five extensions, one job each</h2>
+<p class="lead">Four look at your own site, one looks at your competitors. Each opens next to the page you are on, answers one question well and gives you a report you can send.</p>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; font-weight: 700; color: var(--mut)">What do you do?</span>
+<div class="roles" role="group" aria-label="Filter tools by role">
+<sc-for list="{{roles}}" as="r" hint-placeholder-count="6">
+<button type="button" class="rc {{r.cls}}" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}">{{r.label}}</button>
+</sc-for>
+</div>
+<p class="hint" role="status" style="margin: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#344054" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v5h1"></path></svg><span>{{hint}}</span></p>
+</div>
+
+<div class="tg">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="5">
+<article class="tc {{t.cls}}" style="--c: {{t.accent}}; --on: {{t.onAccent}}; --tint: {{t.tint}}; --tink: {{t.tintInk}}">
+<div class="top"><dc-import name="Logo" brand="{{t.slug}}" theme="light" size="32" word="true" hint-size="150px,32px"></dc-import><span class="for">{{t.forWho}}</span></div>
+<h3 class="disp tq">{{t.question}}</h3>
+<p class="td">{{t.desc}}</p>
+<ul class="bl">
+<sc-for list="{{t.bullets}}" as="b" hint-placeholder-count="3">
+<li><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></i>{{b}}</li>
+</sc-for>
+</ul>
+<div class="acts">
+<a class="btn add" href="{{t.store}}" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3.5"></circle><path d="M12 8.5h8.2M8.9 13.8L4.8 6.7M15 13.8l-4.1 7.1"></path></svg>Add to Chrome</a>
+<a class="more" href="{{t.link}}" target="_blank" rel="noopener">Learn more<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</article>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section class="night sec" id="together" style="padding: 104px 0">
+<div class="glow" style="width: 480px; height: 480px; right: -160px; top: -200px; background: rgba(147,197,253,.18)"></div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 44px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px">
+<span class="eyebrow">What each tool looks at</span>
+<h2 class="disp h2">One page, five questions</h2>
+<p class="lead soft">Your site or a competitor's, every page has the same five places worth a look. Click a number to see which tool checks it.</p>
+</div>
+<div class="sg">
+<div class="pg" aria-label="Example landing page with five check points">
+<div class="pg-bar"><div class="pg-tab z {{z.serpline}}" style="--zc: #2563EB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle></svg><span>Spring sale: 30% off all plants | Greenly</span><button type="button" class="pin {{pc.serpline}}" style="--zc: #2563EB; --zt: #FFFFFF; top: -8px; right: -14px" aria-label="1: Serpline, title in Google" aria-pressed="{{pp.serpline}}" onClick="{{pk.serpline}}">1</button></div></div>
+<div class="pg-nav"><span class="pg-brand z {{z.rivaline}}" style="--zc: #0E7490"><i></i>Greenly<button type="button" class="pin {{pc.rivaline}}" style="--zc: #0E7490; --zt: #FFFFFF; top: -14px; right: -30px" aria-label="2: Rivaline, brand and stack" aria-pressed="{{pp.rivaline}}" onClick="{{pk.rivaline}}">2</button></span><span style="flex-grow: 1"></span><span>Plants</span><span>Pots</span><span>Care</span></div>
+<div class="pg-hero">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h3 class="pg-h">Fresh plants, delivered in two days</h3>
+<div class="pg-l" style="width: 92%"></div><div class="pg-l" style="width: 74%"></div>
+<span class="pg-btn z {{z.hitline}}" style="--zc: #7F56D9; margin-top: 6px">Shop the sale<button type="button" class="pin {{pc.hitline}}" style="--zc: #7F56D9; --zt: #FFFFFF; top: -14px; right: -14px" aria-label="4: Hitline, events on the button" aria-pressed="{{pp.hitline}}" onClick="{{pk.hitline}}">4</button></span>
+</div>
+<div class="pg-img z {{z.markline}}" style="--zc: #101828"><svg width="64" height="64" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 40V22"></path><path d="M24 26c-8 0-12-5-12-12 8 0 12 5 12 12zM24 22c0-7 4-12 12-12 0 7-4 12-12 12z"></path><path d="M14 40h20"></path></svg><button type="button" class="pin {{pc.markline}}" style="--zc: #FACC15; --zt: #101828; top: -12px; right: -12px" aria-label="3: Markline, feedback on the image" aria-pressed="{{pp.markline}}" onClick="{{pk.markline}}">3</button></div>
+</div>
+<div class="pg-fold {{z.foldline}}"><em>Fold</em><button type="button" class="pin {{pc.foldline}}" style="--zc: #C11574; --zt: #FFFFFF; top: -4px; left: 22px" aria-label="5: Foldline, what shows before the fold" aria-pressed="{{pp.foldline}}" onClick="{{pk.foldline}}">5</button></div>
+<div class="pg-below"><div></div><div></div><div></div></div>
+</div>
+
+<div class="sp" style="--c: {{cur.bright}}">
+<div class="sp-tabs" role="group" aria-label="Choose a check point">
+<sc-for list="{{spots}}" as="s" hint-placeholder-count="5">
+<button type="button" class="sp-t {{s.cls}}" style="--c: {{s.bright}}" aria-pressed="{{s.pressed}}" aria-label="{{s.num}}: {{s.name}}" onClick="{{s.pick}}"><b>{{s.num}}</b></button>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span class="sp-lbl">{{cur.where}}</span>
+<h3 class="disp sp-q">{{cur.question}}</h3>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span class="sp-lbl">What {{cur.name}} tells you</span>
+<ul class="sp-f">
+<sc-for list="{{cur.finds}}" as="f" hint-placeholder-count="3"><li><i></i>{{f}}</li></sc-for>
+</ul>
+</div>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
+<dc-import name="Logo" brand="{{cur.slug}}" theme="dark" size="28" word="true" hint-size="130px,28px"></dc-import>
+<span style="flex-grow: 1"></span>
+<a class="sp-more" href="{{cur.link}}" target="_blank" rel="noopener">Learn more<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="priv sec" style="padding: 96px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 680px">
+<span class="eyebrow" style="color: #1A2E05">Same promise in every tool</span>
+<h2 class="disp h2">Your pages stay in your browser</h2>
+</div>
+<div class="r-4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"></path></svg></span><b>Free, no account</b><p>No sign-up, no trial, no paid plan. Install and use.</p></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l-4 9 3-1 2 3 3-7"></path><path d="M14 4l1.5 4.5L20 10l-4.5 1.5L14 16l-1.5-4.5L8 10l4.5-1.5z"></path></svg></span><b>Only after your click</b><p>A tool reads a tab when you open it there, and no other tab.</p></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span><b>Nothing is sent</b><p>Results are made in your browser. No servers, no tracking inside the extensions.</p></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5M10 13h6M10 17h6"></path></svg></span><b>A report to send</b><p>Every tool turns its result into a one-page PDF you can share.</p></div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="web-tools" style="padding: 104px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 680px">
+<span class="eyebrow">Free web tools</span>
+<h2 class="disp h2">Try it without installing anything</h2>
+<p class="lead">Four small tools that run right on this site, built on the same code as the extensions.</p>
+</div>
+<div class="r-4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{webTools}}" as="w" hint-placeholder-count="4">
+<a class="wt" style="--c: {{w.accent}}; --tink: {{w.tintInk}}" href="{{w.href}}" target="_blank" rel="noopener">
+<dc-import name="Logo" brand="{{w.slug}}" theme="light" size="36" word="false" hint-size="36px,36px"></dc-import>
+<b>{{w.title}}</b>
+<p>{{w.text}}</p>
+<span class="go">Open tool<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section class="sec" id="faq" style="padding: 0 0 104px">
+<div class="wrap r-ab" style="display: flex; gap: 64px; align-items: flex-start">
+<div style="display: flex; flex-direction: column; gap: 14px; flex: 0 0 340px">
+<span class="eyebrow">FAQ</span>
+<h2 class="disp h2" style="font-size: 44px">Questions people ask</h2>
+<p class="lead" style="font-size: 16px">Not answered here? <a href="https://shamistanisayev.com/?utm_source=getlineapps&amp;utm_medium=landing&amp;utm_campaign=faq" style="color: var(--ink); font-weight: 700; text-decoration: underline">Ask me directly</a>.</p>
+</div>
+<div class="faq" style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<details open><summary>Are the tools really free?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Yes. There is no paid plan and no trial. They are free because they show the kind of work I do for clients: if you need the fixes done, you know where to find me.</p></details>
+<details><summary>What data do the extensions collect?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>None. Each extension saves only its own settings on your computer. The pages you check are read in your browser and nothing is sent to a server.</p></details>
+<details><summary>Do they slow down Chrome?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>No. Nothing runs in the background. A tool only works on a tab after you click its icon or press its shortcut there.</p></details>
+<details><summary>Which one should I install first?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Pick your role in the tool list above. If you run paid campaigns, start with Hitline: broken tracking costs the most and is the hardest to see.</p></details>
+<details><summary>Can I use them for client work?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Yes. Agencies use the PDF reports in audits and pitches. The reports carry a small "Made with" line and nothing else.</p></details>
+<details><summary>Which languages do they support?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>English and Azerbaijani. You can switch the language in each tool's settings.</p></details>
+</div>
+</div>
+</section>
+
+<section class="night sec" style="padding: 96px 0 40px">
+<div class="glow" style="width: 460px; height: 460px; left: -160px; top: -120px; background: rgba(198,243,107,.16)"></div>
+<div class="glow" style="width: 460px; height: 460px; right: -140px; bottom: -200px; background: rgba(250,167,224,.16)"></div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 56px">
+<div class="r-ab" style="display: flex; align-items: center; justify-content: space-between; gap: 48px">
+<div style="display: flex; gap: 28px; align-items: flex-start; max-width: 760px">
+<svg width="88" height="88" viewBox="0 0 512 512" role="img" aria-label="Shamistan Isayev logo" style="flex-shrink: 0; filter: drop-shadow(0 18px 30px rgba(0,0,0,.45))"><defs><linearGradient id="si-about" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A57CF5"></stop><stop offset=".42" stop-color="#6A3FD0"></stop><stop offset=".72" stop-color="#3F8C8A"></stop><stop offset="1" stop-color="#7FD13B"></stop></linearGradient></defs><rect width="512" height="512" rx="116" fill="url(#si-about)"></rect><g transform="translate(256 256) scale(.9) translate(-256 -257)"><rect x="234" y="66" width="44" height="44" rx="10" fill="#fff"></rect><rect x="234" y="402" width="44" height="48" rx="10" fill="#fff"></rect><path d="M 336 150 H 226 A 50 50 0 0 0 176 200 V 206 A 50 50 0 0 0 226 256 H 286 A 50 50 0 0 1 336 306 V 312 A 50 50 0 0 1 286 362 H 176" fill="none" stroke="#fff" stroke-width="44" stroke-linejoin="round"></path></g></svg>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span class="eyebrow">Built by one person</span>
+<h2 class="disp h2" style="font-size: 44px">Need the fixes done, not just found?</h2>
+<p class="lead soft">I am Shamistan Isayev. I work on analytics, server-side tracking and CRO, and I built these tools for the checks I run on every project. When you want someone to fix what they find, book a call.</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start; flex-shrink: 0">
+<a class="btn btn-l" href="https://shamistanisayev.com/?utm_source=getlineapps&amp;utm_medium=landing&amp;utm_campaign=hub_cta">Book a call<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<span style="font-size: 14px; color: #FFFFFF">From <u>Shamistan Isayev</u></span>
+</div>
+</div>
+
+<footer style="padding-top: 36px; border-top: 1px solid rgba(255,255,255,.1); display: flex; flex-direction: column; gap: 36px">
+<div class="r-3" style="display: grid; grid-template-columns: minmax(0,1.4fr) repeat(3, minmax(0,1fr)); gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span class="fam"><dc-import name="HubLogo" theme="dark" size="30" word="true" hint-size="114px,30px"></dc-import></span>
+<span style="font-size: 14.5px; line-height: 1.6; color: #D0CBE6; max-width: 300px">Free Chrome tools for marketers, SEO specialists and agencies.</span>
+</div>
+<nav class="fl" aria-label="Extensions" style="display: flex; flex-direction: column; gap: 10px"><span class="fh">Extensions</span>
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="5"><a href="{{t.link}}" target="_blank" rel="noopener">{{t.name}}</a></sc-for>
+</nav>
+<nav class="fl" aria-label="Free web tools" style="display: flex; flex-direction: column; gap: 10px"><span class="fh">Free web tools</span>
+<sc-for list="{{webTools}}" as="w" hint-placeholder-count="4"><a href="{{w.href}}">{{w.title}}</a></sc-for>
+</nav>
+<nav class="fl" aria-label="About" style="display: flex; flex-direction: column; gap: 10px"><span class="fh">About</span>
+<a href="Privacy.dc.html">Privacy policy</a>
+<a href="https://shamistanisayev.com/?utm_source=getlineapps&amp;utm_medium=landing&amp;utm_campaign=footer">Contact</a>
+<a href="https://github.com/">Source code</a>
+</nav>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 13.5px; color: #9B95B5">
+<span style="display: inline-flex; align-items: center; gap: 10px">Built by <a href="https://shamistanisayev.com/?utm_source=getlineapps&amp;utm_medium=landing&amp;utm_campaign=footer" style="display: inline-flex; align-items: center; gap: 8px; color: #FFFFFF; font-weight: 700"><svg width="22" height="22" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="si-foot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A57CF5"></stop><stop offset=".42" stop-color="#6A3FD0"></stop><stop offset=".72" stop-color="#3F8C8A"></stop><stop offset="1" stop-color="#7FD13B"></stop></linearGradient></defs><rect width="512" height="512" rx="116" fill="url(#si-foot)"></rect><g transform="translate(256 256) scale(.9) translate(-256 -257)"><rect x="234" y="66" width="44" height="44" rx="10" fill="#fff"></rect><rect x="234" y="402" width="44" height="48" rx="10" fill="#fff"></rect><path d="M 336 150 H 226 A 50 50 0 0 0 176 200 V 206 A 50 50 0 0 0 226 256 H 286 A 50 50 0 0 1 336 306 V 312 A 50 50 0 0 1 286 362 H 176" fill="none" stroke="#fff" stroke-width="44" stroke-linejoin="round"></path></g></svg>Shamistan Isayev</a></span>
+<span>Chrome is a trademark of Google LLC.</span>
+</div>
+</footer>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+renderVals() {
+// Demo targets: each tool's design artifact. Production: https://getlineapps.com/<slug>
+var toolLinks = {
+hitline: 'https://claude.ai/code/artifact/6987e0b7-b1f7-489d-88e7-40513ec92dda',
+serpline: 'https://claude.ai/code/artifact/7a3a8959-edd5-49f7-8d98-6ef88a7c8501',
+rivaline: 'https://claude.ai/code/artifact/9b7b1f50-c085-49bd-bba7-acb04636d43d',
+foldline: 'https://claude.ai/code/artifact/e6d03b52-f741-47cb-8f3e-77ad34d24188',
+markline: 'https://claude.ai/code/artifact/411c2906-e052-4723-88bc-f357a1162e8a'
+};
+// Chrome Web Store listing URLs: placeholders until each listing exists.
+var storeLinks = {
+hitline: '#store-hitline', serpline: '#store-serpline', rivaline: '#store-rivaline', foldline: '#store-foldline', markline: '#store-markline'
+};
+// Free web tools live on each tool's landing as a section, reached by #fragment (production: https://getlineapps.com/<slug>#<fragment>).
+var role = (this.state && this.state.role) || 'all';
+var self = this;
+
+var base = [
+{ slug: 'hitline', name: 'Hitline', accent: '#7F56D9', bright: '#B692F6', onAccent: '#FFFFFF', tint: '#F4F3FF', tintInk: '#53389E', big: true,
+roles: ['perf', 'agency'], forWho: 'Analysts and marketers', surface: 'DevTools',
+question: 'Is every tag and event really firing?', answer: 'events, GTM and consent, live',
+desc: 'Watch GA4, Meta, TikTok and Google Ads events as they fire, check GTM, server-side GTM and consent, then export an audit.',
+bullets: ['Live event feed for each platform', 'GTM, server-side GTM and Consent Mode checks', 'Your tracking plan against what really fires'] },
+{ slug: 'serpline', name: 'Serpline', accent: '#2563EB', bright: '#93C5FD', onAccent: '#FFFFFF', tint: '#EFF6FF', tintInk: '#1D4ED8', big: true,
+roles: ['seo', 'agency'], forWho: 'SEO specialists', surface: 'Side panel',
+question: 'What do Google and AI crawlers really see?', answer: 'SEO score, render and AI bots',
+desc: 'SEO basics with a score, a Google preview, raw HTML against the rendered page, links with status and AI crawler access.',
+bullets: ['Score and Google result preview', 'Raw HTML against the JavaScript render', 'Which AI bots robots.txt lets in'] },
+{ slug: 'rivaline', name: 'Rivaline', accent: '#0E7490', bright: '#67E8F9', onAccent: '#FFFFFF', tint: '#ECFEFF', tintInk: '#155E75',
+roles: ['perf', 'agency', 'sales'], forWho: 'Marketers, agencies, sales', surface: 'Side panel',
+question: 'What is this competitor running?', answer: 'stack, ads and brand kit',
+desc: 'Their marketing stack and its gaps, their ads in four ad libraries and their brand colors and fonts.',
+bullets: ['Martech stack by category, with gaps', 'Meta, Google, TikTok and LinkedIn ad libraries', 'Brand colors, fonts and main button'] },
+{ slug: 'foldline', name: 'Foldline', accent: '#C11574', bright: '#FAA7E0', onAccent: '#FFFFFF', tint: '#FDF2FA', tintInk: '#9E165F',
+roles: ['perf', 'agency', 'sales'], forWho: 'Campaign managers, CRO', surface: 'Side panel',
+question: 'Why is this landing page not converting?', answer: '27 checks and a score',
+desc: '27 checks on the first screen, form, trust, mobile, speed and contact, with a fix for every issue.',
+bullets: ['Fold line drawn on the page', 'Desktop and mobile score', 'Fixes to send to your developer'] },
+{ slug: 'markline', name: 'Markline', accent: '#FACC15', bright: '#FDE68A', onAccent: '#101828', tint: '#FEF9C3', tintInk: '#101828',
+roles: ['design', 'agency'], forWho: 'Agencies, QA, designers', surface: 'Popup',
+question: 'How do I show exactly what to change?', answer: 'capture, mark up, share',
+desc: 'Capture the page, mark it up with arrows, numbered notes and blur, then download or copy it.',
+bullets: ['Visible, full page, area or element', 'Emails and phone numbers blurred for you', 'PNG or a one-page PDF summary'] }
+];
+
+var tools = base.map(function (t, i) {
+var on = role === 'all' || t.roles.indexOf(role) >= 0;
+return Object.assign({}, t, {
+link: toolLinks[t.slug],
+store: storeLinks[t.slug],
+delay: (i * 2) + 's',
+cls: (t.big ? 'big' : '') + (on ? '' : ' dim')
+});
+});
+
+var roleList = [
+{ id: 'all', label: 'Show all', hint: 'All five tools. Pick a role to see where to start.' },
+{ id: 'perf', label: 'Performance marketer', hint: 'Start with Hitline, then check the page with Foldline and the competition with Rivaline.' },
+{ id: 'seo', label: 'SEO specialist', hint: 'Serpline is built for you.' },
+{ id: 'agency', label: 'Agency', hint: 'All five fit client work. Markline is the one your clients will see most.' },
+{ id: 'design', label: 'Designer or QA', hint: 'Markline is built for you.' },
+{ id: 'sales', label: 'Sales', hint: 'Prepare for a call with Rivaline and a quick Foldline audit of the prospect.' }
+];
+var hint = '';
+var roles = roleList.map(function (r) {
+var on = r.id === role;
+if (on) hint = r.hint;
+return { label: r.label, cls: on ? 'on' : '', pressed: on ? 'true' : 'false', pick: function () { self.setState({ role: r.id }); } };
+});
+
+var spotList = [
+{ num: '1', slug: 'serpline', name: 'Serpline', bright: '#93C5FD', where: 'The title in the tab',
+question: 'Will Google and AI search show this page well?',
+finds: ['Where Google cuts the title and description', 'Whether the H1 and text need JavaScript to appear', 'Which AI crawlers robots.txt lets in'] },
+{ num: '2', slug: 'rivaline', name: 'Rivaline', bright: '#67E8F9', where: 'The brand and what runs behind it',
+question: 'What is this site built and advertised with?',
+finds: ['Its marketing tools by category, with the gaps', 'Its ads in four ad libraries, one click each', 'Its colors, fonts and main button, ready to copy'] },
+{ num: '3', slug: 'markline', name: 'Markline', bright: '#FDE68A', where: 'Anything you want changed',
+question: 'How do I show the developer exactly what to fix?',
+finds: ['A capture of the area, element or full page', 'Arrows, boxes and numbered notes on top', 'Emails and phone numbers blurred before you share'] },
+{ num: '4', slug: 'hitline', name: 'Hitline', bright: '#B692F6', where: 'The click that should count',
+question: 'Does this click reach every ad platform?',
+finds: ['Each event as it fires in GA4, Meta, TikTok and Google Ads', 'What GTM, server-side GTM and consent did with it', 'Events your tracking plan expects but never see'] },
+{ num: '5', slug: 'foldline', name: 'Foldline', bright: '#FAA7E0', where: 'The first screen',
+question: 'Do visitors see enough to act before they scroll?',
+finds: ['Where the fold sits on desktop and on phones', 'Whether the main button and headline are above it', 'A score and a fix for every issue on the page'] }
+];
+var spot = (this.state && this.state.spot) || 'serpline';
+var z = {}, pc = {}, pp = {}, pk = {}, cur = null;
+var spots = spotList.map(function (s) {
+var on = s.slug === spot;
+if (on) cur = Object.assign({}, s, { link: toolLinks[s.slug] });
+z[s.slug] = on ? 'on' : '';
+pc[s.slug] = on ? 'on' : '';
+pp[s.slug] = on ? 'true' : 'false';
+pk[s.slug] = function () { self.setState({ spot: s.slug }); };
+return { num: s.num, name: s.name, bright: s.bright, cls: on ? 'on' : '', pressed: on ? 'true' : 'false', pick: pk[s.slug] };
+});
+
+var webTools = [
+{ slug: 'rivaline', accent: '#0E7490', tintInk: '#155E75', title: 'Ad library finder', text: 'Search one brand in the Meta, Google, TikTok and LinkedIn ad libraries at once.', href: toolLinks.rivaline + '#finder' },
+{ slug: 'foldline', accent: '#C11574', tintInk: '#9E165F', title: 'Landing page score', text: 'Tick what your page has and get the score Foldline would give it.', href: toolLinks.foldline + '#calculator' },
+{ slug: 'serpline', accent: '#2563EB', tintInk: '#1D4ED8', title: 'Google preview', text: 'See where Google cuts your title and description on desktop and mobile.', href: toolLinks.serpline + '#preview' },
+{ slug: 'markline', accent: '#101828', tintInk: '#101828', title: 'Annotate an image', text: 'Drop a screenshot, add arrows, notes and blur, then download a PNG.', href: toolLinks.markline + '#annotate' }
+];
+
+return { tools: tools, roles: roles, hint: hint, spots: spots, cur: cur, z: z, pc: pc, pp: pp, pk: pk, webTools: webTools };
+}
+}
+</script>
+</body>
+</html>

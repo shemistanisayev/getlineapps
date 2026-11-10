@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kova: fictional store</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=DM+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.kv{font-family:'DM Sans',Arial,sans-serif;color:#1E2B24;-webkit-font-smoothing:antialiased}
+.kv-serif{font-family:Fraunces,Georgia,serif}
+.kv a{color:inherit;text-decoration:none}
+</style>
+</helmet>
+<div class="kv" style="width: 100%; height: 808px; overflow: hidden; position: relative; background: {{bg}}">
+<sc-if value="{{kova}}" hint-placeholder-val="{{true}}">
+<div style="height: 34px; background: #1E2B24; color: #F6F1EA; font-size: 12.5px; display: flex; align-items: center; justify-content: center">Free shipping over $40. Easy 30-day returns.</div>
+<div style="height: 72px; display: flex; align-items: center; gap: 36px; padding: 0 40px; border-bottom: 1px solid #E6DED2">
+<span class="kv-serif" style="display: flex; align-items: center; gap: 8px; font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: #1E2B24"><span style="width: 22px; height: 22px; border-radius: 50%; background: #2F5D46; box-shadow: inset -6px -6px 0 #EBC56B"></span>kova</span>
+<nav style="display: flex; gap: 26px; font-size: 14.5px; font-weight: 500"><a href="#">Shop all</a><a href="#">Skincare</a><a href="#">Body</a><a href="#">Sets</a><a href="#">Journal</a></nav>
+<span style="flex-grow: 1"></span>
+<span style="display: flex; gap: 18px; color: #1E2B24" aria-hidden="true">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg>
+</span>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; padding: 48px 40px 36px; background: #F6F1EA; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #2F5D46">New: the Daily Duo</span>
+<h1 class="kv-serif" style="margin: 0; font-size: 52px; line-height: 1.04; font-weight: 600; letter-spacing: -0.02em">Skincare that keeps it simple.</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #44544A; max-width: 380px">Three steps, gentle formulas, made in small batches.</p>
+<div style="display: flex; align-items: center; gap: 20px"><a href="#" style="height: 50px; padding: 0 28px; border-radius: 999px; background: #2F5D46; color: #F6F1EA; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center">Shop the routine</a><a href="#" style="font-size: 15px; font-weight: 600; border-bottom: 2px solid #EBC56B">Take the skin quiz</a></div>
+<span style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #44544A">Reviews on <dc-import name="Mark" brand="trustpilot" size="18" hint-size="18px,18px"></dc-import><b style="color: #1E2B24">Trustpilot</b></span>
+</div>
+<div style="position: relative; height: 380px; border-radius: 28px; background: #DCE5D8; overflow: hidden">
+<span style="position: absolute; right: 40px; top: 36px; width: 120px; height: 120px; border-radius: 50%; background: #EBC56B"></span>
+<span style="position: absolute; left: 22%; bottom: 0; width: 120px; height: 250px; border-radius: 30px 30px 0 0; background: #2F5D46"></span>
+<span style="position: absolute; left: calc(22% + 36px); bottom: 250px; width: 48px; height: 34px; border-radius: 8px 8px 0 0; background: #1E2B24"></span>
+<span class="kv-serif" style="position: absolute; left: calc(22% + 30px); bottom: 120px; color: #F6F1EA; font-size: 22px; font-weight: 600">kova</span>
+<span style="position: absolute; left: calc(22% + 150px); bottom: 0; width: 100px; height: 170px; border-radius: 50px 50px 0 0; background: #F6F1EA"></span>
+<span style="position: absolute; left: calc(22% + 172px); bottom: 170px; width: 56px; height: 20px; border-radius: 6px 6px 0 0; background: #EBC56B"></span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding: 28px 40px; background: #FFFDF9">
+<sc-for list="{{products}}" as="p" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="height: 120px; border-radius: 18px; background: {{p.tone}}"></div>
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 600"><span>{{p.name}}</span><span>{{p.price}}</span></div>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #44544A">or 3 payments with <dc-import name="Mark" brand="klarna" size="16" hint-size="16px,16px"></dc-import>Klarna</span>
+</div>
+</sc-for>
+</div>
+<span aria-hidden="true" style="position: absolute; right: 24px; bottom: 24px; width: 56px; height: 56px; border-radius: 50%; background: #2F5D46; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -8px rgba(30,43,36,.6)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6F1EA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14v10h-8l-4 4v-4H5z"></path></svg></span>
+</sc-if>
+<sc-if value="{{glow}}" hint-placeholder-val="{{false}}">
+<div style="height: 72px; display: flex; align-items: center; gap: 32px; padding: 0 40px; background: #FFF1F7; border-bottom: 1px solid #FBCFE8"><span style="font-size: 24px; font-weight: 700; letter-spacing: -0.03em; color: #831843">glowbar</span><nav style="display: flex; gap: 24px; font-size: 14px; color: #831843"><a href="#">Makeup</a><a href="#">Skin</a><a href="#">Bestsellers</a></nav></div>
+<div style="padding: 80px 40px; display: flex; flex-direction: column; gap: 20px; background: #FFF7FB; height: 100%"><h1 style="margin: 0; font-size: 56px; line-height: 1.02; letter-spacing: -0.03em; color: #500724; max-width: 560px">Clean beauty, delivered monthly.</h1><p style="margin: 0; font-size: 17px; color: #9D174D">Build your box, skip any month.</p><span style="align-self: flex-start; height: 48px; padding: 0 26px; border-radius: 12px; background: #DB2777; color: #FFFFFF; font-weight: 600; display: inline-flex; align-items: center">Build my box</span></div>
+</sc-if>
+<sc-if value="{{studio}}" hint-placeholder-val="{{false}}">
+<div style="height: 72px; display: flex; align-items: center; gap: 32px; padding: 0 48px; border-bottom: 1px solid #E7E5E4"><span style="font-size: 20px; font-weight: 700; color: #1C1917">Mira Studio</span><span style="flex-grow: 1"></span><nav style="display: flex; gap: 24px; font-size: 14px; color: #44403C"><a href="#">Work</a><a href="#">About</a><a href="#">Contact</a></nav></div>
+<div style="padding: 72px 48px; display: flex; flex-direction: column; gap: 24px"><h1 style="margin: 0; font-size: 50px; line-height: 1.05; letter-spacing: -0.03em; color: #1C1917; max-width: 620px">Illustration for books, magazines and brands.</h1><p style="margin: 0; font-size: 17px; color: #57534E">Based in Lisbon. Open for commissions.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 12px"><span style="height: 260px; border-radius: 14px; background: #FDE68A"></span><span style="height: 260px; border-radius: 14px; background: #BFDBFE"></span><span style="height: 260px; border-radius: 14px; background: #FECACA"></span></div></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":{"editor":"enum","options":["kova","glow","studio","blank"],"default":"kova"},"$preview":{"width":1016,"height":808}}'>
+class Component extends DCLogic {
+renderVals() {
+var v = this.props.variant || 'kova';
+return {
+kova: v === 'kova', glow: v === 'glow', studio: v === 'studio',
+bg: v === 'blank' ? '#FFFFFF' : (v === 'kova' ? '#FFFDF9' : '#FFFFFF'),
+products: [
+{ name: 'Daily Cleanser', price: '$24', tone: '#E6DED2' },
+{ name: 'Barrier Serum', price: '$38', tone: '#DCE5D8' },
+{ name: 'Night Cream', price: '$42', tone: '#F1E3C2' }
+]
+};
+}
+}
+</script>
+</body>
+</html>

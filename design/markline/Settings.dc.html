@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markline popup: settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.ml{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.ml button,.ml select{font-family:Inter,Arial,sans-serif}
+.ml button{cursor:pointer}
+.ml a{text-decoration:none}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.sec{padding:9px 16px;border-top:1px solid #EAE8F0;display:flex;flex-direction:column;gap:7px}
+.line{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:28px}
+.lbl{font-size:13px;font-weight:500}
+.note{font-size:11.5px;line-height:1.45;color:#667085}
+.btn{height:30px;padding:0 11px;border-radius:9px;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:background .15s}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054}
+.btn-s:hover{background:#F9FAFB}
+.sel{height:32px;border:1px solid #8E8A9D;border-radius:9px;padding:0 6px;font-size:12.5px;color:#101828;background:#FFFFFF}
+.sw{width:34px;height:20px;border-radius:999px;background:#101828;position:relative;border:none;padding:0;flex-shrink:0}
+.sw:after{content:"";position:absolute;right:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#FACC15}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;color:#101828;background:#EAE8F0;border-radius:6px;padding:2px 6px;box-shadow:inset 0 -1px 0 #C9C5D6}
+.tool{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:10px;background:#F7F6FB;transition:background .15s,transform .15s}
+.tool:hover{background:#FEFCE8;transform:translateY(-1px)}
+</style>
+</helmet>
+<div class="ml" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" hint-size="100%,84px"></dc-import></div>
+<div style="width: 100%; height: 816px; overflow: hidden"><dc-import name="SitePage" height="816" hint-size="1440px,816px"></dc-import></div>
+<div style="position: absolute; top: 78px; right: 132px; width: 360px; height: 600px; background: #FFFFFF; border-radius: 16px; box-shadow: 0 24px 48px -12px rgba(16, 24, 40, 0.25), 0 0 0 1px rgba(16, 24, 40, 0.08); overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 48px; flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 0 16px"><button type="button" class="btn btn-s" aria-label="Back" style="width: 30px; padding: 0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button><span class="disp" style="font-size: 16px; font-weight: 800">Settings</span></div>
+<div class="sec">
+<span class="eyebrow">Capture</span>
+<div class="line"><span class="lbl">Blur emails and phone numbers</span><button type="button" class="sw" role="switch" aria-checked="true" aria-label="Blur emails and phone numbers"></button></div>
+<div class="line"><label for="st-blur" class="lbl">Blur style</label><select id="st-blur" class="sel"><option>Blur</option><option>Pixelate</option><option>Solid</option></select></div>
+</div>
+<div class="sec">
+<span class="eyebrow">Export</span>
+<div class="line"><label for="st-fmt" class="lbl">Default format</label><select id="st-fmt" class="sel"><option>PNG image</option><option>PDF summary</option></select></div>
+<div class="line"><span class="lbl">Page details under the image</span><button type="button" class="sw" role="switch" aria-checked="true" aria-label="Page details under the image"></button></div>
+<div class="line"><span style="display: flex; flex-direction: column; gap: 1px"><span class="lbl">"Made with Markline" line</span><span class="note">Helps others find the tool. Off any time.</span></span><button type="button" class="sw" role="switch" aria-checked="true" aria-label="Made with Markline line"></button></div>
+</div>
+<div class="sec">
+<div class="line"><span style="display: flex; flex-direction: column; gap: 4px"><span class="lbl">Shortcuts</span><span style="display: flex; align-items: center; gap: 4px"><span class="kbd">Alt</span><span class="kbd">Shift</span><span class="kbd">M</span><span class="note" style="margin-left: 4px">and 3 more</span></span></span><button type="button" class="btn btn-s">Change</button></div>
+<div class="line"><label for="st-lang" class="lbl">Language</label><select id="st-lang" class="sel"><option>English</option><option>Azərbaycan</option></select></div>
+<div class="line"><span class="lbl">Your data</span><button type="button" class="btn btn-s">Clear all settings</button></div>
+<span class="note">Only settings are saved, on this computer. Captures are not.</span>
+</div>
+<div class="sec" style="gap: 8px">
+<span class="eyebrow">More free tools</span>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="4">
+<a class="tool" href="{{t.href}}" title="{{t.desc}}" style="flex-direction: column; gap: 4px; padding: 7px 4px"><dc-import name="Logo" brand="{{t.brand}}" theme="light" size="22" word="false" hint-size="22px,22px"></dc-import><span style="font-size: 11.5px; font-weight: 700; color: #101828">{{t.name}}</span></a>
+</sc-for>
+</div>
+</div>
+<span style="flex-grow: 1"></span>
+<div style="height: 40px; flex-shrink: 0; display: flex; align-items: center; gap: 14px; padding: 0 16px; background: #F7F6FB; border-top: 1px solid #EAE8F0; font-size: 12px"><span style="flex-grow: 1; color: #475467">Version 1.0.0</span><a href="https://getlineapps.com/markline/privacy" style="color: #101828; font-weight: 600">Privacy</a><a href="https://shamistanisayev.com/?utm_source=markline&amp;utm_medium=extension&amp;utm_campaign=settings" style="color: #101828; font-weight: 600">Contact</a></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+var q = '?utm_source=markline&utm_medium=extension&utm_campaign=more_tools';
+return {
+tools: [
+{ brand: 'hitline', name: 'Hitline', desc: 'Tracking audit', href: 'https://getlineapps.com/hitline' + q },
+{ brand: 'serpline', name: 'Serpline', desc: 'SEO and AI search', href: 'https://getlineapps.com/serpline' + q },
+{ brand: 'rivaline', name: 'Rivaline', desc: 'Competitor research', href: 'https://getlineapps.com/rivaline' + q },
+{ brand: 'foldline', name: 'Foldline', desc: 'Landing page CRO', href: 'https://getlineapps.com/foldline' + q }
+]
+};
+}
+}
+</script>
+</body>
+</html>

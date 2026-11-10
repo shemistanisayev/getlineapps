@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Privacy policy: Line apps</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.pp{position:relative;--ink:#101828;--ink2:#344054;--mut:#667085;--line:#DCD9E6;--lime:#C6F36B;--night:#120D24;
+--specb:linear-gradient(90deg,#B692F6 0 20%,#93C5FD 20% 40%,#67E8F9 40% 60%,#FAA7E0 60% 80%,#FDE68A 80% 100%);
+font-family:Inter,Arial,sans-serif;color:var(--ink);background:#F3F1F9;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.pp *{box-sizing:border-box}
+.pp a{text-decoration:none;color:inherit}
+.pp button{font-family:inherit;cursor:pointer}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 32px}
+.nav{position:sticky;top:0;z-index:40;-webkit-backdrop-filter:saturate(160%) blur(14px);backdrop-filter:saturate(160%) blur(14px);background:rgba(18,13,36,.94);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{max-width:1240px;height:72px;display:flex;align-items:center;gap:24px}
+.pp .nl{position:relative;font-size:14.5px;font-weight:500;padding:6px 0;color:#D0CBE6}
+.pp .nl:hover{color:#FFFFFF}
+.nl:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;border-radius:2px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nl:hover:after{transform:scaleX(1)}
+
+.top{position:relative;padding:64px 0 120px;background:var(--night);color:#FFFFFF;overflow:hidden}
+.top:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse 70% 80% at 50% 30%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 70% 80% at 50% 30%,#000 30%,transparent 75%)}
+.glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#EDEAF8}
+.eyebrow:before{content:"";width:30px;height:3px;border-radius:2px;background:var(--specb)}
+
+/* tabs */
+.tabs{position:relative;margin-top:-64px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:6px;border-radius:22px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 24px 48px -24px rgba(18,13,36,.45)}
+.tb{min-width:0;display:flex;align-items:center;justify-content:center;gap:10px;height:64px;padding:0 10px;border:none;border-radius:16px;background:transparent;color:var(--ink2);font-size:15px;font-weight:700;transition:background .2s,box-shadow .2s}
+.tb:hover{background:#F4F3F8}
+.tb span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb.on{background:var(--tint);color:var(--ink);box-shadow:inset 0 -3px 0 var(--c)}
+.tb:focus-visible{outline:3px solid #101828;outline-offset:2px}
+
+/* body */
+.lede{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:start;padding:28px;border-radius:24px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line)}
+.facts{display:flex;flex-direction:column;gap:10px}
+.fact{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--tint);font-size:14.5px;font-weight:600;color:var(--ink)}
+.fact i{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec{display:grid;grid-template-columns:220px minmax(0,1fr);gap:32px;padding:32px 0;border-top:1px solid var(--line)}
+.sec h2{margin:0;font-family:'Plus Jakarta Sans',Inter,sans-serif;font-size:20px;line-height:1.25;letter-spacing:-.015em;font-weight:800}
+.sec .num{display:block;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--mut);margin-bottom:8px}
+.ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.ul li{position:relative;padding-left:22px;font-size:15.5px;line-height:1.6;color:var(--ink2)}
+.ul li:before{content:"";position:absolute;left:2px;top:10px;width:8px;height:8px;border-radius:50%;background:var(--c)}
+.ul.no li:before{content:"";width:10px;height:2px;top:12px;border-radius:2px;background:var(--ink)}
+.perm{border-radius:16px;overflow:hidden;box-shadow:0 0 0 1px var(--line);background:#FFFFFF}
+.pr{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;padding:14px 18px;border-top:1px solid #EEEDF3;font-size:15px;line-height:1.55;color:var(--ink2)}
+.pr:first-child{border-top:none}
+.pr code{font-family:'JetBrains Mono',monospace;font-size:13.5px;font-weight:600;color:var(--ink)}
+.p{margin:0;font-size:15.5px;line-height:1.65;color:var(--ink2)}
+.p a{color:var(--ink);font-weight:700;text-decoration:underline}
+.chk{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:#ECFDF3;color:#067647;font-size:12.5px;font-weight:700;white-space:nowrap}
+.fade{animation:pp-in .35s ease both}
+@keyframes pp-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fl a{font-size:14.5px;color:#D0CBE6}.fl a:hover{color:#FFFFFF}
+
+@media (prefers-reduced-motion:reduce){.fade{animation:none}}
+@media (max-width:860px){
+.lede{grid-template-columns:1fr}
+.sec{grid-template-columns:1fr;gap:14px}
+.nav .links{display:none!important}
+}
+@media (max-width:640px){
+.wrap{padding:0 18px}
+.top{padding:44px 0 104px}
+.h1{font-size:40px!important}
+.tb{height:56px;padding:0}
+.tb span{display:none}
+.lede{padding:20px}
+.pr{grid-template-columns:1fr;gap:4px}
+}
+</style>
+</helmet>
+<div class="pp">
+
+<header class="nav"><div class="wrap">
+<a href="Main.dc.html" aria-label="Line apps home"><dc-import name="HubLogo" theme="dark" size="32" word="true" hint-size="122px,32px"></dc-import></a>
+<span style="flex-grow: 1"></span>
+<nav class="links" aria-label="Tools" style="display: flex; gap: 26px"><sc-for list="{{tabs}}" as="t" hint-placeholder-count="5"><a class="nl" href="{{t.link}}" target="_blank" rel="noopener">{{t.name}}</a></sc-for></nav>
+</div></header>
+
+<section class="top">
+<div class="glow" style="width: 420px; height: 420px; right: -100px; top: -160px; background: rgba(147,197,253,.16)"></div>
+<div class="glow" style="width: 380px; height: 380px; left: -140px; bottom: -200px; background: rgba(198,243,107,.16)"></div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 18px">
+<span class="eyebrow">Privacy</span>
+<h1 class="disp h1" style="margin: 0; font-size: 56px; line-height: 1.04; letter-spacing: -.04em; font-weight: 800">Privacy policy</h1>
+<p style="margin: 0; max-width: 640px; font-size: 18px; line-height: 1.6; color: #D0CBE6">Each Line app has its own policy, because each one reads something different. Pick a tool. The short version is the same for all five: no account, nothing sold, nothing sent to us.</p>
+<span style="font-size: 14px; color: #B9B4D0">Last updated [DATE OF RELEASE]</span>
+</div>
+</section>
+
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px; padding-bottom: 96px">
+<div class="tabs" role="tablist" aria-label="Choose a tool">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<button type="button" role="tab" class="tb {{t.cls}}" style="--c: {{t.accent}}; --tint: {{t.tint}}" aria-selected="{{t.selected}}" aria-label="{{t.name}} privacy policy" onClick="{{t.pick}}"><dc-import name="Logo" brand="{{t.slug}}" theme="light" size="32" word="false" hint-size="32px,32px"></dc-import><span>{{t.name}}</span></button>
+</sc-for>
+</div>
+
+<article class="fade" role="tabpanel" aria-label="{{cur.name}} privacy policy" style="--c: {{cur.accent}}; --tint: {{cur.tint}}; display: flex; flex-direction: column">
+<div class="lede">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<dc-import name="Logo" brand="{{cur.slug}}" theme="light" size="40" word="true" hint-size="180px,40px"></dc-import>
+<p class="p" style="font-size: 17px; color: var(--ink)">{{cur.summary}}</p>
+<span class="mono" style="font-size: 13px; color: var(--mut)">{{cur.store}}</span>
+</div>
+<div class="facts">
+<div class="fact"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></i>No personal data collected</div>
+<div class="fact"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></i>Nothing sent to our servers</div>
+<div class="fact"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></i>Nothing sold or shared</div>
+</div>
+</div>
+
+<section class="sec" style="margin-top: 28px">
+<div><span class="num">01</span><h2>What {{cur.name}} reads, and when</h2></div>
+<ul class="ul"><sc-for list="{{cur.reads}}" as="x" hint-placeholder-count="3"><li>{{x}}</li></sc-for></ul>
+</section>
+
+<section class="sec">
+<div><span class="num">02</span><h2>What is saved on your computer</h2></div>
+<ul class="ul"><sc-for list="{{cur.stores}}" as="x" hint-placeholder-count="2"><li>{{x}}</li></sc-for></ul>
+</section>
+
+<section class="sec">
+<div><span class="num">03</span><h2>What {{cur.name}} never does</h2></div>
+<ul class="ul no"><sc-for list="{{cur.never}}" as="x" hint-placeholder-count="4"><li>{{x}}</li></sc-for></ul>
+</section>
+
+<section class="sec">
+<div><span class="num">04</span><h2>Permissions and why</h2></div>
+<div class="perm"><sc-for list="{{cur.perms}}" as="p" hint-placeholder-count="4"><div class="pr"><code>{{p.name}}</code><span>{{p.why}}</span></div></sc-for></div>
+</section>
+
+<section class="sec">
+<div><span class="num">05</span><h2>Good to know</h2></div>
+<ul class="ul"><sc-for list="{{cur.notes}}" as="x" hint-placeholder-count="2"><li>{{x}}</li></sc-for></ul>
+</section>
+
+<section class="sec">
+<div><span class="num">06</span><h2>This website</h2></div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="p">getlineapps.com loads no analytics until you accept them in the cookie banner. You can change your choice at any time from the link in the footer.</p>
+<p class="p">If you fill in the form after removing an extension, the reason and the text you write are emailed to me so I can improve the tool. Nothing else is attached, and it is not used for marketing.</p>
+</div>
+</section>
+
+<section class="sec">
+<div><span class="num">07</span><h2>Changes and contact</h2></div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p class="p">If this policy changes, the new version is posted here with a new date. A change that collects more data would also be described in the extension's release notes before it ships.</p>
+<p class="p">Questions about privacy? <a href="https://shamistanisayev.com/?utm_source=getlineapps&amp;utm_medium=landing&amp;utm_campaign=privacy">Contact Shamistan Isayev</a>.</p>
+</div>
+</section>
+</article>
+</div>
+
+<footer style="background: var(--night); color: #FFFFFF; padding: 40px 0">
+<div class="wrap" style="max-width: 1240px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px; font-size: 13.5px; color: #9B95B5">
+<dc-import name="HubLogo" theme="dark" size="26" word="true" hint-size="100px,26px"></dc-import>
+<span style="flex-grow: 1"></span>
+<nav class="fl" aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 22px"><a href="Main.dc.html">All tools</a><a href="#cookie-settings">Cookie settings</a><a href="https://shamistanisayev.com/?utm_source=getlineapps&amp;utm_medium=landing&amp;utm_campaign=footer">Contact</a></nav>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+renderVals() {
+// Demo targets: each tool's design artifact. Production: https://getlineapps.com/<slug>
+var toolLinks = {
+hitline: 'https://claude.ai/code/artifact/6987e0b7-b1f7-489d-88e7-40513ec92dda',
+serpline: 'https://claude.ai/code/artifact/7a3a8959-edd5-49f7-8d98-6ef88a7c8501',
+rivaline: 'https://claude.ai/code/artifact/9b7b1f50-c085-49bd-bba7-acb04636d43d',
+foldline: 'https://claude.ai/code/artifact/e6d03b52-f741-47cb-8f3e-77ad34d24188',
+markline: 'https://claude.ai/code/artifact/411c2906-e052-4723-88bc-f357a1162e8a'
+};
+var self = this;
+var P = [
+{ slug: 'hitline', name: 'Hitline', accent: '#7F56D9', tint: '#F4F3FF',
+summary: 'Hitline shows the tracking tags and events of the page you are inspecting. It does not collect, keep or send any data about you or the pages you check.',
+reads: [
+'The network requests and tags of the inspected tab, only while the Hitline tab in Chrome DevTools is open.',
+'The page in the current tab, only after you click the Hitline icon to open the popup.',
+'A tracking plan file, only if you choose to load one. It is read in your browser.'
+],
+stores: ['Your settings, such as the language, in Chrome storage on your computer.', 'Results stay in the open panel and are gone when you close DevTools or the popup.'],
+never: ['Read tabs you did not open Hitline on', 'Read what you type into forms', 'Send events, pages or results to any server', 'Keep a history of the sites you checked'],
+perms: [
+{ name: 'activeTab', why: 'Read the current tab, and only after you click the icon.' },
+{ name: 'storage', why: 'Save your settings on your computer.' },
+{ name: 'devtools_page', why: 'Add the Hitline tab to DevTools. Chrome gives it the inspected tab’s requests only while DevTools is open.' }
+],
+notes: ['The audit PDF is made in your browser and saved where you choose.', 'Hitline makes no network requests of its own.'] },
+{ slug: 'serpline', name: 'Serpline', accent: '#2563EB', tint: '#EFF6FF',
+summary: 'Serpline checks the SEO and AI crawler access of the page you are on. Everything is worked out in your browser, and nothing is sent to us.',
+reads: [
+'The page in the current tab, after you click the icon or press the shortcut.',
+'The raw HTML of that same page, and the robots.txt and llms.txt of that site, fetched straight from the site.',
+'The status of internal links on the page, only when you press Check links or turn that setting on. These requests go to the same site.'
+],
+stores: ['Settings on your computer: language, Google preview device and the link check switch.', 'Results stay in the side panel until you close it.'],
+never: ['Crawl a whole site or check pages you did not open it on', 'Send pages or results to any server', 'Keep a history of the sites you checked', 'Read what you type into forms'],
+perms: [
+{ name: 'activeTab', why: 'Read the current tab after you click the icon.' },
+{ name: 'scripting', why: 'Run the reading function in that tab.' },
+{ name: 'sidePanel', why: 'Show Serpline next to the page.' },
+{ name: 'storage', why: 'Save your settings on your computer.' },
+{ name: 'Site access (optional)', why: 'Asked for one site at a time, only when you press Check this page. Chrome shows its own prompt, and you can remove it in Chrome settings.' }
+],
+notes: ['Requests to the site you check work like reloading the page: your browser sends that site’s own cookies, as it always does.', 'The audit PDF is made in your browser.'] },
+{ slug: 'rivaline', name: 'Rivaline', accent: '#0E7490', tint: '#ECFEFF',
+summary: 'Rivaline shows the marketing tools, ad library links and brand style of the site you are on. It reads that page in your browser and sends nothing to us.',
+reads: [
+'Script addresses, loaded file names, meta tags and the names of cookies on the page, never their values. Only after you click the icon.',
+'Colors, fonts and the main button styles of that page.',
+'A screenshot of the visible part of the tab, used only to cut out the logo and thrown away right after.'
+],
+stores: ['Settings on your computer: default country and language.', 'Results stay in the side panel until you close it.'],
+never: ['Read cookie values or what you type into forms', 'Download font files', 'Send pages or results to any server', 'Keep a history of the sites you checked'],
+perms: [
+{ name: 'activeTab', why: 'Read the current tab after you click the icon.' },
+{ name: 'scripting', why: 'Run the reading function in that tab.' },
+{ name: 'sidePanel', why: 'Show Rivaline next to the page.' },
+{ name: 'storage', why: 'Save your settings on your computer.' }
+],
+notes: ['The ad library buttons open Meta, Google, TikTok and LinkedIn in new tabs. Those sites have their own privacy policies.', 'Brand exports and the PDF are made in your browser.'] },
+{ slug: 'foldline', name: 'Foldline', accent: '#C11574', tint: '#FDF2FA',
+summary: 'Foldline checks the landing page you are on for conversion problems. It reads the page in your browser and sends nothing to us.',
+reads: [
+'The layout, text, buttons and images of the current tab, after you click the icon.',
+'Form field types and labels, never what is typed in them.',
+'Load speed timings of this visit, from your browser.'
+],
+stores: ['Settings on your computer: view, phone size, fold line switch and language.', 'In Mobile view, your window size for a short time, so Foldline can put it back.'],
+never: ['Read what you type into forms', 'Change the page itself', 'Send pages or results to any server', 'Keep a history of the sites you checked'],
+perms: [
+{ name: 'activeTab', why: 'Read the current tab after you click the icon.' },
+{ name: 'scripting', why: 'Run the checks and draw the fold line in that tab.' },
+{ name: 'sidePanel', why: 'Show Foldline next to the page.' },
+{ name: 'storage', why: 'Save your settings on your computer.' }
+],
+notes: ['The fold line is drawn on top of the page only while the panel is open, and removed when you close it.', 'Mobile view makes the window narrower and restores it when you switch back or close the panel. This needs no extra permission.'] },
+{ slug: 'markline', name: 'Markline', accent: '#FACC15', tint: '#FEFCE8',
+summary: 'Markline captures the page you are on so you can mark it up. Captures stay on your computer, and Markline uploads nothing.',
+reads: [
+'The current tab, after you click the icon or press a capture shortcut.',
+'Where emails and phone numbers sit on the page, so they can be blurred. Only their position is used.',
+'An image you drop, paste or choose in the editor.'
+],
+stores: ['Settings on your computer: auto blur, blur style, export defaults and language.', 'A capture is passed to the editor tab through browser storage and deleted within seconds. Closing the editor tab removes the capture.'],
+never: ['Upload captures or create share links', 'Record your screen', 'Send pages, images or notes to any server', 'Keep a history of what you captured'],
+perms: [
+{ name: 'activeTab', why: 'Capture and read the current tab after you click or press a shortcut.' },
+{ name: 'scripting', why: 'Find emails and phone numbers to blur, show the area and element picker, and scroll for a full page capture.' },
+{ name: 'storage', why: 'Save your settings on your computer.' }
+],
+notes: ['Page details (address, browser, window size, time) are added to an export only if that switch is on.', 'The “Made with Markline” line on images is optional and can be turned off in settings.'] }
+];
+var key = (this.state && this.state.tab) || (this.props.tool) || 'hitline';
+var cur = null;
+var tabs = P.map(function (p) {
+var on = p.slug === key;
+if (on) cur = Object.assign({}, p, { store: 'getlineapps.com/privacy/' + p.slug });
+return { slug: p.slug, name: p.name, accent: p.accent, tint: p.tint, link: toolLinks[p.slug], cls: on ? 'on' : '', selected: on ? 'true' : 'false', pick: function () { self.setState({ tab: p.slug }); } };
+});
+if (!cur) cur = Object.assign({}, P[0], { store: 'getlineapps.com/privacy/hitline' });
+return { tabs: tabs, cur: cur };
+}
+}
+</script>
+</body>
+</html>

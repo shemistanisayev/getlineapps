@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rivaline landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Fraunces:opsz,wght@9..144,600&amp;family=DM+Sans:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+html{scroll-behavior:smooth}
+#finder{scroll-margin-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.lp{--ink:#101828;--ink2:#344054;--mut:#667085;--line:#DCD9E6;--p:#0E7490;--pd:#155E75;--pi:#155E75;--deep:#164E63;--tint:#ECFEFF;--tint2:#CFFAFE;--bright:#67E8F9;--lime:#C6F36B;--night:#120D24;
+font-family:Inter,Arial,sans-serif;color:var(--ink);background:#F3F1F9;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.lp *{box-sizing:border-box}
+.lp a{text-decoration:none}.lp a:not(.btn){color:inherit}
+.lp button,.lp input{font-family:inherit}
+.lp button{cursor:pointer}
+.lp :focus-visible{outline:3px solid var(--p);outline-offset:2px;border-radius:6px}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 32px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pi)}
+.eyebrow:before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor}
+.h2{margin:0;font-size:52px;line-height:1.04;letter-spacing:-.035em;font-weight:800}
+.lead{margin:0;font-size:18px;line-height:1.6;color:var(--ink2)}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;font-size:16px;font-weight:700;border:none;transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s}
+.btn svg.arr{transition:transform .2s}
+.btn:hover svg.arr,.btn:focus-visible svg.arr{transform:translateX(4px)}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--p);color:#FFFFFF;box-shadow:0 10px 24px -10px rgba(21,94,117,.8),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-p:hover{background:var(--pd);transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(21,94,117,.9)}
+.btn-p:after,.btn-l:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0));transform:skewX(-20deg);transition:left .6s}
+.btn-p:hover:after,.btn-l:hover:after{left:120%}
+.btn-g{background:rgba(255,255,255,.06);color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.btn-g:hover{background:rgba(255,255,255,.12);transform:translateY(-2px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
+.lp a.btn.btn-p,.lp a.btn.btn-p:link,.lp a.btn.btn-p:visited,.lp a.btn.btn-p:hover,.lp a.btn.btn-p:focus,.lp a.btn.btn-p:active{color:#FFFFFF}
+.lp a.btn.btn-g,.lp a.btn.btn-g:link,.lp a.btn.btn-g:visited,.lp a.btn.btn-g:hover,.lp a.btn.btn-g:focus,.lp a.btn.btn-g:active{color:#FFFFFF}
+.lp a.btn.btn-l,.lp a.btn.btn-l:link,.lp a.btn.btn-l:visited,.lp a.btn.btn-l:hover,.lp a.btn.btn-l:focus,.lp a.btn.btn-l:active{color:#1A2E05}
+.btn-l{background:var(--lime);color:#1A2E05;box-shadow:0 12px 30px -12px rgba(198,243,107,.7)}
+.btn-l:hover{transform:translateY(-2px) scale(1.02)}
+
+/* nav */
+.nav{position:-webkit-sticky;position:sticky;top:0;z-index:50;-webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);background:rgba(18,13,36,.94);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{height:72px;display:flex;align-items:center;gap:36px}
+.nl{position:relative;font-size:14.5px;font-weight:500;color:#D0CBE6;padding:6px 0;transition:color .2s}
+.nl:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;border-radius:2px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.lp a.nl{color:#D0CBE6}
+.lp a.nl:hover,.lp a.nl:focus-visible{color:#FFFFFF}
+.nl:hover{color:#FFFFFF}.nl:hover:after{transform:scaleX(1)}
+
+/* hero */
+.hero{position:relative;padding:72px 0 104px;background:var(--night);color:#FFFFFF;overflow:clip}
+.hero .mock,.hero .float,.hero .toast{color:var(--ink)}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 70% 40%,#000 25%,transparent 75%);mask-image:radial-gradient(ellipse 60% 70% at 70% 40%,#000 25%,transparent 75%)}
+.glow{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.rise{opacity:0;animation:lp-rise .8s cubic-bezier(.2,.8,.2,1) forwards}
+.marker{position:relative;white-space:nowrap;color:var(--bright)}
+.marker:after{content:"";position:absolute;left:-4px;right:-4px;bottom:2px;height:7px;border-radius:6px;background:var(--lime);z-index:-1;transform:scaleX(0);transform-origin:left;animation:lp-mark .9s .9s cubic-bezier(.2,.8,.2,1) forwards}
+.chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px 0 12px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:13px;font-weight:600;color:#FFFFFF;transition:transform .2s,background .2s}
+.chip:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.live{width:8px;height:8px;border-radius:50%;background:#12B76A;box-shadow:0 0 0 0 rgba(18,183,106,.55);animation:lp-ping 1.6s infinite}
+.trust{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#D0CBE6;cursor:default}
+.trust i{width:20px;height:20px;border-radius:50%;background:#C6F36B;color:#1A2E05;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.trust:hover i{transform:scale(1.15) rotate(-12deg)}
+
+/* hero mock */
+.mock{position:relative;background:#FFFFFF;border-radius:20px;box-shadow:0 0 0 1px rgba(16,24,40,.08),0 40px 80px -30px rgba(22,78,99,.45);overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.mock:hover{transform:translateY(-4px) rotate(-.3deg)}
+.mbar{height:42px;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid var(--line);background:#F7F6FB}
+.mtab{height:38px;display:flex;align-items:center;gap:6px;padding:0 9px;font-size:12px;font-weight:500;color:var(--ink2)}
+.mtab b{font-size:10px;padding:1px 6px;border-radius:999px;background:#EAE8F0;color:#475467}
+.mtab.on{color:var(--deep);font-weight:700;box-shadow:inset 0 -3px 0 var(--p)}
+.mtab.on b{background:var(--p);color:#FFFFFF}
+.mrow{display:flex;align-items:center;gap:9px;height:38px;padding:0 12px;border-top:1px solid #EAE8F0;font-size:12px;font-weight:600}
+.mrow .id{margin-left:auto;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:500;color:var(--mut)}
+.seq{opacity:0;animation:lp-seq 7s infinite}
+.float{animation:lp-float 6s ease-in-out infinite}
+.toast{animation:lp-toast 8s 1.5s cubic-bezier(.2,.8,.2,1) infinite;opacity:0}
+.sw{position:relative;height:38px;border-radius:9px;box-shadow:inset 0 0 0 1px rgba(16,24,40,.1);transition:transform .25s cubic-bezier(.2,.8,.2,1);cursor:pointer}
+.sw:hover{transform:translateY(-4px) scale(1.06)}
+.sw span{position:absolute;left:50%;bottom:calc(100% + 6px);transform:translate(-50%,4px);opacity:0;pointer-events:none;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:600;color:#FFFFFF;background:#101828;border-radius:6px;padding:3px 6px;white-space:nowrap;transition:opacity .2s,transform .2s}
+.sw:hover span{opacity:1;transform:translate(-50%,0)}
+
+/* marquee */
+.marq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq-in{display:flex;gap:14px;width:max-content;animation:lp-marq 40s linear infinite}
+.marq:hover .marq-in{animation-play-state:paused}
+.tag{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 12px;border-radius:14px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#EDEAF8;font-size:15px;font-weight:600;white-space:nowrap;transition:transform .2s,box-shadow .2s,background .2s}
+.tag:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.26),0 12px 20px -14px rgba(0,0,0,.7)}
+.tag [title]{box-shadow:0 0 0 1px rgba(255,255,255,.08)!important}
+
+/* cards */
+.card{background:#FFFFFF;border-radius:22px;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.lift:hover{transform:translateY(-6px);box-shadow:0 0 0 1px var(--bright),0 24px 40px -24px rgba(21,94,117,.45)}
+.num{font-size:13px;font-weight:700;color:var(--mut)}
+.mini{height:150px;border-radius:16px;background:#F7F6FB;box-shadow:inset 0 0 0 1px #EAE8F0;overflow:hidden;position:relative}
+.hlline{animation:lp-hl 3.2s ease-in-out infinite}
+.caret{display:inline-block;width:1.5px;height:12px;background:var(--ink);vertical-align:-2px;animation:lp-blink 1s steps(1) infinite}
+.typing{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;animation:lp-type 4s steps(4) infinite}
+.dropper{position:absolute;top:30px;animation:lp-travel 4.8s cubic-bezier(.6,0,.4,1) infinite}
+
+/* tabs showcase */
+.tabs-in{position:absolute;opacity:0;pointer-events:none}
+.tbar{display:inline-flex;gap:4px;padding:5px;border-radius:16px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line)}
+.tbar label{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:12px;font-size:14.5px;font-weight:600;color:var(--ink2);cursor:pointer;transition:background .2s,color .2s}
+.tbar label:hover{background:#F9FAFB;color:var(--ink)}
+.pane{display:none;animation:lp-pane .5s cubic-bezier(.2,.8,.2,1)}
+#tb-st:checked~.tbar-w label[for=tb-st],#tb-ad:checked~.tbar-w label[for=tb-ad],#tb-br:checked~.tbar-w label[for=tb-br],#tb-rp:checked~.tbar-w label[for=tb-rp]{background:var(--night);color:#FFFFFF}
+#tb-st:focus-visible~.tbar-w label[for=tb-st],#tb-ad:focus-visible~.tbar-w label[for=tb-ad],#tb-br:focus-visible~.tbar-w label[for=tb-br],#tb-rp:focus-visible~.tbar-w label[for=tb-rp]{outline:3px solid var(--p);outline-offset:2px}
+#tb-st:checked~.panes .p-st,#tb-ad:checked~.panes .p-ad,#tb-br:checked~.panes .p-br,#tb-rp:checked~.panes .p-rp{display:grid}
+.bul{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.bul span:first-child{width:24px;height:24px;border-radius:8px;background:var(--tint2);color:var(--pd);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stage{position:relative;border-radius:24px;padding:28px;background:radial-gradient(circle at 80% 0%,rgba(14,116,144,.18),rgba(14,116,144,0) 55%),radial-gradient(circle at 0% 100%,rgba(198,243,107,.35),rgba(198,243,107,0) 50%),#EFFAFC;min-height:440px;display:flex;align-items:center;justify-content:center}
+.srow{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #EAE8F0;font-size:13px;font-weight:600;transition:background .2s}
+.srow:hover{background:#ECFEFF}
+.go{margin-left:auto;width:30px;height:30px;border-radius:9px;box-shadow:inset 0 0 0 1px #C9C5D6;color:var(--pd);display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+.srow:hover .go{background:var(--p);color:#FFFFFF;transform:rotate(45deg)}
+
+/* finder */
+.finder{position:relative;border-radius:28px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 40px 80px -40px rgba(22,78,99,.35);padding:40px;overflow:hidden}
+.finder:before{content:"";position:absolute;right:-120px;top:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(103,232,249,.45),rgba(103,232,249,0) 70%)}
+.fin{height:60px;border-radius:16px;border:1.5px solid #8E8A9D;background:#FFFFFF;display:flex;align-items:center;gap:12px;padding:0 18px;transition:border-color .2s,box-shadow .2s}
+.fin:hover{border-color:#475467;box-shadow:0 10px 24px -16px rgba(22,78,99,.45)}
+.fin:focus-within{border-color:var(--p);box-shadow:0 0 0 4px var(--tint2)}
+.fin svg{color:#667085;flex-shrink:0;transition:color .2s,transform .2s}
+.fin:hover svg{color:var(--p);transform:scale(1.08)}
+.fin:focus-within svg{color:var(--p)}
+.lp .fin input:focus-visible{outline:none}
+.fin input{flex-grow:1;border:none;outline:none;font-size:18px;font-weight:500;color:var(--ink);background:transparent;min-width:0}
+.lib{display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:18px;background:#F7F6FB;box-shadow:inset 0 0 0 1px #EAE8F0;transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s,box-shadow .3s}
+.lib:hover{transform:translateY(-4px);background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--bright),0 20px 30px -20px rgba(21,94,117,.45)}
+.lib .open{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--pd);transition:gap .2s}
+.lib:hover .open{gap:10px}
+
+/* steps */
+.step{position:relative;padding:32px;display:flex;flex-direction:column;gap:14px}
+.stepn{width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;background:var(--tint2);color:var(--pd);transition:transform .3s,background .3s,color .3s}
+.step:hover .stepn{transform:rotate(-8deg) scale(1.08);background:var(--p);color:#FFFFFF}
+.dash{position:absolute;top:60px;left:15%;right:15%;height:2px;background-image:linear-gradient(90deg,var(--bright) 50%,transparent 50%);background-size:14px 2px;animation:lp-dash 1s linear infinite}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:600;color:var(--ink);background:#EAE8F0;border-radius:6px;padding:1px 6px}
+
+/* night section */
+.night{background:var(--night);color:#FFFFFF;position:relative;overflow-x:clip}
+.night .soft{color:#D0CBE6}
+.paper{transform:rotate(-5deg) translateY(10px);transition:transform .5s cubic-bezier(.2,.8,.2,1);box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.paper-w:hover .paper{transform:rotate(0) translateY(-6px) scale(1.02)}
+.paper-w:hover .paper2{transform:rotate(7deg) translate(36px,8px)}
+.paper2{transition:transform .5s cubic-bezier(.2,.8,.2,1);transform:rotate(4deg) translate(24px,20px)}
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;width:max-content;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.bad{background:#FEF3F2;color:#B42318}.warn{background:#FFFAEB;color:#B54708}.ok{background:#ECFDF3;color:#067647}.mute{background:#EAE8F0;color:#475467}
+
+/* privacy */
+.priv{background:var(--lime);color:#1A2E05}
+.pv{padding:26px;border-radius:20px;background:rgba(255,255,255,.55);display:flex;flex-direction:column;gap:10px;transition:background .25s,transform .25s}
+.pv:hover{background:#FFFFFF;transform:translateY(-4px)}
+.pv .ic{width:44px;height:44px;border-radius:14px;background:#1A2E05;color:var(--lime);display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pv:hover .ic{transform:rotate(-10deg) scale(1.08)}
+
+/* faq */
+.faq details{border-radius:18px;background:#FFFFFF;box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12);transition:box-shadow .25s}
+.faq details:hover{box-shadow:0 0 0 1px var(--bright)}
+.faq details[open]{box-shadow:0 0 0 2px var(--p)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;font-size:17px;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq .pm{width:32px;height:32px;border-radius:10px;background:var(--tint2);color:var(--pd);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s,color .3s}
+.faq details[open] .pm{transform:rotate(45deg);background:var(--p);color:#FFFFFF}
+.faq p{margin:0;padding:0 24px 22px;font-size:15.5px;line-height:1.6;color:var(--ink2);animation:lp-pane .35s ease}
+
+/* tools */
+.tool{padding:26px;display:flex;flex-direction:column;gap:14px;border-radius:22px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);transition:background .3s,transform .3s,box-shadow .3s}
+.tool:hover{transform:translateY(-6px);background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px var(--c)}
+.tool .go2{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--c);opacity:.9;transition:gap .2s,opacity .2s}
+.tool:hover .go2{gap:10px;opacity:1}
+
+@keyframes lp-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes lp-mark{to{transform:scaleX(1)}}
+@keyframes lp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes lp-toast{0%,8%{opacity:0;transform:translateY(16px) scale(.96)}14%,62%{opacity:1;transform:none}70%,100%{opacity:0;transform:translateY(-8px)}}
+@keyframes lp-ping{0%{box-shadow:0 0 0 0 rgba(18,183,106,.55)}80%,100%{box-shadow:0 0 0 8px rgba(18,183,106,0)}}
+@keyframes lp-blink{50%{opacity:.25}}
+@keyframes lp-marq{to{transform:translateX(-50%)}}
+@keyframes lp-seq{0%{opacity:0;transform:translateX(-8px)}8%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+@keyframes lp-hl{0%,25%{background:transparent}35%,75%{background:rgba(103,232,249,.45)}90%,100%{background:transparent}}
+@keyframes lp-type{0%{width:0}50%,90%{width:4ch}100%{width:0}}
+@keyframes lp-travel{0%,8%{left:6%}25%,33%{left:30%}50%,58%{left:54%}75%,83%{left:78%}100%{left:6%}}
+@keyframes lp-pane{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes lp-dash{to{background-position:14px 0}}
+
+@media (max-width:1024px){
+.lp section{padding-top:88px!important;padding-bottom:88px!important}
+.lp .hero{padding-top:48px!important}
+.r-hero{grid-template-columns:minmax(0,1fr)!important;gap:72px!important}
+.r-hero>div:last-child{max-width:600px;width:100%;justify-self:center}
+.r-h1{font-size:56px!important}
+.lp .h2{font-size:42px!important}
+.r-3{grid-template-columns:minmax(0,1fr)!important}
+.r-3 .dash{display:none}
+.r-4{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.r-1{grid-template-columns:minmax(0,1fr)!important;gap:40px!important}
+.r-stack{flex-direction:column;align-items:flex-start!important;gap:16px!important}
+[data-r=pane]{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+[data-r=sticky]{position:static!important}
+.r-paper{height:auto!important;padding:20px 0 30px}
+.r-navl{display:none!important}
+.tbar-w{justify-content:flex-start!important;margin:0 -32px 32px!important;padding:0 32px 4px;overflow-x:auto}
+.tbar{flex-shrink:0}
+.stage{min-height:0!important}
+.finder{padding:32px!important}
+}
+@media (max-width:640px){
+.wrap{padding:0 16px!important}
+.lp section{padding-top:64px!important;padding-bottom:64px!important}
+.lp .hero{padding-top:32px!important;padding-bottom:96px!important}
+.r-h1{font-size:40px!important;line-height:1.05!important}
+.lp .h2{font-size:32px!important;line-height:1.1!important}
+.lp h3{font-size:24px!important}
+.lead{font-size:16px!important}
+.btn{height:48px;padding:0 18px;font-size:15px}
+.nav .wrap{height:60px;gap:12px}
+.nav .btn{height:40px!important;padding:0 14px!important;font-size:14px!important}
+.r-hero>div:first-child .btn{width:100%}
+.r-site{display:none!important}
+.r-mockb{grid-template-columns:minmax(0,1fr)!important}
+.r-float{left:12px!important;bottom:-72px!important;width:220px!important}
+.r-toast{display:none!important}
+.r-4,.r-2{grid-template-columns:minmax(0,1fr)!important}
+.tbar-w{margin:0 -16px 28px!important;padding:0 16px 4px}
+.tbar label{height:38px;padding:0 13px;font-size:13.5px}
+.stage{padding:16px!important}
+.paper2{display:none}
+.paper{transform:none!important}
+.step{padding:24px!important}
+.faq summary{padding:18px;font-size:15.5px}
+.faq p{padding:0 18px 18px}
+.marq-in .tag{height:44px;font-size:14px}
+.finder{padding:22px 16px!important;border-radius:22px!important}
+.fin{height:54px}
+.fin input{font-size:16px}
+}
+@media (min-width:641px) and (max-width:1024px){
+.r-3>.card{display:grid!important;grid-template-columns:minmax(0,300px) minmax(0,1fr);column-gap:32px;row-gap:8px;align-content:center}
+.r-3>.card>:first-child{grid-row:1/span 3;align-self:center}
+.r-3>.step{grid-template-columns:56px minmax(0,1fr)!important;column-gap:22px}
+.r-3>.step>:first-child{grid-row:1/span 2;align-self:start}
+}
+@media (prefers-reduced-motion:reduce){.lp *,.lp *:before,.lp *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition:none!important}.rise,.seq,.toast{opacity:1}}
+</style>
+</helmet>
+<div class="lp">
+<header class="nav"><div class="wrap"><a href="#top" aria-label="Rivaline home" style="display: flex"><dc-import name="Logo" brand="rivaline" theme="dark" size="30" word="true" hint-size="140px,30px"></dc-import></a>
+<nav class="r-navl" aria-label="Main" style="display: flex; gap: 28px; margin-left: 20px"><a class="nl" href="#features">Features</a><a class="nl" href="#finder">Ad library finder</a><a class="nl" href="#how">How it works</a><a class="nl" href="#privacy">Privacy</a><a class="nl" href="#faq">FAQ</a></nav>
+<span style="flex-grow: 1"></span><a class="btn btn-p" style="height: 42px; padding: 0 18px; font-size: 14.5px; border-radius: 12px" href="https://chromewebstore.google.com/">Add to Chrome<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></header>
+
+<section id="top" class="hero">
+<span class="glow" style="width: 560px; height: 560px; right: -120px; top: -160px; background: rgba(14,116,144,0.55)"></span>
+<span class="glow" style="width: 400px; height: 400px; left: -140px; bottom: -120px; background: rgba(198, 243, 107, 0.22)"></span>
+<div class="wrap r-hero" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 580px; gap: 48px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 26px">
+<span class="rise chip" style="align-self: flex-start; animation-delay: .05s"><span class="live"></span>Free Chrome extension</span>
+<h1 class="disp rise r-h1" style="margin: 0; color: #FFFFFF; font-size: 64px; line-height: 1.02; letter-spacing: -0.045em; font-weight: 800; animation-delay: .15s; position: relative; z-index: 0">See any rival's stack, ads and brand in <span class="marker">one panel.</span></h1>
+<p class="lead rise" style="max-width: 540px; color: #D0CBE6; animation-delay: .3s">Rivaline shows the analytics, ad pixels, CRM and chat a site runs, opens its ads in four ad libraries and pulls its colors and fonts. Right in Chrome's side panel.</p>
+<div class="rise" style="display: flex; gap: 12px; flex-wrap: wrap; animation-delay: .45s"><a class="btn btn-p" href="https://chromewebstore.google.com/"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#FFFFFF" opacity=".25"></circle><circle cx="12" cy="12" r="4.2" fill="#FFFFFF"></circle><path d="M12 7.8h9.2M8.4 14.1L3.8 6.1M15.6 14.1l-4.6 8" stroke="#FFFFFF" stroke-width="2"></path></svg>Add to Chrome, it's free<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a class="btn btn-g" href="#finder">Try the ad library finder</a></div>
+<div class="rise" style="display: flex; gap: 10px 24px; flex-wrap: wrap; animation-delay: .6s">
+<span class="trust"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>No account</span>
+<span class="trust"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Nothing leaves your browser</span>
+<span class="trust"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Open source</span>
+</div>
+</div>
+<div class="rise" style="position: relative; animation-delay: .35s">
+<div class="mock">
+<div class="mbar"><span style="width: 11px; height: 11px; border-radius: 50%; background: #FF5F57"></span><span style="width: 11px; height: 11px; border-radius: 50%; background: #FEBC2E"></span><span style="width: 11px; height: 11px; border-radius: 50%; background: #28C840"></span><span class="mono" style="margin-left: 12px; height: 26px; padding: 0 12px; border-radius: 999px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--line); font-size: 11.5px; color: var(--ink2); display: flex; align-items: center; flex-grow: 1">example.com</span></div>
+<div class="r-mockb" style="display: grid; grid-template-columns: 200px minmax(0, 1fr); height: 392px">
+<div class="r-site" style="background: #F6F1EA; padding: 18px; display: flex; flex-direction: column; gap: 12px; border-right: 1px solid var(--line); overflow: hidden">
+<span style="display: flex; align-items: center; gap: 6px; font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; color: #1E2B24"><span style="width: 14px; height: 14px; border-radius: 50%; background: #2F5D46; box-shadow: inset -4px -4px 0 #EBC56B"></span>kova</span>
+<span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; line-height: 1.08; color: #1E2B24">Skincare that keeps it simple.</span>
+<span style="align-self: flex-start; height: 30px; padding: 0 14px; border-radius: 999px; background: #2F5D46; color: #F6F1EA; font-family: 'DM Sans', Arial, sans-serif; font-size: 11.5px; font-weight: 600; display: flex; align-items: center">Shop the routine</span>
+<span style="flex-grow: 1; position: relative; border-radius: 14px; background: #DCE5D8; overflow: hidden"><span style="position: absolute; right: 16px; top: 14px; width: 44px; height: 44px; border-radius: 50%; background: #EBC56B"></span><span style="position: absolute; left: 34px; bottom: 0; width: 46px; height: 110px; border-radius: 14px 14px 0 0; background: #2F5D46"></span><span style="position: absolute; left: 90px; bottom: 0; width: 40px; height: 74px; border-radius: 20px 20px 0 0; background: #F6F1EA"></span></span>
+</div>
+<div style="display: flex; flex-direction: column; background: #EFEDF5; overflow: hidden">
+<div style="background: #FFFFFF; border-bottom: 1px solid var(--line)"><div style="height: 40px; display: flex; align-items: center; padding: 0 12px"><dc-import name="Logo" brand="rivaline" theme="light" size="18" word="true" hint-size="80px,18px"></dc-import></div><div style="display: flex; padding: 0 4px"><span class="mtab on">Stack <b>13</b></span><span class="mtab">Ads <b>4</b></span><span class="mtab">Brand <b>5</b></span></div></div>
+<div style="padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div style="background: linear-gradient(135deg, #0E7490, #155E75); border-radius: 12px; padding: 11px 12px; color: #FFFFFF; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 10.5px; font-weight: 600">example.com</span><span class="disp" style="font-size: 15px; font-weight: 800">13 tools in 8 categories</span></div>
+<div style="background: #FFFFFF; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); overflow: hidden">
+<div class="mrow seq" style="border-top: none; animation-delay: .2s"><dc-import name="Mark" brand="meta" size="22" hint-size="22px,22px"></dc-import>Meta Pixel<span class="id">4182736509…</span></div>
+<div class="mrow seq" style="animation-delay: .45s"><dc-import name="Mark" brand="tiktok" size="22" hint-size="22px,22px"></dc-import>TikTok Pixel<span class="id">C9H3KQ7R…</span></div>
+<div class="mrow seq" style="animation-delay: .7s"><dc-import name="Mark" brand="googleads" size="22" hint-size="22px,22px"></dc-import>Google Ads<span class="id">AW-11284956</span></div>
+<div class="mrow seq" style="animation-delay: .95s"><dc-import name="Mark" brand="googleanalytics" size="22" hint-size="22px,22px"></dc-import>Google Analytics 4<span class="id">G-8XK2LM4Q…</span></div>
+<div class="mrow seq" style="animation-delay: 1.2s"><dc-import name="Mark" brand="googletagmanager" size="22" hint-size="22px,22px"></dc-import>Tag Manager<span class="id">GTM-N4KV8R</span></div>
+<div class="mrow seq" style="animation-delay: 1.45s"><dc-import name="Mark" brand="intercom" size="22" hint-size="22px,22px"></dc-import>Intercom<span class="id">chat</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="float r-float" style="position: absolute; left: -64px; bottom: -52px; width: 270px; background: #FFFFFF; border-radius: 18px; padding: 14px; box-shadow: 0 0 0 1px rgba(16,24,40,.08), 0 30px 50px -20px rgba(22,78,99,.45); display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut)">Brand kit</span><span style="font-size: 11px; font-weight: 600; color: var(--pd)">Hover to see HEX</span></div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px"><span class="sw" style="background: #2F5D46"><span>#2F5D46</span></span><span class="sw" style="background: #1E2B24"><span>#1E2B24</span></span><span class="sw" style="background: #F6F1EA"><span>#F6F1EA</span></span><span class="sw" style="background: #EBC56B"><span>#EBC56B</span></span><span class="sw" style="background: #DCE5D8"><span>#DCE5D8</span></span></div>
+<span style="font-size: 12px; color: var(--ink2)"><b style="color: var(--ink)">Fraunces</b> headings, <b style="color: var(--ink)">DM Sans</b> body</span>
+</div>
+<div class="toast r-toast" style="position: absolute; right: -36px; top: -34px; width: 260px; background: #FFFFFF; border-radius: 16px; padding: 14px; box-shadow: 0 0 0 1px #FEDF89, 0 24px 40px -18px rgba(0,0,0,.55); display: flex; gap: 10px">
+<span style="width: 30px; height: 30px; border-radius: 9px; background: #FFFAEB; color: #B54708; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5h-19z"></path><path d="M12 10v4"></path><path d="M12 17.2h.01"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #B54708">Not found</span><span style="font-size: 13.5px; font-weight: 600; line-height: 1.35">No server-side tracking on this site</span></span>
+</div>
+</div>
+</div>
+<div class="wrap" style="position: relative; margin-top: 110px; display: flex; flex-direction: column; gap: 18px; align-items: center">
+<span style="font-size: 13px; font-weight: 600; color: #B9B4D0">Recognizes the tools marketers use</span>
+<div class="marq" style="width: 100%"><div class="marq-in">
+<sc-for list="{{marq}}" as="m" hint-placeholder-count="20"><span class="tag"><dc-import name="Mark" brand="{{m.b}}" size="30" hint-size="30px,30px"></dc-import>{{m.n}}</span></sc-for>
+</div></div>
+</div>
+</section>
+
+<section id="problem" style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+<div class="r-stack" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px"><div style="display: flex; flex-direction: column; gap: 16px; max-width: 640px"><span class="eyebrow">The problem</span><h2 class="disp h2">Researching a rival takes ten tabs and view-source.</h2></div><p class="lead" style="max-width: 360px">The answers are already on the page. They are just scattered.</p></div>
+<div class="r-3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<div class="card lift" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" style="padding: 16px 14px; display: flex; flex-direction: column; gap: 5px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #475467">
+<span>&lt;script src="/cdn/shop/theme.js"&gt;</span>
+<span>&lt;script src="/cdn/shop/cart.js"&gt;</span>
+<span class="hlline" style="border-radius: 4px; padding: 1px 2px; margin: 0 -2px; color: #101828">&lt;script src="connect.facebook.net/<b style="color: #155E75">fbevents.js</b>"&gt;</span>
+<span>&lt;script src="/cdn/shop/vendor.js"&gt;</span>
+<span>&lt;script src="/cdn/shop/reviews.js"&gt;</span>
+<span>&lt;script src="/cdn/shop/quiz.js"&gt;</span>
+</div>
+<span class="num">01</span><h3 class="disp" style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">The stack hides in source code</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Finding which pixels, CRM and chat a site uses means reading its scripts line by line.</p>
+</div>
+<div class="card lift" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini" style="padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-content: center">
+<span style="height: 50px; border-radius: 10px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #DCD9E6; display: flex; align-items: center; gap: 8px; padding: 0 10px; font-size: 12px; font-weight: 600"><dc-import name="Mark" brand="meta" size="20" hint-size="20px,20px"></dc-import><span class="typing">Kova</span><span class="caret"></span></span>
+<span style="height: 50px; border-radius: 10px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #DCD9E6; display: flex; align-items: center; gap: 8px; padding: 0 10px; font-size: 12px; font-weight: 600"><dc-import name="Mark" brand="google" size="20" hint-size="20px,20px"></dc-import><span class="typing" style="animation-delay: .5s">Kova</span><span class="caret"></span></span>
+<span style="height: 50px; border-radius: 10px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #DCD9E6; display: flex; align-items: center; gap: 8px; padding: 0 10px; font-size: 12px; font-weight: 600"><dc-import name="Mark" brand="tiktok" size="20" hint-size="20px,20px"></dc-import><span class="typing" style="animation-delay: 1s">Kova</span><span class="caret"></span></span>
+<span style="height: 50px; border-radius: 10px; background: #FFFFFF; box-shadow: inset 0 0 0 1px #DCD9E6; display: flex; align-items: center; gap: 8px; padding: 0 10px; font-size: 12px; font-weight: 600"><dc-import name="Mark" brand="library" size="20" hint-size="20px,20px"></dc-import><span class="typing" style="animation-delay: 1.5s">Kova</span><span class="caret"></span></span>
+</div>
+<span class="num">02</span><h3 class="disp" style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Four ad libraries, four searches</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Meta, Google, TikTok and LinkedIn each want the brand typed again, every time.</p>
+</div>
+<div class="card lift" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="mini">
+<div style="position: absolute; left: 6%; right: 6%; top: 74px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px"><span style="height: 46px; border-radius: 10px; background: #2F5D46"></span><span style="height: 46px; border-radius: 10px; background: #EBC56B"></span><span style="height: 46px; border-radius: 10px; background: #1E2B24"></span><span style="height: 46px; border-radius: 10px; background: #DCE5D8; box-shadow: inset 0 0 0 1px #C9D3C5"></span></div>
+<span class="dropper" aria-hidden="true" style="width: 34px; height: 34px; border-radius: 10px; background: #FFFFFF; box-shadow: 0 6px 14px -6px rgba(16,24,40,.4); display: flex; align-items: center; justify-content: center; color: #101828"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5"></path><path d="M17 7l-9.5 9.5L5 19l2.5-2.5"></path><path d="M12 6l6 6"></path></svg></span>
+</div>
+<span class="num">03</span><h3 class="disp" style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.02em">Brand colors by eyedropper</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Inspect, copy, paste, repeat. For every color, every font and the button style.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="features" style="padding: 120px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center"><span class="eyebrow">Inside the panel</span><h2 class="disp h2" style="max-width: 900px">Three tabs. A full picture of any site.</h2></div>
+<div>
+<input class="tabs-in" type="radio" name="tabs" id="tb-st" checked><input class="tabs-in" type="radio" name="tabs" id="tb-ad"><input class="tabs-in" type="radio" name="tabs" id="tb-br"><input class="tabs-in" type="radio" name="tabs" id="tb-rp">
+<div class="tbar-w" style="display: flex; justify-content: center; margin-bottom: 40px"><div class="tbar"><label for="tb-st">Stack</label><label for="tb-ad">Ads</label><label for="tb-br">Brand</label><label for="tb-rp">Report</label></div></div>
+<div class="panes">
+<div class="pane p-st" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Stack</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">Every tool, grouped by what it does.</h3><p class="lead" style="font-size: 16.5px">Analytics, ad pixels, tag managers, email, chat, reviews, payments and the platform underneath, each with the ID it uses.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>IDs like GTM-N4KV8R and G-8XK2LM4QPZ, ready to copy</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Evidence for each match: script, cookie or global</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Gaps listed too: server-side tracking, consent, CRM</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 440px; background: #FFFFFF; border-radius: 18px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(22,78,99,.4); overflow: hidden">
+<div style="padding: 12px 14px 8px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut)">Advertising</div>
+<div class="srow"><dc-import name="Mark" brand="meta" size="28" hint-size="28px,28px"></dc-import><span style="display: flex; flex-direction: column"><span>Meta Pixel</span><span class="mono" style="font-size: 11px; font-weight: 500; color: var(--mut)">418273650912345</span></span><span class="pill mute" style="margin-left: auto">Script</span></div>
+<div class="srow"><dc-import name="Mark" brand="pinterest" size="28" hint-size="28px,28px"></dc-import><span style="display: flex; flex-direction: column"><span>Pinterest Tag</span><span class="mono" style="font-size: 11px; font-weight: 500; color: var(--mut)">2612345678901</span></span><span class="pill mute" style="margin-left: auto">Cookie</span></div>
+<div style="padding: 12px 14px 8px; border-top: 1px solid #EAE8F0; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mut)">Email and chat</div>
+<div class="srow"><dc-import name="Mark" brand="mailchimp" size="28" hint-size="28px,28px"></dc-import><span>Mailchimp</span><span class="pill mute" style="margin-left: auto">Global</span></div>
+<div class="srow"><dc-import name="Mark" brand="intercom" size="28" hint-size="28px,28px"></dc-import><span>Intercom</span><span class="pill mute" style="margin-left: auto">Global</span></div>
+<div style="margin: 10px; padding: 12px; border-radius: 12px; background: #FFFAEB; box-shadow: inset 0 0 0 1px #FEDF89; font-size: 13px; color: #B54708; display: flex; gap: 8px; align-items: flex-start"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5h-19z"></path><path d="M12 10v4"></path><path d="M12 17.2h.01"></path></svg><span><b>Not found:</b> server-side tracking, consent banner, CRM</span></div>
+</div></div>
+</div>
+<div class="pane p-ad" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Ads</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">Four ad libraries, already searched.</h3><p class="lead" style="font-size: 16.5px">Rivaline fills in the brand name and the domain, so Meta, Google, TikTok and LinkedIn open on the right results.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Open all four in one click</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Pick your default country once in Settings</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>See which channels have a pixel on the site</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 440px; background: #FFFFFF; border-radius: 18px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(22,78,99,.4); overflow: hidden">
+<div class="srow" style="border-top: none"><dc-import name="Mark" brand="meta" size="28" hint-size="28px,28px"></dc-import><span style="display: flex; flex-direction: column"><span>Meta Ad Library</span><span style="font-size: 11.5px; font-weight: 500; color: var(--mut)">Searches "Kova"</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span></div>
+<div class="srow"><dc-import name="Mark" brand="google" size="28" hint-size="28px,28px"></dc-import><span style="display: flex; flex-direction: column"><span>Google Ads Transparency</span><span style="font-size: 11.5px; font-weight: 500; color: var(--mut)">Searches example.com</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span></div>
+<div class="srow"><dc-import name="Mark" brand="tiktok" size="28" hint-size="28px,28px"></dc-import><span style="display: flex; flex-direction: column"><span>TikTok Ad Library</span><span style="font-size: 11.5px; font-weight: 500; color: var(--mut)">Searches "Kova"</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span></div>
+<div class="srow"><dc-import name="Mark" brand="library" size="28" hint-size="28px,28px"></dc-import><span style="display: flex; flex-direction: column"><span>LinkedIn Ad Library</span><span style="font-size: 11.5px; font-weight: 500; color: var(--mut)">Searches "Kova"</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span></div>
+<div style="margin: 10px; height: 44px; border-radius: 12px; background: var(--p); color: #FFFFFF; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">Open all 4 in new tabs</div>
+</div></div>
+</div>
+<div class="pane p-br" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Brand</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">The brand kit, without the eyedropper.</h3><p class="lead" style="font-size: 16.5px">Logo, colors with their roles, font names and the main button style. Export as CSS variables, a PNG palette or JSON.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Click any color to copy its HEX</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Font names only, never the font files</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Ready for a pitch deck or a mockup</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 440px; background: #FFFFFF; border-radius: 18px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(22,78,99,.4); padding: 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px"><span class="sw" style="height: 60px; background: #2F5D46"><span>#2F5D46</span></span><span class="sw" style="height: 60px; background: #1E2B24"><span>#1E2B24</span></span><span class="sw" style="height: 60px; background: #F6F1EA"><span>#F6F1EA</span></span><span class="sw" style="height: 60px; background: #EBC56B"><span>#EBC56B</span></span><span class="sw" style="height: 60px; background: #DCE5D8"><span>#DCE5D8</span></span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-top: 1px solid #EAE8F0; font-size: 13.5px"><span style="color: var(--mut)">Headings</span><b>Fraunces 600</b></div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-top: 1px solid #EAE8F0; font-size: 13.5px"><span style="color: var(--mut)">Body</span><b>DM Sans 400</b></div>
+<pre class="mono" style="margin: 0; padding: 12px 14px; border-radius: 12px; background: #F7F6FB; box-shadow: inset 0 0 0 1px var(--line); font-size: 11.5px; line-height: 1.65; color: var(--ink2)">:root {
+  <b style="font-weight: 500; color: #155E75">--kova-primary</b>: #2F5D46;
+  <b style="font-weight: 500; color: #155E75">--kova-font-heading</b>: "Fraunces";
+}</pre>
+</div></div>
+</div>
+<div class="pane p-rp" data-r="pane" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><span class="eyebrow">Report</span><h3 class="disp" style="margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800">One PDF for the next meeting.</h3><p class="lead" style="font-size: 16.5px">Stack, gaps, ad library links and the brand kit on one A4 page, built in your browser.</p>
+<div style="display: flex; flex-direction: column; gap: 12px"><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Ready for a sales call or a client pitch</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Selectable text and working links</span></div><div class="bul"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Made on your computer, sent nowhere</span></div></div></div>
+<div class="stage"><div style="width: 100%; max-width: 360px; background: #FFFFFF; border-radius: 14px; box-shadow: 0 0 0 1px var(--line), 0 30px 50px -30px rgba(22,78,99,.4); padding: 22px; display: flex; flex-direction: column; gap: 12px; transform: rotate(-2deg)">
+<div style="display: flex; justify-content: space-between; align-items: center"><dc-import name="Logo" brand="rivaline" theme="light" size="20" word="true" hint-size="92px,20px"></dc-import><span style="font-size: 10px; color: var(--mut)">Nov 7, 2026</span></div>
+<div><span style="font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #155E75">Competitor report</span><div class="disp" style="font-size: 20px; font-weight: 800">example.com</div></div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px"><div style="background: #F7F7FB; border-radius: 8px; padding: 8px"><div class="disp" style="font-size: 16px; font-weight: 800">13</div><div style="font-size: 9.5px; color: var(--ink2)">tools</div></div><div style="background: #F7F7FB; border-radius: 8px; padding: 8px"><div class="disp" style="font-size: 16px; font-weight: 800">8</div><div style="font-size: 9.5px; color: var(--ink2)">categories</div></div><div style="background: #F7F7FB; border-radius: 8px; padding: 8px"><div class="disp" style="font-size: 16px; font-weight: 800">4</div><div style="font-size: 9.5px; color: var(--ink2)">ad pixels</div></div><div style="background: #FFFAEB; border-radius: 8px; padding: 8px"><div class="disp" style="font-size: 16px; font-weight: 800; color: #B54708">3</div><div style="font-size: 9.5px; color: #B54708; display: flex; align-items: center; gap: 3px"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5h-19z"></path><path d="M12 10v4"></path><path d="M12 17.2h.01"></path></svg>gaps</div></div></div>
+<div style="display: grid; grid-template-columns: 52px 1fr; gap: 8px; font-size: 11px; line-height: 1.45; padding-top: 8px; border-top: 1px solid #EAE8F0"><span class="pill bad" style="height: 18px; font-size: 10px">High</span><span><b>No server-side tracking.</b> All 4 pixels send from the browser.</span><span class="pill bad" style="height: 18px; font-size: 10px">High</span><span><b>No consent banner.</b> Pixels load before any choice.</span></div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="finder" style="padding: 112px 0; background: #FFFFFF">
+<div class="wrap">
+<div class="finder" style="display: flex; flex-direction: column; gap: 28px">
+<div class="r-stack" style="position: relative; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px"><div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px"><span class="eyebrow">Free tool, no install</span><h2 class="disp h2" style="font-size: 46px">Ad library finder</h2><p class="lead" style="font-size: 17px">Type a brand or a domain. Four ad library searches are ready to open. It runs on this page and sends nothing anywhere.</p></div></div>
+<label class="fin" style="position: relative"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.2-4.2"></path></svg><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Brand or domain</span><input type="text" value="{{q}}" onChange="{{onQ}}" placeholder="example.com or a brand name" autocomplete="off" spellcheck="false"><span class="pill mute" style="flex-shrink: 0"><span>Brand: {{brand}}</span></span></label>
+<div class="r-4" style="position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px">
+<sc-for list="{{libs}}" as="l" hint-placeholder-count="4">
+<a class="lib" href="{{l.href}}" target="_blank" rel="noopener"><dc-import name="Mark" brand="{{l.mark}}" size="40" hint-size="40px,40px"></dc-import><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; font-weight: 700">{{l.name}}</span><span style="font-size: 13.5px; color: var(--ink2)">{{l.by}}</span></span><span class="open">Open search<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span></a>
+</sc-for>
+</div>
+<div class="r-stack" style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 24px; border-top: 1px solid #EAE8F0"><span style="font-size: 15px; color: var(--ink2)">Want the pixels, brand kit and a PDF too? The extension does it from any site.</span><a class="btn btn-p" style="height: 46px; font-size: 15px" href="https://chromewebstore.google.com/">Add to Chrome<svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+</div>
+</div>
+</section>
+
+<section id="how" style="padding: 120px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow">How it works</span><h2 class="disp h2">Three steps, no setup.</h2></div>
+<div class="r-3" style="position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<span class="dash" aria-hidden="true"></span>
+<div class="card step"><span class="stepn disp">1</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">Add Rivaline to Chrome</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Free from the Chrome Web Store. No account to create.</p></div></div>
+<div class="card step"><span class="stepn disp">2</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">Open a site, click the icon</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">The side panel opens next to the page. Or press <span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">R</span></p></div></div>
+<div class="card step"><span class="stepn disp">3</span><div style="display: flex; flex-direction: column; gap: 8px"><h3 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">Download the report</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2)">Stack, gaps, ad links and brand kit in one PDF.</p></div></div>
+</div>
+</div>
+</section>
+
+<section id="report" class="night" style="padding: 120px 0">
+<span class="glow" style="width: 600px; height: 600px; right: -200px; top: -200px; background: rgba(14,116,144,0.5)"></span>
+<span class="glow" style="width: 400px; height: 400px; left: 30%; bottom: -260px; background: rgba(198, 243, 107, 0.18)"></span>
+<div class="wrap r-1" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 72px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 22px">
+<span class="eyebrow" style="color: #C6F36B">Competitor report</span>
+<h2 class="disp h2" style="font-size: 50px">Your rival has it and you don't? <span style="color: #C6F36B">Get it set up</span> by the person who built Rivaline.</h2>
+<p class="lead soft" style="max-width: 560px">One click turns any site into a report: stack, gaps, ad libraries and brand kit. Share it with your team, or send it to me. I set up analytics, server-side tracking, consent and ad pixels for growing brands.</p>
+<div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap"><a class="btn btn-l" href="https://shamistanisayev.com/?utm_source=rivaline&amp;utm_medium=landing&amp;utm_campaign=audit_cta">Book an audit<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><span style="font-size: 14px; color: #FFFFFF">From <u>Shamistan Isayev</u></span></div>
+</div>
+<div class="paper-w r-paper" style="position: relative; height: 480px; display: flex; align-items: center; justify-content: center">
+<div class="paper2" style="position: absolute; width: 400px; height: 440px; border-radius: 14px; background: #2A2145; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"></div>
+<div class="paper" style="position: relative; border-radius: 14px"><div style="width: 400px; max-width: 100%; background: #FFFFFF; border-radius: 14px; padding: 26px; color: #101828; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><dc-import name="Logo" brand="rivaline" theme="light" size="24" word="true" hint-size="110px,24px"></dc-import><span style="font-size: 10.5px; color: #667085">Nov 7, 2026</span></div>
+<div><span style="font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #155E75">Competitor report</span><div class="disp" style="font-size: 24px; font-weight: 800">example.com</div></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px"><div style="background: #F7F7FB; border-radius: 10px; padding: 10px 12px"><div class="disp" style="font-size: 22px; font-weight: 800">13</div><div style="font-size: 11px; color: #475467; font-weight: 600">tools in 8 categories</div></div><div style="background: #FFFAEB; border-radius: 10px; padding: 10px 12px"><div class="disp" style="font-size: 22px; font-weight: 800; color: #B54708">3</div><div style="font-size: 11px; color: #B54708; font-weight: 600; display: flex; align-items: center; gap: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5h-19z"></path><path d="M12 10v4"></path><path d="M12 17.2h.01"></path></svg>gaps</div></div></div>
+<div><div style="display: grid; grid-template-columns: 64px 1fr; gap: 10px; font-size: 12px; line-height: 1.45; padding: 8px 0; border-top: 1px solid #EAE8F0"><span class="pill bad" style="height: 20px; font-size: 10.5px">High</span><span><b>No server-side tracking.</b> All 4 ad pixels send from the browser.</span></div><div style="display: grid; grid-template-columns: 64px 1fr; gap: 10px; font-size: 12px; line-height: 1.45; padding: 8px 0; border-top: 1px solid #EAE8F0"><span class="pill bad" style="height: 20px; font-size: 10.5px">High</span><span><b>No consent banner.</b> Pixels load before any choice.</span></div><div style="display: grid; grid-template-columns: 64px 1fr; gap: 10px; font-size: 12px; line-height: 1.45; padding: 8px 0; border-top: 1px solid #EAE8F0"><span class="pill warn" style="height: 20px; font-size: 10.5px">Medium</span><span><b>No CRM on the site.</b> Leads stay in separate tools.</span></div></div>
+<div style="display: flex; gap: 5px"><span style="flex: 1; height: 22px; border-radius: 5px; background: #2F5D46"></span><span style="flex: 1; height: 22px; border-radius: 5px; background: #1E2B24"></span><span style="flex: 1; height: 22px; border-radius: 5px; background: #F6F1EA; box-shadow: inset 0 0 0 1px #EAE8F0"></span><span style="flex: 1; height: 22px; border-radius: 5px; background: #EBC56B"></span><span style="flex: 1; height: 22px; border-radius: 5px; background: #DCE5D8"></span></div>
+</div></div>
+</div>
+</div>
+</section>
+
+<section id="privacy" class="priv" style="padding: 100px 0"><div class="wrap r-1" style="display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #1A2E05">Privacy</span><h2 class="disp h2" style="font-size: 48px">Your research stays in your browser.</h2></div>
+<div class="r-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px">
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"></rect><rect x="3" y="13" width="18" height="7" rx="2"></rect><path d="M3 3l18 18"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">No server</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">All analysis runs inside Chrome. Rivaline makes no requests of its own.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">Minimal permissions</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">Side panel, active tab and local storage. No access to all your sites.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><path d="M3 3l18 18"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">No tracking inside</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">The extension doesn't track you. Results disappear when you close the tab.</span></div>
+<div class="pv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5"></path><path d="M16 7l5 5-5 5"></path></svg></span><span class="disp" style="font-size: 18px; font-weight: 800">Open source</span><span style="font-size: 14.5px; line-height: 1.55; color: #2B4007">Read the code and check every claim on this page for yourself.</span></div>
+</div>
+</div></section>
+
+<section id="faq" style="padding: 120px 0"><div class="wrap r-1" style="display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 56px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px; position: sticky; top: 100px" data-r="sticky"><span class="eyebrow">FAQ</span><h2 class="disp h2" style="font-size: 48px">Questions</h2><p class="lead" style="font-size: 16px">Something else? <a href="https://shamistanisayev.com/?utm_source=rivaline&amp;utm_medium=landing&amp;utm_campaign=faq" style="color: var(--pi); font-weight: 700; border-bottom: 2px solid var(--lime)">Ask me directly</a></p></div>
+<div class="faq" style="display: flex; flex-direction: column; gap: 12px">
+<details open><summary>Is Rivaline really free?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Yes. There is no paid plan, no account and no usage limit.</p></details>
+<details><summary>Does it send any data anywhere?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>No. Rivaline reads the page in your browser and keeps the result in memory until you close the tab. Only your settings are saved, and only on your computer.</p></details>
+<details><summary>How does it recognize tools?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>It matches script addresses, cookie names, page globals and meta tags against its own list of marketing tools. Every match shows the evidence it found.</p></details>
+<details><summary>Can it show a competitor's ad spend?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>No. Ad libraries show which ads are running, not budgets. Rivaline opens those libraries with the search already filled in.</p></details>
+<details><summary>Why do I click the icon again on a new tab?<span class="pm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></summary><p>Rivaline uses Chrome's activeTab permission. It can read a page only after you ask, so it never has access to every site you visit.</p></details>
+</div>
+</div></section>
+
+<section class="night" style="padding: 110px 0 60px"><div class="wrap" style="display: flex; flex-direction: column; gap: 40px; position: relative">
+<div style="display: flex; flex-direction: column; gap: 16px"><span class="eyebrow" style="color: #67E8F9">The Line family</span><h2 class="disp h2" style="font-size: 44px">More free tools from the same family</h2></div>
+<div class="r-4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{family}}" as="f" hint-placeholder-count="4">
+<a class="tool" style="--c: {{f.c}}" href="{{f.href}}" target="_blank" rel="noopener"><dc-import name="Logo" brand="{{f.brand}}" theme="dark" size="30" word="true" hint-size="140px,30px"></dc-import><span style="font-size: 15px; line-height: 1.55; color: #D0CBE6">{{f.desc}}</span><span class="go2"><span>Open {{f.name}}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+</sc-for>
+</div>
+<div style="margin-top: 50px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.1); display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 14px; color: #D0CBE6">
+<dc-import name="Logo" brand="rivaline" theme="dark" size="26" word="true" hint-size="120px,26px"></dc-import>
+<span>Built by <a href="https://shamistanisayev.com/?utm_source=rivaline&amp;utm_medium=landing&amp;utm_campaign=footer" style="color: #FFFFFF; font-weight: 700">Shamistan Isayev</a></span>
+<span style="flex-grow: 1"></span>
+<a class="nl" style="color: #D0CBE6" href="https://getlineapps.com/rivaline/privacy">Privacy policy</a><a class="nl" style="color: #D0CBE6" href="https://github.com/">Source code</a>
+</div>
+</div></section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6587}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { q: 'example.com' };
+}
+renderVals() {
+var self = this;
+var raw = String(this.state.q || '').trim();
+var host = raw.replace(/^https?:\/\//i, '').replace(/^www\./i, '').split('/')[0].toLowerCase();
+var isDomain = host.indexOf('.') > 0 && !/\s/.test(host);
+var first = isDomain ? host.split('.')[0] : raw;
+var brand = first ? first.charAt(0).toUpperCase() + first.slice(1) : '';
+var b = encodeURIComponent(brand);
+var shown = brand || 'type above';
+// Design-stage targets: each tool's design artifact. Production: 'https://getlineapps.com/' + slug (no UTM on internal links).
+var toolLinks = {
+hitline: 'https://claude.ai/code/artifact/6987e0b7-b1f7-489d-88e7-40513ec92dda',
+serpline: 'https://claude.ai/code/artifact/7a3a8959-edd5-49f7-8d98-6ef88a7c8501',
+rivaline: 'https://claude.ai/code/artifact/9b7b1f50-c085-49bd-bba7-acb04636d43d',
+foldline: 'https://claude.ai/code/artifact/e6d03b52-f741-47cb-8f3e-77ad34d24188',
+markline: 'https://claude.ai/code/artifact/411c2906-e052-4723-88bc-f357a1162e8a'
+};
+var M = [
+{ b: 'googleanalytics', n: 'Google Analytics 4' }, { b: 'googletagmanager', n: 'Tag Manager' }, { b: 'googleads', n: 'Google Ads' }, { b: 'meta', n: 'Meta Pixel' }, { b: 'tiktok', n: 'TikTok Pixel' }, { b: 'pinterest', n: 'Pinterest Tag' }, { b: 'snapchat', n: 'Snap Pixel' }, { b: 'hotjar', n: 'Hotjar' }, { b: 'mixpanel', n: 'Mixpanel' }, { b: 'hubspot', n: 'HubSpot' },
+{ b: 'mailchimp', n: 'Mailchimp' }, { b: 'intercom', n: 'Intercom' }, { b: 'zendesk', n: 'Zendesk' }, { b: 'shopify', n: 'Shopify' }, { b: 'wordpress', n: 'WordPress' }, { b: 'webflow', n: 'Webflow' }, { b: 'trustpilot', n: 'Trustpilot' }, { b: 'klarna', n: 'Klarna' }, { b: 'stripe', n: 'Stripe' }, { b: 'paypal', n: 'PayPal' }
+];
+return {
+q: this.state.q,
+brand: shown,
+onQ: function (e) { self.setState({ q: e.target.value }); },
+marq: M.concat(M),
+libs: [
+{ mark: 'meta', name: 'Meta Ad Library', by: brand ? 'Searches "' + brand + '"' : 'Type a brand', href: 'https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&search_type=keyword_unordered&q=' + b },
+{ mark: 'google', name: 'Google Ads Transparency', by: isDomain ? 'Searches ' + host : 'Needs a domain', href: isDomain ? 'https://adstransparency.google.com/?region=anywhere&domain=' + encodeURIComponent(host) : 'https://adstransparency.google.com/?region=anywhere' },
+{ mark: 'tiktok', name: 'TikTok Ad Library', by: brand ? 'Searches "' + brand + '"' : 'Type a brand', href: 'https://library.tiktok.com/ads?region=all&adv_name=' + b },
+{ mark: 'library', name: 'LinkedIn Ad Library', by: brand ? 'Searches "' + brand + '"' : 'Type a brand', href: 'https://www.linkedin.com/ad-library/search?accountOwner=' + b }
+],
+family: [
+{ brand: 'hitline', name: 'Hitline', c: '#B692F6', desc: 'See what tracking a site really sends, right in DevTools.', href: toolLinks.hitline },
+{ brand: 'serpline', name: 'Serpline', c: '#93C5FD', desc: 'Technical SEO and AI search checks for any page.', href: toolLinks.serpline },
+{ brand: 'foldline', name: 'Foldline', c: '#FAA7E0', desc: 'Find what stops a landing page from converting.', href: toolLinks.foldline },
+{ brand: 'markline', name: 'Markline', c: '#FDE68A', desc: 'Screenshot, mark up and share feedback in seconds.', href: toolLinks.markline }
+]
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Line apps logo sheet</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1200px; height: 720px; box-sizing: border-box; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 380px 340px; font-family: Inter, Arial, sans-serif">
+<div style="background: #FFFFFF; padding: 40px; display: flex; flex-direction: column; justify-content: space-between">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #475467">On light</span>
+<dc-import name="HubLogo" theme="light" size="96" word="true" hint-size="330px,96px"></dc-import>
+<span style="font-size: 14px; line-height: 1.55; color: #344054; max-width: 420px">Five nested lines bend into one L: five tools, one family. "Line" in ink, "apps" in grey.</span>
+</div>
+<div style="background: #120D24; padding: 40px; display: flex; flex-direction: column; justify-content: space-between">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #B9B4D0">On dark</span>
+<dc-import name="HubLogo" theme="dark" size="96" word="true" hint-size="330px,96px"></dc-import>
+<span style="font-size: 14px; line-height: 1.55; color: #D0CBE6; max-width: 420px">Raised tile with a thin ring so it does not sink into the dark header.</span>
+</div>
+<div style="background: #F3F1F9; padding: 40px; display: flex; flex-direction: column; gap: 22px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #475467">Icon sizes: favicon, tab, app</span>
+<div style="display: flex; align-items: flex-end; gap: 28px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px"><dc-import name="HubLogo" theme="light" size="16" word="false" hint-size="16px,16px"></dc-import><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #475467">16</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px"><dc-import name="HubLogo" theme="light" size="32" word="false" hint-size="32px,32px"></dc-import><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #475467">32</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px"><dc-import name="HubLogo" theme="light" size="48" word="false" hint-size="48px,48px"></dc-import><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #475467">48</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px"><dc-import name="HubLogo" theme="light" size="128" word="false" hint-size="128px,128px"></dc-import><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #475467">128</span></div>
+</div>
+<span style="font-size: 14px; line-height: 1.55; color: #344054">Each line is one tool, outside to inside: Hitline, Serpline, Rivaline, Foldline, Markline.</span>
+</div>
+<div style="background: #FFFFFF; padding: 40px; display: flex; flex-direction: column; gap: 22px; box-shadow: inset 1px 0 0 #DCD9E6">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #475467">One color and next to a tool</span>
+<div style="display: flex; align-items: center; gap: 28px; flex-wrap: wrap">
+<dc-import name="HubLogo" theme="mono" size="44" word="true" hint-size="150px,44px"></dc-import>
+<div style="padding: 14px 18px; border-radius: 14px; background: #120D24"><dc-import name="HubLogo" theme="white" size="44" word="true" hint-size="150px,44px"></dc-import></div>
+</div>
+<div style="display: flex; align-items: center; gap: 14px; font-size: 14px; color: #475467">
+<dc-import name="HubLogo" theme="light" size="30" word="true" hint-size="104px,30px"></dc-import>
+<span>family of</span>
+<dc-import name="Logo" brand="hitline" theme="light" size="30" word="true" hint-size="124px,30px"></dc-import>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":720}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "@line/core",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./site": "./src/site.ts",
+    "./hitline": "./src/hitline/index.ts",
+    "./serpline": "./src/serpline/index.ts",
+    "./rivaline": "./src/rivaline/index.ts",
+    "./foldline": "./src/foldline/index.ts",
+    "./markline": "./src/markline/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  }
+}

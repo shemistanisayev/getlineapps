@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markline popup: choose what to capture</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.ml{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.ml button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.ml a{text-decoration:none}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.mode{width:100%;display:flex;align-items:center;gap:12px;padding:10px 12px;border:none;background:#FFFFFF;text-align:left;border-top:1px solid #EAE8F0;transition:background .15s}
+.mode:hover{background:#FEFCE8}
+.mode.hov{background:#FEFCE8;box-shadow:inset 3px 0 0 #FACC15}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;color:#101828;background:#EAE8F0;border-radius:6px;padding:2px 6px;box-shadow:inset 0 -1px 0 #C9C5D6}
+.sw{width:34px;height:20px;border-radius:999px;background:#101828;position:relative;border:none;padding:0;flex-shrink:0}
+.sw:after{content:"";position:absolute;right:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#FACC15}
+</style>
+</helmet>
+<div class="ml" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" hint-size="100%,84px"></dc-import></div>
+<div style="width: 100%; height: 816px; overflow: hidden"><dc-import name="SitePage" height="816" hint-size="1440px,816px"></dc-import></div>
+<div style="position: absolute; top: 78px; right: 132px; width: 360px; background: #EFEDF5; border-radius: 16px; box-shadow: 0 24px 48px -12px rgba(16, 24, 40, 0.25), 0 0 0 1px rgba(16, 24, 40, 0.08); overflow: hidden; display: flex; flex-direction: column">
+<dc-import name="PopupHeader" hint-size="100%,56px"></dc-import>
+<div style="padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="card" style="overflow: hidden">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px 8px"><span class="eyebrow">Capture</span><span style="font-size: 12px; font-weight: 500; color: #667085">example.com/order</span></div>
+<button type="button" class="mode"><dc-import name="Glyph" kind="visible" tone="brand" size="36" hint-size="36px,36px"></dc-import><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600; color: #101828">Visible area</span><span style="font-size: 12px; color: #667085">What you see right now</span></span><span style="display: flex; gap: 3px"><span class="kbd">Alt</span><span class="kbd">Shift</span><span class="kbd">1</span></span></button>
+<button type="button" class="mode hov"><dc-import name="Glyph" kind="fullpage" tone="solid" size="36" hint-size="36px,36px"></dc-import><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600; color: #101828">Full page</span><span style="font-size: 12px; color: #475467">Top to bottom</span></span><span style="display: flex; gap: 3px"><span class="kbd">Alt</span><span class="kbd">Shift</span><span class="kbd">2</span></span></button>
+<button type="button" class="mode"><dc-import name="Glyph" kind="area" tone="brand" size="36" hint-size="36px,36px"></dc-import><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600; color: #101828">Selected area</span><span style="font-size: 12px; color: #667085">Drag a box on the page</span></span><span style="display: flex; gap: 3px"><span class="kbd">Alt</span><span class="kbd">Shift</span><span class="kbd">3</span></span></button>
+<button type="button" class="mode"><dc-import name="Glyph" kind="element" tone="brand" size="36" hint-size="36px,36px"></dc-import><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600; color: #101828">Element</span><span style="font-size: 12px; color: #667085">Click a section, card or button</span></span><span style="font-size: 11.5px; font-weight: 500; color: #667085">No shortcut</span></button>
+</div>
+<div class="card" style="padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+<dc-import name="Glyph" kind="blur" tone="neutral" size="30" hint-size="30px,30px"></dc-import>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13.5px; font-weight: 600">Blur emails and phone numbers</span><span style="font-size: 12px; color: #667085">4 found on this page</span></span>
+<button type="button" class="sw" role="switch" aria-checked="true" aria-label="Blur emails and phone numbers"></button>
+</div>
+<div style="display: flex; align-items: flex-start; gap: 8px; padding: 2px 4px 2px; font-size: 12px; line-height: 1.45; color: #475467"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><rect x="5" y="11" width="14" height="9.5" rx="2.2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg><span>Nothing is uploaded. The capture opens in the Markline editor, in a new tab.</span></div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

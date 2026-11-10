@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foldline side panel: page can't be checked</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.fl{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.li{display:flex;gap:10px;align-items:center;font-size:13px;color:#344054}
+.li i{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.yes i{background:#ECFDF3;color:#067647}
+.no i{background:#FEF3F2;color:#B42318}
+</style>
+</helmet>
+<div class="fl" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EEF1F6; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" host="chrome://extensions" path="" tab2="Extensions" favicon2="chrome" active-tab="2" panel-open="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; gap: 8px; padding: 0 8px 8px 0; box-sizing: border-box">
+<div style="flex-grow: 1; min-width: 0; height: 808px; overflow: hidden; border-radius: 0 0 12px 0; background: #F8F9FC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif">
+<div style="height: 56px; display: flex; align-items: center; padding: 0 24px; font-size: 20px; color: #1F1F1F; border-bottom: 1px solid #E3E3E3; background: #FFFFFF">Extensions</div>
+<div style="padding: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); gap: 16px">
+<sc-for list="{{exts}}" as="e" hint-placeholder-count="2"><div style="height: 132px; box-sizing: border-box; background: #FFFFFF; border-radius: 10px; box-shadow: 0 0 0 1px #E3E3E3; padding: 16px; display: flex; flex-direction: column; gap: 10px"><span style="display: flex; align-items: center; gap: 12px"><dc-import name="Logo" brand="{{e.brand}}" theme="light" size="32" word="false" hint-size="32px,32px"></dc-import><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600; color: #1F1F1F">{{e.name}}</span><span style="font-size: 12.5px; color: #5F6368">{{e.desc}}</span></span></span><span style="flex-grow: 1"></span><span style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #1F1F1F"><span>Details</span><span style="width: 34px; height: 18px; border-radius: 999px; background: #0B57D0; position: relative"><span style="position: absolute; right: 3px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF"></span></span></span></div></sc-for>
+</div>
+</div>
+<aside aria-label="Foldline side panel" style="width: 400px; flex-shrink: 0; height: 800px; margin-top: 8px; border-radius: 12px; overflow: hidden; background: #EFEDF5; box-shadow: 0 0 0 1px #DCD9E6; display: flex; flex-direction: column">
+<div style="height: 40px; flex-shrink: 0; border-bottom: 1px solid #EAE8F0"><dc-import name="PanelChrome" hint-size="100%,40px"></dc-import></div>
+<div style="flex-shrink: 0"><dc-import name="PanelHeader" empty="true" hint-size="100%,96px"></dc-import></div>
+<div style="flex-grow: 1; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="card" style="padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+<span style="width: 52px; height: 52px; border-radius: 16px; background: #F7F6FB; border: 1px solid #DCD9E6; color: #475467; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+<span class="disp" style="font-size: 18px; font-weight: 800">Foldline can't check this page</span>
+<span style="font-size: 13px; line-height: 1.55; color: #475467; max-width: 310px">Chrome keeps its own pages closed to extensions. Open your landing page and click the Foldline icon.</span>
+</div>
+<div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow">Works on</span>
+<div class="li yes"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Any page on <span class="mono" style="font-size: 12px">http</span> or <span class="mono" style="font-size: 12px">https</span></div>
+<div class="li yes"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Your local build on <span class="mono" style="font-size: 12px">localhost</span></div>
+<span class="eyebrow" style="padding-top: 6px">Doesn't work on</span>
+<div class="li no"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg></i>Chrome pages like <span class="mono" style="font-size: 12px">chrome://extensions</span></div>
+<div class="li no"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg></i>The Chrome Web Store</div>
+<div class="li no"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg></i>PDF files and pages of other extensions</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return { exts: [ { brand: 'foldline', name: 'Foldline', desc: 'Landing page CRO checks' }, { brand: 'hitline', name: 'Hitline', desc: 'Tracking and consent audit' } ] };
+}
+}
+</script>
+</body>
+</html>

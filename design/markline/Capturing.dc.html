@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markline popup: capturing the full page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.ml{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.ml button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.hero{background:#FACC15;color:#101828;border-radius:16px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-50px;top:-70px;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,0) 70%)}
+.seg{height:8px;border-radius:999px;background:rgba(16,24,40,.15);flex:1;overflow:hidden}
+.seg span{display:block;height:100%;border-radius:999px;background:#101828}
+@keyframes cp-grow{from{width:10%}to{width:85%}}
+.seg .run{animation:cp-grow 1.2s ease-in-out infinite alternate}
+.btn{height:36px;padding:0 14px;border-radius:10px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054}
+.btn-s:hover{background:#F9FAFB}
+.ck{display:flex;align-items:center;gap:10px;padding:9px 14px;border-top:1px solid #EAE8F0;font-size:13px;color:#344054}
+.ck i{width:18px;height:18px;border-radius:50%;background:#ECFDF3;color:#067647;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+</style>
+</helmet>
+<div class="ml" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" hint-size="100%,84px"></dc-import></div>
+<div style="width: 100%; height: 816px; overflow: hidden"><dc-import name="SitePage" height="816" scroll="808" hint-size="1440px,816px"></dc-import></div>
+<div style="position: absolute; top: 78px; right: 132px; width: 360px; background: #EFEDF5; border-radius: 16px; box-shadow: 0 24px 48px -12px rgba(16, 24, 40, 0.25), 0 0 0 1px rgba(16, 24, 40, 0.08); overflow: hidden; display: flex; flex-direction: column">
+<dc-import name="PopupHeader" hint-size="100%,56px"></dc-import>
+<div style="padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="hero" role="status" aria-live="polite" style="padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="position: relative; z-index: 1; display: flex; align-items: center; gap: 12px"><dc-import name="Glyph" kind="fullpage" tone="ink" size="40" hint-size="40px,40px"></dc-import><span style="display: flex; flex-direction: column; gap: 2px"><span class="disp" style="font-size: 18px; font-weight: 800; letter-spacing: -0.02em">Capturing full page</span><span style="font-size: 12.5px">Screen 2 of 3</span></span></div>
+<div style="position: relative; z-index: 1; display: flex; gap: 6px"><span class="seg"><span style="width: 100%"></span></span><span class="seg"><span class="run"></span></span><span class="seg"></span></div>
+<span class="mono" style="position: relative; z-index: 1; font-size: 11.5px; color: #101828">example.com/order, 1440 x 2400 px</span>
+</div>
+<div class="card" style="overflow: hidden">
+<div class="ck" style="border-top: none"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Fixed and sticky parts hidden while scrolling</div>
+<div class="ck"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>4 emails and phone numbers marked for blur</div>
+<div class="ck"><i><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></i>Your scroll position comes back at the end</div>
+</div>
+<button type="button" class="btn btn-s" style="width: 100%">Cancel</button>
+<span style="padding: 0 4px; font-size: 12px; line-height: 1.45; color: #475467">Chrome allows two screenshots a second, so long pages take a few seconds. Keep this tab in front.</span>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

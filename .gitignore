@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.output/
+.wxt/
+.astro/
+coverage/
+test-results/
+playwright-report/
+*.log
+.env
+.env.*
+!.env.example
+.wrangler/
+.DS_Store
+Thumbs.db

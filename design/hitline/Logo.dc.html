@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<title>Loqo komponenti</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="display: inline-flex; align-items: center; gap: {{gap}}px; font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #0B0B14">
+<div style="width: {{size}}px; height: {{size}}px; border-radius: {{radius}}px; background: {{tileBg}}; display: flex; align-items: center; justify-content: center; flex: none">
+<sc-if value="{{isHit}}" hint-placeholder-val="{{true}}">
+<svg width="{{glyph}}" height="{{glyph}}" viewBox="0 0 48 48" fill="none" stroke="{{glyphColor}}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,28 14,28 19,15 25,35 30,22 34,28 42,28"></polyline></svg>
+</sc-if>
+<sc-if value="{{isSerp}}" hint-placeholder-val="{{false}}">
+<svg width="{{glyph}}" height="{{glyph}}" viewBox="0 0 48 48" fill="none" stroke="{{glyphColor}}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="21" cy="21" r="12"></circle><line x1="30" y1="30" x2="40" y2="40"></line><line x1="15" y1="21" x2="27" y2="21"></line></svg>
+</sc-if>
+<sc-if value="{{isRiva}}" hint-placeholder-val="{{false}}">
+<svg width="{{glyph}}" height="{{glyph}}" viewBox="0 0 48 48" fill="none" stroke="{{glyphColor}}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"></circle><circle cx="24" cy="24" r="7" opacity="0.55"></circle><line x1="24" y1="24" x2="36" y2="12"></line><circle cx="32" cy="32" r="3.5" fill="{{glyphColor}}" stroke="none"></circle></svg>
+</sc-if>
+<sc-if value="{{isFold}}" hint-placeholder-val="{{false}}">
+<svg width="{{glyph}}" height="{{glyph}}" viewBox="0 0 48 48" fill="none" stroke="{{glyphColor}}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="11" y="6" width="26" height="36" rx="5"></rect><line x1="17" y1="14" x2="31" y2="14"></line><line x1="4" y1="26" x2="44" y2="26" stroke-dasharray="2 6"></line></svg>
+</sc-if>
+<sc-if value="{{isMark}}" hint-placeholder-val="{{false}}">
+<svg width="{{glyph}}" height="{{glyph}}" viewBox="0 0 48 48" fill="none" stroke="{{glyphColor}}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 17V8h9"></path><path d="M31 8h9v9"></path><path d="M40 31v9h-9"></path><path d="M17 40H8v-9"></path><path d="M16 30c5-7 9-1 16-10"></path></svg>
+</sc-if>
+</div>
+<sc-if value="{{word}}" hint-placeholder-val="{{true}}">
+<span style="font-size: {{wordSize}}px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; color: {{wordInk}}">{{first}}<span style="color: {{wordAccent}}; background: {{wordBg}}">line</span></span>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"enum","options":["hitline","serpline","rivaline","foldline","markline"],"default":"hitline"},"theme":{"editor":"enum","options":["light","dark","mono","white"],"default":"light"},"size":{"editor":"int","min":12,"max":240,"default":96},"word":{"editor":"boolean","default":true},"$preview":{"width":520,"height":160}}'>
+class Component extends DCLogic {
+renderVals() {
+var B = {
+hitline: { first: 'Hit', accent: '#7F56D9', bright: '#B692F6' },
+serpline: { first: 'Serp', accent: '#2563EB', bright: '#93C5FD' },
+rivaline: { first: 'Riva', accent: '#0E7490', bright: '#67E8F9' },
+foldline: { first: 'Fold', accent: '#C11574', bright: '#FAA7E0' },
+markline: { first: 'Mark', accent: '#FACC15', bright: '#FDE68A', onAccent: '#101828', textAccent: '#101828', highlight: true }
+};
+var key = B[this.props.brand] ? this.props.brand : 'hitline';
+var b = B[key];
+var theme = this.props.theme || 'light';
+var size = Number(this.props.size || 96);
+var w = this.props.word;
+var word = !(w === false || w === 'false');
+var tileBg = b.accent, glyphColor = b.onAccent || '#FFFFFF', wordInk = '#0B0B14', wordAccent = b.textAccent || b.accent;
+var wordBg = b.highlight ? 'linear-gradient(transparent 42%, ' + b.accent + ' 42%, ' + b.accent + ' 74%, transparent 74%)' : 'none';
+if (theme === 'dark') { tileBg = b.bright; glyphColor = '#0B0B14'; wordInk = '#F7F7FB'; wordAccent = b.bright; wordBg = 'none'; }
+if (theme === 'mono') { tileBg = '#0B0B14'; glyphColor = '#F7F7FB'; wordInk = '#0B0B14'; wordAccent = '#0B0B14'; wordBg = 'none'; }
+if (theme === 'white') { tileBg = '#F7F7FB'; glyphColor = '#0B0B14'; wordInk = '#F7F7FB'; wordAccent = '#F7F7FB'; wordBg = 'none'; }
+return {
+size: size,
+radius: Math.round(size * 0.26),
+gap: Math.round(size * 0.26),
+glyph: Math.round(size * 0.64),
+wordSize: Math.round(size * 0.66),
+tileBg: tileBg, glyphColor: glyphColor, wordInk: wordInk, wordAccent: wordAccent, wordBg: wordBg,
+first: b.first, word: word,
+isHit: key === 'hitline', isSerp: key === 'serpline', isRiva: key === 'rivaline', isFold: key === 'foldline', isMark: key === 'markline'
+};
+}
+}
+</script>
+</body>
+</html>

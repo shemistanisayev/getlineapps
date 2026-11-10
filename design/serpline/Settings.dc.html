@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Serpline side panel: Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.sx{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.sx button,.sx select{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.sec{padding:14px 16px;border-top:1px solid #EAE8F0;display:flex;flex-direction:column;gap:10px}
+.line{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13.5px}
+.hint{font-size:12px;line-height:1.45;color:#667085}
+.btn-s{height:32px;padding:0 12px;border:1px solid #8E8A9D;border-radius:8px;background:#FFFFFF;color:#344054;font-size:12.5px;font-weight:600}
+.btn-s:hover{background:#F9FAFB}
+.seg{display:inline-flex;padding:2px;border-radius:8px;background:#EEEDF3}
+.seg button{height:26px;padding:0 11px;border:none;border-radius:6px;background:transparent;font-size:12px;font-weight:600;color:#475467}
+.seg .on{background:#FFFFFF;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.12)}
+.sw{width:34px;height:20px;border-radius:999px;background:#C9C5D6;position:relative;flex-shrink:0;border:none;padding:0}
+.sw:after{content:"";position:absolute;left:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#FFFFFF}
+.tool{display:flex;align-items:center;gap:10px;height:40px;font-size:13px;color:#101828;text-decoration:none;border-radius:8px;transition:background .15s}
+.tool:hover{background:#F7F6FB}
+.tool b{font-weight:700}
+.tool span{color:#667085;flex-grow:1}
+</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; background: #E9EDF3">
+<div style="flex: 1 1 auto; min-width: 0; height: 816px; overflow: hidden"><dc-import name="SitePage" hint-size="100%,820px"></dc-import></div>
+<div style="width: 412px; flex-shrink: 0; box-sizing: border-box; padding: 6px; display: flex">
+<aside aria-label="Serpline side panel" style="flex-grow: 1; width: 400px; background: #FFFFFF; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 0 1px #D3DAE5">
+<div style="height: 40px; flex-shrink: 0"><dc-import name="PanelHeader" mode="chrome" hint-size="400px,40px"></dc-import></div>
+<div style="height: 52px; flex-shrink: 0; box-sizing: border-box; border-top: 1px solid #EAE8F0; display: flex; align-items: center; gap: 10px; padding: 0 16px">
+<button type="button" aria-label="Back to results" style="width: 32px; height: 32px; border: 1px solid #C9C5D6; border-radius: 8px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#344054" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+<span style="font-family: 'Plus Jakarta Sans', Inter, Arial, sans-serif; font-size: 17px; font-weight: 800">Settings</span>
+</div>
+<div style="flex-grow: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column">
+<div class="sec">
+<span class="eyebrow">Checks</span>
+<div class="line"><span>Google preview opens on</span><span class="seg" role="group" aria-label="Default preview device"><button type="button" class="on">Mobile</button><button type="button">Desktop</button></span></div>
+<div class="line"><label for="auto-links">Check internal links on open</label><button id="auto-links" type="button" role="switch" aria-checked="false" class="sw"></button></div>
+<span class="hint">When off, Serpline checks link status only after you press "Check links" in the Links tab.</span>
+</div>
+<div class="sec">
+<div class="line"><label for="lang">Language</label><select id="lang" style="height: 32px; padding: 0 8px; border: 1px solid #8E8A9D; border-radius: 8px; background: #FFFFFF; font-size: 13px; color: #101828"><option>English</option><option>Azərbaycan</option></select></div>
+<div class="line"><span>Your data</span><button type="button" class="btn-s">Clear all settings</button></div>
+<span class="hint">Only these settings are saved, on this computer. Serpline reads the page you are on and its robots.txt from your browser and sends nothing to anyone.</span>
+</div>
+<div class="sec" style="gap: 2px">
+<span class="eyebrow" style="margin-bottom: 6px">More free tools</span>
+<a class="tool" href="https://getlineapps.com/hitline?utm_source=serpline&amp;utm_medium=extension&amp;utm_campaign=more_tools"><dc-import name="Logo" brand="hitline" theme="light" size="24" word="false" hint-size="24px,24px"></dc-import><b>Hitline</b><span>Tracking and analytics</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="tool" href="https://getlineapps.com/rivaline?utm_source=serpline&amp;utm_medium=extension&amp;utm_campaign=more_tools"><dc-import name="Logo" brand="rivaline" theme="light" size="24" word="false" hint-size="24px,24px"></dc-import><b>Rivaline</b><span>Competitor research</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="tool" href="https://getlineapps.com/foldline?utm_source=serpline&amp;utm_medium=extension&amp;utm_campaign=more_tools"><dc-import name="Logo" brand="foldline" theme="light" size="24" word="false" hint-size="24px,24px"></dc-import><b>Foldline</b><span>Landing page CRO</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="tool" href="https://getlineapps.com/markline?utm_source=serpline&amp;utm_medium=extension&amp;utm_campaign=more_tools"><dc-import name="Logo" brand="markline" theme="light" size="24" word="false" hint-size="24px,24px"></dc-import><b>Markline</b><span>Feedback screenshots</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+<div style="flex-grow: 1"></div>
+</div>
+<div style="flex-shrink: 0; height: 44px; box-sizing: border-box; border-top: 1px solid #EAE8F0; background: #F7F6FB; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 12.5px; color: #667085">
+<span>Version 1.0.0</span>
+<span style="display: flex; gap: 16px"><a href="https://getlineapps.com/serpline/privacy" style="color: #1D4ED8; font-weight: 600; text-decoration: none">Privacy</a><a href="https://shamistanisayev.com/?utm_source=serpline&amp;utm_medium=extension&amp;utm_campaign=settings" style="color: #1D4ED8; font-weight: 600; text-decoration: none">Contact</a></span>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

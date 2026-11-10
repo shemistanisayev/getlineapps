@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markline on the page: pick an element</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.ml{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;color:#FFFFFF;background:rgba(255,255,255,.16);border-radius:5px;padding:1px 6px}
+@keyframes ep-in{from{opacity:.4;transform:scale(.995)}to{opacity:1;transform:none}}
+.ep{animation:ep-in .25s cubic-bezier(.2,.8,.2,1)}
+</style>
+</helmet>
+<div class="ml" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" hint-size="100%,84px"></dc-import></div>
+<div style="width: 100%; height: 816px; overflow: hidden; position: relative">
+<dc-import name="SitePage" height="816" hint-size="1440px,816px"></dc-import>
+<div aria-label="Markline element picker" style="position: absolute; inset: 0; overflow: hidden">
+<div class="ep" style="position: absolute; left: 120px; top: 260px; width: 700px; height: 500px; box-sizing: border-box; border: 2px solid #FACC15; border-radius: 18px; background: rgba(250,204,21, 0.14); box-shadow: 0 0 0 1px #101828">
+<span style="position: absolute; left: -2px; top: -34px; height: 26px; padding: 0 10px; border-radius: 7px; background: #FACC15; color: #101828; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 10px; white-space: nowrap"><span class="mono">form#checkout-details</span><span class="mono" style="font-weight: 500; color: #101828; opacity: .75">700 x 500</span></span>
+</div>
+<svg width="22" height="26" viewBox="0 0 22 26" aria-hidden="true" style="position: absolute; left: 520px; top: 470px; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35))"><path d="M2 2l17 9.5-7.3 1.9L8 21z" fill="#101828" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+<div role="status" style="position: absolute; left: 50%; top: 20px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 8px 0 10px; border-radius: 999px; background: #101828; color: #FFFFFF; font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 12px 24px -10px rgba(16,24,40,.6)">
+<dc-import name="Logo" brand="markline" theme="dark" size="22" word="false" hint-size="22px,22px"></dc-import>
+<span>Click to capture the highlighted element.</span><span style="display: flex; align-items: center; gap: 5px; color: #D0D5DD"><span class="kbd">Up</span>picks the parent</span><span style="display: flex; align-items: center; gap: 5px; color: #D0D5DD"><span class="kbd">Esc</span>to cancel</span>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

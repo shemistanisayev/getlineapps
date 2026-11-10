@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Serpline side panel header</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; background: #FFFFFF; font-family: Inter, Arial, sans-serif; color: #101828; display: flex; flex-direction: column">
+<div style="height: 40px; box-sizing: border-box; display: flex; align-items: center; gap: 8px; padding: 0 6px 0 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif">
+<dc-import name="Logo" brand="serpline" theme="light" size="16" word="false" hint-size="16px,16px"></dc-import>
+<span style="flex-grow: 1; font-size: 13px; font-weight: 500; color: #1F1F1F">Serpline</span>
+<button type="button" aria-label="Unpin side panel" style="width: 28px; height: 28px; border: none; border-radius: 50%; background: transparent; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="#474747" aria-hidden="true"><path d="M15 3l6 6-2 1-3 3 .5 5.5L15 20l-4-4-5.5 5.5L4 20l5.5-5.5-4-4L7 9l5.5.5 3-3z"></path></svg></button>
+<button type="button" aria-label="Close side panel" style="width: 28px; height: 28px; border: none; border-radius: 50%; background: transparent; display: flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#474747" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<sc-if value="{{full}}" hint-placeholder-val="{{true}}">
+<div style="height: 48px; box-sizing: border-box; border-top: 1px solid #EAE8F0; display: flex; align-items: center; gap: 8px; padding: 0 12px 0 14px">
+<span style="flex-grow: 1; min-width: 0; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><span style="font-weight: 600; color: #101828">{{host}}</span><span style="color: #667085">{{path}}</span></span>
+<button type="button" aria-label="Check again" style="width: 30px; height: 30px; flex-shrink: 0; border: 1px solid #C9C5D6; border-radius: 8px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#344054" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"></path><path d="M20 4v5h-5"></path></svg></button>
+<button type="button" style="height: 30px; flex-shrink: 0; padding: 0 12px; border: none; border-radius: 8px; background: #2563EB; color: #FFFFFF; font-size: 12.5px; font-weight: 600; box-shadow: 0 1px 2px rgba(30, 64, 175, 0.35)">Audit PDF</button>
+<button type="button" aria-label="Settings" style="width: 30px; height: 30px; flex-shrink: 0; border: 1px solid #C9C5D6; border-radius: 8px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg></button>
+</div>
+<nav aria-label="Serpline sections" style="height: 44px; box-sizing: border-box; border-bottom: 1px solid #E6E3F0; display: flex; align-items: stretch; justify-content: space-between; padding: 0 8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<button type="button" style="border: none; background: transparent; padding: 0 7px; display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: {{t.weight}}; color: {{t.color}}; box-shadow: {{t.line}}">{{t.label}}<sc-if value="{{t.hasCount}}" hint-placeholder-val="{{true}}"><span style="font-size: 10.5px; font-weight: 700; min-width: 18px; box-sizing: border-box; text-align: center; padding: 1px 6px; border-radius: 999px; background: {{t.badgeBg}}; color: {{t.badgeInk}}">{{t.count}}</span></sc-if></button>
+</sc-for>
+</nav>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tab":{"editor":"enum","options":["summary","headings","links","render","ai","none"],"default":"summary"},"mode":{"editor":"enum","options":["full","chrome"],"default":"full"},"host":{"editor":"text","default":"example.com"},"path":{"editor":"text","default":"/products/wireless-headphones-pro-x"},"$preview":{"width":400,"height":132}}'>
+class Component extends DCLogic {
+renderVals() {
+var active = this.props.tab || 'summary';
+var list = [
+{ id: 'summary', label: 'Summary', count: '' },
+{ id: 'headings', label: 'Headings', count: '2' },
+{ id: 'links', label: 'Links', count: '2' },
+{ id: 'render', label: 'Render', count: '3' },
+{ id: 'ai', label: 'AI', count: '1' }
+];
+var tabs = list.map(function (t) {
+var on = t.id === active;
+return {
+label: t.label, count: t.count, hasCount: t.count !== '',
+weight: on ? '700' : '500',
+color: on ? '#1E40AF' : '#475467',
+line: on ? 'inset 0 -3px 0 #2563EB' : 'none',
+badgeBg: on ? '#2563EB' : '#FEF3F2',
+badgeInk: on ? '#FFFFFF' : '#B42318'
+};
+});
+return {
+tabs: tabs,
+full: this.props.mode !== 'chrome',
+host: this.props.host || 'example.com',
+path: this.props.path === undefined ? '/products/wireless-headphones-pro-x' : this.props.path
+};
+}
+}
+</script>
+</body>
+</html>

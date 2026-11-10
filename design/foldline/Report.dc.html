@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foldline landing page audit PDF</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+.pill.bad:not(:has(svg))::before,.sv-h::before{content:"!";width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;font-size:8px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.pill.warn:not(:has(svg))::before,.sv-m::before{content:"";width:10px;height:9px;background:currentColor;clip-path:polygon(50% 0,100% 100%,0 100%);flex-shrink:0}
+.pill.ok:not(:has(svg))::before{content:"\2713";font-size:11px;font-weight:800;line-height:1}
+.pill.mute:not(:has(svg))::before,.sv-l::before{content:"";width:6px;height:6px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0}
+a{color:#9E165F}a:hover{color:#851651}
+</style>
+</helmet>
+<div style="width: 794px; height: 1123px; box-sizing: border-box; padding: 48px 52px; background: #FFFFFF; font-family: Inter, Arial, sans-serif; color: #0B0B14; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<dc-import name="Logo" brand="foldline" theme="light" size="30" word="true" hint-size="140px,30px"></dc-import>
+<span style="font-size: 11px; color: #6B6B80">Nov 7, 2026, 12:40</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid #E6E3F0; padding-bottom: 18px">
+<span style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #9E165F">Landing page audit</span>
+<h1 style="margin: 0; font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.02em">example.com/free-quote</h1>
+<span style="font-size: 12px; color: #4A4A5C">Checked on Desktop (1024 x 808) and Mobile (390 x 844). 27 checks in 6 sections.</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+<div style="background: #FDF2FA; border-radius: 10px; padding: 12px"><div style="font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 22px; font-weight: 800; color: #9E165F">56<span style="font-size: 13px">/100</span></div><div style="font-size: 11px; color: #9E165F">desktop score</div></div>
+<div style="background: #FDF2FA; border-radius: 10px; padding: 12px"><div style="font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 22px; font-weight: 800; color: #9E165F">44<span style="font-size: 13px">/100</span></div><div style="font-size: 11px; color: #9E165F">mobile score</div></div>
+<div style="background: #F7F7FB; border-radius: 10px; padding: 12px"><div style="font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 22px; font-weight: 800">9</div><div style="font-size: 11px; color: #4A4A5C">issues</div></div>
+<div style="background: #FEF3F2; border-radius: 10px; padding: 12px"><div style="font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 22px; font-weight: 800; color: #B42318">2</div><div style="font-size: 11px; color: #B42318"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true" style="vertical-align: -1px; margin-right: 3px"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5h.01"></path></svg>high priority</div></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 14px; font-weight: 800">Sections</h2>
+<div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr); font-size: 11.5px; border-top: 1px solid #EEECF4">
+<span style="padding: 6px 0; border-bottom: 1px solid #EEECF4; color: #6B6B80; font-weight: 600"></span><span style="padding: 6px 0; border-bottom: 1px solid #EEECF4; color: #6B6B80; font-weight: 600">Desktop</span><span style="padding: 6px 0; border-bottom: 1px solid #EEECF4; color: #6B6B80; font-weight: 600">Mobile</span>
+<sc-for list="{{secs}}" as="r" hint-placeholder-count="6">
+<span style="padding: 6px 0; border-bottom: 1px solid #EEECF4; color: #6B6B80">{{r.k}}</span><span style="padding: 6px 0; border-bottom: 1px solid #EEECF4">{{r.d}}</span><span style="padding: 6px 0; border-bottom: 1px solid #EEECF4">{{r.m}}</span>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 14px; font-weight: 800">Issues and fixes</h2>
+<div style="display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 7px 12px; font-size: 11.5px; line-height: 1.5">
+<sc-for list="{{issues}}" as="i" hint-placeholder-count="9">
+<span class="{{i.ic}}" style="justify-self: start; align-self: start; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: {{i.ink}}; background: {{i.bg}}; border: 1px solid {{i.bd}}; border-radius: 999px; padding: 1px 9px">{{i.sev}}</span><div><b>{{i.t}}</b> {{i.fix}} <span style="color: #6B6B80">{{i.where}}</span></div>
+</sc-for>
+</div>
+</div>
+<div style="flex-grow: 1"></div>
+<div style="background: #0B0B14; border-radius: 14px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: 15px; font-weight: 800; color: #F7F7FB">Need help fixing these issues?</span>
+<span style="font-size: 11.5px; color: #C9C9D9">Shamistan Isayev, analytics, tracking and CRO</span>
+</div>
+<a href="https://shamistanisayev.com/?utm_source=foldline&amp;utm_medium=extension&amp;utm_campaign=pdf_footer" style="flex-shrink: 0; font-size: 12px; font-weight: 600; color: #1A2E05; background: #C6F36B; padding: 9px 14px; border-radius: 8px; text-decoration: none">shamistanisayev.com</a>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 10px; color: #6B6B80">
+<span>Made with Foldline. No data left the browser.</span>
+<span>Page 1 of 1</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+var S = { High: ['#B42318', '#FEF3F2', '#FECDCA'], Medium: ['#B54708', '#FFFAEB', '#FEDF89'], Low: ['#475467', '#F2F4F7', '#EAECF0'] };
+var it = function (sev, t, fix, where) { var c = S[sev]; return { sev: sev, t: t, fix: fix, where: where, ink: c[0], bg: c[1], bd: c[2], ic: sev === 'High' ? 'sv-h' : (sev === 'Medium' ? 'sv-m' : 'sv-l') }; };
+return {
+secs: [
+{ k: 'First screen', d: '2 issues', m: '1 issue' },
+{ k: 'Form', d: '2 issues', m: '2 issues' },
+{ k: 'Trust', d: 'All passed', m: 'All passed' },
+{ k: 'Mobile', d: 'Viewport tag passed', m: '3 issues' },
+{ k: 'Speed', d: '1 issue, largest paint 2.1 s', m: '1 issue' },
+{ k: 'Contact', d: '1 issue', m: '1 issue' }
+],
+issues: [
+it('High', 'Main button is below the fold.', 'Move "Get my free quote" into the hero, under the headline.', 'Desktop 872 px, Mobile 1032 px'),
+it('High', 'The quote form asks for 9 fields.', 'Keep name, email, phone and postcode. Ask the rest after the first call.', 'Both'),
+it('Medium', '3 fields have no label.', 'Add a visible label above Street address, Postcode and Monthly power bill.', 'Both'),
+it('Medium', '5 buttons compete for one click.', 'Keep one main action on the first screen and make the others links.', 'Desktop'),
+it('Medium', 'Hero image is 7 times too large.', 'Serve it at about 1100 px wide in WebP or AVIF.', 'Desktop 3840 px for 520 px'),
+it('Medium', '7 tap targets are smaller than 44 px.', 'Give links and icons at least 44 x 44 px of tap area.', 'Mobile'),
+it('Medium', 'The page scrolls sideways by 46 px.', 'Let the pricing table wrap or scroll inside its own box.', 'Mobile'),
+it('Medium', 'Phone number can\'t be tapped.', 'Wrap +1 555 0142 in a tel: link.', 'Mobile, Low on Desktop'),
+it('Low', 'Form text is 14 px, so iPhone zooms in.', 'Set form fields to 16 px or more.', 'Mobile')
+]
+};
+}
+}
+</script>
+</body>
+</html>

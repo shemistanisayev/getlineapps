@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hitline panel header</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+button{font-family:Inter, Arial, sans-serif;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 100%; height: 44px; box-sizing: border-box; background: #FFFFFF; border-bottom: 1px solid #E6E3F0; box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04); font-family: Inter, Arial, sans-serif; color: #0B0B14; display: flex; align-items: stretch; gap: 20px; padding: 0 16px">
+<div style="display: flex; align-items: center"><dc-import name="Logo" brand="hitline" theme="light" size="22" word="true" hint-size="96px,22px"></dc-import></div>
+<nav aria-label="Hitline sections" style="display: flex; align-items: stretch; gap: 4px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<button type="button" style="border: none; background: transparent; padding: 0 12px; display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: {{t.weight}}; color: {{t.color}}; box-shadow: {{t.line}}">{{t.label}}<span style="font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: {{t.badgeBg}}; color: {{t.badgeInk}}">{{t.count}}</span></button>
+</sc-for>
+</nav>
+<div style="flex-grow: 1"></div>
+<div style="display: flex; align-items: center; gap: 8px">
+<span style="display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 500; color: #B42318; background: #FEF3F2; padding: 4px 10px; border-radius: 999px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #D92D20"></span>Recording</span>
+<button type="button" style="height: 30px; padding: 0 12px; border: 1px solid #E6E3F0; border-radius: 8px; background: #FFFFFF; font-size: 12.5px; color: #4A4A5C">Clear</button>
+<button type="button" style="height: 30px; padding: 0 14px; border: none; border-radius: 8px; background: #7F56D9; font-size: 12.5px; font-weight: 600; color: #FFFFFF; box-shadow: 0 1px 2px rgba(83, 56, 158, 0.3)">Audit PDF</button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tab":{"editor":"enum","options":["events","gtm","consent","attribution","plan"],"default":"events"},"empty":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":44}}'>
+class Component extends DCLogic {
+renderVals() {
+var active = this.props.tab || 'events';
+var e = this.props.empty;
+var empty = e === true || e === 'true';
+var list = [
+{ id: 'events', label: 'Events', count: '14', warn: false },
+{ id: 'gtm', label: 'GTM', count: '24', warn: false },
+{ id: 'consent', label: 'Consent', count: '2', warn: true },
+{ id: 'attribution', label: 'Attribution', count: '1', warn: true },
+{ id: 'plan', label: 'Plan', count: '4', warn: true }
+];
+var tabs = list.map(function (t) {
+var on = t.id === active;
+var warn = t.warn && !empty;
+return {
+label: t.label, count: empty ? '0' : t.count,
+weight: on ? '700' : '500',
+color: on ? '#3B2470' : '#4A4A5C',
+line: on ? 'inset 0 -3px 0 #7F56D9' : 'none',
+badgeBg: on ? '#7F56D9' : (warn ? '#FEF3F2' : '#F2F1F7'),
+badgeInk: on ? '#FFFFFF' : (warn ? '#B42318' : '#6B6B80')
+};
+});
+return { tabs: tabs };
+}
+}
+</script>
+</body>
+</html>

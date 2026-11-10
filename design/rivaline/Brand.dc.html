@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rivaline side panel: Brand</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Fraunces:opsz,wght@9..144,600&amp;family=DM+Sans:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+.rv{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.rv button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.rv a{text-decoration:none}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.pb>*{flex-shrink:0}
+.btn{height:30px;padding:0 11px;border-radius:9px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:background .15s}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054}
+.btn-s:hover{background:#F9FAFB}
+.sw{border:none;background:transparent;padding:0;display:flex;flex-direction:column;gap:5px;text-align:left;cursor:pointer}
+.sw i{display:block;height:52px;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(16,24,40,.1);transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.sw:hover i{transform:translateY(-3px)}
+.chk{background-color:#FFFFFF;background-image:linear-gradient(45deg,#F2F1F6 25%,transparent 25%,transparent 75%,#F2F1F6 75%),linear-gradient(45deg,#F2F1F6 25%,transparent 25%,transparent 75%,#F2F1F6 75%);background-size:14px 14px;background-position:0 0,7px 7px}
+.frow{display:grid;grid-template-columns:70px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid #EAE8F0}
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.mute{background:#EEEDF3;color:#475467}
+</style>
+</helmet>
+<div class="rv" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EEF1F6; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" panel-open="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; gap: 8px; padding: 0 8px 8px 0; box-sizing: border-box">
+<div style="flex-grow: 1; min-width: 0; height: 808px; overflow: hidden; border-radius: 0 0 12px 0"><dc-import name="SitePage" variant="kova" hint-size="100%,808px"></dc-import></div>
+<aside aria-label="Rivaline side panel" style="width: 400px; flex-shrink: 0; height: 800px; margin-top: 8px; border-radius: 12px; overflow: hidden; background: #EFEDF5; box-shadow: 0 0 0 1px #DCD9E6; display: flex; flex-direction: column; position: relative">
+<div style="height: 40px; flex-shrink: 0; border-bottom: 1px solid #EAE8F0"><dc-import name="PanelChrome" hint-size="100%,40px"></dc-import></div>
+<div style="flex-shrink: 0"><dc-import name="PanelHeader" tab="brand" hint-size="100%,96px"></dc-import></div>
+<div class="pb" style="flex-grow: 1; overflow: hidden; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span class="eyebrow">Logo</span><span style="font-size: 11.5px; color: #667085">From the page header, 112 x 36 px</span></div>
+<div style="display: flex; gap: 12px; align-items: center">
+<div class="chk" style="width: 150px; height: 64px; border-radius: 10px; box-shadow: inset 0 0 0 1px #EAE8F0; display: flex; align-items: center; justify-content: center"><span style="display: flex; align-items: center; gap: 7px; font-family: Fraunces, Georgia, serif; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: #1E2B24"><span style="width: 20px; height: 20px; border-radius: 50%; background: #2F5D46; box-shadow: inset -5px -5px 0 #EBC56B"></span>kova</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><button type="button" class="btn btn-s">Copy PNG</button><button type="button" class="btn btn-s">Download PNG</button></div>
+</div>
+</div>
+<div class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span class="eyebrow">Colors</span><span style="font-size: 11.5px; color: #667085">Click a color to copy</span></div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{colors}}" as="c" hint-placeholder-count="5">
+<button type="button" class="sw" aria-label="Copy {{c.hex}}"><i style="background: {{c.hex}}"></i><span style="font-size: 11px; font-weight: 600; color: #101828">{{c.role}}</span><span class="mono" style="font-size: 10.5px; color: #475467">{{c.hex}}</span></button>
+</sc-for>
+</div>
+</div>
+<div class="card" style="padding: 12px 14px 4px; display: flex; flex-direction: column">
+<span class="eyebrow" style="padding-bottom: 8px">Fonts</span>
+<div class="frow"><span style="font-size: 12px; color: #667085">Headings</span><span style="display: flex; flex-direction: column"><span style="font-size: 13.5px; font-weight: 700">Fraunces</span><span style="font-size: 11.5px; color: #475467">600, 52 px</span></span><span class="pill mute">Google Fonts</span></div>
+<div class="frow"><span style="font-size: 12px; color: #667085">Body</span><span style="display: flex; flex-direction: column"><span style="font-size: 13.5px; font-weight: 700">DM Sans</span><span style="font-size: 11.5px; color: #475467">400, 16 px</span></span><span class="pill mute">Google Fonts</span></div>
+</div>
+<div class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow">Main button</span>
+<div style="display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: center">
+<span style="height: 44px; padding: 0 22px; border-radius: 999px; background: #2F5D46; color: #F6F1EA; font-family: 'DM Sans', Arial, sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">Shop the routine</span>
+<span class="mono" style="font-size: 10.5px; line-height: 1.6; color: #344054">background #2F5D46<br>radius 999px, height 50px<br>DM Sans 600, 15px</span>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px"><span style="font-size: 12px; font-weight: 600; color: #344054; margin-right: 2px">Export</span><button type="button" class="btn btn-s">CSS variables</button><button type="button" class="btn btn-s">PNG palette</button><button type="button" class="btn btn-s">JSON</button></div>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {
+colors: [
+{ role: 'Primary', hex: '#2F5D46' },
+{ role: 'Text', hex: '#1E2B24' },
+{ role: 'Background', hex: '#F6F1EA' },
+{ role: 'Accent', hex: '#EBC56B' },
+{ role: 'Surface', hex: '#DCE5D8' }
+]
+};
+}
+}
+</script>
+</body>
+</html>

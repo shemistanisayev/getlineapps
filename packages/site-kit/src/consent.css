@@ -1,0 +1,62 @@
+/* Consent banner. Needs @line/ui tokens.css. Reject and Accept have equal weight. */
+.line-consent {
+  position: fixed;
+  z-index: 60;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--line-night);
+  color: var(--line-on-night);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 20px 40px -18px rgba(0, 0, 0, 0.6);
+  font-family: var(--line-font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.line-consent p {
+  margin: 0;
+  flex: 1;
+}
+.line-consent a {
+  color: var(--line-white);
+  font-weight: 600;
+  text-decoration: underline;
+}
+.line-consent-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.line-consent button {
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--line-white);
+  color: var(--line-ink);
+}
+.line-consent button:focus-visible,
+.line-consent a:focus-visible {
+  outline: 3px solid var(--line-white);
+  outline-offset: 2px;
+}
+@media (max-width: 520px) {
+  .line-consent {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .line-consent-actions button {
+    flex: 1;
+  }
+}

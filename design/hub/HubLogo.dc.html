@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Line apps logo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="display: inline-flex; align-items: center; gap: {{gap}}px; font-family: 'Plus Jakarta Sans', Arial, sans-serif; color: #0B0B14">
+<div style="width: {{size}}px; height: {{size}}px; border-radius: {{radius}}px; background: {{tileBg}}; box-shadow: {{ring}}; display: flex; align-items: center; justify-content: center; flex: none">
+<svg width="{{glyph}}" height="{{glyph}}" viewBox="0 0 48 48" fill="none" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path d="M7 7V27A14 14 0 0 0 21 41H41" stroke="{{c1}}"></path>
+<path d="M13.5 7V23A11.5 11.5 0 0 0 25 34.5H41" stroke="{{c2}}"></path>
+<path d="M20 7V19A9 9 0 0 0 29 28H41" stroke="{{c3}}"></path>
+<path d="M26.5 7V15A6.5 6.5 0 0 0 33 21.5H41" stroke="{{c4}}"></path>
+<path d="M33 7V11A4 4 0 0 0 37 15H41" stroke="{{c5}}"></path>
+</svg>
+</div>
+<sc-if value="{{word}}" hint-placeholder-val="{{true}}">
+<span style="font-size: {{wordSize}}px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; color: {{wordInk}}">Line<span style="color: {{wordSoft}}; font-weight: 600">apps</span></span>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark","mono","white"],"default":"light"},"size":{"editor":"int","min":12,"max":240,"default":96},"word":{"editor":"boolean","default":true},"$preview":{"width":520,"height":160}}'>
+class Component extends DCLogic {
+renderVals() {
+// Five nested lines form an L. One line per tool, outside to inside: Hitline, Serpline, Rivaline, Foldline, Markline (bright colors).
+var bright = ['#B692F6', '#93C5FD', '#67E8F9', '#FAA7E0', '#FDE68A'];
+var theme = this.props.theme || 'light';
+var size = Number(this.props.size || 96);
+var w = this.props.word;
+var word = !(w === false || w === 'false');
+var tileBg = '#120D24', ring = 'none', lines = bright, wordInk = '#0B0B14', wordSoft = '#667085';
+if (theme === 'dark') { tileBg = '#241C42'; ring = 'inset 0 0 0 1px rgba(255,255,255,.16)'; wordInk = '#F7F7FB'; wordSoft = '#B9B4D0'; }
+if (theme === 'mono') { lines = ['#F7F7FB', '#F7F7FB', '#F7F7FB', '#F7F7FB', '#F7F7FB']; wordSoft = '#0B0B14'; }
+if (theme === 'white') { tileBg = '#F7F7FB'; lines = ['#0B0B14', '#0B0B14', '#0B0B14', '#0B0B14', '#0B0B14']; wordInk = '#F7F7FB'; wordSoft = '#F7F7FB'; }
+return {
+size: size,
+radius: Math.round(size * 0.26),
+gap: Math.round(size * 0.26),
+glyph: Math.round(size * 0.64),
+wordSize: Math.round(size * 0.66),
+tileBg: tileBg, ring: ring, wordInk: wordInk, wordSoft: wordSoft, word: word,
+c1: lines[0], c2: lines[1], c3: lines[2], c4: lines[3], c5: lines[4]
+};
+}
+}
+</script>
+</body>
+</html>

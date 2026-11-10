@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markline editor: notes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.ml{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.ml button,.ml textarea{font-family:Inter,Arial,sans-serif}
+.ml button{cursor:pointer}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.note{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:12px;background:#FFFFFF;box-shadow:0 0 0 1px #DCD9E6;transition:box-shadow .15s}
+.note:hover{box-shadow:0 0 0 1px #FACC15}
+.note.on{box-shadow:0 0 0 2px #101828;background:#FEFCE8}
+.nb{width:24px;height:24px;border-radius:50%;background:#FACC15;color:#101828;box-shadow:inset 0 0 0 1.5px #101828;font-size:12.5px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.note .nt{flex-grow:1;font-size:13px;line-height:1.45;color:#101828;padding:2px 0;min-height:38px}
+.del{width:26px;height:26px;border-radius:7px;border:none;background:transparent;color:#667085;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0}
+.del:hover{background:#EEEDF3;color:#101828}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid #EAE8F0;font-size:12.5px}
+.kv span:first-child{color:#667085}
+.sw{width:34px;height:20px;border-radius:999px;background:#101828;position:relative;border:none;padding:0;flex-shrink:0}
+.sw:after{content:"";position:absolute;right:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#FACC15}
+.lnk{border:none;background:transparent;padding:0;font-size:12.5px;font-weight:600;color:#101828}
+.lnk:hover{color:#101828;text-decoration:underline}
+</style>
+</helmet>
+<div class="ml" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EFEDF5; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" host="chrome-extension://hmlkcfjbaopgnied" path="/editor.html" tab="Markline: example.com/order" favicon="markline" tab2="Your order | Bramble Bakery" favicon2="bramble" hint-size="100%,84px"></dc-import></div>
+<div style="flex-shrink: 0"><dc-import name="EditorBar" tool="number" hint-size="100%,60px"></dc-import></div>
+<div style="height: 756px; display: flex">
+<main aria-label="Capture" style="flex-grow: 1; min-width: 0; position: relative; overflow: hidden; padding: 28px 0 0 46px">
+<div style="width: 1008px; height: 1680px; border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px rgba(16,24,40,.08), 0 24px 48px -24px rgba(16,24,40,.35)"><div style="width: 1440px; height: 2400px; transform: scale(0.7); transform-origin: 0 0"><dc-import name="Shot" variant="editor" hint-size="1440px,2400px"></dc-import></div></div>
+<div role="status" style="position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; background: #101828; color: #FFFFFF; font-size: 12.5px; font-weight: 500; white-space: nowrap; box-shadow: 0 12px 24px -10px rgba(16,24,40,.6)"><span style="width: 20px; height: 20px; border-radius: 50%; background: #FACC15; color: #101828; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center">5</span>Click the image to place note 5</div>
+</main>
+<aside aria-label="Notes and page details" style="width: 340px; flex-shrink: 0; background: #F7F6FB; border-left: 1px solid #DCD9E6; display: flex; flex-direction: column; overflow: hidden">
+<div style="padding: 14px 16px 10px; display: flex; align-items: center; gap: 8px"><span class="disp" style="font-size: 16px; font-weight: 800">Notes</span><span style="font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: #FACC15; color: #101828">4</span><span style="flex-grow: 1"></span><button type="button" class="lnk">Copy notes</button></div>
+<div style="padding: 0 12px; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{notes}}" as="n" hint-placeholder-count="4">
+<div class="note {{n.cls}}"><span class="nb">{{n.i}}</span><span class="nt" role="textbox" aria-label="Note {{n.i}}">{{n.t}}</span><button type="button" class="del" aria-label="Delete note {{n.i}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"></path></svg></button></div>
+</sc-for>
+</div>
+<div style="margin: 12px 12px 0; padding: 10px 12px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 0 0 1px #DCD9E6; display: flex; align-items: center; gap: 10px"><dc-import name="Glyph" kind="blur" tone="brand" size="30" hint-size="30px,30px"></dc-import><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 13px; font-weight: 600">4 areas blurred for you</span><span style="font-size: 12px; color: #667085">2 emails and 2 phone numbers</span></span><button type="button" class="lnk">Review</button></div>
+<div style="margin: 12px 12px 0; padding: 10px 12px 4px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 0 0 1px #DCD9E6">
+<div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px"><span class="eyebrow">Page details</span><span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475467">Under the image<button type="button" class="sw" role="switch" aria-checked="true" aria-label="Show page details under the image"></button></span></div>
+<div class="kv"><span>URL</span><span class="mono" style="font-size: 11.5px">example.com/order</span></div>
+<div class="kv"><span>Browser</span><span>Chrome 154 on macOS</span></div>
+<div class="kv"><span>Viewport</span><span>1440 x 808, 2x</span></div>
+<div class="kv"><span>Captured</span><span>Nov 7, 2026, 14:32</span></div>
+</div>
+<span style="flex-grow: 1"></span>
+<div style="padding: 10px 16px 12px; font-size: 11.5px; line-height: 1.45; color: #475467">This capture lives only in this tab. Close it and it is gone, so export first.</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+var n = function (i, t, on) { return { i: i, t: t, cls: on ? 'on' : '' }; };
+return {
+notes: [
+n(1, 'Show pickup times as buttons. A dropdown hides the choice.', true),
+n(2, 'Place order is easy to miss. Make it full width and darker.', false),
+n(3, 'Show the total with tax here, not only at payment.', false),
+n(4, 'Turn "Have a code?" into a visible field.', false)
+]
+};
+}
+}
+</script>
+</body>
+</html>

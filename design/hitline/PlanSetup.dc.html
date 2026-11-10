@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hitline DevTools: load plan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.hx{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.hx button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+a.lnk{color:#53389E}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.th{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#667085}
+.row{transition:background .15s}
+.row:hover{background:#F7F6FB}
+.pf{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#101828;white-space:nowrap}
+.pf i{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:9.5px;font-weight:800;letter-spacing:-.02em;flex-shrink:0}
+.pf-ga i{background:#FFF1E3}
+.pf-meta i{background:#E7F0FD}
+.pf-tt i{background:#EEEDF3}
+.pf-ads i{background:#E8F0FE}
+.pf-dl i{background:#E6EEFB}
+.pf-hj i{background:#FFEDE6}
+.pill{justify-self:start;width:max-content;display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.pill svg{flex-shrink:0}
+.ok{background:#ECFDF3;color:#067647}
+.bad{background:#FEF3F2;color:#B42318}
+.warn{background:#FFFAEB;color:#B54708}
+.mute{background:#EEEDF3;color:#475467}
+.pur{background:#F4F3FF;color:#5925DC}
+.btn{height:32px;padding:0 14px;border-radius:9px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s,box-shadow .15s,transform .15s}
+.btn-p{border:none;background:#7F56D9;color:#FFFFFF;box-shadow:0 1px 2px rgba(83,56,158,.35)}
+.btn-p:hover{background:#6941C6}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.btn-s:hover{background:#F9FAFB}
+.btn-ink{border:none;background:#101828;color:#FFFFFF}
+.btn-ink:hover{background:#1D2939}
+.hero{background:linear-gradient(135deg,#7F56D9 0%,#5B34B8 100%);color:#FFFFFF;border-radius:16px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-40px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),rgba(255,255,255,0) 70%)}
+.hero .soft{color:rgba(255,255,255,.86)}
+.cta{background:#C6F36B;border-radius:14px;color:#1A2E05;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.kv{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#53389E}
+.code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;line-height:1.6;color:#344054;background:#F7F6FB;border:1px solid #DCD9E6;border-radius:10px}
+@keyframes hx-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.rec{animation:hx-blink 1.6s ease-in-out infinite}
+</style>
+</helmet>
+<div class="hx" style="width: 1440px; height: 1030px; display: flex; flex-direction: column; overflow: hidden; background: #EFEDF5">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" hint-size="100%,84px"></dc-import></div>
+<div style="width: 100%; height: 236px; overflow: hidden; flex-shrink: 0"><dc-import name="SitePage" hint-size="100%,820px"></dc-import></div>
+<div style="width: 100%; height: 30px; flex-shrink: 0"><dc-import name="DevtoolsBar" hint-size="100%,30px"></dc-import></div>
+<div style="width: 100%; height: 44px; flex-shrink: 0"><dc-import name="PanelHeader" tab="plan" hint-size="100%,44px"></dc-import></div>
+<div style="flex-grow: 1; min-height: 0; display: flex; flex-direction: column; background: #EFEDF5">
+<div style="flex-grow: 1; min-height: 0; display: flex; gap: 16px; padding: 16px 20px">
+<div style="flex: 1 1 0; border: 2px dashed #B692F6; border-radius: 18px; background: repeating-linear-gradient(135deg, #FFFFFF 0 14px, #FAF8FF 14px 28px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center">
+<span style="width: 64px; height: 64px; border-radius: 18px; background: linear-gradient(135deg, #7F56D9, #5B34B8); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -8px rgba(105, 65, 198, 0.6)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"></path></svg></span>
+<h2 class="disp" style="margin: 4px 0 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em">Drop your tracking plan here</h2>
+<p style="margin: 0; max-width: 420px; font-size: 14px; line-height: 1.6; color: #344054">CSV or JSON. Hitline compares every recorded event with the plan and flags what is missing or wrong.</p>
+<button type="button" class="btn btn-p" style="height: 42px; padding: 0 22px; font-size: 14px">Choose file</button>
+</div>
+<div style="width: 440px; flex-shrink: 0; display: flex; flex-direction: column; gap: 14px">
+<div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between"><span style="font-size: 14px; font-weight: 700">CSV format</span><span class="pill mute">3 columns</span></div>
+<div class="code" style="padding: 12px 14px; white-space: pre; font-size: 12px"><span style="color: #667085">event,platform,parameters</span>
+<span style="color: #5925DC">add_to_cart</span>,GA4,<span style="color: #067647">"currency,value,items"</span>
+<span style="color: #5925DC">AddToCart</span>,Meta,<span style="color: #067647">"value,currency,content_ids"</span>
+<span style="color: #5925DC">generate_lead</span>,GA4,<span style="color: #067647">"form_id"</span></div>
+<button type="button" class="btn btn-s" style="height: 38px">Download sample CSV</button>
+</div>
+<div class="cta" style="padding: 18px; flex-direction: column; align-items: stretch; gap: 10px"><span class="disp" style="font-size: 16px; font-weight: 800">No plan yet?</span><span style="font-size: 13px; line-height: 1.5">Hitline can turn the 14 events recorded in this session into a draft plan you edit and save.</span><button type="button" class="btn btn-ink" style="height: 40px">Create plan from this session</button></div>
+<span style="font-size: 12px; color: #667085; padding: 0 4px">The plan stays on this computer and is never uploaded.</span>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1030}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rivaline side panel: tool details</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.rv{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.rv button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.rv a{text-decoration:none}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.pb>*{flex-shrink:0}
+.chip{height:30px;padding:0 11px;border-radius:999px;border:1px solid #DCD9E6;background:#FFFFFF;font-size:12.5px;font-weight:600;color:#344054;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0}
+.chip b{font-weight:600;color:#667085}
+.chip.on{background:#101828;border-color:#101828;color:#FFFFFF}
+.chip.on b{color:#D0D5DD}
+.trow{display:flex;align-items:center;gap:11px;padding:8px 14px;border-top:1px solid #EAE8F0;transition:background .15s}
+.trow:hover{background:#F7F6FB}
+.trow .nm{font-size:13.5px;font-weight:600;color:#101828}
+.trow .id{font-size:11.5px;color:#667085}
+.open{background:#ECFEFF;box-shadow:inset 3px 0 0 #0E7490}
+.open:hover{background:#ECFEFF}
+.ev{display:grid;grid-template-columns:62px minmax(0,1fr);gap:8px;align-items:center;font-size:11.5px}
+.evk{justify-self:start;height:20px;padding:0 7px;border-radius:6px;background:#EEEDF3;color:#475467;font-size:10.5px;font-weight:700;display:inline-flex;align-items:center}
+.btn{height:32px;padding:0 12px;border-radius:9px;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:background .15s}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054}
+.btn-s:hover{background:#F9FAFB}
+.gi{width:30px;height:30px;border-radius:9px;background:#FFFAEB;color:#B54708;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cta{background:#C6F36B;border-radius:12px;color:#1A2E05}
+.btn-ink{border:none;background:#101828;color:#FFFFFF}
+.btn-ink:hover{background:#1D2939}
+.rv a.btn.btn-ink,.rv a.btn.btn-ink:link,.rv a.btn.btn-ink:visited,.rv a.btn.btn-ink:hover,.rv a.btn.btn-ink:focus,.rv a.btn.btn-ink:active{color:#FFFFFF}
+</style>
+</helmet>
+<div class="rv" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EEF1F6; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" panel-open="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; gap: 8px; padding: 0 8px 8px 0; box-sizing: border-box">
+<div style="flex-grow: 1; min-width: 0; height: 808px; overflow: hidden; border-radius: 0 0 12px 0"><dc-import name="SitePage" variant="kova" hint-size="100%,808px"></dc-import></div>
+<aside aria-label="Rivaline side panel" style="width: 400px; flex-shrink: 0; height: 800px; margin-top: 8px; border-radius: 12px; overflow: hidden; background: #EFEDF5; box-shadow: 0 0 0 1px #DCD9E6; display: flex; flex-direction: column">
+<div style="height: 40px; flex-shrink: 0; border-bottom: 1px solid #EAE8F0"><dc-import name="PanelChrome" hint-size="100%,40px"></dc-import></div>
+<div style="flex-shrink: 0"><dc-import name="PanelHeader" tab="stack" hint-size="100%,96px"></dc-import></div>
+<div class="pb" style="flex-grow: 1; overflow: hidden; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 6px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent)">
+<button type="button" class="chip">All <b>13</b></button><button type="button" class="chip on" aria-pressed="true">Advertising <b>4</b></button><button type="button" class="chip">Analytics <b>2</b></button><button type="button" class="chip">Payments <b>2</b></button><button type="button" class="chip">Tag management <b>1</b></button>
+</div>
+<div class="card" style="overflow: hidden">
+<div class="trow open" style="border-top: none" aria-expanded="true"><dc-import name="Mark" brand="meta" size="28" hint-size="28px,28px"></dc-import><div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span class="nm">Meta Pixel</span><span class="id mono">418273650912345</span></div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#155E75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+<div style="padding: 4px 14px 14px 53px; background: #ECFEFF; box-shadow: inset 3px 0 0 #0E7490; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 11.5px; font-weight: 600; color: #344054">How Rivaline found it</span>
+<div style="display: flex; flex-direction: column; gap: 5px">
+<div class="ev"><span class="evk">Script</span><span class="mono" style="color: #344054; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">connect.facebook.net/en_US/fbevents.js</span></div>
+<div class="ev"><span class="evk">Global</span><span class="mono" style="color: #344054">window.fbq</span></div>
+<div class="ev"><span class="evk">Cookie</span><span class="mono" style="color: #344054">_fbp</span></div>
+<div class="ev"><span class="evk">Request</span><span class="mono" style="color: #344054">www.facebook.com/tr</span></div>
+</div>
+<div style="display: flex; gap: 8px"><button type="button" class="btn btn-s"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"></path></svg>Copy ID</button><a href="#" class="btn btn-s">Open in Meta Ad Library<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+</div>
+<sc-for list="{{rest}}" as="t" hint-placeholder-count="3">
+<div class="trow"><dc-import name="Mark" brand="{{t.mark}}" size="28" hint-size="28px,28px"></dc-import><div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span class="nm">{{t.name}}</span><span class="id mono">{{t.id}}</span></div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></div>
+</sc-for>
+</div>
+<div id="gaps" class="card" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
+<span class="eyebrow" style="color: #B54708; display: inline-flex; align-items: center; gap: 6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5h-19z"></path><path d="M12 10v4"></path><path d="M12 17.2h.01"></path></svg>Not found on this page</span>
+<sc-for list="{{gaps}}" as="g" hint-placeholder-count="3">
+<div style="display: flex; gap: 10px; align-items: flex-start"><span class="gi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 8v4.5"></path><path d="M12 15.8h.01"></path></svg></span><div style="display: flex; flex-direction: column; gap: 1px"><span style="font-size: 13px; font-weight: 600">{{g.t}}</span><span style="font-size: 12px; line-height: 1.45; color: #475467">{{g.d}}</span></div></div>
+</sc-for>
+<div class="cta" style="padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px"><span style="font-size: 12.5px; font-weight: 600; line-height: 1.35">Want these in place on your own site?</span><a class="btn btn-ink" href="https://shamistanisayev.com/?utm_source=rivaline&amp;utm_medium=extension&amp;utm_campaign=panel_cta" style="flex-shrink: 0">Get in touch</a></div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {
+rest: [
+{ mark: 'tiktok', name: 'TikTok Pixel', id: 'C9H3KQ7RC77U2M0V5PLG' },
+{ mark: 'googleads', name: 'Google Ads', id: 'AW-11284956' },
+{ mark: 'pinterest', name: 'Pinterest Tag', id: '2612345678901' }
+],
+gaps: [
+{ t: 'Server-side tracking', d: 'All 4 ad pixels send straight from the browser.' },
+{ t: 'Consent banner', d: 'No consent platform or consent update found.' },
+{ t: 'CRM', d: 'No HubSpot, Salesforce or Zoho script on the page.' }
+]
+};
+}
+}
+</script>
+</body>
+</html>

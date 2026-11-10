@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rivaline uninstall feedback</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+.rv{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.rv button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+a.lnk{color:#155E75}
+a.lnk:hover{color:#164E63}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.opt{display:flex;align-items:center;gap:12px;height:52px;padding:0 16px;border-radius:12px;border:1.5px solid #8E8A9D;background:#FFFFFF;font-size:14px;font-weight:500;color:#101828;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:#0E7490}
+.opt i{width:18px;height:18px;border-radius:50%;border:1.5px solid #98A2B3;box-sizing:border-box;flex-shrink:0}
+.opt.on{border-color:#0E7490;background:#ECFEFF;box-shadow:0 0 0 4px #CFFAFE;font-weight:600}
+.opt.on i{border:5px solid #0E7490;background:#FFFFFF}
+.btn{height:32px;padding:0 14px;border-radius:9px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:none;transition:background .15s,transform .15s}
+.btn-p{background:#0E7490;color:#FFFFFF;box-shadow:0 1px 2px rgba(22,78,99,.35)}
+.btn-p:hover{background:#155E75}
+.btn-l{background:#C6F36B;color:#1A2E05}
+.btn-l:hover{transform:translateY(-1px)}
+.rv a.btn.btn-l,.rv a.btn.btn-l:link,.rv a.btn.btn-l:visited,.rv a.btn.btn-l:hover,.rv a.btn.btn-l:focus,.rv a.btn.btn-l:active{color:#1A2E05}
+</style>
+</helmet>
+<div class="rv" style="width: 1440px; height: 900px; overflow: hidden; background: #EFEDF5; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" host="getlineapps.com" path="/rivaline/uninstalled" tab="Sorry to see you go | Rivaline" favicon="rivaline" tab2="Kova | Skincare that keeps it simple" favicon2="kova" hint-size="100%,84px"></dc-import></div>
+<div style="flex-grow: 1; display: flex; gap: 56px; padding: 72px 96px 0">
+<form style="flex: 1 1 0; display: flex; flex-direction: column; gap: 22px; min-width: 0; margin: 0">
+<dc-import name="Logo" brand="rivaline" theme="light" size="36" word="true" hint-size="170px,36px"></dc-import>
+<h1 class="disp" style="margin: 0; font-size: 46px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08">Rivaline is removed.<br>What made you leave?</h1>
+<p style="margin: 0; font-size: 16px; color: #344054">One click helps make the next version better.</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+<label class="opt on"><input type="radio" name="why" checked style="position: absolute; opacity: 0"><i></i>It missed tools on a site</label>
+<label class="opt"><input type="radio" name="why" style="position: absolute; opacity: 0"><i></i>I only needed it once</label>
+<label class="opt"><input type="radio" name="why" style="position: absolute; opacity: 0"><i></i>Too hard to understand</label>
+<label class="opt"><input type="radio" name="why" style="position: absolute; opacity: 0"><i></i>I use another tool</label>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px"><label for="more" style="font-size: 13px; font-weight: 600; color: #344054">Anything else? <span style="color: #667085; font-weight: 500">(optional)</span></label><textarea id="more" style="height: 84px; border: 1px solid #8E8A9D; border-radius: 12px; padding: 12px 14px; font-family: inherit; font-size: 14px; resize: none; box-shadow: 0 1px 2px rgba(16,24,40,.05)" placeholder="Which site or tool did it miss?"></textarea></div>
+<div style="display: flex; align-items: center; gap: 18px"><button type="button" class="btn btn-p" style="height: 46px; padding: 0 24px; font-size: 15px">Send feedback</button><a class="lnk" href="https://chromewebstore.google.com/" style="font-size: 14px; font-weight: 600; text-decoration: none">Reinstall Rivaline</a></div>
+</form>
+<div style="width: 520px; flex-shrink: 0">
+<div style="background: #101828; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden">
+<span style="position: absolute; right: -60px; top: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(14,116,144,0.6), rgba(14,116,144,0) 70%)"></span>
+<span class="eyebrow" style="color: #C6F36B; position: relative">Saw gaps on your own site?</span>
+<span class="disp" style="font-size: 30px; font-weight: 800; color: #FFFFFF; line-height: 1.15; position: relative">I can close them for you.</span>
+<span style="font-size: 15px; line-height: 1.6; color: #D0D5DD; position: relative">Analytics, server-side tracking, consent and ad pixels. You get a clear list of what is missing and a working setup.</span>
+<a class="btn btn-l" href="https://shamistanisayev.com/?utm_source=rivaline&amp;utm_medium=extension&amp;utm_campaign=uninstall" style="height: 48px; font-size: 15px; font-weight: 700; text-decoration: none; position: relative">Book an audit</a>
+<span style="font-size: 13px; color: #98A2B3; position: relative">Shamistan Isayev, analytics and tracking</span>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+design/
+docs/
+pnpm-lock.yaml
+**/dist/
+**/.output/
+**/*.generated.ts

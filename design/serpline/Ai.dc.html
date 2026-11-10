@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Serpline side panel: AI</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.sx{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.sx button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap;flex-shrink:0}
+.ok{background:#ECFDF3;color:#067647}
+.bad{background:#FEF3F2;color:#B42318}
+.warn{background:#FFFAEB;color:#B54708}
+.mute{background:#EEEDF3;color:#475467}
+.btn{height:32px;padding:0 14px;border-radius:9px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.hero{background:linear-gradient(135deg,#2563EB 0%,#1E40AF 100%);color:#FFFFFF;border-radius:14px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-50px;top:-70px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(147, 197, 253,.35),rgba(147, 197, 253,0) 70%)}
+.hero .soft{color:rgba(255,255,255,.88)}
+.grp{padding:8px 14px 4px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#667085;border-top:1px solid #EAE8F0}
+.brow{display:flex;align-items:center;gap:9px;min-height:30px;padding:0 14px;font-size:13px;transition:background .15s}
+.brow:hover{background:#F7F6FB}
+.bn{flex-grow:1;min-width:0;font-weight:600;white-space:nowrap}
+.bn em{font-style:normal;font-weight:400;color:#667085;margin-left:6px}
+.pf{width:20px;height:20px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:8.5px;font-weight:800;color:#344054}
+.cta{background:#C6F36B;border-radius:14px;color:#1A2E05;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.frow{display:flex;align-items:center;justify-content:space-between;gap:10px;height:32px;padding:0 14px;border-top:1px solid #EAE8F0;font-size:13px}
+</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; background: #E9EDF3">
+<div style="flex: 1 1 auto; min-width: 0; height: 816px; overflow: hidden"><dc-import name="SitePage" hint-size="100%,820px"></dc-import></div>
+<div style="width: 412px; flex-shrink: 0; box-sizing: border-box; padding: 6px; display: flex">
+<aside aria-label="Serpline side panel" style="flex-grow: 1; width: 400px; background: #FFFFFF; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 0 1px #D3DAE5">
+<div style="height: 132px; flex-shrink: 0"><dc-import name="PanelHeader" tab="ai" hint-size="400px,132px"></dc-import></div>
+<div style="flex-grow: 1; min-height: 0; overflow: hidden; background: #EFEDF5; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="hero" style="padding: 14px 16px; display: flex; align-items: center; gap: 14px; flex-shrink: 0">
+<span class="disp" style="position: relative; z-index: 1; width: 52px; height: 52px; border-radius: 14px; background: #FFFFFF; color: #1E40AF; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; line-height: 1"><b style="font-size: 19px; font-weight: 800">8/11</b><span style="font-size: 9.5px; font-weight: 700; margin-top: 3px; font-family: Inter, Arial, sans-serif">allowed</span></span>
+<div style="display: flex; flex-direction: column; gap: 3px; position: relative; z-index: 1"><span class="disp" style="font-size: 17px; font-weight: 800">PerplexityBot is blocked</span><span class="soft" style="font-size: 12.5px; line-height: 1.4">Perplexity can't cite this site. The other answer engines can, but read only 38 of 412 words.</span></div>
+</div>
+<div class="card" style="flex-shrink: 0; overflow: hidden; padding-bottom: 4px">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px"><span class="eyebrow">AI bots in robots.txt</span><span class="mono" style="font-size: 11px; color: #667085">example.com/robots.txt</span></div>
+<div class="grp">Search and answers</div>
+<div class="brow"><span class="pf" style="background: #EEEDF3"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#412991" aria-hidden="true"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"></path></svg></span><span class="bn">OAI-SearchBot<em>ChatGPT search</em></span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Allowed</span></div>
+<div class="brow"><span class="pf" style="background: #F4EFEA"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#191919" aria-hidden="true"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"></path></svg></span><span class="bn">Claude-SearchBot<em>Claude search</em></span><span class="pill mute"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Allowed by *</span></div>
+<div class="brow" style="background: #FFFBFA; align-items: flex-start; padding-top: 5px; padding-bottom: 7px"><span class="pf" style="background: #E5F7F9"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#1FB8CD" aria-hidden="true"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"></path></svg></span><span class="bn" style="display: flex; flex-direction: column; gap: 3px; padding-top: 1px"><span>PerplexityBot<em>Perplexity answers</em></span><span class="mono" style="font-size: 11px; font-weight: 500; color: #B42318">User-agent: PerplexityBot  Disallow: /</span></span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg>Blocked</span></div>
+<div class="grp">Model training</div>
+<div class="brow"><span class="pf" style="background: #EEEDF3"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#412991" aria-hidden="true"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"></path></svg></span><span class="bn">GPTBot<em>OpenAI</em></span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Allowed</span></div>
+<div class="brow"><span class="pf" style="background: #F4EFEA"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#191919" aria-hidden="true"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"></path></svg></span><span class="bn">ClaudeBot<em>Anthropic</em></span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Allowed</span></div>
+<div class="brow"><span class="pf" style="background: #E8F0FE"><svg viewBox="0 0 24 24" width="62%" height="62%" fill="#4285F4" aria-hidden="true"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"></path></svg></span><span class="bn">Google-Extended<em>Gemini</em></span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Allowed</span></div>
+<div class="brow"><span class="pf" style="background: #EEEDF3">CC</span><span class="bn">CCBot<em>Common Crawl</em></span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"></path></svg>Blocked</span></div>
+<div class="brow" style="color: #475467; font-size: 12.5px"><span style="flex-grow: 1">4 more bots</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+</div>
+<div class="cta" style="flex-shrink: 0; padding: 12px 12px 12px 16px"><span style="font-size: 13px; font-weight: 700; line-height: 1.35">Want your site to show up in AI answers?</span><a class="btn" href="https://shamistanisayev.com/?utm_source=serpline&amp;utm_medium=extension&amp;utm_campaign=panel_cta" style="height: 34px; background: #101828; color: #FFFFFF; text-decoration: none; flex-shrink: 0">Get in touch</a></div>
+<div class="card" style="flex-shrink: 0; overflow: hidden">
+<div style="padding: 10px 14px"><span class="eyebrow">Files for crawlers</span></div>
+<div class="frow"><span class="mono" style="font-size: 12.5px">robots.txt</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Found, 38 lines</span></div>
+<div class="frow"><span class="mono" style="font-size: 12.5px">sitemap.xml</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Listed in robots.txt</span></div>
+<div class="frow"><span class="mono" style="font-size: 12.5px">llms.txt</span><span class="pill mute"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M6 12h12"></path></svg>Not found, optional</span></div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

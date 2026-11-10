@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Serpline side panel: Summary</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.sx{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.sx button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.card{background:#FFFFFF;border:1px solid #DCD9E6;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px -6px rgba(52,30,120,.12)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap;flex-shrink:0}
+.ok{background:#ECFDF3;color:#067647}
+.bad{background:#FEF3F2;color:#B42318}
+.warn{background:#FFFAEB;color:#B54708}
+.mute{background:#EEEDF3;color:#475467}
+.btn{height:32px;padding:0 14px;border-radius:9px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
+.btn-p{border:none;background:#2563EB;color:#FFFFFF;box-shadow:0 1px 2px rgba(30, 64, 175,.35)}
+.btn-p:hover{background:#1D4ED8}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054}
+.btn-s:hover{background:#F9FAFB}
+.hero{background:linear-gradient(135deg,#2563EB 0%,#1E40AF 100%);color:#FFFFFF;border-radius:14px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-50px;top:-70px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(147, 197, 253,.35),rgba(147, 197, 253,0) 70%)}
+.hero .soft{color:rgba(255,255,255,.88)}
+.rowc{display:flex;align-items:center;justify-content:space-between;gap:12px;height:32px;padding:0 14px;border-top:1px solid #EAE8F0;font-size:13px;transition:background .15s}
+.rowc:hover{background:#F7F6FB}
+.seg{display:inline-flex;padding:2px;border-radius:8px;background:#EEEDF3}
+.seg span{height:22px;padding:0 9px;border-radius:6px;font-size:11.5px;font-weight:600;color:#475467;display:inline-flex;align-items:center}
+.seg .on{background:#FFFFFF;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.12)}
+.serp{font-family:Arial,sans-serif}
+</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; background: #E9EDF3">
+<div style="flex: 1 1 auto; min-width: 0; height: 816px; overflow: hidden"><dc-import name="SitePage" hint-size="100%,820px"></dc-import></div>
+<div style="width: 412px; flex-shrink: 0; box-sizing: border-box; padding: 6px; display: flex">
+<aside aria-label="Serpline side panel" style="flex-grow: 1; width: 400px; background: #FFFFFF; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 0 1px #D3DAE5">
+<div style="height: 132px; flex-shrink: 0"><dc-import name="PanelHeader" tab="summary" hint-size="400px,132px"></dc-import></div>
+<div style="flex-grow: 1; min-height: 0; overflow: hidden; background: #EFEDF5; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div class="hero" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; flex-shrink: 0">
+<div style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1"><span style="font-size: 13px; font-weight: 600">example.com</span><span class="soft" style="font-size: 12px">Checked at 10:42</span></div>
+<div style="display: flex; align-items: center; gap: 14px; position: relative; z-index: 1">
+<svg width="60" height="60" viewBox="0 0 64 64" role="img" aria-label="SEO score 56 of 100" style="flex-shrink: 0"><circle cx="32" cy="32" r="27" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="6"></circle><circle cx="32" cy="32" r="27" fill="none" stroke="#C6F36B" stroke-width="6" stroke-linecap="round" stroke-dasharray="95 170" transform="rotate(-90 32 32)"></circle><text x="32" y="38" text-anchor="middle" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="19" font-weight="800" fill="#FFFFFF">56</text></svg>
+<div style="display: flex; flex-direction: column; gap: 3px"><span class="disp" style="font-size: 18px; font-weight: 800">SEO score: needs work</span><span class="soft" style="font-size: 12.5px">2 high, 6 medium, 2 low priority issues</span></div>
+</div>
+</div>
+<div class="card" style="flex-shrink: 0; overflow: hidden">
+<div style="padding: 10px 14px"><span class="eyebrow">On-page checks</span></div>
+<div class="rowc"><span>Title</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>32 characters</span></div>
+<div class="rowc"><span>Meta description</span><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Cut off in Google</span></div>
+<div class="rowc"><span>Canonical</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Points to this page</span></div>
+<div class="rowc"><span>Robots meta</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>index, follow</span></div>
+<div class="rowc" style="background: #FFFBFA"><span>H1</span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Only after JavaScript</span></div>
+<div class="rowc"><span>Image alt text</span><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>3 of 9 missing</span></div>
+<div class="rowc"><span>Structured data</span><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Product added by JavaScript</span></div>
+<div class="rowc"><span>Open Graph</span><span class="pill warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>og:description missing</span></div>
+<div class="rowc"><span>hreflang</span><span class="pill mute"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"></path></svg>Not used</span></div>
+</div>
+<div class="card" style="flex-shrink: 0; overflow: hidden">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px"><span class="eyebrow">Google preview</span><span class="seg" role="group" aria-label="Preview device"><span class="on">Mobile</span><span>Desktop</span></span></div>
+<div class="serp" style="padding: 2px 14px 12px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 10px"><span style="width: 26px; height: 26px; border-radius: 50%; background: #F1F3F4; border: 1px solid #DADCE0; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><span style="width: 16px; height: 16px; border-radius: 4px; background: #1D2420; color: #F4C95D; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center">l</span></span><span style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 14px; color: #202124">Lumo</span><span style="font-size: 12px; color: #4D5156; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">https://example.com › products › wireless-headph...</span></span></div>
+<span style="font-size: 18px; line-height: 24px; color: #1A0DAB">Wireless Headphones Pro X | Lumo</span>
+<span style="font-size: 14px; line-height: 22px; color: #4D5156">Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once. ...</span>
+</div>
+<div style="border-top: 1px solid #EAE8F0; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: #344054">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px"><span>Title: 32 characters, 318 of 600 px</span><span class="pill ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Fits</span></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px"><span>Description: 191 characters, cut after 107</span><span class="pill bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 6v8"></path><path d="M12 18.5h.01"></path></svg>Too long</span></div>
+</div>
+</div>
+</div>
+<div style="flex-shrink: 0; background: #101828; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px"><span style="font-size: 12.5px; color: #D0D5DD">Need help fixing these?</span><a class="btn" href="https://shamistanisayev.com/?utm_source=serpline&amp;utm_medium=extension&amp;utm_campaign=panel_cta" style="height: 28px; padding: 0 12px; background: #C6F36B; color: #1A2E05; font-size: 12.5px; text-decoration: none">Get in touch</a></div>
+</aside>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

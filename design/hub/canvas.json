@@ -1,0 +1,19 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-11-08T14:20:00Z"},
+  "title": "getlineapps.com: hub səhifə",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 5200, "title": "Hub: desktop (getlineapps.com/)", "expand": "fill", "is_interactive": true},
+    "MainMobile.dc.html": {"x": 1520, "y": 0, "w": 390, "h": 9400, "title": "Hub: telefon"},
+    "HubLogoSheet.dc.html": {"x": 1990, "y": 0, "w": 1200, "h": 720, "title": "Line apps loqosu: istifadə"},
+    "HubLogo.dc.html": {"x": 1990, "y": 840, "w": 520, "h": 160, "title": "Line apps loqo komponenti"},
+    "Logo.dc.html": {"x": 2590, "y": 840, "w": 520, "h": 160, "title": "Tool loqo komponenti"},
+    "Privacy.dc.html": {"x": 3270, "y": 0, "w": 1440, "h": 3000, "title": "Privacy policy (getlineapps.com/privacy/<tool>)", "expand": "fill", "is_interactive": true},
+    "PrivacyMobile.dc.html": {"x": 4790, "y": 0, "w": 390, "h": 4600, "title": "Privacy policy: telefon"}
+  },
+  "order": ["Main.dc.html", "MainMobile.dc.html", "HubLogoSheet.dc.html", "HubLogo.dc.html", "Logo.dc.html", "Privacy.dc.html", "PrivacyMobile.dc.html"],
+  "notes": {},
+  "designSystems": []
+}

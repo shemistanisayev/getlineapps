@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sunvo: fictional landing page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@500;600;700&amp;family=Fraunces:opsz,wght@9..144,600&amp;display=swap">
+<style>
+body{margin:0}
+.sv{font-family:Manrope,Arial,sans-serif;color:#0B2540;-webkit-font-smoothing:antialiased}
+.sv a{color:inherit;text-decoration:none}
+.sv-in{height:46px;box-sizing:border-box;border:1px solid #C5D0D6;border-radius:10px;background:#FFFFFF;padding:0 14px;display:flex;align-items:center;font-size:14px;color:#0B2540}
+.sv-ph{color:#7A8B95}
+.sv-lb{font-size:12.5px;font-weight:700;color:#33495A}
+.fl-pill{position:absolute;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-family:Inter,Arial,sans-serif;font-size:11.5px;font-weight:700;color:#FFFFFF;white-space:nowrap;box-shadow:0 4px 10px -4px rgba(16,24,40,.45)}
+@keyframes fl-halo{0%,100%{box-shadow:0 0 0 0 rgba(250,167,224,.85),0 0 0 9999px rgba(16,24,40,.38)}50%{box-shadow:0 0 0 10px rgba(250,167,224,0),0 0 0 9999px rgba(16,24,40,.38)}}
+.fl-show{box-shadow:0 0 0 6px rgba(250,167,224,.45),0 0 0 9999px rgba(16,24,40,.38);animation:fl-halo 1.8s ease-in-out infinite}
+</style>
+</helmet>
+<div class="sv" style="width: 100%; height: {{viewH}}px; overflow: hidden; position: relative; background: {{bg}}">
+<div style="position: relative; margin-top: -{{scroll}}px">
+
+<sc-if value="{{desk}}" hint-placeholder-val="{{true}}">
+<div style="height: 36px; background: #0B2540; color: #E6EEF5; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px">Free roof check in your area. Call +1 555 0142</div>
+<div style="height: 72px; box-sizing: border-box; display: flex; align-items: center; gap: 32px; padding: 0 40px; background: #FFFFFF; border-bottom: 1px solid #E2E8EA">
+<span style="display: flex; align-items: center; gap: 9px; font-size: 25px; font-weight: 800; letter-spacing: -0.03em"><span style="width: 26px; height: 26px; border-radius: 50%; background: #F2B33D; box-shadow: inset -7px -7px 0 #E08E1B"></span>sunvo</span>
+<nav style="display: flex; gap: 24px; font-size: 14.5px; font-weight: 600; color: #33495A"><a href="#">How it works</a><a href="#">Pricing</a><a href="#">Reviews</a><a href="#">FAQ</a></nav>
+<span style="flex-grow: 1"></span>
+<a href="#" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1.5px solid #0B2540; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center">Chat with us</a>
+<a href="#" style="height: 40px; padding: 0 16px; border-radius: 10px; background: #0B2540; color: #FFFFFF; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center">Get a quote</a>
+</div>
+<div style="height: 668px; box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 40px; padding: 56px 40px; background: #F3F7F6">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span style="align-self: flex-start; height: 28px; padding: 0 12px; border-radius: 999px; background: #DDF1EA; color: #0A5C4C; font-size: 12.5px; font-weight: 700; display: inline-flex; align-items: center">Home solar</span>
+<h1 style="margin: 0; font-size: 50px; line-height: 1.06; font-weight: 800; letter-spacing: -0.035em">Cut your power bill with solar sized for your roof.</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #33495A">We measure your roof from satellite photos, design the system and install it in one day. You only pay once the panels are on.</p>
+<div style="display: flex; gap: 12px; white-space: nowrap"><a href="#" style="height: 48px; padding: 0 18px; border-radius: 12px; background: #FFFFFF; box-shadow: inset 0 0 0 1.5px #C5D0D6; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#0B2540" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>Watch video</a><a href="#" style="height: 48px; padding: 0 18px; border-radius: 12px; background: #FFFFFF; box-shadow: inset 0 0 0 1.5px #C5D0D6; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center">Pricing</a><a href="#" style="height: 48px; padding: 0 6px; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; border-bottom: 2px solid #F2B33D; border-radius: 0">Get the guide</a></div>
+<div style="display: flex; gap: 22px; align-items: center; font-size: 13.5px; font-weight: 600; color: #33495A"><span style="display: flex; align-items: center; gap: 6px"><span style="color: #E08E1B; letter-spacing: 1px">&#9733;&#9733;&#9733;&#9733;&#9733;</span>4.8 from 1,240 reviews</span><span>25-year panel warranty</span></div>
+</div>
+<div style="position: relative; border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, #CFE7F5 0%, #EAF4F1 70%)">
+<span style="position: absolute; right: 56px; top: 48px; width: 86px; height: 86px; border-radius: 50%; background: #F2B33D; box-shadow: 0 0 0 18px rgba(242,179,61,.18), 0 0 0 40px rgba(242,179,61,.08)"></span>
+<span style="position: absolute; left: -40px; right: -40px; bottom: -120px; height: 260px; border-radius: 50%; background: #BFDCCB"></span>
+<span style="position: absolute; left: 70px; bottom: 70px; width: 300px; height: 170px; background: #FFFFFF; border-radius: 6px; box-shadow: 0 20px 40px -24px rgba(11,37,64,.5)"></span>
+<span style="position: absolute; left: 50px; bottom: 236px; width: 340px; height: 150px; background: #1E3A52; clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%)"></span>
+<span style="position: absolute; left: 92px; bottom: 252px; width: 256px; height: 112px; clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%); background-color: #2B5C8A; background-image: linear-gradient(90deg, rgba(156,195,224,.85) 2px, transparent 2px), linear-gradient(0deg, rgba(156,195,224,.85) 2px, transparent 2px); background-size: 32px 28px"></span>
+<span style="position: absolute; left: 110px; bottom: 120px; width: 54px; height: 54px; border-radius: 6px; background: #CFE7F5; box-shadow: inset 0 0 0 4px #E2E8EA"></span>
+<span style="position: absolute; left: 270px; bottom: 120px; width: 54px; height: 54px; border-radius: 6px; background: #CFE7F5; box-shadow: inset 0 0 0 4px #E2E8EA"></span>
+<span style="position: absolute; left: 190px; bottom: 70px; width: 56px; height: 86px; border-radius: 6px 6px 0 0; background: #0E7C66"></span>
+<span style="position: absolute; right: 28px; bottom: 32px; width: 200px; background: #FFFFFF; border-radius: 16px; padding: 14px 16px; box-shadow: 0 16px 30px -18px rgba(11,37,64,.55); display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 700; color: #33495A">Your roof fits</span><span style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em">14 panels</span></span>
+</div>
+</div>
+<div style="height: 200px; box-sizing: border-box; padding: 48px 40px; background: #FFFFFF; display: flex; flex-direction: column; gap: 16px">
+<span style="height: 32px; font-size: 24px; line-height: 32px; font-weight: 800; letter-spacing: -0.02em">Ready to see what you would save?</span>
+<div style="display: flex; align-items: center; gap: 18px">
+<span style="position: relative; display: inline-flex">
+<a href="#" style="height: 56px; width: 248px; border-radius: 12px; background: #0E7C66; color: #FFFFFF; font-size: 16.5px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 8px">Get my free quote<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<sc-if value="{{markCta}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: -7px; top: -7px; right: -7px; bottom: -7px; border-radius: 17px; border: 2px dashed #D92D20"></span><span class="fl-pill" style="left: -7px; top: 68px; background: #D92D20">{{ctaLabel}}</span></sc-if>
+<sc-if value="{{showCta}}" hint-placeholder-val="{{false}}"><span class="fl-show" style="position: absolute; left: -8px; top: -8px; right: -8px; bottom: -8px; border-radius: 18px; border: 3px solid #FAA7E0"></span><span class="fl-pill" style="left: -8px; top: 68px; background: #C11574">{{ctaLabel}}</span></sc-if>
+</span>
+<span style="font-size: 14px; font-weight: 600; color: #33495A">Takes 2 minutes. No obligation.</span>
+</div>
+</div>
+<div style="box-sizing: border-box; padding: 48px 40px 56px; background: #F3F7F6; display: flex; flex-direction: column; gap: 22px">
+<h2 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.02em">Get your free quote</h2>
+<div style="position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 16px">
+<span style="display: flex; flex-direction: column; gap: 6px"><span class="sv-lb">First name</span><span class="sv-in"></span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span class="sv-lb">Last name</span><span class="sv-in"></span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span class="sv-lb">Email</span><span class="sv-in"></span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span class="sv-lb">Phone</span><span class="sv-in"></span></span>
+<span style="display: flex; flex-direction: column; gap: 6px; justify-content: flex-end"><span class="sv-in sv-ph">Street address</span></span>
+<span style="display: flex; flex-direction: column; gap: 6px; justify-content: flex-end"><span class="sv-in sv-ph">Postcode</span></span>
+<span style="display: flex; flex-direction: column; gap: 6px; justify-content: flex-end"><span class="sv-in sv-ph">Monthly power bill</span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span class="sv-lb">Roof type</span><span class="sv-in" style="justify-content: space-between">Pitched<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#33495A" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span class="sv-lb">How did you hear about us?</span><span class="sv-in"></span></span>
+<sc-if value="{{markForm}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: -10px; top: -10px; right: -10px; bottom: -10px; border-radius: 16px; border: 2px dashed #D92D20"></span><span class="fl-pill" style="right: -10px; top: -36px; background: #D92D20">9 fields</span></sc-if>
+</div>
+<div style="display: flex; align-items: center; gap: 16px"><span style="height: 50px; padding: 0 28px; border-radius: 12px; background: #0E7C66; color: #FFFFFF; font-size: 15.5px; font-weight: 800; display: inline-flex; align-items: center">Get my quote</span><span style="font-size: 13px; color: #33495A">We reply within one working day. <u>Privacy policy</u></span></div>
+</div>
+<div style="height: 140px; display: flex; align-items: center; justify-content: center; gap: 48px; background: #FFFFFF; color: #7A8B95; font-size: 20px; font-weight: 800; letter-spacing: -0.02em"><span>As seen in</span><span style="color: #9AA9B1">Daily Volt</span><span style="color: #9AA9B1">GreenHome</span><span style="color: #9AA9B1">The Roofer</span><span style="color: #9AA9B1">Metro Living</span></div>
+</sc-if>
+
+<sc-if value="{{mob}}" hint-placeholder-val="{{false}}">
+<div style="height: 32px; background: #0B2540; color: #E6EEF5; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center">Call +1 555 0142</div>
+<div style="height: 60px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: #FFFFFF; border-bottom: 1px solid #E2E8EA">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 22px; font-weight: 800; letter-spacing: -0.03em"><span style="width: 22px; height: 22px; border-radius: 50%; background: #F2B33D; box-shadow: inset -6px -6px 0 #E08E1B"></span>sunvo</span>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B2540" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</div>
+<div style="height: 772px; box-sizing: border-box; padding: 28px 20px; background: #F3F7F6; display: flex; flex-direction: column; gap: 14px">
+<span style="align-self: flex-start; height: 26px; padding: 0 11px; border-radius: 999px; background: #DDF1EA; color: #0A5C4C; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center">Home solar</span>
+<h1 style="margin: 0; font-size: 33px; line-height: 1.08; font-weight: 800; letter-spacing: -0.035em">Cut your power bill with solar sized for your roof.</h1>
+<p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #33495A">We measure your roof from satellite photos, design the system and install it in one day.</p>
+<a href="#" style="height: 46px; border-radius: 12px; background: #FFFFFF; box-shadow: inset 0 0 0 1.5px #C5D0D6; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="#0B2540" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>Watch the video</a>
+<a href="#" style="height: 46px; border-radius: 12px; background: #FFFFFF; box-shadow: inset 0 0 0 1.5px #C5D0D6; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center">See pricing</a>
+<span style="font-size: 13px; font-weight: 600; color: #33495A"><span style="color: #E08E1B">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 from 1,240 reviews</span>
+<div style="position: relative; flex-grow: 1; border-radius: 20px; overflow: hidden; background: linear-gradient(180deg, #CFE7F5 0%, #EAF4F1 70%)">
+<span style="position: absolute; right: 30px; top: 26px; width: 54px; height: 54px; border-radius: 50%; background: #F2B33D; box-shadow: 0 0 0 12px rgba(242,179,61,.18)"></span>
+<span style="position: absolute; left: -30px; right: -30px; bottom: -90px; height: 170px; border-radius: 50%; background: #BFDCCB"></span>
+<span style="position: absolute; left: 60px; bottom: 40px; width: 200px; height: 110px; background: #FFFFFF; border-radius: 5px"></span>
+<span style="position: absolute; left: 44px; bottom: 148px; width: 232px; height: 96px; background: #1E3A52; clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%)"></span>
+<span style="position: absolute; left: 74px; bottom: 158px; width: 172px; height: 72px; clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%); background-color: #2B5C8A; background-image: linear-gradient(90deg, rgba(156,195,224,.85) 2px, transparent 2px), linear-gradient(0deg, rgba(156,195,224,.85) 2px, transparent 2px); background-size: 22px 19px"></span>
+<span style="position: absolute; left: 140px; bottom: 40px; width: 40px; height: 60px; border-radius: 5px 5px 0 0; background: #0E7C66"></span>
+</div>
+</div>
+<div style="height: 320px; box-sizing: border-box; padding: 32px 20px; background: #FFFFFF; display: flex; flex-direction: column; gap: 16px">
+<span style="height: 28px; white-space: nowrap; font-size: 21px; line-height: 28px; font-weight: 800; letter-spacing: -0.02em">Ready to see what you would save?</span>
+<div style="height: 76px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 20px; font-weight: 600; color: #33495A"><span>Roof check from satellite photos</span><span>Price fixed before we start</span><span>Install in one day</span></div>
+<span style="position: relative; display: flex">
+<a href="#" style="height: 52px; width: 100%; border-radius: 12px; background: #0E7C66; color: #FFFFFF; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px">Get my free quote</a>
+<sc-if value="{{markCta}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: -6px; top: -6px; right: -6px; bottom: -6px; border-radius: 16px; border: 2px dashed #D92D20"></span><span class="fl-pill" style="left: -6px; top: 64px; background: #D92D20">{{ctaLabel}}</span></sc-if>
+</span>
+<span style="margin-top: 22px; font-size: 13px; font-weight: 600; color: #33495A; text-align: center">Takes 2 minutes. No obligation.</span>
+</div>
+<div style="padding: 28px 20px; background: #F3F7F6; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 24px; font-weight: 800">Get your free quote</h2>
+<span class="sv-lb">First name</span><span class="sv-in" style="font-size: 14px"></span>
+<span class="sv-lb">Last name</span><span class="sv-in"></span>
+<span class="sv-lb">Email</span><span class="sv-in"></span>
+</div>
+</sc-if>
+
+<sc-if value="{{nori}}" hint-placeholder-val="{{false}}">
+<div style="height: 72px; display: flex; align-items: center; gap: 32px; padding: 0 40px; background: #F3EEE4; border-bottom: 1px solid #E2D9C8; font-family: Inter, Arial, sans-serif"><span style="font-family: Fraunces, Georgia, serif; font-size: 26px; font-weight: 600; color: #26382C">nori yoga</span><nav style="display: flex; gap: 24px; font-size: 14px; color: #3F5F4A"><a href="#">Classes</a><a href="#">Teachers</a><a href="#">Prices</a></nav></div>
+<div style="padding: 84px 40px; display: flex; flex-direction: column; gap: 22px; background: #FAF7F1; height: 736px; box-sizing: border-box; font-family: Inter, Arial, sans-serif"><h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-size: 56px; line-height: 1.04; letter-spacing: -0.02em; color: #26382C; max-width: 600px">Morning yoga in the park, every weekday.</h1><p style="margin: 0; font-size: 17px; color: #3F5F4A">Bring a mat. First class is on us.</p><span style="align-self: flex-start; height: 50px; padding: 0 26px; border-radius: 999px; background: #3F5F4A; color: #FFFFFF; font-weight: 600; display: inline-flex; align-items: center">Book a free class</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px"><span style="height: 220px; border-radius: 20px; background: #DCE5D2"></span><span style="height: 220px; border-radius: 20px; background: #F0D9B5"></span><span style="height: 220px; border-radius: 20px; background: #C9D8E0"></span></div></div>
+</sc-if>
+
+<sc-if value="{{showFold}}" hint-placeholder-val="{{true}}">
+<span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: {{foldAt}}px; height: 0; border-top: 2px dashed #C11574; box-shadow: 0 2px 0 rgba(250,167,224,.9)"></span>
+<span class="fl-pill" style="left: {{foldPillX}}px; top: {{foldPillY}}px; background: #C11574"><svg width="12" height="12" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="26" x2="44" y2="26" stroke-dasharray="2 7"></line></svg>Fold {{foldAt}} px</span>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":{"editor":"enum","options":["sunvo","sunvo-mobile","nori","blank"],"default":"sunvo"},"scroll":{"editor":"int","min":0,"max":1200,"default":0},"fold":{"editor":"boolean","default":false},"foldAt":{"editor":"int","min":200,"max":1200,"default":808},"mark":{"editor":"enum","options":["none","cta","show","form","both"],"default":"none"},"ctaLabel":{"editor":"text","default":"Main button, 64 px below the fold"},"viewH":{"editor":"int","min":400,"max":1200,"default":808},"$preview":{"width":1024,"height":808}}'>
+class Component extends DCLogic {
+renderVals() {
+var p = this.props;
+var on = function (v) { return v === true || v === 'true'; };
+var v = p.variant || 'sunvo';
+var mark = p.mark || 'none';
+var foldAt = Number(p.foldAt ?? (v === 'sunvo-mobile' ? 844 : 808));
+var mobile = v === 'sunvo-mobile';
+return {
+desk: v === 'sunvo', mob: mobile, nori: v === 'nori',
+bg: v === 'nori' ? '#FAF7F1' : '#FFFFFF',
+scroll: Number(p.scroll ?? 0),
+viewH: Number(p.viewH ?? (mobile ? 844 : 808)),
+showFold: on(p.fold) && v !== 'nori',
+foldAt: foldAt,
+foldPillX: mobile ? 12 : 16,
+foldPillY: foldAt - 12,
+markCta: mark === 'cta' || mark === 'both',
+showCta: mark === 'show',
+markForm: mark === 'form' || mark === 'both',
+ctaLabel: p.ctaLabel || 'Main button, 64 px below the fold'
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chrome tab strip and address bar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+@keyframes bb-ping{0%{box-shadow:0 0 0 0 rgba(250,204,21,.55)}80%,100%{box-shadow:0 0 0 9px rgba(250,204,21,0)}}
+.bb-ping{animation:bb-ping 1.6s infinite}
+</style>
+</helmet>
+<div style="width: 100%; height: 84px; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif; color: #1F1F1F; display: flex; flex-direction: column; background: #DFE3EA">
+<div style="height: 40px; display: flex; align-items: flex-end; padding: 0 8px 0 14px">
+<div style="display: flex; gap: 8px; align-self: center; margin-right: 18px" aria-hidden="true">
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57; border: 0.5px solid #E0443E"></span>
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E; border: 0.5px solid #DEA123"></span>
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840; border: 0.5px solid #1AAB29"></span>
+</div>
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="2">
+<div style="width: 236px; height: 34px; box-sizing: border-box; background: {{t.bg}}; border-radius: 10px 10px 0 0; display: flex; align-items: center; gap: 8px; padding: 0 10px 0 12px; font-size: 12px; color: {{t.ink}}; flex-shrink: 1; min-width: 0">
+<sc-if value="{{t.bramble}}" hint-placeholder-val="{{true}}"><span style="width: 16px; height: 16px; border-radius: 4px; background: #2F5D50; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><span style="width: 7px; height: 7px; border-radius: 50%; background: #F3D9A4"></span></span></sc-if>
+<sc-if value="{{t.mark}}" hint-placeholder-val="{{false}}"><dc-import name="Logo" brand="markline" theme="light" size="16" word="false" hint-size="16px,16px"></dc-import></sc-if>
+<sc-if value="{{t.chrome}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5F6368" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3.5"></circle></svg></sc-if>
+<span style="flex-grow: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{t.title}}</span>
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#474747" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 7l10 10M17 7L7 17"></path></svg>
+</div>
+</sc-for>
+<div style="width: 1px; height: 18px; background: #AEB4BC; align-self: center; flex-shrink: 0"></div>
+<div style="width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; color: #474747; flex-shrink: 0" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></div>
+</div>
+<div style="height: 44px; box-sizing: border-box; background: #FFFFFF; display: flex; align-items: center; gap: 4px; padding: 0 8px; border-bottom: 1px solid #E3E3E3">
+<span style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #474747; flex-shrink: 0" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></span>
+<span style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #B5B5B5; flex-shrink: 0" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+<span style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #474747; flex-shrink: 0" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"></path><path d="M20 4v5h-5"></path></svg></span>
+<div style="flex-grow: 1; min-width: 0; height: 34px; border-radius: 999px; background: #EDF0F5; display: flex; align-items: center; gap: 10px; padding: 0 14px 0 6px; margin: 0 6px; font-size: 14px">
+<span style="width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #474747; flex-shrink: 0" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg></span>
+<span style="flex-grow: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><span style="color: #1F1F1F">{{host}}</span><span style="color: #6B6B6B">{{path}}</span></span>
+<span style="color: #474747; display: flex; flex-shrink: 0" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"></path></svg></span>
+</div>
+<span title="Markline" class="{{pingClass}}" style="width: 32px; height: 32px; border-radius: 50%; background: {{extBg}}; outline: {{extRing}}; outline-offset: 1px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<dc-import name="Logo" brand="markline" theme="light" size="18" word="false" hint-size="18px,18px"></dc-import>
+</span>
+<span style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #474747; flex-shrink: 0" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M10 4a2 2 0 1 1 4 0v2h4v4h-2a2 2 0 1 0 0 4h2v4h-4v-2a2 2 0 1 0-4 0v2H6v-4H4a2 2 0 1 1 0-4h2V6h4z"></path></svg></span>
+<span style="width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #474747; flex-shrink: 0" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect><path d="M14.5 4.5v15"></path></svg></span>
+<div style="width: 1px; height: 20px; background: #D5D5D5; margin: 0 4px; flex-shrink: 0"></div>
+<span style="width: 26px; height: 26px; border-radius: 50%; background: #101828; color: #FFFFFF; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin: 0 3px; flex-shrink: 0">S</span>
+<span style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #474747; flex-shrink: 0" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="12" cy="19" r="1.8"></circle></svg></span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"host":{"editor":"text","default":"example.com"},"path":{"editor":"text","default":"/order"},"tab":{"editor":"text","default":"Your order | Bramble Bakery"},"favicon":{"editor":"enum","options":["bramble","markline","chrome"],"default":"bramble"},"tab2":{"editor":"text","default":"Breads | Bramble Bakery"},"favicon2":{"editor":"enum","options":["bramble","markline","chrome"],"default":"bramble"},"activeTab":{"editor":"enum","options":["1","2"],"default":"1"},"extActive":{"editor":"boolean","default":false},"ping":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":84}}'>
+class Component extends DCLogic {
+renderVals() {
+var p = this.props;
+var on = function (v) { return v === true || v === 'true'; };
+var act = String(p.activeTab || '1');
+var mk = function (title, fav, active) {
+fav = fav || 'bramble';
+return { title: title, bg: active ? '#FFFFFF' : 'transparent', ink: active ? '#1F1F1F' : '#474747',
+bramble: fav === 'bramble', mark: fav === 'markline', chrome: fav === 'chrome' };
+};
+return {
+host: p.host ?? 'example.com',
+path: p.path ?? '/order',
+tabs: [
+mk(p.tab || 'Your order | Bramble Bakery', p.favicon || 'bramble', act === '1'),
+mk(p.tab2 || 'Breads | Bramble Bakery', p.favicon2 || 'bramble', act === '2')
+],
+extBg: on(p.extActive) || on(p.ping) ? '#FEF9C3' : 'transparent',
+extRing: on(p.ping) ? '2px solid #FACC15' : 'none',
+pingClass: on(p.ping) ? 'bb-ping' : ''
+};
+}
+}
+</script>
+</body>
+</html>

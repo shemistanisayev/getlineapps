@@ -1,0 +1,6 @@
+packages:
+  - packages/*
+  - apps/site
+  - apps/fixture
+  - apps/*/extension
+  - apps/*/fixture

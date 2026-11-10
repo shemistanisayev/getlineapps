@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Markline editor: no image yet</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.ml{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.ml button{font-family:Inter,Arial,sans-serif;cursor:pointer}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;color:#101828;background:#EAE8F0;border-radius:6px;padding:2px 7px;box-shadow:inset 0 -1px 0 #C9C5D6}
+.drop{transition:background .2s,box-shadow .2s,transform .2s}
+.drop:hover{background:#FEFCE8;transform:translateY(-2px)}
+.btn{height:44px;padding:0 18px;border-radius:12px;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px;border:none;transition:background .15s}
+.btn-p{background:#FACC15;color:#101828;box-shadow:0 1px 2px rgba(16,24,40,.35)}
+.btn-p:hover{background:#EAB308}
+@keyframes ee-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.bob{animation:ee-bob 3s ease-in-out infinite}
+</style>
+</helmet>
+<div class="ml" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EFEDF5; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" host="chrome-extension://hmlkcfjbaopgnied" path="/editor.html" tab="Markline editor" favicon="markline" tab2="Your order | Bramble Bakery" favicon2="bramble" hint-size="100%,84px"></dc-import></div>
+<div style="flex-shrink: 0"><dc-import name="EditorBar" empty="true" title="No image yet" sub="Drop, paste or capture" hint-size="100%,60px"></dc-import></div>
+<div style="height: 756px; display: flex; align-items: center; justify-content: center">
+<div class="drop" style="width: 640px; box-sizing: border-box; padding: 48px 40px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 2px #FFFFFF, 0 24px 48px -28px rgba(16,24,40,.35); outline: 2px dashed #101828; outline-offset: -14px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
+<span class="bob" style="display: flex"><dc-import name="Glyph" kind="png" tone="brand" size="64" hint-size="64px,64px"></dc-import></span>
+<h1 class="disp" style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.02em">Drop an image here</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #344054">Or paste one with <span class="kbd">Ctrl</span> <span class="kbd">V</span>. PNG, JPG and WebP work.</p>
+<button type="button" class="btn btn-p"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V9M7 14l5-5 5 5M5 4h14"></path></svg>Choose a file</button>
+<div style="width: 100%; display: flex; align-items: center; gap: 12px; margin-top: 10px; font-size: 12px; font-weight: 600; color: #667085"><span style="flex-grow: 1; height: 1px; background: #EAE8F0"></span>To capture a page<span style="flex-grow: 1; height: 1px; background: #EAE8F0"></span></div>
+<p style="margin: 0; font-size: 14px; line-height: 1.55; color: #344054">Go to the tab and click the Markline icon, or press <span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">M</span></p>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #475467"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2.2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>The image stays in this tab. Nothing is uploaded.</span>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rivaline side panel: Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500..800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+.rv{font-family:Inter,Arial,sans-serif;color:#101828;-webkit-font-smoothing:antialiased}
+.rv button,.rv select{font-family:Inter,Arial,sans-serif}
+.rv button{cursor:pointer}
+.rv a{text-decoration:none}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.disp{font-family:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#667085}
+.sec{padding:16px;border-bottom:1px solid #EAE8F0;display:flex;flex-direction:column;gap:10px}
+.btn{height:32px;padding:0 12px;border-radius:9px;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:background .15s}
+.btn-s{border:1px solid #C9C5D6;background:#FFFFFF;color:#344054}
+.btn-s:hover{background:#F9FAFB}
+.sel{height:34px;border:1px solid #8E8A9D;border-radius:9px;padding:0 8px;font-size:13px;color:#101828;background:#FFFFFF}
+.kbd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;font-weight:600;color:#101828;background:#EAE8F0;border-radius:6px;padding:3px 7px;box-shadow:inset 0 -1px 0 #C9C5D6}
+.tool{display:flex;align-items:center;gap:10px;padding:9px 6px;margin:0 -6px;border-radius:10px;transition:background .15s}
+.tool:hover{background:#F7F6FB}
+.tool svg.ar{transition:transform .2s}
+.tool:hover svg.ar{transform:translateX(3px)}
+</style>
+</helmet>
+<div class="rv" style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #EEF1F6; display: flex; flex-direction: column">
+<div style="width: 100%; height: 84px; flex-shrink: 0"><dc-import name="BrowserBar" ext-active="true" panel-open="true" hint-size="100%,84px"></dc-import></div>
+<div style="height: 816px; display: flex; gap: 8px; padding: 0 8px 8px 0; box-sizing: border-box">
+<div style="flex-grow: 1; min-width: 0; height: 808px; overflow: hidden; border-radius: 0 0 12px 0"><dc-import name="SitePage" variant="kova" hint-size="100%,808px"></dc-import></div>
+<aside aria-label="Rivaline side panel" style="width: 400px; flex-shrink: 0; height: 800px; margin-top: 8px; border-radius: 12px; overflow: hidden; background: #FFFFFF; box-shadow: 0 0 0 1px #DCD9E6; display: flex; flex-direction: column">
+<div style="height: 40px; flex-shrink: 0; border-bottom: 1px solid #EAE8F0"><dc-import name="PanelChrome" hint-size="100%,40px"></dc-import></div>
+<div style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 0 16px; border-bottom: 1px solid #DCD9E6"><button type="button" class="btn btn-s" aria-label="Back" style="width: 32px; padding: 0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button><span class="disp" style="font-size: 17px; font-weight: 800">Settings</span></div>
+<div style="flex-grow: 1; overflow: hidden; display: flex; flex-direction: column">
+<div class="sec">
+<span class="eyebrow">Ad libraries</span>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><label for="st-country" style="font-size: 13.5px; font-weight: 500">Default country</label><select id="st-country" class="sel"><option>All countries</option></select></div>
+<span style="font-size: 12px; line-height: 1.5; color: #667085">Used when Rivaline opens Meta, Google and LinkedIn searches.</span>
+</div>
+<div class="sec">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 13.5px; font-weight: 500">Keyboard shortcut</span><span style="display: flex; gap: 4px"><span class="kbd">Alt</span><span class="kbd">Shift</span><span class="kbd">R</span></span></span><button type="button" class="btn btn-s">Change</button></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><label for="st-lang" style="font-size: 13.5px; font-weight: 500">Language</label><select id="st-lang" class="sel"><option>English</option><option>Azərbaycan</option></select></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><span style="font-size: 13.5px; font-weight: 500">Your data</span><button type="button" class="btn btn-s">Clear all settings</button></div>
+<span style="font-size: 12px; line-height: 1.5; color: #667085">Only these settings are saved, and only on this computer. Rivaline sends nothing anywhere and forgets each page when you close the tab.</span>
+</div>
+<div class="sec" style="border-bottom: none; gap: 2px">
+<span class="eyebrow" style="padding-bottom: 6px">More free tools</span>
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="4">
+<a class="tool" href="{{t.href}}"><dc-import name="Logo" brand="{{t.brand}}" theme="light" size="26" word="false" hint-size="26px,26px"></dc-import><span style="font-size: 13.5px; font-weight: 700; color: #101828">{{t.name}}</span><span style="flex-grow: 1; font-size: 12.5px; color: #475467">{{t.desc}}</span><svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</sc-for>
+</div>
+<span style="flex-grow: 1"></span>
+<div style="height: 48px; flex-shrink: 0; display: flex; align-items: center; gap: 16px; padding: 0 16px; background: #F7F6FB; border-top: 1px solid #EAE8F0; font-size: 12.5px"><span style="flex-grow: 1; color: #475467">Version 1.0.0</span><a href="https://getlineapps.com/rivaline/privacy" style="color: #155E75; font-weight: 600">Privacy</a><a href="https://shamistanisayev.com/?utm_source=rivaline&amp;utm_medium=extension&amp;utm_campaign=settings" style="color: #155E75; font-weight: 600">Contact</a></div>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+var q = '?utm_source=rivaline&utm_medium=extension&utm_campaign=more_tools';
+return {
+tools: [
+{ brand: 'hitline', name: 'Hitline', desc: 'Tracking and consent audit', href: 'https://getlineapps.com/hitline' + q },
+{ brand: 'serpline', name: 'Serpline', desc: 'SEO and AI search', href: 'https://getlineapps.com/serpline' + q },
+{ brand: 'foldline', name: 'Foldline', desc: 'Landing page CRO', href: 'https://getlineapps.com/foldline' + q },
+{ brand: 'markline', name: 'Markline', desc: 'Feedback screenshots', href: 'https://getlineapps.com/markline' + q }
+]
+};
+}
+}
+</script>
+</body>
+</html>
