@@ -6,11 +6,11 @@ import {
   type Arrived,
   type Audit,
   type Plan,
-  type PlanError,
   type PlanStatus,
 } from '@line/core/hitline';
 import { useRef, useState, type DragEvent } from 'react';
 import { joinList, type MessageKey, type T } from '../../src/i18n/index.ts';
+import { planErrorText } from '../../src/plan-errors.ts';
 import { useT } from '../../src/useLang.ts';
 import { Icon, Pill, PlatformBadge, PLATFORM_NAME, type Tone } from '../../src/ui.tsx';
 
@@ -51,11 +51,6 @@ function arrived(a: Arrived, platform: string, t: T): string {
       return parts.join('. ');
     }
   }
-}
-
-export function planErrorText(e: PlanError, t: T): string {
-  if (e.code === 'row') return t(`plan.error.row.${e.reason}`, { line: e.line });
-  return t(`plan.error.${e.code}`);
 }
 
 /** PlanSetup: design/hitline/PlanSetup.dc.html. */
@@ -225,7 +220,9 @@ export function PlanTab({
           <span className="disp">{t('plan.compared')}</span>
           <span className="sub">
             <span className="kv">{result.plan.name}</span>,{' '}
-            {t('plan.events', { n: result.plan.rows.length })}
+            {t(result.plan.rows.length === 1 ? 'plan.event' : 'plan.events', {
+              n: result.plan.rows.length,
+            })}
           </span>
         </div>
         {order.map((s) => (

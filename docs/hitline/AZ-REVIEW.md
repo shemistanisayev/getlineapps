@@ -9,7 +9,63 @@ Fayl: `apps/hitline/extension/src/i18n/az.ts`. {platform}, {event} kimi yerlər 
 | Açar | English | Azərbaycanca |
 |---|---|---|
 | `popup.settings` | Settings | Ayarlar |
-| `popup.f12Hint` | Full analysis in DevTools: press F12, open the Hitline tab | Tam analiz DevTools-dadır: F12 bas, Hitline tabını aç |
+| `popup.loading` | Reading this page... | Səhifə oxunur... |
+| `popup.request` | {n} tracking request | {n} tracking sorğusu |
+| `popup.requests` | {n} tracking requests | {n} tracking sorğusu |
+| `popup.sgtm.yes` | Server-side GTM detected | Server-side GTM tapıldı |
+| `popup.sgtm.via` | GA4 goes through {host} | GA4 {host} ilə gedir |
+| `popup.sgtm.no` | No server-side GTM | Server-side GTM yoxdur |
+| `popup.sgtm.noText` | Tracking goes straight from the browser | Tracking birbaşa brauzerdən gedir |
+| `popup.tile.event` | {n} event | {n} event |
+| `popup.tile.events` | {n} events | {n} event |
+| `popup.tile.issue` | {n} issue | {n} problem |
+| `popup.tile.issues` | {n} issues | {n} problem |
+| `popup.more` | +{n} more | +{n} daha |
+| `popup.issueFound` | {n} issue found | {n} problem tapıldı |
+| `popup.issuesFound` | {n} issues found | {n} problem tapıldı |
+| `popup.noIssues` | No issues found in the requests on this page. | Bu səhifənin sorğularında problem tapılmadı. |
+| `popup.issue.value` | {platform} {event} is sent without a value | {platform} {event} dəyərsiz göndərilir |
+| `popup.issue.before` | {platform} fires before consent | {platform} consent-dən əvvəl işləyir |
+| `popup.issue.after` | {platform} still fires after cookies are rejected | {platform} cookie-lər rədd olunandan sonra da işləyir |
+| `popup.pdf` | Download audit PDF | Audit PDF-i yüklə |
+| `popup.f12.before` | Full analysis in DevTools: press | Tam analiz DevTools-dadır: |
+| `popup.f12.after` | , open the Hitline tab |  bas, Hitline tabını aç |
+| `popup.help` | Need help fixing these? | Bunları düzəltməyə kömək lazımdır? |
+| `popup.empty.title` | No tracking on this page | Bu səhifədə tracking yoxdur |
+| `popup.empty.text` | No GA4, Google Ads, Meta Pixel or TikTok Pixel was found on {host}. Visits and sales from this page are not measured. | {host} saytında GA4, Google Ads, Meta Pixel və ya TikTok Pixel tapılmadı. Bu səhifədən gələn ziyarətlər və satışlar ölçülmür. |
+| `popup.empty.checked` | What Hitline checked | Hitline nəyi yoxladı |
+| `popup.empty.gtm` | GTM container | GTM konteyneri |
+| `popup.empty.scripts` | page scripts | səhifə skriptləri |
+| `popup.empty.ctaTitle` | Want this site measured properly? | Bu sayt düzgün ölçülsün? |
+| `popup.empty.ctaText` | GA4, ad pixels and consent, set up and tested. | GA4, reklam pixel-ləri və consent, qurulmuş və yoxlanmış. |
+| `popup.restricted.title` | Hitline can’t read this page | Hitline bu səhifəni oxuya bilmir |
+| `popup.restricted.text` | Chrome does not let extensions read its own pages, the Web Store or the PDF viewer. Open a website and click the Hitline icon again. | Chrome extension-lara öz səhifələrini, Web Store-u və PDF baxıcısını oxumağa icazə vermir. Hər hansı sayt aç və Hitline ikonuna yenidən bas. |
+| `settings.back` | Back | Geri |
+| `settings.domains` | Your domains | Sənin domenlərin |
+| `settings.domainsHint` | Hitline treats these as one site when it checks attribution. | Hitline atribusiyanı yoxlayanda bunları bir sayt sayır. |
+| `settings.domainLabel` | Domain to add | Əlavə ediləcək domen |
+| `settings.addDomain` | + Add domain | + Domen əlavə et |
+| `settings.add` | Add | Əlavə et |
+| `settings.removeDomain` | Remove {domain} | {domain} sil |
+| `settings.invalidDomain` | Enter a domain like example.com. | example.com kimi bir domen yaz. |
+| `settings.plan` | Tracking plan | Tracking plan |
+| `settings.noPlan` | No plan for this site yet. | Bu sayt üçün hələ plan yoxdur. |
+| `settings.load` | Load plan | Plan yüklə |
+| `settings.replace` | Replace | Dəyiş |
+| `settings.removePlan` | Remove | Sil |
+| `settings.language` | Language | Dil |
+| `settings.yourData` | Your data | Məlumatların |
+| `settings.clearAll` | Clear all settings | Bütün ayarları təmizlə |
+| `settings.cleared` | All settings are cleared. | Bütün ayarlar təmizləndi. |
+| `settings.privacyNote` | Only these settings are saved, and only on this computer. Hitline sends nothing anywhere. | Yalnız bu ayarlar saxlanır, o da yalnız bu kompüterdə. Hitline heç yerə heç nə göndərmir. |
+| `settings.more` | More free tools | Daha çox pulsuz alət |
+| `settings.tool.serpline` | SEO and AI search | SEO və AI axtarış |
+| `settings.tool.rivaline` | Competitor research | Rəqib araşdırması |
+| `settings.tool.foldline` | Landing page CRO | Landing səhifə CRO |
+| `settings.tool.markline` | Feedback screenshots | Rəy üçün ekran şəkilləri |
+| `settings.version` | Version {v} | Versiya {v} |
+| `settings.privacy` | Privacy | Məxfilik |
+| `settings.contact` | Contact | Əlaqə |
 | `list.and` | and | və |
 | `panel.tabsLabel` | Hitline sections | Hitline bölmələri |
 | `panel.tab.events` | Events | Eventlər |
@@ -187,6 +243,7 @@ Fayl: `apps/hitline/extension/src/i18n/az.ts`. {platform}, {event} kimi yerlər 
 | `plan.draft.button` | Create plan from this session | Bu sessiyadan plan yarat |
 | `plan.local` | The plan stays on this computer and is never uploaded. | Plan bu kompüterdə qalır və heç vaxt yüklənmir. |
 | `plan.compared` | Compared with your tracking plan | Tracking planınla müqayisə |
+| `plan.event` | {n} event | {n} event |
 | `plan.events` | {n} events | {n} event |
 | `plan.change` | Change plan | Planı dəyiş |
 | `plan.remove` | Remove plan | Planı sil |

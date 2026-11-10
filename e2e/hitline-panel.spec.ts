@@ -298,7 +298,7 @@ test.describe('hitline panel', () => {
       mimeType: 'application/json',
       buffer: Buffer.from('[{"event":"purchase","platform":"GA4","parameters":["value"]}]'),
     });
-    await expect(page.locator('.pl-name')).toContainText('small.json, 1 events');
+    await expect(page.locator('.pl-name')).toContainText('small.json, 1 event');
     await expect(page.locator('.pl-rows .row')).toHaveText([
       /purchase\s*GA4\s*value\s*Never arrived/,
     ]);
