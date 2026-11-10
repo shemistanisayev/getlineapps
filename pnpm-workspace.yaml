@@ -4,3 +4,6 @@ packages:
   - apps/fixture
   - apps/*/extension
   - apps/*/fixture
+
+allowBuilds:
+  esbuild: true
