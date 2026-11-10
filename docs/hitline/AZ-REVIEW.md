@@ -462,7 +462,7 @@ Qeydlər:
 | `audit.titleHighlight` | Get it fixed | Düzəlt |
 | `audit.titleEnd` | by the person who built Hitline. | Hitline-ı quran adamın əli ilə. |
 | `audit.lead` | One click turns the findings into a prioritized report. Send it to a developer, or send it to me: I set up GA4, server-side GTM, Consent Mode and ad pixels for growing brands. | Bir klik tapıntıları prioritetli hesabata çevirir. Onu developerə göndər və ya mənə: böyüyən brendlər üçün GA4, server-side GTM, Consent Mode və reklam pixel-lərini qururam. |
-| `audit.cta` | Book a tracking audit | Tracking auditi sifariş et |
+| `audit.cta` | Book a tracking audit | Tracking üçün audit istə |
 | `audit.from` | From | Müəllif: |
 | `privacy.eyebrow` | Privacy | Məxfilik |
 | `privacy.title` | Your data never leaves your browser. | Məlumatın heç vaxt brauzerdən çıxmır. |
@@ -523,5 +523,5 @@ Qeydlər:
 | `uninstall.card.eyebrow` | Still have a tracking problem? | Tracking problemin hələ də var? |
 | `uninstall.card.title` | I can audit and fix it for you. | Auditini edib düzəldə bilərəm. |
 | `uninstall.card.text` | GA4, server-side GTM, Consent Mode and ad pixels. You get a clear list of what is broken and a working setup. | GA4, server-side GTM, Consent Mode və reklam pixel-ləri. Nəyin xarab olduğunun aydın siyahısını və işləyən quruluş alırsan. |
-| `uninstall.card.cta` | Book a tracking audit | Tracking auditi sifariş et |
-| `uninstall.card.sub` | Shamistan Isayev, analytics and tracking | Şəmistan İsayev, analitika və tracking |
+| `uninstall.card.cta` | Book a tracking audit | Tracking üçün audit istə |
+| `uninstall.card.sub` | Shamistan Isayev | Şəmistan İsayev |

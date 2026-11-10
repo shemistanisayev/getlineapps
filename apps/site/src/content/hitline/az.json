@@ -306,7 +306,7 @@
     "titleHighlight": "Düzəlt",
     "titleEnd": "Hitline-ı quran adamın əli ilə.",
     "lead": "Bir klik tapıntıları prioritetli hesabata çevirir. Onu developerə göndər və ya mənə: böyüyən brendlər üçün GA4, server-side GTM, Consent Mode və reklam pixel-lərini qururam.",
-    "cta": "Tracking auditi sifariş et",
+    "cta": "Tracking üçün audit istə",
     "from": "Müəllif:",
     "paper": {
       "date": "Nov 6, 2026",
@@ -439,8 +439,8 @@
       "eyebrow": "Tracking problemin hələ də var?",
       "title": "Auditini edib düzəldə bilərəm.",
       "text": "GA4, server-side GTM, Consent Mode və reklam pixel-ləri. Nəyin xarab olduğunun aydın siyahısını və işləyən quruluş alırsan.",
-      "cta": "Tracking auditi sifariş et",
-      "sub": "Şəmistan İsayev, analitika və tracking"
+      "cta": "Tracking üçün audit istə",
+      "sub": "Şəmistan İsayev"
     }
   }
 }
