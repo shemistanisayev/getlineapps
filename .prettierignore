@@ -6,3 +6,4 @@ pnpm-lock.yaml
 **/*.generated.ts
 **/.astro/
 test-results/
+packages/core/fixtures/hitline/gtm-*.js

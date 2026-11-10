@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lumo</title>
+    <link rel="stylesheet" href="/lumo.css" />
+  </head>
+  <body>
+    <!-- Lumo: fictional shop from design/hitline/SitePage.dc.html, used only to test Hitline. -->
+    <div class="promo">Free shipping on orders over $50</div>
+    <header class="head">
+      <a class="brand" href="/products/wireless-headphones-pro-x"
+        ><span class="brand-tile">l</span><span>lumo</span></a
+      >
+      <nav aria-label="Categories" class="cats">
+        <a href="#" class="on">Electronics</a>
+        <a href="#">Home &amp; kitchen</a>
+        <a href="#">Beauty</a>
+        <a href="#">Kids</a>
+        <a href="#" class="sale">Sale</a>
+      </nav>
+      <label class="search">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M20 20l-3.5-3.5"></path>
+        </svg>
+        <input aria-label="Search products" placeholder="Products, brands or categories" />
+      </label>
+      <div class="icons">
+        <a href="#" aria-label="My account" class="icon">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path>
+          </svg>
+        </a>
+        <button type="button" aria-label="Cart" class="icon" data-trigger="cart">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"></path>
+            <circle cx="10" cy="20.5" r="1"></circle>
+            <circle cx="17" cy="20.5" r="1"></circle>
+          </svg>
+          <span class="badge" id="cart-count" hidden>1</span>
+        </button>
+      </div>
+    </header>
+    <main id="main" class="main"></main>
+    <aside id="minicart" class="minicart" hidden>
+      <strong>Your cart</strong>
+      <span>Wireless Headphones Pro X, $89.90</span>
+      <button type="button" class="btn" data-trigger="checkout">Checkout</button>
+    </aside>
+    <footer class="foot">
+      <form id="newsletter" class="news">
+        <label for="email">Get 10% off your first order</label>
+        <input id="email" type="email" placeholder="you@example.com" />
+        <button type="submit" class="btn">Sign up</button>
+      </form>
+      <p class="note" id="note"></p>
+    </footer>
+    <div id="banner" class="banner" hidden>
+      <p>We use cookies for analytics and advertising.</p>
+      <div class="row">
+        <button type="button" class="btn" data-trigger="accept">Accept all</button>
+        <button type="button" class="btn ghost" data-trigger="reject">Reject all</button>
+        <button type="button" class="link">Settings</button>
+      </div>
+    </div>
+    <script type="module" src="/lumo.js"></script>
+  </body>
+</html>

@@ -8,6 +8,13 @@ export default defineConfig({
   use: { ...devices['Desktop Chrome'] },
   webServer: [
     {
+      // Lumo fixture shop (Hitline, Serpline): example.com etc. are mapped to it by host rules.
+      command: 'pnpm --filter @line/fixture start',
+      url: 'http://localhost:4400/__lumo/scenarios.json',
+      reuseExistingServer: !process.env.CI,
+      timeout: 60_000,
+    },
+    {
       command: 'pnpm --filter @line/ui preview',
       url: 'http://localhost:4310',
       reuseExistingServer: !process.env.CI,
