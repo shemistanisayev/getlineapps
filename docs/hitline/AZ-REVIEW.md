@@ -253,8 +253,81 @@ Fayl: `apps/hitline/extension/src/i18n/az.ts`. {platform}, {event} kimi yerlər 
 | `plan.th.arrived` | What arrived | Nə gəldi |
 | `plan.th.status` | Status | Status |
 | `plan.note` | The plan is stored only on this computer. CSV columns: event, platform, parameters. | Plan yalnız bu kompüterdə saxlanır. CSV sütunları: event, platform, parameters. |
-| `welcome.title` | Hitline is ready. Every hit, in plain sight. | Hitline hazırdır. Hər hit göz önündə. |
+| `report.eyebrow` | Tracking audit | Tracking audit |
+| `report.pages` | Pages checked: {pages} | Yoxlanan səhifələr: {pages} |
+| `report.summary` | Summary from the toolbar popup, read from the page’s request URLs. | Toolbar popup-dan xülasə, səhifənin sorğu URL-lərindən oxunub. |
+| `report.kind.landing` | landing page | landing səhifə |
+| `report.kind.product` | product | məhsul |
+| `report.kind.cart` | cart | səbət |
+| `report.kind.payment` | payment | ödəniş |
+| `report.kind.confirmation` | order confirmation | sifariş təsdiqi |
+| `report.kind.page` | page | səhifə |
+| `report.tile.platforms` | platforms | platforma |
+| `report.tile.events` | events | event |
+| `report.tile.requests` | requests | sorğu |
+| `report.tile.high` | high priority | yüksək prioritet |
+| `report.tile.medium` | medium priority | orta prioritet |
+| `report.setup` | Setup | Quruluş |
+| `report.setup.gtm` | {id}, {n} tags | {id}, {n} tag |
+| `report.setup.none` | Not found | Tapılmadı |
+| `report.setup.server` | Server-side | Server-side |
+| `report.setup.noSgtm` | Not detected | Tapılmadı |
+| `report.setup.sgtm` | {server} through {host} | {server} {host} ilə |
+| `report.setup.sgtmVia` | GA4 through {host} | GA4 {host} ilə |
+| `report.setup.sgtmSplit` | {server} through {host}, {browser} from the browser | {server} {host} ilə, {browser} brauzerdən |
+| `report.setup.consentOk` | Correct on Google tags | Google tag-larında düzgündür |
+| `report.setup.consentSplit` | Correct on Google tags, missing on {platforms} | Google tag-larında düzgündür, {platforms} tag-larında yoxdur |
+| `report.setup.consentGoogleBad` | Google tags do not follow the visitor’s choice | Google tag-ları ziyarətçinin seçiminə əməl etmir |
+| `report.setup.planKey` | Tracking plan | Tracking plan |
+| `report.setup.plan` | {match} of {total} events match | {total} eventdən {match} uyğundur |
+| `report.setup.noPlan` | No plan loaded | Plan yüklənməyib |
+| `report.setup.platformsKey` | Platforms | Platformalar |
+| `report.setup.fullKey` | Full audit | Tam audit |
+| `report.setup.full` | Open DevTools, then the Hitline tab, for events, consent, attribution and your plan | Eventlər, consent, atribusiya və plan üçün DevTools-u, sonra Hitline tabını aç |
+| `report.issues` | Issues and fixes | Problemlər və həllər |
+| `report.sev.high` | High | Yüksək |
+| `report.sev.medium` | Medium | Orta |
+| `report.sev.low` | Info | Məlumat |
+| `report.i.before.lead` | {platform} fires before consent. | {platform} consent-dən əvvəl işləyir. |
+| `report.i.before.text` | Add an ad_storage consent check in GTM. | GTM-də ad_storage consent yoxlaması əlavə et. |
+| `report.i.after.lead` | {platform} fires after rejection. | {platform} rədddən sonra işləyir. |
+| `report.i.after.same` | The {platform} tag needs the same consent check. | {platform} tag-ına da eyni consent yoxlaması lazımdır. |
+| `report.i.referral.lead` | Sales are credited to the payment site. | Satışlar ödəniş saytına yazılır. |
+| `report.i.referral.text` | Add {host} to “Unwanted referrals” in GA4. | GA4-də {host} domenini “Unwanted referrals” siyahısına əlavə et. |
+| `report.i.break.lead` | Campaign parameters are lost on {host}. | Kampaniya parametrləri {host} saytında itir. |
+| `report.i.break.text` | Set up cross-domain measurement in GA4. | GA4-də cross-domain ölçməni qur. |
+| `report.i.value.both` | {platform} {event} has no value or currency. | {platform} {event} eventində value və currency yoxdur. |
+| `report.i.value.value` | {platform} {event} has no value. | {platform} {event} eventində value yoxdur. |
+| `report.i.value.currency` | {platform} {event} has no currency. | {platform} {event} eventində currency yoxdur. |
+| `report.i.value.text` | Pass value and currency from the dataLayer to the tag. | value və currency-ni dataLayer-dən tag-a ötür. |
+| `report.i.missing.one` | {events} never arrives. | {events} heç gəlmir. |
+| `report.i.missing.many` | {events} never arrive. | {events} heç gəlmir. |
+| `report.i.missing.text` | Check the GTM triggers for these events. | Bu eventlər üçün GTM trigger-lərini yoxla. |
+| `report.i.empty.lead` | {event} has an empty {params}. | {event} eventində {params} boşdur. |
+| `report.i.empty.text` | Write the {params} to the dataLayer. | {params} dəyərini dataLayer-ə yaz. |
+| `report.i.params.lead` | {event} is sent without {params}. | {event} {params} olmadan göndərilir. |
+| `report.i.params.text` | Add {params} to the tag. | {params} parametrini tag-a əlavə et. |
+| `report.i.none.lead` | No issues found. | Problem tapılmadı. |
+| `report.i.none.text` | Hitline found nothing to fix in this session. | Hitline bu sessiyada düzəldiləcək heç nə tapmadı. |
+| `report.cta.title` | Need help fixing these issues? | Bu problemləri düzəltməyə kömək lazımdır? |
+| `report.cta.sub` | Shamistan Isayev, analytics and server-side tracking | Şəmistan İsayev, analitika və server-side tracking |
+| `report.footer` | Made with Hitline. No data left the browser. | Hitline ilə hazırlanıb. Heç bir məlumat brauzerdən çıxmadı. |
+| `report.page` | Page {i} of {n} | Səhifə {i} / {n} |
+| `report.error` | The PDF could not be created. Please try again. | PDF yaradılmadı. Yenə yoxla. |
+| `welcome.title` | Hitline is ready. | Hitline hazırdır. |
+| `welcome.accent` | Every hit, in plain sight. | Hər hit göz önündə. |
 | `welcome.lead` | Three steps and you will see every event your site sends, where it goes and whether it respects consent. | Üç addım və saytının göndərdiyi hər eventi, hara getdiyini və consent-ə əməl edib-etmədiyini görəcəksən. |
+| `welcome.free` | Free | Pulsuz |
+| `welcome.noAccount` | No account | Hesab lazım deyil |
+| `welcome.local` | Nothing leaves your browser | Heç nə brauzerdən çıxmır |
+| `welcome.s1.title` | Pin Hitline to the toolbar | Hitline-ı toolbar-a sanc |
+| `welcome.s1.text` | Click the puzzle icon next to the address bar and pin Hitline. | Ünvan sətrinin yanındakı tapmaca ikonuna bas və Hitline-ı sanc. |
+| `welcome.s2.title` | Open any site, click the icon | İstənilən saytı aç, ikona bas |
+| `welcome.s2.text` | The popup shows platforms, server-side status and the top issues. | Popup platformaları, server-side statusunu və əsas problemləri göstərir. |
+| `welcome.s3.title` | Press {key} and choose the Hitline tab | {key} bas və Hitline tabını seç |
+| `welcome.s3.text` | Events, GTM, consent, attribution and your tracking plan, live. | Eventlər, GTM, consent, atribusiya və tracking planın, canlı. |
+| `welcome.built` | Built by Shamistan Isayev | Müəllif: Şəmistan İsayev |
+| `welcome.contact` | Need a tracking setup? Get in touch | Tracking quruluşu lazımdır? Əlaqə saxla |
 
 ## Sayt: /hitline landing və /hitline/uninstalled (addım 3B)
 

@@ -5,12 +5,15 @@ import { defineConfig } from 'wxt';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const iconDir = join(here, '../../../packages/ui/icons/hitline');
+const fontDir = join(here, '../../../packages/report/fonts');
 
 // Manifest: exactly what docs/hitline-SPEC.md §3 lists. No host_permissions, no network.
 export default defineConfig({
   modules: ['@wxt-dev/module-react'],
   srcDir: '.',
   outDir: '.output',
+  // pdf-lib is one large chunk, loaded only when an audit PDF is made.
+  vite: () => ({ build: { chunkSizeWarningLimit: 1600 } }),
   manifest: {
     name: 'Hitline',
     description:
@@ -27,6 +30,12 @@ export default defineConfig({
     'build:publicAssets': (_wxt, assets) => {
       for (const file of readdirSync(iconDir).filter((f) => f.endsWith('.png'))) {
         assets.push({ absoluteSrc: join(iconDir, file), relativeDest: file });
+      }
+      // Fonts for the audit PDF (embedded by pdf-lib, loaded from the extension itself).
+      for (const file of readdirSync(fontDir).filter(
+        (f) => f.endsWith('.ttf') || f === 'OFL.txt',
+      )) {
+        assets.push({ absoluteSrc: join(fontDir, file), relativeDest: `fonts/${file}` });
       }
     },
   },

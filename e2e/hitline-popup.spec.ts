@@ -112,6 +112,18 @@ test.describe('hitline popup', () => {
     await locked.close();
   });
 
+  test('popup summary PDF downloads', async () => {
+    const page = await openPopup(await shopProbe('events'));
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      page.getByRole('button', { name: 'Download audit PDF' }).click(),
+    ]);
+    expect(download.suggestedFilename()).toMatch(
+      /^hitline-audit-example\.com-\d{4}-\d{2}-\d{2}\.pdf$/,
+    );
+    await page.close();
+  });
+
   test('settings: domains, plan, language, links, clear', async () => {
     const page = await openPopup({
       url: 'https://example.com/',

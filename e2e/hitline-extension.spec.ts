@@ -37,7 +37,21 @@ test.describe('hitline extension', () => {
       (await ext.context.waitForEvent('page', {
         predicate: (p) => p.url().endsWith('/welcome.html'),
       }));
-    await expect(welcome.getByRole('heading', { level: 1 })).toHaveText(/Hitline is ready/);
+    await expect(welcome.getByRole('heading', { level: 1 })).toHaveText(
+      'Hitline is ready.Every hit, in plain sight.',
+    );
+    await expect(welcome.getByRole('heading', { level: 2 })).toHaveText([
+      'Pin Hitline to the toolbar',
+      'Open any site, click the icon',
+      'Press F12 and choose the Hitline tab',
+    ]);
+    await expect(welcome.getByRole('link', { name: /Get in touch/ })).toHaveAttribute(
+      'href',
+      'https://shamistanisayev.com/?utm_source=hitline&utm_medium=extension&utm_campaign=welcome',
+    );
+    await welcome.setViewportSize({ width: 1440, height: 900 });
+    await welcome.evaluate(() => document.fonts.ready);
+    if (SHOTS) await welcome.screenshot({ path: `${SHOTS}/hitline-welcome.png` });
     const installedAt = await ext.worker.evaluate(async () => {
       const { installedAt } = await chrome.storage.local.get('installedAt');
       return installedAt;

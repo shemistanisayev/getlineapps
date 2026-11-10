@@ -28,7 +28,8 @@ packages/core/src/hitline/
   issues.ts        one rule list (§4.6), ids, severity, evidence
   session.ts       Session model: hits[], pages[], snapshots[]; analyze(session, settings) -> Audit
   popup.ts         analyzePopup(probe) for the URL-only summary
-  report.ts        hitlineReport(audit, fonts, mode: 'full' | 'summary') -> LineReportConfig
+  (report)         hitlineReport / hitlineSummaryReport live in apps/hitline/extension/src/report.ts:
+                   @line/report depends on @line/core, so core cannot import it
   index.ts
 packages/core/fixtures/hitline/
   lumo-accept.har.json, lumo-reject.har.json   recorded from apps/fixture by Playwright

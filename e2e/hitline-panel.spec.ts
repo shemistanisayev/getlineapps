@@ -111,6 +111,22 @@ test.describe('hitline panel', () => {
     await page.close();
   });
 
+  test('Audit PDF from the panel downloads a real PDF', async () => {
+    const page = await openReplay('events');
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      page.getByRole('button', { name: 'Audit PDF' }).click(),
+    ]);
+    expect(download.suggestedFilename()).toMatch(
+      /^hitline-audit-example\.com-\d{4}-\d{2}-\d{2}\.pdf$/,
+    );
+    const chunks = (await (await download.createReadStream()).toArray()) as Buffer[];
+    const pdf = Buffer.concat(chunks);
+    expect(pdf.subarray(0, 5).toString()).toBe('%PDF-');
+    expect(pdf.length).toBeGreaterThan(20_000);
+    await page.close();
+  });
+
   test('GTM tab: tags with status, sGTM with 4 signals, browser-only warning, CTA', async () => {
     const page = await openReplay('events');
     await page.getByRole('tab', { name: /GTM/ }).click();

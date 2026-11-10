@@ -1,6 +1,8 @@
 import { Logo } from '@line/ui';
 import { useState } from 'react';
 import { useCapture } from '../../src/capture/useCapture.ts';
+import { downloadReport } from '../../src/pdf.ts';
+import { hitlineReport } from '../../src/report.ts';
 import { useT } from '../../src/useLang.ts';
 import { EmptyState } from './EmptyState.tsx';
 import { EventsTab } from './EventsTab.tsx';
@@ -14,8 +16,9 @@ export type Tab = (typeof TABS)[number];
 
 /** DevTools panel: PanelHeader + the active tab (design/hitline/PanelHeader and the tab artboards). */
 export function Panel() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const [tab, setTab] = useState<Tab>('events');
+  const [pdf, setPdf] = useState<'idle' | 'busy' | 'error'>('idle');
   const { audit, empty, reload, clear, plan, savePlan, removePlan } = useCapture();
   const counts = audit.counts;
   const warn: Record<Tab, boolean> = {
@@ -68,7 +71,20 @@ export function Panel() {
           <button type="button" className="btn-s" onClick={clear}>
             {t('panel.clear')}
           </button>
-          <button type="button" className="btn-p" disabled={empty}>
+          <button
+            type="button"
+            className="btn-p"
+            disabled={empty || pdf === 'busy'}
+            aria-busy={pdf === 'busy'}
+            title={pdf === 'error' ? t('report.error') : undefined}
+            onClick={() => {
+              setPdf('busy');
+              downloadReport((fonts) => hitlineReport(audit, t, lang, fonts)).then(
+                () => setPdf('idle'),
+                () => setPdf('error'),
+              );
+            }}
+          >
             {t('panel.auditPdf')}
           </button>
         </div>

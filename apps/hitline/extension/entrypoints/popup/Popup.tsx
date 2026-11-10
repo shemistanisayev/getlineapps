@@ -2,8 +2,10 @@ import { Logo } from '@line/ui';
 import { analyzePopup, type Issue, type Platform, type PopupSummary } from '@line/core/hitline';
 import { contactUrl } from '@line/core/site';
 import { useEffect, useMemo, useState } from 'react';
+import { downloadReport } from '../../src/pdf.ts';
 import { loadProbe, type ProbeState } from '../../src/popup/probe.ts';
-import type { T } from '../../src/i18n/index.ts';
+import { hitlineSummaryReport } from '../../src/report.ts';
+import type { Lang, T } from '../../src/i18n/index.ts';
 import { useT } from '../../src/useLang.ts';
 import { Icon, Pill, PlatformBadge, PLATFORM_NAME } from '../../src/ui.tsx';
 import { Settings } from './Settings.tsx';
@@ -63,7 +65,8 @@ function F12({ t }: { t: T }) {
 }
 
 /** Popup Main: design/hitline/Main.dc.html. */
-function Main({ s, t }: { s: PopupSummary; t: T }) {
+function Main({ s, t, lang }: { s: PopupSummary; t: T; lang: Lang }) {
+  const [pdf, setPdf] = useState<'idle' | 'busy' | 'error'>('idle');
   const tiles = s.platforms.slice(0, MAX_TILES);
   const more = s.platforms.length - tiles.length;
   const issues = s.issues.slice(0, MAX_ISSUES);
@@ -138,9 +141,26 @@ function Main({ s, t }: { s: PopupSummary; t: T }) {
         )}
       </div>
       <div className="actions">
-        <button type="button" className="btn-p btn-xl" disabled>
+        <button
+          type="button"
+          className="btn-p btn-xl"
+          disabled={pdf === 'busy'}
+          aria-busy={pdf === 'busy'}
+          onClick={() => {
+            setPdf('busy');
+            downloadReport((fonts) => hitlineSummaryReport(s, t, lang, fonts)).then(
+              () => setPdf('idle'),
+              () => setPdf('error'),
+            );
+          }}
+        >
           {t('popup.pdf')}
         </button>
+        {pdf === 'error' && (
+          <p className="err" role="alert">
+            {t('report.error')}
+          </p>
+        )}
         <F12 t={t} />
       </div>
       <div className="foot">
@@ -259,7 +279,11 @@ export function Popup() {
       {state.kind === 'loading' && <p className="loading">{t('popup.loading')}</p>}
       {state.kind === 'restricted' && <Restricted t={t} />}
       {summary &&
-        (summary.noTracking ? <NoTracking host={host} t={t} /> : <Main s={summary} t={t} />)}
+        (summary.noTracking ? (
+          <NoTracking host={host} t={t} />
+        ) : (
+          <Main s={summary} t={t} lang={lang} />
+        ))}
     </main>
   );
 }
