@@ -174,4 +174,138 @@ test.describe('hitline panel', () => {
     await page.evaluate(() => chrome.storage.local.remove('lang'));
     await page.close();
   });
+
+  test('Consent tab on the "consent" run matches the design', async () => {
+    const page = await openReplay('consent');
+    await page.getByRole('tab', { name: /Consent/ }).click();
+    const hero = page.locator('.hero');
+    await expect(hero).toContainText('Cookie banner');
+    await expect(hero).toContainText('Found');
+    await expect(hero).toContainText('Reject all');
+    await expect(page.locator('.sigs .row')).toHaveText([
+      /ad_storage\s*denied\s*denied/,
+      /analytics_storage\s*denied\s*denied/,
+      /ad_user_data\s*denied\s*denied/,
+      /ad_personalization\s*denied\s*denied/,
+    ]);
+    await expect(page.locator('.note.ok')).toContainText('Google tags are set up correctly.');
+    await expect(page.locator('.tl-row')).toHaveText([
+      /10:41:02\.118\s*GA4\s*page_view\s*Cookieless ping, G100/,
+      /10:41:02\.240\s*Meta\s*PageView\s*Sent before any consent/,
+      /10:41:09\.513\s*GA4\s*view_item\s*Cookieless ping, G100/,
+      /10:41:09\.602\s*TikTok\s*ViewContent\s*Sent after rejection/,
+      /Hotjar\s*script\s*Not loaded, correct/,
+    ]);
+    await expect(page.locator('.tl-choice')).toContainText('Visitor clicks "Reject all"');
+    await expect(page.locator('.tl-choice')).toContainText('10:41:09.480');
+    await expect(page.locator('.fix')).toContainText(
+      'In GTM, add "Additional consent checks" to the Meta Pixel Base and TikTok Pixel tags',
+    );
+    await page.evaluate(() => document.fonts.ready);
+    if (SHOTS) await page.screenshot({ path: `${SHOTS}/hitline-panel-consent.png` });
+    await page.close();
+  });
+
+  test('Attribution tab on the "journey" run matches the design', async () => {
+    const page = await openReplay('journey');
+    await expect(page.getByRole('tab', { name: /Attribution/ })).toContainText('1');
+    await page.getByRole('tab', { name: /Attribution/ }).click();
+    await expect(page.locator('.at-head')).toContainText('Visit path: 5 pages');
+    await expect(page.locator('.step')).toHaveText([
+      /1\s*Landing\s*\/campaign\/fall-sale\?utm_source=google.*UTM and gclid/,
+      /2\s*Product\s*\/products\/wireless-headphones-pro-x\s*Saved in _gcl_aw/,
+      /3\s*Cart\s*\/cart\s*google \/ cpc/,
+      /4\s*Payment\s*pay\.example\.net\/checkout\s*_gl not passed/,
+      /5\s*Confirmation\s*\/order\/confirmation\s*example\.net \/ referral/,
+    ]);
+    await expect(page.locator('.at-table .row')).toHaveText([
+      /utm_source, utm_medium\s*present\s*in session\s*in session\s*lost\s*referral/,
+      /gclid\s*present\s*in cookie\s*in cookie\s*lost\s*in cookie/,
+      /GA4 client_id\s*created\s*same\s*same\s*new\s*same/,
+    ]);
+    await expect(page.locator('.icard')).toContainText(
+      'The sale is credited to the payment site, not the ad',
+    );
+    await expect(page.locator('.icard')).toContainText(
+      'Add pay.example.net to "Unwanted referrals" in GA4.',
+    );
+    await page.evaluate(() => document.fonts.ready);
+    if (SHOTS) await page.screenshot({ path: `${SHOTS}/hitline-panel-attribution.png` });
+    await page.close();
+  });
+
+  test('Plan tab compares the "events" run with the Lumo plan', async () => {
+    const page = await openReplay('events');
+    await page.getByRole('tab', { name: /Plan/ }).click();
+    await expect(page.locator('.pl-name')).toContainText('lumo-tracking-plan.csv, 8 events');
+    await expect(page.locator('.pl-count')).toHaveText([
+      /4\s*match/,
+      /2\s*missing/,
+      /2\s*wrong parameters/,
+    ]);
+    await expect(page.locator('.pl-rows .row')).toHaveText([
+      /generate_lead\s*GA4\s*form_id\s*Never arrived in this session\s*Missing/,
+      /begin_checkout\s*GA4\s*currency, value, items\s*In the dataLayer, no GA4 event\s*Missing/,
+      /AddToCart\s*Meta\s*value, currency, content_ids\s*Only content_ids arrived\s*Wrong parameters/,
+      /sign_up\s*GA4\s*method\s*method arrives empty\s*Wrong parameters/,
+      /page_view\s*GA4\s*page_location\s*Same as plan\s*Match/,
+      /view_item\s*GA4\s*currency, value, items\s*Same as plan\s*Match/,
+      /add_to_cart\s*GA4\s*currency, value, items\s*Same as plan\s*Match/,
+      /ViewContent\s*Meta\s*content_ids, value\s*Same as plan\s*Match/,
+    ]);
+    await page.evaluate(() => document.fonts.ready);
+    if (SHOTS) await page.screenshot({ path: `${SHOTS}/hitline-panel-plan.png` });
+    await page.close();
+  });
+
+  test('PlanSetup: sample CSV, draft from the session, bad file, upload, remove', async () => {
+    const page = await openReplay('events');
+    await page.getByRole('tab', { name: /Plan/ }).click();
+    await page.getByRole('button', { name: 'Change plan' }).click();
+    await expect(page.getByRole('heading', { name: 'Drop your tracking plan here' })).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    if (SHOTS) await page.screenshot({ path: `${SHOTS}/hitline-panel-plansetup.png` });
+
+    const [sample] = await Promise.all([
+      page.waitForEvent('download'),
+      page.getByRole('button', { name: 'Download sample CSV' }).click(),
+    ]);
+    expect(sample.suggestedFilename()).toBe('hitline-sample-plan.csv');
+
+    const [draft] = await Promise.all([
+      page.waitForEvent('download'),
+      page.getByRole('button', { name: 'Create plan from this session' }).click(),
+    ]);
+    expect(draft.suggestedFilename()).toBe('hitline-plan-example.com.csv');
+    const text = await (await draft.createReadStream()).toArray();
+    const csv = Buffer.concat(text as Buffer[]).toString('utf8');
+    expect(csv.split('\n')[0]).toBe('event,platform,parameters');
+    expect(csv).toContain('add_to_cart,GA4,"currency,value,items"');
+    expect(csv).toContain('AddToCart,Meta,"content_ids,content_type"');
+
+    const file = page.locator('input[type=file]');
+    await file.setInputFiles({
+      name: 'bad.csv',
+      mimeType: 'text/csv',
+      buffer: Buffer.from('event,platform,parameters\npurchase,Snapchat,"value"\n'),
+    });
+    await expect(page.getByRole('alert')).toHaveText(
+      /Line 2: platform must be GA4, Meta, TikTok or Google Ads\./,
+    );
+
+    await file.setInputFiles({
+      name: 'small.json',
+      mimeType: 'application/json',
+      buffer: Buffer.from('[{"event":"purchase","platform":"GA4","parameters":["value"]}]'),
+    });
+    await expect(page.locator('.pl-name')).toContainText('small.json, 1 events');
+    await expect(page.locator('.pl-rows .row')).toHaveText([
+      /purchase\s*GA4\s*value\s*Never arrived/,
+    ]);
+
+    await page.getByRole('button', { name: 'Remove plan' }).click();
+    await expect(page.getByRole('heading', { name: 'Drop your tracking plan here' })).toBeVisible();
+    await expect(page.getByRole('tab', { name: /Plan/ })).toContainText('0');
+    await page.close();
+  });
 });

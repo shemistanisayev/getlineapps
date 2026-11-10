@@ -4,16 +4,19 @@ import { useCapture } from '../../src/capture/useCapture.ts';
 import { useT } from '../../src/useLang.ts';
 import { EmptyState } from './EmptyState.tsx';
 import { EventsTab } from './EventsTab.tsx';
+import { AttributionTab } from './AttributionTab.tsx';
+import { ConsentTab } from './ConsentTab.tsx';
 import { GtmTab } from './GtmTab.tsx';
+import { PlanTab } from './PlanTab.tsx';
 
 export const TABS = ['events', 'gtm', 'consent', 'attribution', 'plan'] as const;
 export type Tab = (typeof TABS)[number];
 
-/** DevTools panel: PanelHeader + the active tab (design/hitline/PanelHeader, Empty, Events, Gtm). */
+/** DevTools panel: PanelHeader + the active tab (design/hitline/PanelHeader and the tab artboards). */
 export function Panel() {
   const { t } = useT();
   const [tab, setTab] = useState<Tab>('events');
-  const { audit, empty, reload, clear } = useCapture();
+  const { audit, empty, reload, clear, plan, savePlan, removePlan } = useCapture();
   const counts = audit.counts;
   const warn: Record<Tab, boolean> = {
     events: false,
@@ -71,14 +74,18 @@ export function Panel() {
         </div>
       </header>
       <main className="pane" id={`pane-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
-        {empty ? (
+        {tab === 'plan' ? (
+          <PlanTab audit={audit} plan={plan} onSave={savePlan} onRemove={removePlan} />
+        ) : empty ? (
           <EmptyState onReload={reload} onPlan={() => setTab('plan')} />
         ) : tab === 'events' ? (
           <EventsTab audit={audit} />
         ) : tab === 'gtm' ? (
           <GtmTab audit={audit} />
+        ) : tab === 'consent' ? (
+          <ConsentTab audit={audit} />
         ) : (
-          <p className="next">{t('panel.next')}</p>
+          <AttributionTab audit={audit} />
         )}
       </main>
     </div>

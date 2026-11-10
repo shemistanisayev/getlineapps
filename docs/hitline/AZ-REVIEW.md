@@ -20,7 +20,6 @@ Fayl: `apps/hitline/extension/src/i18n/az.ts`. {platform}, {event} kimi yerlər 
 | `panel.recording` | Recording | Yazılır |
 | `panel.clear` | Clear | Təmizlə |
 | `panel.auditPdf` | Audit PDF | Audit PDF |
-| `panel.next` | This view arrives with the next update of Hitline. | Bu görünüş Hitline-ın növbəti yeniləməsi ilə gələcək. |
 | `panel.empty.title` | Reload the page to start recording | Yazmağa başlamaq üçün səhifəni yenilə |
 | `panel.empty.text` | Hitline records tracking requests while DevTools is open. Reload once to catch everything the page sends on load, including page_view and consent defaults. | Hitline DevTools açıq olanda tracking sorğularını yazır. Səhifənin yüklənəndə göndərdiyi hər şeyi, page_view və consent default-ları da daxil, tutmaq üçün bir dəfə yenilə. |
 | `panel.empty.reload` | Reload page | Səhifəni yenilə |
@@ -94,6 +93,109 @@ Fayl: `apps/hitline/extension/src/i18n/az.ts`. {platform}, {event} kimi yerlər 
 | `sgtm.cta.move` | Move {browser} server-side too? | {browser} da server-side-a keçsin? |
 | `sgtm.cta.setup` | Want server-side tracking set up? | Server-side tracking qurulsun? |
 | `cta.contact` | Get in touch | Əlaqə saxla |
+| `ct.title` | Consent Mode v2 | Consent Mode v2 |
+| `ct.banner` | Cookie banner | Cookie banneri |
+| `ct.found` | Found | Tapıldı |
+| `ct.notFound` | Not found | Tapılmadı |
+| `ct.choice` | Visitor’s choice | Ziyarətçinin seçimi |
+| `ct.choice.reject` | Reject all | Reject all |
+| `ct.choice.accept` | Accept all | Accept all |
+| `ct.choice.custom` | Custom choice | Fərdi seçim |
+| `ct.choice.none` | No choice yet | Hələ seçim yoxdur |
+| `ct.th.signal` | Signal | Siqnal |
+| `ct.th.default` | Default | Default |
+| `ct.th.after` | After choice | Seçimdən sonra |
+| `ct.granted` | granted | granted |
+| `ct.denied` | denied | denied |
+| `ct.notSet` | not set | qurulmayıb |
+| `ct.none` | No Consent Mode on this page. Google tags send full hits whatever the visitor chooses. | Bu səhifədə Consent Mode yoxdur. Google tag-ları ziyarətçi nə seçsə də tam hit göndərir. |
+| `ct.google.okTitle` | Google tags are set up correctly. | Google tag-ları düzgün qurulub. |
+| `ct.google.okText` | GA4 and Google Ads read the signals and send cookieless pings. | GA4 və Google Ads siqnalları oxuyur və cookieless ping göndərir. |
+| `ct.google.badTitle` | Google tags do not follow the choice. | Google tag-ları seçimə əməl etmir. |
+| `ct.google.badText` | Some GA4 or Google Ads hits carry signals that differ from the visitor’s choice. | Bəzi GA4 və ya Google Ads hit-ləri ziyarətçinin seçimindən fərqli siqnal daşıyır. |
+| `ct.before` | Before the choice | Seçimdən əvvəl |
+| `ct.session` | This page | Bu səhifə |
+| `ct.beforeSub` | Page load, consent defaults applied | Səhifə yükləndi, consent default-ları tətbiq olundu |
+| `ct.clicks` | Visitor clicks "{choice}" | Ziyarətçi "{choice}" basır |
+| `ct.status.cookieless` | Cookieless ping | Cookieless ping |
+| `ct.status.granted` | Consent granted | Consent verilib |
+| `ct.status.notLoaded` | Not loaded, correct | Yüklənmədi, düzgündür |
+| `ct.noHits` | No tracking requests on this page yet. | Bu səhifədə hələ tracking sorğusu yoxdur. |
+| `ct.fix.title` | How to fix | Necə düzəltməli |
+| `ct.fix.tags` | In GTM, add "Additional consent checks" to the {tags} tags so they never fire without ad_storage. | GTM-də {tags} tag-larına "Additional consent checks" əlavə et ki, ad_storage olmadan heç vaxt işləməsinlər. |
+| `ct.fix.platforms` | In GTM, add "Additional consent checks" to the {platforms} tags so they never fire without ad_storage. | GTM-də {platforms} tag-larına "Additional consent checks" əlavə et ki, ad_storage olmadan heç vaxt işləməsinlər. |
+| `ct.cta` | Want a GDPR-ready Consent Mode setup? | GDPR-a hazır Consent Mode quraşdırılsın? |
+| `at.title` | Visit path: {n} pages | Ziyarət yolu: {n} səhifə |
+| `at.sub` | From the campaign link to the order confirmation | Kampaniya linkindən sifariş təsdiqinə qədər |
+| `at.noCampaign` | No campaign link in this session yet | Bu sessiyada hələ kampaniya linki yoxdur |
+| `at.kind.landing` | Landing | Landing |
+| `at.kind.product` | Product | Məhsul |
+| `at.kind.cart` | Cart | Səbət |
+| `at.kind.payment` | Payment | Ödəniş |
+| `at.kind.confirmation` | Confirmation | Təsdiq |
+| `at.kind.page` | Page {n} | Səhifə {n} |
+| `at.badge.utmAnd` | UTM and {click} | UTM və {click} |
+| `at.badge.gclSaved` | Saved in _gcl_aw | _gcl_aw-da saxlanıb |
+| `at.badge.glMissing` | _gl not passed | _gl ötürülmədi |
+| `at.badge.referral` | {domain} / referral | {domain} / referral |
+| `at.th.param` | Parameter | Parametr |
+| `at.cell.present` | present | var |
+| `at.cell.inSession` | in session | sessiyada |
+| `at.cell.inCookie` | in cookie | cookie-də |
+| `at.cell.created` | created | yaradıldı |
+| `at.cell.same` | same | eyni |
+| `at.cell.lost` | lost | itdi |
+| `at.cell.referral` | referral | referral |
+| `at.cell.new` | new | yeni |
+| `at.cell.none` | none | yoxdur |
+| `at.issue.referral.title` | The sale is credited to the payment site, not the ad | Satış reklama yox, ödəniş saytına yazılır |
+| `at.issue.referral.text` | Add {host} to "Unwanted referrals" in GA4. If you own the payment page, set up cross-domain measurement. | GA4-də {host} domenini "Unwanted referrals" siyahısına əlavə et. Ödəniş səhifəsi sənindirsə, cross-domain ölçməni qur. |
+| `at.issue.break.title` | Campaign parameters are lost on {host} | Kampaniya parametrləri {host} saytında itir |
+| `at.issue.break.text` | Links to {host} drop _gl. Set up cross-domain measurement in GA4 for this domain. | {host} keçidləri _gl-i itirir. GA4-də bu domen üçün cross-domain ölçməni qur. |
+| `at.allGood` | Campaign parameters survive the whole visit. | Kampaniya parametrləri bütün ziyarət boyu qalır. |
+| `at.howTo` | Open the site from a link with UTM parameters or a gclid, then click through to the order to see the path. | Yolu görmək üçün saytı UTM parametrli və ya gclid-li linkdən aç, sonra sifarişə qədər klikləyərək keç. |
+| `at.cta` | Want attribution you can trust? | Etibar edə biləcəyin atribusiya istəyirsən? |
+| `plan.status.match` | Match | Uyğun |
+| `plan.status.missing` | Missing | İtkin |
+| `plan.status.wrong` | Wrong parameters | Səhv parametrlər |
+| `plan.count.match` | match | uyğun |
+| `plan.count.missing` | missing | itkin |
+| `plan.count.wrong` | wrong parameters | səhv parametrlər |
+| `plan.arrived.same` | Same as plan | Plandakı kimi |
+| `plan.arrived.never` | Never arrived in this session | Bu sessiyada heç gəlmədi |
+| `plan.arrived.dataLayer` | In the dataLayer, no {platform} event | dataLayer-də var, {platform} eventi yoxdur |
+| `plan.arrived.only` | Only {params} arrived | Yalnız {params} gəldi |
+| `plan.arrived.missing` | {params} missing | {params} yoxdur |
+| `plan.arrived.empty` | {params} arrives empty | {params} boş gəlir |
+| `plan.error.empty` | The file is empty. | Fayl boşdur. |
+| `plan.error.too_big` | The file is larger than 256 KB. | Fayl 256 KB-dan böyükdür. |
+| `plan.error.too_many_rows` | The plan has more than 500 rows. | Planda 500-dən çox sətir var. |
+| `plan.error.header` | The first line must be: event,platform,parameters | Birinci sətir belə olmalıdır: event,platform,parameters |
+| `plan.error.json` | This JSON is not a list of event, platform and parameters. | Bu JSON event, platform və parameters siyahısı deyil. |
+| `plan.error.row.columns` | Line {line}: use 3 columns. | {line}-ci sətir: 3 sütun istifadə et. |
+| `plan.error.row.event` | Line {line}: the event name is empty. | {line}-ci sətir: event adı boşdur. |
+| `plan.error.row.platform` | Line {line}: platform must be GA4, Meta, TikTok or Google Ads. | {line}-ci sətir: platforma GA4, Meta, TikTok və ya Google Ads olmalıdır. |
+| `plan.drop.title` | Drop your tracking plan here | Tracking planını bura at |
+| `plan.drop.text` | CSV or JSON. Hitline compares every recorded event with the plan and flags what is missing or wrong. | CSV və ya JSON. Hitline yazılan hər eventi planla müqayisə edir və itkin və ya səhv olanları göstərir. |
+| `plan.drop.choose` | Choose file | Fayl seç |
+| `plan.back` | Back to the results | Nəticələrə qayıt |
+| `plan.format.title` | CSV format | CSV formatı |
+| `plan.format.cols` | 3 columns | 3 sütun |
+| `plan.format.sample` | Download sample CSV | Nümunə CSV-ni yüklə |
+| `plan.draft.title` | No plan yet? | Planın yoxdur? |
+| `plan.draft.text` | Hitline can turn the {n} events recorded in this session into a draft plan you edit and save. | Hitline bu sessiyada yazılan {n} eventi redaktə edib saxlaya biləcəyin plan qaralamasına çevirə bilər. |
+| `plan.draft.button` | Create plan from this session | Bu sessiyadan plan yarat |
+| `plan.local` | The plan stays on this computer and is never uploaded. | Plan bu kompüterdə qalır və heç vaxt yüklənmir. |
+| `plan.compared` | Compared with your tracking plan | Tracking planınla müqayisə |
+| `plan.events` | {n} events | {n} event |
+| `plan.change` | Change plan | Planı dəyiş |
+| `plan.remove` | Remove plan | Planı sil |
+| `plan.th.event` | Event | Event |
+| `plan.th.platform` | Platform | Platforma |
+| `plan.th.params` | Parameters in plan | Plandakı parametrlər |
+| `plan.th.arrived` | What arrived | Nə gəldi |
+| `plan.th.status` | Status | Status |
+| `plan.note` | The plan is stored only on this computer. CSV columns: event, platform, parameters. | Plan yalnız bu kompüterdə saxlanır. CSV sütunları: event, platform, parameters. |
 | `welcome.title` | Hitline is ready. Every hit, in plain sight. | Hitline hazırdır. Hər hit göz önündə. |
 | `welcome.lead` | Three steps and you will see every event your site sends, where it goes and whether it respects consent. | Üç addım və saytının göndərdiyi hər eventi, hara getdiyini və consent-ə əməl edib-etmədiyini görəcəksən. |
 

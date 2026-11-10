@@ -67,6 +67,28 @@ const ICON = {
   ),
   dash: <path d="M7 12h10" />,
   x: <path d="M7 7l10 10M17 7L7 17" />,
+  arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  click: (
+    <>
+      <path d="M9 11l-4 9 3-1 2 3 3-7" />
+      <path d="M14 4l1.5 4.5L20 10l-4.5 1.5L14 16l-1.5-4.5L8 10l4.5-1.5z" />
+    </>
+  ),
+  wrench: (
+    <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z" />
+  ),
+  upload: (
+    <>
+      <path d="M12 16V4M7 9l5-5 5 5" />
+      <path d="M5 20h14" />
+    </>
+  ),
+  download: (
+    <>
+      <path d="M12 4v11M7 10l5 5 5-5" />
+      <path d="M5 20h14" />
+    </>
+  ),
 } as const;
 export type IconName = keyof typeof ICON;
 

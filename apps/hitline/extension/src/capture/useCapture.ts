@@ -77,16 +77,32 @@ export function useCapture() {
     () => store.version,
   );
 
+  const first = store.session.navigations[0]?.url ?? '';
+  const site = registrableDomain(settings.domains[0] ?? first);
+  // One plan per site domain, plus a "default" plan (docs/hitline-SPEC.md §4.5).
+  const planKey = settings.plans[site]
+    ? site
+    : settings.plans.default
+      ? 'default'
+      : site || 'default';
+  const plan = settings.plans[planKey] ?? null;
+
   const audit: Audit = useMemo(() => {
     void version;
-    const first = store.session.navigations[0]?.url ?? '';
-    const site = registrableDomain(settings.domains[0] ?? first);
-    const plan = settings.plans[site] ?? settings.plans.default ?? null;
     return analyze(store.session, { domains: settings.domains, plan });
-  }, [store, version, settings]);
+  }, [store, version, settings, plan]);
+
+  const savePlans = (plans: Record<string, Plan>) => void browser.storage.local.set({ plans });
 
   return {
     audit,
+    plan,
+    savePlan: (p: Plan) => savePlans({ ...settings.plans, [site || 'default']: p }),
+    removePlan: () => {
+      const next = { ...settings.plans };
+      delete next[planKey];
+      savePlans(next);
+    },
     empty: store.empty,
     live: Boolean(sourceRef.current),
     reload: () => sourceRef.current?.reload(),
