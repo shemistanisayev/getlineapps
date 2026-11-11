@@ -105,7 +105,9 @@ export function LinksTab({
     bar = (
       <div className="sp-check">
         <div className="sp-check-line">
-          <span className="sp-check-h">{t('ln.checked', { n: lc.checked })}</span>
+          <span className="sp-check-h">
+            {lc.checked === 1 ? t('ln.checked1') : t('ln.checked', { n: lc.checked })}
+          </span>
           <span className="sp-check-s">{parts}</span>
         </div>
         <div className="sp-stack" role="img" aria-label={parts}>

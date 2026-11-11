@@ -166,6 +166,40 @@ describe('issue rules', () => {
     expect(b.diff).toBeNull();
   });
 
+  it('random per-load ids are not "added by JavaScript" when nothing is gained (QA: MDN)', () => {
+    const links = (n: number) =>
+      Array.from({ length: n }, (_, i) => `<a href="/p${i}">P ${i}</a>`).join('');
+    const raw = page(
+      GOOD_HEAD,
+      `<h1>x</h1><div id="uid_a1b2">${links(12)}</div><p>${'word '.repeat(80)}</p>`,
+    );
+    const rendered = page(
+      GOOD_HEAD,
+      `<h1>x</h1><div id="uid_z9y8">${links(12)}</div><p>${'word '.repeat(80)}</p>`,
+    );
+    const a = analyze({
+      url: URL_,
+      renderedHtml: rendered,
+      raw: { status: 200, contentType: 'text/html', text: raw, xRobotsTag: null },
+      robots: null,
+      llms: null,
+    });
+    expect(a.diff!.added).toEqual([]);
+    // A real JavaScript-only section with new links is still listed.
+    const grown = page(
+      GOOD_HEAD,
+      `<h1>x</h1><div id="uid_z9y8">${links(12)}</div><section id="more">${links(15)}</section><p>${'word '.repeat(80)}</p>`,
+    );
+    const b = analyze({
+      url: URL_,
+      renderedHtml: grown,
+      raw: { status: 200, contentType: 'text/html', text: raw, xRobotsTag: null },
+      robots: null,
+      llms: null,
+    });
+    expect(b.diff!.added.map((x) => x.kind === 'sectionLinks' && x.id)).toContain('more');
+  });
+
   it('AI_SEARCH_BLOCKED for search bots only (training bots are a business choice)', () => {
     const html = page(GOOD_HEAD, '<h1>x</h1>');
     const robots = (text: string) => ({ status: 200, text, contentType: 'text/plain' });

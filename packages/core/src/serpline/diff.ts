@@ -98,11 +98,16 @@ export function renderDiff(raw: PageFacts, rendered: PageFacts): RenderDiff {
   for (const type of rendered.jsonLd.types) {
     if (!raw.jsonLd.types.includes(type)) addedAll.push({ kind: 'schema', type });
   }
+  // A section whose key is new is only "added" when the page really gains links or words after
+  // JavaScript. Sites that generate random ids on every load (uid_x7k...) would otherwise list
+  // sections that are already in the raw HTML (QA on developer.mozilla.org).
+  const gainsLinks = rendered.links.length > raw.links.length;
+  const gainsWords = rendered.words > raw.words;
   for (const s of jsOnlySections(raw, rendered)) {
     const base = { key: s.key, tag: s.tag, id: s.id };
-    if (s.links >= SECTION_LINKS_MIN)
+    if (gainsLinks && s.links >= SECTION_LINKS_MIN)
       addedAll.push({ kind: 'sectionLinks', ...base, links: s.links });
-    else if (s.words > SECTION_WORDS_MIN)
+    else if (gainsWords && s.words > SECTION_WORDS_MIN)
       addedAll.push({ kind: 'sectionWords', ...base, words: s.words });
   }
   // H2 and H3 come after the sections: they usually live inside them.

@@ -14,6 +14,9 @@ describe('serp preview', () => {
       shown: 'Wireless Headphones Pro X | Lumo',
     });
     expect(measure('é', 20)).toBeCloseTo(11.12);
+    // Azerbaijani letters use their base letter's width (QA: shamistanisayev.com/az).
+    expect(measure('şçöüğİı', 10)).toBeCloseTo(measure('scougIi', 10));
+    expect(measure('ə', 10)).toBeCloseTo(measure('e', 10));
   });
 
   it('cuts the 191-character description after 107 on mobile and 147 on desktop', () => {

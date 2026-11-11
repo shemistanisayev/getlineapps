@@ -266,6 +266,7 @@ export const az: Dictionary = {
   'ln.checkBtn1': '1 daxili linki yoxla',
   'ln.checking': '{n} daxili link yoxlanılır...',
   'ln.checked': '{n} daxili link yoxlanıldı',
+  'ln.checked1': '1 daxili link yoxlanıldı',
   'ln.ok': '{n} qaydasında',
   'ln.redirect': '{n} yönləndirmə',
   'ln.redirects': '{n} yönləndirmə',

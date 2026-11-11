@@ -179,10 +179,10 @@ SPEC: `docs/serpline-SPEC.md`. Dizayn: `design/serpline/`. Side panel, SEO və A
 | 4 | P3 | `packages/seo-core`: extractor-lar, render diff, SERP kəsmə, robots.txt parser, issue qaydaları, skor; Lumo fixture-a Serpline ssenarisi | Skor 56 |
 | 5 | P4 | Summary, Headings (səhifədə highlight), Links | Artboardlara uyğundur |
 | 6 | P5 | Render, AI, Stale, "can't read this page" | Artboardlara uyğundur |
-| 7 | P6 | Settings, EN + AZ | |
+| 7 | P6 | Settings, EN + AZ | Dil paneli dəyişir |
 | 8 | P7 | Audit PDF, welcome, uninstall hook | PDF `Report` kimidir |
-| 9 | P9 | Store paketi | `store/serpline/` |
-| 10 | P10 | 3 real saytda QA | |
+| 9 | P9 | Store paketi | `store/serpline/`, release `serpline-v1.0.0` |
+| 10 | P10 | 3 real saytda QA | Səhv nəticə yoxdur (`docs/serpline/QA.md`) |
 
 ### 4B. Landing (`/serpline`)
 1. `design/serpline/Landing.dc.html` → route + `src/content/serpline/`.

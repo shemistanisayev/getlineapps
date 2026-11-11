@@ -49,17 +49,46 @@ Extension-ların içindəki linklər (privacy, silinmə səhifəsi, digər alət
 
 ## 7. Növbəti Line alətinə başlamaq
 
-Hər alət ayrıca fazadır (`docs/line-family-PLAN.md`). Yeni söhbət aç və o fazanın promptunu yapışdır. Məsələn Serpline üçün:
+Hər alət ayrıca fazadır (`docs/line-family-PLAN.md`). Yeni söhbət aç və o fazanın promptunu yapışdır. Hitline və Serpline hazırdır, növbəti Rivaline-dır:
 
 ```
-Start Serpline. Read CLAUDE.md, docs/serpline-SPEC.md, the family docs and Faza 4 of docs/line-family-PLAN.md.
-Follow the family docs where the SPEC disagrees. Reuse packages/ui, packages/report, packages/site-kit and the Lumo fixture.
+Start Rivaline. Read CLAUDE.md, docs/rivaline-SPEC.md, the family docs and Faza 5 of docs/line-family-PLAN.md.
+Follow the family docs where the SPEC disagrees. Reuse packages/ui, packages/report, packages/site-kit and the fixtures.
 Do step 1 (SPEC Phase 0) and stop. After each step: checks for all apps, commit, push, short report in Azerbaijani, wait for me.
 ```
 
-Agent Hitline-da qurulan hissələri (loqolar, PDF, sayt, test mağazası, Store skripti) yenidən istifadə edəcək.
+Agent Hitline və Serpline-da qurulan hissələri (loqolar, PDF, sayt, test mağazası, Store skripti, side panel testləri) yenidən istifadə edəcək.
 
-## 8. Bir şey sınanda
+## 8. Serpline
+
+Yuxarıdakı 2-4-cü bölmələr Serpline üçün də eynidir: "Hitline" sözünü "Serpline" ilə əvəz et (Store paketi `store/serpline/`, mətnlər `docs/serpline/STORE-LISTING.md`, rəy səhifəsi `getlineapps.com/serpline/uninstalled`).
+
+**Öz Chrome-unda yoxlamaq**
+
+1. Agentə yaz: `Build Serpline.` Sonra `chrome://extensions` aç, **Developer mode**-u yandır, **Load unpacked** bas və `apps\serpline\extension\.output\chrome-mv3` qovluğunu seç.
+2. İstənilən saytı aç və Serpline ikonuna bas (və ya `Alt+Shift+S`). Sağda yan panel açılır, səhifəni yoxlayır.
+3. Başqa səhifəyə keçəndə panel "Yeni səhifə açmısan" yazır. "Bu səhifəni yoxla" bas. Başqa sayta keçmisənsə, ikona yenidən bas. Chrome bəzən "bu sayta giriş verilsin?" soruşur: bu, Chrome-un öz pəncərəsidir, Serpline yalnız həmin bir saytı soruşur.
+4. Links tabında "52 daxili linki yoxla" kimi düymə linkləri saytın özündən, sənin brauzerindən yoxlayır. Başqa heç yerə sorğu getmir.
+
+**Real saytlarda yoxlama (QA)**
+
+İstədiyin saytları agentə ver:
+
+```
+Run Serpline QA on <url1> <url2> <url3> and tell me about any false positives.
+```
+
+Agent `scripts/qa-serpline.ts` ilə hər saytı açır, link yoxlamasını edir və hər tabın şəklini çəkir. Nəticələr `docs/serpline/QA.md` faylına yazılır.
+
+**Bir problem səhv görünürsə**
+
+Paneldə yanlış problem görsən (məsələn sayt düzgündür, amma Serpline "kəsilir" deyir), səhifənin linkini agentə ver:
+
+```
+Serpline shows <problem> on <url>, but I think it is wrong. Check it and fix it if Serpline is wrong.
+```
+
+## 9. Bir şey sınanda
 
 - GitHub-da **Actions** tabında qırmızı X görsən, agentə yaz: `CI failed on main, find out why and fix it.`
 - Sayt açılmırsa, Cloudflare Pages-də son deploy-a bax və ya agentə yaz: `getlineapps.com is down, check the last deploy.`

@@ -21,13 +21,51 @@ export type Device = keyof typeof DESC_LIMIT;
 
 const ELLIPSIS = ' ...';
 
+/** Letters that do not decompose to an ASCII base letter (Arial advance widths). */
+const EXTRA: Record<string, number> = {
+  ı: 222,
+  ə: 556,
+  Ə: 667,
+  ß: 611,
+  ø: 611,
+  Ø: 778,
+  æ: 889,
+  Æ: 1000,
+  œ: 944,
+  Œ: 1000,
+  ł: 222,
+  Ł: 556,
+  đ: 556,
+  Đ: 722,
+  '–': 556,
+  '—': 1000,
+  '‘': 222,
+  '’': 222,
+  '“': 333,
+  '”': 333,
+  '…': 1000,
+  '«': 556,
+  '»': 556,
+  '•': 350,
+  '€': 556,
+};
+
+/**
+ * Advance width of one character in 1/1000 em. Accented letters (ş, ç, ö, ü, ğ, İ, é ...) use
+ * their base letter, so Azerbaijani and other Latin text is not measured too wide.
+ */
+function charUnits(ch: string): number {
+  const c = ch.charCodeAt(0);
+  if (c >= 32 && c < 127) return ARIAL[c - 32]!;
+  if (ch in EXTRA) return EXTRA[ch]!;
+  const base = ch.normalize('NFD').charCodeAt(0);
+  return base >= 32 && base < 127 ? ARIAL[base - 32]! : OTHER;
+}
+
 /** Width in px of `text` set in Arial at `size` px. */
 export function measure(text: string, size: number): number {
   let units = 0;
-  for (let i = 0; i < text.length; i++) {
-    const c = text.charCodeAt(i);
-    units += c >= 32 && c < 127 ? ARIAL[c - 32]! : OTHER;
-  }
+  for (const ch of text) units += charUnits(ch);
   return (units * size) / 1000;
 }
 

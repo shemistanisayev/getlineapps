@@ -2,6 +2,8 @@
  * Serpline extension, loaded through CDP and opened by a real toolbar click
  * (Extensions.triggerAction grants activeTab like a user click). Run `pnpm build` first.
  */
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { expect, test } from '@playwright/test';
 import { hostResolverArgs, SERPLINE_PORT, serplineUrl } from '../apps/fixture/hosts.ts';
 import { readManifest, requireBuilt } from './extension.ts';
@@ -413,6 +415,68 @@ test.describe('serpline extension', () => {
     expect(await ext.evalIn(PANEL, `chrome.storage.local.get(null)`)).toEqual({});
     await click('button[aria-label="Back to results"]');
     await expect.poll(panelText).toContain('Description: 191 characters, cut after 107');
+    await page.close();
+  });
+
+  test('accessibility: every panel view passes axe (WCAG 2.1 A and AA)', async () => {
+    // Playwright cannot reach the side panel, so axe-core is injected over CDP and run there.
+    const req = createRequire(createRequire(import.meta.url).resolve('@axe-core/playwright'));
+    const axeSource = readFileSync(req.resolve('axe-core/axe.min.js'), 'utf8');
+    const axe = async (view: string) => {
+      // Runtime.evaluate runs the source directly (the panel's CSP forbids eval in page code).
+      if (!(await ext.evalIn<boolean>(PANEL, 'Boolean(window.axe)')))
+        await ext.evalIn(PANEL, `${axeSource};true`);
+      const r = await ext.evalIn<{ passes: number; violations: string[] }>(
+        PANEL,
+        `axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] } })
+           .then((r) => ({
+             passes: r.passes.length,
+             violations: r.violations.map((x) => x.id + ': ' + x.nodes.map((n) => n.target.join(' ')).join(', ')),
+           }))`,
+      );
+      // axe really ran (color contrast, names, roles ... pass) and found nothing.
+      expect(r.passes, view).toBeGreaterThan(10);
+      expect(r.violations, view).toEqual([]);
+    };
+    const click = (sel: string) =>
+      ext.evalIn(PANEL, `document.querySelector(${JSON.stringify(sel)}).click()`, true);
+
+    const page = await ext.context.newPage();
+    await page.goto(serplineUrl());
+    await ext.clickAction(page);
+    await expect.poll(panelText).toContain('example.com/products/wireless-headphones-pro-x');
+    // No transitions while axe measures colors.
+    await ext.evalIn(
+      PANEL,
+      `document.head.append(Object.assign(document.createElement('style'), { textContent: '*{transition:none!important;animation:none!important}' }))`,
+    );
+    for (const id of ['summary', 'headings', 'links', 'render', 'ai']) {
+      await click(`#sl-tab-${id}`);
+      await expect
+        .poll(() =>
+          ext.evalIn(
+            PANEL,
+            `document.querySelector('#sl-tab-${id}').getAttribute('aria-selected')`,
+          ),
+        )
+        .toBe('true');
+      await axe(id);
+    }
+    await click('#sl-tab-links');
+    await ext.evalIn(
+      PANEL,
+      `[...document.querySelectorAll('button')].find((b) => b.textContent.startsWith('Check 52')).click()`,
+      true,
+    );
+    await expect.poll(panelText, { timeout: 20_000 }).toContain('52 internal links checked');
+    await axe('links after the check');
+    await click('button[aria-label="Settings"]');
+    await expect.poll(panelText).toContain('Google preview opens on');
+    await axe('settings');
+    await click('button[aria-label="Back to results"]');
+    await page.goto(serplineUrl('/electronics/headphones'));
+    await expect.poll(panelText).toContain('You opened a new page');
+    await axe('stale');
     await page.close();
   });
 

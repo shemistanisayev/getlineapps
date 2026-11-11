@@ -270,6 +270,7 @@ export const en = {
   'ln.checkBtn1': 'Check 1 internal link',
   'ln.checking': 'Checking {n} internal links...',
   'ln.checked': '{n} internal links checked',
+  'ln.checked1': '1 internal link checked',
   'ln.ok': '{n} OK',
   'ln.redirect': '{n} redirect',
   'ln.redirects': '{n} redirects',
