@@ -1,4 +1,5 @@
-import { Logo } from '@line/ui';
+import { contactUrl } from '@line/core/site';
+import { FooterCta, LimeCta, PageRow, PanelTabs, type PanelTab } from '@line/ui/serpline';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { activeTabId, checkTab, requestSite, type CheckFailure } from '../../src/capture/check.ts';
 import type { FetchedFile, PageRead } from '../../src/capture/inject.ts';
@@ -10,6 +11,10 @@ import { useT } from '../../src/useLang.ts';
  * Step 2 shell (docs/serpline/PLAN.md): runs the check and shows what was read, plus the Stale,
  * no-access and restricted states. The real tabs replace the "Page read" card in steps 3 to 6.
  */
+const TAB_IDS = ['summary', 'headings', 'links', 'render', 'ai'] as const;
+type TabId = (typeof TAB_IDS)[number];
+const PANEL_CTA = contactUrl({ source: 'serpline', medium: 'extension', campaign: 'panel_cta' });
+
 type View =
   | { kind: 'idle' }
   | { kind: 'checking' }
@@ -29,6 +34,7 @@ function fileLine(f: FetchedFile, t: T, lines = false): string {
 export function Panel() {
   const { t } = useT();
   const [view, setView] = useState<View>({ kind: 'idle' });
+  const [tab, setTab] = useState<TabId>('summary');
   // The last page read: its origin is the only site Serpline can offer to allow (no tabs permission).
   const last = useRef<{ tabId: number; page: PageRead } | null>(null);
   const busy = useRef<number | null>(null);
@@ -100,29 +106,54 @@ export function Panel() {
   const page = view.kind === 'result' ? view.page : null;
   const url = page ? new URL(page.url) : null;
   const stale = view.kind === 'result' && view.stale;
+  // Result tabs (design: Main, Headings, Links, Render, Ai). Stale, idle and restricted show only
+  // Chrome's own title row (design: Stale), so no page row and no tabs there.
+  const tabbed = view.kind === 'result' && !stale;
+  const issues = (n: number) => t(n === 1 ? 'tab.issue' : 'tab.issues', { n });
+  const tabs: PanelTab<TabId>[] = TAB_IDS.map((id) => ({
+    id,
+    label: t(`tab.${id}`),
+    // Counts come from @line/core/serpline issue rules (step 4).
+    count: 0,
+    countLabel: issues(0),
+  }));
+  const limeTab = tab === 'render' || tab === 'ai';
 
   return (
-    <div className="sp">
-      <header className="sp-row">
-        <Logo brand="serpline" size={22} word={false} />
-        <p className="sp-page" title={page?.url}>
-          <b>{url ? url.host : 'Serpline'}</b>
-          {url && <span>{url.pathname + url.search}</span>}
-        </p>
-        {view.kind === 'result' && !stale && (
-          <button type="button" className="btn btn-s" onClick={() => void run(view.tabId)}>
-            {t('panel.checkAgain')}
-          </button>
-        )}
-      </header>
+    <div className="sl-panel sp">
+      {tabbed && url && (
+        <header className="sp-head">
+          <PageRow
+            host={url.host}
+            path={url.pathname + url.search}
+            checkAgainLabel={t('panel.checkAgain')}
+            pdfLabel={t('panel.pdf')}
+            settingsLabel={t('panel.settings')}
+            onCheckAgain={() => void run(view.tabId)}
+            pdfDisabled
+          />
+          <PanelTabs
+            label={t('panel.sections')}
+            tabs={tabs}
+            active={tab}
+            onSelect={setTab}
+            panelId="sp-tabpanel"
+          />
+        </header>
+      )}
 
-      <main className="sp-body">
+      <main
+        className="sp-body"
+        id={tabbed ? 'sp-tabpanel' : undefined}
+        role={tabbed ? 'tabpanel' : undefined}
+        aria-labelledby={tabbed ? `sl-tab-${tab}` : undefined}
+      >
         {view.kind === 'checking' && <p className="sp-muted">{t('panel.checking')}</p>}
 
         {(view.kind === 'idle' ||
           stale ||
           (view.kind === 'failed' && view.reason === 'noAccess')) && (
-          <section className="card sp-call">
+          <section className="sl-card sp-call">
             <h1>{stale ? t('panel.stale.title') : t('panel.idle.title')}</h1>
             <p>
               {stale
@@ -131,7 +162,7 @@ export function Panel() {
                   ? t('panel.noAccess')
                   : t('panel.idle.text')}
             </p>
-            <button type="button" className="btn btn-p" onClick={() => void checkThis()}>
+            <button type="button" className="sp-cta" onClick={() => void checkThis()}>
               {t('panel.checkThis')}
             </button>
             <p className="sp-muted">
@@ -143,15 +174,15 @@ export function Panel() {
         )}
 
         {view.kind === 'failed' && view.reason === 'restricted' && (
-          <section className="card sp-call" role="status">
+          <section className="sl-card sp-call" role="status">
             <h1>{t('panel.restricted.title')}</h1>
             <p>{t('panel.restricted.text')}</p>
           </section>
         )}
 
         {page && (
-          <section className="card sp-read" aria-label={t('panel.read.title')}>
-            <p className="eyebrow">{stale ? t('panel.previous') : t('panel.read.title')}</p>
+          <section className="sl-card sp-read" aria-label={t('panel.read.title')}>
+            <h2 className="sl-eyebrow">{stale ? t('panel.previous') : t('panel.read.title')}</h2>
             <dl>
               <dt>{t('panel.read.rawHtml')}</dt>
               <dd data-k="raw">{fileLine(page.raw, t)}</dd>
@@ -165,7 +196,19 @@ export function Panel() {
             <p className="sp-muted">{t('panel.read.note')}</p>
           </section>
         )}
+
+        {tabbed && limeTab && (
+          <LimeCta text={t(`cta.${tab}`)} label={t('cta.contact')} href={PANEL_CTA} />
+        )}
       </main>
+
+      {!(tabbed && limeTab) && (
+        <FooterCta
+          text={tabbed ? t('cta.help') : t('cta.audit')}
+          label={t('cta.contact')}
+          href={PANEL_CTA}
+        />
+      )}
     </div>
   );
 }

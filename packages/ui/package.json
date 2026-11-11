@@ -12,6 +12,8 @@
     "./tokens.css": "./src/tokens.css",
     "./fonts.css": "./src/fonts.css",
     "./ui.css": "./src/ui.css",
+    "./serpline": "./src/serpline/index.ts",
+    "./serpline.css": "./src/serpline/serpline.css",
     "./fonts/*": "./fonts/*",
     "./icons/*": "./icons/*"
   },

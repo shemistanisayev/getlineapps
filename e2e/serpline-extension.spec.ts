@@ -72,6 +72,41 @@ test.describe('serpline extension', () => {
     expect(text).toMatch(/robots\.txt\s+HTTP 200/);
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-panel-read.png`);
 
+    // Shell: page row, 5 tabs, dark footer CTA on Summary, lime CTA on Render and AI.
+    const shell = () =>
+      ext.evalIn<{ tabs: string[]; selected: string; footer: string; lime: string }>(
+        PANEL,
+        `({
+          tabs: [...document.querySelectorAll('[role=tab]')].map((b) => b.textContent),
+          selected: document.querySelector('[role=tab][aria-selected=true]')?.textContent ?? '',
+          footer: document.querySelector('.sl-footer')?.textContent ?? '',
+          lime: document.querySelector('.sl-lime')?.textContent ?? '',
+        })`,
+      );
+    expect(await shell()).toEqual({
+      tabs: ['Summary', 'Headings', 'Links', 'Render', 'AI'],
+      selected: 'Summary',
+      footer: 'Need help fixing these?Get in touch',
+      lime: '',
+    });
+    expect(
+      await ext.evalIn(PANEL, `document.querySelector('.sl-footer a').getAttribute('href')`),
+    ).toBe(
+      'https://shamistanisayev.com/?utm_source=serpline&utm_medium=extension&utm_campaign=panel_cta',
+    );
+    // Arrow keys move between tabs (Summary -> AI wraps to the end with ArrowLeft).
+    await ext.evalIn(
+      PANEL,
+      `document.querySelector('[role=tab][aria-selected=true]').dispatchEvent(
+         new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }))`,
+    );
+    await expect.poll(async () => (await shell()).selected).toBe('AI');
+    expect(await shell()).toMatchObject({
+      footer: '',
+      lime: 'Want your site to show up in AI answers?Get in touch',
+    });
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-panel-ai-tab.png`);
+
     // Same tab, same site: the panel goes Stale; "Check this page" works (activeTab is kept).
     await page.goto(shopUrl('/electronics/headphones'));
     await expect.poll(panelText).toContain('You opened a new page');

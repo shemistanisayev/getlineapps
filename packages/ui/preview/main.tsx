@@ -4,7 +4,9 @@ import { TOOL_SLUGS } from '@line/core/site';
 import '../src/fonts.css';
 import '../src/tokens.css';
 import '../src/ui.css';
+import '../src/serpline/serpline.css';
 import './preview.css';
+import { SerplineDemo } from './SerplineDemo.tsx';
 import {
   BRANDS,
   Button,
@@ -87,7 +89,7 @@ function App() {
         <HubLogo theme="dark" size={44} />
         <p>
           Line family UI preview: <code>packages/ui</code>. Logo, HubLogo, tokens, Button, Pill,
-          Card, Table, CTA band, Glyph, Mark and extension icons.
+          Card, Table, CTA band, Serpline panel, Glyph, Mark and extension icons.
         </p>
       </header>
 
@@ -276,6 +278,10 @@ function App() {
           href="https://shamistanisayev.com/?utm_source=getlineapps&utm_medium=landing&utm_campaign=hub_cta"
           label="Book a call"
         />
+      </Section>
+
+      <Section id="serpline" title="Serpline side panel (400 px)">
+        <SerplineDemo />
       </Section>
 
       <Section id="glyphs" title="Glyphs (Foldline, Markline)">

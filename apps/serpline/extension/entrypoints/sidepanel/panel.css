@@ -1,87 +1,79 @@
-/* Step 2 shell. Colors and sizes from design/serpline/Main.dc.html; the full shell comes in step 3. */
+/* Side panel layout. Components and colors: @line/ui/serpline.css (design/serpline). */
 body {
   background: #efedf5;
-  font-size: 13px;
 }
 .sp {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
-.sp-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 48px;
-  padding: 0 14px;
-  background: #ffffff;
-  border-bottom: 1px solid #dcd9e6;
-}
-.sp-page {
-  flex: 1 1 auto;
-  min-width: 0;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.sp-page span {
-  color: #667085;
+.sp-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-top: 1px solid #eae8f0;
 }
 .sp-body {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 14px;
+  gap: 10px;
+  padding: 12px;
 }
-.card {
-  background: #ffffff;
-  border: 1px solid #dcd9e6;
-  border-radius: 14px;
-  box-shadow:
-    0 1px 2px rgba(16, 24, 40, 0.06),
-    0 4px 12px -6px rgba(52, 30, 120, 0.12);
-}
-.eyebrow {
+.sp-muted {
   margin: 0;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #667085;
+  font-size: 12.5px;
+  color: var(--line-muted);
 }
+
+/* Call card (design: Stale) */
 .sp-call {
-  padding: 18px;
+  padding: 22px 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
 }
 .sp-call h1 {
   margin: 0;
   font-family: var(--line-font-display);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 800;
 }
 .sp-call p {
   margin: 0;
+  font-size: 13.5px;
   line-height: 1.5;
-  color: #344054;
+  color: var(--line-ink-2);
 }
-.sp-muted {
-  margin: 0;
-  font-size: 12px;
-  color: #667085;
+.sp-call .sp-muted {
+  font-size: 12.5px;
+  color: var(--line-muted);
+}
+.sp-cta {
+  width: 100%;
+  height: 42px;
+  border: none;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(30, 64, 175, 0.35);
+}
+.sp-cta:hover {
+  background: #1d4ed8;
 }
 kbd {
-  display: inline-block;
-  padding: 0 5px;
+  font-family: var(--line-font-mono);
+  font-size: 11.5px;
+  color: var(--line-ink);
+  background: #eae8f0;
   border-radius: 5px;
-  border: 1px solid #c9c5d6;
-  background: #ffffff;
-  font-size: 11px;
-  color: #344054;
+  padding: 1px 6px;
 }
+
+/* Step 2 read card, replaced by the real tabs in steps 5 and 6 */
 .sp-read {
   padding: 14px;
   display: flex;
@@ -95,39 +87,10 @@ kbd {
   gap: 6px 14px;
 }
 .sp-read dt {
-  color: #475467;
+  color: var(--line-neutral);
 }
 .sp-read dd {
   margin: 0;
   font-weight: 600;
   text-align: right;
-}
-.btn {
-  height: 32px;
-  padding: 0 14px;
-  border-radius: 9px;
-  font-size: 13px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  flex-shrink: 0;
-}
-.btn-p {
-  border: none;
-  background: #2563eb;
-  color: #ffffff;
-  box-shadow: 0 1px 2px rgba(30, 64, 175, 0.35);
-}
-.btn-p:hover {
-  background: #1d4ed8;
-}
-.btn-s {
-  border: 1px solid #c9c5d6;
-  background: #ffffff;
-  color: #344054;
-}
-.btn-s:hover {
-  background: #f9fafb;
 }

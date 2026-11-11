@@ -159,7 +159,7 @@ Test setup notes: on this Windows machine Chromium for Testing does not start (`
 |---|---|---|---|
 | 1 | P0 | This plan | `docs/serpline/PLAN.md` |
 | 2 | P1 | `apps/serpline/extension` scaffold: side panel, background (panel behavior, `onClicked`, `Alt+Shift+S`, welcome, uninstall URL), manifest `activeTab`, `scripting`, `sidePanel`, `storage`, `optional_host_permissions`; the panel runs `executeScript` and fetches raw HTML, robots.txt and llms.txt; Stale and restricted states; spike result in this file | Done: panel opens from the icon (real click via CDP), spike works on the fixture and on example.org, manifest test passes |
-| 3 | P2 | Serpline theme in the panel, shell (page row, tabs with badges, footer CTA), level chips, bot badges, Google result, switch, segmented control; added to the `packages/ui` preview | Preview matches the design, contrast checked |
+| 3 | P2 | Serpline theme in the panel, shell (page row, tabs with badges, footer CTA), level chips, bot badges, Google result, switch, segmented control; added to the `packages/ui` preview | Done: `@line/ui/serpline` (components + `serpline.css`), preview section, 24 contrast pairs tested; panel uses the shell. Hero soft text raised from 88% to 92% white for AA |
 | 4 | P3 | `packages/core/src/serpline` (all of §4) with unit tests; Serpline scenario in `apps/fixture` | Fixture snapshot through core gives the design's issues and score 56 (after link check) |
 | 4B | P8 | `/serpline` landing + `#preview` island, `/serpline/uninstalled`, SEO, site `llms.txt`, AZ | Screenshots 1440 / 820 / 390 |
 | 5 | P4 | Summary, Headings with overlay, Links with the link check | Matches Main, Headings, Links on the fixture |

@@ -186,3 +186,62 @@ code,
   min-width: 0;
   overflow-x: auto;
 }
+
+/* Serpline panel demo */
+.pv-sl {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.pv-sl-panel {
+  width: 400px;
+  max-width: 100%;
+  border: 1px solid #dcd9e6;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.pv-sl-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pv-sl-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pv-sl-score {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+.pv-sl-score > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.pv-sl-hero-title {
+  font-family: var(--line-font-display);
+  font-size: 18px;
+  font-weight: 800;
+}
+.pv-sl-serp {
+  padding: 2px 14px 12px;
+}
+.pv-sl-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px 14px 10px;
+}
+.pv-sl-mono {
+  font-size: 11px;
+  color: #667085;
+}
+.pv-sl-contrast {
+  flex: 1 1 420px;
+  min-width: 0;
+}

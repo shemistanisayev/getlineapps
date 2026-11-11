@@ -2,6 +2,21 @@ import type { Dictionary } from './en.ts';
 
 /** Azerbaijani copy. Written by the agent, listed in docs/serpline/AZ-REVIEW.md for the owner (step 7). */
 export const az: Dictionary = {
+  'panel.sections': 'Serpline bölmələri',
+  'panel.pdf': 'Audit PDF',
+  'panel.settings': 'Ayarlar',
+  'tab.summary': 'Xülasə',
+  'tab.headings': 'Başlıqlar',
+  'tab.links': 'Linklər',
+  'tab.render': 'Render',
+  'tab.ai': 'AI',
+  'tab.issue': '{n} problem',
+  'tab.issues': '{n} problem',
+  'cta.help': 'Bunları düzəltməyə kömək lazımdır?',
+  'cta.audit': 'Tam texniki SEO auditi lazımdır?',
+  'cta.render': 'SEO üçün server-side rendering qurmaq istəyirsən?',
+  'cta.ai': 'Saytının AI cavablarında görünməsini istəyirsən?',
+  'cta.contact': 'Əlaqə saxla',
   'panel.checking': 'Səhifə oxunur...',
   'panel.checkAgain': 'Yenidən yoxla',
   'panel.idle.title': 'Səhifəni yoxla',

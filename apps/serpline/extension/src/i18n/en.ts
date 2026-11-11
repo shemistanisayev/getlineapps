@@ -3,6 +3,21 @@
  * {name} holes are filled with fill(). Tool, bot, tag and file names are never translated.
  */
 export const en = {
+  'panel.sections': 'Serpline sections',
+  'panel.pdf': 'Audit PDF',
+  'panel.settings': 'Settings',
+  'tab.summary': 'Summary',
+  'tab.headings': 'Headings',
+  'tab.links': 'Links',
+  'tab.render': 'Render',
+  'tab.ai': 'AI',
+  'tab.issue': '{n} issue',
+  'tab.issues': '{n} issues',
+  'cta.help': 'Need help fixing these?',
+  'cta.audit': 'Want a full technical SEO audit?',
+  'cta.render': 'Want server-side rendering set up for SEO?',
+  'cta.ai': 'Want your site to show up in AI answers?',
+  'cta.contact': 'Get in touch',
   'panel.checking': 'Reading this page...',
   'panel.checkAgain': 'Check again',
   'panel.idle.title': 'Check a page',

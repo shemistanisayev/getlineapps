@@ -11,6 +11,17 @@ for (const width of [1440, 820, 390]) {
     await page.goto('http://localhost:4310/');
     await expect(page.getByRole('img', { name: 'Hitline' }).first()).toBeVisible();
     await expect(page.getByRole('img', { name: 'Line apps' }).first()).toBeVisible();
+    // Serpline panel pieces (Faza 4 step 3): tabs, switch, Google result.
+    await expect(page.getByRole('tablist', { name: 'Serpline sections' })).toBeVisible();
+    await expect(page.getByRole('switch', { name: 'Highlight on page' })).toBeVisible();
+    await expect(page.getByText('Wireless Headphones Pro X | Lumo')).toBeVisible();
+    // Desktop Google preview renders at 600 px and scales down to the 400 px panel.
+    await page.getByRole('button', { name: 'Desktop' }).click();
+    await expect(page.locator('.sl-serp--desktop')).toHaveCSS('width', '600px');
+    expect(
+      await page.locator('.sl-serp--desktop').evaluate((e) => (e as HTMLElement).style.transform),
+    ).toMatch(/^scale\(0\.\d+\)$/);
+    await page.getByRole('button', { name: 'Mobile' }).click();
     await page.evaluate(() => document.fonts.ready);
     // Fonts are self-hosted: no request may leave localhost.
     const fonts = await page.evaluate(() =>

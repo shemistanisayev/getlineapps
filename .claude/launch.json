@@ -6,6 +6,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@line/site", "preview"],
       "port": 4321
+    },
+    {
+      "name": "ui",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@line/ui", "dev", "--port", "4311", "--strictPort"],
+      "port": 4311
     }
   ]
 }

@@ -99,7 +99,24 @@ const STATUS_ICONS: Record<StatusTone, ReactNode> = {
   ),
 };
 
-export function StatusIcon({ tone, size = 12 }: { tone: StatusTone; size?: number }) {
+/** Extra shapes for status pills whose meaning is clearer with them ("Blocked", "Not used"). */
+const EXTRA_ICONS = {
+  check: <path d="M5 12.5l4.5 4.5L19 7.5" />,
+  alert: <path d="M12 6v8M12 18.5h.01" />,
+  x: <path d="M7 7l10 10M17 7L7 17" />,
+  dash: <path d="M6 12h12" />,
+};
+export type PillIcon = keyof typeof EXTRA_ICONS;
+
+export function StatusIcon({
+  tone,
+  icon,
+  size = 12,
+}: {
+  tone: StatusTone;
+  icon?: PillIcon;
+  size?: number;
+}) {
   return (
     <svg
       width={size}
@@ -112,7 +129,7 @@ export function StatusIcon({ tone, size = 12 }: { tone: StatusTone; size?: numbe
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      {STATUS_ICONS[tone]}
+      {icon ? EXTRA_ICONS[icon] : STATUS_ICONS[tone]}
     </svg>
   );
 }
@@ -126,16 +143,18 @@ export interface PillProps extends HTMLAttributes<HTMLSpanElement> {
   /** Hide the status icon (only for compact severity labels like "High" next to a list). */
   noIcon?: boolean;
   size?: 'md' | 'lg';
+  /** Another icon shape for the same status color (for example x for "Blocked"). */
+  icon?: PillIcon;
 }
 
-export function Pill({ tone, children, noIcon, size = 'md', className, ...rest }: PillProps) {
+export function Pill({ tone, children, noIcon, size = 'md', icon, className, ...rest }: PillProps) {
   const showIcon = tone !== 'brand' && !noIcon;
   return (
     <span
       className={cx('line-pill', `line-pill--${tone}`, size === 'lg' && 'line-pill--lg', className)}
       {...rest}
     >
-      {showIcon && <StatusIcon tone={tone} />}
+      {showIcon && <StatusIcon tone={tone} icon={icon} />}
       {children}
     </span>
   );
