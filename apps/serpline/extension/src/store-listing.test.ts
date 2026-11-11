@@ -12,8 +12,8 @@ const config = read('apps/serpline/extension/wxt.config.ts');
 const pkg = JSON.parse(read('apps/serpline/extension/package.json')) as { version: string };
 
 /** The first fenced block after a line that contains `label`. */
-function block(label: string): string {
-  const at = listing.indexOf(label);
+function block(label: string, from = 0): string {
+  const at = listing.indexOf(label, from);
   expect(at, label).toBeGreaterThan(-1);
   const start = listing.indexOf('```\n', at) + 4;
   return listing.slice(start, listing.indexOf('\n```', start));
@@ -69,6 +69,33 @@ describe('Serpline store listing', () => {
       expect(size(`store/serpline/screenshots/${s}.png`), s).toEqual([1280, 800]);
     expect(size('store/serpline/promo-small-440x280.png')).toEqual([440, 280]);
     expect(size('store/serpline/promo-marquee-1400x560.png')).toEqual([1400, 560]);
+  });
+
+  it('the detailed descriptions have no keyword lists (Web Store rejection "Yellow Argon")', () => {
+    // Google rejected 1.0.0 for listing 11 crawler names in a row. Name at most 3 bots, and keep
+    // every line of the description a sentence, not a comma list.
+    const bots = [
+      'GPTBot',
+      'OAI-SearchBot',
+      'ChatGPT-User',
+      'ClaudeBot',
+      'Claude-SearchBot',
+      'Claude-User',
+      'PerplexityBot',
+      'Perplexity-User',
+      'Google-Extended',
+      'Applebot-Extended',
+      'CCBot',
+      'Bytespider',
+      'Meta-ExternalAgent',
+    ];
+    const en = block('**Detailed description**');
+    const az = block('**Detailed description**', listing.indexOf('## Store listing (Azerbaijani)'));
+    for (const d of [en, az]) {
+      expect(bots.filter((b) => d.includes(b)).length).toBeLessThanOrEqual(3);
+      for (const line of d.split('\n'))
+        expect(line.split(',').length - 1, line).toBeLessThanOrEqual(5);
+    }
   });
 
   it('follows the copy rules', () => {

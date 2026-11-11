@@ -35,7 +35,7 @@ Serpline checks the page you are on: the technical SEO basics, what only shows u
 
 SUMMARY
 - One SEO score out of 100, weighted by priority
-- Title, meta description, canonical, robots meta, H1, image alt text, structured data, Open Graph and hreflang, each with a clear status
+- The on-page basics Google reads first, from the title and description to structured data, each with a clear status
 - Google preview for mobile and desktop, measured in pixels, with the exact point where Google cuts the title and description
 
 HEADINGS
@@ -52,7 +52,7 @@ RENDER
 - How much of the text needs JavaScript, and exactly what is added by scripts
 
 AI
-- Rules for GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended, Applebot-Extended, CCBot, Bytespider, Meta-ExternalAgent and more, split into search bots and training bots
+- Which AI search and training crawlers the site's robots.txt allows or blocks, grouped into search bots and training bots
 - The exact robots.txt line behind every block
 - robots.txt, sitemap and llms.txt at a glance
 
@@ -86,7 +86,7 @@ Serpline açıq olan səhifəni yoxlayır: texniki SEO əsasları, yalnız JavaS
 
 XÜLASƏ
 - Prioritetə görə hesablanan 100 üzərindən bir SEO skoru
-- Title, meta description, canonical, robots meta, H1, şəkillərin alt mətni, strukturlaşdırılmış data, Open Graph və hreflang, hər biri aydın statusla
+- Google-un ilk oxuduğu səhifə əsasları, title və description-dan strukturlaşdırılmış dataya qədər, hər biri aydın statusla
 - Mobil və desktop üçün Google önizləməsi, piksellə ölçülür, Google-un title və description-ı harada kəsdiyi dəqiq görünür
 
 BAŞLIQLAR
@@ -103,7 +103,7 @@ RENDER
 - Mətnin nə qədərinin JavaScript-dən asılı olduğu və skriptlərin dəqiq nə əlavə etdiyi
 
 AI
-- GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended, Applebot-Extended, CCBot, Bytespider, Meta-ExternalAgent və başqaları üçün qaydalar, axtarış və təlim botlarına bölünmüş
+- Saytın robots.txt faylının hansı AI axtarış və təlim crawler-lərinə icazə verdiyi və ya onları blokladığı, axtarış və təlim botlarına bölünmüş
 - Hər bloklamanın arxasındakı dəqiq robots.txt sətri
 - robots.txt, sitemap və llms.txt bir baxışda
 
