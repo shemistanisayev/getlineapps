@@ -211,12 +211,84 @@ test.describe('serpline extension', () => {
       footer: '',
       lime: 'Want your site to show up in AI answers?Get in touch',
     });
-    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-panel-ai-tab.png`);
+    // AI (design: Ai): 13 bots, 10 allowed (PLAN decision 3), 7 shown and "6 more bots".
+    const ai = await panelText();
+    expect(ai).toContain('10/13');
+    expect(ai).toContain('PerplexityBot is blocked');
+    expect(ai).toContain(
+      "Perplexity can't cite this site. The other answer engines can, but read only 38 of 412 words.",
+    );
+    expect(ai).toMatch(/User-agent: PerplexityBot\s+Disallow: \//);
+    const botRows = () =>
+      ext.evalIn<string[]>(
+        PANEL,
+        `[...document.querySelectorAll('.sl-brow')].map((r) => r.innerText.replace(/\\s+/g, ' ').trim())`,
+      );
+    // Every blocked bot shows its robots.txt line (SPEC §5); blocked bots are never folded away.
+    expect(await botRows()).toEqual([
+      'OAI-SearchBotChatGPT search Allowed',
+      'Claude-SearchBotClaude search Allowed by *',
+      'PerplexityBotPerplexity answers User-agent: PerplexityBot Disallow: / Blocked',
+      'GPTBotOpenAI Allowed',
+      'ClaudeBotAnthropic Allowed',
+      'Google-ExtendedGemini Allowed',
+      'CC CCBotCommon Crawl User-agent: CCBot Disallow: / Blocked',
+      'BytespiderByteDance User-agent: Bytespider Disallow: / Blocked',
+    ]);
+    expect(ai).toContain('5 more bots');
+    expect(ai).toMatch(/robots\.txt\s+Found, 38 lines/);
+    expect(ai).toMatch(/sitemap\.xml\s+Listed in robots\.txt/);
+    expect(ai).toMatch(/llms\.txt\s+Not found, optional/);
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-ai.png`);
+    await clickButton('5 more bots');
+    await expect.poll(async () => (await botRows()).length).toBe(13);
+
+    // Render (design: Render).
+    await clickTab('Render');
+    await expect.poll(panelText).toContain('91% of the text needs JavaScript');
+    const render = await panelText();
+    expect(render).toContain('Raw HTML has 38 words. The rendered page has 412.');
+    const table = await ext.evalIn<string[]>(
+      PANEL,
+      `[...document.querySelectorAll('.sp-cmp-row')].map((r) => [...r.children].map((c) => c.innerText.trim()).join(' | '))`,
+    );
+    expect(table).toEqual([
+      'SIGNAL | RAW HTML | RENDERED',
+      'Title | Same | Same',
+      'Description | Same | Same',
+      'Canonical | Same | Same',
+      'H1 | None | 1',
+      'Words | 38 | 412',
+      'Links | 18 | 64',
+      'JSON-LD | Breadcrumb | Breadcrumb, Product',
+    ]);
+    const code = await ext.evalIn<string>(PANEL, `document.querySelector('.sp-code').innerText`);
+    expect(code.split('\n')).toEqual([
+      '<h1>Wireless Headphones Pro X</h1>',
+      '<script type="application/ld+json"> Product',
+      '<section id="details"> 211 words',
+      '<section id="reviews"> 20 links',
+    ]);
+    expect(await shell()).toMatchObject({
+      footer: '',
+      lime: 'Want server-side rendering set up for SEO?Get in touch',
+    });
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-render.png`);
 
     // Same tab, same site: the panel goes Stale; "Check this page" works (activeTab is kept).
     await page.goto(serplineUrl('/electronics/headphones'));
     await expect.poll(panelText).toContain('You opened a new page');
-    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-panel-stale.png`);
+    const stale = await panelText();
+    expect(stale).toMatch(/56\s+Previous result\s+\/products\/wireless-headphones-pro-x/);
+    expect(stale).toContain('WHAT SERPLINE CHECKS');
+    expect(stale).toContain('Want a full technical SEO audit?');
+    expect(await ext.evalIn(PANEL, `document.querySelectorAll('[role=tab]').length`)).toBe(0);
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-stale.png`);
+    // The previous result card opens the old result again.
+    await clickButton('56');
+    await expect.poll(panelText).toContain('example.com/products/wireless-headphones-pro-x');
+    await page.reload();
+    await expect.poll(panelText).toContain('You opened a new page');
     await ext.evalIn(
       PANEL,
       `[...document.querySelectorAll('button')].find((b) => b.textContent === 'Check this page').click()`,
@@ -232,6 +304,8 @@ test.describe('serpline extension', () => {
     await page.goto('chrome://version');
     await ext.clickAction(page);
     await expect.poll(panelText).toContain("Serpline can't read this page");
+    // No "Check this page" there: Chrome never allows it.
+    expect(await panelText()).not.toContain('Check this page');
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-panel-restricted.png`);
     await page.close();
   });

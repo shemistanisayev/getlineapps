@@ -454,7 +454,14 @@ export function BotRow({
           {userAgent}
           <em>{shownAs}</em>
         </span>
-        {rule && <span className="sl-rule">{rule}</span>}
+        {rule && (
+          // "User-agent: X  Disallow: /" breaks only between its two parts on narrow panels.
+          <span className="sl-rule">
+            {rule.split(/\s{2,}/).map((part, i) => (
+              <span key={i}>{part}</span>
+            ))}
+          </span>
+        )}
       </span>
       {status}
     </div>

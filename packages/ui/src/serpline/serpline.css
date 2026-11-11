@@ -470,6 +470,11 @@
 .sl-brow--rule .sl-bn {
   padding-top: 1px;
 }
+/* Narrow panels: name and the robots line end in an ellipsis instead of running under the pill. */
+.sl-bn > span:not(.sl-rule) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .sl-bn em {
   font-style: normal;
   font-weight: 400;
@@ -481,7 +486,13 @@
   font-size: 11px;
   font-weight: 500;
   color: var(--line-problem);
-  white-space: pre-wrap;
+  white-space: normal;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.2em;
+}
+.sl-rule span {
+  white-space: nowrap;
 }
 .sl-cc {
   border-radius: 6px;

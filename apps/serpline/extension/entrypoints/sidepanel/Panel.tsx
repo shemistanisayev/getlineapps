@@ -1,12 +1,6 @@
-import {
-  analyze,
-  parseRobots,
-  planLinkCheck,
-  type Audit,
-  type LinkResult,
-} from '@line/core/serpline';
+import { analyze, planLinkCheck, type Audit, type LinkResult } from '@line/core/serpline';
 import { contactUrl } from '@line/core/site';
-import { FooterCta, LimeCta, PageRow, PanelTabs, type PanelTab } from '@line/ui/serpline';
+import { FooterCta, PageRow, PanelTabs, type PanelTab } from '@line/ui/serpline';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   activeTabId,
@@ -16,7 +10,7 @@ import {
   setOverlay,
   type CheckFailure,
 } from '../../src/capture/check.ts';
-import type { FetchedFile, PageRead } from '../../src/capture/inject.ts';
+import type { PageRead } from '../../src/capture/inject.ts';
 import type { OverlaySpec } from '../../src/capture/overlay.ts';
 import type { T } from '../../src/i18n/index.ts';
 import {
@@ -27,13 +21,16 @@ import {
 import { getAutoCheckLinks, getPreviewDevice, type PreviewDevice } from '../../src/storage.ts';
 import { useT } from '../../src/useLang.ts';
 import { jsOnlyHeadings } from './tabs/common.tsx';
+import { AiTab } from './tabs/Ai.tsx';
+import { CallView, type CallKind } from './tabs/CallView.tsx';
 import { HeadingsTab } from './tabs/Headings.tsx';
 import { LinksTab, type LinkCheckState } from './tabs/Links.tsx';
+import { RenderTab } from './tabs/Render.tsx';
 import { SummaryTab } from './tabs/Summary.tsx';
 
 /**
- * The side panel (docs/serpline-SPEC.md §5). Summary, Headings and Links are built (step 5);
- * Render and AI still show the "Page read" card until step 6.
+ * The side panel (docs/serpline-SPEC.md §5): five result tabs, plus the Stale, idle, no-access and
+ * restricted states (design: Stale).
  */
 const TAB_IDS = ['summary', 'headings', 'links', 'render', 'ai'] as const;
 type TabId = (typeof TAB_IDS)[number];
@@ -44,10 +41,6 @@ type View =
   | { kind: 'checking' }
   | { kind: 'result'; tabId: number; page: PageRead; checkedAt: Date; stale: boolean }
   | { kind: 'failed'; reason: CheckFailure };
-
-function size(bytes: number): string {
-  return bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} KB`;
-}
 
 /** Runs the core rules on what the page returned (and the link results once checked). */
 function auditOf(page: PageRead, linkResults?: LinkResult[]): Audit | null {
@@ -63,13 +56,6 @@ function auditOf(page: PageRead, linkResults?: LinkResult[]): Audit | null {
   } catch {
     return null;
   }
-}
-
-function fileLine(f: FetchedFile, t: T, lines = false): string {
-  if (f.status === 0) return t('panel.read.failed');
-  // Same count as the AI tab's "Found, N lines" (a final newline does not add a line).
-  if (lines) return t('panel.read.lines', { status: f.status, n: parseRobots(f.text).lineCount });
-  return t('panel.read.status', { status: f.status, size: size(f.text.length) });
 }
 
 /** What the page overlay draws: every heading (H1s added by JavaScript say so) and images without alt. */
@@ -242,24 +228,10 @@ export function Panel() {
   const limeTab = tab === 'render' || tab === 'ai';
   const planned = useMemo(() => (audit ? planLinkCheck(audit.rendered).length : 0), [audit]);
 
-  const readCard = page && (
-    <section className="sl-card sp-read" aria-label={t('panel.read.title')}>
-      <h2 className="sl-eyebrow">{stale ? t('panel.previous') : t('panel.read.title')}</h2>
-      <dl>
-        <dt>{t('panel.read.rawHtml')}</dt>
-        <dd data-k="raw">{fileLine(page.raw, t)}</dd>
-        <dt>{t('panel.read.score')}</dt>
-        <dd data-k="score">
-          {audit ? t('panel.read.scoreValue', { score: audit.score, ...audit.counts }) : '-'}
-        </dd>
-        <dt className="mono">{t('panel.read.robots')}</dt>
-        <dd data-k="robots">{fileLine(page.robots, t, true)}</dd>
-        <dt className="mono">{t('panel.read.llms')}</dt>
-        <dd data-k="llms">{fileLine(page.llms, t)}</dd>
-      </dl>
-      <p className="sp-muted">{t('panel.read.note')}</p>
-    </section>
-  );
+  const call: CallKind | null =
+    view.kind === 'idle' ? 'idle' : stale ? 'stale' : view.kind === 'failed' ? view.reason : null;
+  const previous =
+    stale && audit && url ? { score: audit.score, path: url.pathname + url.search } : null;
 
   return (
     <div className="sl-panel sp">
@@ -292,37 +264,26 @@ export function Panel() {
       >
         {view.kind === 'checking' && <p className="sp-muted">{t('panel.checking')}</p>}
 
-        {(view.kind === 'idle' ||
-          stale ||
-          (view.kind === 'failed' && view.reason === 'noAccess')) && (
-          <section className="sl-card sp-call">
-            <h1>{stale ? t('panel.stale.title') : t('panel.idle.title')}</h1>
-            <p>
-              {stale
-                ? t('panel.stale.text')
-                : view.kind === 'failed'
-                  ? t('panel.noAccess')
-                  : t('panel.idle.text')}
-            </p>
-            <button type="button" className="sp-cta" onClick={() => void checkThis()}>
-              {t('panel.checkThis')}
-            </button>
-            <p className="sp-muted">
-              {t('panel.shortcut.before')} <kbd className="mono">Alt</kbd> +{' '}
-              <kbd className="mono">Shift</kbd> + <kbd className="mono">S</kbd>{' '}
-              {t('panel.shortcut.after')}
-            </p>
-          </section>
+        {call && (
+          <CallView
+            kind={call}
+            previous={previous}
+            onCheck={() => void checkThis()}
+            onShowPrevious={() =>
+              setView((v) => (v.kind === 'result' ? { ...v, stale: false } : v))
+            }
+            t={t}
+          />
         )}
 
-        {view.kind === 'failed' && view.reason === 'restricted' && (
+        {tabbed && !audit && (
           <section className="sl-card sp-call" role="status">
-            <h1>{t('panel.restricted.title')}</h1>
-            <p>{t('panel.restricted.text')}</p>
+            <div className="sp-call-x">
+              <h1>{t('panel.readError.title')}</h1>
+              <p>{t('panel.readError.text')}</p>
+            </div>
           </section>
         )}
-
-        {stale && readCard}
 
         {tabbed && audit && view.kind === 'result' && tab === 'summary' && (
           <SummaryTab
@@ -352,11 +313,8 @@ export function Panel() {
             t={t}
           />
         )}
-        {tabbed && (limeTab || !audit) && readCard}
-
-        {tabbed && limeTab && (
-          <LimeCta text={t(`cta.${tab}`)} label={t('cta.contact')} href={PANEL_CTA} />
-        )}
+        {tabbed && audit && tab === 'render' && <RenderTab audit={audit} cta={PANEL_CTA} t={t} />}
+        {tabbed && audit && tab === 'ai' && <AiTab audit={audit} cta={PANEL_CTA} t={t} />}
       </main>
 
       {!(tabbed && limeTab) && (
