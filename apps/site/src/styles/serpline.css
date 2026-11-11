@@ -775,7 +775,7 @@ body.sl-page {
 .lp .marq-in {
   list-style: none;
   margin: 0;
-  padding: 4px 0;
+  padding: 6px 0;
   display: flex;
   gap: 14px;
   width: max-content;
@@ -1282,6 +1282,7 @@ body.sl-page {
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
+  padding: 2px;
 }
 .lp .tbar {
   display: inline-flex;
@@ -2127,7 +2128,7 @@ body.sl-page {
   .lp .tbar-w {
     justify-content: flex-start;
     margin: 0 -32px 32px;
-    padding: 0 32px 4px;
+    padding: 2px 32px 4px;
     overflow-x: auto;
   }
   .lp .tbar {
@@ -2220,7 +2221,7 @@ body.sl-page {
   }
   .lp .tbar-w {
     margin: 0 -16px 28px;
-    padding: 0 16px 4px;
+    padding: 2px 16px 4px;
   }
   .lp .tbar label {
     height: 38px;
