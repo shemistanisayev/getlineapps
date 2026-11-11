@@ -7,6 +7,8 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 export const FIXTURE_PORT = Number(process.env.LUMO_PORT ?? 4400);
+/** Serpline mode of the same server (`--serpline`): the design paths, docs/serpline/PLAN.md decision 1. */
+export const SERPLINE_PORT = Number(process.env.LUMO_SERPLINE_PORT ?? 4401);
 export const FIXTURE_HOSTS = ['example.com', 'data.example.com', 'pay.example.net'];
 
 export function hostResolverArgs(port = FIXTURE_PORT): string[] {
@@ -15,6 +17,10 @@ export function hostResolverArgs(port = FIXTURE_PORT): string[] {
 }
 
 export const shopUrl = (path = '/products/wireless-headphones-pro-x') =>
+  `http://example.com${path}`;
+
+/** Serpline scenario page on the Serpline-mode server (map example.com to SERPLINE_PORT). */
+export const serplineUrl = (path = '/products/wireless-headphones-pro-x') =>
   `http://example.com${path}`;
 
 /** URL patterns of every vendor the shop calls. Fulfil them all; let none reach the network. */

@@ -4,9 +4,10 @@
   "private": true,
   "license": "MIT",
   "type": "module",
-  "description": "Lumo: the fictional test shop for Hitline (and Serpline later). Never sends real tracking.",
+  "description": "Lumo: the fictional test shop for Hitline and Serpline. Never sends real tracking.",
   "scripts": {
     "start": "tsx server.ts",
+    "start:serpline": "tsx server.ts --serpline",
     "open:hitline": "tsx scripts/open-hitline.ts",
     "typecheck": "tsc -p tsconfig.json"
   },

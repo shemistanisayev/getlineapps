@@ -1,0 +1,290 @@
+[
+  {
+    "url": "http://example.com/",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/"
+  },
+  {
+    "url": "http://example.com/electronics",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/electronics"
+  },
+  {
+    "url": "http://example.com/home-kitchen",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/home-kitchen"
+  },
+  {
+    "url": "http://example.com/beauty",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/beauty"
+  },
+  {
+    "url": "http://example.com/kids",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/kids"
+  },
+  {
+    "url": "http://example.com/sale",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/sale"
+  },
+  {
+    "url": "http://example.com/account",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/account"
+  },
+  {
+    "url": "http://example.com/cart",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/cart"
+  },
+  {
+    "url": "http://example.com/headphones",
+    "status": 200,
+    "redirected": true,
+    "finalUrl": "http://example.com/electronics/headphones"
+  },
+  {
+    "url": "http://example.com/returns",
+    "status": 200,
+    "redirected": true,
+    "finalUrl": "http://example.com/help/returns"
+  },
+  {
+    "url": "http://example.com/help/pro-x-manual",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/help/pro-x-manual"
+  },
+  {
+    "url": "http://example.com/help/size-and-fit",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/help/size-and-fit"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=5",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=5"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=4",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=4"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=3",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=3"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=2",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=2"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=1",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?stars=1"
+  },
+  {
+    "url": "http://example.com/reviews/by/anna-k",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/reviews/by/anna-k"
+  },
+  {
+    "url": "http://example.com/reviews/by/tom-r",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/reviews/by/tom-r"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?page=2",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?page=2"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?page=3",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?page=3"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?page=4",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?page=4"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?page=5",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?page=5"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?page=6",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?page=6"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?page=7",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?page=7"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?page=8",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?page=8"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews?page=9",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews?page=9"
+  },
+  {
+    "url": "http://example.com/products/wireless-headphones-pro-x/reviews",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/wireless-headphones-pro-x/reviews"
+  },
+  {
+    "url": "http://example.com/reviews/new?product=pro-x",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/reviews/new?product=pro-x"
+  },
+  {
+    "url": "http://example.com/products/earbuds-mini-old",
+    "status": 404,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/earbuds-mini-old"
+  },
+  {
+    "url": "http://example.com/products/studio-headphones-2",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/studio-headphones-2"
+  },
+  {
+    "url": "http://example.com/products/sport-earbuds",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/sport-earbuds"
+  },
+  {
+    "url": "http://example.com/products/travel-case",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/products/travel-case"
+  },
+  {
+    "url": "http://example.com/electronics/headphones",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/electronics/headphones"
+  },
+  {
+    "url": "http://example.com/electronics/speakers",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/electronics/speakers"
+  },
+  {
+    "url": "http://example.com/electronics/earbuds",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/electronics/earbuds"
+  },
+  {
+    "url": "http://example.com/gift-cards",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/gift-cards"
+  },
+  {
+    "url": "http://example.com/help/shipping",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/help/shipping"
+  },
+  {
+    "url": "http://example.com/help/returns",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/help/returns"
+  },
+  {
+    "url": "http://example.com/help/warranty",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/help/warranty"
+  },
+  {
+    "url": "http://example.com/help/payment",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/help/payment"
+  },
+  {
+    "url": "http://example.com/help/contact",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/help/contact"
+  },
+  {
+    "url": "http://example.com/about",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/about"
+  },
+  {
+    "url": "http://example.com/stores",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/stores"
+  },
+  {
+    "url": "http://example.com/privacy",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/privacy"
+  },
+  {
+    "url": "http://example.com/careers",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/careers"
+  },
+  {
+    "url": "http://example.com/terms",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/terms"
+  },
+  {
+    "url": "http://example.com/cookies",
+    "status": 200,
+    "redirected": false,
+    "finalUrl": "http://example.com/cookies"
+  }
+]

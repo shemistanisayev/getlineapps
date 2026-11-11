@@ -3,7 +3,7 @@
  * (Extensions.triggerAction grants activeTab like a user click). Run `pnpm build` first.
  */
 import { expect, test } from '@playwright/test';
-import { hostResolverArgs, routeVendors, shopUrl } from '../apps/fixture/hosts.ts';
+import { hostResolverArgs, SERPLINE_PORT, serplineUrl } from '../apps/fixture/hosts.ts';
 import { readManifest, requireBuilt } from './extension.ts';
 import { loadExtensionCdp, type CdpExtension } from './extension-cdp.ts';
 
@@ -17,8 +17,8 @@ test.describe('serpline extension', () => {
 
   test.beforeAll(async () => {
     requireBuilt('serpline');
-    ext = await loadExtensionCdp('serpline', { args: hostResolverArgs(), port: 9334 });
-    await routeVendors(ext.context);
+    // The Serpline Lumo scenario (SPEC §10) at the design paths.
+    ext = await loadExtensionCdp('serpline', { args: hostResolverArgs(SERPLINE_PORT), port: 9334 });
   });
   test.afterAll(async () => ext?.close());
 
@@ -62,29 +62,41 @@ test.describe('serpline extension', () => {
 
   test('icon click opens the side panel and reads the page, raw HTML and robots.txt', async () => {
     const page = await ext.context.newPage();
-    await page.goto(shopUrl());
+    await page.goto(serplineUrl());
     await ext.clickAction(page);
     expect(await ext.hasPage(PANEL)).toBe(true);
     await expect.poll(panelText).toContain('Page read'.toUpperCase());
     const text = await panelText();
     expect(text).toContain('example.com/products/wireless-headphones-pro-x');
     expect(text).toMatch(/Raw HTML\s+HTTP 200/);
-    expect(text).toMatch(/robots\.txt\s+HTTP 200/);
+    expect(text).toMatch(/robots\.txt\s+HTTP 200, 38 lines/);
+    expect(text).toMatch(/llms\.txt\s+HTTP 404/);
+    // @line/core/serpline on the real page: 62 before the link check (PLAN decision 4).
+    expect(text).toMatch(/62\/100, 2 high, 5 medium, 1 low/);
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-panel-read.png`);
 
     // Shell: page row, 5 tabs, dark footer CTA on Summary, lime CTA on Render and AI.
     const shell = () =>
-      ext.evalIn<{ tabs: string[]; selected: string; footer: string; lime: string }>(
+      ext.evalIn<{
+        tabs: string[];
+        badges: string[];
+        selected: string;
+        footer: string;
+        lime: string;
+      }>(
         PANEL,
         `({
           tabs: [...document.querySelectorAll('[role=tab]')].map((b) => b.textContent),
+          badges: [...document.querySelectorAll('[role=tab] [aria-label]')].map((b) => b.getAttribute('aria-label')),
           selected: document.querySelector('[role=tab][aria-selected=true]')?.textContent ?? '',
           footer: document.querySelector('.sl-footer')?.textContent ?? '',
           lime: document.querySelector('.sl-lime')?.textContent ?? '',
         })`,
       );
+    // Badges: issues per tab (Links stays empty until the link check, step 5).
     expect(await shell()).toEqual({
-      tabs: ['Summary', 'Headings', 'Links', 'Render', 'AI'],
+      tabs: ['Summary', 'Headings2', 'Links', 'Render3', 'AI1'],
+      badges: ['2 issues', '3 issues', '1 issue'],
       selected: 'Summary',
       footer: 'Need help fixing these?Get in touch',
       lime: '',
@@ -100,7 +112,8 @@ test.describe('serpline extension', () => {
       `document.querySelector('[role=tab][aria-selected=true]').dispatchEvent(
          new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }))`,
     );
-    await expect.poll(async () => (await shell()).selected).toBe('AI');
+    // textContent includes the badge: "AI" + "1".
+    await expect.poll(async () => (await shell()).selected).toBe('AI1');
     expect(await shell()).toMatchObject({
       footer: '',
       lime: 'Want your site to show up in AI answers?Get in touch',
@@ -108,7 +121,7 @@ test.describe('serpline extension', () => {
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-panel-ai-tab.png`);
 
     // Same tab, same site: the panel goes Stale; "Check this page" works (activeTab is kept).
-    await page.goto(shopUrl('/electronics/headphones'));
+    await page.goto(serplineUrl('/electronics/headphones'));
     await expect.poll(panelText).toContain('You opened a new page');
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-panel-stale.png`);
     await ext.evalIn(

@@ -3,6 +3,10 @@
  * - example.com (and localhost): the shop
  * - data.example.com: a fake server-side GTM endpoint (204 + FPID cookie)
  * - pay.example.net: the payment page on another domain
+ * - /seo/..., /robots.txt, /llms.txt, /sitemap.xml: the Serpline scenario (serpline.ts)
+ *
+ * `tsx server.ts --serpline` starts the Serpline mode on port 4401 instead: the same Serpline pages
+ * at the design paths (docs/serpline/PLAN.md decision 1).
  */
 import { createServer, type ServerResponse } from 'node:http';
 import { readFileSync } from 'node:fs';
@@ -14,7 +18,10 @@ import {
   LUMO_PLAN_CSV,
   LUMO_SCENARIOS,
 } from '../../packages/core/fixtures/hitline/lumo.ts';
-import { FIXTURE_PORT } from './hosts.ts';
+import { FIXTURE_PORT, SERPLINE_PORT } from './hosts.ts';
+import { serveSerpline, serveSiteFiles } from './serpline.ts';
+
+const SERPLINE_MODE = process.argv.includes('--serpline');
 
 const PUBLIC = fileURLToPath(new URL('./public/', import.meta.url));
 const TYPES: Record<string, string> = {
@@ -31,7 +38,7 @@ function send(
   status: number,
   body: string,
   type = 'text/plain',
-  headers = {},
+  headers: Record<string, string> = {},
 ) {
   res.writeHead(status, { 'content-type': type, 'cache-control': 'no-store', ...headers });
   res.end(body);
@@ -48,6 +55,13 @@ function file(res: ServerResponse, name: string) {
 const server = createServer((req, res) => {
   const host = (req.headers.host ?? '').split(':')[0]!.toLowerCase();
   const url = new URL(req.url ?? '/', `http://${host}`);
+
+  if (url.pathname === '/lumo.css') return file(res, 'lumo.css');
+  if (url.pathname === '/favicon.ico') return send(res, 204, '');
+  if (SERPLINE_MODE) return serveSerpline(url.pathname, '', res, send);
+  if (url.pathname === '/seo' || url.pathname.startsWith('/seo/'))
+    return serveSerpline(url.pathname.slice(4) || '/', '/seo', res, send);
+  if (serveSiteFiles(url.pathname, res, send)) return;
 
   if (url.pathname === '/__lumo/scenarios.json') {
     return send(
@@ -79,6 +93,9 @@ const server = createServer((req, res) => {
   return file(res, 'shop.html');
 });
 
-server.listen(FIXTURE_PORT, () => {
-  console.log(`Lumo fixture on http://localhost:${FIXTURE_PORT} (example.com via host rules)`);
+const port = SERPLINE_MODE ? SERPLINE_PORT : FIXTURE_PORT;
+server.listen(port, () => {
+  console.log(
+    `Lumo fixture${SERPLINE_MODE ? ' (Serpline)' : ''} on http://localhost:${port} (example.com via host rules)`,
+  );
 });

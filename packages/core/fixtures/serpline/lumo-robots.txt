@@ -1,0 +1,38 @@
+# robots.txt for example.com (Lumo)
+# Search engines may crawl the shop.
+# Cart, checkout and account pages stay out.
+
+User-agent: *
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account
+Allow: /
+
+# AI search and answer engines
+User-agent: OAI-SearchBot
+Allow: /
+
+# Perplexity cited old prices in 2025.
+User-agent: PerplexityBot
+Disallow: /
+
+# Model training
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Common Crawl and ByteDance stay out.
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Sitemaps (one per site)
+# Updated 2026-11-07
+Sitemap: http://example.com/sitemap.xml

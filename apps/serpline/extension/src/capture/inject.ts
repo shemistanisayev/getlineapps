@@ -30,8 +30,12 @@ export interface PageRead {
   url: string;
   origin: string;
   title: string;
-  /** Rendered DOM data. Step 4 adds the full §3.1 snapshot (meta, links, headings, images, JSON-LD). */
-  h1Count: number;
+  /**
+   * Rendered DOM as HTML (cap 5 MB). The panel parses it with DOMParser and runs the same
+   * @line/core/serpline extractors on it as on the raw HTML, so both sides are read alike.
+   */
+  html: string;
+  htmlTruncated: boolean;
   raw: RawResponse;
   robots: FetchedFile;
   llms: FetchedFile;
@@ -60,6 +64,11 @@ export async function readPage(rawCap: number, fileCap: number): Promise<PageRea
     }
   }
 
+  // Serpline's own overlay (step 5) lives in one host node; it is not part of the page.
+  const root = document.documentElement.cloneNode(true) as Element;
+  root.querySelectorAll('[data-serpline-overlay]').forEach((n) => n.remove());
+  const rendered = '<!doctype html>\n' + root.outerHTML;
+
   const [raw, robots, llms] = await Promise.all([
     get(location.href, rawCap),
     get(location.origin + '/robots.txt', fileCap),
@@ -70,7 +79,8 @@ export async function readPage(rawCap: number, fileCap: number): Promise<PageRea
     url: location.href,
     origin: location.origin,
     title: document.title,
-    h1Count: document.querySelectorAll('h1').length,
+    html: rendered.length > rawCap ? rendered.slice(0, rawCap) : rendered,
+    htmlTruncated: rendered.length > rawCap,
     raw: {
       ...raw.file,
       xRobotsTag: raw.res?.headers.get('x-robots-tag') ?? null,

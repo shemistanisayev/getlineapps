@@ -1,6 +1,7 @@
+import { analyze, parseRobots, type Audit } from '@line/core/serpline';
 import { contactUrl } from '@line/core/site';
 import { FooterCta, LimeCta, PageRow, PanelTabs, type PanelTab } from '@line/ui/serpline';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { activeTabId, checkTab, requestSite, type CheckFailure } from '../../src/capture/check.ts';
 import type { FetchedFile, PageRead } from '../../src/capture/inject.ts';
 import type { T } from '../../src/i18n/index.ts';
@@ -25,9 +26,25 @@ function size(bytes: number): string {
   return bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} KB`;
 }
 
+/** Runs the core rules on what the page returned. Link issues wait for the link check (step 5). */
+function auditOf(page: PageRead): Audit | null {
+  try {
+    return analyze({
+      url: page.url,
+      renderedHtml: page.html,
+      raw: page.raw.status ? page.raw : null,
+      robots: page.robots.status ? page.robots : null,
+      llms: page.llms.status ? page.llms : null,
+    });
+  } catch {
+    return null;
+  }
+}
+
 function fileLine(f: FetchedFile, t: T, lines = false): string {
   if (f.status === 0) return t('panel.read.failed');
-  if (lines) return t('panel.read.lines', { status: f.status, n: f.text.split(/\r?\n/).length });
+  // Same count as the AI tab's "Found, N lines" (a final newline does not add a line).
+  if (lines) return t('panel.read.lines', { status: f.status, n: parseRobots(f.text).lineCount });
   return t('panel.read.status', { status: f.status, size: size(f.text.length) });
 }
 
@@ -104,6 +121,7 @@ export function Panel() {
   };
 
   const page = view.kind === 'result' ? view.page : null;
+  const audit = useMemo(() => (page ? auditOf(page) : null), [page]);
   const url = page ? new URL(page.url) : null;
   const stale = view.kind === 'result' && view.stale;
   // Result tabs (design: Main, Headings, Links, Render, Ai). Stale, idle and restricted show only
@@ -113,9 +131,9 @@ export function Panel() {
   const tabs: PanelTab<TabId>[] = TAB_IDS.map((id) => ({
     id,
     label: t(`tab.${id}`),
-    // Counts come from @line/core/serpline issue rules (step 4).
-    count: 0,
-    countLabel: issues(0),
+    // Issue count per tab from @line/core/serpline (SPEC §4.5). Summary has no badge.
+    count: id === 'summary' ? 0 : (audit?.byTab[id] ?? 0),
+    countLabel: issues(id === 'summary' ? 0 : (audit?.byTab[id] ?? 0)),
   }));
   const limeTab = tab === 'render' || tab === 'ai';
 
@@ -186,8 +204,10 @@ export function Panel() {
             <dl>
               <dt>{t('panel.read.rawHtml')}</dt>
               <dd data-k="raw">{fileLine(page.raw, t)}</dd>
-              <dt>{t('panel.read.rendered')}</dt>
-              <dd data-k="h1">{page.h1Count}</dd>
+              <dt>{t('panel.read.score')}</dt>
+              <dd data-k="score">
+                {audit ? t('panel.read.scoreValue', { score: audit.score, ...audit.counts }) : '-'}
+              </dd>
               <dt className="mono">{t('panel.read.robots')}</dt>
               <dd data-k="robots">{fileLine(page.robots, t, true)}</dd>
               <dt className="mono">{t('panel.read.llms')}</dt>

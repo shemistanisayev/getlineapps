@@ -7,3 +7,4 @@ pnpm-lock.yaml
 **/.astro/
 test-results/
 packages/core/fixtures/hitline/gtm-*.js
+packages/core/fixtures/serpline/lumo-*.html

@@ -33,20 +33,20 @@ Source of truth, in order: root `CLAUDE.md`, `docs/line-family-domains.md`, `doc
 
 ```
 packages/core/src/serpline/
-  snapshot.ts      types of the raw page snapshot (what the injected function returns)
-  extract.ts       §4.1 extractors over a DOM-like Document (live DOM or DOMParser of raw HTML)
+  extract.ts       §4.1 extractors over a Document (DOMParser of the raw HTML and of the rendered HTML)
   diff.ts          §4.2 render diff, needs-JavaScript share, "added by JavaScript" list
   serp.ts          §4.3 Arial width table (same as Landing.dc.html), measure, truncate, URL line, site name
   robots.ts        §4.4 RFC 9309 parser, matcher, Sitemap lines
   bots.ts          §4.4 bot list (config, 13 rows, two groups) and status per bot
-  links.ts         internal/external by registrable domain (shared helper with Hitline), link-check plan + result merge
+  links.ts         link counts, link-check plan (unique same-origin URLs, max 100) + result merge
   issues.ts        §4.5 one rule list, severity, tab, evidence, score and label
-  analyze.ts       analyze(snapshot, rawHtml, robots, llms, linkResults?) -> Audit
+  analyze.ts       analyze({ url, renderedHtml, raw, robots, llms, linkResults? }) -> Audit
   index.ts
+packages/core/src/shared/domain.ts   registrable-domain helper (moved from hitline, decision 6)
 packages/core/fixtures/serpline/
-  lumo-rendered.html, lumo-raw.html, lumo-robots.txt   recorded from apps/fixture
-  robots-*.txt                                         RFC 9309 cases
-  expected.json                                        issues, counts and score 56 from the design
+  lumo-rendered.html, lumo-raw.html, lumo-links.json   recorded from apps/fixture (scripts/record-serpline-fixture.ts)
+  lumo-robots.txt                                      served by the fixture and read by the tests
+  (RFC 9309 cases and the expected Lumo result live in the *.test.ts files)
 
 apps/serpline/extension/      WXT + React + TS
   entrypoints/sidepanel/      React panel (manifest side_panel.default_path)
@@ -139,13 +139,24 @@ Test setup notes: on this Windows machine Chromium for Testing does not start (`
 10. **AZ copy** in `src/i18n/az.ts` and `content/serpline/az.json`, listed in `docs/serpline/AZ-REVIEW.md`. Tool names, bot names, HTML tags and file names stay untranslated.
 11. **Privacy page.** `content/privacy/serpline.*.json` lists `https://*/*` as one "Site access (optional)" row; the manifest also has `http://*/*`. The manifest-vs-privacy test compares only the `https` entries on purpose (one row for both), and it passes against the step 2 build. No change needed.
 
+## Step 4 notes (2026-11-11)
+
+- **Fixture.** `apps/fixture/serpline.ts` and `apps/fixture/public/serpline/` (product page, `product.js`, category page, CSS). `pnpm --filter @line/fixture start:serpline` serves the design paths on port 4401 (Playwright starts it). The shop server on 4400 serves the same pages under `/seo/...` (SPEC paths; internal links keep the prefix) and now answers `/robots.txt`, `/llms.txt` (404) and `/sitemap.xml` the Serpline way. Hitline's pages are untouched. Images are small SVGs served for `/img/*.jpg`.
+- **Rendered side.** The injected function returns `document.documentElement.outerHTML` (without Serpline's overlay). The panel parses it with DOMParser, like the raw HTML, and both go through the same `extract()`.
+- **Words.** Visible text split on whitespace, counting tokens with a letter or digit (a lone "/" in a breadcrumb is not a word); `script`, `style`, `noscript` and `template` are skipped on both sides. Hidden elements count on both sides (DOMParser has no layout). `innerText` is not used, so raw and rendered are measured the same way.
+- **G5.** The Arial table gives 318 px for the title. "Cut after 107" is where the hidden part starts (`cutAfter`). The shown text follows the SPEC and the landing code (trailing punctuation stripped), so it reads "...at once ..." where Main draws "at once. ...".
+- **Render card numbers.** The design's "374 words" on `#details` is all the words JavaScript adds; one section cannot hold them next to the H1 and the reviews. Serpline shows each section's own numbers: `#details` 211 words, `#reviews` 20 links (a section with 10 or more links is listed by its links, otherwise by its words when over 50). Hero, table and AI numbers (38, 412, 18, 64) are exact.
+- **Redirect status.** `fetch` follows redirects and does not reveal 301 vs 302; a redirected link is known only as a redirect plus its target. Step 5 decides the pill text (design: "301").
+- **Copy.** Core returns issue ids, numbers and evidence only. Every sentence goes into the EN and AZ dictionaries in steps 5 and 6.
+- **Tests.** happy-dom is the DOM for the core tests; resource loading is off in `vitest.config.ts`. The recorded `lumo-*.html` files are excluded from Prettier so they stay byte-exact.
+
 ## Gaps and questions found in the design (resolved here unless marked "owner")
 
 - **G1. 8/11 vs 13 bots.** See decision 3. The landing hero and marquee do not show a count, so only the panel, PDF and e2e change.
 - **G2. Score 56 needs the link check.** See decision 4.
 - **G3. 64 links vs 52 + 9.** See decision 5.
 - **G4. Path `/products/...` vs SPEC `/seo/products/...`.** See decision 1.
-- **G5. Description measurement.** Main says "cut after 107" (mobile, 680 px) and the Report says the same. Step 4 checks that `serp.ts` with the Arial table gives 107 for the design text and 318 px for the title; if not, the test records the computed numbers and the UI shows those.
+- **G5. Description measurement.** Main says "cut after 107" (mobile, 680 px) and the Report says the same. Resolved in step 4: 107 and 318 px match (see Step 4 notes).
 - **G6. Stale footer CTA** ("Want a full technical SEO audit?") is not in the SPEC §9 table. It uses `panel_cta` (the SPEC lists "Stale footer" under panel CTAs).
 - **G7. `screens/*.png` and `brand-icons/`** from SPEC §2 are not in the repo. We compare by rendering the artboards; marks come from `@line/ui` (Simple Icons). Owner can compare with the live canvas.
 - **G8. CCBot "CC" badge.** Common Crawl has no Simple Icons mark; the design uses the letters "CC" on a neutral tint. Built as a text badge, not a logo.
@@ -160,7 +171,7 @@ Test setup notes: on this Windows machine Chromium for Testing does not start (`
 | 1 | P0 | This plan | `docs/serpline/PLAN.md` |
 | 2 | P1 | `apps/serpline/extension` scaffold: side panel, background (panel behavior, `onClicked`, `Alt+Shift+S`, welcome, uninstall URL), manifest `activeTab`, `scripting`, `sidePanel`, `storage`, `optional_host_permissions`; the panel runs `executeScript` and fetches raw HTML, robots.txt and llms.txt; Stale and restricted states; spike result in this file | Done: panel opens from the icon (real click via CDP), spike works on the fixture and on example.org, manifest test passes |
 | 3 | P2 | Serpline theme in the panel, shell (page row, tabs with badges, footer CTA), level chips, bot badges, Google result, switch, segmented control; added to the `packages/ui` preview | Done: `@line/ui/serpline` (components + `serpline.css`), preview section, 24 contrast pairs tested; panel uses the shell. Hero soft text raised from 88% to 92% white for AA |
-| 4 | P3 | `packages/core/src/serpline` (all of §4) with unit tests; Serpline scenario in `apps/fixture` | Fixture snapshot through core gives the design's issues and score 56 (after link check) |
+| 4 | P3 | `packages/core/src/serpline` (all of §4) with unit tests; Serpline scenario in `apps/fixture` | Done: the recorded Lumo page gives the design's 10 issues and 56 after the link check (62 before); 38 vs 412 words; 64 = 52 + 9 + 3 links; 49 OK, 2 redirects, 1 broken; 10/13 bots; robots.txt 38 lines; description cut after 107. The panel already shows the score and the tab badges |
 | 4B | P8 | `/serpline` landing + `#preview` island, `/serpline/uninstalled`, SEO, site `llms.txt`, AZ | Screenshots 1440 / 820 / 390 |
 | 5 | P4 | Summary, Headings with overlay, Links with the link check | Matches Main, Headings, Links on the fixture |
 | 6 | P5 | Render, AI, Stale, restricted view | Matches Render, Ai, Stale; "Check this page" works after navigation |
