@@ -103,6 +103,28 @@ apps/site/src/scripts/serp-preview.ts   vanilla island for #preview
 - Stale: `tabs.onActivated` and `tabs.onUpdated` (`status === 'complete'`) without the `tabs` permission. "Check this page" tries `executeScript`, then `permissions.request({ origins: [origin + '/*'] })` from the click, then retries.
 - Step 2 spike confirms on Chrome stable: `activeTab` after `action.onClicked` reaches the panel's `executeScript`; the same-origin fetch from the isolated world; `permissions.request` from the side panel click. Result goes into this file.
 
+## Spike result (step 2, 2026-11-11)
+
+Run with `pnpm tsx scripts/spike-serpline.ts [url]` (fixture running, extension built). The extension is installed with CDP `Extensions.loadUnpacked` and the toolbar icon is clicked with `Extensions.triggerAction`, which is a real action click: Chrome grants `activeTab` exactly as for a person. This works on branded Chrome stable, where `--load-extension` no longer does. The same loader (`e2e/extension-cdp.ts`) drives the e2e suite.
+
+Chrome stable 157.0.8103.39, Windows 11:
+
+| Check | Result |
+|---|---|
+| Icon click opens the side panel (`sidePanel.open({ windowId })` in `onClicked`) | Works |
+| Panel `executeScript` on the clicked tab (`ISOLATED`) | Works |
+| Same-origin `fetch` from the injected function: raw HTML, `/robots.txt`, `/llms.txt` | Works on the fixture and on `https://example.org` (200 HTML, robots 404, llms 404). No host permission |
+| `Alt+Shift+S` | Registered as `_execute_action` (`commands.getAll`). Pressing the key needs a person; it fires the same `onClicked` |
+| Panel per window | Stays open when the user switches tabs; the result turns Stale (`tabs.onActivated`, no `tabs` permission) |
+| Same tab, same site navigation | Panel turns Stale (`tabs.onUpdated` `complete`). `activeTab` is **kept**, so "Check this page" works with no prompt |
+| Same tab, another site | `activeTab` is gone ("Cannot access contents of the page ..."). The panel shows how to click the icon or press the shortcut |
+| `permissions.request({ origins: [origin + '/*'] })` from a panel click | Chrome shows its own prompt. Without a click it fails ("must be called during a user gesture") |
+| `chrome://version` | `executeScript` refused; the panel shows "Serpline can't read this page" |
+
+Consequence for §3.2: Serpline has no `tabs` permission, so it never knows the new tab's URL. "Check this page" first tries `executeScript` (works for same-site navigation thanks to the kept `activeTab`). If that fails, it can only offer `permissions.request` for the **previous** page's origin (the site the user already checked). For a page on another site the panel points to the icon and `Alt+Shift+S`. Asking for `https://*/*` at once is never done.
+
+Test setup notes: on this Windows machine Chromium for Testing does not start (`spawn UNKNOWN`), so the e2e loader falls back to Edge, as Hitline's does; CI uses Playwright Chromium. The helper waits for the extension's service worker before clicking, because a click before its listeners are registered is lost. Files synced by OneDrive get a reparse-point attribute and Playwright then skips them while collecting tests; CI on GitHub is not affected, and a local run can use a plain copy of `e2e/` (all 72 tests passed that way on 2026-11-11).
+
 ## Decisions
 
 1. **Fixture paths.** The SPEC puts the Serpline scenario at `/seo/products/wireless-headphones-pro-x` and `/seo/electronics/headphones` so Hitline's shop is untouched; the design shows `/products/...`. The fixture server gets both: the `/seo/...` routes always exist (SPEC), and a second mode `LUMO_SITE=serpline` (own port 4401) serves the same pages at the design paths with Serpline's `robots.txt`. Serpline screenshots and e2e use that mode, so the page row reads exactly like the design. Hitline tests keep port 4400 and their own pages.
@@ -115,7 +137,7 @@ apps/site/src/scripts/serp-preview.ts   vanilla island for #preview
 8. **Render "Added by JavaScript" card** lists at most 4 entries: headings H1 to H3 by text, JSON-LD types, then sections over 50 words (by `id` or tag) with word count, and sections with added links ("46 links").
 9. **PDF.** `buildLineReport` as Hitline. File name `serpline-audit-<host>-<yyyy-mm-dd>.pdf`, blob URL download. The PDF uses the Report artboard's own fix lines (they are shorter than the panel's), stored with each rule.
 10. **AZ copy** in `src/i18n/az.ts` and `content/serpline/az.json`, listed in `docs/serpline/AZ-REVIEW.md`. Tool names, bot names, HTML tags and file names stay untranslated.
-11. **Privacy page.** `content/privacy/serpline.*.json` lists only `https://*/*` as the optional host permission; the manifest also has `http://*/*`. Step 2 adds the second entry so the existing manifest-vs-privacy test passes.
+11. **Privacy page.** `content/privacy/serpline.*.json` lists `https://*/*` as one "Site access (optional)" row; the manifest also has `http://*/*`. The manifest-vs-privacy test compares only the `https` entries on purpose (one row for both), and it passes against the step 2 build. No change needed.
 
 ## Gaps and questions found in the design (resolved here unless marked "owner")
 
@@ -136,7 +158,7 @@ apps/site/src/scripts/serp-preview.ts   vanilla island for #preview
 | Step | SPEC | What | Done when |
 |---|---|---|---|
 | 1 | P0 | This plan | `docs/serpline/PLAN.md` |
-| 2 | P1 | `apps/serpline/extension` scaffold: side panel, background (panel behavior, `onClicked`, `Alt+Shift+S`, welcome, uninstall URL), manifest `activeTab`, `scripting`, `sidePanel`, `storage`, `optional_host_permissions`; test button runs `executeScript` and fetches raw HTML and robots.txt; spike result in this file; privacy text fix (decision 11) | Panel opens from icon and shortcut; spike works on the fixture and one real site; manifest test passes |
+| 2 | P1 | `apps/serpline/extension` scaffold: side panel, background (panel behavior, `onClicked`, `Alt+Shift+S`, welcome, uninstall URL), manifest `activeTab`, `scripting`, `sidePanel`, `storage`, `optional_host_permissions`; the panel runs `executeScript` and fetches raw HTML, robots.txt and llms.txt; Stale and restricted states; spike result in this file | Done: panel opens from the icon (real click via CDP), spike works on the fixture and on example.org, manifest test passes |
 | 3 | P2 | Serpline theme in the panel, shell (page row, tabs with badges, footer CTA), level chips, bot badges, Google result, switch, segmented control; added to the `packages/ui` preview | Preview matches the design, contrast checked |
 | 4 | P3 | `packages/core/src/serpline` (all of §4) with unit tests; Serpline scenario in `apps/fixture` | Fixture snapshot through core gives the design's issues and score 56 (after link check) |
 | 4B | P8 | `/serpline` landing + `#preview` island, `/serpline/uninstalled`, SEO, site `llms.txt`, AZ | Screenshots 1440 / 820 / 390 |
