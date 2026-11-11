@@ -21,3 +21,9 @@ export function translator(lang: Lang): T {
   const dict = DICTS[lang];
   return (key, vars) => fill(dict[key], vars);
 }
+
+/** "a, b and c" in the UI language. */
+export function joinList(items: string[], t: T): string {
+  if (items.length <= 1) return items.join('');
+  return `${items.slice(0, -1).join(', ')} ${t('list.and')} ${items.at(-1)}`;
+}

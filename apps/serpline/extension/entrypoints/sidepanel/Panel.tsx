@@ -19,6 +19,8 @@ import {
   isOverlayHiddenMessage,
 } from '../../src/messages.ts';
 import { getAutoCheckLinks, getPreviewDevice, type PreviewDevice } from '../../src/storage.ts';
+import { downloadReport } from '../../src/pdf.ts';
+import { serplineReport } from '../../src/report.ts';
 import { useT } from '../../src/useLang.ts';
 import { jsOnlyHeadings } from './tabs/common.tsx';
 import { AiTab } from './tabs/Ai.tsx';
@@ -87,6 +89,7 @@ function overlaySpec(audit: Audit, t: T): OverlaySpec {
 
 export function Panel() {
   const { t, lang } = useT();
+  const [pdf, setPdf] = useState<'idle' | 'busy' | 'failed'>('idle');
   const [settings, setSettings] = useState(false);
   const [view, setView] = useState<View>({ kind: 'idle' });
   const [tab, setTab] = useState<TabId>('summary');
@@ -235,6 +238,17 @@ export function Panel() {
   const previous =
     stale && audit && url ? { score: audit.score, path: url.pathname + url.search } : null;
 
+  const makePdf = async () => {
+    if (!audit) return;
+    setPdf('busy');
+    try {
+      await downloadReport((fonts) => serplineReport(audit, t, lang, fonts, new Date()));
+      setPdf('idle');
+    } catch {
+      setPdf('failed');
+    }
+  };
+
   if (settings) {
     return (
       <div className="sl-panel sp">
@@ -251,10 +265,11 @@ export function Panel() {
             host={url.host}
             path={url.pathname + url.search}
             checkAgainLabel={t('panel.checkAgain')}
-            pdfLabel={t('panel.pdf')}
             settingsLabel={t('panel.settings')}
             onCheckAgain={() => tabId !== null && void run(tabId)}
-            pdfDisabled
+            pdfLabel={pdf === 'busy' ? t('rep.making') : t('panel.pdf')}
+            pdfDisabled={!audit || pdf === 'busy'}
+            onPdf={() => void makePdf()}
             onSettings={() => setSettings(true)}
             settingsPressed={settings}
           />
@@ -275,6 +290,11 @@ export function Panel() {
         aria-labelledby={tabbed ? `sl-tab-${tab}` : undefined}
       >
         {view.kind === 'checking' && <p className="sp-muted">{t('panel.checking')}</p>}
+        {tabbed && pdf === 'failed' && (
+          <p className="sp-note sp-note--bad" role="status">
+            {t('rep.failed')}
+          </p>
+        )}
 
         {call && (
           <CallView

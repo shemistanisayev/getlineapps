@@ -81,7 +81,10 @@ const SEVERITY_TONE: Record<Severity, { text: string; bg: string; border: string
   low: STATUS.neutral,
 };
 
-const TILE_TONE: Record<TileTone, { bg: string; value: string; label: string }> = {
+const TILE_TONE: Record<
+  Exclude<TileTone, 'brand'>,
+  { bg: string; value: string; label: string }
+> = {
   neutral: { bg: C.tile, value: C.ink, label: C.text2 },
   ok: { bg: STATUS.ok.bg, value: STATUS.ok.text, label: STATUS.ok.text },
   high: { bg: STATUS.problem.bg, value: STATUS.problem.text, label: STATUS.problem.text },
@@ -564,10 +567,18 @@ function drawHeader(w: Writer, cfg: LineReportConfig) {
   const tw = (CONTENT_W - 30) / 4;
   const th = 12 + 22 * 1.21 + 11 * 1.21 + 12;
   cfg.tiles.forEach((t, i) => {
-    const tone = TILE_TONE[t.tone ?? 'neutral'];
+    const b = BRANDS[cfg.tool];
+    const tone =
+      t.tone === 'brand'
+        ? { bg: b.tint, value: b.tintInk, label: b.tintInk }
+        : TILE_TONE[t.tone ?? 'neutral'];
     const x = PAD_X + i * (tw + 10);
     w.rect(x, w.y, tw, th, 10, tone.bg);
     w.text(String(t.value), x + 12, w.y + 12, 22, 'display', tone.value);
+    if (t.suffix) {
+      const vx = x + 12 + w.width(String(t.value), 'display', 22) + 3;
+      w.text(t.suffix, vx, w.y + 12 + 22 * 1.21 - 13 * 1.21 - 2, 13, 'semibold', tone.label);
+    }
     let lx = x + 12;
     if (t.tone === 'warning') {
       drawWarningIcon(w, lx, w.y + 12 + 22 * 1.21 + 1.5, tone.label);

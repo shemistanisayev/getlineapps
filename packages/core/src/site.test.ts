@@ -61,6 +61,10 @@ describe('privacyUrl and uninstallUrl', () => {
     expect(uninstallUrl('hitline', '1.2.0')).toBe(
       'https://getlineapps.com/hitline/uninstalled?utm_source=hitline&utm_medium=extension&utm_campaign=uninstall&v=1.2.0',
     );
+    // Serpline's background sets this; /serpline/uninstalled exists since Faza 4B.
+    expect(uninstallUrl('serpline', '0.1.0')).toBe(
+      'https://getlineapps.com/serpline/uninstalled?utm_source=serpline&utm_medium=extension&utm_campaign=uninstall&v=0.1.0',
+    );
   });
 });
 

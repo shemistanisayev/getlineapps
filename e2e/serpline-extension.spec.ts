@@ -164,6 +164,39 @@ test.describe('serpline extension', () => {
       await ext.evalIn(PANEL, `document.querySelector('.sl-ring').getAttribute('aria-label')`),
     ).toBe('SEO score 56 of 100');
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-summary-56.png`);
+
+    // Audit PDF (design: Report): built in the panel from the extension's own fonts, saved through
+    // a blob URL and <a download>. The test records what the page hands to the download.
+    await ext.evalIn(
+      PANEL,
+      `(() => {
+        window.__pdf = null;
+        const make = URL.createObjectURL.bind(URL);
+        URL.createObjectURL = (blob) => { window.__pdfBlob = blob; return make(blob); };
+        HTMLAnchorElement.prototype.click = function () {
+          const blob = window.__pdfBlob;
+          blob.arrayBuffer().then((b) => {
+            window.__pdf = { name: this.download, size: b.byteLength, head: new TextDecoder().decode(b.slice(0, 5)) };
+          });
+        };
+      })()`,
+    );
+    await clickButton('Audit PDF');
+    await expect
+      .poll(
+        () =>
+          ext.evalIn<{ name: string; size: number; head: string } | null>(PANEL, 'window.__pdf'),
+        {
+          timeout: 20_000,
+        },
+      )
+      .toMatchObject({
+        head: '%PDF-',
+        name: expect.stringMatching(/^serpline-audit-example\.com-\d{4}-\d{2}-\d{2}\.pdf$/),
+      });
+    expect((await ext.evalIn<{ size: number }>(PANEL, 'window.__pdf')).size).toBeGreaterThan(
+      20_000,
+    );
     // The Google preview follows the device switch.
     await clickButton('Desktop');
     await expect.poll(panelText).toContain('Description: 191 characters, cut after 147');

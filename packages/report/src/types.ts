@@ -9,11 +9,14 @@ export interface ReportFonts {
   mono: Uint8Array; // JetBrains Mono 400
 }
 
-export type TileTone = 'neutral' | 'high' | 'medium' | 'warning' | 'ok';
+/** brand = the tool's tint and ink (a score tile). */
+export type TileTone = 'neutral' | 'brand' | 'high' | 'medium' | 'warning' | 'ok';
 export type Severity = 'high' | 'medium' | 'low';
 
 export interface Tile {
   value: string | number;
+  /** Smaller text after the value, for example "/100" after a score. */
+  suffix?: string;
   label: string;
   /** high = Problem colors, medium = Warning colors, warning = Warning colors with a warning icon. */
   tone?: TileTone;

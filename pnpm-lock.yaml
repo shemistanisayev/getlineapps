@@ -260,6 +260,9 @@ importers:
       '@line/core':
         specifier: workspace:*
         version: link:../../../packages/core
+      '@line/report':
+        specifier: workspace:*
+        version: link:../../../packages/report
       '@line/ui':
         specifier: workspace:*
         version: link:../../../packages/ui

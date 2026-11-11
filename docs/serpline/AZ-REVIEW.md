@@ -331,6 +331,64 @@ Fayl: `apps/serpline/extension/src/i18n/az.ts`. {n}, {type}, {bot} kimi yerlər 
 | `set.version` | Version {v} | Versiya {v} |
 | `set.privacy` | Privacy | Məxfilik |
 | `set.contact` | Contact | Əlaqə |
+| `list.and` | and | və |
+| `rep.eyebrow` | SEO and AI search audit | SEO və AI axtarış auditi |
+| `rep.page` | Page checked: {path} | Yoxlanılan səhifə: {path} |
+| `rep.tile.score` | SEO score | SEO skoru |
+| `rep.tile.high` | high priority | yüksək prioritet |
+| `rep.tile.medium` | medium priority | orta prioritet |
+| `rep.tile.low` | low priority | aşağı prioritet |
+| `rep.pageTitle` | Page | Səhifə |
+| `rep.k.canon` | Canonical and robots | Canonical və robots |
+| `rep.k.render` | Raw HTML vs rendered | Raw HTML və render |
+| `rep.k.links` | Links | Linklər |
+| `rep.k.ai` | AI bots | AI botlar |
+| `rep.v.title` | {title} ({n} characters) | {title} ({n} simvol) |
+| `rep.v.missing` | Missing | Yoxdur |
+| `rep.v.descCut` | {n} characters, Google cuts it after {cut} on mobile | {n} simvol, Google mobildə {cut} simvoldan sonra kəsir |
+| `rep.v.descFits` | {n} characters, fits in Google | {n} simvol, Google-da sığır |
+| `rep.v.noRobots` | no robots meta | robots meta yoxdur |
+| `rep.v.words` | {raw} of {rendered} words in raw HTML | raw HTML-də {rendered} sözdən {raw} |
+| `rep.v.addedJs` | {items} added by JavaScript | {items} JavaScript ilə əlavə olunur |
+| `rep.v.nothingJs` | nothing important added by JavaScript | JavaScript vacib heç nə əlavə etmir |
+| `rep.v.noRaw` | The raw HTML could not be downloaded | Raw HTML yüklənmədi |
+| `rep.v.linksChecked` | {total} links, {internal} internal checked: {broken} broken, {redirects} redirects | {total} link, {internal} daxili yoxlanıldı: {broken} sınıq, {redirects} yönləndirmə |
+| `rep.v.linksUnchecked` | {total} links, {internal} internal, status not checked | {total} link, {internal} daxili, status yoxlanmayıb |
+| `rep.v.bots` | {n} of {total} allowed. | {total} botdan {n}-nə icazə var. |
+| `rep.v.blocked` | {bots} blocked. | {bots} bloklanıb. |
+| `rep.v.llmsFound` | llms.txt found | llms.txt var |
+| `rep.v.llmsMissing` | No llms.txt | llms.txt yoxdur |
+| `rep.issues` | Issues and fixes | Problemlər və həllər |
+| `rep.none.lead` | No issues found. | Problem tapılmadı. |
+| `rep.none.text` | The page passes every check Serpline runs. | Səhifə Serpline-ın bütün yoxlamalarından keçir. |
+| `rep.lead.BROKEN_LINK` | A link leads to a {status}. | Link {status} səhifəsinə aparır. |
+| `rep.lead.BROKEN_LINK.many` | {count} links lead to errors. | {count} link xətaya aparır. |
+| `rep.lead.AI_SEARCH_BLOCKED` | {bot} is blocked in robots.txt. | {bot} robots.txt-də bloklanıb. |
+| `rep.fix.RAW_H1` | Render the H1 in the server HTML. | H1-i server HTML-ində render et. |
+| `rep.fix.RAW_TEXT` | Most AI crawlers see {raw} words. Server-render the main content. | AI crawler-lərin çoxu {raw} söz görür. Əsas məzmunu serverdə render et. |
+| `rep.fix.NO_TITLE` | Add a title of 50 to 60 characters, main keyword first. | 50-60 simvolluq title əlavə et, əsas açar söz əvvəldə. |
+| `rep.fix.NOINDEX` | Remove noindex if the page should show up in search. | Səhifə axtarışda görünməlidirsə, noindex-i sil. |
+| `rep.fix.CANONICAL_OTHER` | Point the canonical to this URL if this page should rank. | Bu səhifə sıralanmalıdırsa, canonical-ı bu URL-ə yönəlt. |
+| `rep.fix.SCHEMA_JS` | Put the JSON-LD in the server HTML. | JSON-LD-ni server HTML-inə qoy. |
+| `rep.fix.DESC_LONG` | Keep it under 150 characters, key point first. | 150 simvoldan qısa saxla, əsas fikir əvvəldə. |
+| `rep.fix.DESC_MISSING` | Add a meta description of about 140 characters. | Təxminən 140 simvolluq meta description əlavə et. |
+| `rep.fix.IMG_ALT` | Describe each photo in a few words. | Hər şəkli bir neçə sözlə təsvir et. |
+| `rep.fix.OG_DESC` | Shares on social and chat apps show no summary. | Sosial şəbəkələrdə və mesajlaşmada paylaşanda qısa təsvir görünmür. |
+| `rep.fix.BROKEN_LINK` | "{text}" points to {href}. | "{text}" {href} ünvanına aparır. |
+| `rep.fix.AI_SEARCH_BLOCKED` | Remove the rule if you want {engine} to cite the site. | {engine} sayta istinad etsin istəyirsənsə, qaydanı sil. |
+| `rep.fix.H1_MULTI` | Keep one H1 and turn the others into H2s. | Bir H1 saxla, qalanlarını H2 et. |
+| `rep.fix.HEADING_SKIP` | Make "{text}" an H{fix}. | "{text}" başlığını H{fix} et. |
+| `rep.fix.REDIRECT_LINKS` | Link to {targets} directly. | Birbaşa {targets} ünvanlarına link ver. |
+| `rep.fix.TITLE_LONG` | Shorten it and put the main keyword first. | Qısalt və əsas açar sözü əvvələ qoy. |
+| `rep.sev.high` | High | Yüksək |
+| `rep.sev.medium` | Medium | Orta |
+| `rep.sev.low` | Low | Aşağı |
+| `rep.cta.title` | Need help fixing these issues? | Bu problemləri düzəltməkdə kömək lazımdır? |
+| `rep.cta.sub` | Shamistan Isayev, technical SEO and analytics | Şəmistan İsayev, texniki SEO və analitika |
+| `rep.footer` | Made with Serpline. The page was read in your browser and nothing was sent anywhere. | Serpline ilə hazırlanıb. Səhifə brauzerində oxundu və heç yerə heç nə göndərilmədi. |
+| `rep.pageOf` | Page {i} of {n} | Səhifə {i} / {n} |
+| `rep.making` | Making PDF... | PDF hazırlanır... |
+| `rep.failed` | The PDF could not be made. Try again. | PDF hazırlanmadı. Yenidən cəhd et. |
 | `sum.checkedAt` | Checked at {time} | Yoxlanıb: {time} |
 | `sum.scoreAria` | SEO score {score} of 100 | SEO skoru 100 üzərindən {score} |
 | `sum.label.good` | SEO score: good | SEO skoru: yaxşı |

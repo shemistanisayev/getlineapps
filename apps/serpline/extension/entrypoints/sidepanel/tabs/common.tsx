@@ -2,8 +2,8 @@
 import type { Audit, Heading, Issue } from '@line/core/serpline';
 import { Pill, type PillIcon } from '@line/ui';
 import type { ReactNode } from 'react';
-import type { MessageKey, T } from '../../../src/i18n/index.ts';
-import { en } from '../../../src/i18n/en.ts';
+import type { T } from '../../../src/i18n/index.ts';
+import { issueFix, issueText, issueTitle } from '../../../src/issues.ts';
 
 export type Tone = 'ok' | 'warn' | 'bad' | 'mute';
 
@@ -32,20 +32,7 @@ export function StatusPill({
   );
 }
 
-const hasKey = (k: string): k is MessageKey => k in en;
-
-/** Issue title: the singular variant (title1) when the count is 1 and one exists. */
-export function issueTitle(t: T, issue: Issue): string {
-  const one = issue.id === 'AI_SEARCH_BLOCKED' ? issue.params.more === 0 : issue.params.count === 1;
-  const k1 = `issue.${issue.id}.title1`;
-  const key = one && hasKey(k1) ? k1 : (`issue.${issue.id}.title` as MessageKey);
-  return t(key, issue.params);
-}
-
-export const issueText = (t: T, issue: Issue) =>
-  t(`issue.${issue.id}.text` as MessageKey, issue.params);
-export const issueFix = (t: T, issue: Issue) =>
-  t(`issue.${issue.id}.fix` as MessageKey, issue.params);
+export { issueFix, issueText, issueTitle } from '../../../src/issues.ts';
 
 /** Issue card (design: Links): icon, title, one-line explanation, "Fix:" line. */
 export function IssueCard({ issue, t }: { issue: Issue; t: T }) {
