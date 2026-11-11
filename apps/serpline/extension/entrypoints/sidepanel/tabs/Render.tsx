@@ -187,7 +187,8 @@ export function RenderTab({ audit, cta, t }: { audit: Audit; cta: string; t: T }
         <PanelCard title={t('rd.added')} className="sp-added">
           {d.added.length ? (
             <>
-              <div className="sp-code mono">
+              {/* Scrollable code: focusable so keyboard users can scroll it (axe scrollable-region-focusable). */}
+              <div className="sp-code mono" role="region" aria-label={t('rd.added')} tabIndex={0}>
                 {d.added.map((a, i) => (
                   <div key={i}>
                     <AddedLine a={a} t={t} />
