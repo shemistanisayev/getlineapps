@@ -48,7 +48,7 @@ LINKS
 - A real status check of internal links from your browser: broken links (404, 410, 500) and redirects
 
 RENDER
-- The raw HTML next to the rendered page: title, description, canonical, H1, words, links and JSON-LD
+- The raw HTML next to the rendered page, signal by signal, to see what crawlers miss
 - How much of the text needs JavaScript, and exactly what is added by scripts
 
 AI
@@ -99,7 +99,7 @@ LİNKLƏR
 - Daxili linklərin brauzerindən real status yoxlaması: sınıq linklər (404, 410, 500) və yönləndirmələr
 
 RENDER
-- Raw HTML render olunmuş səhifənin yanında: title, description, canonical, H1, sözlər, linklər və JSON-LD
+- Raw HTML render olunmuş səhifənin yanında, siqnal-siqnal, crawler-lərin nəyi görmədiyini göstərmək üçün
 - Mətnin nə qədərinin JavaScript-dən asılı olduğu və skriptlərin dəqiq nə əlavə etdiyi
 
 AI

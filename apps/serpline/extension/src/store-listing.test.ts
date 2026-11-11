@@ -94,7 +94,7 @@ describe('Serpline store listing', () => {
     for (const d of [en, az]) {
       expect(bots.filter((b) => d.includes(b)).length).toBeLessThanOrEqual(3);
       for (const line of d.split('\n'))
-        expect(line.split(',').length - 1, line).toBeLessThanOrEqual(5);
+        expect(line.split(',').length - 1, line).toBeLessThanOrEqual(4);
     }
   });
 
