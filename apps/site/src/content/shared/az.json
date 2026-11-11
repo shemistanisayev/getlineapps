@@ -15,7 +15,7 @@
   },
   "footer": {
     "label": "Səhifənin sonu",
-    "tagline": "Marketoloqlar, SEO mütəxəssisləri və agentliklər üçün pulsuz Chrome alətləri.",
+    "tagline": "Marketoloqlar, SEO mütəxəssisləri və agentliklər üçün pulsuz Chrome alətləri",
     "extensions": "Genişlənmələr",
     "webTools": "Pulsuz veb alətlər",
     "about": "Haqqında",
@@ -34,7 +34,7 @@
     "openTool": "Aləti aç"
   },
   "consent": {
-    "text": "Bu sayt analitika cookie-lərini yalnız siz razılıq versəniz istifadə edir.",
+    "text": "Bu sayt analitika cookie-lərini yalnız siz razılıq versəniz istifadə edir",
     "accept": "Qəbul et",
     "reject": "Rədd et",
     "privacyLabel": "Məxfilik siyasəti"

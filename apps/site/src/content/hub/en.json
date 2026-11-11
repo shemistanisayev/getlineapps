@@ -9,7 +9,7 @@
     "titleStart": "Free Chrome tools to see",
     "titleHighlight": "inside any website",
     "titleEnd": "",
-    "lead": "Check your own site's tracking, SEO and conversion, see what a competitor runs, and show your developer exactly what to fix. No account, no paid plan, and nothing leaves your browser.",
+    "lead": "Check your own site's tracking, SEO and conversion, see what a competitor runs, and show your developer exactly what to fix. No account, no paid plan, and nothing leaves your browser",
     "primary": "See the 5 tools",
     "secondary": "Try a tool in the browser",
     "trust": ["Free, no account", "Reads a page only after your click", "One-page PDF report"],
@@ -20,44 +20,44 @@
   "tools": {
     "eyebrow": "The tools",
     "title": "Five extensions, one job each",
-    "lead": "Four look at your own site, one looks at your competitors. Each opens next to the page you are on, answers one question well and gives you a report you can send.",
+    "lead": "Four look at your own site, one looks at your competitors. Each opens next to the page you are on, answers one question well and gives you a report you can send",
     "rolesTitle": "What do you do?",
     "rolesLabel": "Filter tools by role",
     "roles": [
       {
         "id": "all",
         "label": "Show all",
-        "hint": "All five tools. Pick a role to see where to start.",
+        "hint": "All five tools. Pick a role to see where to start",
         "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
       },
       {
         "id": "perf",
         "label": "Performance marketer",
-        "hint": "Start with Hitline, then check the page with Foldline and the competition with Rivaline.",
+        "hint": "Start with Hitline, then check the page with Foldline and the competition with Rivaline",
         "tools": ["hitline", "rivaline", "foldline"]
       },
       {
         "id": "seo",
         "label": "SEO specialist",
-        "hint": "Serpline is built for you.",
+        "hint": "Serpline is built for you",
         "tools": ["serpline"]
       },
       {
         "id": "agency",
         "label": "Agency",
-        "hint": "All five fit client work. Markline is the one your clients will see most.",
+        "hint": "All five fit client work. Markline is the one your clients will see most",
         "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
       },
       {
         "id": "design",
         "label": "Designer or QA",
-        "hint": "Markline is built for you.",
+        "hint": "Markline is built for you",
         "tools": ["markline"]
       },
       {
         "id": "sales",
         "label": "Sales",
-        "hint": "Prepare for a call with Rivaline and a quick Foldline audit of the prospect.",
+        "hint": "Prepare for a call with Rivaline and a quick Foldline audit of the prospect",
         "tools": ["rivaline", "foldline"]
       }
     ],
@@ -67,7 +67,7 @@
         "surface": "DevTools",
         "question": "Is every tag and event really firing?",
         "answer": "events, GTM and consent, live",
-        "desc": "Watch events from GA4, Meta, TikTok and 47 more platforms as they fire, check GTM, server-side GTM and consent, then export an audit.",
+        "desc": "Watch events from GA4, Meta, TikTok and 47 more platforms as they fire, check GTM, server-side GTM and consent, then export an audit",
         "bullets": [
           "Live event feed for each platform",
           "GTM, server-side GTM and Consent Mode checks",
@@ -79,7 +79,7 @@
         "surface": "Side panel",
         "question": "What do Google and AI crawlers really see?",
         "answer": "SEO score, render and AI bots",
-        "desc": "SEO basics with a score, a Google preview, raw HTML against the rendered page, links with status and AI crawler access.",
+        "desc": "SEO basics with a score, a Google preview, raw HTML against the rendered page, links with status and AI crawler access",
         "bullets": [
           "Score and Google result preview",
           "Raw HTML against the JavaScript render",
@@ -91,7 +91,7 @@
         "surface": "Side panel",
         "question": "What is this competitor running?",
         "answer": "stack, ads and brand kit",
-        "desc": "Their marketing stack and its gaps, their ads in four ad libraries and their brand colors and fonts.",
+        "desc": "Their marketing stack and its gaps, their ads in four ad libraries and their brand colors and fonts",
         "bullets": [
           "Martech stack by category, with gaps",
           "Meta, Google, TikTok and LinkedIn ad libraries",
@@ -103,7 +103,7 @@
         "surface": "Side panel",
         "question": "Why is this landing page not converting?",
         "answer": "27 checks and a score",
-        "desc": "27 checks on the first screen, form, trust, mobile, speed and contact, with a fix for every issue.",
+        "desc": "27 checks on the first screen, form, trust, mobile, speed and contact, with a fix for every issue",
         "bullets": [
           "Fold line drawn on the page",
           "Desktop and mobile score",
@@ -115,7 +115,7 @@
         "surface": "Popup",
         "question": "How do I show exactly what to change?",
         "answer": "capture, mark up, share",
-        "desc": "Capture the page, mark it up with arrows, numbered notes and blur, then download or copy it.",
+        "desc": "Capture the page, mark it up with arrows, numbered notes and blur, then download or copy it",
         "bullets": [
           "Visible, full page, area or element",
           "Emails and phone numbers blurred for you",
@@ -127,7 +127,7 @@
   "together": {
     "eyebrow": "What each tool looks at",
     "title": "One page, five questions",
-    "lead": "Your site or a competitor's, every page has the same five places worth a look. Click a number to see which tool checks it.",
+    "lead": "Your site or a competitor's, every page has the same five places worth a look. Click a number to see which tool checks it",
     "pageLabel": "Example landing page with five check points",
     "tellsYou": "What {name} tells you",
     "tabsLabel": "Choose a check point",
@@ -209,53 +209,53 @@
       {
         "icon": "gift",
         "title": "Free, no account",
-        "text": "No sign-up, no trial, no paid plan. Install and use."
+        "text": "No sign-up, no trial, no paid plan. Install and use"
       },
       {
         "icon": "click",
         "title": "Only after your click",
-        "text": "A tool reads a tab when you open it there, and no other tab."
+        "text": "A tool reads a tab when you open it there, and no other tab"
       },
       {
         "icon": "lock",
         "title": "Nothing is sent",
-        "text": "Results are made in your browser. No servers, no tracking inside the extensions."
+        "text": "Results are made in your browser. No servers, no tracking inside the extensions"
       },
       {
         "icon": "doc",
         "title": "A report to send",
-        "text": "Every tool turns its result into a one-page PDF you can share."
+        "text": "Every tool turns its result into a one-page PDF you can share"
       }
     ]
   },
   "webTools": {
     "eyebrow": "Free web tools",
     "title": "Try it without installing anything",
-    "lead": "Four small tools that run right on this site, built on the same code as the extensions.",
+    "lead": "Four small tools that run right on this site, built on the same code as the extensions",
     "items": [
       {
         "slug": "rivaline",
         "fragment": "finder",
         "title": "Ad library finder",
-        "text": "Search one brand in the Meta, Google, TikTok and LinkedIn ad libraries at once."
+        "text": "Search one brand in the Meta, Google, TikTok and LinkedIn ad libraries at once"
       },
       {
         "slug": "foldline",
         "fragment": "calculator",
         "title": "Landing page score",
-        "text": "Tick what your page has and get the score Foldline would give it."
+        "text": "Tick what your page has and get the score Foldline would give it"
       },
       {
         "slug": "serpline",
         "fragment": "preview",
         "title": "Google preview",
-        "text": "See where Google cuts your title and description on desktop and mobile."
+        "text": "See where Google cuts your title and description on desktop and mobile"
       },
       {
         "slug": "markline",
         "fragment": "annotate",
         "title": "Annotate an image",
-        "text": "Drop a screenshot, add arrows, notes and blur, then download a PNG."
+        "text": "Drop a screenshot, add arrows, notes and blur, then download a PNG"
       }
     ]
   },
@@ -264,7 +264,7 @@
     "title": "Questions people ask",
     "askBefore": "Not answered here?",
     "askLink": "Ask me directly",
-    "askAfter": ".",
+    "askAfter": "",
     "items": [
       {
         "q": "Are the tools really free?",

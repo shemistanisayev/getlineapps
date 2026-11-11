@@ -20,7 +20,7 @@
   "sample": {
     "eyebrow": "Sample audit",
     "title": "example.com, made with Hitline in one click",
-    "note": "Real report layout. No data left the browser.",
+    "note": "Real report layout. No data left the browser",
     "download": "Download sample PDF",
     "close": "Close sample audit"
   },
@@ -28,8 +28,8 @@
     "pill": "Free Chrome extension",
     "titleStart": "Is your tracking working?",
     "titleHighlight": "Prove it",
-    "titleEnd": "in one panel.",
-    "lead": "See every event from GA4, Google Ads, Meta, TikTok and 46 more platforms, spot server-side GTM and catch consent leaks, right inside Chrome DevTools.",
+    "titleEnd": "in one panel",
+    "lead": "See every event from GA4, Google Ads, Meta, TikTok and 46 more platforms, spot server-side GTM and catch consent leaks, right inside Chrome DevTools",
     "secondary": "See a sample audit",
     "trust": ["No account", "Nothing leaves your browser", "Open source"],
     "mockLabel": "DevTools › Hitline",
@@ -237,20 +237,20 @@
   },
   "problem": {
     "eyebrow": "The problem",
-    "title": "Most tracking bugs are silent.",
-    "lead": "The budget keeps spending on numbers that are wrong.",
+    "title": "Most tracking bugs are silent",
+    "lead": "The budget keeps spending on numbers that are wrong",
     "cards": [
       {
         "title": "Events without values",
-        "text": "The pixel fires, the dashboard looks fine, and the ad platform never learns what a cart was worth."
+        "text": "The pixel fires, the dashboard looks fine, and the ad platform never learns what a cart was worth"
       },
       {
         "title": "Pixels that ignore consent",
-        "text": "A visitor clicks \"Reject all\" and a pixel fires anyway. Nobody notices until a regulator or a client does."
+        "text": "A visitor clicks \"Reject all\" and a pixel fires anyway. Nobody notices until a regulator or a client does"
       },
       {
         "title": "Sales credited to the wrong source",
-        "text": "A payment page on another domain drops the click ID, and paid traffic shows up as a referral."
+        "text": "A payment page on another domain drops the click ID, and paid traffic shows up as a referral"
       }
     ],
     "mini": {
@@ -271,8 +271,8 @@
     "events": {
       "label": "Events",
       "eyebrow": "Event inspector",
-      "title": "Every event, every parameter, every platform side by side.",
-      "lead": "Hitline reads the requests of 50 analytics, ad, CRM and testing platforms, plus every dataLayer push. Newest events come first and new ones light up as they arrive.",
+      "title": "Every event, every parameter, every platform side by side",
+      "lead": "Hitline reads the requests of 50 analytics, ad, CRM and testing platforms, plus every dataLayer push. Newest events come first and new ones light up as they arrive",
       "bullets": [
         "50 platforms on one list, and your own services as custom platforms",
         "Every parameter decoded, no query strings to read",
@@ -307,8 +307,8 @@
     "gtm": {
       "label": "GTM and sGTM",
       "eyebrow": "GTM and server-side",
-      "title": "Know if a site runs server-side GTM, with the proof.",
-      "lead": "Hitline reads the GTM container itself: every tag with its trigger, consent checks and status, and for each dataLayer event the tags it fired. Plus four signals for server-side GTM.",
+      "title": "Know if a site runs server-side GTM, with the proof",
+      "lead": "Hitline reads the GTM container itself: every tag with its trigger, consent checks and status, and for each dataLayer event the tags it fired. Plus four signals for server-side GTM",
       "bullets": [
         "Every tag with its trigger, consent checks and status",
         "Each dataLayer event with the tags that fired on it",
@@ -328,8 +328,8 @@
     "checks": {
       "label": "Checks",
       "eyebrow": "Data quality checks",
-      "title": "The mistakes that quietly break reports.",
-      "lead": "Hitline checks every event as it arrives and explains each problem: what happens, why it matters and how to fix it.",
+      "title": "The mistakes that quietly break reports",
+      "lead": "Hitline checks every event as it arrives and explains each problem: what happens, why it matters and how to fix it",
       "bullets": [
         "E-mail addresses sent to ad and analytics platforms",
         "The same purchase or lead sent twice",
@@ -363,8 +363,8 @@
     "consent": {
       "label": "Consent",
       "eyebrow": "Consent check",
-      "title": "Click \"Reject all\" and see who keeps firing.",
-      "lead": "Hitline reads Consent Mode v2 signals and splits requests into before and after the visitor's choice.",
+      "title": "Click \"Reject all\" and see who keeps firing",
+      "lead": "Hitline reads Consent Mode v2 signals and splits requests into before and after the visitor's choice",
       "bullets": [
         "Default and updated signals side by side",
         "Leaks marked in red, with the GTM fix next to them",
@@ -398,8 +398,8 @@
     "attribution": {
       "label": "Attribution",
       "eyebrow": "Attribution path",
-      "title": "Follow UTM and gclid page by page.",
-      "lead": "See exactly where campaign parameters get lost, from the ad click to the order confirmation.",
+      "title": "Follow UTM and gclid page by page",
+      "lead": "See exactly where campaign parameters get lost, from the ad click to the order confirmation",
       "bullets": [
         "UTM, gclid and fbclid tracked across pages",
         "Cross-domain breaks found automatically",
@@ -464,8 +464,8 @@
     "plan": {
       "label": "Tracking plan",
       "eyebrow": "Tracking plan check",
-      "title": "Your plan against what the site really sends.",
-      "lead": "Load your plan as CSV. Hitline flags missing events and wrong parameters as you click through.",
+      "title": "Your plan against what the site really sends",
+      "lead": "Load your plan as CSV. Hitline flags missing events and wrong parameters as you click through",
       "bullets": [
         "CSV or JSON, three columns",
         "Missing events and wrong parameters, live",
@@ -505,25 +505,25 @@
   },
   "how": {
     "eyebrow": "How it works",
-    "title": "Three steps, no setup.",
+    "title": "Three steps, no setup",
     "steps": [
       {
         "title": "Add Hitline to Chrome",
         "key": "",
         "titleEnd": "",
-        "text": "Free from the Chrome Web Store. No account to create."
+        "text": "Free from the Chrome Web Store. No account to create"
       },
       {
         "title": "Open a site, click the icon",
         "key": "",
         "titleEnd": "",
-        "text": "The popup shows platforms, server-side status and the top issues."
+        "text": "The popup shows platforms, server-side status and the top issues"
       },
       {
         "title": "Press",
         "key": "F12",
         "titleEnd": "for the full picture",
-        "text": "The Hitline tab in DevTools records every event live as you browse."
+        "text": "The Hitline tab in DevTools records every event live as you browse"
       }
     ]
   },
@@ -531,8 +531,8 @@
     "eyebrow": "Audit PDF",
     "titleStart": "Found something broken?",
     "titleHighlight": "Get it fixed",
-    "titleEnd": "by the person who built Hitline.",
-    "lead": "One click turns the findings into a prioritized report. Send it to a developer, or send it to me: I set up GA4, server-side GTM, Consent Mode and ad pixels for growing brands.",
+    "titleEnd": "by the person who built Hitline",
+    "lead": "One click turns the findings into a prioritized report. Send it to a developer, or send it to me: I set up GA4, server-side GTM, Consent Mode and ad pixels for growing brands",
     "cta": "Book a tracking audit",
     "from": "From",
     "paper": {
@@ -566,27 +566,27 @@
   },
   "privacy": {
     "eyebrow": "Privacy",
-    "title": "Your data never leaves your browser.",
+    "title": "Your data never leaves your browser",
     "items": [
       {
         "icon": "server",
         "title": "No server",
-        "text": "All analysis runs inside Chrome. Hitline makes no requests of its own."
+        "text": "All analysis runs inside Chrome. Hitline makes no requests of its own"
       },
       {
         "icon": "lock",
         "title": "Minimal permissions",
-        "text": "DevTools panel, active tab and local storage. No access to all your sites."
+        "text": "DevTools panel, active tab and local storage. No access to all your sites"
       },
       {
         "icon": "eye",
         "title": "No analytics inside",
-        "text": "The extension doesn't track you. Results disappear when you close the tab."
+        "text": "The extension doesn't track you. Results disappear when you close the tab"
       },
       {
         "icon": "code",
         "title": "Open source",
-        "text": "Read the code and check every claim on this page for yourself."
+        "text": "Read the code and check every claim on this page for yourself"
       }
     ]
   },
@@ -631,19 +631,19 @@
     "title": "More free tools from the same family",
     "tools": {
       "serpline": {
-        "text": "Technical SEO and AI search checks for any page.",
+        "text": "Technical SEO and AI search checks for any page",
         "open": "Open Serpline"
       },
       "rivaline": {
-        "text": "A competitor's stack, ads and brand style in one panel.",
+        "text": "A competitor's stack, ads and brand style in one panel",
         "open": "Open Rivaline"
       },
       "foldline": {
-        "text": "Find what stops a landing page from converting.",
+        "text": "Find what stops a landing page from converting",
         "open": "Open Foldline"
       },
       "markline": {
-        "text": "Screenshot, mark up and share feedback in seconds.",
+        "text": "Screenshot, mark up and share feedback in seconds",
         "open": "Open Markline"
       }
     }
@@ -658,9 +658,9 @@
       "title": "Sorry to see you go | Hitline",
       "description": "Tell us why you removed Hitline. One click helps make the next version better."
     },
-    "titleStart": "Hitline is removed.",
+    "titleStart": "Hitline is removed",
     "titleEnd": "What made you leave?",
-    "lead": "One click helps make the next version better.",
+    "lead": "One click helps make the next version better",
     "reasonsLabel": "Reason",
     "reasons": [
       "It didn't detect my setup",
@@ -679,8 +679,8 @@
     "reinstall": "Reinstall Hitline",
     "card": {
       "eyebrow": "Still have a tracking problem?",
-      "title": "I can audit and fix it for you.",
-      "text": "GA4, server-side GTM, Consent Mode and ad pixels. You get a clear list of what is broken and a working setup.",
+      "title": "I can audit and fix it for you",
+      "text": "GA4, server-side GTM, Consent Mode and ad pixels. You get a clear list of what is broken and a working setup",
       "cta": "Book a tracking audit",
       "sub": "Shamistan Isayev"
     }

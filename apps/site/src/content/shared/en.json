@@ -15,7 +15,7 @@
   },
   "footer": {
     "label": "Footer",
-    "tagline": "Free Chrome tools for marketers, SEO specialists and agencies.",
+    "tagline": "Free Chrome tools for marketers, SEO specialists and agencies",
     "extensions": "Extensions",
     "webTools": "Free web tools",
     "about": "About",
@@ -34,7 +34,7 @@
     "openTool": "Open tool"
   },
   "consent": {
-    "text": "This site uses analytics cookies only if you accept them.",
+    "text": "This site uses analytics cookies only if you accept them",
     "accept": "Accept",
     "reject": "Reject",
     "privacyLabel": "Privacy policy"

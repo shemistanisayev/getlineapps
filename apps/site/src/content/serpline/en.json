@@ -23,8 +23,8 @@
     "pill": "Free Chrome extension",
     "titleStart": "See your page the way",
     "titleHighlight": "Google and AI",
-    "titleEnd": "do.",
-    "lead": "Technical SEO checks, JavaScript rendering and AI crawler access for the page you are on, in one Chrome side panel.",
+    "titleEnd": "do",
+    "lead": "Technical SEO checks, JavaScript rendering and AI crawler access for the page you are on, in one Chrome side panel",
     "secondary": "Try the SERP preview",
     "trustLabel": "Serpline is",
     "trust": ["No account", "Nothing leaves your browser", "Open source"],
@@ -80,20 +80,20 @@
   },
   "problem": {
     "eyebrow": "The problem",
-    "title": "The page looks fine. Crawlers read something else.",
-    "lead": "Most SEO problems never show on screen, so nobody notices them until traffic drops.",
+    "title": "The page looks fine, but crawlers read something else",
+    "lead": "Most SEO problems never show on screen, so nobody notices them until traffic drops",
     "cards": [
       {
         "title": "Content that needs JavaScript",
-        "text": "Your browser shows the full page. The HTML a crawler downloads can be an empty shell, and most AI crawlers never run the scripts that fill it."
+        "text": "Your browser shows the full page. The HTML a crawler downloads can be an empty shell, and most AI crawlers never run the scripts that fill it"
       },
       {
         "title": "Snippets cut off in Google",
-        "text": "A long title or description ends in three dots. The line that was meant to win the click never shows."
+        "text": "A long title or description ends in three dots. The line that was meant to win the click never shows"
       },
       {
         "title": "AI crawlers blocked by accident",
-        "text": "One old line in robots.txt can keep a site out of ChatGPT, Claude or Perplexity answers for months."
+        "text": "One old line in robots.txt can keep a site out of ChatGPT, Claude or Perplexity answers for months"
       }
     ],
     "mini": {
@@ -109,8 +109,8 @@
   },
   "preview": {
     "eyebrow": "Free tool",
-    "title": "Preview your Google result before you publish.",
-    "lead": "Type a title and a description. See where Google cuts them on desktop and on mobile. It runs in this page and nothing is sent anywhere.",
+    "title": "Preview your Google result before you publish",
+    "lead": "Type a title and a description. See where Google cuts them on desktop and on mobile. It runs in this page and nothing is sent anywhere",
     "titleLabel": "Page title",
     "titleDefault": "Wireless Headphones Pro X | Lumo",
     "titlePlaceholder": "Wireless Headphones Pro X | Lumo",
@@ -130,17 +130,17 @@
     "addDesc": "Add a description",
     "emptyTitle": "Your page title",
     "emptyDesc": "Google will pick text from the page.",
-    "note": "Limits are measured in pixels and are approximate. Google can rewrite titles and snippets.",
-    "band": "Check the whole page, not just the snippet."
+    "note": "Limits are measured in pixels and are approximate. Google can rewrite titles and snippets",
+    "band": "Check the whole page, not just the snippet"
   },
   "features": {
     "eyebrow": "Inside the side panel",
-    "title": "Five tabs. One side panel.",
+    "title": "Five tabs, one side panel",
     "tabsLabel": "Serpline tabs",
     "summary": {
       "label": "Summary",
-      "title": "A score and a checklist the moment the panel opens.",
-      "lead": "Title, description, canonical, robots, H1, alt text, structured data and Open Graph, each with a clear status.",
+      "title": "A score and a checklist the moment the panel opens",
+      "lead": "Title, description, canonical, robots, H1, alt text, structured data and Open Graph, each with a clear status",
       "bullets": [
         "One score out of 100, weighted by priority",
         "Google preview for desktop and mobile",
@@ -161,8 +161,8 @@
     },
     "headings": {
       "label": "Headings",
-      "title": "The outline crawlers see, highlighted on the page.",
-      "lead": "The H1 to H6 tree with skipped levels and duplicate H1s, plus every image without alt text.",
+      "title": "The outline crawlers see, highlighted on the page",
+      "lead": "The H1 to H6 tree with skipped levels and duplicate H1s, plus every image without alt text",
       "bullets": [
         "Outlines on the page show where each heading sits",
         "Headings that exist only after JavaScript are marked"
@@ -185,8 +185,8 @@
     },
     "links": {
       "label": "Links",
-      "title": "Broken and redirected links, found from the page itself.",
-      "lead": "Internal, external and nofollow links with anchor text. Internal links get a real status check from your browser.",
+      "title": "Broken and redirected links, found from the page itself",
+      "lead": "Internal, external and nofollow links with anchor text. Internal links get a real status check from your browser",
       "bullets": ["404s and redirect chains in one list", "Only the site you are on is contacted"],
       "demo": {
         "internal": "internal",
@@ -217,8 +217,8 @@
     },
     "render": {
       "label": "Render",
-      "title": "Raw HTML next to the rendered page.",
-      "lead": "Serpline downloads the page source once and compares it with what JavaScript built: headings, words, links and structured data.",
+      "title": "Raw HTML next to the rendered page",
+      "lead": "Serpline downloads the page source once and compares it with what JavaScript built: headings, words, links and structured data",
       "bullets": [
         "Shows exactly which elements need JavaScript",
         "The check most SEO extensions skip"
@@ -233,8 +233,8 @@
     },
     "ai": {
       "label": "AI",
-      "title": "Which AI crawlers can read the site, and what they see.",
-      "lead": "Rules for GPTBot, ClaudeBot, PerplexityBot, Google-Extended and more from robots.txt, split into search bots and training bots, plus llms.txt.",
+      "title": "Which AI crawlers can read the site, and what they see",
+      "lead": "Rules for GPTBot, ClaudeBot, PerplexityBot, Google-Extended and more from robots.txt, split into search bots and training bots, plus llms.txt",
       "bullets": [
         "The exact robots.txt line behind every block",
         "How much of the page a crawler without JavaScript reads"
@@ -260,21 +260,21 @@
   },
   "how": {
     "eyebrow": "How it works",
-    "title": "Three steps, no setup.",
+    "title": "Three steps, no setup",
     "steps": [
       {
         "title": "Add Serpline to Chrome",
-        "text": "Free from the Chrome Web Store. No account to create."
+        "text": "Free from the Chrome Web Store. No account to create"
       },
       {
         "title": "Open a page, click the icon",
         "text": "The side panel opens next to the page and checks it. Or press",
         "key": "Alt+Shift+S",
-        "textEnd": "."
+        "textEnd": ""
       },
       {
         "title": "Download the audit PDF",
-        "text": "Every issue with its fix, ready to send to a developer."
+        "text": "Every issue with its fix, ready to send to a developer"
       }
     ]
   },
@@ -282,8 +282,8 @@
     "eyebrow": "Audit PDF",
     "titleStart": "Found problems?",
     "titleHighlight": "Get them fixed",
-    "titleEnd": "by the person who built Serpline.",
-    "text": "One click turns the findings into a prioritized report. Send it to a developer, or send it to me: I fix technical SEO, server-side rendering, structured data and AI search visibility.",
+    "titleEnd": "by the person who built Serpline",
+    "text": "One click turns the findings into a prioritized report. Send it to a developer, or send it to me: I fix technical SEO, server-side rendering, structured data and AI search visibility",
     "cta": "Book an SEO audit",
     "from": "From",
     "paper": {
@@ -319,27 +319,27 @@
   },
   "privacy": {
     "eyebrow": "Privacy",
-    "title": "Your pages stay in your browser.",
+    "title": "Your pages stay in your browser",
     "items": [
       {
         "icon": "server",
         "title": "No server",
-        "text": "Every check runs inside Chrome. Serpline has no backend to send pages to."
+        "text": "Every check runs inside Chrome. Serpline has no backend to send pages to"
       },
       {
         "icon": "lock",
         "title": "Minimal permissions",
-        "text": "The active tab, the side panel and local settings. No access to all your sites."
+        "text": "The active tab, the side panel and local settings. No access to all your sites"
       },
       {
         "icon": "chart",
         "title": "No analytics inside",
-        "text": "The extension doesn't track you. Results disappear when you close the panel."
+        "text": "The extension doesn't track you. Results disappear when you close the panel"
       },
       {
         "icon": "code",
         "title": "Open source",
-        "text": "Read the code and check every claim on this page yourself."
+        "text": "Read the code and check every claim on this page yourself"
       }
     ]
   },
@@ -376,19 +376,19 @@
     "title": "More free tools from the same family",
     "tools": {
       "hitline": {
-        "text": "Every tracking hit, GTM tag and consent signal in DevTools.",
+        "text": "Every tracking hit, GTM tag and consent signal in DevTools",
         "open": "Open Hitline"
       },
       "rivaline": {
-        "text": "A competitor's stack, ads and brand style in one panel.",
+        "text": "A competitor's stack, ads and brand style in one panel",
         "open": "Open Rivaline"
       },
       "foldline": {
-        "text": "Find what stops a landing page from converting.",
+        "text": "Find what stops a landing page from converting",
         "open": "Open Foldline"
       },
       "markline": {
-        "text": "Screenshot, mark up and share feedback in seconds.",
+        "text": "Screenshot, mark up and share feedback in seconds",
         "open": "Open Markline"
       }
     }
@@ -403,9 +403,9 @@
       "title": "Sorry to see you go | Serpline",
       "description": "Tell us why you removed Serpline. One click helps make the next version better."
     },
-    "titleStart": "Serpline is removed.",
+    "titleStart": "Serpline is removed",
     "titleEnd": "What made you leave?",
-    "lead": "One click helps make the next version better.",
+    "lead": "One click helps make the next version better",
     "reasonsLabel": "Reason",
     "reasons": [
       "It missed problems on my site",
@@ -424,8 +424,8 @@
     "reinstall": "Reinstall Serpline",
     "card": {
       "eyebrow": "Still have an SEO problem?",
-      "title": "I can audit and fix it for you.",
-      "text": "Technical SEO, JavaScript rendering, structured data and AI search visibility. You get a clear list of what is broken and fixes your developers can ship.",
+      "title": "I can audit and fix it for you",
+      "text": "Technical SEO, JavaScript rendering, structured data and AI search visibility. You get a clear list of what is broken and fixes your developers can ship",
       "cta": "Book an SEO audit",
       "sub": "Shamistan Isayev, technical SEO and analytics"
     }

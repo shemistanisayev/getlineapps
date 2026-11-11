@@ -20,7 +20,7 @@
   "sample": {
     "eyebrow": "Nümunə audit",
     "title": "example.com, Hitline ilə bir kliklə hazırlanıb",
-    "note": "Hesabatın əsl görünüşü. Heç bir məlumat brauzerdən çıxmadı.",
+    "note": "Hesabatın əsl görünüşü. Heç bir məlumat brauzerdən çıxmadı",
     "download": "Nümunə PDF-i yüklə",
     "close": "Nümunə auditi bağla"
   },
@@ -28,8 +28,8 @@
     "pill": "Pulsuz Chrome extension",
     "titleStart": "Tracking-in işləyir?",
     "titleHighlight": "Sübut et,",
-    "titleEnd": "bir paneldə.",
-    "lead": "GA4, Google Ads, Meta, TikTok və daha 46 platformanın bütün eventlərini gör, server-side GTM-i tap və consent sızmalarını elə Chrome DevTools-un içində tut.",
+    "titleEnd": "bir paneldə",
+    "lead": "GA4, Google Ads, Meta, TikTok və daha 46 platformanın bütün eventlərini gör, server-side GTM-i tap və consent sızmalarını elə Chrome DevTools-un içində tut",
     "secondary": "Nümunə auditə bax",
     "trust": ["Hesab lazım deyil", "Heç nə brauzerdən çıxmır", "Açıq mənbə"],
     "mockLabel": "DevTools › Hitline",
@@ -237,20 +237,20 @@
   },
   "problem": {
     "eyebrow": "Problem",
-    "title": "Tracking xətalarının çoxu səssizdir.",
-    "lead": "Büdcə səhv rəqəmlərə xərclənməyə davam edir.",
+    "title": "Tracking xətalarının çoxu səssizdir",
+    "lead": "Büdcə səhv rəqəmlərə xərclənməyə davam edir",
     "cards": [
       {
         "title": "Dəyərsiz eventlər",
-        "text": "Pixel işləyir, dashboard qaydasında görünür, reklam platforması isə səbətin nə qədər dəyərli olduğunu heç vaxt öyrənmir."
+        "text": "Pixel işləyir, dashboard qaydasında görünür, reklam platforması isə səbətin nə qədər dəyərli olduğunu heç vaxt öyrənmir"
       },
       {
         "title": "Consent-ə məhəl qoymayan pixel-lər",
-        "text": "Ziyarətçi \"Reject all\" basır, pixel yenə işləyir. Regulator və ya müştəri görənə qədər heç kim fərq etmir."
+        "text": "Ziyarətçi \"Reject all\" basır, pixel yenə işləyir. Regulator və ya müştəri görənə qədər heç kim fərq etmir"
       },
       {
         "title": "Satış səhv mənbəyə yazılır",
-        "text": "Başqa domendəki ödəniş səhifəsi klik ID-ni itirir və ödənişli trafik referral kimi görünür."
+        "text": "Başqa domendəki ödəniş səhifəsi klik ID-ni itirir və ödənişli trafik referral kimi görünür"
       }
     ],
     "mini": {
@@ -271,8 +271,8 @@
     "events": {
       "label": "Eventlər",
       "eyebrow": "Event inspektoru",
-      "title": "Hər event, hər parametr, hər platforma yan-yana.",
-      "lead": "Hitline 50 analitika, reklam, CRM və test platformasının sorğularını və hər dataLayer push-u oxuyur. Ən yeni eventlər yuxarıdadır, yeniləri gələndə işıqlanır.",
+      "title": "Hər event, hər parametr, hər platforma yan-yana",
+      "lead": "Hitline 50 analitika, reklam, CRM və test platformasının sorğularını və hər dataLayer push-u oxuyur. Ən yeni eventlər yuxarıdadır, yeniləri gələndə işıqlanır",
       "bullets": [
         "50 platforma bir siyahıda, öz servislərin isə öz platforma kimi",
         "Hər parametr açılıb, query string oxumağa ehtiyac yoxdur",
@@ -307,8 +307,8 @@
     "gtm": {
       "label": "GTM və sGTM",
       "eyebrow": "GTM və server-side",
-      "title": "Saytın server-side GTM işlətdiyini sübutla bil.",
-      "lead": "Hitline GTM konteynerinin özünü oxuyur: hər tag trigger-i, consent yoxlamaları və statusu ilə, hər dataLayer eventi üçün isə işə düşən tag-lar. Üstəlik server-side GTM üçün dörd siqnal.",
+      "title": "Saytın server-side GTM işlətdiyini sübutla bil",
+      "lead": "Hitline GTM konteynerinin özünü oxuyur: hər tag trigger-i, consent yoxlamaları və statusu ilə, hər dataLayer eventi üçün isə işə düşən tag-lar. Üstəlik server-side GTM üçün dörd siqnal",
       "bullets": [
         "Hər tag trigger-i, consent yoxlamaları və statusu ilə",
         "Hər dataLayer eventi və onda işə düşən tag-lar",
@@ -328,8 +328,8 @@
     "checks": {
       "label": "Yoxlamalar",
       "eyebrow": "Məlumat keyfiyyəti",
-      "title": "Hesabatları səssizcə pozan səhvlər.",
-      "lead": "Hitline hər eventi gələn kimi yoxlayır və hər problemi izah edir: nə baş verir, niyə vacibdir və necə düzəlir.",
+      "title": "Hesabatları səssizcə pozan səhvlər",
+      "lead": "Hitline hər eventi gələn kimi yoxlayır və hər problemi izah edir: nə baş verir, niyə vacibdir və necə düzəlir",
       "bullets": [
         "Reklam və analitika platformalarına gedən e-poçt ünvanları",
         "Eyni alış və ya lead-in iki dəfə göndərilməsi",
@@ -363,8 +363,8 @@
     "consent": {
       "label": "Consent",
       "eyebrow": "Consent yoxlaması",
-      "title": "\"Reject all\" bas və kimin işləməyə davam etdiyini gör.",
-      "lead": "Hitline Consent Mode v2 siqnallarını oxuyur və sorğuları ziyarətçinin seçimindən əvvəl və sonra deyə ayırır.",
+      "title": "\"Reject all\" bas və kimin işləməyə davam etdiyini gör",
+      "lead": "Hitline Consent Mode v2 siqnallarını oxuyur və sorğuları ziyarətçinin seçimindən əvvəl və sonra deyə ayırır",
       "bullets": [
         "Default və yenilənmiş siqnallar yan-yana",
         "Sızmalar qırmızı ilə, yanında GTM həlli",
@@ -398,8 +398,8 @@
     "attribution": {
       "label": "Atribusiya",
       "eyebrow": "Atribusiya yolu",
-      "title": "UTM və gclid-i səhifə-səhifə izlə.",
-      "lead": "Kampaniya parametrlərinin reklam klikindən sifariş təsdiqinə qədər harada itdiyini dəqiq gör.",
+      "title": "UTM və gclid-i səhifə-səhifə izlə",
+      "lead": "Kampaniya parametrlərinin reklam klikindən sifariş təsdiqinə qədər harada itdiyini dəqiq gör",
       "bullets": [
         "UTM, gclid və fbclid səhifələr boyu izlənir",
         "Cross-domain qırılmaları avtomatik tapılır",
@@ -464,8 +464,8 @@
     "plan": {
       "label": "Tracking plan",
       "eyebrow": "Tracking plan yoxlaması",
-      "title": "Planın saytın əslində göndərdiyinə qarşı.",
-      "lead": "Planını CSV kimi yüklə. Sən saytda klikləyərkən Hitline itkin eventləri və səhv parametrləri qeyd edir.",
+      "title": "Planın saytın əslində göndərdiyinə qarşı",
+      "lead": "Planını CSV kimi yüklə. Sən saytda klikləyərkən Hitline itkin eventləri və səhv parametrləri qeyd edir",
       "bullets": [
         "CSV və ya JSON, üç sütun",
         "İtkin eventlər və səhv parametrlər, canlı",
@@ -505,25 +505,25 @@
   },
   "how": {
     "eyebrow": "Necə işləyir",
-    "title": "Üç addım, quraşdırma yoxdur.",
+    "title": "Üç addım, quraşdırma yoxdur",
     "steps": [
       {
         "title": "Hitline-ı Chrome-a əlavə et",
         "key": "",
         "titleEnd": "",
-        "text": "Chrome Web Store-dan pulsuz. Hesab açmaq lazım deyil."
+        "text": "Chrome Web Store-dan pulsuz. Hesab açmaq lazım deyil"
       },
       {
         "title": "Sayt aç, ikona bas",
         "key": "",
         "titleEnd": "",
-        "text": "Popup platformaları, server-side statusunu və əsas problemləri göstərir."
+        "text": "Popup platformaları, server-side statusunu və əsas problemləri göstərir"
       },
       {
         "title": "Tam mənzərə üçün",
         "key": "F12",
         "titleEnd": "bas",
-        "text": "DevTools-dakı Hitline tabı sən gəzdikcə hər eventi canlı yazır."
+        "text": "DevTools-dakı Hitline tabı sən gəzdikcə hər eventi canlı yazır"
       }
     ]
   },
@@ -531,8 +531,8 @@
     "eyebrow": "Audit PDF",
     "titleStart": "Nəsə xarab çıxdı?",
     "titleHighlight": "Düzəlt",
-    "titleEnd": "Hitline-ı quran adamın əli ilə.",
-    "lead": "Bir klik tapıntıları prioritetli hesabata çevirir. Onu developerə göndər və ya mənə: böyüyən brendlər üçün GA4, server-side GTM, Consent Mode və reklam pixel-lərini qururam.",
+    "titleEnd": "Hitline-ı quran adamın əli ilə",
+    "lead": "Bir klik tapıntıları prioritetli hesabata çevirir. Onu developerə göndər və ya mənə: böyüyən brendlər üçün GA4, server-side GTM, Consent Mode və reklam pixel-lərini qururam",
     "cta": "Tracking üçün audit istə",
     "from": "Müəllif:",
     "paper": {
@@ -566,27 +566,27 @@
   },
   "privacy": {
     "eyebrow": "Məxfilik",
-    "title": "Məlumatın heç vaxt brauzerdən çıxmır.",
+    "title": "Məlumatın heç vaxt brauzerdən çıxmır",
     "items": [
       {
         "icon": "server",
         "title": "Server yoxdur",
-        "text": "Bütün analiz Chrome-un içində gedir. Hitline öz adından heç bir sorğu göndərmir."
+        "text": "Bütün analiz Chrome-un içində gedir. Hitline öz adından heç bir sorğu göndərmir"
       },
       {
         "icon": "lock",
         "title": "Minimum icazə",
-        "text": "DevTools paneli, aktiv tab və lokal yaddaş. Bütün saytlarına giriş yoxdur."
+        "text": "DevTools paneli, aktiv tab və lokal yaddaş. Bütün saytlarına giriş yoxdur"
       },
       {
         "icon": "eye",
         "title": "İçində analitika yoxdur",
-        "text": "Extension səni izləmir. Tabı bağlayanda nəticələr yox olur."
+        "text": "Extension səni izləmir. Tabı bağlayanda nəticələr yox olur"
       },
       {
         "icon": "code",
         "title": "Açıq mənbə",
-        "text": "Kodu oxu və bu səhifədəki hər iddianı özün yoxla."
+        "text": "Kodu oxu və bu səhifədəki hər iddianı özün yoxla"
       }
     ]
   },
@@ -631,19 +631,19 @@
     "title": "Eyni ailədən daha çox pulsuz alət",
     "tools": {
       "serpline": {
-        "text": "İstənilən səhifə üçün texniki SEO və AI axtarış yoxlamaları.",
+        "text": "İstənilən səhifə üçün texniki SEO və AI axtarış yoxlamaları",
         "open": "Serpline-ı aç"
       },
       "rivaline": {
-        "text": "Rəqibin texnologiyaları, reklamları və brend stili bir paneldə.",
+        "text": "Rəqibin texnologiyaları, reklamları və brend stili bir paneldə",
         "open": "Rivaline-ı aç"
       },
       "foldline": {
-        "text": "Landing səhifəsinin konversiyasına nəyin mane olduğunu tap.",
+        "text": "Landing səhifəsinin konversiyasına nəyin mane olduğunu tap",
         "open": "Foldline-ı aç"
       },
       "markline": {
-        "text": "Saniyələr içində ekran şəkli çək, qeyd et və rəy paylaş.",
+        "text": "Saniyələr içində ekran şəkli çək, qeyd et və rəy paylaş",
         "open": "Markline-ı aç"
       }
     }
@@ -658,9 +658,9 @@
       "title": "Getməyinə təəssüf edirik | Hitline",
       "description": "Hitline-ı niyə sildiyini yaz. Bir klik növbəti versiyanı daha yaxşı edir."
     },
-    "titleStart": "Hitline silindi.",
+    "titleStart": "Hitline silindi",
     "titleEnd": "Niyə getdin?",
-    "lead": "Bir klik növbəti versiyanı daha yaxşı edir.",
+    "lead": "Bir klik növbəti versiyanı daha yaxşı edir",
     "reasonsLabel": "Səbəb",
     "reasons": [
       "Mənim quruluşumu tanımadı",
@@ -679,8 +679,8 @@
     "reinstall": "Hitline-ı yenidən quraşdır",
     "card": {
       "eyebrow": "Tracking problemin hələ də var?",
-      "title": "Auditini edib düzəldə bilərəm.",
-      "text": "GA4, server-side GTM, Consent Mode və reklam pixel-ləri. Nəyin xarab olduğunun aydın siyahısını və işləyən quruluş alırsan.",
+      "title": "Auditini edib düzəldə bilərəm",
+      "text": "GA4, server-side GTM, Consent Mode və reklam pixel-ləri. Nəyin xarab olduğunun aydın siyahısını və işləyən quruluş alırsan",
       "cta": "Tracking üçün audit istə",
       "sub": "Şəmistan İsayev"
     }

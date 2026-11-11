@@ -9,7 +9,7 @@
     "titleStart": "İstənilən saytın",
     "titleHighlight": "içini görmək",
     "titleEnd": "üçün pulsuz Chrome alətləri",
-    "lead": "Öz saytınızın tracking, SEO və konversiyasını yoxlayın, rəqibin nə işlətdiyini görün və developerə nəyi düzəltməli olduğunu dəqiq göstərin. Hesab yoxdur, ödənişli plan yoxdur, heç nə brauzerinizdən çıxmır.",
+    "lead": "Öz saytınızın tracking, SEO və konversiyasını yoxlayın, rəqibin nə işlətdiyini görün və developerə nəyi düzəltməli olduğunu dəqiq göstərin. Hesab yoxdur, ödənişli plan yoxdur, heç nə brauzerinizdən çıxmır",
     "primary": "5 alətə bax",
     "secondary": "Aləti brauzerdə yoxla",
     "trust": [
@@ -24,44 +24,44 @@
   "tools": {
     "eyebrow": "Alətlər",
     "title": "Beş genişlənmə, hərəsinin bir işi",
-    "lead": "Dördü öz saytınıza baxır, biri rəqiblərinizə. Hər biri açdığınız səhifənin yanında açılır, bir suala yaxşı cavab verir və göndərə biləcəyiniz hesabat hazırlayır.",
+    "lead": "Dördü öz saytınıza baxır, biri rəqiblərinizə. Hər biri açdığınız səhifənin yanında açılır, bir suala yaxşı cavab verir və göndərə biləcəyiniz hesabat hazırlayır",
     "rolesTitle": "Nə işlə məşğulsunuz?",
     "rolesLabel": "Alətləri rola görə süz",
     "roles": [
       {
         "id": "all",
         "label": "Hamısını göstər",
-        "hint": "Beş alətin hamısı. Haradan başlayacağınızı görmək üçün rolunuzu seçin.",
+        "hint": "Beş alətin hamısı. Haradan başlayacağınızı görmək üçün rolunuzu seçin",
         "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
       },
       {
         "id": "perf",
         "label": "Performans marketoloqu",
-        "hint": "Hitline ilə başlayın, sonra səhifəni Foldline, rəqibləri isə Rivaline ilə yoxlayın.",
+        "hint": "Hitline ilə başlayın, sonra səhifəni Foldline, rəqibləri isə Rivaline ilə yoxlayın",
         "tools": ["hitline", "rivaline", "foldline"]
       },
       {
         "id": "seo",
         "label": "SEO mütəxəssisi",
-        "hint": "Serpline sizin üçün hazırlanıb.",
+        "hint": "Serpline sizin üçün hazırlanıb",
         "tools": ["serpline"]
       },
       {
         "id": "agency",
         "label": "Agentlik",
-        "hint": "Beşi də müştəri işinə uyğundur. Müştərilərinizin ən çox görəcəyi Markline olacaq.",
+        "hint": "Beşi də müştəri işinə uyğundur. Müştərilərinizin ən çox görəcəyi Markline olacaq",
         "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
       },
       {
         "id": "design",
         "label": "Dizayner və ya QA",
-        "hint": "Markline sizin üçün hazırlanıb.",
+        "hint": "Markline sizin üçün hazırlanıb",
         "tools": ["markline"]
       },
       {
         "id": "sales",
         "label": "Satış",
-        "hint": "Görüşə Rivaline ilə hazırlaşın və potensial müştərinin səhifəsini Foldline ilə tez yoxlayın.",
+        "hint": "Görüşə Rivaline ilə hazırlaşın və potensial müştərinin səhifəsini Foldline ilə tez yoxlayın",
         "tools": ["rivaline", "foldline"]
       }
     ],
@@ -71,7 +71,7 @@
         "surface": "DevTools",
         "question": "Hər teq və event həqiqətən işləyir?",
         "answer": "eventlər, GTM və razılıq, canlı",
-        "desc": "GA4, Meta, TikTok və daha 47 platformanın eventlərini işlədikləri anda izləyin, GTM, server-side GTM və razılığı yoxlayın, sonra audit hesabatı alın.",
+        "desc": "GA4, Meta, TikTok və daha 47 platformanın eventlərini işlədikləri anda izləyin, GTM, server-side GTM və razılığı yoxlayın, sonra audit hesabatı alın",
         "bullets": [
           "Hər platforma üçün canlı event axını",
           "GTM, server-side GTM və Consent Mode yoxlaması",
@@ -83,7 +83,7 @@
         "surface": "Yan panel",
         "question": "Google və AI crawler-lər əslində nə görür?",
         "answer": "SEO skoru, render və AI botlar",
-        "desc": "Skorlu SEO əsasları, Google önizləməsi, xam HTML və render olunmuş səhifənin müqayisəsi, statuslu linklər və AI crawler girişi.",
+        "desc": "Skorlu SEO əsasları, Google önizləməsi, xam HTML və render olunmuş səhifənin müqayisəsi, statuslu linklər və AI crawler girişi",
         "bullets": [
           "Skor və Google nəticəsinin önizləməsi",
           "Xam HTML və JavaScript render müqayisəsi",
@@ -95,7 +95,7 @@
         "surface": "Yan panel",
         "question": "Bu rəqib nə işlədir?",
         "answer": "stack, reklamlar və brend dəsti",
-        "desc": "Onların marketinq stack-i və boşluqları, dörd reklam kitabxanasındakı reklamları, brend rəngləri və şriftləri.",
+        "desc": "Onların marketinq stack-i və boşluqları, dörd reklam kitabxanasındakı reklamları, brend rəngləri və şriftləri",
         "bullets": [
           "Kateqoriyalara görə martech stack, boşluqlarla",
           "Meta, Google, TikTok və LinkedIn reklam kitabxanaları",
@@ -107,7 +107,7 @@
         "surface": "Yan panel",
         "question": "Bu landing səhifə niyə konversiya etmir?",
         "answer": "27 yoxlama və skor",
-        "desc": "İlk ekran, forma, etibar, mobil, sürət və əlaqə üzrə 27 yoxlama, hər problem üçün düzəliş.",
+        "desc": "İlk ekran, forma, etibar, mobil, sürət və əlaqə üzrə 27 yoxlama, hər problem üçün düzəliş",
         "bullets": [
           "Fold xətti səhifənin üstündə çəkilir",
           "Desktop və mobil skor",
@@ -119,7 +119,7 @@
         "surface": "Popup",
         "question": "Nəyin dəyişməli olduğunu dəqiq necə göstərim?",
         "answer": "çək, qeyd et, paylaş",
-        "desc": "Səhifənin şəklini çəkin, oxlar, nömrəli qeydlər və bulanıqlıqla işarələyin, sonra yükləyin və ya kopyalayın.",
+        "desc": "Səhifənin şəklini çəkin, oxlar, nömrəli qeydlər və bulanıqlıqla işarələyin, sonra yükləyin və ya kopyalayın",
         "bullets": [
           "Görünən hissə, bütün səhifə, sahə və ya element",
           "E-mail və telefon nömrələri avtomatik bulanıqlaşır",
@@ -131,7 +131,7 @@
   "together": {
     "eyebrow": "Hər alət nəyə baxır",
     "title": "Bir səhifə, beş sual",
-    "lead": "Öz saytınız və ya rəqibinki, hər səhifədə baxmağa dəyən eyni beş yer var. Hansı alətin yoxladığını görmək üçün nömrəyə basın.",
+    "lead": "Öz saytınız və ya rəqibinki, hər səhifədə baxmağa dəyən eyni beş yer var. Hansı alətin yoxladığını görmək üçün nömrəyə basın",
     "pageLabel": "Beş yoxlama nöqtəsi olan nümunə landing səhifə",
     "tellsYou": "{name} sizə nə deyir",
     "tabsLabel": "Yoxlama nöqtəsini seçin",
@@ -213,53 +213,53 @@
       {
         "icon": "gift",
         "title": "Pulsuz, hesabsız",
-        "text": "Qeydiyyat, sınaq və ödənişli plan yoxdur. Quraşdırın və istifadə edin."
+        "text": "Qeydiyyat, sınaq və ödənişli plan yoxdur. Quraşdırın və istifadə edin"
       },
       {
         "icon": "click",
         "title": "Yalnız klikinizdən sonra",
-        "text": "Alət yalnız onu açdığınız tabı oxuyur, başqa heç bir tabı yox."
+        "text": "Alət yalnız onu açdığınız tabı oxuyur, başqa heç bir tabı yox"
       },
       {
         "icon": "lock",
         "title": "Heç nə göndərilmir",
-        "text": "Nəticələr brauzerinizdə hazırlanır. Server yoxdur, genişlənmələrin içində izləmə yoxdur."
+        "text": "Nəticələr brauzerinizdə hazırlanır. Server yoxdur, genişlənmələrin içində izləmə yoxdur"
       },
       {
         "icon": "doc",
         "title": "Göndərməyə hesabat",
-        "text": "Hər alət nəticəsini paylaşa biləcəyiniz bir səhifəlik PDF-ə çevirir."
+        "text": "Hər alət nəticəsini paylaşa biləcəyiniz bir səhifəlik PDF-ə çevirir"
       }
     ]
   },
   "webTools": {
     "eyebrow": "Pulsuz veb alətlər",
     "title": "Heç nə quraşdırmadan yoxlayın",
-    "lead": "Elə bu saytda işləyən, genişlənmələrlə eyni kod üzərində qurulmuş dörd kiçik alət.",
+    "lead": "Elə bu saytda işləyən, genişlənmələrlə eyni kod üzərində qurulmuş dörd kiçik alət",
     "items": [
       {
         "slug": "rivaline",
         "fragment": "finder",
         "title": "Reklam kitabxanası axtarışı",
-        "text": "Bir brendi Meta, Google, TikTok və LinkedIn reklam kitabxanalarında bir dəfəyə axtarın."
+        "text": "Bir brendi Meta, Google, TikTok və LinkedIn reklam kitabxanalarında bir dəfəyə axtarın"
       },
       {
         "slug": "foldline",
         "fragment": "calculator",
         "title": "Landing səhifə skoru",
-        "text": "Səhifənizdə olanları işarələyin və Foldline-ın verəcəyi skoru görün."
+        "text": "Səhifənizdə olanları işarələyin və Foldline-ın verəcəyi skoru görün"
       },
       {
         "slug": "serpline",
         "fragment": "preview",
         "title": "Google önizləməsi",
-        "text": "Google başlığınızı və təsvirinizi desktopda və mobildə harada kəsir, görün."
+        "text": "Google başlığınızı və təsvirinizi desktopda və mobildə harada kəsir, görün"
       },
       {
         "slug": "markline",
         "fragment": "annotate",
         "title": "Şəkli işarələ",
-        "text": "Ekran şəklini atın, oxlar, qeydlər və bulanıqlıq əlavə edin, sonra PNG yükləyin."
+        "text": "Ekran şəklini atın, oxlar, qeydlər və bulanıqlıq əlavə edin, sonra PNG yükləyin"
       }
     ]
   },
@@ -268,7 +268,7 @@
     "title": "Tez-tez verilən suallar",
     "askBefore": "Cavab burada yoxdur?",
     "askLink": "Birbaşa mənə yazın",
-    "askAfter": ".",
+    "askAfter": "",
     "items": [
       {
         "q": "Alətlər həqiqətən pulsuzdur?",

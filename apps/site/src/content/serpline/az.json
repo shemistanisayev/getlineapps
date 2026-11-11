@@ -23,8 +23,8 @@
     "pill": "Pulsuz Chrome extension",
     "titleStart": "Səhifəni",
     "titleHighlight": "Google və AI",
-    "titleEnd": "necə görürsə, elə gör.",
-    "lead": "Açıq olan səhifə üçün texniki SEO yoxlamaları, JavaScript render və AI crawler girişi, hamısı bir Chrome yan panelində.",
+    "titleEnd": "necə görürsə, elə gör",
+    "lead": "Açıq olan səhifə üçün texniki SEO yoxlamaları, JavaScript render və AI crawler girişi, hamısı bir Chrome yan panelində",
     "secondary": "SERP önizləməni yoxla",
     "trustLabel": "Serpline",
     "trust": ["Hesab lazım deyil", "Heç nə brauzerdən çıxmır", "Açıq mənbə"],
@@ -80,20 +80,20 @@
   },
   "problem": {
     "eyebrow": "Problem",
-    "title": "Səhifə qaydasında görünür. Crawler-lər başqa şey oxuyur.",
-    "lead": "SEO problemlərinin çoxu ekranda görünmür, ona görə trafik düşənə qədər heç kim fərqinə varmır.",
+    "title": "Səhifə qaydasında görünür, amma crawler-lər başqa şey oxuyur",
+    "lead": "SEO problemlərinin çoxu ekranda görünmür, ona görə trafik düşənə qədər heç kim fərqinə varmır",
     "cards": [
       {
         "title": "JavaScript-dən asılı məzmun",
-        "text": "Brauzerin səhifəni tam göstərir. Crawler-in yüklədiyi HTML isə boş qabıq ola bilər, AI crawler-lərin çoxu da onu dolduran skriptləri heç işə salmır."
+        "text": "Brauzerin səhifəni tam göstərir. Crawler-in yüklədiyi HTML isə boş qabıq ola bilər, AI crawler-lərin çoxu da onu dolduran skriptləri heç işə salmır"
       },
       {
         "title": "Google-da kəsilən snippet-lər",
-        "text": "Uzun title və ya description üç nöqtə ilə bitir. Klik qazanmalı olan cümlə heç görünmür."
+        "text": "Uzun title və ya description üç nöqtə ilə bitir. Klik qazanmalı olan cümlə heç görünmür"
       },
       {
         "title": "Təsadüfən bloklanan AI crawler-lər",
-        "text": "robots.txt-dəki köhnə bir sətir saytı aylarla ChatGPT, Claude və ya Perplexity cavablarından kənarda saxlaya bilər."
+        "text": "robots.txt-dəki köhnə bir sətir saytı aylarla ChatGPT, Claude və ya Perplexity cavablarından kənarda saxlaya bilər"
       }
     ],
     "mini": {
@@ -109,8 +109,8 @@
   },
   "preview": {
     "eyebrow": "Pulsuz alət",
-    "title": "Google nəticəni dərc etməzdən əvvəl gör.",
-    "lead": "Title və description yaz. Google-un onları desktop və mobildə harada kəsdiyini gör. Hər şey bu səhifədə işləyir və heç yerə heç nə göndərilmir.",
+    "title": "Google nəticəni dərc etməzdən əvvəl gör",
+    "lead": "Title və description yaz. Google-un onları desktop və mobildə harada kəsdiyini gör. Hər şey bu səhifədə işləyir və heç yerə heç nə göndərilmir",
     "titleLabel": "Səhifə title-ı",
     "titleDefault": "Wireless Headphones Pro X | Lumo",
     "titlePlaceholder": "Wireless Headphones Pro X | Lumo",
@@ -130,17 +130,17 @@
     "addDesc": "Description yaz",
     "emptyTitle": "Səhifənin title-ı",
     "emptyDesc": "Google mətni səhifədən özü seçəcək.",
-    "note": "Limitlər piksellə ölçülür və təxminidir. Google title və snippet-i dəyişə bilər.",
-    "band": "Yalnız snippet-i yox, bütün səhifəni yoxla."
+    "note": "Limitlər piksellə ölçülür və təxminidir. Google title və snippet-i dəyişə bilər",
+    "band": "Yalnız snippet-i yox, bütün səhifəni yoxla"
   },
   "features": {
     "eyebrow": "Yan panelin içində",
-    "title": "Beş tab. Bir yan panel.",
+    "title": "Beş tab, bir yan panel",
     "tabsLabel": "Serpline tabları",
     "summary": {
       "label": "Summary",
-      "title": "Panel açılan kimi skor və yoxlama siyahısı.",
-      "lead": "Title, description, canonical, robots, H1, alt mətn, strukturlaşdırılmış data və Open Graph, hər biri aydın statusla.",
+      "title": "Panel açılan kimi skor və yoxlama siyahısı",
+      "lead": "Title, description, canonical, robots, H1, alt mətn, strukturlaşdırılmış data və Open Graph, hər biri aydın statusla",
       "bullets": [
         "Prioritetə görə hesablanan 100 üzərindən bir skor",
         "Desktop və mobil üçün Google önizləməsi",
@@ -161,8 +161,8 @@
     },
     "headings": {
       "label": "Headings",
-      "title": "Crawler-lərin gördüyü struktur, səhifənin üstündə işarələnmiş.",
-      "lead": "Atlanan səviyyələr və təkrar H1-lərlə H1-dən H6-ya qədər ağac, üstəlik alt mətni olmayan hər şəkil.",
+      "title": "Crawler-lərin gördüyü struktur, səhifənin üstündə işarələnmiş",
+      "lead": "Atlanan səviyyələr və təkrar H1-lərlə H1-dən H6-ya qədər ağac, üstəlik alt mətni olmayan hər şəkil",
       "bullets": [
         "Səhifədəki çərçivələr hər başlığın harada olduğunu göstərir",
         "Yalnız JavaScript-dən sonra yaranan başlıqlar işarələnir"
@@ -191,8 +191,8 @@
     },
     "links": {
       "label": "Links",
-      "title": "Sınıq və yönləndirilən linklər, birbaşa səhifənin özündən.",
-      "lead": "Anchor mətni ilə daxili, xarici və nofollow linklər. Daxili linklərin statusunu brauzerin real yoxlayır.",
+      "title": "Sınıq və yönləndirilən linklər, birbaşa səhifənin özündən",
+      "lead": "Anchor mətni ilə daxili, xarici və nofollow linklər. Daxili linklərin statusunu brauzerin real yoxlayır",
       "bullets": [
         "404-lər və yönləndirmə zəncirləri bir siyahıda",
         "Yalnız açıq olduğun sayta sorğu gedir"
@@ -226,8 +226,8 @@
     },
     "render": {
       "label": "Render",
-      "title": "Raw HTML render olunmuş səhifənin yanında.",
-      "lead": "Serpline səhifənin mənbəyini bir dəfə yükləyir və JavaScript-in qurduğu ilə müqayisə edir: başlıqlar, sözlər, linklər və strukturlaşdırılmış data.",
+      "title": "Raw HTML render olunmuş səhifənin yanında",
+      "lead": "Serpline səhifənin mənbəyini bir dəfə yükləyir və JavaScript-in qurduğu ilə müqayisə edir: başlıqlar, sözlər, linklər və strukturlaşdırılmış data",
       "bullets": [
         "Hansı elementlərin JavaScript-dən asılı olduğunu dəqiq göstərir",
         "SEO extension-ların çoxunun atladığı yoxlama"
@@ -242,8 +242,8 @@
     },
     "ai": {
       "label": "AI",
-      "title": "Hansı AI crawler-lər saytı oxuya bilir və nə görürlər.",
-      "lead": "robots.txt-dən GPTBot, ClaudeBot, PerplexityBot, Google-Extended və başqaları üçün qaydalar, axtarış və təlim botlarına bölünmüş, üstəlik llms.txt.",
+      "title": "Hansı AI crawler-lər saytı oxuya bilir və nə görürlər",
+      "lead": "robots.txt-dən GPTBot, ClaudeBot, PerplexityBot, Google-Extended və başqaları üçün qaydalar, axtarış və təlim botlarına bölünmüş, üstəlik llms.txt",
       "bullets": [
         "Hər bloklamanın arxasındakı dəqiq robots.txt sətri",
         "JavaScript işlətməyən crawler səhifənin nə qədərini oxuyur"
@@ -269,21 +269,21 @@
   },
   "how": {
     "eyebrow": "Necə işləyir",
-    "title": "Üç addım, quraşdırma yoxdur.",
+    "title": "Üç addım, quraşdırma yoxdur",
     "steps": [
       {
         "title": "Serpline-ı Chrome-a əlavə et",
-        "text": "Chrome Web Store-dan pulsuz. Hesab açmaq lazım deyil."
+        "text": "Chrome Web Store-dan pulsuz. Hesab açmaq lazım deyil"
       },
       {
         "title": "Səhifə aç, ikona bas",
         "text": "Yan panel səhifənin yanında açılır və onu yoxlayır. Və ya bas:",
         "key": "Alt+Shift+S",
-        "textEnd": "."
+        "textEnd": ""
       },
       {
         "title": "Audit PDF-i yüklə",
-        "text": "Hər problem həlli ilə birlikdə, developerə göndərməyə hazır."
+        "text": "Hər problem həlli ilə birlikdə, developerə göndərməyə hazır"
       }
     ]
   },
@@ -291,8 +291,8 @@
     "eyebrow": "Audit PDF",
     "titleStart": "Problem tapdın?",
     "titleHighlight": "Onları Serpline-ı quran adam",
-    "titleEnd": "düzəltsin.",
-    "text": "Bir klik tapıntıları prioritetli hesabata çevirir. Onu developerə göndər, ya da mənə: texniki SEO, server-side render, strukturlaşdırılmış data və AI axtarışda görünmə ilə bağlı problemləri düzəldirəm.",
+    "titleEnd": "düzəltsin",
+    "text": "Bir klik tapıntıları prioritetli hesabata çevirir. Onu developerə göndər, ya da mənə: texniki SEO, server-side render, strukturlaşdırılmış data və AI axtarışda görünmə ilə bağlı problemləri düzəldirəm",
     "cta": "SEO audit istə",
     "from": "Müəllif:",
     "paper": {
@@ -328,27 +328,27 @@
   },
   "privacy": {
     "eyebrow": "Məxfilik",
-    "title": "Səhifələrin brauzerində qalır.",
+    "title": "Səhifələrin brauzerində qalır",
     "items": [
       {
         "icon": "server",
         "title": "Server yoxdur",
-        "text": "Bütün yoxlamalar Chrome-un içində gedir. Serpline-ın səhifələri göndərə biləcəyi backend yoxdur."
+        "text": "Bütün yoxlamalar Chrome-un içində gedir. Serpline-ın səhifələri göndərə biləcəyi backend yoxdur"
       },
       {
         "icon": "lock",
         "title": "Minimum icazə",
-        "text": "Aktiv tab, yan panel və lokal ayarlar. Bütün saytlarına giriş yoxdur."
+        "text": "Aktiv tab, yan panel və lokal ayarlar. Bütün saytlarına giriş yoxdur"
       },
       {
         "icon": "chart",
         "title": "İçində analitika yoxdur",
-        "text": "Extension səni izləmir. Paneli bağlayanda nəticələr yox olur."
+        "text": "Extension səni izləmir. Paneli bağlayanda nəticələr yox olur"
       },
       {
         "icon": "code",
         "title": "Açıq mənbə",
-        "text": "Kodu oxu və bu səhifədəki hər iddianı özün yoxla."
+        "text": "Kodu oxu və bu səhifədəki hər iddianı özün yoxla"
       }
     ]
   },
@@ -385,19 +385,19 @@
     "title": "Eyni ailədən daha çox pulsuz alət",
     "tools": {
       "hitline": {
-        "text": "Hər tracking hit, GTM tag və consent siqnalı DevTools-da.",
+        "text": "Hər tracking hit, GTM tag və consent siqnalı DevTools-da",
         "open": "Hitline-ı aç"
       },
       "rivaline": {
-        "text": "Rəqibin texnologiyaları, reklamları və brend stili bir paneldə.",
+        "text": "Rəqibin texnologiyaları, reklamları və brend stili bir paneldə",
         "open": "Rivaline-ı aç"
       },
       "foldline": {
-        "text": "Landing səhifəsinin konversiyasına nəyin mane olduğunu tap.",
+        "text": "Landing səhifəsinin konversiyasına nəyin mane olduğunu tap",
         "open": "Foldline-ı aç"
       },
       "markline": {
-        "text": "Saniyələr içində ekran şəkli çək, qeyd et və rəy paylaş.",
+        "text": "Saniyələr içində ekran şəkli çək, qeyd et və rəy paylaş",
         "open": "Markline-ı aç"
       }
     }
@@ -412,9 +412,9 @@
       "title": "Getməyinə təəssüf edirik | Serpline",
       "description": "Serpline-ı niyə sildiyini yaz. Bir klik növbəti versiyanı daha yaxşı edir."
     },
-    "titleStart": "Serpline silindi.",
+    "titleStart": "Serpline silindi",
     "titleEnd": "Niyə getdin?",
-    "lead": "Bir klik növbəti versiyanı daha yaxşı edir.",
+    "lead": "Bir klik növbəti versiyanı daha yaxşı edir",
     "reasonsLabel": "Səbəb",
     "reasons": [
       "Saytımdakı problemləri tapmadı",
@@ -433,8 +433,8 @@
     "reinstall": "Serpline-ı yenidən quraşdır",
     "card": {
       "eyebrow": "SEO problemin hələ də var?",
-      "title": "Auditini edib düzəldə bilərəm.",
-      "text": "Texniki SEO, JavaScript render, strukturlaşdırılmış data və AI axtarışda görünmə. Nəyin xarab olduğunun aydın siyahısını və developerlərinin tətbiq edə biləcəyi həlləri alırsan.",
+      "title": "Auditini edib düzəldə bilərəm",
+      "text": "Texniki SEO, JavaScript render, strukturlaşdırılmış data və AI axtarışda görünmə. Nəyin xarab olduğunun aydın siyahısını və developerlərinin tətbiq edə biləcəyi həlləri alırsan",
       "cta": "SEO audit istə",
       "sub": "Şəmistan İsayev, texniki SEO və analitika"
     }
