@@ -150,6 +150,14 @@ Test setup notes: on this Windows machine Chromium for Testing does not start (`
 - **Copy.** Core returns issue ids, numbers and evidence only. Every sentence goes into the EN and AZ dictionaries in steps 5 and 6.
 - **Tests.** happy-dom is the DOM for the core tests; resource loading is off in `vitest.config.ts`. The recorded `lumo-*.html` files are excluded from Prettier so they stay byte-exact.
 
+## Step 5 notes (2026-11-11)
+
+- **Redirect pill.** The design shows "301". `fetch` in the page follows redirects and does not reveal the code (301, 302, 307 and 308 look the same), so the pill reads "Redirect" with an arrow icon and the row shows "from to target". Broken links show their real status (404, 410, 500).
+- **Overlay.** Every heading gets a dashed outline and its level ("H2"); an H1 that exists only after JavaScript reads "H1 added by JavaScript"; images without alt get the red "No alt" label. The pill counts what is drawn ("11 headings, 3 images"; SitePage shows "1 heading" because its mock page has one). "Hide" in the pill also turns the panel switch off. Navigation removes it with the document.
+- **Link list.** Problems first (broken, then redirects), then page order. "Issues" is the open filter after a check that found problems. External links show "External" or "nofollow"; `mailto:`, `tel:` and jump links show "Not a page".
+- **Narrow panels.** Chrome lets people resize the side panel. Under 400 px the tabs tighten, and if the row still does not fit it scrolls on its own; the page never scrolls sideways.
+- **Settings read now.** The panel reads `previewDevice` (default mobile) and `autoCheckLinks` (default off); Settings writes them in step 7.
+
 ## Gaps and questions found in the design (resolved here unless marked "owner")
 
 - **G1. 8/11 vs 13 bots.** See decision 3. The landing hero and marquee do not show a count, so only the panel, PDF and e2e change.
@@ -173,7 +181,7 @@ Test setup notes: on this Windows machine Chromium for Testing does not start (`
 | 3 | P2 | Serpline theme in the panel, shell (page row, tabs with badges, footer CTA), level chips, bot badges, Google result, switch, segmented control; added to the `packages/ui` preview | Done: `@line/ui/serpline` (components + `serpline.css`), preview section, 24 contrast pairs tested; panel uses the shell. Hero soft text raised from 88% to 92% white for AA |
 | 4 | P3 | `packages/core/src/serpline` (all of §4) with unit tests; Serpline scenario in `apps/fixture` | Done: the recorded Lumo page gives the design's 10 issues and 56 after the link check (62 before); 38 vs 412 words; 64 = 52 + 9 + 3 links; 49 OK, 2 redirects, 1 broken; 10/13 bots; robots.txt 38 lines; description cut after 107. The panel already shows the score and the tab badges |
 | 4B | P8 | `/serpline` landing + `#preview` island, `/serpline/uninstalled`, SEO, site `llms.txt`, AZ | Done: landing EN + AZ from `content/serpline/*.json`, `#preview` uses `@line/core/serpline/serp` (same numbers as the panel: 318 px, cut after 147 desktop / 107 mobile), `ToolUninstall.astro` shared with Hitline, OG image (`gen:serpline`), SoftwareApplication + FAQPage JSON-LD, sitemap, `/llms.txt` built from the hub content, `docs/serpline/AZ-REVIEW.md` (landing part). Screenshots 1440 / 820 / 390, axe clean. Deploy waits for the owner |
-| 5 | P4 | Summary, Headings with overlay, Links with the link check | Matches Main, Headings, Links on the fixture |
+| 5 | P4 | Summary, Headings with overlay, Links with the link check | Done: the three tabs on the fixture match Main, Headings and Links (score 62, link check 49 / 2 / 1, then 56; badges 2 / 2 / 3 / 1). Overlay in a closed shadow root, removed without a trace; issue copy for all 16 rules in EN and AZ |
 | 6 | P5 | Render, AI, Stale, restricted view | Matches Render, Ai, Stale; "Check this page" works after navigation |
 | 7 | P6 | Settings, EN + AZ, `docs/serpline/AZ-REVIEW.md` | Language switch changes every panel text |
 | 8 | P7 | Audit PDF, welcome page, uninstall hook | PDF matches Report |

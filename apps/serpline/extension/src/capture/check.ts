@@ -1,4 +1,11 @@
+import {
+  LINK_CHECK_CONCURRENCY,
+  LINK_CHECK_TIMEOUT_MS,
+  type LinkResult,
+} from '@line/core/serpline';
 import { readPage, RAW_HTML_CAP, TEXT_FILE_CAP, type PageRead } from './inject.ts';
+import { checkLinksInPage } from './links.ts';
+import { hideOverlay, showOverlay, type OverlaySpec } from './overlay.ts';
 
 /**
  * Why a check could not run:
@@ -65,4 +72,41 @@ export async function requestSite(origin: string): Promise<boolean> {
 export async function activeTabId(): Promise<number | undefined> {
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   return tab?.id;
+}
+
+/** Runs the internal link check in the tab (same-origin requests from the page). */
+export async function runLinkCheck(tabId: number, urls: string[]): Promise<LinkResult[] | null> {
+  if (!urls.length) return [];
+  try {
+    const [frame] = await browser.scripting.executeScript({
+      target: { tabId },
+      world: 'ISOLATED',
+      func: checkLinksInPage,
+      args: [urls, LINK_CHECK_CONCURRENCY, LINK_CHECK_TIMEOUT_MS],
+    });
+    return (frame?.result as LinkResult[] | undefined) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** Shows the highlight overlay (spec) or removes it (null). Returns the marks found, or null. */
+export async function setOverlay(tabId: number, spec: OverlaySpec | null): Promise<number | null> {
+  try {
+    const [frame] = spec
+      ? await browser.scripting.executeScript({
+          target: { tabId },
+          world: 'ISOLATED',
+          func: showOverlay,
+          args: [spec],
+        })
+      : await browser.scripting.executeScript({
+          target: { tabId },
+          world: 'ISOLATED',
+          func: hideOverlay,
+        });
+    return spec ? ((frame?.result as number | undefined) ?? 0) : 0;
+  } catch {
+    return null;
+  }
 }

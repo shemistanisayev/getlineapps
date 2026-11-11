@@ -14,3 +14,14 @@ export function isCheckMessage(value: unknown): value is CheckMessage {
     typeof (value as CheckMessage).tabId === 'number'
   );
 }
+
+/** Page overlay -> side panel: the user pressed "Hide" in the page's highlight pill. */
+export const OVERLAY_HIDDEN_MESSAGE = 'serpline:overlay-hidden';
+
+export function isOverlayHiddenMessage(value: unknown): boolean {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    (value as { type?: unknown }).type === OVERLAY_HIDDEN_MESSAGE
+  );
+}

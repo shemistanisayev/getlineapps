@@ -110,6 +110,24 @@
   color: var(--line-neutral);
   cursor: pointer;
 }
+/* Narrow side panels (Chrome lets people resize it): tighter tabs, then the row scrolls on its own. */
+.sl-tabs {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sl-tab {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@media (max-width: 399px) {
+  .sl-tabs {
+    padding: 0 4px;
+  }
+  .sl-tab {
+    padding: 0 5px;
+    gap: 4px;
+  }
+}
 .sl-tab:hover {
   color: var(--line-ink);
 }

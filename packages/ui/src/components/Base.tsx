@@ -105,6 +105,7 @@ const EXTRA_ICONS = {
   alert: <path d="M12 6v8M12 18.5h.01" />,
   x: <path d="M7 7l10 10M17 7L7 17" />,
   dash: <path d="M6 12h12" />,
+  arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
 };
 export type PillIcon = keyof typeof EXTRA_ICONS;
 

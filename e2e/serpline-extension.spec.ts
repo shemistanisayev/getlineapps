@@ -65,15 +65,108 @@ test.describe('serpline extension', () => {
     await page.goto(serplineUrl());
     await ext.clickAction(page);
     expect(await ext.hasPage(PANEL)).toBe(true);
-    await expect.poll(panelText).toContain('Page read'.toUpperCase());
+    // Summary (design: Main). 62 before the link check (PLAN decision 4).
+    await expect.poll(panelText).toContain('SEO score: needs work');
     const text = await panelText();
     expect(text).toContain('example.com/products/wireless-headphones-pro-x');
-    expect(text).toMatch(/Raw HTML\s+HTTP 200/);
-    expect(text).toMatch(/robots\.txt\s+HTTP 200, 38 lines/);
-    expect(text).toMatch(/llms\.txt\s+HTTP 404/);
-    // @line/core/serpline on the real page: 62 before the link check (PLAN decision 4).
-    expect(text).toMatch(/62\/100, 2 high, 5 medium, 1 low/);
-    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-panel-read.png`);
+    expect(text).toContain('2 high, 5 medium, 1 low priority issues');
+    expect(
+      await ext.evalIn(PANEL, `document.querySelector('.sl-ring').getAttribute('aria-label')`),
+    ).toBe('SEO score 62 of 100');
+    const rows = await ext.evalIn<string[]>(
+      PANEL,
+      `[...document.querySelectorAll('.sl-row')].map((r) => r.innerText.replace(/\\s+/g, ' ').trim())`,
+    );
+    expect(rows).toEqual([
+      'Title 32 characters',
+      'Meta description Cut off in Google',
+      'Canonical Points to this page',
+      'Robots meta index, follow',
+      'H1 Only after JavaScript',
+      'Image alt text 3 of 9 missing',
+      'Structured data Product added by JavaScript',
+      'Open Graph og:description missing',
+      'hreflang Not used',
+    ]);
+    expect(text).toContain('Title: 32 characters, 318 of 600 px');
+    expect(text).toContain('Description: 191 characters, cut after 107');
+    expect(text).toContain(
+      'Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once ...',
+    );
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-summary.png`);
+
+    const clickTab = (name: string) =>
+      ext.evalIn(
+        PANEL,
+        `[...document.querySelectorAll('[role=tab]')].find((b) => b.textContent.startsWith(${JSON.stringify(name)})).click()`,
+      );
+    const clickButton = (name: string) =>
+      ext.evalIn(
+        PANEL,
+        `[...document.querySelectorAll('button')].find((b) => b.textContent.startsWith(${JSON.stringify(name)})).click()`,
+        true,
+      );
+
+    // Headings (design: Headings) and the page overlay (design: SitePage, highlight on).
+    await clickTab('Headings');
+    await expect.poll(panelText).toContain('OUTLINE');
+    const tiles = await ext.evalIn<string[]>(
+      PANEL,
+      `[...document.querySelectorAll('.sl-tile')].map((x) => x.innerText.replace(/\\s+/g, ' '))`,
+    );
+    expect(tiles).toEqual(['1 H1', '4 H2', '5 H3', '1 H4']);
+    const outline = await panelText();
+    expect(outline).toMatch(/Wireless Headphones Pro X\s+JavaScript only/);
+    expect(outline).toMatch(/Bluetooth 5\.3\s+Skips H3/);
+    expect(outline).toContain('3 of 9 without alt');
+    for (const f of ['pro-x-side.jpg', 'pro-x-folded.jpg', 'pro-x-case.jpg'])
+      expect(outline).toContain(f);
+    await ext.evalIn(PANEL, `document.querySelector('[role=switch]').click()`, true);
+    await expect
+      .poll(() => page.evaluate(() => document.querySelectorAll('[data-serpline-overlay]').length))
+      .toBe(1);
+    expect(
+      await ext.evalIn(
+        PANEL,
+        `document.querySelector('[role=switch]').getAttribute('aria-checked')`,
+      ),
+    ).toBe('true');
+    if (SHOTS) {
+      await ext.screenshot(PANEL, `${SHOTS}/serpline-headings.png`);
+      await page.setViewportSize({ width: 1040, height: 820 });
+      await page.screenshot({ path: `${SHOTS}/serpline-page-highlight.png` });
+    }
+    // The overlay is not part of what Serpline reads, and turning it off leaves no trace.
+    await ext.evalIn(PANEL, `document.querySelector('[role=switch]').click()`, true);
+    await expect
+      .poll(() => page.evaluate(() => document.querySelectorAll('[data-serpline-overlay]').length))
+      .toBe(0);
+
+    // Links (design: Links): the check runs from the page, then the score drops to 56.
+    await clickTab('Links');
+    await expect.poll(panelText).toContain('Check 52 internal links');
+    await clickButton('Check 52 internal links');
+    await expect.poll(panelText, { timeout: 20_000 }).toContain('52 internal links checked');
+    const links = await panelText();
+    expect(links).toContain('49 OK, 2 redirects, 1 broken');
+    expect(links).toMatch(/Earbuds Mini\s+\/products\/earbuds-mini-old\s+404/);
+    expect(links).toContain('/headphones to /electronics/headphones');
+    expect(links).toContain('/returns to /help/returns');
+    expect(links).toContain('A link on this page leads to a 404');
+    expect(links).toContain('2 links point to redirects');
+    expect(await ext.evalIn(PANEL, `document.querySelector('.sp-chip.on').textContent`)).toBe(
+      'Issues 3',
+    );
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-links.png`);
+    await clickTab('Summary');
+    await expect.poll(panelText).toContain('2 high, 6 medium, 2 low priority issues');
+    expect(
+      await ext.evalIn(PANEL, `document.querySelector('.sl-ring').getAttribute('aria-label')`),
+    ).toBe('SEO score 56 of 100');
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-summary-56.png`);
+    // The Google preview follows the device switch.
+    await clickButton('Desktop');
+    await expect.poll(panelText).toContain('Description: 191 characters, cut after 147');
 
     // Shell: page row, 5 tabs, dark footer CTA on Summary, lime CTA on Render and AI.
     const shell = () =>
@@ -93,10 +186,10 @@ test.describe('serpline extension', () => {
           lime: document.querySelector('.sl-lime')?.textContent ?? '',
         })`,
       );
-    // Badges: issues per tab (Links stays empty until the link check, step 5).
+    // Badges: issues per tab, as in PanelHeader after the link check.
     expect(await shell()).toEqual({
-      tabs: ['Summary', 'Headings2', 'Links', 'Render3', 'AI1'],
-      badges: ['2 issues', '3 issues', '1 issue'],
+      tabs: ['Summary', 'Headings2', 'Links2', 'Render3', 'AI1'],
+      badges: ['2 issues', '2 issues', '3 issues', '1 issue'],
       selected: 'Summary',
       footer: 'Need help fixing these?Get in touch',
       lime: '',
