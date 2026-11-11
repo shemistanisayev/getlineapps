@@ -350,7 +350,7 @@ test.describe('serpline extension', () => {
       'Check internal links on open',
       'Clear all settings',
       'MORE FREE TOOLS',
-      'Version 0.1.0',
+      'Version 1.0.0',
     ])
       expect(set).toContain(s);
     const hrefs = await ext.evalIn<string[]>(

@@ -18,7 +18,8 @@
     "e2e": "playwright test",
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "lighthouse": "node scripts/lighthouse.mjs",
-    "store:hitline": "tsx scripts/store-hitline.ts"
+    "store:hitline": "tsx scripts/store-hitline.ts",
+    "store:serpline": "pnpm --filter @line/serpline-extension zip && tsx scripts/store-serpline.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

@@ -22,8 +22,15 @@ export interface CdpExtension {
   clickAction(page: Page): Promise<void>;
   /** Evaluates an expression in the extension page whose URL contains `path` (side panel ...). */
   evalIn<T = unknown>(path: string, expression: string, userGesture?: boolean): Promise<T>;
-  /** PNG of an extension page that Playwright cannot see (the side panel). */
-  screenshot(path: string, file: string): Promise<void>;
+  /**
+   * PNG of an extension page that Playwright cannot see (the side panel). `size` emulates a
+   * viewport (CSS px) and pixel ratio first, for crisp store screenshots.
+   */
+  screenshot(
+    path: string,
+    file: string,
+    size?: { width: number; height: number; scale?: number },
+  ): Promise<void>;
   /** Waits until an extension page with `path` exists, returns whether it did. */
   hasPage(path: string, timeoutMs?: number): Promise<boolean>;
   close(): Promise<void>;
@@ -139,11 +146,20 @@ export async function loadExtensionCdp(
       }
       return false;
     },
-    async screenshot(path, file) {
+    async screenshot(path, file, size) {
       const target = await jsonTarget(path);
       if (!target?.webSocketDebuggerUrl) throw new Error(`No extension page ${path}`);
       const page = await cdpSocket(target.webSocketDebuggerUrl);
       try {
+        if (size) {
+          await page.send('Emulation.setDeviceMetricsOverride', {
+            width: size.width,
+            height: size.height,
+            deviceScaleFactor: size.scale ?? 1,
+            mobile: false,
+          });
+          await wait(300);
+        }
         await page.send('Runtime.evaluate', {
           expression: 'document.fonts.ready.then(() => true)',
           awaitPromise: true,
@@ -152,6 +168,7 @@ export async function loadExtensionCdp(
           format: 'png',
         });
         writeFileSync(file, Buffer.from(data, 'base64'));
+        if (size) await page.send('Emulation.clearDeviceMetricsOverride', {});
       } finally {
         page.close();
       }
