@@ -1,0 +1,1391 @@
+---
+/**
+ * Serpline landing (/serpline, /az/serpline): design/serpline/Landing.dc.html (+ Tablet, Mobile,
+ * which embed it, so its media queries are the spec). Every text comes from
+ * src/content/serpline/<locale>.json and shared/<locale>.json. #preview is the free SERP preview
+ * tool (src/scripts/serp-preview.ts), measured with the same code as the extension.
+ */
+import '../styles/serpline.css';
+import Base from '../layouts/Base.astro';
+import Logo from './Logo.astro';
+import Mark from './Mark.astro';
+import { BRANDS } from '@line/ui/brand';
+import { contactUrl } from '@line/core/site';
+import { fitDescription, fitTitle, siteName, urlLine } from '@line/core/serpline/serp';
+import { faqPageJsonLd, softwareApplicationJsonLd } from '@line/site-kit/seo';
+import {
+  SOURCE_URL,
+  fill,
+  getSerpline,
+  getShared,
+  getTool,
+  hasLanding,
+  localePath,
+  type Locale,
+} from '../lib/site.ts';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const c = await getSerpline(locale);
+const t = await getShared(locale);
+const tool = await getTool('serpline');
+const live = tool.status === 'live' && Boolean(tool.storeUrl);
+const other: Locale = locale === 'en' ? 'az' : 'en';
+const cta = (campaign: 'audit_cta' | 'faq' | 'footer') =>
+  contactUrl({ source: 'serpline', medium: 'landing', campaign });
+const ogImage = '/og/serpline.png';
+
+const seo = {
+  title: c.meta.title,
+  description: c.meta.description,
+  path: localePath(locale, '/serpline'),
+  image: ogImage,
+  imageAlt: c.meta.ogAlt,
+  alternates: { en: '/serpline', az: '/az/serpline' },
+  jsonLd: [
+    softwareApplicationJsonLd({
+      name: 'Serpline',
+      description: c.meta.description,
+      path: '/serpline',
+      image: ogImage,
+      storeUrl: tool.storeUrl,
+    }),
+    faqPageJsonLd(c.faq.items),
+  ],
+};
+
+const others = (['hitline', 'rivaline', 'foldline', 'markline'] as const).map((slug) => ({
+  slug,
+  ...c.more.tools[slug],
+  bright: BRANDS[slug].bright,
+  href: hasLanding(slug) ? localePath(locale, `/${slug}`) : null,
+}));
+const marquee = [
+  ...c.marquee.items.map((m) => ({ ...m, dup: false })),
+  ...c.marquee.items.map((m) => ({ ...m, dup: true })),
+];
+const f = c.features;
+const tabs = [
+  { id: 'su', tab: f.summary },
+  { id: 'he', tab: f.headings },
+  { id: 'li', tab: f.links },
+  { id: 're', tab: f.render },
+  { id: 'ai', tab: f.ai },
+] as const;
+
+/** Icons drawn in the artboard. Status pills always carry one (status colors rule). */
+const ICON = {
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  alert: '<path d="M12 6v8"/><path d="M12 18.5h.01"/>',
+  x: '<path d="M7 7l10 10M17 7L7 17"/>',
+  dash: '<path d="M6 12h12"/>',
+  arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+} as const;
+type Tone = 'ok' | 'warn' | 'bad' | 'mute';
+const toneIcon = (tone: Tone, cross = false) =>
+  tone === 'ok' ? ICON.check : tone === 'mute' ? ICON.dash : cross ? ICON.x : ICON.alert;
+
+// SERP preview: server-rendered first state (desktop, design defaults), the island keeps it live.
+const p = c.preview;
+const tFit = fitTitle(p.titleDefault);
+const dFit = fitDescription(p.descDefault, 'desktop');
+const site = siteName(p.urlDefault);
+const pct = (px: number, limit: number) => Math.min(100, Math.round((px / limit) * 100));
+const previewTexts = JSON.stringify({
+  measure: p.measure,
+  fits: p.fits,
+  cut: p.cut,
+  addTitle: p.addTitle,
+  addDesc: p.addDesc,
+  emptyTitle: p.emptyTitle,
+  emptyDesc: p.emptyDesc,
+});
+const levelStyle: Record<number, string> = {
+  1: 'background:#2563EB;color:#FFFFFF',
+  2: 'background:#DBEAFE;color:#1E40AF',
+  3: 'background:#EFF6FF;color:#1D4ED8',
+  4: 'background:#FFFFFF;color:#1D4ED8;box-shadow:inset 0 0 0 1px #93C5FD',
+};
+const indent = (level: number) => (level === 1 ? 16 : 16 + (level - 1) * 18);
+---
+
+<Base locale={locale} seo={seo} page="lp-page sl-page">
+  <div class="lp">
+    <header class="nav">
+      <div class="wrap">
+        <a href={localePath(locale, '/serpline')} class="home" aria-label="Serpline">
+          <Logo brand="serpline" theme="dark" size={30} label="" />
+        </a>
+        <nav class="r-navl" aria-label={c.nav.label}>
+          <a class="nl" href="#preview">
+            {c.nav.preview}
+          </a>
+          <a class="nl" href="#features">
+            {c.nav.features}
+          </a>
+          <a class="nl" href="#how">
+            {c.nav.how}
+          </a>
+          <a class="nl" href="#privacy">
+            {c.nav.privacy}
+          </a>
+          <a class="nl" href="#faq">
+            {c.nav.faq}
+          </a>
+        </nav>
+        <span class="grow"></span>
+        <a class="nl lang" href={localePath(other, '/serpline')} hreflang={other} lang={other}>
+          <span aria-hidden="true">{t.switchTo.short}</span>
+          <span class="sr-only">{t.switchTo.label}</span>
+        </a>
+        {live ? (
+          <a class="btn btn-p btn-nav" href={tool.storeUrl!} target="_blank" rel="noopener">
+            {c.add.nav}
+            <svg
+              class="arr"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              set:html={ICON.arrow}
+            />
+          </a>
+        ) : (
+          <span class="btn btn-soon btn-nav">{c.add.soonNav}</span>
+        )}
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <span class="glow g1"></span>
+        <span class="glow g2"></span>
+        <div class="wrap r-hero">
+          <div class="hero-copy">
+            <span class="rise pill-free" style="animation-delay:.05s">
+              <span class="live"></span>
+              {c.hero.pill}
+            </span>
+            <h1 class="disp rise r-h1" style="animation-delay:.15s">
+              {c.hero.titleStart} <span class="marker">{c.hero.titleHighlight}</span>{' '}
+              {c.hero.titleEnd}
+            </h1>
+            <p class="lead rise" style="max-width:540px;animation-delay:.3s">
+              {c.hero.lead}
+            </p>
+            <div class="rise hero-ctas" style="animation-delay:.45s">
+              {live ? (
+                <a class="btn btn-p" href={tool.storeUrl!} target="_blank" rel="noopener">
+                  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="11" fill="#FFFFFF" opacity=".25" />
+                    <circle cx="12" cy="12" r="4.2" fill="#FFFFFF" />
+                    <path
+                      d="M12 7.8h9.2M8.4 14.1L3.8 6.1M15.6 14.1l-4.6 8"
+                      stroke="#FFFFFF"
+                      stroke-width="2"
+                    />
+                  </svg>
+                  {c.add.hero}
+                  <svg
+                    class="arr"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    set:html={ICON.arrow}
+                  />
+                </a>
+              ) : (
+                <span class="btn btn-soon">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 2" />
+                  </svg>
+                  {c.add.soonHero}
+                </span>
+              )}
+              <a class="btn btn-o" href="#preview">
+                {c.hero.secondary}
+              </a>
+            </div>
+            <ul class="rise calls" aria-label={c.hero.trustLabel} style="animation-delay:.6s">
+              {c.hero.trust.map((x) => (
+                <li class="call">
+                  <span class="ci">
+                    <svg
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#1A2E05"
+                      stroke-width="3.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      set:html={ICON.check}
+                    />
+                  </span>
+                  {x}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="rise hero-art" style="animation-delay:.35s">
+            <div class="mock">
+              <div class="mbar">
+                <span class="dot" style="background:#FF5F57"></span>
+                <span class="dot" style="background:#FEBC2E"></span>
+                <span class="dot" style="background:#28C840"></span>
+                <span class="mono murl">{c.hero.mock.url}</span>
+                <Logo brand="serpline" theme="light" size={20} word={false} label="" />
+              </div>
+              <div class="mgrid">
+                <div class="mpage" aria-hidden="true">
+                  <span class="mode">
+                    <span class="m-r">{c.hero.mock.rendered}</span>
+                    <span class="m-h">{c.hero.mock.raw}</span>
+                  </span>
+                  <div class="mp-logo">
+                    <span></span>
+                    <span class="sk"></span>
+                  </div>
+                  <div class="sk mp-img">
+                    <svg width="70" height="70" viewBox="0 0 200 200">
+                      <path
+                        d="M40 120V95a60 60 0 0 1 120 0v25"
+                        fill="none"
+                        stroke="#1D2420"
+                        stroke-width="12"
+                        stroke-linecap="round"
+                      />
+                      <rect x="26" y="108" width="36" height="62" rx="16" fill="#1D2420" />
+                      <rect x="138" y="108" width="36" height="62" rx="16" fill="#1D2420" />
+                      <rect x="34" y="120" width="10" height="38" rx="5" fill="#F4C95D" />
+                      <rect x="156" y="120" width="10" height="38" rx="5" fill="#F4C95D" />
+                    </svg>
+                  </div>
+                  <div class="sk jsb" style="height:20px;width:78%"></div>
+                  <div class="sk mp-price"></div>
+                  <div class="sk jsb" style="height:9px;width:96%"></div>
+                  <div class="sk jsb" style="height:9px;width:88%"></div>
+                  <div class="sk jsb" style="height:9px;width:70%"></div>
+                  <div class="sk mp-btn"></div>
+                  <span class="scan"></span>
+                </div>
+                <div class="mpan">
+                  <div class="mcard mhero">
+                    <svg
+                      width="44"
+                      height="44"
+                      viewBox="0 0 64 64"
+                      role="img"
+                      aria-label={c.hero.mock.scoreAria}
+                    >
+                      <circle
+                        cx="32"
+                        cy="32"
+                        r="27"
+                        fill="none"
+                        stroke="rgba(255,255,255,.25)"
+                        stroke-width="7"
+                      />
+                      <circle
+                        class="ring"
+                        cx="32"
+                        cy="32"
+                        r="27"
+                        fill="none"
+                        stroke="#C6F36B"
+                        stroke-width="7"
+                        stroke-linecap="round"
+                        transform="rotate(-90 32 32)"
+                      />
+                      <text
+                        x="32"
+                        y="39"
+                        text-anchor="middle"
+                        font-family="Plus Jakarta Sans, Inter, Arial, sans-serif"
+                        font-size="20"
+                        font-weight="800"
+                        fill="#FFFFFF"
+                      >
+                        56
+                      </text>
+                    </svg>
+                    <span class="mh-t">
+                      <b class="disp">{c.hero.mock.label}</b>
+                      <span>{c.hero.mock.issues}</span>
+                    </span>
+                  </div>
+                  <div class="mcard mlist">
+                    {c.hero.mock.rows.map((r, i) => (
+                      <div
+                        class="mrow seq"
+                        style={`animation-delay:${(0.2 + i * 0.3).toFixed(1)}s`}
+                      >
+                        <span>{r.label}</span>
+                        <span class={`pill sm ${r.tone}`}>
+                          <svg
+                            width="8"
+                            height="8"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            set:html={toneIcon(r.tone, r.label.endsWith('Bot'))}
+                          />
+                          {r.status}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="float r-float serp-float">
+              <span class="sf-c">{c.hero.serp.crumb}</span>
+              <span class="sf-t">{c.hero.serp.title}</span>
+              <span class="sf-d">
+                {c.hero.serp.desc}
+                <span class="blinkv"> ...</span>
+              </span>
+              <span class="pill warn sf-p">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  set:html={ICON.alert}
+                />
+                {c.hero.serp.note}
+              </span>
+            </div>
+            <div class="float r-toast toast91">
+              <span class="disp t-v">{c.hero.toast.value}</span>
+              <span class="t-x">
+                {c.hero.toast.line1}
+                <br />
+                {c.hero.toast.line2}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap marq-w">
+          <span class="marq-t">{c.marquee.title}</span>
+          <div class="marq">
+            <ul class="marq-in">
+              {marquee.map((m) => (
+                <li class="tag" aria-hidden={m.dup ? 'true' : undefined}>
+                  <Mark name={m.mark} size={30} />
+                  <span class={m.code ? 'code' : undefined}>{m.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec-white">
+        <div class="wrap">
+          <div class="r-stack head-row">
+            <div class="col16" style="max-width:640px">
+              <span class="eyebrow">{c.problem.eyebrow}</span>
+              <h2 class="disp h2">{c.problem.title}</h2>
+            </div>
+            <p class="lead" style="max-width:380px">
+              {c.problem.lead}
+            </p>
+          </div>
+          <div class="r-3 grid3">
+            <div class="card lift prob">
+              <div class="mini" aria-hidden="true">
+                <div class="mini-bars">
+                  <div class="col6">
+                    <span class="between">
+                      <span>{c.problem.mini.raw}</span>
+                      <span class="mono bad-t">
+                        <svg
+                          width="11"
+                          height="11"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          set:html={ICON.alert}
+                        />
+                        {c.problem.mini.rawWords}
+                      </span>
+                    </span>
+                    <div class="track g">
+                      <span style="width:9%;background:#D92D20"></span>
+                    </div>
+                  </div>
+                  <div class="col6">
+                    <span class="between">
+                      <span>{c.problem.mini.after}</span>
+                      <span class="mono blue-t">{c.problem.mini.afterWords}</span>
+                    </span>
+                    <div class="track g">
+                      <span class="bar-f" style="width:100%;background:#2563EB"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="num">01</span>
+              <h3 class="disp">{c.problem.cards[0]!.title}</h3>
+              <p>{c.problem.cards[0]!.text}</p>
+            </div>
+            <div class="card lift prob">
+              <div class="mini" aria-hidden="true">
+                <div class="mini-serp">
+                  <span class="ms-c">{c.problem.mini.crumb}</span>
+                  <span class="ms-t">{c.problem.mini.title}</span>
+                  <span class="ms-d">
+                    {c.problem.mini.desc}
+                    <span class="blinkv" style="font-weight:700">
+                      {' '}
+                      ...
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <span class="num">02</span>
+              <h3 class="disp">{c.problem.cards[1]!.title}</h3>
+              <p>{c.problem.cards[1]!.text}</p>
+            </div>
+            <div class="card lift prob">
+              <div class="mini" aria-hidden="true">
+                <div class="mini-robots">
+                  <div class="mono mr-code">
+                    User-agent: PerplexityBot
+                    <br />
+                    <span>Disallow: /</span>
+                  </div>
+                  <div class="mr-run">
+                    <span class="bounce">
+                      <Mark name="perplexity" size={30} />
+                    </span>
+                    <span class="wall"></span>
+                    <span class="mr-b">
+                      <svg
+                        width="11"
+                        height="11"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        set:html={ICON.x}
+                      />
+                      {c.problem.mini.blocked}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <span class="num">03</span>
+              <h3 class="disp">{c.problem.cards[2]!.title}</h3>
+              <p>{c.problem.cards[2]!.text}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="preview" class="sec-preview">
+        <span class="glow g3"></span>
+        <div class="wrap" style="position:relative">
+          <div class="center-head">
+            <span class="eyebrow">{p.eyebrow}</span>
+            <h2 class="disp h2" style="max-width:760px">
+              {p.title}
+            </h2>
+            <p class="lead" style="max-width:600px">
+              {p.lead}
+            </p>
+          </div>
+          <div class="tool-card r-tool" data-serp-preview data-texts={previewTexts}>
+            <div class="r-pad tool-in">
+              <div class="fld">
+                <label for="sp-title">{p.titleLabel}</label>
+                <input
+                  id="sp-title"
+                  class="inp"
+                  type="text"
+                  value={p.titleDefault}
+                  placeholder={p.titlePlaceholder}
+                  data-sp="title"
+                  aria-describedby="sp-title-m"
+                />
+                <div class="meter" aria-hidden="true">
+                  <span
+                    data-sp="t-bar"
+                    style={`width:${pct(tFit.px, 600)}%`}
+                    class={tFit.cut ? 'is-bad' : 'is-ok'}
+                  ></span>
+                </div>
+                <div class="mtxt" id="sp-title-m">
+                  <span data-sp="t-measure">
+                    {fill(p.measure, {
+                      chars: String(tFit.length),
+                      px: String(tFit.px),
+                      limit: '600',
+                    })}
+                  </span>
+                  <span class={`mstat ${tFit.cut ? 'is-bad' : 'is-ok'}`} data-sp="t-status">
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      set:html={tFit.cut ? ICON.alert : ICON.check}
+                    />
+                    <span>{tFit.cut ? fill(p.cut, { n: String(tFit.cutAfter) }) : p.fits}</span>
+                  </span>
+                </div>
+              </div>
+              <div class="fld">
+                <label for="sp-desc">{p.descLabel}</label>
+                <textarea
+                  id="sp-desc"
+                  class="inp"
+                  rows="4"
+                  placeholder={p.descPlaceholder}
+                  data-sp="desc"
+                  aria-describedby="sp-desc-m"
+                >{p.descDefault}</textarea>
+                <div class="meter" aria-hidden="true">
+                  <span
+                    data-sp="d-bar"
+                    style={`width:${pct(dFit.px, 920)}%`}
+                    class={dFit.cut ? 'is-bad' : 'is-ok'}
+                  ></span>
+                </div>
+                <div class="mtxt" id="sp-desc-m">
+                  <span data-sp="d-measure">
+                    {fill(p.measure, {
+                      chars: String(dFit.length),
+                      px: String(dFit.px),
+                      limit: '920',
+                    })}
+                  </span>
+                  <span class={`mstat ${dFit.cut ? 'is-bad' : 'is-ok'}`} data-sp="d-status">
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      set:html={dFit.cut ? ICON.alert : ICON.check}
+                    />
+                    <span>{dFit.cut ? fill(p.cut, { n: String(dFit.cutAfter) }) : p.fits}</span>
+                  </span>
+                </div>
+              </div>
+              <div class="fld">
+                <label for="sp-url">{p.urlLabel}</label>
+                <input
+                  id="sp-url"
+                  class="inp mono"
+                  type="text"
+                  value={p.urlDefault}
+                  data-sp="url"
+                  spellcheck="false"
+                />
+              </div>
+            </div>
+            <div class="r-pad tool-out">
+              <div class="between wrap-row">
+                <span class="tool-h">{p.googlePreview}</span>
+                <span class="seg" role="group" aria-label={p.deviceLabel}>
+                  <button type="button" class="on" aria-pressed="true" data-device="desktop">
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                      <path d="M8 20h8M12 16v4"></path>
+                    </svg>
+                    {p.desktop}
+                  </button>
+                  <button type="button" aria-pressed="false" data-device="mobile">
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="7" y="3" width="10" height="18" rx="2"></rect>
+                      <path d="M11 18h2"></path>
+                    </svg>
+                    {p.mobile}
+                  </button>
+                </span>
+              </div>
+              <div class="res-w">
+                <div class="gres r-mob gres--desktop" data-sp="result" aria-live="polite">
+                  <div class="g-site">
+                    <span class="g-fav">
+                      <span data-sp="initial">{site.charAt(0)}</span>
+                    </span>
+                    <span class="g-names">
+                      <span class="g-name" data-sp="site">
+                        {site}
+                      </span>
+                      <span class="g-crumb" data-sp="crumb">
+                        {urlLine(p.urlDefault)}
+                      </span>
+                    </span>
+                  </div>
+                  <span class="gt" data-sp="t-shown">
+                    {tFit.shown}
+                  </span>
+                  <span class="gd" data-sp="d-shown">
+                    {dFit.shown}
+                  </span>
+                </div>
+              </div>
+              <p class="tool-note">{p.note}</p>
+            </div>
+          </div>
+          <div class="r-stack band">
+            <span>{p.band}</span>
+            {live ? (
+              <a
+                class="btn btn-l"
+                href={tool.storeUrl!}
+                target="_blank"
+                rel="noopener"
+                style="height:46px"
+              >
+                {c.add.band}
+                <svg
+                  class="arr"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  set:html={ICON.arrow}
+                />
+              </a>
+            ) : (
+              <span class="btn btn-soon" style="height:46px">
+                {c.add.soonHero}
+              </span>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="sec-white">
+        <div class="wrap">
+          <div class="center-head" style="margin-bottom:40px">
+            <span class="eyebrow">{f.eyebrow}</span>
+            <h2 class="disp h2" style="max-width:760px">
+              {f.title}
+            </h2>
+          </div>
+          {tabs.map((x, i) => (
+            <input
+              class="tabs-in"
+              type="radio"
+              name="sl-tabs"
+              id={`tb-${x.id}`}
+              checked={i === 0}
+            />
+          ))}
+          <div class="tbar-w">
+            <div class="tbar">
+              {tabs.map((x) => (
+                <label for={`tb-${x.id}`}>{x.tab.label}</label>
+              ))}
+            </div>
+          </div>
+          <div class="panes">
+            {tabs.map((x) => (
+              <div class={`pane p-${x.id}`} data-r="pane">
+                <div class="col18">
+                  <span class="eyebrow">{x.tab.label}</span>
+                  <h3 class="disp pane-h">{x.tab.title}</h3>
+                  <p class="lead" style="font-size:16.5px">
+                    {x.tab.lead}
+                  </p>
+                  <div class="col12">
+                    {x.tab.bullets.map((b) => (
+                      <div class="bul">
+                        <span>
+                          <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            set:html={ICON.check}
+                          />
+                        </span>
+                        <span>{b}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div class="stage" aria-hidden="true">
+                  {x.id === 'su' && (
+                    <div class="pcard">
+                      <div class="pc-hero">
+                        <svg width="52" height="52" viewBox="0 0 64 64">
+                          <circle
+                            cx="32"
+                            cy="32"
+                            r="27"
+                            fill="none"
+                            stroke="rgba(255,255,255,.25)"
+                            stroke-width="6"
+                          />
+                          <circle
+                            cx="32"
+                            cy="32"
+                            r="27"
+                            fill="none"
+                            stroke="#C6F36B"
+                            stroke-width="6"
+                            stroke-linecap="round"
+                            stroke-dasharray="95 170"
+                            transform="rotate(-90 32 32)"
+                          />
+                          <text
+                            x="32"
+                            y="39"
+                            text-anchor="middle"
+                            font-family="Plus Jakarta Sans, Inter, Arial, sans-serif"
+                            font-size="20"
+                            font-weight="800"
+                            fill="#FFFFFF"
+                          >
+                            56
+                          </text>
+                        </svg>
+                        <span class="mh-t">
+                          <b class="disp" style="font-size:16px">
+                            {f.summary.demo.label}
+                          </b>
+                          <span style="font-size:12px">{f.summary.demo.counts}</span>
+                        </span>
+                      </div>
+                      {f.summary.demo.rows.map((r) => (
+                        <div class:list={['prow', { hlrow: r.hl }]}>
+                          <span class="grow">{r.label}</span>
+                          <span class={`pill ${r.tone}`}>
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="3"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              set:html={toneIcon(r.tone)}
+                            />
+                            {r.status}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {x.id === 'he' && (
+                    <div class="pcard" style="padding-top:6px">
+                      {f.headings.demo.rows.map((r, i) => (
+                        <div
+                          class:list={['prow', { hlrow: r.hl }]}
+                          style={`padding-left:${indent(r.level)}px${i === 0 ? ';border-top:none' : ''}`}
+                        >
+                          <span class="lv" style={levelStyle[r.level]}>
+                            H{r.level}
+                          </span>
+                          <span class="grow" style={r.level === 1 ? 'font-weight:600' : undefined}>
+                            {r.text}
+                          </span>
+                          {r.status && r.tone && (
+                            <span class={`pill ${r.tone}`}>
+                              <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                set:html={toneIcon(r.tone)}
+                              />
+                              {r.status}
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {x.id === 'li' && (
+                    <div class="pcard">
+                      <div class="tiles3">
+                        <div>
+                          <b class="disp">52</b>
+                          <div>{f.links.demo.internal}</div>
+                        </div>
+                        <div>
+                          <b class="disp">9</b>
+                          <div>{f.links.demo.external}</div>
+                        </div>
+                        <div class="t-bad">
+                          <b class="disp">3</b>
+                          <div>
+                            <svg
+                              width="11"
+                              height="11"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="3"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              set:html={ICON.alert}
+                            />
+                            {f.links.demo.issues}
+                          </div>
+                        </div>
+                      </div>
+                      {f.links.demo.rows.map((r) => (
+                        <div class:list={['prow', { hlrow: r.hl }]}>
+                          <span class="grow lrow">
+                            <b>{r.text}</b>
+                            <span class="mono">{r.path}</span>
+                          </span>
+                          <span class={`pill ${r.tone}`}>
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="3"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              set:html={r.tone === 'bad' ? ICON.x : ICON.arrow}
+                            />
+                            {r.status}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {x.id === 're' && (
+                    <div class="pcard rcard">
+                      <div class="col6 rb">
+                        <span class="between">
+                          <span>{f.render.demo.raw}</span>
+                          <span class="mono bad-t">
+                            <svg
+                              width="11"
+                              height="11"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="3"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              set:html={ICON.alert}
+                            />
+                            {f.render.demo.rawValue}
+                          </span>
+                        </span>
+                        <div class="track">
+                          <span style="width:9%;background:#D92D20"></span>
+                        </div>
+                      </div>
+                      <div class="col6 rb">
+                        <span class="between">
+                          <span>{f.render.demo.rendered}</span>
+                          <span class="mono blue-t">{f.render.demo.renderedValue}</span>
+                        </span>
+                        <div class="track">
+                          <span class="bar-f" style="width:100%;background:#2563EB"></span>
+                        </div>
+                      </div>
+                      <div class="mono code-card">
+                        <span class="tg">&lt;h1&gt;</span>Wireless Headphones Pro X
+                        <span class="tg">&lt;/h1&gt;</span>
+                        <br />
+                        <span class="tg">&lt;script</span> <span class="at">type</span>
+                        ="application/ld+json"<span class="tg">&gt;</span> Product
+                        <br />
+                        <span class="tg">&lt;section</span> <span class="at">id</span>="details"
+                        <span class="tg">&gt;</span> {f.render.demo.words}
+                      </div>
+                    </div>
+                  )}
+                  {x.id === 'ai' && (
+                    <div class="pcard" style="padding-top:6px">
+                      {f.ai.demo.rows.map((r, i) => (
+                        <div
+                          class:list={['prow', { hlrow: r.hl }]}
+                          style={i === 0 ? 'border-top:none' : undefined}
+                        >
+                          <Mark name={r.mark} size={22} />
+                          <span class="grow" style="font-weight:600">
+                            {r.label}
+                          </span>
+                          <span class={`pill ${r.tone}`}>
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="3"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              set:html={toneIcon(r.tone, true)}
+                            />
+                            {r.status}
+                          </span>
+                        </div>
+                      ))}
+                      <div class="prow">
+                        <span class="mono grow" style="font-size:12.5px">
+                          {f.ai.demo.llms}
+                        </span>
+                        <span class="pill mute">
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            set:html={ICON.dash}
+                          />
+                          {f.ai.demo.llmsStatus}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="how" class="sec-plain">
+        <div class="wrap">
+          <div class="col16" style="margin-bottom:48px">
+            <span class="eyebrow">{c.how.eyebrow}</span>
+            <h2 class="disp h2">{c.how.title}</h2>
+          </div>
+          <div class="r-3 grid3" style="position:relative">
+            <span class="dash" aria-hidden="true"></span>
+            {c.how.steps.map((s, i) => (
+              <div class="card step">
+                <span class="stepn disp">{i + 1}</span>
+                <div class="col8">
+                  <h3 class="disp" style="font-size:20px">
+                    {s.title}
+                  </h3>
+                  <p class="step-x">
+                    {s.text}
+                    {s.key && (
+                      <>
+                        {' '}
+                        <kbd class="kbd">{s.key}</kbd>
+                        {s.textEnd}
+                      </>
+                    )}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="audit" class="night sec-audit">
+        <span class="glow g4"></span>
+        <div class="wrap r-1 grid2">
+          <div class="col22">
+            <span class="eyebrow" style="color:var(--lime)">
+              {c.audit.eyebrow}
+            </span>
+            <h2 class="disp h2" style="color:#FFFFFF">
+              {c.audit.titleStart} <span style="color:var(--lime)">{c.audit.titleHighlight}</span>{' '}
+              {c.audit.titleEnd}
+            </h2>
+            <p class="soft audit-x">{c.audit.text}</p>
+            <div class="audit-cta">
+              <a class="btn btn-l" href={cta('audit_cta')}>
+                {c.audit.cta}
+                <svg
+                  class="arr"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  set:html={ICON.arrow}
+                />
+              </a>
+              <span class="from">
+                {c.audit.from} <u>{t.ownerName}</u>
+              </span>
+            </div>
+          </div>
+          <div class="paper-w r-paper" aria-hidden="true">
+            <div class="paper2"></div>
+            <div class="paper">
+              <div class="between">
+                <Logo brand="serpline" theme="light" size={22} label="" />
+                <span class="pp-date">{c.audit.paper.date}</span>
+              </div>
+              <div>
+                <span class="pp-eye">{c.audit.paper.eyebrow}</span>
+                <div class="disp pp-host">{c.audit.paper.host}</div>
+              </div>
+              <div class="pp-tiles">
+                <div class="pt-b">
+                  <b class="disp">56</b>
+                  <div>{c.audit.paper.score}</div>
+                </div>
+                <div class="pt-r">
+                  <b class="disp">2</b>
+                  <div>
+                    <svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      set:html={ICON.alert}
+                    />
+                    {c.audit.paper.high}
+                  </div>
+                </div>
+                <div class="pt-w">
+                  <b class="disp">6</b>
+                  <div>
+                    <svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      set:html={ICON.alert}
+                    />
+                    {c.audit.paper.medium}
+                  </div>
+                </div>
+              </div>
+              <div class="pp-rows">
+                {c.audit.paper.rows.map((r) => (
+                  <div class="pp-row">
+                    <span class={`pill ${r.tone} pp-pill`}>
+                      <svg
+                        width="8"
+                        height="8"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        set:html={ICON.alert}
+                      />
+                      {r.label}
+                    </span>
+                    <span>
+                      <b>{r.strong}</b>
+                      {r.text && ` ${r.text}`}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div class="pp-cta">
+                <span>{c.audit.paper.ctaText}</span>
+                <span class="pp-btn">{c.audit.paper.ctaButton}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="privacy" class="priv">
+        <div class="wrap r-1 grid-priv">
+          <div class="col18">
+            <span class="eyebrow" style="color:#1A2E05">
+              {c.privacy.eyebrow}
+            </span>
+            <h2 class="disp h2">{c.privacy.title}</h2>
+          </div>
+          <div class="r-2 grid2s">
+            {c.privacy.items.map((x) => (
+              <div class="pv">
+                <span class="ic" aria-hidden="true">
+                  {x.icon === 'server' && (
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="4" width="18" height="7" rx="2" />
+                      <rect x="3" y="13" width="18" height="7" rx="2" />
+                      <path d="M3 3l18 18" />
+                    </svg>
+                  )}
+                  {x.icon === 'lock' && (
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                    </svg>
+                  )}
+                  {x.icon === 'chart' && (
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M3 3v18h18" />
+                      <path d="M7 15l4-4 3 3 5-6" />
+                      <path d="M4 4l16 16" />
+                    </svg>
+                  )}
+                  {x.icon === 'code' && (
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+                    </svg>
+                  )}
+                </span>
+                <b class="pv-t">{x.title}</b>
+                <span class="pv-x">{x.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="sec-plain">
+        <div class="wrap r-1 grid-faq">
+          <div class="col16">
+            <span class="eyebrow">{c.faq.eyebrow}</span>
+            <h2 class="disp h2">{c.faq.title}</h2>
+            <p class="faq-ask">
+              {c.faq.askBefore}{' '}
+              <a class="ask" href={cta('faq')}>
+                {c.faq.askLink}
+              </a>
+            </p>
+          </div>
+          <div class="faq">
+            {c.faq.items.map((x, i) => (
+              <details open={i === 0}>
+                <summary>
+                  {x.q}
+                  <span class="pm" aria-hidden="true">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.8"
+                      stroke-linecap="round"
+                    >
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </span>
+                </summary>
+                <p>{x.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="night sec-more">
+        <div class="wrap">
+          <div class="col16" style="margin-bottom:40px">
+            <span class="eyebrow" style="color:var(--lime)">
+              {c.more.eyebrow}
+            </span>
+            <h2 class="disp h2" style="color:#FFFFFF">
+              {c.more.title}
+            </h2>
+          </div>
+          <div class="r-4 grid4">
+            {others.map((o) =>
+              o.href ? (
+                <a class="tool" style={`--c:${o.bright}`} href={o.href}>
+                  <Logo brand={o.slug} theme="dark" size={30} />
+                  <span class="soft tool-x">{o.text}</span>
+                  <span class="go">
+                    {o.open}
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      set:html={ICON.arrow}
+                    />
+                  </span>
+                </a>
+              ) : (
+                <div class="tool" style={`--c:${o.bright}`}>
+                  <Logo brand={o.slug} theme="dark" size={30} />
+                  <span class="soft tool-x">{o.text}</span>
+                  <span class="go soon-go">{t.status.soon}</span>
+                </div>
+              ),
+            )}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="night lp-foot">
+      <div class="wrap r-foot">
+        <Logo brand="serpline" theme="dark" size={24} />
+        <span>
+          {c.footer.builtBy}{' '}
+          <a class="owner" href={cta('footer')}>
+            {t.ownerName}
+          </a>
+        </span>
+        <span class="grow"></span>
+        <a class="nl" href={localePath(locale, '/')}>
+          {t.footer.allTools}
+        </a>
+        <a class="nl" href={localePath(locale, '/privacy/serpline')}>
+          {c.footer.privacy}
+        </a>
+        <a class="nl" href={SOURCE_URL}>
+          {c.footer.source}
+        </a>
+        {Boolean((import.meta.env.PUBLIC_GTM_ID as string | undefined)?.trim()) && (
+          <button type="button" class="nl" data-cookie-settings>
+            {t.footer.cookies}
+          </button>
+        )}
+      </div>
+    </footer>
+  </div>
+</Base>
+
+<script>
+  import { mountSerpPreview } from '../scripts/serp-preview.ts';
+  document.querySelectorAll<HTMLElement>('[data-serp-preview]').forEach(mountSerpPreview);
+</script>

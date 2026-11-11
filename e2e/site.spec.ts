@@ -14,9 +14,12 @@ test.describe('site', () => {
     await expect(page.locator('.tc')).toHaveCount(5);
     await expect(page.locator('.tc .soon')).toHaveCount(5);
     await expect(page.locator('.tc a.add')).toHaveCount(0);
-    // Hitline has its landing since Faza 3; the others get one in their own phase.
-    await expect(page.locator('a[href="/hitline"]').first()).toBeVisible();
-    for (const slug of TOOL_SLUGS.filter((s) => s !== 'hitline')) {
+    // Hitline (Faza 3) and Serpline (Faza 4) have landings; the others get one in their own phase.
+    const withLanding = ['hitline', 'serpline'];
+    for (const slug of withLanding) {
+      await expect(page.locator(`a[href="/${slug}"]`).first()).toBeVisible();
+    }
+    for (const slug of TOOL_SLUGS.filter((s) => !withLanding.includes(s))) {
       await expect(page.locator(`a[href="/${slug}"]`)).toHaveCount(0);
     }
   });

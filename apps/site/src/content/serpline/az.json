@@ -1,0 +1,442 @@
+{
+  "meta": {
+    "title": "Serpline: Google, ChatGPT və s. üçün pulsuz SEO yoxlayıcı",
+    "description": "Pulsuz Chrome extension. Açıq olan səhifə üçün texniki SEO yoxlamaları, JavaScript render, Google önizləməsi və AI crawler girişi bir yan paneldə.",
+    "ogAlt": "Serpline: səhifəni Google və AI necə görürsə, elə gör."
+  },
+  "nav": {
+    "label": "Serpline bölmələri",
+    "preview": "SERP önizləmə",
+    "features": "İmkanlar",
+    "how": "Necə işləyir",
+    "privacy": "Məxfilik",
+    "faq": "Suallar"
+  },
+  "add": {
+    "nav": "Chrome-a əlavə et",
+    "hero": "Chrome-a əlavə et, pulsuzdur",
+    "band": "Serpline-ı Chrome-a əlavə et",
+    "soonNav": "Tezliklə",
+    "soonHero": "Tezliklə Chrome-da"
+  },
+  "hero": {
+    "pill": "Pulsuz Chrome extension",
+    "titleStart": "Səhifəni",
+    "titleHighlight": "Google və AI",
+    "titleEnd": "necə görürsə, elə gör.",
+    "lead": "Açıq olan səhifə üçün texniki SEO yoxlamaları, JavaScript render və AI crawler girişi, hamısı bir Chrome yan panelində.",
+    "secondary": "SERP önizləməni yoxla",
+    "trustLabel": "Serpline",
+    "trust": ["Hesab lazım deyil", "Heç nə brauzerdən çıxmır", "Açıq mənbə"],
+    "mock": {
+      "url": "example.com/products/wireless-headphones-pro-x",
+      "rendered": "Render",
+      "raw": "Raw HTML",
+      "scoreAria": "SEO skoru 56",
+      "label": "Düzəliş lazımdır",
+      "issues": "10 problem tapıldı",
+      "rows": [
+        { "label": "Title", "status": "Sığır", "tone": "ok" },
+        { "label": "Description", "status": "Kəsilir", "tone": "warn" },
+        { "label": "Canonical", "status": "Bu səhifə", "tone": "ok" },
+        { "label": "H1", "status": "Yalnız JS", "tone": "bad" },
+        { "label": "Alt mətn", "status": "3 yoxdur", "tone": "warn" },
+        { "label": "Schema", "status": "Yalnız JS", "tone": "warn" },
+        { "label": "GPTBot", "status": "İcazə var", "tone": "ok" },
+        { "label": "PerplexityBot", "status": "Bloklanıb", "tone": "bad" }
+      ]
+    },
+    "serp": {
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging",
+      "note": "Description 107 simvoldan sonra kəsilir"
+    },
+    "toast": { "value": "91%", "line1": "mətn JavaScript-dən", "line2": "asılıdır" }
+  },
+  "marquee": {
+    "title": "Axtarış sistemlərinin və AI crawler-lərin nə gördüyünü yoxlayır",
+    "items": [
+      { "mark": "google", "label": "Google önizləmə" },
+      { "mark": "openai", "label": "GPTBot" },
+      { "mark": "openai", "label": "OAI-SearchBot" },
+      { "mark": "openai", "label": "ChatGPT-User" },
+      { "mark": "anthropic", "label": "ClaudeBot" },
+      { "mark": "anthropic", "label": "Claude-SearchBot" },
+      { "mark": "perplexity", "label": "PerplexityBot" },
+      { "mark": "google", "label": "Google-Extended" },
+      { "mark": "apple", "label": "Applebot-Extended" },
+      { "mark": "bytedance", "label": "Bytespider" },
+      { "mark": "meta", "label": "Meta-ExternalAgent" },
+      { "mark": "bot", "label": "CCBot" },
+      { "mark": "file", "label": "robots.txt", "code": true },
+      { "mark": "file", "label": "llms.txt", "code": true },
+      { "mark": "link", "label": "rel=canonical", "code": true },
+      { "mark": "eye", "label": "Meta robots" },
+      { "mark": "globe", "label": "hreflang", "code": true },
+      { "mark": "braces", "label": "JSON-LD" },
+      { "mark": "share", "label": "Open Graph" }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Problem",
+    "title": "Səhifə qaydasında görünür. Crawler-lər başqa şey oxuyur.",
+    "lead": "SEO problemlərinin çoxu ekranda görünmür, ona görə trafik düşənə qədər heç kim fərqinə varmır.",
+    "cards": [
+      {
+        "title": "JavaScript-dən asılı məzmun",
+        "text": "Brauzerin səhifəni tam göstərir. Crawler-in yüklədiyi HTML isə boş qabıq ola bilər, AI crawler-lərin çoxu da onu dolduran skriptləri heç işə salmır."
+      },
+      {
+        "title": "Google-da kəsilən snippet-lər",
+        "text": "Uzun title və ya description üç nöqtə ilə bitir. Klik qazanmalı olan cümlə heç görünmür."
+      },
+      {
+        "title": "Təsadüfən bloklanan AI crawler-lər",
+        "text": "robots.txt-dəki köhnə bir sətir saytı aylarla ChatGPT, Claude və ya Perplexity cavablarından kənarda saxlaya bilər."
+      }
+    ],
+    "mini": {
+      "raw": "Raw HTML",
+      "rawWords": "38 söz",
+      "after": "JavaScript-dən sonra",
+      "afterWords": "412 söz",
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two",
+      "blocked": "Bloklanıb"
+    }
+  },
+  "preview": {
+    "eyebrow": "Pulsuz alət",
+    "title": "Google nəticəni dərc etməzdən əvvəl gör.",
+    "lead": "Title və description yaz. Google-un onları desktop və mobildə harada kəsdiyini gör. Hər şey bu səhifədə işləyir və heç yerə heç nə göndərilmir.",
+    "titleLabel": "Səhifə title-ı",
+    "titleDefault": "Wireless Headphones Pro X | Lumo",
+    "titlePlaceholder": "Wireless Headphones Pro X | Lumo",
+    "descLabel": "Meta description",
+    "descDefault": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once. Free next-day delivery and free returns within 14 days on all Lumo Audio headphones.",
+    "descPlaceholder": "Səhifə haqqında bir-iki cümlə",
+    "urlLabel": "URL",
+    "urlDefault": "https://example.com/products/wireless-headphones-pro-x",
+    "googlePreview": "Google önizləmə",
+    "deviceLabel": "Önizləmə cihazı",
+    "desktop": "Desktop",
+    "mobile": "Mobil",
+    "measure": "{chars} simvol, {limit} px-dən {px}",
+    "fits": "Sığır",
+    "cut": "{n} simvoldan sonra kəsilir",
+    "addTitle": "Title yaz",
+    "addDesc": "Description yaz",
+    "emptyTitle": "Səhifənin title-ı",
+    "emptyDesc": "Google mətni səhifədən özü seçəcək.",
+    "note": "Limitlər piksellə ölçülür və təxminidir. Google title və snippet-i dəyişə bilər.",
+    "band": "Yalnız snippet-i yox, bütün səhifəni yoxla."
+  },
+  "features": {
+    "eyebrow": "Yan panelin içində",
+    "title": "Beş tab. Bir yan panel.",
+    "tabsLabel": "Serpline tabları",
+    "summary": {
+      "label": "Summary",
+      "title": "Panel açılan kimi skor və yoxlama siyahısı.",
+      "lead": "Title, description, canonical, robots, H1, alt mətn, strukturlaşdırılmış data və Open Graph, hər biri aydın statusla.",
+      "bullets": [
+        "Prioritetə görə hesablanan 100 üzərindən bir skor",
+        "Desktop və mobil üçün Google önizləməsi",
+        "Hər problem və onun həlli ilə audit PDF"
+      ],
+      "demo": {
+        "scoreAria": "SEO skoru 56",
+        "label": "SEO skoru: düzəliş lazımdır",
+        "counts": "2 yüksək, 6 orta, 2 aşağı",
+        "rows": [
+          { "label": "Title", "status": "32 simvol", "tone": "ok" },
+          { "label": "Meta description", "status": "Google-da kəsilir", "tone": "warn" },
+          { "label": "Canonical", "status": "Bu səhifəni göstərir", "tone": "ok" },
+          { "label": "H1", "status": "Yalnız JavaScript-dən sonra", "tone": "bad", "hl": true },
+          { "label": "Open Graph", "status": "og:description yoxdur", "tone": "warn" }
+        ]
+      }
+    },
+    "headings": {
+      "label": "Headings",
+      "title": "Crawler-lərin gördüyü struktur, səhifənin üstündə işarələnmiş.",
+      "lead": "Atlanan səviyyələr və təkrar H1-lərlə H1-dən H6-ya qədər ağac, üstəlik alt mətni olmayan hər şəkil.",
+      "bullets": [
+        "Səhifədəki çərçivələr hər başlığın harada olduğunu göstərir",
+        "Yalnız JavaScript-dən sonra yaranan başlıqlar işarələnir"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "level": 1,
+            "text": "Wireless Headphones Pro X",
+            "status": "Yalnız JavaScript",
+            "tone": "bad"
+          },
+          { "level": 2, "text": "Product details" },
+          { "level": 3, "text": "Noise cancelling" },
+          { "level": 2, "text": "Specifications" },
+          {
+            "level": 4,
+            "text": "Bluetooth 5.3",
+            "status": "H3 atlanıb",
+            "tone": "warn",
+            "hl": true
+          },
+          { "level": 2, "text": "Reviews (128)" }
+        ]
+      }
+    },
+    "links": {
+      "label": "Links",
+      "title": "Sınıq və yönləndirilən linklər, birbaşa səhifənin özündən.",
+      "lead": "Anchor mətni ilə daxili, xarici və nofollow linklər. Daxili linklərin statusunu brauzerin real yoxlayır.",
+      "bullets": [
+        "404-lər və yönləndirmə zəncirləri bir siyahıda",
+        "Yalnız açıq olduğun sayta sorğu gedir"
+      ],
+      "demo": {
+        "internal": "daxili",
+        "external": "xarici",
+        "issues": "problem",
+        "rows": [
+          {
+            "text": "Earbuds Mini",
+            "path": "/products/earbuds-mini-old",
+            "status": "404",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "text": "Headphones",
+            "path": "/headphones → /electronics/headphones",
+            "status": "301",
+            "tone": "warn"
+          },
+          {
+            "text": "Free returns",
+            "path": "/returns → /help/returns",
+            "status": "301",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "render": {
+      "label": "Render",
+      "title": "Raw HTML render olunmuş səhifənin yanında.",
+      "lead": "Serpline səhifənin mənbəyini bir dəfə yükləyir və JavaScript-in qurduğu ilə müqayisə edir: başlıqlar, sözlər, linklər və strukturlaşdırılmış data.",
+      "bullets": [
+        "Hansı elementlərin JavaScript-dən asılı olduğunu dəqiq göstərir",
+        "SEO extension-ların çoxunun atladığı yoxlama"
+      ],
+      "demo": {
+        "raw": "Raw HTML",
+        "rawValue": "38 söz, H1 yoxdur",
+        "rendered": "Render",
+        "renderedValue": "412 söz, 1 H1",
+        "words": "374 söz"
+      }
+    },
+    "ai": {
+      "label": "AI",
+      "title": "Hansı AI crawler-lər saytı oxuya bilir və nə görürlər.",
+      "lead": "robots.txt-dən GPTBot, ClaudeBot, PerplexityBot, Google-Extended və başqaları üçün qaydalar, axtarış və təlim botlarına bölünmüş, üstəlik llms.txt.",
+      "bullets": [
+        "Hər bloklamanın arxasındakı dəqiq robots.txt sətri",
+        "JavaScript işlətməyən crawler səhifənin nə qədərini oxuyur"
+      ],
+      "demo": {
+        "rows": [
+          { "mark": "openai", "label": "GPTBot", "status": "İcazə var", "tone": "ok" },
+          { "mark": "anthropic", "label": "ClaudeBot", "status": "İcazə var", "tone": "ok" },
+          {
+            "mark": "perplexity",
+            "label": "PerplexityBot",
+            "status": "Bloklanıb",
+            "tone": "bad",
+            "hl": true
+          },
+          { "mark": "google", "label": "Google-Extended", "status": "İcazə var", "tone": "ok" },
+          { "mark": "commoncrawl", "label": "CCBot", "status": "Bloklanıb", "tone": "bad" }
+        ],
+        "llms": "llms.txt",
+        "llmsStatus": "Tapılmadı"
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Necə işləyir",
+    "title": "Üç addım, quraşdırma yoxdur.",
+    "steps": [
+      {
+        "title": "Serpline-ı Chrome-a əlavə et",
+        "text": "Chrome Web Store-dan pulsuz. Hesab açmaq lazım deyil."
+      },
+      {
+        "title": "Səhifə aç, ikona bas",
+        "text": "Yan panel səhifənin yanında açılır və onu yoxlayır. Və ya bas:",
+        "key": "Alt+Shift+S",
+        "textEnd": "."
+      },
+      {
+        "title": "Audit PDF-i yüklə",
+        "text": "Hər problem həlli ilə birlikdə, developerə göndərməyə hazır."
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "Audit PDF",
+    "titleStart": "Problem tapdın?",
+    "titleHighlight": "Onları Serpline-ı quran adam",
+    "titleEnd": "düzəltsin.",
+    "text": "Bir klik tapıntıları prioritetli hesabata çevirir. Onu developerə göndər, ya da mənə: texniki SEO, server-side render, strukturlaşdırılmış data və AI axtarışda görünmə ilə bağlı problemləri düzəldirəm.",
+    "cta": "SEO audit istə",
+    "from": "Müəllif:",
+    "paper": {
+      "date": "7 noy 2026",
+      "eyebrow": "SEO və AI axtarış auditi",
+      "host": "example.com",
+      "score": "skor",
+      "high": "yüksək",
+      "medium": "orta",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Yüksək",
+          "strong": "H1 yalnız JavaScript-dən sonra görünür.",
+          "text": "Onu serverdə render et."
+        },
+        {
+          "tone": "bad",
+          "label": "Yüksək",
+          "strong": "Mətnin 91%-i JavaScript-dən asılıdır.",
+          "text": ""
+        },
+        {
+          "tone": "warn",
+          "label": "Orta",
+          "strong": "PerplexityBot bloklanıb.",
+          "text": "robots.txt-dəki qaydanı sil."
+        }
+      ],
+      "ctaText": "Düzəltməkdə kömək lazımdır?",
+      "ctaButton": "Əlaqə saxla"
+    }
+  },
+  "privacy": {
+    "eyebrow": "Məxfilik",
+    "title": "Səhifələrin brauzerində qalır.",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Server yoxdur",
+        "text": "Bütün yoxlamalar Chrome-un içində gedir. Serpline-ın səhifələri göndərə biləcəyi backend yoxdur."
+      },
+      {
+        "icon": "lock",
+        "title": "Minimum icazə",
+        "text": "Aktiv tab, yan panel və lokal ayarlar. Bütün saytlarına giriş yoxdur."
+      },
+      {
+        "icon": "chart",
+        "title": "İçində analitika yoxdur",
+        "text": "Extension səni izləmir. Paneli bağlayanda nəticələr yox olur."
+      },
+      {
+        "icon": "code",
+        "title": "Açıq mənbə",
+        "text": "Kodu oxu və bu səhifədəki hər iddianı özün yoxla."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Suallar",
+    "title": "Suallar",
+    "askBefore": "Başqa sualın var?",
+    "askLink": "Birbaşa məndən soruş",
+    "items": [
+      {
+        "q": "Serpline həqiqətən pulsuzdur?",
+        "a": "Bəli. Pullu plan, hesab və istifadə limiti yoxdur."
+      },
+      {
+        "q": "Ahrefs və ya Screaming Frog-dan nə ilə fərqlənir?",
+        "a": "Onlar bütün saytı serverdən və ya kompüterindən crawl edir. Serpline isə açıq olan səhifəni brauzerinin içində yoxlayır, JavaScript-dən sonra nəyin dəyişdiyi və AI crawler-lərin nəyi oxuya bildiyi də daxil. Onlarla yanaşı yaxşı işləyir."
+      },
+      {
+        "q": "AI axtarışı necə yoxlayır?",
+        "a": "Saytdakı robots.txt və llms.txt fayllarını oxuyur, hər tanınmış AI crawler üçün qaydaları uyğunlaşdırır və raw HTML-i render olunmuş səhifə ilə müqayisə edir, çünki AI crawler-lərin çoxu JavaScript işlətmir."
+      },
+      {
+        "q": "Bütün saytımı crawl edir?",
+        "a": "Xeyr. Açıq səhifəni, saytın robots.txt və llms.txt fayllarını və həmin səhifədəki daxili linklərin statusunu yoxlayır."
+      },
+      {
+        "q": "Səhifələrimi haraya isə göndərir?",
+        "a": "Xeyr. Sorğular yalnız açıq olduğun sayta, öz brauzerindən gedir. Heç nə mənə və ya başqasına çatmır."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Line ailəsi",
+    "title": "Eyni ailədən daha çox pulsuz alət",
+    "tools": {
+      "hitline": {
+        "text": "Hər tracking hit, GTM tag və consent siqnalı DevTools-da.",
+        "open": "Hitline-ı aç"
+      },
+      "rivaline": {
+        "text": "Rəqibin texnologiyaları, reklamları və brend stili bir paneldə.",
+        "open": "Rivaline-ı aç"
+      },
+      "foldline": {
+        "text": "Landing səhifəsinin konversiyasına nəyin mane olduğunu tap.",
+        "open": "Foldline-ı aç"
+      },
+      "markline": {
+        "text": "Saniyələr içində ekran şəkli çək, qeyd et və rəy paylaş.",
+        "open": "Markline-ı aç"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Müəllif:",
+    "privacy": "Məxfilik siyasəti",
+    "source": "Mənbə kodu"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Getməyinə təəssüf edirik | Serpline",
+      "description": "Serpline-ı niyə sildiyini yaz. Bir klik növbəti versiyanı daha yaxşı edir."
+    },
+    "titleStart": "Serpline silindi.",
+    "titleEnd": "Niyə getdin?",
+    "lead": "Bir klik növbəti versiyanı daha yaxşı edir.",
+    "reasonsLabel": "Səbəb",
+    "reasons": [
+      "Saytımdakı problemləri tapmadı",
+      "Cəmi bir dəfə lazım idi",
+      "Başa düşmək çətindir",
+      "Başqa alətdən istifadə edirəm"
+    ],
+    "moreLabel": "Başqa nəsə?",
+    "optional": "(istəyə bağlı)",
+    "placeholder": "Hansı səhifəni və ya yoxlamanı buraxdı?",
+    "send": "Rəyi göndər",
+    "sending": "Göndərilir...",
+    "thanks": "Təşəkkürlər. Rəyin göndərildi.",
+    "error": "Göndərmək alınmadı. Bir dəqiqədən sonra yenə yoxla.",
+    "pickOne": "Bir səbəb seç və ya bir neçə söz yaz.",
+    "reinstall": "Serpline-ı yenidən quraşdır",
+    "card": {
+      "eyebrow": "SEO problemin hələ də var?",
+      "title": "Auditini edib düzəldə bilərəm.",
+      "text": "Texniki SEO, JavaScript render, strukturlaşdırılmış data və AI axtarışda görünmə. Nəyin xarab olduğunun aydın siyahısını və developerlərinin tətbiq edə biləcəyi həlləri alırsan.",
+      "cta": "SEO audit istə",
+      "sub": "Şəmistan İsayev, texniki SEO və analitika"
+    }
+  }
+}

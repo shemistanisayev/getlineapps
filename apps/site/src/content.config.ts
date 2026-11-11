@@ -2,6 +2,7 @@ import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import {
   hitlineSchema,
+  serplineSchema,
   hubSchema,
   privacyPageSchema,
   privacyToolSchema,
@@ -50,5 +51,10 @@ export const collections = {
   hitline: defineCollection({
     loader: glob({ pattern: '*.json', base: 'src/content/hitline', generateId: byFileName }),
     schema: hitlineSchema,
+  }),
+  /** Serpline landing and uninstall page: serpline/en.json, serpline/az.json. */
+  serpline: defineCollection({
+    loader: glob({ pattern: '*.json', base: 'src/content/serpline', generateId: byFileName }),
+    schema: serplineSchema,
   }),
 };

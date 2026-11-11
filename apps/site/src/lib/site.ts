@@ -66,6 +66,10 @@ export async function getHitline(locale: Locale) {
   return (await must(getEntry('hitline', locale), `hitline/${locale}.json`)).data;
 }
 
+export async function getSerpline(locale: Locale) {
+  return (await must(getEntry('serpline', locale), `serpline/${locale}.json`)).data;
+}
+
 /** Store button state from tools.json: a live tool links to its listing, a soon tool says so. */
 export async function getTool(slug: ToolSlug) {
   const tool = (await getTools()).find((t) => t.slug === slug);

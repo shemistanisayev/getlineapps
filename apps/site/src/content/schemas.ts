@@ -213,6 +213,26 @@ const featureTab = z.object({
   bullets: bullets3,
 });
 
+/** Uninstall feedback page, shared by every tool (/<tool>/uninstalled). */
+export const uninstallSchema = z.object({
+  meta: z.object({ title: text, description: text }),
+  titleStart: text,
+  titleEnd: text,
+  lead: text,
+  reasonsLabel: text,
+  reasons: z.array(text).length(4),
+  moreLabel: text,
+  optional: text,
+  placeholder: text,
+  send: text,
+  sending: text,
+  thanks: text,
+  error: text,
+  pickOne: text,
+  reinstall: text,
+  card: z.object({ eyebrow: text, title: text, text, cta: text, sub: text }),
+});
+
 /** The Hitline landing (/hitline): design/hitline/Landing.dc.html. */
 export const hitlineSchema = z.object({
   meta: z.object({ title: text, description: text, ogAlt: text }),
@@ -361,27 +381,223 @@ export const hitlineSchema = z.object({
     }),
   }),
   footer: z.object({ builtBy: text, privacy: text, source: text }),
-  uninstall: z.object({
-    meta: z.object({ title: text, description: text }),
+  uninstall: uninstallSchema,
+});
+
+/** Status pill on the Serpline landing: always drawn with its icon (status colors rule). */
+const tone = z.enum(['ok', 'warn', 'bad', 'mute']);
+const statusRow = z.object({ label: text, status: text, tone, hl: z.boolean().optional() });
+/** Brand marks the Serpline landing shows (@line/ui marks, plus the "CC" letters for CCBot). */
+const slMark = z.enum([
+  'google',
+  'openai',
+  'anthropic',
+  'perplexity',
+  'apple',
+  'bytedance',
+  'meta',
+  'bot',
+  'file',
+  'link',
+  'eye',
+  'globe',
+  'braces',
+  'share',
+  'commoncrawl',
+]);
+const slTab = z.object({ label: text, title: text, lead: text, bullets: z.array(text).min(2) });
+
+/** The Serpline landing (/serpline): design/serpline/Landing.dc.html. */
+export const serplineSchema = z.object({
+  meta: z.object({ title: text, description: text, ogAlt: text }),
+  nav: z.object({
+    label: text,
+    preview: text,
+    features: text,
+    how: text,
+    privacy: text,
+    faq: text,
+  }),
+  add: z.object({ nav: text, hero: text, band: text, soonNav: text, soonHero: text }),
+  hero: z.object({
+    pill: text,
     titleStart: text,
+    titleHighlight: text,
     titleEnd: text,
     lead: text,
-    reasonsLabel: text,
-    reasons: z.array(text).length(4),
-    moreLabel: text,
-    optional: text,
-    placeholder: text,
-    send: text,
-    sending: text,
-    thanks: text,
-    error: text,
-    pickOne: text,
-    reinstall: text,
-    card: z.object({ eyebrow: text, title: text, text, cta: text, sub: text }),
+    secondary: text,
+    trustLabel: text,
+    trust: z.array(text).length(3),
+    mock: z.object({
+      url: text,
+      rendered: text,
+      raw: text,
+      scoreAria: text,
+      label: text,
+      issues: text,
+      rows: z.array(statusRow).min(4),
+    }),
+    serp: z.object({ crumb: text, title: text, desc: text, note: text }),
+    toast: z.object({ value: text, line1: text, line2: text }),
   }),
+  marquee: z.object({
+    title: text,
+    items: z.array(z.object({ mark: slMark, label: text, code: z.boolean().optional() })).min(4),
+  }),
+  problem: z.object({
+    eyebrow: text,
+    title: text,
+    lead: text,
+    cards: z.array(z.object({ title: text, text })).length(3),
+    mini: z.object({
+      raw: text,
+      rawWords: text,
+      after: text,
+      afterWords: text,
+      crumb: text,
+      title: text,
+      desc: text,
+      blocked: text,
+    }),
+  }),
+  preview: z.object({
+    eyebrow: text,
+    title: text,
+    lead: text,
+    titleLabel: text,
+    titleDefault: text,
+    titlePlaceholder: text,
+    descLabel: text,
+    descDefault: text,
+    descPlaceholder: text,
+    urlLabel: text,
+    urlDefault: text,
+    googlePreview: text,
+    deviceLabel: text,
+    desktop: text,
+    mobile: text,
+    measure: text,
+    fits: text,
+    cut: text,
+    addTitle: text,
+    addDesc: text,
+    emptyTitle: text,
+    emptyDesc: text,
+    note: text,
+    band: text,
+  }),
+  features: z.object({
+    eyebrow: text,
+    title: text,
+    tabsLabel: text,
+    summary: slTab.extend({
+      demo: z.object({
+        scoreAria: text,
+        label: text,
+        counts: text,
+        rows: z.array(statusRow).min(1),
+      }),
+    }),
+    headings: slTab.extend({
+      demo: z.object({
+        rows: z
+          .array(
+            z.object({
+              level: z.number().int().min(1).max(6),
+              text,
+              status: text.optional(),
+              tone: tone.optional(),
+              hl: z.boolean().optional(),
+            }),
+          )
+          .min(1),
+      }),
+    }),
+    links: slTab.extend({
+      demo: z.object({
+        internal: text,
+        external: text,
+        issues: text,
+        rows: z
+          .array(z.object({ text, path: text, status: text, tone, hl: z.boolean().optional() }))
+          .min(1),
+      }),
+    }),
+    render: slTab.extend({
+      demo: z.object({
+        raw: text,
+        rawValue: text,
+        rendered: text,
+        renderedValue: text,
+        words: text,
+      }),
+    }),
+    ai: slTab.extend({
+      demo: z.object({
+        rows: z.array(statusRow.extend({ mark: slMark })).min(1),
+        llms: text,
+        llmsStatus: text,
+      }),
+    }),
+  }),
+  how: z.object({
+    eyebrow: text,
+    title: text,
+    steps: z
+      .array(z.object({ title: text, text, key: text.optional(), textEnd: z.string().optional() }))
+      .length(3),
+  }),
+  audit: z.object({
+    eyebrow: text,
+    titleStart: text,
+    titleHighlight: text,
+    titleEnd: text,
+    text,
+    cta: text,
+    from: text,
+    paper: z.object({
+      date: text,
+      eyebrow: text,
+      host: text,
+      score: text,
+      high: text,
+      medium: text,
+      rows: z.array(z.object({ tone, label: text, strong: text, text: z.string() })).length(3),
+      ctaText: text,
+      ctaButton: text,
+    }),
+  }),
+  privacy: z.object({
+    eyebrow: text,
+    title: text,
+    items: z
+      .array(z.object({ icon: z.enum(['server', 'lock', 'chart', 'code']), title: text, text }))
+      .length(4),
+  }),
+  faq: z.object({
+    eyebrow: text,
+    title: text,
+    askBefore: text,
+    askLink: text,
+    items: z.array(z.object({ q: text, a: text })).min(1),
+  }),
+  more: z.object({
+    eyebrow: text,
+    title: text,
+    tools: z.object({
+      hitline: z.object({ text, open: text }),
+      rivaline: z.object({ text, open: text }),
+      foldline: z.object({ text, open: text }),
+      markline: z.object({ text, open: text }),
+    }),
+  }),
+  footer: z.object({ builtBy: text, privacy: text, source: text }),
+  uninstall: uninstallSchema,
 });
 
 export type Tools = z.infer<typeof toolsSchema>;
+export type Serpline = z.infer<typeof serplineSchema>;
+export type Uninstall = z.infer<typeof uninstallSchema>;
 export type Hitline = z.infer<typeof hitlineSchema>;
 export type Shared = z.infer<typeof sharedSchema>;
 export type Hub = z.infer<typeof hubSchema>;

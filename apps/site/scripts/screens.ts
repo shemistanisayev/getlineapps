@@ -15,7 +15,8 @@ const pages = (process.env.PAGES ?? '/,/az,/privacy/hitline,/az/privacy/markline
   .filter(Boolean);
 
 mkdirSync(out, { recursive: true });
-const browser = await chromium.launch();
+// Chromium for Testing does not start on some Windows machines; Edge renders the same.
+const browser = await chromium.launch().catch(() => chromium.launch({ channel: 'msedge' }));
 for (const width of widths) {
   const ctx = await browser.newContext({
     viewport: { width, height: 900 },

@@ -25,6 +25,9 @@ test.describe('a11y: getlineapps.com', () => {
     '/hitline',
     '/az/hitline',
     '/hitline/uninstalled',
+    '/serpline',
+    '/az/serpline',
+    '/serpline/uninstalled',
     '/privacy/hitline',
     '/404',
   ]) {

@@ -10,6 +10,7 @@ import { TOOL_SLUGS, type ToolSlug } from '@line/core/site';
 import {
   hitlineSchema,
   hubSchema,
+  serplineSchema,
   privacyPageSchema,
   privacyToolSchema,
   sharedSchema,
@@ -52,6 +53,7 @@ describe('site content', () => {
       privacyPageSchema.parse(read(`privacy/page.${l}.json`));
       for (const s of TOOL_SLUGS) privacyToolSchema.parse(read(`privacy/${s}.${l}.json`));
       hitlineSchema.parse(read(`hitline/${l}.json`));
+      serplineSchema.parse(read(`serpline/${l}.json`));
     }
   });
 
@@ -141,6 +143,31 @@ describe('hitline landing content', () => {
       expect(h.features.plan.demo.count).toMatch(new RegExp(`^${total} `));
       expect(h.hero.rows.some((r) => r.route === 'bad')).toBe(true);
     }
+  });
+});
+
+describe('serpline landing content', () => {
+  it('has no links or UTM in the copy (the preview URL is demo data)', () => {
+    for (const l of ['en', 'az']) {
+      const c = serplineSchema.parse(read(`serpline/${l}.json`));
+      const copy = { ...c, preview: { ...c.preview, urlDefault: '' } };
+      for (const s of allStrings(copy)) expect(s).not.toMatch(/https?:|utm_/);
+      expect(c.preview.urlDefault).toBe('https://example.com/products/wireless-headphones-pro-x');
+    }
+  });
+
+  it('follows the naming rule for the landing title (60 characters at most)', () => {
+    const en = serplineSchema.parse(read('serpline/en.json'));
+    const az = serplineSchema.parse(read('serpline/az.json'));
+    expect(en.meta.title).toBe('Serpline: Free SEO Checker for Google, ChatGPT & More');
+    expect(az.meta.title).toMatch(/^Serpline: .* və s\. üçün /);
+    for (const t of [en.meta.title, az.meta.title]) expect(t.length).toBeLessThanOrEqual(60);
+  });
+
+  it('the preview demo is the same text the extension measures (cut after 107 on mobile)', () => {
+    const c = serplineSchema.parse(read('serpline/en.json'));
+    expect(c.preview.descDefault).toHaveLength(191);
+    expect(c.hero.serp.note).toContain('107');
   });
 });
 

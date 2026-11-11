@@ -1,39 +1,48 @@
 ---
 /**
- * /hitline/uninstalled: design/hitline/Uninstall.dc.html. Opened by chrome.runtime.setUninstallURL
- * with ?utm_source=hitline&utm_medium=extension&utm_campaign=uninstall&v=<version>.
+ * /<tool>/uninstalled (Hitline, Serpline ...): design/<tool>/Uninstall.dc.html. Opened by
+ * chrome.runtime.setUninstallURL with ?utm_source=<tool>&utm_medium=extension&utm_campaign=uninstall&v=<version>.
  * The form posts to /api/feedback (Resend, honeypot, rate limit in @line/site-kit). No database.
+ * Same layout for every tool; copy comes from <tool>/<locale>.json, the accent from the tool's brand.
  */
 import Base from '../layouts/Base.astro';
 import Logo from './Logo.astro';
 import { HONEYPOT_FIELD } from '@line/site-kit/feedback';
 import { contactUrl } from '@line/core/site';
-import { getHitline, getTool, localePath, type Locale } from '../lib/site.ts';
+import { getHitline, getSerpline, getTool, localePath, type Locale } from '../lib/site.ts';
 
+type UninstallTool = 'hitline' | 'serpline';
 interface Props {
   locale: Locale;
+  slug: UninstallTool;
 }
-const { locale } = Astro.props;
-const c = await getHitline(locale);
-const u = c.uninstall;
-const tool = await getTool('hitline');
+const { locale, slug } = Astro.props;
+const u = (slug === 'hitline' ? await getHitline(locale) : await getSerpline(locale)).uninstall;
+const tool = await getTool(slug);
 const reinstall =
-  tool.status === 'live' && tool.storeUrl ? tool.storeUrl : localePath(locale, '/hitline');
-const audit = contactUrl({ source: 'hitline', medium: 'extension', campaign: 'uninstall' });
+  tool.status === 'live' && tool.storeUrl ? tool.storeUrl : localePath(locale, `/${slug}`);
+const audit = contactUrl({ source: slug, medium: 'extension', campaign: 'uninstall' });
+/** Accent per tool (docs/line-family-colors.md): main, hover, text, tint, focus ring, glow. */
+const ACCENT: Record<UninstallTool, string> = {
+  hitline:
+    '--ua:#7f56d9;--ua-d:#6941c6;--ua-t:#53389e;--ua-bg:#faf8ff;--ua-ring:#f4ebff;--ua-glow:rgba(127,86,217,.55);--ua-glow0:rgba(127,86,217,0);--ua-sh:rgba(83,56,158,.3)',
+  serpline:
+    '--ua:#2563eb;--ua-d:#1d4ed8;--ua-t:#1d4ed8;--ua-bg:#eff6ff;--ua-ring:rgba(37,99,235,.15);--ua-glow:rgba(37,99,235,.55);--ua-glow0:rgba(37,99,235,0);--ua-sh:rgba(30,64,175,.3)',
+};
 const seo = {
   title: u.meta.title,
   description: u.meta.description,
-  path: localePath(locale, '/hitline/uninstalled'),
-  alternates: { en: '/hitline/uninstalled', az: '/az/hitline/uninstalled' },
+  path: localePath(locale, `/${slug}/uninstalled`),
+  alternates: { en: `/${slug}/uninstalled`, az: `/az/${slug}/uninstalled` },
   noindex: true,
 };
 ---
 
 <Base locale={locale} seo={seo} page="un-page">
-  <main id="main" class="un">
+  <main id="main" class="un" style={ACCENT[slug]}>
     <div class="un-left">
-      <a href={localePath(locale, '/hitline')} class="un-logo">
-        <Logo brand="hitline" theme="light" size={36} />
+      <a href={localePath(locale, `/${slug}`)} class="un-logo">
+        <Logo brand={slug} theme="light" size={36} />
       </a>
       <h1 class="disp">
         {u.titleStart}
@@ -51,9 +60,9 @@ const seo = {
         data-error={u.error}
         data-pick={u.pickOne}
       >
-        <input type="hidden" name="tool" value="hitline" />
+        <input type="hidden" name="tool" value={slug} />
         <input type="hidden" name="v" value="" data-version />
-        <input type="hidden" name="page" value="/hitline/uninstalled" />
+        <input type="hidden" name="page" value={`/${slug}/uninstalled`} />
         <div class="hp" aria-hidden="true">
           <label>
             Website <input type="text" name={HONEYPOT_FIELD} tabindex="-1" autocomplete="off" />
@@ -191,16 +200,16 @@ const seo = {
     background: #ffffff;
   }
   .reason:has(input:checked) {
-    border-color: #7f56d9;
-    background: #faf8ff;
-    box-shadow: 0 0 0 4px #f4ebff;
+    border-color: var(--ua);
+    background: var(--ua-bg);
+    box-shadow: 0 0 0 4px var(--ua-ring);
     font-weight: 600;
   }
   .reason:has(input:checked) .dot {
-    border: 5px solid #7f56d9;
+    border: 5px solid var(--ua);
   }
   .reason:has(input:focus-visible) {
-    outline: 2px solid #7f56d9;
+    outline: 2px solid var(--ua);
     outline-offset: 2px;
   }
   .more {
@@ -238,14 +247,14 @@ const seo = {
     padding: 0 24px;
     border: none;
     border-radius: 12px;
-    background: #7f56d9;
+    background: var(--ua);
     color: #ffffff;
     font-size: 15px;
     font-weight: 600;
-    box-shadow: 0 1px 2px rgba(83, 56, 158, 0.3);
+    box-shadow: 0 1px 2px var(--ua-sh);
   }
   .send:hover {
-    background: #6941c6;
+    background: var(--ua-d);
   }
   .send[disabled] {
     opacity: 0.7;
@@ -254,7 +263,7 @@ const seo = {
   .lnk {
     font-size: 14px;
     font-weight: 600;
-    color: #53389e;
+    color: var(--ua-t);
   }
   .status {
     margin: 0;
@@ -287,7 +296,7 @@ const seo = {
     width: 220px;
     height: 220px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(127, 86, 217, 0.55), rgba(127, 86, 217, 0) 70%);
+    background: radial-gradient(circle, var(--ua-glow), var(--ua-glow0) 70%);
   }
   .un-card > :not(.glow-c) {
     position: relative;
