@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feedback form
+    url: https://getlineapps.com
+    about: No GitHub account? Send feedback from the tool's page on getlineapps.com.
+  - name: Privacy
+    url: https://getlineapps.com/privacy
+    about: What each extension can and cannot access.

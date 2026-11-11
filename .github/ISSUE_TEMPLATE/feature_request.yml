@@ -1,0 +1,18 @@
+name: Feature request
+description: An idea that would make a Line app more useful.
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Tool
+      options: [Hitline, Serpline, Rivaline, Foldline, Markline, getlineapps.com]
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to do?
+      description: Describe the task or problem. A suggested solution is welcome too.
+    validations:
+      required: true
