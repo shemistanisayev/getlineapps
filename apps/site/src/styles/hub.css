@@ -1063,7 +1063,7 @@ a.wt:hover .go {
 .faq details:hover {
   box-shadow: 0 0 0 1px #98a2b3;
 }
-.faq details[open] {
+.faq details[open]:not(.closing) {
   box-shadow: 0 0 0 2px var(--ink);
 }
 .faq summary {
@@ -1096,7 +1096,7 @@ a.wt:hover .go {
     background 0.3s,
     color 0.3s;
 }
-.faq details[open] .pm {
+.faq details[open]:not(.closing) .pm {
   transform: rotate(45deg);
   background: var(--ink);
   color: #ffffff;

@@ -1387,5 +1387,7 @@ const indent = (level: number) => (level === 1 ? 16 : 16 + (level - 1) * 18);
 
 <script>
   import { mountSerpPreview } from '../scripts/serp-preview.ts';
+  import { initFaq } from '../scripts/faq.ts';
+  initFaq(document);
   document.querySelectorAll<HTMLElement>('[data-serp-preview]').forEach(mountSerpPreview);
 </script>

@@ -1779,7 +1779,7 @@ body.sl-page {
 .lp .faq details:hover {
   box-shadow: 0 0 0 1px var(--pb);
 }
-.lp .faq details[open] {
+.lp .faq details[open]:not(.closing) {
   box-shadow: 0 0 0 2px var(--p);
 }
 .lp .faq summary {
@@ -1812,7 +1812,7 @@ body.sl-page {
     background 0.3s,
     color 0.3s;
 }
-.lp .faq details[open] .pm {
+.lp .faq details[open]:not(.closing) .pm {
   transform: rotate(45deg);
   background: var(--p);
   color: #ffffff;

@@ -1037,6 +1037,9 @@ const marquee = [...c.marquee.items, ...c.marquee.items];
 </Base>
 
 <script>
+  import { initFaq } from '../scripts/faq.ts';
+  initFaq(document);
+
   // Sample audit modal: a native <dialog> (focus, Esc and the backdrop come for free).
   // Without JavaScript the button simply opens the sample PDF.
   const dialog = document.getElementById('sample-audit') as HTMLDialogElement | null;
