@@ -286,6 +286,16 @@
   border-top: 1px solid var(--sl-line);
   transition: background 0.15s;
 }
+/* Long statuses (Azerbaijani) wrap inside the pill instead of leaving the row. */
+.sl-row > .line-pill {
+  min-width: 0;
+  height: auto;
+  min-height: 22px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  white-space: normal;
+  line-height: 1.3;
+}
 .sl-row:hover,
 .sl-hrow:hover,
 .sl-brow:hover {

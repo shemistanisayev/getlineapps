@@ -222,4 +222,269 @@ Fayl: `apps/site/src/content/serpline/az.json`. {n}, {chars} kimi yerlər avtoma
 
 ## Extension (side panel, welcome)
 
-Fayl: `apps/serpline/extension/src/i18n/az.ts`. Tam siyahı addım 7-də (Settings və i18n) əlavə olunacaq, panelin bütün ekranları hazır olandan sonra.
+Fayl: `apps/serpline/extension/src/i18n/az.ts`. {n}, {type}, {bot} kimi yerlər avtomatik dolur. Yalnız fərqli olan sətirlər göstərilir. `issue.*` sətirləri həm paneldə, həm də audit PDF-də (addım 8) istifadə olunur. "Fix:" / "Həll:" sözündən sonra gələn cümlə kiçik hərflə başlayır.
+
+| Açar | English | Azərbaycanca |
+|---|---|---|
+| `panel.sections` | Serpline sections | Serpline bölmələri |
+| `panel.settings` | Settings | Ayarlar |
+| `tab.summary` | Summary | Xülasə |
+| `tab.headings` | Headings | Başlıqlar |
+| `tab.links` | Links | Linklər |
+| `tab.issue` | {n} issue | {n} problem |
+| `tab.issues` | {n} issues | {n} problem |
+| `cta.help` | Need help fixing these? | Bunları düzəltməyə kömək lazımdır? |
+| `cta.audit` | Want a full technical SEO audit? | Tam texniki SEO auditi lazımdır? |
+| `cta.render` | Want server-side rendering set up for SEO? | SEO üçün server-side rendering qurmaq istəyirsən? |
+| `cta.ai` | Want your site to show up in AI answers? | Saytının AI cavablarında görünməsini istəyirsən? |
+| `cta.contact` | Get in touch | Əlaqə saxla |
+| `panel.checking` | Reading this page... | Səhifə oxunur... |
+| `panel.checkAgain` | Check again | Yenidən yoxla |
+| `panel.idle.title` | Check a page | Səhifəni yoxla |
+| `panel.idle.text` | Serpline reads a page only when you ask. | Serpline səhifəni yalnız sən istəyəndə oxuyur. |
+| `panel.stale.title` | You opened a new page | Yeni səhifə açdın |
+| `panel.stale.text` | Serpline reads a page only when you ask, so the results below belong to the previous page. | Serpline səhifəni yalnız sən istəyəndə oxuyur, ona görə aşağıdakı nəticələr əvvəlki səhifəyə aiddir. |
+| `panel.checkThis` | Check this page | Bu səhifəni yoxla |
+| `panel.shortcut.before` | Or press | Və ya istənilən səhifədə |
+| `panel.shortcut.after` | on any page | bas |
+| `panel.noAccess` | Click the Serpline icon in the toolbar, or press Alt+Shift+S, to let Serpline read this page. | Serpline-ın bu səhifəni oxuması üçün alətlər panelində onun ikonuna bas və ya Alt+Shift+S düymələrini bas. |
+| `panel.restricted.title` | Serpline can't read this page | Serpline bu səhifəni oxuya bilmir |
+| `panel.restricted.text` | Chrome does not let extensions read its own pages, the Web Store or PDF files. Open a website and try again. | Chrome extension-lara öz səhifələrini, Web Store-u və PDF faylları oxumağa icazə vermir. Bir sayt aç və yenidən yoxla. |
+| `panel.previous` | Previous result | Əvvəlki nəticə |
+| `panel.readError.title` | Serpline couldn't read this page | Serpline bu səhifəni oxuya bilmədi |
+| `panel.readError.text` | The page answered with something that is not HTML. Try again once it has loaded. | Səhifə HTML olmayan cavab qaytardı. Yüklənəndən sonra yenidən yoxla. |
+| `call.checks` | What Serpline checks | Serpline nəyi yoxlayır |
+| `call.c.titleDesc` | Title and description | Title və description |
+| `call.c.canonical` | Canonical and robots | Canonical və robots |
+| `call.c.headings` | Headings | Başlıqlar |
+| `call.c.alt` | Image alt text | Şəkillərin alt mətni |
+| `call.c.links` | Internal links | Daxili linklər |
+| `call.c.schema` | Structured data | Strukturlaşdırılmış data |
+| `call.c.render` | Raw HTML vs rendered | Raw HTML və render |
+| `call.c.bots` | AI bots in robots.txt | robots.txt-də AI botlar |
+| `rd.title` | {percent}% of the text needs JavaScript | Mətnin {percent}%-i JavaScript-dən asılıdır |
+| `rd.titleNone` | All the text is in the raw HTML | Bütün mətn raw HTML-dədir |
+| `rd.sub` | Raw HTML has {raw} words. The rendered page has {rendered}. | Raw HTML-də {raw} söz var. Render olunmuş səhifədə {rendered}. |
+| `rd.barAria` | {raw} of {rendered} words in raw HTML | {rendered} sözdən {raw}-i raw HTML-dədir |
+| `rd.inRaw` | In raw HTML | Raw HTML-də |
+| `rd.onlyJs` | Only after JavaScript | Yalnız JavaScript-dən sonra |
+| `rd.noRaw` | The raw HTML couldn't be downloaded | Raw HTML yüklənmədi |
+| `rd.noRawText` | Without it Serpline cannot compare the source with the rendered page. | Onsuz Serpline mənbəni render olunmuş səhifə ilə müqayisə edə bilmir. |
+| `rd.tableAria` | Raw HTML compared with the rendered page | Raw HTML render olunmuş səhifə ilə müqayisədə |
+| `rd.signal` | Signal | Siqnal |
+| `rd.rendered` | Rendered | Render |
+| `rd.sig.words` | Words | Sözlər |
+| `rd.sig.links` | Links | Linklər |
+| `rd.same` | Same | Eyni |
+| `rd.none` | None | Yoxdur |
+| `rd.missing` | Missing | Yoxdur |
+| `rd.present` | Present | Var |
+| `rd.changed` | Changed | Fərqlidir |
+| `rd.added` | Added by JavaScript | JavaScript ilə əlavə olunan |
+| `rd.words` | {n} words | {n} söz |
+| `rd.links` | {n} links | {n} link |
+| `rd.addedText` | Most AI crawlers read only the raw HTML and miss all of this. | AI crawler-lərin çoxu yalnız raw HTML-i oxuyur və bunların heç birini görmür. |
+| `rd.addedFix` | render it on the server. | bunu serverdə render et. |
+| `rd.addedNone` | Nothing important is added by JavaScript. Crawlers that skip scripts see the same page. | JavaScript vacib heç nə əlavə etmir. Skriptləri işlətməyən crawler-lər eyni səhifəni görür. |
+| `ai.allowedShort` | allowed | icazə |
+| `ai.countAria` | {n} of {total} AI bots allowed | {total} AI botdan {n}-nə icazə var |
+| `ai.cantCite` | {engine} can't cite this site. | {engine} bu sayta istinad edə bilmir. |
+| `ai.cantCiteMany` | {n} answer engines can't cite this site. | {n} AI cavab sistemi bu sayta istinad edə bilmir. |
+| `ai.othersRead` | The other answer engines can, but read only {raw} of {rendered} words. | Digərləri edə bilir, amma {rendered} sözdən yalnız {raw}-ni oxuyur. |
+| `ai.allSearchAllowed` | AI answer engines can read this site | AI cavab sistemləri bu saytı oxuya bilir |
+| `ai.readOnly` | Most of them read only the raw HTML: {raw} of {rendered} words. | Onların çoxu yalnız raw HTML-i oxuyur: {rendered} sözdən {raw}. |
+| `ai.readsText` | The page text is in the raw HTML, so crawlers that skip JavaScript read it too. | Səhifənin mətni raw HTML-dədir, ona görə JavaScript işlətməyən crawler-lər də onu oxuyur. |
+| `ai.noRobots` | There is no robots.txt, so every bot is allowed. | robots.txt yoxdur, ona görə bütün botlara icazə var. |
+| `ai.bots` | AI bots in robots.txt | robots.txt-də AI botlar |
+| `ai.group.search` | Search and answers | Axtarış və cavablar |
+| `ai.group.training` | Model training | Model təlimi |
+| `ai.allowed` | Allowed | İcazə var |
+| `ai.allowedStar` | Allowed by * | * ilə icazə var |
+| `ai.noRule` | No rule | Qayda yoxdur |
+| `ai.blocked` | Blocked | Bloklanıb |
+| `ai.more` | {n} more bots | Daha {n} bot |
+| `ai.fewer` | Show fewer bots | Daha az bot göstər |
+| `ai.files` | Files for crawlers | Crawler-lər üçün fayllar |
+| `ai.robotsFound` | Found, {n} lines | Var, {n} sətir |
+| `ai.notFound` | Not found | Tapılmadı |
+| `ai.unread` | Could not read | Oxunmadı |
+| `ai.sitemapListed` | Listed in robots.txt | robots.txt-də göstərilib |
+| `ai.sitemapNotListed` | Not listed in robots.txt | robots.txt-də göstərilməyib |
+| `ai.llmsFound` | Found | Var |
+| `ai.llmsMissing` | Not found, optional | Tapılmadı, istəyə bağlı |
+| `set.back` | Back to results | Nəticələrə qayıt |
+| `set.checks` | Checks | Yoxlamalar |
+| `set.previewOn` | Google preview opens on | Google önizləməsi bununla açılır |
+| `set.previewDevice` | Default preview device | Standart önizləmə cihazı |
+| `set.autoLinks` | Check internal links on open | Açılanda daxili linkləri yoxla |
+| `set.autoLinksHint` | When off, Serpline checks link status only after you press the check button in the Links tab. | Söndürülüb olanda Serpline linklərin statusunu yalnız Links tabındakı yoxlama düyməsini basandan sonra yoxlayır. |
+| `set.language` | Language | Dil |
+| `set.data` | Your data | Məlumatların |
+| `set.clear` | Clear all settings | Bütün ayarları sil |
+| `set.cleared` | All settings are cleared. | Bütün ayarlar silindi. |
+| `set.privacyNote` | Only these settings are saved, on this computer. Serpline reads the page you are on and its robots.txt from your browser and sends nothing to anyone. | Yalnız bu ayarlar saxlanılır, bu kompüterdə. Serpline açıq olan səhifəni və onun robots.txt faylını brauzerindən oxuyur və heç kimə heç nə göndərmir. |
+| `set.more` | More free tools | Daha çox pulsuz alət |
+| `set.tool.hitline` | Tracking and analytics | Tracking və analitika |
+| `set.tool.rivaline` | Competitor research | Rəqib araşdırması |
+| `set.tool.foldline` | Landing page CRO | Landing səhifəsi CRO |
+| `set.tool.markline` | Feedback screenshots | Rəy üçün ekran şəkilləri |
+| `set.version` | Version {v} | Versiya {v} |
+| `set.privacy` | Privacy | Məxfilik |
+| `set.contact` | Contact | Əlaqə |
+| `sum.checkedAt` | Checked at {time} | Yoxlanıb: {time} |
+| `sum.scoreAria` | SEO score {score} of 100 | SEO skoru 100 üzərindən {score} |
+| `sum.label.good` | SEO score: good | SEO skoru: yaxşı |
+| `sum.label.needs_work` | SEO score: needs work | SEO skoru: düzəliş lazımdır |
+| `sum.label.poor` | SEO score: poor | SEO skoru: zəif |
+| `sum.counts` | {high} high, {medium} medium, {low} low priority issues | {high} yüksək, {medium} orta, {low} aşağı prioritetli problem |
+| `sum.noIssues` | No issues found on this page | Bu səhifədə problem tapılmadı |
+| `sum.checks` | On-page checks | Səhifə yoxlamaları |
+| `row.alt` | Image alt text | Şəkillərin alt mətni |
+| `row.schema` | Structured data | Strukturlaşdırılmış data |
+| `st.chars` | {n} characters | {n} simvol |
+| `st.cutGoogle` | Cut off in Google | Google-da kəsilir |
+| `st.missing` | Missing | Yoxdur |
+| `st.canonSelf` | Points to this page | Bu səhifəni göstərir |
+| `st.canonOther` | Points to another page | Başqa səhifəni göstərir |
+| `st.notSet` | Not set | Təyin olunmayıb |
+| `st.h1Js` | Only after JavaScript | Yalnız JavaScript-dən sonra |
+| `st.h1Many` | {n} H1s | {n} H1 |
+| `st.h1Ok` | One H1 | Bir H1 |
+| `st.altMissing` | {m} of {n} missing | {n} şəkildən {m}-də yoxdur |
+| `st.altOk` | All {n} have alt | {n} şəklin hamısında var |
+| `st.noImages` | No images | Şəkil yoxdur |
+| `st.schemaJs` | {type} added by JavaScript | {type} JavaScript ilə əlavə olunur |
+| `st.schemaBad` | {n} invalid JSON-LD | {n} səhv JSON-LD |
+| `st.none` | None | Yoxdur |
+| `st.ogMissing` | {tag} missing | {tag} yoxdur |
+| `st.ogOk` | Complete | Tamdır |
+| `st.notUsed` | Not used | İstifadə olunmur |
+| `st.langs` | {n} languages | {n} dil |
+| `serp.title` | Google preview | Google önizləmə |
+| `serp.device` | Preview device | Önizləmə cihazı |
+| `serp.mobile` | Mobile | Mobil |
+| `serp.titleLine` | Title: {n} characters, {px} of {limit} px | Title: {n} simvol, {limit} px-dən {px} |
+| `serp.descCut` | Description: {n} characters, cut after {cut} | Description: {n} simvol, {cut}-dən sonra kəsilir |
+| `serp.descLine` | Description: {n} characters, {px} of {limit} px | Description: {n} simvol, {limit} px-dən {px} |
+| `serp.fits` | Fits | Sığır |
+| `serp.tooLong` | Too long | Çox uzundur |
+| `serp.noTitle` | No title | Title yoxdur |
+| `serp.noDesc` | No description | Description yoxdur |
+| `serp.emptyTitle` | Google writes a title for this page | Google bu səhifə üçün title-ı özü yazır |
+| `serp.emptyDesc` | Google picks text from the page. | Google mətni səhifədən özü seçir. |
+| `hd.highlight` | Highlight on page | Səhifədə işarələ |
+| `hd.highlightFailed` | Serpline could not draw on this page. Check it again first. | Serpline bu səhifənin üstündə çəkə bilmədi. Əvvəl səhifəni yenidən yoxla. |
+| `hd.outline` | Outline | Struktur |
+| `hd.jsOnly` | JavaScript only | Yalnız JavaScript |
+| `hd.skips` | Skips H{n} | H{n} atlanıb |
+| `hd.extraH1` | Extra H1 | Artıq H1 |
+| `hd.noHeadings` | This page has no headings. | Bu səhifədə başlıq yoxdur. |
+| `hd.images` | Images | Şəkillər |
+| `hd.noAltCount` | {m} of {n} without alt | {n} şəkildən {m}-də alt yoxdur |
+| `hd.allAlt` | All images have alt | Bütün şəkillərdə alt var |
+| `hd.noImages` | No images on this page. | Bu səhifədə şəkil yoxdur. |
+| `hd.noAlt` | No alt | Alt yoxdur |
+| `ov.summary` | Serpline highlights: {headings}, {images} | Serpline işarələri: {headings}, {images} |
+| `ov.heading` | {n} heading | {n} başlıq |
+| `ov.headings` | {n} headings | {n} başlıq |
+| `ov.image` | {n} image | {n} şəkil |
+| `ov.images` | {n} images | {n} şəkil |
+| `ov.addedByJs` | added by JavaScript | JavaScript ilə əlavə olunub |
+| `ov.hide` | Hide | Gizlət |
+| `ln.links` | links | link |
+| `ln.internal` | internal | daxili |
+| `ln.external` | external | xarici |
+| `ln.checkBtn` | Check {n} internal links | {n} daxili linki yoxla |
+| `ln.checkBtn1` | Check 1 internal link | 1 daxili linki yoxla |
+| `ln.checking` | Checking {n} internal links... | {n} daxili link yoxlanılır... |
+| `ln.checked` | {n} internal links checked | {n} daxili link yoxlanıldı |
+| `ln.ok` | {n} OK | {n} qaydasında |
+| `ln.redirect` | {n} redirect | {n} yönləndirmə |
+| `ln.redirects` | {n} redirects | {n} yönləndirmə |
+| `ln.broken` | {n} broken | {n} sınıq |
+| `ln.failed` | {n} not reached | {n} cavab vermədi |
+| `ln.note` | Checked from this page, one request per link. External links are listed, not checked. | Bu səhifədən yoxlanıldı, hər link üçün bir sorğu. Xarici linklər siyahıdadır, yoxlanılmır. |
+| `ln.noteBefore` | Your browser asks this site once for each internal link. External links are listed, not checked. | Brauzerin hər daxili link üçün bu sayta bir dəfə sorğu göndərir. Xarici linklər siyahıdadır, yoxlanılmır. |
+| `ln.checkFailed` | The link check could not run. Check the page again, then try once more. | Link yoxlaması işləmədi. Səhifəni yenidən yoxla, sonra bir daha cəhd et. |
+| `ln.limit` | Only the first {n} internal URLs are checked. | Yalnız ilk {n} daxili URL yoxlanılır. |
+| `ln.noInternal` | No internal links to check. | Yoxlanacaq daxili link yoxdur. |
+| `ln.filters` | Filter links | Linkləri süz |
+| `ln.f.all` | All | Hamısı |
+| `ln.f.issues` | Issues | Problemlər |
+| `ln.f.internal` | Internal | Daxili |
+| `ln.f.external` | External | Xarici |
+| `ln.to` | {from} to {to} | {from} → {to} |
+| `ln.noText` | (no text) | (mətn yoxdur) |
+| `ln.st.redirect` | Redirect | Yönləndirmə |
+| `ln.st.failed` | Not reached | Cavab yoxdur |
+| `ln.st.unchecked` | Not checked | Yoxlanmayıb |
+| `ln.st.external` | External | Xarici |
+| `ln.st.other` | Not a page | Səhifə deyil |
+| `ln.empty` | No links in this filter. | Bu süzgəcdə link yoxdur. |
+| `fix` | Fix: | Həll: |
+| `issue.RAW_H1.title` | The H1 appears only after JavaScript | H1 yalnız JavaScript-dən sonra görünür |
+| `issue.RAW_H1.text` | The H1 is not in the HTML the server sends. Crawlers that do not run JavaScript see a page without a main heading. | H1 serverin göndərdiyi HTML-də yoxdur. JavaScript işlətməyən crawler-lər əsas başlığı olmayan səhifə görür. |
+| `issue.RAW_H1.fix` | render the H1 in the server HTML. | H1-i server HTML-ində render et. |
+| `issue.RAW_TEXT.title` | {percent}% of the text needs JavaScript | Mətnin {percent}%-i JavaScript-dən asılıdır |
+| `issue.RAW_TEXT.text` | Raw HTML has {raw} words. The rendered page has {rendered}. Most AI crawlers read only the raw HTML. | Raw HTML-də {raw} söz var. Render olunmuş səhifədə {rendered}. AI crawler-lərin çoxu yalnız raw HTML-i oxuyur. |
+| `issue.RAW_TEXT.fix` | render the main content on the server. | əsas məzmunu serverdə render et. |
+| `issue.NO_TITLE.title` | The page has no title | Səhifənin title-ı yoxdur |
+| `issue.NO_TITLE.text` | Google writes its own title for the result, often a weak one. | Google nəticə üçün öz title-ını yazır, çox vaxt zəif olur. |
+| `issue.NO_TITLE.fix` | add a title of 50 to 60 characters, main keyword first. | 50-60 simvolluq title əlavə et, əsas açar söz əvvəldə. |
+| `issue.NOINDEX.title` | The page asks not to be indexed | Səhifə indekslənməməyi xahiş edir |
+| `issue.NOINDEX.text` | A noindex rule keeps this page out of Google results. | noindex qaydası bu səhifəni Google nəticələrindən kənarda saxlayır. |
+| `issue.NOINDEX.fix` | remove noindex if the page should show up in search. | səhifə axtarışda görünməlidirsə, noindex-i sil. |
+| `issue.CANONICAL_OTHER.title` | Canonical points to another page | Canonical başqa səhifəni göstərir |
+| `issue.CANONICAL_OTHER.text` | Google may index {canonical} instead of this page. | Google bu səhifənin yerinə {canonical} ünvanını indeksləyə bilər. |
+| `issue.CANONICAL_OTHER.fix` | point the canonical to this URL if this page should rank. | bu səhifə sıralanmalıdırsa, canonical-ı bu URL-ə yönəlt. |
+| `issue.SCHEMA_JS.title` | {type} schema is added by JavaScript | {type} schema JavaScript ilə əlavə olunur |
+| `issue.SCHEMA_JS.text` | The structured data appears only after scripts run, so some crawlers never see it. | Strukturlaşdırılmış data yalnız skriptlər işləyəndən sonra yaranır, ona görə bəzi crawler-lər onu heç görmür. |
+| `issue.SCHEMA_JS.fix` | put the JSON-LD in the server HTML. | JSON-LD-ni server HTML-inə qoy. |
+| `issue.DESC_LONG.title` | The description is cut off in Google | Description Google-da kəsilir |
+| `issue.DESC_LONG.text` | It has {length} characters. Google cuts it after {mobile} on mobile and {desktop} on desktop. | Uzunluğu {length} simvoldur. Google onu mobildə {mobile}, desktop-da {desktop} simvoldan sonra kəsir. |
+| `issue.DESC_LONG.fix` | keep it under 150 characters, key point first. | 150 simvoldan qısa saxla, əsas fikir əvvəldə. |
+| `issue.DESC_MISSING.title` | No meta description | Meta description yoxdur |
+| `issue.DESC_MISSING.text` | Google picks a snippet from the page text, which may not sell the page. | Google snippet-i səhifə mətnindən özü seçir, o da səhifəni yaxşı təqdim etməyə bilər. |
+| `issue.DESC_MISSING.fix` | add a meta description of about 140 characters. | təxminən 140 simvolluq meta description əlavə et. |
+| `issue.IMG_ALT.title` | {count} images have no alt text | {count} şəklin alt mətni yoxdur |
+| `issue.IMG_ALT.title1` | An image has no alt text | Bir şəklin alt mətni yoxdur |
+| `issue.IMG_ALT.text` | Screen readers and image search get no description of the photo. | Ekran oxuyucuları və şəkil axtarışı şəkil haqqında heç nə bilmir. |
+| `issue.IMG_ALT.fix` | describe each photo in a few words. | hər şəkli bir neçə sözlə təsvir et. |
+| `issue.OG_DESC.title` | og:description is missing | og:description yoxdur |
+| `issue.OG_DESC.text` | Shares on social and chat apps show no summary. | Sosial şəbəkələrdə və mesajlaşmada paylaşanda qısa təsvir görünmür. |
+| `issue.OG_DESC.fix` | add an og:description tag. | og:description tag-ı əlavə et. |
+| `issue.BROKEN_LINK.title` | {count} links on this page lead to errors | Bu səhifədəki {count} link xətaya aparır |
+| `issue.BROKEN_LINK.title1` | A link on this page leads to a {status} | Bu səhifədəki link {status} səhifəsinə aparır |
+| `issue.BROKEN_LINK.text` | "{text}" points to a page that no longer exists. Visitors hit a dead end and crawlers spend time on it. | "{text}" artıq olmayan səhifəyə aparır. Ziyarətçi çıxılmaz yerə düşür, crawler-lər isə ona vaxt sərf edir. |
+| `issue.BROKEN_LINK.fix` | link to the current URL, or redirect the old one with a 301. | aktual URL-ə link ver və ya köhnəsini 301 ilə yönləndir. |
+| `issue.AI_SEARCH_BLOCKED.title` | {bot} and {more} more are blocked | {bot} və daha {more} bot bloklanıb |
+| `issue.AI_SEARCH_BLOCKED.title1` | {bot} is blocked | {bot} bloklanıb |
+| `issue.AI_SEARCH_BLOCKED.text` | This AI answer engine cannot read or cite the site. | Bu AI cavab sistemi saytı oxuya və ona istinad edə bilmir. |
+| `issue.AI_SEARCH_BLOCKED.fix` | remove the rule in robots.txt if you want it to cite the site. | saytına istinad etməsini istəyirsənsə, robots.txt-dəki qaydanı sil. |
+| `issue.H1_MULTI.title` | The page has {count} H1s | Səhifədə {count} H1 var |
+| `issue.H1_MULTI.text` | Several main headings make the topic of the page less clear. | Bir neçə əsas başlıq səhifənin mövzusunu qeyri-müəyyən edir. |
+| `issue.H1_MULTI.fix` | keep one H1 and turn the others into H2s. | bir H1 saxla, qalanlarını H2 et. |
+| `issue.HEADING_SKIP.title` | An H{to} follows an H{from} | H{from}-dən sonra H{to} gəlir |
+| `issue.HEADING_SKIP.text` | A skipped level breaks the outline crawlers and screen readers use. | Atlanan səviyyə crawler-lərin və ekran oxuyucularının istifadə etdiyi strukturu pozur. |
+| `issue.HEADING_SKIP.fix` | make "{text}" an H{fix}. | "{text}" başlığını H{fix} et. |
+| `issue.REDIRECT_LINKS.title` | {count} links point to redirects | {count} link yönləndirməyə aparır |
+| `issue.REDIRECT_LINKS.title1` | A link points to a redirect | Bir link yönləndirməyə aparır |
+| `issue.REDIRECT_LINKS.text` | Each redirect adds a step for visitors and crawlers. | Hər yönləndirmə ziyarətçi və crawler üçün əlavə addımdır. |
+| `issue.REDIRECT_LINKS.fix` | link to {targets} directly. | birbaşa {targets} ünvanına link ver. |
+| `issue.TITLE_LONG.title` | The title is cut off in Google | Title Google-da kəsilir |
+| `issue.TITLE_LONG.text` | It is {px} px wide. Google shows about 600 px. | Eni {px} px-dir. Google təxminən 600 px göstərir. |
+| `issue.TITLE_LONG.fix` | shorten it and put the main keyword first. | qısalt və əsas açar sözü əvvələ qoy. |
+| `welcome.title` | Serpline is ready. | Serpline hazırdır. |
+| `welcome.accent` | See what Google and AI see. | Google və AI nə görür, sən də gör. |
+| `welcome.lead` | Open any page and Serpline shows the SEO basics, the content that needs JavaScript and which AI crawlers are allowed in. | İstənilən səhifəni aç: Serpline SEO əsaslarını, JavaScript-ə ehtiyacı olan məzmunu və hansı AI crawler-lərin içəri buraxıldığını göstərir. |
+| `welcome.free` | Free | Pulsuz |
+| `welcome.noAccount` | No account | Hesab lazım deyil |
+| `welcome.local` | Nothing leaves your browser | Heç nə brauzerindən çıxmır |
+| `welcome.s1.title` | Pin Serpline to the toolbar | Serpline-ı alətlər panelinə bərkid |
+| `welcome.s1.text` | Click the puzzle icon next to the address bar and pin Serpline. | Ünvan sətrinin yanındakı puzzle ikonuna bas və Serpline-ı bərkid. |
+| `welcome.s2.title` | Open a page, click the icon | Səhifəni aç, ikona bas |
+| `welcome.s2.text` | The side panel opens with the score, the checks and a Google preview. | Side panel skor, yoxlamalar və Google preview ilə açılır. |
+| `welcome.s3.title` | Open the Render and AI tabs | Render və AI tablarını aç |
+| `welcome.s3.text` | See what needs JavaScript and which AI bots can read the page. Next time press {key}. | Nəyin JavaScript-ə ehtiyacı olduğunu və hansı AI botların səhifəni oxuya bildiyini gör. Növbəti dəfə {key} bas. |
+| `welcome.built` | Built by Shamistan Isayev | Müəllif: Şəmistan İsayev |
+| `welcome.contact` | Need a technical SEO audit? Get in touch | Texniki SEO auditi lazımdır? Əlaqə saxla |

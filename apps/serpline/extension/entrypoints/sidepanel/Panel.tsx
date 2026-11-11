@@ -26,6 +26,7 @@ import { CallView, type CallKind } from './tabs/CallView.tsx';
 import { HeadingsTab } from './tabs/Headings.tsx';
 import { LinksTab, type LinkCheckState } from './tabs/Links.tsx';
 import { RenderTab } from './tabs/Render.tsx';
+import { Settings } from './Settings.tsx';
 import { SummaryTab } from './tabs/Summary.tsx';
 
 /**
@@ -85,7 +86,8 @@ function overlaySpec(audit: Audit, t: T): OverlaySpec {
 }
 
 export function Panel() {
-  const { t } = useT();
+  const { t, lang } = useT();
+  const [settings, setSettings] = useState(false);
   const [view, setView] = useState<View>({ kind: 'idle' });
   const [tab, setTab] = useState<TabId>('summary');
   const [device, setDevice] = useState<PreviewDevice>('mobile');
@@ -233,6 +235,14 @@ export function Panel() {
   const previous =
     stale && audit && url ? { score: audit.score, path: url.pathname + url.search } : null;
 
+  if (settings) {
+    return (
+      <div className="sl-panel sp">
+        <Settings lang={lang} t={t} onBack={() => setSettings(false)} onDevice={setDevice} />
+      </div>
+    );
+  }
+
   return (
     <div className="sl-panel sp">
       {tabbed && url && (
@@ -245,6 +255,8 @@ export function Panel() {
             settingsLabel={t('panel.settings')}
             onCheckAgain={() => tabId !== null && void run(tabId)}
             pdfDisabled
+            onSettings={() => setSettings(true)}
+            settingsPressed={settings}
           />
           <PanelTabs
             label={t('panel.sections')}

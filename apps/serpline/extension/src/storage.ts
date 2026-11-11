@@ -28,3 +28,20 @@ export async function getAutoCheckLinks(): Promise<boolean> {
   const { autoCheckLinks } = await browser.storage.local.get('autoCheckLinks');
   return autoCheckLinks === true;
 }
+
+export async function setLang(lang: Lang): Promise<void> {
+  await browser.storage.local.set({ lang });
+}
+
+export async function setPreviewDevice(previewDevice: PreviewDevice): Promise<void> {
+  await browser.storage.local.set({ previewDevice });
+}
+
+export async function setAutoCheckLinks(autoCheckLinks: boolean): Promise<void> {
+  await browser.storage.local.set({ autoCheckLinks });
+}
+
+/** "Clear all settings": removes every key Serpline stores (SPEC §7). */
+export async function clearSettings(): Promise<void> {
+  await browser.storage.local.clear();
+}

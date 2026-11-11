@@ -299,6 +299,90 @@ test.describe('serpline extension', () => {
     await page.close();
   });
 
+  test('Settings: preview default, language, links, clear all', async () => {
+    const page = await ext.context.newPage();
+    await page.goto(serplineUrl());
+    await ext.clickAction(page);
+    const click = (sel: string) =>
+      ext.evalIn(PANEL, `document.querySelector(${JSON.stringify(sel)}).click()`, true);
+    // The panel stays open across tests and keeps its tab: go back to Summary.
+    await expect.poll(panelText).toContain('example.com/products/wireless-headphones-pro-x');
+    await click('#sl-tab-summary');
+    await expect.poll(panelText).toContain('SEO score: needs work');
+
+    await click('button[aria-label="Settings"]');
+    await expect.poll(panelText).toContain('Google preview opens on');
+    const set = await panelText();
+    for (const s of [
+      'Check internal links on open',
+      'Clear all settings',
+      'MORE FREE TOOLS',
+      'Version 0.1.0',
+    ])
+      expect(set).toContain(s);
+    const hrefs = await ext.evalIn<string[]>(
+      PANEL,
+      `[...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href'))`,
+    );
+    expect(hrefs).toEqual([
+      ...['hitline', 'rivaline', 'foldline', 'markline'].map(
+        (s) =>
+          `https://getlineapps.com/${s}?utm_source=serpline&utm_medium=extension&utm_campaign=more_tools`,
+      ),
+      'https://getlineapps.com/privacy/serpline',
+      'https://shamistanisayev.com/?utm_source=serpline&utm_medium=extension&utm_campaign=settings',
+    ]);
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-settings.png`);
+
+    // Default preview device and language are saved in chrome.storage.local.
+    await ext.evalIn(
+      PANEL,
+      `[...document.querySelectorAll('.sp-set button')].find((b) => b.textContent === 'Desktop').click()`,
+      true,
+    );
+    await ext.evalIn(
+      PANEL,
+      `(() => { const s = document.querySelector('#sp-lang'); s.value = 'az'; s.dispatchEvent(new Event('change', { bubbles: true })); })()`,
+      true,
+    );
+    await expect.poll(panelText).toContain('Google önizləməsi bununla açılır');
+    expect(
+      await ext.evalIn(
+        PANEL,
+        `chrome.storage.local.get(null).then((x) => ({ lang: x.lang, previewDevice: x.previewDevice }))`,
+      ),
+    ).toEqual({ lang: 'az', previewDevice: 'desktop' });
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-settings-az.png`);
+
+    // Every panel text follows the language.
+    await click('button[aria-label="Nəticələrə qayıt"]');
+    await expect.poll(panelText).toContain('SEO skoru: düzəliş lazımdır');
+    const az = await panelText();
+    for (const s of [
+      'Xülasə',
+      'Başlıqlar',
+      'SƏHİFƏ YOXLAMALARI',
+      'Description: 191 simvol, 147-dən sonra kəsilir',
+    ])
+      expect(az).toContain(s);
+    expect(az).not.toContain('needs work');
+    if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-summary-az.png`);
+
+    // "Clear all settings" brings back English and the mobile preview.
+    await click('button[aria-label="Ayarlar"]');
+    await expect.poll(panelText).toContain('Bütün ayarları sil');
+    await ext.evalIn(
+      PANEL,
+      `[...document.querySelectorAll('button')].find((b) => b.textContent === 'Bütün ayarları sil').click()`,
+      true,
+    );
+    await expect.poll(panelText).toContain('All settings are cleared.');
+    expect(await ext.evalIn(PANEL, `chrome.storage.local.get(null)`)).toEqual({});
+    await click('button[aria-label="Back to results"]');
+    await expect.poll(panelText).toContain('Description: 191 characters, cut after 107');
+    await page.close();
+  });
+
   test('restricted pages get the "can\'t read this page" state', async () => {
     const page = await ext.context.newPage();
     await page.goto('chrome://version');
