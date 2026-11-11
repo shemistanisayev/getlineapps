@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 const SITE = 'http://localhost:4321';
 
 test.describe('hitline landing', () => {
-  test('renders the hero, says "coming soon" until the store listing exists, loads nothing remote', async ({
+  test('renders the hero, links "Add to Chrome" to the store listing, loads nothing remote', async ({
     page,
   }) => {
     const remote: string[] = [];
@@ -17,9 +17,13 @@ test.describe('hitline landing', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(
       'Is your tracking working? Prove it in one panel.',
     );
-    // tools.json: hitline is "soon", so no store link anywhere.
-    await expect(page.locator('a[href*="chromewebstore"]')).toHaveCount(0);
-    await expect(page.getByText('Coming soon to Chrome')).toBeVisible();
+    // tools.json: Hitline is live, so the nav and the hero link to the listing.
+    const store = page.locator(
+      'a[href="https://chromewebstore.google.com/detail/hitline-tracking-debugger/aemdmmghojdopdjjhggajgdedmejkoaf"]',
+    );
+    await expect(store).toHaveCount(2);
+    await expect(page.getByRole('link', { name: /Add to Chrome, it's free/ })).toBeVisible();
+    await expect(page.getByText('Coming soon to Chrome')).toHaveCount(0);
     await page.waitForLoadState('networkidle');
     expect(remote).toEqual([]);
   });
@@ -103,7 +107,11 @@ test.describe('hitline landing', () => {
     await page.goto(`${SITE}/az/hitline`);
     await expect(page.locator('html')).toHaveAttribute('lang', 'az');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Tracking-in işləyir?');
-    await expect(page.getByText('Tezliklə Chrome-da')).toBeVisible();
+    await expect(page.getByRole('link', { name: /Chrome-a əlavə et, pulsuzdur/ })).toHaveAttribute(
+      'href',
+      /^https:\/\/chromewebstore\.google\.com\/detail\/hitline-tracking-debugger\//,
+    );
+    await expect(page.getByText('Tezliklə Chrome-da')).toHaveCount(0);
   });
 
   for (const width of [820, 390]) {

@@ -1,5 +1,9 @@
 [
-  { "slug": "hitline", "status": "soon", "storeUrl": null },
+  {
+    "slug": "hitline",
+    "status": "live",
+    "storeUrl": "https://chromewebstore.google.com/detail/hitline-tracking-debugger/aemdmmghojdopdjjhggajgdedmejkoaf"
+  },
   { "slug": "serpline", "status": "soon", "storeUrl": null },
   { "slug": "rivaline", "status": "soon", "storeUrl": null },
   { "slug": "foldline", "status": "soon", "storeUrl": null },
