@@ -23,6 +23,7 @@ import {
   attributionIssues,
   consentIssues,
   duplicateIssues,
+  internalEventIssues,
   multipleGa4Issues,
   piiIssues,
   planIssues,
@@ -166,8 +167,11 @@ function tagHits(tag: GtmTag, hits: Hit[]): Hit[] {
   return hits.filter((h) => h.route !== 'page' && tagMatches(tag, h));
 }
 
-/** A hit "answers" an event when it is sent on the same page within this window after it. */
-const ANSWER_MS = 3000;
+/**
+ * A hit "answers" an event when it is sent on the same page within this window after it.
+ * TikTok and some others batch events and send them many seconds later.
+ */
+const ANSWER_MS = 30_000;
 
 function tagStatus(
   tag: GtmTag,
@@ -178,7 +182,9 @@ function tagStatus(
   now: number,
 ): TagStatus {
   if (fired.length) {
-    if (fired.some((h) => valueMissing.has(`${h.platform}:${h.event}`))) return 'missing_value';
+    // A base tag (Google Tag, Pixel Base) is not to blame for an event tag's missing value.
+    if (!tag.base && fired.some((h) => valueMissing.has(`${h.platform}:${h.event}`)))
+      return 'missing_value';
     if (
       consent.active &&
       tag.platform &&
@@ -332,6 +338,7 @@ export function analyze(input: SessionInput, settings: Settings = {}): Audit {
   const sent = hits.filter((h) => h.route !== 'page' && isTracked(h.platform));
   const referrerOf = (page: number) =>
     snapshots.find((s) => pageOf(s.time) === page && s.referrer !== undefined)?.referrer;
+  const sawGtmJs = pushes.some((h) => h.event === 'gtm.js');
   const gtm: GtmView[] = containers.map((c) => {
     const live = c.tags.filter((t) => !t.paused);
     const events: GtmEventView[] = c.estimated
@@ -366,7 +373,12 @@ export function analyze(input: SessionInput, settings: Settings = {}): Audit {
       container: c,
       events,
       tags: live.map((t) => {
-        const fired = tagHits(t, hits);
+        // With the container read, a tag whose trigger never matched did not send those hits,
+        // even when another tag of the same platform did (Universal Analytics event tags, ...).
+        const reached = events.some((e) => e.tags.some((x) => x.index === t.index));
+        // Only when GTM's own gtm.js push was read: a renamed dataLayer would hide every trigger.
+        const gated = sawGtmJs && !c.estimated && t.trigger !== 'None' && !reached;
+        const fired = gated ? [] : tagHits(t, hits);
         return {
           ...t,
           hitIds: fired.map((h) => h.id),
@@ -429,6 +441,7 @@ export function analyze(input: SessionInput, settings: Settings = {}): Audit {
     ...valueIss,
     ...purchaseIdIssues(hits),
     ...duplicateIssues(hits),
+    ...internalEventIssues(hits),
     ...planIssues(plan),
     ...sgtmIssues(sgtm),
     ...multipleGa4Issues(hits),

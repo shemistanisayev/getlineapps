@@ -124,7 +124,27 @@ class Writer {
     if (this.y + h > this.bottom && this.y > PAD_Y) this.newPage();
   }
 
+  private charsets = new Map<keyof ReportFonts, Set<number>>();
+
+  /**
+   * Characters the embedded font has no glyph for (emoji, rare scripts in page data) crash the
+   * PDF builder: they become "?".
+   */
+  clean(text: string, font: keyof ReportFonts): string {
+    let set = this.charsets.get(font);
+    if (!set) {
+      set = new Set(this.f[font].getCharacterSet());
+      this.charsets.set(font, set);
+    }
+    let out = '';
+    for (const ch of text) {
+      out += set.has(ch.codePointAt(0)!) || ch === ' ' ? ch : '?';
+    }
+    return out;
+  }
+
   width(text: string, font: keyof ReportFonts, size: number, spacing = 0) {
+    text = this.clean(text, font);
     return (
       this.f[font].widthOfTextAtSize(text, size * PX) / PX + spacing * Math.max(0, text.length - 1)
     );
@@ -141,6 +161,7 @@ class Writer {
     opts: { lineHeight?: number; spacing?: number; draw?: boolean } = {},
   ) {
     if (opts.draw === false || !text) return;
+    text = this.clean(text, font);
     const y = top + baseline(size, opts.lineHeight);
     const page = this.page;
     if (opts.spacing) page.pushOperators(setCharacterSpacing(opts.spacing * PX));
@@ -723,7 +744,10 @@ export async function buildLineReport(cfg: LineReportConfig): Promise<LineReport
   const doc = await PDFDocument.create();
   doc.registerFontkit(fontkit);
   // Inter loses glyphs when pdf-lib subsets it, so fonts are embedded whole (text stays selectable).
-  const embed = (b: Uint8Array) => doc.embedFont(b, { subset: false });
+  // No ligatures or contextual alternates: JetBrains Mono's code ligatures (for example in
+  // "-data-layer-") crash fontkit, and a report should show the characters as typed.
+  const embed = (b: Uint8Array) =>
+    doc.embedFont(b, { subset: false, features: { liga: false, calt: false, dlig: false } });
   const f = {
     regular: await embed(cfg.fonts.regular),
     semibold: await embed(cfg.fonts.semibold),

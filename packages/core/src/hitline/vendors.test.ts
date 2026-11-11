@@ -2,7 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { analyze, mergeFanOut } from './analyze.ts';
 import { classifyRequest } from './classify.ts';
-import { duplicateIssues, piiIssues, purchaseIdIssues } from './issues.ts';
+import { duplicateIssues, internalEventIssues, piiIssues, purchaseIdIssues } from './issues.ts';
 import { isTracked, PLATFORM_LIST, SUPPORTED_COUNT } from './platforms.ts';
 import type { Hit } from './types.ts';
 
@@ -59,6 +59,10 @@ describe('analytics', () => {
     expect(one('https://www.google.com/ccm/collect?v=2&tid=G-AB12&cid=1.2&en=page_view')).toEqual(
       [],
     );
+    // The Google Signals copy of a GA4 hit is not a second event (and not server-side GTM).
+    expect(
+      one('https://stats.g.doubleclick.net/g/collect?v=2&tid=G-AB12&cid=1.2&en=page_view'),
+    ).toEqual([]);
   });
 
   it('Adobe Analytics: page view with eVars and a link event', () => {
@@ -572,6 +576,18 @@ describe('accuracy rules', () => {
     expect(purchaseIdIssues([hit({ params: [{ key: 'transaction_id', value: 'T' }] })])).toEqual(
       [],
     );
+  });
+
+  it('GTM internal events sent to a platform (seen on birbank.az)', () => {
+    const issues = internalEventIssues([
+      hit({ id: 'a', event: 'gtm.dom' }),
+      hit({ id: 'b', event: 'gtm.js' }),
+      hit({ id: 'c', event: 'page_view' }),
+      hit({ id: 'd', platform: 'datalayer', route: 'page', event: 'gtm.js' }),
+    ]);
+    expect(issues.map((i) => [i.id, i.data.events, i.evidence])).toEqual([
+      ['INTERNAL_EVENTS', ['gtm.dom', 'gtm.js'], ['a', 'b']],
+    ]);
   });
 
   it('plain e-mail in a tracking hit, not a hashed one', () => {

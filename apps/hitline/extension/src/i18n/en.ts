@@ -372,6 +372,7 @@ export const en = {
   'status.other': 'Possible tracking',
   'status.pii': 'Personal data',
   'status.duplicate': 'Sent twice',
+  'status.internal': 'GTM event',
   'status.noId': 'No order ID',
   'detail.account': 'ID',
   'detail.page': 'Page',
@@ -415,6 +416,11 @@ export const en = {
   'issue.noId.fix': 'Add transaction_id from the order number to the purchase event.',
   'issue.multi.title': 'Data goes to {ids}',
   'issue.multi.fix': 'Make sure every GA4 property here is meant to receive this site’s data.',
+  'issue.internal.title': '{platform} receives GTM’s own events: {events}',
+  'issue.internal.fix':
+    'In GTM, add a condition to the trigger so {{Event}} does not start with gtm. or gtag.',
+  'why.internal':
+    'Reports fill up with events nobody asked for and real events are harder to find.',
   'why.consent': 'Personal data is sent without the visitor’s permission, which breaks GDPR.',
   'why.referral':
     'Sales are credited to the payment site instead of the ad that brought the visitor.',

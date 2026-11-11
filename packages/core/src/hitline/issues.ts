@@ -24,6 +24,7 @@ export const ISSUE_META: Record<IssueId, { severity: Severity; tab: IssueTab }> 
   DUPLICATE_EVENT: { severity: 'medium', tab: 'events' },
   PURCHASE_NO_ID: { severity: 'medium', tab: 'events' },
   MULTIPLE_GA4: { severity: 'info', tab: 'events' },
+  INTERNAL_EVENTS: { severity: 'medium', tab: 'events' },
 };
 
 function issue(id: IssueId, key: string, data: Issue['data'], evidence: string[] = []): Issue {
@@ -265,6 +266,29 @@ export function piiIssues(hits: Hit[]): Issue[] {
     if (found) found.evidence.push(h.id);
     else {
       const it = issue('PII_EMAIL', key, { platform: h.platform, event: h.event, field }, [h.id]);
+      out.set(it.key, it);
+    }
+  }
+  return [...out.values()];
+}
+
+/**
+ * GTM's own events (gtm.js, gtm.dom, gtag.config, ...) sent to an analytics or ad platform:
+ * usually a tag that forwards every dataLayer event ({{Event}}) without a filter.
+ */
+export function internalEventIssues(hits: Hit[]): Issue[] {
+  const out = new Map<string, Issue>();
+  for (const h of hits) {
+    if (!isTrackedHit(h) || !/^(gtm|gtag)\./.test(h.event)) continue;
+    const found = out.get(`INTERNAL_EVENTS:${h.platform}`);
+    if (found) {
+      found.evidence.push(h.id);
+      const ev = found.data.events as string[];
+      if (!ev.includes(h.event)) ev.push(h.event);
+    } else {
+      const it = issue('INTERNAL_EVENTS', h.platform, { platform: h.platform, events: [h.event] }, [
+        h.id,
+      ]);
       out.set(it.key, it);
     }
   }

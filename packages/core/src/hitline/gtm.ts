@@ -75,7 +75,7 @@ export function extractResource(body: string): unknown {
 
 type RawTag = Record<string, unknown> & {
   function?: string;
-  vtp_eventName?: string;
+  vtp_eventName?: unknown;
   vtp_html?: string;
   consent?: unknown;
   paused?: boolean;
@@ -219,20 +219,28 @@ function templateTag(t: RawTag): Described {
 
 const str = (v: unknown) => (typeof v === 'string' ? v : undefined);
 
-function describeTag(t: RawTag): Described & { type: string } {
+function describeTag(t: RawTag, res: Resource): Described & { type: string } {
   const f = t.function ?? '';
   switch (f) {
     case '__googtag':
     case '__gaawc':
       return { name: 'GA4 Config', type: 'Google Tag', platform: 'ga4', base: true };
     case '__gaawe':
-      return {
-        name: `GA4 ${t.vtp_eventName ?? 'event'}`,
-        type: 'GA4 Event',
-        platform: 'ga4',
-        event: t.vtp_eventName,
-        base: false,
-      };
+      // The event name can be a variable ({{Event}}): then the tag sends any event name.
+      return typeof t.vtp_eventName === 'string'
+        ? {
+            name: `GA4 ${t.vtp_eventName}`,
+            type: 'GA4 Event',
+            platform: 'ga4',
+            event: t.vtp_eventName,
+            base: false,
+          }
+        : {
+            name: `GA4 ${t.vtp_eventName === undefined ? 'event' : argText(res, t.vtp_eventName)}`,
+            type: 'GA4 Event',
+            platform: 'ga4',
+            base: true,
+          };
     case '__ua':
       return {
         name: 'Universal Analytics',
@@ -276,6 +284,20 @@ function describeTag(t: RawTag): Described & { type: string } {
       return { name: 'LinkedIn Insight', type: 'LinkedIn', platform: 'linkedin', base: true };
     case '__twitter_website_tag':
       return { name: 'X Pixel', type: 'X', platform: 'x', base: true };
+    case '__pntr': {
+      const ev = typeof t.vtp_eventName === 'string' ? t.vtp_eventName : '';
+      return {
+        name: ev ? `Pinterest ${ev}` : 'Pinterest Tag',
+        type: 'Pinterest',
+        platform: 'pinterest',
+        ...(ev ? { event: ev } : {}),
+        base: !ev,
+      };
+    }
+    case '__crto':
+      return { name: 'Criteo OneTag', type: 'Criteo', platform: 'criteo', base: true };
+    case '__qpx':
+      return { name: 'Quora Pixel', type: 'Quora', platform: 'quora', base: true };
     case '__hjtc':
       return { name: 'Hotjar', type: 'Hotjar', platform: 'hotjar', base: true };
     case '__img':
@@ -465,12 +487,13 @@ export function parseGtmContainer(id: string, body: string): GtmContainer | null
     const fire = (firing.get(index) ?? []).map((ri) => ruleLabel(res, ri));
     tags.push({
       index,
-      ...describeTag(t),
+      ...describeTag(t, res),
       trigger: fire.length ? fire.map((r) => r.label).join(' or ') : 'None',
       triggerEvents: [...new Set(fire.flatMap((r) => r.events))],
       blocking: (blocking.get(index) ?? []).map((ri) => ruleLabel(res, ri).label),
       consent: consentList(t.consent),
-      paused: t.paused === true,
+      // A paused tag is kept in gtm.js as "__paused".
+      paused: t.paused === true || t.function === '__paused',
     });
   });
   return {

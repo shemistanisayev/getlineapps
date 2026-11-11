@@ -552,6 +552,7 @@ Extension-da yeni mətnlər. Fayl: `apps/hitline/extension/src/i18n/az.ts`.
 | `status.other` | Possible tracking | İzləməyə oxşayır |
 | `status.pii` | Personal data | Şəxsi məlumat |
 | `status.duplicate` | Sent twice | İki dəfə göndərilib |
+| `status.internal` | GTM event | GTM eventi |
 | `status.noId` | No order ID | Sifariş ID yoxdur |
 | `detail.account` | ID | ID |
 | `detail.page` | Page | Səhifə |
@@ -591,6 +592,9 @@ Extension-da yeni mətnlər. Fayl: `apps/hitline/extension/src/i18n/az.ts`.
 | `issue.noId.fix` | Add transaction_id from the order number to the purchase event. | Purchase eventinə sifariş nömrəsindən transaction_id əlavə et. |
 | `issue.multi.title` | Data goes to {ids} | Məlumat {ids} ünvanlarına gedir |
 | `issue.multi.fix` | Make sure every GA4 property here is meant to receive this site’s data. | Buradakı hər GA4 property-nin bu saytın məlumatını almalı olduğuna əmin ol. |
+| `issue.internal.title` | {platform} receives GTM’s own events: {events} | {platform} GTM-in öz eventlərini alır: {events} |
+| `issue.internal.fix` | In GTM, add a condition to the trigger so {{Event}} does not start with gtm. or gtag. | GTM-də trigger-ə şərt əlavə et ki, {{Event}} gtm. və ya gtag. ilə başlamasın. |
+| `why.internal` | Reports fill up with events nobody asked for and real events are harder to find. | Hesabatlar heç kimin istəmədiyi eventlərlə dolur, real eventləri tapmaq çətinləşir. |
 | `why.consent` | Personal data is sent without the visitor’s permission, which breaks GDPR. | Şəxsi məlumat ziyarətçinin icazəsi olmadan göndərilir, bu GDPR-ı pozur. |
 | `why.referral` | Sales are credited to the payment site instead of the ad that brought the visitor. | Satışlar ziyarətçini gətirən reklama deyil, ödəniş saytına yazılır. |
 | `why.break` | The visit splits in two and the campaign loses the sale. | Ziyarət ikiyə bölünür və kampaniya satışı itirir. |

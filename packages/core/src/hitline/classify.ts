@@ -50,6 +50,9 @@ function finish(req: RawRequest, parts: Partial0[], page: number): Hit[] {
 }
 
 function ga4(req: RawRequest, url: URL): Partial0[] | null {
+  // stats.g.doubleclick.net/g/collect is GA4's copy for Google Signals, not another event.
+  if (hostMatches(url.hostname, 'doubleclick.net') && url.pathname.endsWith('/g/collect'))
+    return [];
   const shared = parseQuery(url.search);
   const tid = get(shared, 'tid') ?? '';
   if (get(shared, 'v') !== '2' || !/^G-[A-Z0-9]+$/i.test(tid)) return null;
@@ -166,6 +169,7 @@ function tiktok(req: RawRequest, url: URL): Partial0[] | null {
   const json = parseJson(req.body) as
     | {
         event?: string;
+        action?: unknown;
         properties?: unknown;
         context?: { page?: { url?: string; referrer?: string }; pixel?: { code?: string } };
         pixel_code?: string;
@@ -182,7 +186,10 @@ function tiktok(req: RawRequest, url: URL): Partial0[] | null {
     {
       platform: 'tiktok',
       // Without the body (popup) the event name is unknown.
-      event: json?.event ?? UNKNOWN_EVENT,
+      // /pixel/act carries automatic actions (clicks, scrolls) under "action".
+      event:
+        json?.event ??
+        (typeof json?.action === 'string' && json.action ? json.action : UNKNOWN_EVENT),
       params,
       context,
       account: json?.pixel_code ?? json?.context?.pixel?.code,

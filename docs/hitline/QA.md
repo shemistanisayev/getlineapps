@@ -43,3 +43,39 @@ Fixed in this step: grey text on the panel and uninstall page backgrounds (contr
 - The DevTools panel inside real DevTools: Playwright cannot open DevTools. The capture code is unit tested with a fake `chrome.devtools` (`src/capture/devtools.test.ts`) and the UI with recorded sessions. Manual check: load `apps/hitline/extension/.output/chrome-mv3` unpacked, open the Lumo shop with `pnpm --filter @line/fixture open:hitline`, press F12, open the Hitline tab, click "Reload page".
 - The popup's `activeTab` grant needs a real click on the toolbar icon; the probe function itself runs in the real shop in the tests.
 - `setUninstallURL`: Chrome has no API to read it back; the URL builder is unit tested in `packages/core`.
+
+# Hitline 1.1.0: QA on real sites (2026-11-11)
+
+Sites named by the owner: irshad.az, kontakt.az, umico.az (now birmarket.az), misli.az, birbank.az. Each was browsed in Chrome by `scripts/qa-hitline.ts`, which runs the panel's own capture code (`DevtoolsSource`, `SessionStore`) on Chrome DevTools Protocol events and the popup's probe at the end. `scripts/qa-hitline-report.ts` prints what the panel and the popup show, `scripts/qa-hitline-shots.ts` replays each session in the built panel and saves screenshots and the audit PDF. Nothing was bought, no bet was placed, no form was sent, cookie banners were declined.
+
+| Site | Path | Result |
+|---|---|---|
+| irshad.az | home, Samsung phones, product, add to cart, cart, checkout form (not sent) | Done |
+| kontakt.az | | Not tested: Cloudflare shows "Verify you are human", which an automated browser must not solve. To check by hand: load the extension, open kontakt.az, press F12, open the Hitline tab |
+| umico.az | redirects to birmarket.az; home, phones category, product, city picker, add to cart, cart | Done. The guest cart stays empty after "Add to cart" (the site needs a login), so no add_to_cart event exists to check |
+| misli.az | home, football, two odds picked for a coupon, coupon opened (no bet) | Done |
+| birbank.az | home, cards, credits, deposits | Done |
+
+## Hitline bugs found on these sites, fixed
+
+| Seen on | Problem | Fix |
+|---|---|---|
+| birbank.az | GA4's Google Signals copy (`stats.g.doubleclick.net/g/collect`) counted as a second GA4 event and as a server-side GTM endpoint (false "sGTM" signal) | Not classified as an event any more (`classify.ts`) |
+| birbank.az | Universal Analytics event tags whose trigger never matched showed "Fired" because another UA tag sent a hit | When the container and GTM's gtm.js push were read, a tag only counts as fired when its trigger matched an event |
+| birbank.az | Paused tags (`__paused`) listed as tags | Treated as paused and hidden |
+| birbank.az, misli.az | GA4 event tags with a variable name showed "GA4 macro,25" | Shown as "GA4 {{Event}}" and matched to any GA4 event |
+| irshad.az | TikTok `/pixel/act` hits showed "(unknown)" | The automatic action name is the event (Click, Metadata, ...) |
+| irshad.az | GTM's Pinterest template (`__pntr`) not named | Pinterest, Criteo and Quora GTM templates named |
+| irshad.az | TikTok sends events up to 15 s after the tag runs, so GTM events showed "No request seen" | Window for matching requests to an event raised to 30 s |
+| umico.az | "GA4 Config" showed "Missing value" because a GA4 view_item had no value | Base tags never take the status of an event tag |
+| misli.az | The same page counted twice in the visit path (first read and DevTools' navigation event) | One page when the same URL repeats within 10 s |
+| irshad.az, birbank.az | Audit PDF failed: JetBrains Mono code ligatures in parameter names ("-data-layer-") crash the font engine | Ligatures off in the PDF, characters the fonts lack become "?" (`packages/report`) |
+| birbank.az | GTM internal events sent to GA4 and TikTok were not reported | New check INTERNAL_EVENTS (medium) |
+
+## What Hitline reports on the sites (for the owner to confirm)
+
+- birbank.az: GA4 receives about 9 page_view hits per page (4 GA4 Config tags plus a GA4 {{Event}} tag), flagged as "Sent twice". GA4 and TikTok receive GTM's own events (gtm.js, gtm.dom, gtag.config). Meta Pixel Base runs twice (All Pages and DOM Ready). Floodlight, Universal Analytics, Clarity and TikTok are also present. No Consent Mode.
+- irshad.az: GA4 with dataLayer ecommerce, Meta, TikTok, Pinterest, Yandex Metrica. The GTM tags Meta ViewContent and Meta AddToCart are triggered but no Meta request follows (Meta gets only PageView and InitiateCheckout). No Consent Mode.
+- birmarket.az: GA4, Google Ads remarketing, TikTok, Clarity; Meta Pixel and Yandex are loaded but send nothing in this visit. GA4 view_item has no value, view_cart has no value and no currency. 189 GTM tags.
+- misli.az: GA4, Meta, Hotjar; picking odds pushes add_to_cart to the dataLayer and the GA4 add_to_cart tag is triggered; the GA4 request had not been sent when the recording stopped (GA4 batches events for a few seconds).
+- Unknown services were listed under "Other" and not counted as issues: OpenAI's site SDK and a chat widget (irshad), Gleap, Umico clickstream and an event collector (birmarket), Dengage (misli).

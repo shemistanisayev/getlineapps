@@ -124,8 +124,10 @@ export class SessionStore {
   }
 
   addNavigation(nav: Navigation) {
+    // The first page read (page start time) and DevTools' own navigation event (commit time) can
+    // both report the same load a few seconds apart: one page, not two.
     const last = this.input.navigations.at(-1);
-    if (last && last.url === nav.url && Math.abs(last.time - nav.time) < 1000) return;
+    if (last && last.url === nav.url && Math.abs(last.time - nav.time) < 10_000) return;
     this.input.navigations.push(nav);
     this.changed();
   }

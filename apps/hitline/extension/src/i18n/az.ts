@@ -371,6 +371,7 @@ export const az: Dictionary = {
   'status.other': 'İzləməyə oxşayır',
   'status.pii': 'Şəxsi məlumat',
   'status.duplicate': 'İki dəfə göndərilib',
+  'status.internal': 'GTM eventi',
   'status.noId': 'Sifariş ID yoxdur',
   'detail.account': 'ID',
   'detail.page': 'Səhifə',
@@ -415,6 +416,11 @@ export const az: Dictionary = {
   'issue.noId.fix': 'Purchase eventinə sifariş nömrəsindən transaction_id əlavə et.',
   'issue.multi.title': 'Məlumat {ids} ünvanlarına gedir',
   'issue.multi.fix': 'Buradakı hər GA4 property-nin bu saytın məlumatını almalı olduğuna əmin ol.',
+  'issue.internal.title': '{platform} GTM-in öz eventlərini alır: {events}',
+  'issue.internal.fix':
+    'GTM-də trigger-ə şərt əlavə et ki, {{Event}} gtm. və ya gtag. ilə başlamasın.',
+  'why.internal':
+    'Hesabatlar heç kimin istəmədiyi eventlərlə dolur, real eventləri tapmaq çətinləşir.',
   'why.consent': 'Şəxsi məlumat ziyarətçinin icazəsi olmadan göndərilir, bu GDPR-ı pozur.',
   'why.referral': 'Satışlar ziyarətçini gətirən reklama deyil, ödəniş saytına yazılır.',
   'why.break': 'Ziyarət ikiyə bölünür və kampaniya satışı itirir.',

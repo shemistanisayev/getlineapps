@@ -123,7 +123,8 @@ export type IssueId =
   | 'DUPLICATE_EVENT'
   | 'PURCHASE_NO_ID'
   | 'PII_EMAIL'
-  | 'MULTIPLE_GA4';
+  | 'MULTIPLE_GA4'
+  | 'INTERNAL_EVENTS';
 
 export type IssueTab = 'events' | 'gtm' | 'consent' | 'attribution' | 'plan';
 

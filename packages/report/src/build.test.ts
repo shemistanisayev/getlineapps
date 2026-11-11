@@ -21,6 +21,30 @@ describe('buildLineReport', () => {
     expect(texts).toContain('Page 1 of 1');
   });
 
+  it('builds tables with real page data: code ligatures, emoji, long rows', async () => {
+    const cfg = hitlineSample(fonts);
+    cfg.extras = [
+      {
+        type: 'table',
+        title: 'Events',
+        columns: [
+          { label: 'Event', width: 0.4, mono: true },
+          { label: 'Parameters', width: 0.6, mono: true },
+        ],
+        // Seen on irshad.az: JetBrains Mono code ligatures in "-data-layer-" crashed fontkit.
+        rows: Array.from({ length: 60 }, (_, i) => [
+          `__ym.ec2.begin_checkout.ga4-data-layer-begin-checkout.id,${i}`,
+          'page_title=Sifariş 🛒 -> != === <= ✓ 中文',
+        ]),
+      },
+    ];
+    const r = await buildLineReport(cfg);
+    expect(r.pages).toBeGreaterThan(1);
+    const texts = r.layout.map((l) => l.text).join('|');
+    expect(texts).toContain('-data-layer-');
+    expect(texts).toContain('Sifariş ? ->');
+  });
+
   // Hitline's layout must stay identical when the builder changes for other tools.
   it('keeps the Hitline text layer and positions (snapshot)', async () => {
     const r = await buildLineReport(hitlineSample(fonts));

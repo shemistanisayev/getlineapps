@@ -104,6 +104,15 @@ export function issueText(i: Issue, t: T, all: Issue[] = [i]): IssueText {
         why: t('why.multi'),
         fix: t('issue.multi.fix'),
       };
+    case 'INTERNAL_EVENTS':
+      return {
+        title: t('issue.internal.title', {
+          platform: platformName(p),
+          events: joinList(((i.data.events as string[]) ?? []).slice(0, 4), t),
+        }),
+        why: t('why.internal'),
+        fix: t('issue.internal.fix'),
+      };
     case 'BROWSER_ONLY':
       return {
         title: t('sgtm.browserOnly.title', {

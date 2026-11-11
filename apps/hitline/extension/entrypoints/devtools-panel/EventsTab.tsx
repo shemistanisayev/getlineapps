@@ -50,6 +50,8 @@ function rowStatus(
     return { tone: 'bad', label: t('status.afterReject'), icon: 'alert' };
   if (own.some((i) => i.id === 'DUPLICATE_EVENT'))
     return { tone: 'warn', label: t('status.duplicate'), icon: 'alert' };
+  if (own.some((i) => i.id === 'INTERNAL_EVENTS'))
+    return { tone: 'warn', label: t('status.internal'), icon: 'alert' };
   if (own.some((i) => i.id === 'PURCHASE_NO_ID'))
     return { tone: 'warn', label: t('status.noId'), icon: 'alert' };
   if (consent === 'mismatch') return { tone: 'warn', label: t('status.mismatch'), icon: 'alert' };
