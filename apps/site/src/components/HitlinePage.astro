@@ -63,6 +63,7 @@ const others = (['serpline', 'rivaline', 'foldline', 'markline'] as const).map((
 const tabs = [
   { id: 'ev', key: 'events' },
   { id: 'gt', key: 'gtm' },
+  { id: 'dq', key: 'checks' },
   { id: 'co', key: 'consent' },
   { id: 'at', key: 'attribution' },
   { id: 'pl', key: 'plan' },
@@ -624,6 +625,36 @@ const marquee = [...c.marquee.items, ...c.marquee.items];
                                 </svg>
                               </span>
                               {s}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {x.key === 'checks' && (
+                        <div class="mock" style="width:100%;max-width:520px">
+                          <div class="co-head">
+                            <span style="font-size:15px;font-weight:700">
+                              {f.checks.demo.title}
+                            </span>
+                            <span class="pill mute">{f.checks.demo.count}</span>
+                          </div>
+                          {f.checks.demo.rows.map((r) => (
+                            <div class:list={['co-row', { hlrow: r.tone === 'bad' }]}>
+                              <Pf p={r.platform} label={r.label} />
+                              <span class:list={['pill', r.tone]}>
+                                <svg
+                                  width="12"
+                                  height="12"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="3"
+                                  stroke-linecap="round"
+                                >
+                                  <path d="M12 6v8" />
+                                  <path d="M12 18.5h.01" />
+                                </svg>
+                                {r.status}
+                              </span>
                             </div>
                           ))}
                         </div>

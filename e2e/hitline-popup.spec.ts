@@ -57,8 +57,8 @@ test.describe('hitline popup', () => {
     const probe = await shopProbe('events');
     expect(probe.url).toBe('http://example.com/products/wireless-headphones-pro-x?run=events');
     const page = await openPopup(probe);
+    await expect(page.locator('.site-bar')).toContainText('example.com');
     const hero = page.locator('.hero');
-    await expect(hero).toContainText('example.com');
     await expect(hero).toContainText('Server-side GTM detected');
     await expect(hero).toContainText('GA4 goes through data.example.com');
     await expect(page.locator('.tile')).toHaveText([
@@ -71,7 +71,13 @@ test.describe('hitline popup', () => {
     await expect(page.locator('.issues li')).toHaveText([
       '1Meta AddToCart is sent without a value',
     ]);
-    await expect(page.getByText('press F12, open the Hitline tab')).toBeVisible();
+    // Latest events, newest first; one opens its details and the DevTools how-to.
+    const event = page.locator('.pev').filter({ hasText: 'AddToCart' }).first();
+    await event.getByRole('button').click();
+    await event.getByRole('button', { name: 'Show in DevTools' }).click();
+    await expect(page.getByRole('dialog')).toContainText('Choose the Hitline tab');
+    await page.getByRole('button', { name: 'Got it' }).click();
+    await expect(page.getByRole('button', { name: 'Open in DevTools' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Get in touch' })).toHaveAttribute(
       'href',
       'https://shamistanisayev.com/?utm_source=hitline&utm_medium=extension&utm_campaign=panel_cta',
@@ -101,8 +107,8 @@ test.describe('hitline popup', () => {
       cookies: {},
     });
     await expect(empty.getByText('No tracking on this page')).toBeVisible();
-    await expect(empty.getByText(/was found on example\.org\./)).toBeVisible();
-    await expect(empty.locator('.chips .pill')).toHaveCount(6);
+    await expect(empty.getByText(/found none on example\.org\./)).toBeVisible();
+    await expect(empty.locator('.chips .pill')).toHaveCount(7);
     await empty.evaluate(() => document.fonts.ready);
     if (SHOTS) await empty.screenshot({ path: `${SHOTS}/hitline-popup-empty.png`, fullPage: true });
     await empty.close();
@@ -172,7 +178,25 @@ test.describe('hitline popup', () => {
       'href',
       'https://shamistanisayev.com/?utm_source=hitline&utm_medium=extension&utm_campaign=settings',
     );
-    await expect(page.locator('.set-foot')).toContainText('Version 1.0.0');
+    // Custom platform: a name and a URL text, saved as customRules.
+    await page.getByRole('button', { name: '+ Add custom platform' }).click();
+    await page.getByRole('textbox', { name: 'Name', exact: true }).fill('Acme');
+    await page.getByRole('textbox', { name: 'URL contains' }).fill('ab');
+    await page.getByRole('button', { name: 'Add', exact: true }).click();
+    await expect(page.getByRole('alert')).toHaveText(/at least 3 characters/);
+    await page.getByRole('textbox', { name: 'URL contains' }).fill('collect.acme.io');
+    await page.getByRole('textbox', { name: 'Event name field (optional)' }).fill('action');
+    await page.getByRole('button', { name: 'Add', exact: true }).click();
+    await expect(page.locator('.rule')).toContainText('collect.acme.io');
+    expect(
+      await ext.worker.evaluate(
+        async () => (await chrome.storage.local.get('customRules')).customRules,
+      ),
+    ).toEqual([{ name: 'Acme', match: 'collect.acme.io', event: 'action' }]);
+    await page.getByRole('button', { name: 'Remove Acme' }).click();
+    await expect(page.locator('.rule')).toHaveCount(0);
+
+    await expect(page.locator('.set-foot')).toContainText('Version 1.1.0');
     await page.evaluate(() => document.fonts.ready);
     if (SHOTS)
       await page.screenshot({ path: `${SHOTS}/hitline-popup-settings.png`, fullPage: true });

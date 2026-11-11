@@ -1,6 +1,10 @@
 /** Hitline data model (docs/hitline-SPEC.md §3.1, §4). Pure data: no DOM, no chrome.*. */
 
-export type Platform = 'ga4' | 'ads' | 'meta' | 'tiktok' | 'hotjar' | 'gtm' | 'datalayer';
+/**
+ * Platform id from the registry in platforms.ts ('ga4', 'meta', 'linkedin', ...), `custom:<name>` for
+ * a rule from Settings, or 'other' for an unknown tracking-like request.
+ */
+export type Platform = string;
 export type Route = 'browser' | 'sgtm' | 'page';
 export type ConsentSignal =
   'ad_storage' | 'analytics_storage' | 'ad_user_data' | 'ad_personalization' | (string & {});
@@ -27,6 +31,10 @@ export interface RawRequest {
 export interface DataLayerEntry {
   time: number;
   value: unknown;
+  /** True when the push time was not recorded (read later): the time is an estimate. */
+  approx?: boolean;
+  /** Position in the page's dataLayer (keeps pushes in order when times are estimates). */
+  index?: number;
 }
 
 /** One `inspectedWindow.eval` snapshot (§3.1). Only the listed cookie names are read. */
@@ -41,6 +49,14 @@ export interface Snapshot {
   /** Known CMP globals found on the page (Cookiebot, OneTrust, ...). */
   cmp?: string[];
   cookies?: Record<string, string>;
+  /** Platform ids whose page globals exist (fbq, ttq, clarity, ...): loaded even without a request. */
+  globals?: string[];
+  /** New entries of other page data layers (adobeDataLayer), keyed by platform id. */
+  layers?: { platform: Platform; entries: DataLayerEntry[] }[];
+  /** Object data layers (digitalData, utag_data) when they changed, keyed by platform id. */
+  pageData?: { platform: Platform; value: unknown }[];
+  /** document.referrer of the page (new-site detection). */
+  referrer?: string;
 }
 
 export interface Navigation {
@@ -84,6 +100,12 @@ export interface Hit {
   gcd?: string;
   /** Index of the page (navigation) this hit belongs to. */
   page: number;
+  /** The time is an estimate (dataLayer entry read after the push). */
+  approx?: boolean;
+  /** Capture order, used as a tie-breaker when two hits share a time. */
+  seq?: number;
+  /** Other endpoints that carried the same event (Google Ads, X and Floodlight send to two hosts). */
+  alsoSentTo?: string[];
 }
 
 export type Severity = 'high' | 'medium' | 'info';
@@ -97,7 +119,11 @@ export type IssueId =
   | 'PLAN_MISSING'
   | 'PLAN_PARAMS'
   | 'BROWSER_ONLY'
-  | 'NO_TRACKING';
+  | 'NO_TRACKING'
+  | 'DUPLICATE_EVENT'
+  | 'PURCHASE_NO_ID'
+  | 'PII_EMAIL'
+  | 'MULTIPLE_GA4';
 
 export type IssueTab = 'events' | 'gtm' | 'consent' | 'attribution' | 'plan';
 

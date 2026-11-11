@@ -1,5 +1,6 @@
 /** Consent Mode v2 (docs/hitline-SPEC.md §4.3). */
 import { consentCommands, type ConsentCommand } from './datalayer.ts';
+import { isAdPixel, PLATFORM_LIST } from './platforms.ts';
 import type { ConsentValue, DataLayerEntry, Hit, Platform } from './types.ts';
 
 export const CONSENT_SIGNALS = [
@@ -17,6 +18,11 @@ export const KNOWN_CMPS = [
   'Didomi',
   'Complianz',
   'iubenda',
+  'Termly',
+  'Osano',
+  'Quantcast Choice',
+  'TrustArc',
+  'Axeptio',
 ] as const;
 
 export type ChoiceKind = 'reject' | 'accept' | 'custom';
@@ -128,11 +134,12 @@ export type HitConsentStatus =
   | 'not_loaded'
   | 'unknown';
 
-export const MARKETING: Platform[] = ['meta', 'tiktok'];
+/** Ad pixels that must wait for ad_storage (Google tags follow Consent Mode instead). */
+export const MARKETING: Platform[] = PLATFORM_LIST.filter((p) => p.adPixel).map((p) => p.id);
 
 /** Which signal a non-Google platform must respect. */
 export function requiredSignal(platform: Platform): string | null {
-  if (MARKETING.includes(platform)) return 'ad_storage';
+  if (isAdPixel(platform)) return 'ad_storage';
   if (platform === 'hotjar') return 'analytics_storage';
   return null;
 }
@@ -153,6 +160,9 @@ export function hitConsentStatus(model: ConsentModel, hit: Hit): HitConsentStatu
   }
   const signal = requiredSignal(hit.platform);
   if (!signal) return 'unknown';
+  // Microsoft UET Consent Mode: asc=D means the tag ran without cookies.
+  if (hit.platform === 'bing' && hit.params.some((p) => p.key === 'consent' && p.value === 'D'))
+    return 'cookieless';
   if (state[signal] !== 'denied') return state[signal] === 'granted' ? 'granted' : 'unknown';
   return model.choice && hit.time >= model.choice.time ? 'after_reject' : 'before_consent';
 }

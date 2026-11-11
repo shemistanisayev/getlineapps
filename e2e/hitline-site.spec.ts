@@ -91,7 +91,7 @@ test.describe('hitline landing', () => {
     expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
   });
 
-  test('the five feature tabs work with the keyboard', async ({ page }) => {
+  test('the six feature tabs work with the keyboard', async ({ page }) => {
     await page.goto(`${SITE}/hitline`);
     await expect(page.locator('.p-ev')).toBeVisible();
     await page.locator('#tb-ev').focus();
@@ -99,8 +99,20 @@ test.describe('hitline landing', () => {
     await expect(page.locator('#tb-gt')).toBeChecked();
     await expect(page.locator('.p-gt')).toBeVisible();
     await expect(page.locator('.p-ev')).toBeHidden();
+    await page.keyboard.press('ArrowRight');
+    await expect(page.locator('#tb-dq')).toBeChecked();
+    await expect(page.locator('.p-dq')).toContainText('The same purchase or lead sent twice');
     await page.locator('label[for="tb-pl"]').click();
     await expect(page.locator('.p-pl')).toBeVisible();
+    await expect(page.locator('.tbar label')).toHaveCount(6);
+  });
+
+  test('the marquee names 26 platforms with their marks or a neutral tile', async ({ page }) => {
+    await page.goto(`${SITE}/hitline`);
+    const tags = page.locator('.marq .tag:not([aria-hidden])');
+    await expect(tags).toHaveCount(26);
+    await expect(tags.filter({ hasText: 'LinkedIn Insight' }).locator('.pf-mono')).toHaveText('LI');
+    await expect(tags.filter({ hasText: 'Reddit Pixel' }).locator('svg')).toHaveCount(1);
   });
 
   test('Azerbaijani page', async ({ page }) => {

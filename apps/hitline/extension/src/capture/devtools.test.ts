@@ -1,9 +1,13 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { DevtoolsSource, type DevtoolsLike, type HarEntryLike } from './devtools.ts';
 import { toSnapshot, type ProbeResult } from './probe.ts';
 import { SessionStore } from './session.ts';
 
-function fakeDevtools(har: HarEntryLike[], probe: () => ProbeResult) {
+function fakeDevtools(
+  har: HarEntryLike[],
+  probe: () => ProbeResult,
+  resources: { url: string; content: string }[] = [],
+) {
   const finished: ((e: HarEntryLike) => void)[] = [];
   const navigated: ((u: string) => void)[] = [];
   const reloads: unknown[] = [];
@@ -16,6 +20,8 @@ function fakeDevtools(har: HarEntryLike[], probe: () => ProbeResult) {
     inspectedWindow: {
       eval: (_expr, cb) => cb(probe()),
       reload: (o) => reloads.push(o),
+      getResources: (cb) =>
+        cb(resources.map((r) => ({ url: r.url, getContent: (c) => c(r.content, '') }))),
     },
   };
   return { api, finished, navigated, reloads };
@@ -114,5 +120,68 @@ describe('capture', () => {
     src.clear();
     expect(store.session.requests).toEqual([]);
     expect(store.session.navigations).toHaveLength(1);
+  });
+
+  it('reads a GTM container that loaded before the panel opened from the page resources', () => {
+    const store = new SessionStore();
+    const { api } = fakeDevtools([], () => probe({ gtm: ['GTM-AB12'] }), [
+      {
+        url: 'https://www.googletagmanager.com/gtm.js?id=GTM-AB12',
+        content: 'var data = {"resource": {"tags": []}}',
+      },
+      { url: 'https://www.googletagmanager.com/ns.html?id=GTM-AB12', content: '<html></html>' },
+    ]);
+    new DevtoolsSource(store, api).start();
+    expect(store.session.gtmScripts?.map((g) => g.id)).toEqual(['GTM-AB12']);
+  });
+
+  it('is ready after the HAR and the first page read, and flags a late open', () => {
+    const store = new SessionStore();
+    const { api } = fakeDevtools([], () => probe());
+    expect(store.status.ready).toBe(false);
+    new DevtoolsSource(store, api).start();
+    expect(store.status.ready).toBe(true);
+    expect(store.status.openedAfterLoad).toBe(true);
+  });
+
+  it('starts a new session for a typed address on another site, not for a link or own domain', () => {
+    let clock = Date.parse('2026-11-06T10:43:00.000Z');
+    const spy = vi.spyOn(Date, 'now').mockImplementation(() => (clock += 1000));
+    let page = probe();
+    const store = new SessionStore();
+    const { api, finished, navigated } = fakeDevtools([], () => page);
+    const src = new DevtoolsSource(store, api, { ownDomains: () => ['pay.example.net'] });
+    src.start();
+    finished[0]!(entry('https://www.facebook.com/tr/?id=1&ev=PageView'));
+    // A link from example.com to its payment page (own domain): same session.
+    navigated[0]!('https://pay.example.net/checkout');
+    page = probe({ href: 'https://pay.example.net/checkout', referrer: '' });
+    src.poll();
+    expect(store.session.requests).toHaveLength(1);
+    // A link to another site, with example.com as referrer: same session.
+    navigated[0]!('https://blog.other.org/post');
+    page = probe({ href: 'https://blog.other.org/post', referrer: 'https://example.com/' });
+    src.poll();
+    expect(store.session.requests).toHaveLength(1);
+    // A typed address (no referrer) on a new site: new session.
+    navigated[0]!('https://news.site.az/');
+    page = probe({ href: 'https://news.site.az/', referrer: '' });
+    src.poll();
+    expect(store.session.requests).toHaveLength(0);
+    expect(store.session.navigations.map((n) => n.url)).toEqual(['https://news.site.az/']);
+    spy.mockRestore();
+  });
+
+  it('pauses: nothing is recorded until it continues', () => {
+    const store = new SessionStore();
+    const { api, finished } = fakeDevtools([], () => probe());
+    const src = new DevtoolsSource(store, api);
+    src.start();
+    src.setPaused(true);
+    finished[0]!(entry('https://www.facebook.com/tr/?id=1&ev=Lead'));
+    expect(store.session.requests).toHaveLength(0);
+    src.setPaused(false);
+    finished[0]!(entry('https://www.facebook.com/tr/?id=1&ev=Lead'));
+    expect(store.session.requests).toHaveLength(1);
   });
 });

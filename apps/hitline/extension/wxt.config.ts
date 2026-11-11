@@ -21,7 +21,7 @@ export default defineConfig({
     name: 'Hitline: Tracking Debugger for GA4, Meta, TikTok & More',
     short_name: 'Hitline',
     description:
-      'See every GA4, Google Ads, Meta and TikTok event, spot server-side GTM and catch consent leaks in DevTools.',
+      'See events from GA4, Meta, TikTok and 47 more platforms, read GTM tags and catch consent leaks in Chrome DevTools.',
     permissions: ['activeTab', 'scripting', 'storage'],
     icons: { 16: 'icon-16.png', 32: 'icon-32.png', 48: 'icon-48.png', 128: 'icon-128.png' },
     action: {

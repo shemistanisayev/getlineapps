@@ -193,7 +193,7 @@ describe('classifiers', () => {
     expect(classifyRequest(req('not a url'))).toEqual([]);
   });
 
-  it('dataLayer pushes with an event become Page hits; gtm.* and commands do not', () => {
+  it('dataLayer pushes with an event become Page hits; gtm.* become GTM hits, commands do not', () => {
     const hit = dataLayerHit(
       {
         time: 5,
@@ -208,7 +208,9 @@ describe('classifiers', () => {
       { key: 'value', value: '1' },
       { key: 'items[0].item_id', value: 'A' },
     ]);
-    expect(dataLayerHit({ time: 5, value: { event: 'gtm.js' } }, 'x', 0, '')).toBeNull();
+    expect(
+      dataLayerHit({ time: 5, value: { event: 'gtm.js', 'gtm.start': 7 } }, 'x', 0, ''),
+    ).toMatchObject({ platform: 'gtm', event: 'gtm.js', time: 7 });
     expect(dataLayerHit({ time: 5, value: ['consent', 'default', {}] }, 'x', 0, '')).toBeNull();
     expect(routeFor('datalayer', '')).toBe('page');
   });

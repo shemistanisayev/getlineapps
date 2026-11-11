@@ -1,43 +1,59 @@
 ---
 /**
  * Platform badge from the Hitline artboards (.pf): a tinted square with the brand mark, then a label.
- * Marks come from @line/ui (Simple Icons, CC0), shown only to name what Hitline reads.
+ * Marks come from @line/ui (Simple Icons, CC0: the designs and the simple-icons package), shown only
+ * to name what Hitline reads. Platforms without a mark in the package get a neutral two-letter tile.
  */
 import { MARKS, type MarkName } from '@line/ui/marks';
 
-export type PfKey = 'ga' | 'ads' | 'meta' | 'tt' | 'dl' | 'hj' | 'sgtm' | 'datalayer';
-const BRAND: Partial<Record<PfKey, MarkName>> = {
-  ga: 'googleanalytics',
-  ads: 'googleads',
-  meta: 'meta',
-  tt: 'tiktok',
-  dl: 'googletagmanager',
-  hj: 'hotjar',
+/** The design's keys keep their classes; any other key is a Hitline platform id. */
+const DESIGN: Record<string, { mark?: MarkName; cls: string }> = {
+  ga: { mark: 'googleanalytics', cls: 'pf-ga' },
+  ads: { mark: 'googleads', cls: 'pf-ads' },
+  meta: { mark: 'meta', cls: 'pf-meta' },
+  tt: { mark: 'tiktok', cls: 'pf-tt' },
+  dl: { mark: 'googletagmanager', cls: 'pf-dl' },
+  hj: { mark: 'hotjar', cls: 'pf-hj' },
+  sgtm: { cls: 'pf-nt' },
+  datalayer: { cls: 'pf-nt' },
 };
-const CLASS: Record<PfKey, string> = {
-  ga: 'pf-ga',
-  ads: 'pf-ads',
-  meta: 'pf-meta',
-  tt: 'pf-tt',
-  dl: 'pf-dl',
-  hj: 'pf-hj',
-  sgtm: 'pf-nt',
-  datalayer: 'pf-nt',
+const EXTRA: Record<string, MarkName> = {
+  x: 'x',
+  pinterest: 'pinterest',
+  snapchat: 'snapchat',
+  reddit: 'reddit',
+  quora: 'quora',
+  hubspot: 'hubspot',
+  mixpanel: 'mixpanel',
+  matomo: 'matomo',
+  posthog: 'posthog',
+  plausible: 'plausible',
+  floodlight: 'floodlight',
+  gtag: 'google',
 };
 
 interface Props {
-  p: PfKey;
+  p: string;
   /** Text after the mark. Empty for an icon only. */
   label?: string;
   class?: string;
 }
 const { p, label = '', class: cls } = Astro.props;
-const name = BRAND[p];
+const design = DESIGN[p];
+const name = design?.mark ?? EXTRA[p];
 const mark = name ? MARKS[name] : null;
+const monogram = (label || p)
+  .replace(/[^A-Za-z0-9 .]/g, ' ')
+  .split(/[\s.]+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((w, i, all) => (all.length > 1 ? w[0] : w.slice(0, 2)))
+  .join('');
+const tint = !design && mark ? `background:${mark.tint}` : undefined;
 ---
 
-<span class:list={['pf', CLASS[p], cls]}>
-  <i>
+<span class:list={['pf', design?.cls ?? (mark ? 'pf-x' : 'pf-nt'), cls]}>
+  <i style={tint}>
     {mark ? (
       <svg
         viewBox="0 0 24 24"
@@ -61,7 +77,7 @@ const mark = name ? MARKS[name] : null;
         <rect x="3" y="13" width="18" height="7" rx="2" />
         <path d="M7 7.5h.01M7 16.5h.01" />
       </svg>
-    ) : (
+    ) : p === 'datalayer' ? (
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -73,6 +89,10 @@ const mark = name ? MARKS[name] : null;
       >
         <path d="M8 4H7a2 2 0 0 0-2 2v4l-2 2 2 2v4a2 2 0 0 0 2 2h1M16 4h1a2 2 0 0 1 2 2v4l2 2-2 2v4a2 2 0 0 1-2 2h-1" />
       </svg>
+    ) : (
+      <b class="pf-mono" aria-hidden="true">
+        {monogram.charAt(0).toUpperCase() + monogram.slice(1)}
+      </b>
     )}
   </i>
   {label}

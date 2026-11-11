@@ -8,7 +8,7 @@ import {
 } from '@line/core/hitline';
 import { joinList, type MessageKey, type T } from '../../src/i18n/index.ts';
 import { useT } from '../../src/useLang.ts';
-import { fmtTime, Icon, Pill, PlatformBadge, PLATFORM_NAME, type Tone } from '../../src/ui.tsx';
+import { fmtTime, Icon, Pill, PlatformBadge, platformName, type Tone } from '../../src/ui.tsx';
 
 const CTA = contactUrl({ source: 'hitline', medium: 'extension', campaign: 'panel_cta' });
 
@@ -63,7 +63,7 @@ export function ConsentTab({ audit }: { audit: Audit }) {
   const issues = audit.issues.filter((i) => i.tab === 'consent');
   const tags = [...new Set(issues.flatMap((i) => (i.data.tags as string[]) ?? []))];
   const platforms = [
-    ...new Set(issues.map((i) => PLATFORM_NAME[i.data.platform as keyof typeof PLATFORM_NAME])),
+    ...new Set(issues.map((i) => platformName(i.data.platform as keyof typeof platformName))),
   ];
   const choice = m.choice ? t(`ct.choice.${m.choice.kind}`) : t('ct.choice.none');
 

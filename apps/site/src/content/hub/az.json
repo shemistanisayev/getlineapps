@@ -71,7 +71,7 @@
         "surface": "DevTools",
         "question": "Hər teq və event həqiqətən işləyir?",
         "answer": "eventlər, GTM və razılıq, canlı",
-        "desc": "GA4, Meta, TikTok və Google Ads eventlərini işlədikləri anda izləyin, GTM, server-side GTM və razılığı yoxlayın, sonra audit hesabatı alın.",
+        "desc": "GA4, Meta, TikTok və daha 47 platformanın eventlərini işlədikləri anda izləyin, GTM, server-side GTM və razılığı yoxlayın, sonra audit hesabatı alın.",
         "bullets": [
           "Hər platforma üçün canlı event axını",
           "GTM, server-side GTM və Consent Mode yoxlaması",
@@ -187,7 +187,7 @@
         "where": "Sayılmalı olan klik",
         "question": "Bu klik hər reklam platformasına çatır?",
         "finds": [
-          "GA4, Meta, TikTok və Google Ads-də hər event işlədiyi anda",
+          "GA4, Meta, TikTok və daha 47 platformada hər event işlədiyi anda",
           "GTM, server-side GTM və razılıq onunla nə etdi",
           "Tracking planınızın gözlədiyi, amma heç görünməyən eventlər"
         ]

@@ -1,12 +1,13 @@
 {
   "summary": "Hitline shows the tracking tags and events of the page you are inspecting. It does not collect, keep or send any data about you or the pages you check.",
   "reads": [
-    "The network requests, dataLayer and GTM containers of the inspected tab, plus the tracking cookies _ga, _gcl_*, _fbp, _fbc, _ttp and FPID, only while the Hitline tab in Chrome DevTools is open.",
-    "The page in the current tab, only after you click the Hitline icon to open the popup.",
+    "The network requests, the dataLayer and other page data layers (adobeDataLayer, digitalData, utag_data), the GTM containers and which known tracking tools are loaded on the inspected tab, plus the tracking cookies _ga, _gcl_*, _fbp, _fbc, _ttp and FPID, only while the Hitline tab in Chrome DevTools is open.",
+    "The page in the current tab, only after you click the Hitline icon to open the popup, and again every 2 seconds while the popup stays open.",
     "A tracking plan file, only if you choose to load one. It is read in your browser."
   ],
   "stores": [
-    "Your settings in Chrome storage on your computer: the language, the domains you list as your own site, and the tracking plans you load (event and parameter names only).",
+    "Your settings in Chrome storage on your computer: the language, the domains you list as your own site, the tracking plans you load (event and parameter names only) and the custom platforms you add (a name and a part of a URL).",
+    "When you click \"Show in DevTools\" in the popup, a short note of which event to show is kept in Chrome's memory until the panel reads it. It is gone when Chrome closes.",
     "Results stay in the open panel and are gone when you close DevTools or the popup."
   ],
   "never": [
@@ -39,7 +40,7 @@
   ],
   "notes": [
     "The audit PDF is made in your browser and saved where you choose.",
-    "When you click \"Reload page\" in the panel, Hitline adds a small script to that page that notes when each dataLayer entry is pushed. It reads nothing else and sends nothing.",
+    "While the Hitline tab is open, and when you click \"Reload page\", Hitline adds a small timer to that page's dataLayer that notes when each entry is pushed. It reads nothing else and sends nothing.",
     "Hitline makes no network requests of its own."
   ]
 }

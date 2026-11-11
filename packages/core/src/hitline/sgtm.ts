@@ -1,5 +1,6 @@
 /** Server-side GTM signals (docs/hitline-SPEC.md §4.2). Detected when at least 2 of 4 are true. */
 import { isSubdomainOf } from './domain.ts';
+import { MARKETING } from './consent.ts';
 import type { Hit, Platform, RawRequest } from './types.ts';
 
 export type SgtmSignalId = 'own_subdomain' | 'ga4_path' | 'server_container_url' | 'fpid_cookie';
@@ -81,9 +82,7 @@ export function detectSgtm(
     ),
   ];
   const browserPlatforms = detected
-    ? (['meta', 'tiktok'] as Platform[]).filter((p) =>
-        hits.some((h) => h.platform === p && h.route === 'browser'),
-      )
+    ? MARKETING.filter((p) => hits.some((h) => h.platform === p && h.route === 'browser'))
     : [];
   return { detected, host, signals, serverPlatforms, browserPlatforms };
 }

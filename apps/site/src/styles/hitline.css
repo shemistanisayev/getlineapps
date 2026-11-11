@@ -630,6 +630,16 @@ body.lp-page {
   background: #eeedf3;
   color: #475467;
 }
+.lp .pf-mono {
+  font-family: var(--line-font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #475467;
+}
+.lp .tag .pf-nt i {
+  background: #eeedf3;
+}
 .lp .pf-nt i svg {
   width: 62%;
   height: 62%;
@@ -1061,6 +1071,7 @@ body.lp-page {
 }
 .lp #tb-ev:checked ~ .tbar-w label[for='tb-ev'],
 .lp #tb-gt:checked ~ .tbar-w label[for='tb-gt'],
+.lp #tb-dq:checked ~ .tbar-w label[for='tb-dq'],
 .lp #tb-co:checked ~ .tbar-w label[for='tb-co'],
 .lp #tb-at:checked ~ .tbar-w label[for='tb-at'],
 .lp #tb-pl:checked ~ .tbar-w label[for='tb-pl'] {
@@ -1069,6 +1080,7 @@ body.lp-page {
 }
 .lp #tb-ev:focus-visible ~ .tbar-w label[for='tb-ev'],
 .lp #tb-gt:focus-visible ~ .tbar-w label[for='tb-gt'],
+.lp #tb-dq:focus-visible ~ .tbar-w label[for='tb-dq'],
 .lp #tb-co:focus-visible ~ .tbar-w label[for='tb-co'],
 .lp #tb-at:focus-visible ~ .tbar-w label[for='tb-at'],
 .lp #tb-pl:focus-visible ~ .tbar-w label[for='tb-pl'] {
@@ -1077,6 +1089,7 @@ body.lp-page {
 }
 .lp #tb-ev:checked ~ .panes .p-ev,
 .lp #tb-gt:checked ~ .panes .p-gt,
+.lp #tb-dq:checked ~ .panes .p-dq,
 .lp #tb-co:checked ~ .panes .p-co,
 .lp #tb-at:checked ~ .panes .p-at,
 .lp #tb-pl:checked ~ .panes .p-pl {

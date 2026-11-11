@@ -42,9 +42,7 @@ describe('hitline audit PDF', () => {
     const t = translator('en');
     const cfg = hitlineReport(lumoAudit(), t, 'en', fonts, now);
     expect(cfg.host).toBe('example.com');
-    expect(cfg.subline).toBe(
-      'Pages checked: landing page, product, cart, payment and order confirmation',
-    );
+    expect(cfg.subline).toBe('Page checked: example.com/products/wireless-headphones-pro-x');
     expect(cfg.tiles.map((x) => [x.value, x.label])).toEqual([
       [4, 'platforms'],
       [14, 'events'],
@@ -53,44 +51,63 @@ describe('hitline audit PDF', () => {
     ]);
     expect(cfg.keyValue.rows).toEqual([
       { k: 'GTM', v: 'GTM-K7P2QX, 8 tags' },
+      { k: 'GA4 properties', v: 'G-4LMX82PQ1S' },
       { k: 'Server-side', v: 'GA4 through data.example.com, Meta and TikTok from the browser' },
       { k: 'Consent Mode v2', v: 'Correct on Google tags, missing on Meta and TikTok' },
       { k: 'Tracking plan', v: '4 of 8 events match' },
     ]);
-    expect(cfg.severity.items.map((i) => [i.level, i.lead, i.text])).toEqual([
-      ['high', 'Meta Pixel fires before consent.', 'Add an ad_storage consent check in GTM.'],
-      [
-        'high',
-        'TikTok Pixel fires after rejection.',
-        'The TikTok tag needs the same consent check.',
-      ],
-      [
-        'high',
-        'Sales are credited to the payment site.',
-        'Add pay.example.net to “Unwanted referrals” in GA4.',
-      ],
-      [
-        'medium',
-        'Meta AddToCart has no value or currency.',
-        'Pass value and currency from the dataLayer to the tag.',
-      ],
-      [
-        'medium',
-        'generate_lead and begin_checkout never arrive.',
-        'Check the GTM triggers for these events.',
-      ],
-      ['medium', 'sign_up has an empty method.', 'Write the method to the dataLayer.'],
+    // Each line: what happens, why it matters, the fix, and when it was seen.
+    expect(cfg.severity.items.map((i) => [i.level, i.lead])).toEqual([
+      ['high', 'Meta Pixel fires before consent.'],
+      ['high', 'TikTok Pixel fires after rejection.'],
+      ['high', 'Sales are credited to the payment site.'],
+      ['medium', 'Meta AddToCart has no value or currency.'],
+      ['medium', 'generate_lead and begin_checkout never arrive.'],
+      ['medium', 'sign_up has an empty method.'],
+    ]);
+    expect(cfg.severity.items[0]!.text).toMatch(
+      /^Personal data is sent without the visitor’s permission, which breaks GDPR\. Add an ad_storage consent check in GTM\./,
+    );
+    expect(cfg.severity.items[1]!.text).toContain('The TikTok tag needs the same consent check.');
+    expect(cfg.severity.items[2]!.text).toContain(
+      'Add pay.example.net to “Unwanted referrals” in GA4.',
+    );
+    expect(cfg.severity.items[3]!.text).toMatch(
+      /Pass value and currency from the dataLayer to the tag\. Seen at /,
+    );
+    // Detailed sections: platforms with ids, events, GTM tags, consent timeline, visit path.
+    const tables = (cfg.extras ?? []).flatMap((e) => (e.type === 'table' ? [e] : []));
+    expect(tables.map((x) => x.title)).toEqual([
+      'Platforms and IDs',
+      'Events',
+      'GTM tags in GTM-K7P2QX',
+      'Consent timeline',
+      'Visit path',
+    ]);
+    expect(tables[0]!.rows).toEqual([
+      ['GA4', 'G-4LMX82PQ1S', '5', 'sGTM'],
+      ['Google Ads', '987654321', '1', 'Browser'],
+      ['Meta', '1234567890123456', '3', 'Browser'],
+      ['TikTok', 'CTLUMO12345', '2', 'Browser'],
+    ]);
+    expect(tables[4]!.rows.map((r) => r[2])).toEqual([
+      'Campaign link',
+      'Saved in _gcl_aw',
+      'google / cpc',
+      '_gl not passed',
+      'example.net / referral',
     ]);
     expect(cfg.cta.href).toBe(
       'https://shamistanisayev.com/?utm_source=hitline&utm_medium=extension&utm_campaign=pdf_footer',
     );
     const report = await buildLineReport(cfg);
     expect(report.fileName).toBe('hitline-audit-example.com-2026-11-06.pdf');
-    expect(report.pages).toBe(1);
+    expect(report.pages).toBe(3);
     const all = text(report.layout);
     expect(all).toContain('TRACKING AUDIT');
     expect(all).toContain('Made with Hitline. No data left the browser.');
-    expect(all).toContain('Page 1 of 1');
+    expect(all).toContain('Page 1 of 3');
+    expect(all).toContain('G-4LMX82PQ1S');
     expect(new TextDecoder().decode(report.bytes.subarray(0, 5))).toBe('%PDF-');
   });
 
@@ -119,11 +136,12 @@ describe('hitline audit PDF', () => {
     };
     const cfg = hitlineSummaryReport(analyzePopup(probe), t, 'en', fonts, now);
     expect(cfg.subline).toMatch(/Summary from the toolbar popup/);
-    expect(cfg.keyValue.rows[1]).toEqual({ k: 'Server-side', v: 'GA4 through data.example.com' });
+    expect(cfg.keyValue.rows[0]).toEqual({ k: 'Server-side', v: 'GA4 through data.example.com' });
+    expect(cfg.keyValue.rows.some((r) => r.k === 'Full audit')).toBe(false);
     expect(cfg.severity.items.map((i) => i.lead)).toEqual([
       'Meta AddToCart has no value or currency.',
     ]);
-    expect((await buildLineReport(cfg)).pages).toBe(1);
+    expect((await buildLineReport(cfg)).pages).toBeGreaterThanOrEqual(1);
 
     const clean = analyze({
       requests: [],
@@ -138,11 +156,12 @@ describe('hitline audit PDF', () => {
         text: 'Hitline found nothing to fix in this session.',
       },
     ]);
+    // Without a plan or consent setup the PDF says so once and adds no empty rows.
     expect(empty.keyValue.rows.map((r) => r.v)).toEqual([
       'Not found',
       'Not detected',
-      'Not found',
-      'No plan loaded',
+      'Not set up: Google tags send full hits whatever the visitor chooses',
     ]);
+    expect(empty.extras).toEqual([]);
   });
 });

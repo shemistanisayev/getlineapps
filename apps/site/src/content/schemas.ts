@@ -268,7 +268,11 @@ export const hitlineSchema = z.object({
     issueLabel: text,
     issueText: text,
   }),
-  marquee: z.object({ title: text, items: z.array(z.object({ platform, label: text })).min(4) }),
+  marquee: z.object({
+    title: text,
+    /** Design keys (ga, meta, ...) or Hitline platform ids (linkedin, amplitude, ...). */
+    items: z.array(z.object({ platform: z.string().min(1), label: text })).min(4),
+  }),
   problem: z.object({
     eyebrow: text,
     title: text,
@@ -301,6 +305,22 @@ export const hitlineSchema = z.object({
     }),
     gtm: featureTab.extend({
       demo: z.object({ title: text, detected: text, signals: z.array(text).length(4) }),
+    }),
+    checks: featureTab.extend({
+      demo: z.object({
+        title: text,
+        count: text,
+        rows: z
+          .array(
+            z.object({
+              platform: z.string().min(1),
+              label: text,
+              status: text,
+              tone: z.enum(['bad', 'warn']),
+            }),
+          )
+          .min(2),
+      }),
     }),
     consent: featureTab.extend({
       demo: z.object({

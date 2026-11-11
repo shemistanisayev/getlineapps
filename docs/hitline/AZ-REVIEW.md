@@ -525,3 +525,165 @@ Qeydlər:
 | `uninstall.card.text` | GA4, server-side GTM, Consent Mode and ad pixels. You get a clear list of what is broken and a working setup. | GA4, server-side GTM, Consent Mode və reklam pixel-ləri. Nəyin xarab olduğunun aydın siyahısını və işləyən quruluş alırsan. |
 | `uninstall.card.cta` | Book a tracking audit | Tracking üçün audit istə |
 | `uninstall.card.sub` | Shamistan Isayev | Şəmistan İsayev |
+
+## 1.1 yenilikləri (2026-11-11)
+
+Extension-da yeni mətnlər. Fayl: `apps/hitline/extension/src/i18n/az.ts`.
+
+| Açar | English | Azərbaycanca |
+|---|---|---|
+| `panel.loading` | Reading the page... | Səhifə oxunur... |
+| `panel.loading.host` | Reading {host}... | {host} oxunur... |
+| `panel.empty.textHost` | DevTools only sees what {host} sends while it is open. Reload once to record everything from the start, including page_view and consent defaults. | DevTools yalnız açıq olduğu vaxt {host} saytının göndərdiklərini görür. Hər şeyi əvvəldən yazmaq üçün səhifəni bir dəfə yenilə, page_view və consent defaultları da daxil olmaqla. |
+| `panel.empty.listening` | Listening. New events appear here as soon as the page sends them. | Dinləyir. Yeni eventlər səhifə onları göndərən kimi burada görünəcək. |
+| `panel.empty.paused` | Recording is paused. Click "Paused" to continue. | Yazma dayandırılıb. Davam etmək üçün "Dayandırılıb" düyməsinə bas. |
+| `panel.empty.more` | and {n} more, {total} platforms in total: | və daha {n}, cəmi {total} platforma: |
+| `panel.late` | This page loaded before DevTools was opened, so requests sent on load are missing. Reload to record everything. | Bu səhifə DevTools açılmadan əvvəl yüklənib, ona görə yüklənmə zamanı göndərilən sorğular yoxdur. Hamısını yazmaq üçün səhifəni yenilə. |
+| `panel.paused` | Paused | Dayandırılıb |
+| `panel.pauseHint` | Pause recording | Yazmanı dayandır |
+| `panel.resumeHint` | Continue recording | Yazmanı davam etdir |
+| `panel.pdfBusy` | Making PDF... | PDF hazırlanır... |
+| `panel.sites` | {n} sites | {n} sayt |
+| `events.newOne` | {n} new event | {n} yeni event |
+| `events.newMany` | {n} new events | {n} yeni event |
+| `events.sort.newest` | Newest first. Click for oldest first. | Əvvəlcə ən yenilər. Köhnələri əvvəl görmək üçün kliklə. |
+| `events.sort.oldest` | Oldest first. Click for newest first. | Əvvəlcə ən köhnələr. Yeniləri əvvəl görmək üçün kliklə. |
+| `events.approx` | Estimated time: this dataLayer push happened before Hitline started recording. | Təxmini vaxt: bu dataLayer push Hitline yazmağa başlamazdan əvvəl olub. |
+| `status.other` | Possible tracking | İzləməyə oxşayır |
+| `status.pii` | Personal data | Şəxsi məlumat |
+| `status.duplicate` | Sent twice | İki dəfə göndərilib |
+| `status.noId` | No order ID | Sifariş ID yoxdur |
+| `detail.account` | ID | ID |
+| `detail.page` | Page | Səhifə |
+| `detail.context` | Page and visitor | Səhifə və ziyarətçi |
+| `detail.copy` | Copy the request URL | Sorğu URL-ni kopyala |
+| `detail.copied` | Copied | Kopyalandı |
+| `detail.empty` | empty | boş |
+| `detail.alsoSent` | The same event was also sent to {hosts}. That is normal for this platform and counts once. | Eyni event {hosts} ünvanına da göndərilib. Bu platforma üçün normaldır və bir dəfə sayılır. |
+| `detail.otherNote` | Hitline does not know this service. The request looks like tracking. Add a custom platform in Settings to name it. | Hitline bu servisi tanımır. Sorğu izləməyə oxşayır. Ona ad vermək üçün Ayarlarda öz platformanı əlavə et. |
+| `gtm.containers` | GTM containers on this page | Bu səhifədəki GTM konteynerləri |
+| `gtm.view` | Show tags or events | Taglər və ya eventlər |
+| `gtm.events` | Events | Eventlər |
+| `gtm.events.list` | dataLayer events | dataLayer eventləri |
+| `gtm.events.none` | No dataLayer events on this page yet. | Bu səhifədə hələ dataLayer eventi yoxdur. |
+| `gtm.events.tags` | {n} tags | {n} tag |
+| `gtm.events.fired` | Tags for this event | Bu event üçün taglər |
+| `gtm.events.noTags` | No tag fires on this event. | Bu eventdə heç bir tag işləmir. |
+| `gtm.events.seen` | Request seen | Sorğu görünüb |
+| `gtm.events.inPage` | Runs in the page | Səhifənin içində işləyir |
+| `gtm.events.noRequest` | No request seen | Sorğu görünməyib |
+| `gtm.events.maybe` | Depends on a value Hitline cannot read | Hitline-ın oxuya bilmədiyi dəyərdən asılıdır |
+| `gtm.noTags` | This container has no tags. | Bu konteynerdə tag yoxdur. |
+| `gtm.estimatedNote` | Hitline could not read this container, so the list is built from the requests. Reload the page with DevTools open to see every tag and trigger. | Hitline bu konteyneri oxuya bilmədi, siyahı sorğulardan qurulub. Bütün tag və triggerləri görmək üçün DevTools açıq ikən səhifəni yenilə. |
+| `gtm.status.triggered` | Triggered | İşə düşüb |
+| `gtm.more.trigger` | Fires on | Nə vaxt işləyir |
+| `gtm.more.blocking` | Exceptions | İstisnalar |
+| `gtm.more.consent` | Consent checks | Consent yoxlamaları |
+| `gtm.more.noConsent` | None | Yoxdur |
+| `gtm.more.requests` | Requests | Sorğular |
+| `gtm.more.sent` | {n} seen in this session | Bu sessiyada {n} görünüb |
+| `gtm.more.silent` | Works inside the page without a request of its own | Öz sorğusu olmadan səhifənin içində işləyir |
+| `issue.pii.title` | {platform} receives an e-mail address in {field} | {platform} {field} sahəsində e-poçt ünvanı alır |
+| `issue.pii.fix` | Remove personal data from URLs and event parameters, or send it hashed where the platform supports it. | Şəxsi məlumatı URL və event parametrlərindən çıxar və ya platforma dəstəkləyirsə hash ilə göndər. |
+| `issue.dup.title` | {platform} {event} is sent twice for one action | {platform} {event} bir hərəkət üçün iki dəfə göndərilir |
+| `issue.dup.fix` | Check GTM for two tags or two triggers that send this event, and keep one. | GTM-də bu eventi göndərən iki tag və ya iki trigger olub-olmadığını yoxla və birini saxla. |
+| `issue.noId.title` | GA4 purchase is sent without transaction_id | GA4 purchase transaction_id olmadan göndərilir |
+| `issue.noId.fix` | Add transaction_id from the order number to the purchase event. | Purchase eventinə sifariş nömrəsindən transaction_id əlavə et. |
+| `issue.multi.title` | Data goes to {ids} | Məlumat {ids} ünvanlarına gedir |
+| `issue.multi.fix` | Make sure every GA4 property here is meant to receive this site’s data. | Buradakı hər GA4 property-nin bu saytın məlumatını almalı olduğuna əmin ol. |
+| `why.consent` | Personal data is sent without the visitor’s permission, which breaks GDPR. | Şəxsi məlumat ziyarətçinin icazəsi olmadan göndərilir, bu GDPR-ı pozur. |
+| `why.referral` | Sales are credited to the payment site instead of the ad that brought the visitor. | Satışlar ziyarətçini gətirən reklama deyil, ödəniş saytına yazılır. |
+| `why.break` | The visit splits in two and the campaign loses the sale. | Ziyarət ikiyə bölünür və kampaniya satışı itirir. |
+| `why.value` | The ad platform cannot optimize for value or report revenue. | Reklam platforması dəyərə görə optimizasiya edə və gəliri göstərə bilmir. |
+| `why.plan` | Reports and audiences that need this event stay empty. | Bu eventə ehtiyacı olan hesabatlar və auditoriyalar boş qalır. |
+| `why.pii` | Ad and analytics platforms forbid personal data and may suspend the account. | Reklam və analitika platformaları şəxsi məlumatı qadağan edir və hesabı dayandıra bilər. |
+| `why.dup` | Every action is counted twice, so reports and ad optimization are wrong. | Hər hərəkət iki dəfə sayılır, hesabatlar və reklam optimizasiyası səhv olur. |
+| `why.noId` | GA4 cannot remove repeated purchases, so revenue can be counted twice. | GA4 təkrar alışları silə bilmir, gəlir iki dəfə sayıla bilər. |
+| `why.multi` | Often on purpose, but an old or wrong property also receives data. | Çox vaxt qəsdəndir, amma köhnə və ya səhv property də məlumat alır. |
+| `popup.unknownEvent` | (name in request body) | (ad sorğu gövdəsində) |
+| `popup.live` | Live | Canlı |
+| `popup.refresh` | Read the page again | Səhifəni yenidən oxu |
+| `popup.newEvents` | +{n} new | +{n} yeni |
+| `popup.tile.loaded` | Loaded | Yüklənib |
+| `popup.recent` | Latest events | Son eventlər |
+| `popup.moreEvents` | and {n} more in DevTools | və daha {n} DevTools-da |
+| `popup.noUrlParams` | This request carries its data in the body. DevTools shows all of it. | Bu sorğu məlumatını gövdədə daşıyır. DevTools hamısını göstərir. |
+| `popup.showInDevtools` | Show in DevTools | DevTools-da göstər |
+| `popup.openDevtools` | Open in DevTools | DevTools-da aç |
+| `popup.bufferFull` | Chrome lists only the first 250 requests of a page, so later events may be missing here. DevTools sees all of them. | Chrome səhifənin yalnız ilk 250 sorğusunu siyahıya alır, ona görə sonrakı eventlər burada olmaya bilər. DevTools hamısını görür. |
+| `popup.guide.title` | Chrome does not let extensions open DevTools, so: | Chrome extension-ların DevTools açmasına icazə vermir, ona görə: |
+| `popup.guide.s1` | Press | Bas |
+| `popup.guide.or` | or | və ya |
+| `popup.guide.s2` | Choose the Hitline tab (behind » if it is hidden). It opens on what you clicked. | Hitline tabını seç (gizlidirsə » işarəsinin arxasındadır). Kliklədiyin şeydə açılacaq. |
+| `popup.guide.note` | DevTools remembers the last tab, so next time it opens on Hitline. | DevTools son tabı yadda saxlayır, növbəti dəfə Hitline-da açılacaq. |
+| `popup.guide.ok` | Got it | Aydındır |
+| `popup.moved.title` | This tab moved to another site | Bu tab başqa sayta keçib |
+| `popup.moved.text` | Click the Hitline icon again to read the new page. | Yeni səhifəni oxumaq üçün Hitline ikonuna yenidən kliklə. |
+| `popup.empty.platforms` | 50 platforms | 50 platforma |
+| `popup.empty.later` | Tags that wait for a click or for consent show up once they fire. Accept cookies or click around, the popup updates by itself. | Klik və ya consent gözləyən taglər işə düşəndə görünür. Cookie-ləri qəbul et və ya saytda gəz, popup özü yenilənir. |
+| `settings.rules` | Custom platforms | Öz platformaların |
+| `settings.rulesHint` | For a service Hitline does not know: requests whose URL contains this text are shown as its events. | Hitline-ın tanımadığı servis üçün: URL-də bu mətn olan sorğular onun eventləri kimi göstərilir. |
+| `settings.ruleName` | Name | Ad |
+| `settings.ruleMatch` | URL contains | URL-də var |
+| `settings.ruleField` | Event name field (optional) | Event adı sahəsi (istəyə bağlı) |
+| `settings.ruleEvent` | event from {field} | event {field} sahəsindən |
+| `settings.ruleInvalid` | Enter a name and at least 3 characters of the URL. | Ad və URL-dən ən azı 3 simvol yaz. |
+| `settings.addRule` | + Add custom platform | + Platforma əlavə et |
+| `settings.removeRule` | Remove {name} | {name} sil |
+| `report.pageOne` | Page checked: {pages} | Yoxlanılan səhifə: {pages} |
+| `report.pagesN` | Pages checked ({n}): {pages} | Yoxlanılan səhifələr ({n}): {pages} |
+| `report.seen` | Seen at {time}. | {time} görünüb. |
+| `report.seenMany` | Seen {n} times, first at {time}. | {n} dəfə görünüb, ilk dəfə {time}. |
+| `report.moreRows` | And {n} more rows in the Hitline panel. | Daha {n} sətir Hitline panelindədir. |
+| `report.platforms` | Platforms and IDs | Platformalar və ID-lər |
+| `report.events` | Events | Eventlər |
+| `report.gtmTags` | GTM tags in {id} | {id} içindəki GTM tagləri |
+| `report.consentTimeline` | Consent timeline | Consent zaman xətti |
+| `report.path` | Visit path | Ziyarət yolu |
+| `report.path.campaign` | Campaign link | Kampaniya linki |
+| `report.path.ok` | Parameters kept | Parametrlər qorunub |
+| `report.loadedOnly` | loaded | yüklənib |
+| `report.th.platform` | Platform | Platforma |
+| `report.th.ids` | IDs | ID-lər |
+| `report.th.events` | Events | Eventlər |
+| `report.th.route` | Sends from | Haradan gedir |
+| `report.th.event` | Event | Event |
+| `report.th.count` | Count | Say |
+| `report.th.params` | Parameters | Parametrlər |
+| `report.th.time` | Time | Vaxt |
+| `report.th.status` | Status | Status |
+| `report.th.page` | Page | Səhifə |
+| `report.th.finding` | Finding | Nəticə |
+| `report.setup.ga4Key` | GA4 properties | GA4 property-ləri |
+| `report.setup.cmpKey` | Cookie banner | Cookie banneri |
+| `report.setup.noConsent` | Not set up: Google tags send full hits whatever the visitor chooses | Qurulmayıb: Google tagləri ziyarətçinin seçimindən asılı olmayaraq tam hit göndərir |
+| `report.setup.limitKey` | Note | Qeyd |
+| `report.summary` | Summary from the toolbar popup for {page}, read from the request URLs. DevTools shows bodies, consent and attribution too. | {page} üçün toolbar popup-dan xülasə, sorğu URL-lərindən oxunub. DevTools gövdələri, consenti və atribusiyanı da göstərir. |
+| `popup.empty.text` | Hitline checks 50 analytics, ad, CRM and testing platforms and found none on {host}. Visits and sales from this page are not measured. | Hitline 50 analitika, reklam, CRM və test platformasını yoxlayır və {host} saytında heç birini tapmadı. Bu səhifədən gələn ziyarət və satışlar ölçülmür. |
+
+Landing (`apps/site/src/content/hitline/az.json`):
+
+| Yer | English | Azərbaycanca |
+|---|---|---|
+| `hero.lead` | See every event from GA4, Google Ads, Meta, TikTok and 46 more platforms, spot server-side GTM and catch consent leaks, right inside Chrome DevTools. | GA4, Google Ads, Meta, TikTok və daha 46 platformanın bütün eventlərini gör, server-side GTM-i tap və consent sızmalarını elə Chrome DevTools-un içində tut. |
+| `marquee.title` | Reads 50 platforms you already use | Artıq istifadə etdiyin 50 platformanı oxuyur |
+| `features.title` | Six views. One question: can you trust the numbers? | Altı görünüş. Bir sual: rəqəmlərə inanmaq olar? |
+| `features.checks.label` | Checks | Yoxlamalar |
+| `features.checks.eyebrow` | Data quality checks | Məlumat keyfiyyəti |
+| `features.checks.title` | The mistakes that quietly break reports. | Hesabatları səssizcə pozan səhvlər. |
+| `features.checks.lead` | Hitline checks every event as it arrives and explains each problem: what happens, why it matters and how to fix it. | Hitline hər eventi gələn kimi yoxlayır və hər problemi izah edir: nə baş verir, niyə vacibdir və necə düzəlir. |
+| `features.checks.bullets[0]` | E-mail addresses sent to ad and analytics platforms | Reklam və analitika platformalarına gedən e-poçt ünvanları |
+| `features.checks.bullets[1]` | The same purchase or lead sent twice | Eyni alış və ya lead-in iki dəfə göndərilməsi |
+| `features.checks.bullets[2]` | Purchases without an order ID, events without a value | Sifariş ID-si olmayan alışlar, dəyəri olmayan eventlər |
+| `features.events.lead` | Hitline reads the requests of 50 analytics, ad, CRM and testing platforms, plus every dataLayer push. Newest events come first and new ones light up as they arrive. | Hitline 50 analitika, reklam, CRM və test platformasının sorğularını və hər dataLayer push-u oxuyur. Ən yeni eventlər yuxarıdadır, yeniləri gələndə işıqlanır. |
+| `features.gtm.lead` | Hitline reads the GTM container itself: every tag with its trigger, consent checks and status, and for each dataLayer event the tags it fired. Plus four signals for server-side GTM. | Hitline GTM konteynerinin özünü oxuyur: hər tag trigger-i, consent yoxlamaları və statusu ilə, hər dataLayer eventi üçün isə işə düşən tag-lar. Üstəlik server-side GTM üçün dörd siqnal. |
+| `faq[2].q` | Which platforms does Hitline read? | Hitline hansı platformaları oxuyur? |
+| `faq[2].a` | 50 of them: analytics (GA4, Adobe, Amplitude, Mixpanel, Segment, PostHog, Matomo and more), ad pixels (Google Ads, Meta, TikTok, LinkedIn, Microsoft Ads, X, Pinterest, Snapchat, Reddit, Criteo and more), session recording, CRM, tag managers, A/B testing tools and the dataLayer. | 50 platforma: analitika (GA4, Adobe, Amplitude, Mixpanel, Segment, PostHog, Matomo və s.), reklam pikselləri (Google Ads, Meta, TikTok, LinkedIn, Microsoft Ads, X, Pinterest, Snapchat, Reddit, Criteo və s.), sessiya yazma, CRM, tag menecerlər, A/B test alətləri və dataLayer. |
+| `faq[3].q` | My tool is not on the list. Can Hitline still show it? | Alətim siyahıda yoxdur. Hitline onu yenə göstərə bilər? |
+| `faq[3].a` | Yes. Add it in Settings as a custom platform: a name and a part of its URL. Requests that only look like tracking are also listed under "Other". | Bəli. Onu Ayarlarda öz platforma kimi əlavə et: ad və URL-indən bir hissə. Sadəcə izləməyə oxşayan sorğular da "Digər" altında göstərilir. |
+| `faq[5].q` | How is it different from Tag Assistant? | Tag Assistant-dan fərqi nədir? |
+| `faq[5].a` | Tag Assistant focuses on Google tags. Hitline shows 50 platforms side by side, reads your GTM tags and triggers, checks consent, attribution and data quality, and compares events with your tracking plan. | Tag Assistant Google tag-larına fokuslanır. Hitline 50 platformanı yan-yana göstərir, GTM tag və trigger-lərini oxuyur, consenti, atribusiyanı və məlumat keyfiyyətini yoxlayır və eventləri tracking planınla müqayisə edir. |
+| `faq[6].q` | Do I need DevTools open? | DevTools açıq olmalıdır? |
+| `faq[6].a` | The popup works without it and updates itself while open. For the full event stream, open DevTools and the Hitline tab, then reload the page once. Chrome does not let extensions open DevTools, so the popup shows the shortcut and DevTools opens on the event you clicked. | Popup onsuz da işləyir və açıq qaldıqca özü yenilənir. Tam event axını üçün DevTools-u və Hitline tabını aç, sonra səhifəni bir dəfə yenilə. Chrome extension-ların DevTools açmasına icazə vermir, ona görə popup qısayolu göstərir və DevTools kliklədiyin eventdə açılır. |
+
+Privacy səhifəsi (`apps/site/src/content/privacy/hitline.az.json`): "reads", "stores" və "notes" siyahıları yeniləndi (digər data layer-lər, popup-ın 2 saniyədən bir oxuması, öz platformalar, "DevTools-da göstər" qeydi, dataLayer taymeri).

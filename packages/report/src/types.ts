@@ -61,8 +61,17 @@ export interface LinksSection {
   title: string;
   rows: Array<{ label: string; linkText: string; href: string }>;
 }
+/** A table: column widths are fractions of the content width. Long tables continue on new pages. */
+export interface TableSection {
+  type: 'table';
+  title: string;
+  columns: { label: string; width: number; mono?: boolean }[];
+  rows: string[][];
+  /** Shown under the table (for example "and 12 more"). */
+  note?: string;
+}
 export type Section =
-  KeyValueSection | SeveritySection | TextSection | SwatchSection | LinksSection;
+  KeyValueSection | SeveritySection | TextSection | SwatchSection | LinksSection | TableSection;
 /** Two sections side by side (for example Brand kit and Ad libraries). */
 export interface ColumnsSection {
   type: 'columns';

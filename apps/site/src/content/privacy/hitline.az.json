@@ -1,12 +1,13 @@
 {
   "summary": "Hitline yoxladığınız səhifənin tracking teqlərini və eventlərini göstərir. Sizin və ya yoxladığınız səhifələr haqqında heç bir məlumat toplamır, saxlamır və göndərmir.",
   "reads": [
-    "Yalnız Chrome DevTools-da Hitline tabı açıq olanda: yoxlanan tabın şəbəkə sorğuları, dataLayer və GTM konteynerləri, həmçinin _ga, _gcl_*, _fbp, _fbc, _ttp və FPID tracking cookie-ləri.",
-    "Cari tabdakı səhifəni, yalnız popup-ı açmaq üçün Hitline ikonuna basandan sonra.",
+    "Yalnız Chrome DevTools-da Hitline tabı açıq olanda: yoxlanan tabın şəbəkə sorğuları, dataLayer və səhifənin digər data layer-ləri (adobeDataLayer, digitalData, utag_data), GTM konteynerləri və hansı məlum tracking alətlərinin yükləndiyi, həmçinin _ga, _gcl_*, _fbp, _fbc, _ttp və FPID tracking cookie-ləri.",
+    "Cari tabdakı səhifəni, yalnız popup-ı açmaq üçün Hitline ikonuna basandan sonra, popup açıq qaldıqca isə hər 2 saniyədən bir yenidən.",
     "Tracking plan faylını, yalnız onu yükləməyi seçsəniz. Fayl brauzerinizdə oxunur."
   ],
   "stores": [
-    "Ayarlarınız, kompüterinizdəki Chrome yaddaşında: dil, öz saytınız kimi qeyd etdiyiniz domenlər və yüklədiyiniz tracking planlar (yalnız event və parametr adları).",
+    "Ayarlarınız, kompüterinizdəki Chrome yaddaşında: dil, öz saytınız kimi qeyd etdiyiniz domenlər, yüklədiyiniz tracking planlar (yalnız event və parametr adları) və əlavə etdiyiniz öz platformalarınız (ad və URL-in bir hissəsi).",
+    "Popup-da \"DevTools-da göstər\" basanda hansı eventin göstəriləcəyi barədə qısa qeyd panel onu oxuyana qədər Chrome-un yaddaşında qalır. Chrome bağlananda silinir.",
     "Nəticələr açıq paneldə qalır və DevTools-u və ya popup-ı bağlayanda silinir."
   ],
   "never": [
@@ -39,7 +40,7 @@
   ],
   "notes": [
     "Audit PDF brauzerinizdə hazırlanır və seçdiyiniz yerdə saxlanılır.",
-    "Paneldə \"Səhifəni yenilə\" basanda Hitline həmin səhifəyə hər dataLayer yazısının vaxtını qeyd edən kiçik skript əlavə edir. Başqa heç nə oxumur və heç nə göndərmir.",
+    "Hitline tabı açıq olanda və \"Səhifəni yenilə\" basanda Hitline həmin səhifənin dataLayer-inə hər yazının vaxtını qeyd edən kiçik taymer əlavə edir. Başqa heç nə oxumur və heç nə göndərmir.",
     "Hitline özü heç bir şəbəkə sorğusu göndərmir."
   ]
 }

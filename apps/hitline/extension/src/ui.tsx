@@ -1,44 +1,72 @@
 /** Small building blocks of the Hitline panel (design/hitline/*.dc.html: .pf, .pill, icons). */
 import { MARKS, type MarkName } from '@line/ui/marks';
-import type { Platform } from '@line/core/hitline';
+import { isCustom, platformName, type Platform } from '@line/core/hitline';
 import type { ReactNode } from 'react';
 
-export const PLATFORM_NAME: Record<Platform, string> = {
-  ga4: 'GA4',
-  ads: 'Google Ads',
-  meta: 'Meta',
-  tiktok: 'TikTok',
-  hotjar: 'Hotjar',
-  gtm: 'GTM',
-  datalayer: 'dataLayer',
-};
+/** Display name of any platform id (registry name, custom rule name, "Other"). */
+export { platformName };
 
-const MARK: Record<Platform, MarkName> = {
+/** Brand marks: from the designs and the simple-icons package (CC0), unaltered. */
+const MARK: Record<string, MarkName> = {
   ga4: 'googleanalytics',
+  ua: 'googleanalytics',
   ads: 'googleads',
+  floodlight: 'floodlight',
   meta: 'meta',
   tiktok: 'tiktok',
   hotjar: 'hotjar',
   gtm: 'googletagmanager',
+  gtag: 'google',
   datalayer: 'googletagmanager',
+  pinterest: 'pinterest',
+  snapchat: 'snapchat',
+  hubspot: 'hubspot',
+  mixpanel: 'mixpanel',
+  matomo: 'matomo',
+  plausible: 'plausible',
+  posthog: 'posthog',
+  x: 'x',
+  reddit: 'reddit',
+  quora: 'quora',
 };
 
-/** Tinted square with the brand mark (Simple Icons, CC0), then the label. */
+/** Two letters for platforms without a mark in the package (never a drawn logo). */
+export function monogram(name: string): string {
+  const words = name
+    .replace(/[^A-Za-z0-9 .]/g, ' ')
+    .split(/[\s.]+/)
+    .filter(Boolean);
+  const m = words.length > 1 ? words[0]![0]! + words[1]![0]! : (words[0] ?? '?').slice(0, 2);
+  return m.charAt(0).toUpperCase() + m.slice(1);
+}
+
+/** Tinted square with the brand mark (or a neutral monogram), then the label. */
 export function PlatformBadge({ platform, label }: { platform: Platform; label?: ReactNode }) {
-  const m = MARKS[MARK[platform]];
+  const key = MARK[platform];
+  const m = key ? MARKS[key] : null;
+  const name = platformName(platform);
   return (
     <span className="pf">
-      <i style={{ background: m.tint }}>
-        <svg
-          viewBox="0 0 24 24"
-          width="62%"
-          height="62%"
-          fill={m.fill ?? 'none'}
+      {m ? (
+        <i style={{ background: m.tint }}>
+          <svg
+            viewBox="0 0 24 24"
+            width="62%"
+            height="62%"
+            fill={m.fill ?? 'none'}
+            aria-hidden="true"
+            dangerouslySetInnerHTML={{ __html: m.svg }}
+          />
+        </i>
+      ) : (
+        <i
+          className={`mono-tile${isCustom(platform) ? ' custom' : platform === 'other' ? ' other' : ''}`}
           aria-hidden="true"
-          dangerouslySetInnerHTML={{ __html: m.svg }}
-        />
-      </i>
-      {label === undefined ? PLATFORM_NAME[platform] : label}
+        >
+          {platform === 'other' ? '?' : monogram(name)}
+        </i>
+      )}
+      {label === undefined ? name : label}
     </span>
   );
 }
@@ -87,6 +115,25 @@ const ICON = {
     <>
       <path d="M12 4v11M7 10l5 5 5-5" />
       <path d="M5 20h14" />
+    </>
+  ),
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+    </>
+  ),
+  play: <path d="M7 5l12 7-12 7z" />,
+  copy: (
+    <>
+      <rect x="9" y="9" width="11" height="11" rx="2" />
+      <path d="M5 15V5a2 2 0 0 1 2-2h8" />
+    </>
+  ),
+  devtools: (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 9h18M8 13l-2 2 2 2M16 13l2 2-2 2" />
     </>
   ),
 } as const;

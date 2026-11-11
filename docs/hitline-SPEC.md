@@ -7,6 +7,7 @@ Read the root `CLAUDE.md` first. This file is the source of truth for Hitline fe
 > - Domain: `LINE_SITE_URL + '/hitline'` instead of `SITE_URL` / `hitline.co`; uninstall `/hitline/uninstalled`; privacy `/privacy/hitline`; "More free tools" use `toolUrl`.
 > - Colors: the Line family colors in this file (§5, §11 and the logo) are outdated; use `docs/line-family-colors.md`.
 > - Design files are in `design/hitline/`.
+> - Version 1.1 (2026-11-11) extends this file: 50 platforms, custom platforms, new issue rules, the `customRules` storage key and the GTM, popup and PDF changes. See `docs/hitline/PLAN-1.1.md`.
 
 
 ---
@@ -239,8 +240,9 @@ Build every screen to match its artboard and copy.
 - `plans: Record<string, Plan>`
 - `lang: 'en' | 'az'`
 - `installedAt: number`
+- `customRules: { name, match, event? }[]` (1.1, max 20)
 
-Nothing else. "Clear all settings" wipes them.
+Nothing else. `chrome.storage.session` keeps only `focus`, the popup's "show this event in DevTools" note (1.1). "Clear all settings" wipes them.
 
 ## 8. i18n
 - One dictionary file per locale (`en.ts`, `az.ts`), with typed keys.

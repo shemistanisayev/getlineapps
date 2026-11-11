@@ -1,8 +1,9 @@
 import { Logo } from '@line/ui';
-import { parsePlan, registrableDomain, type Plan } from '@line/core/hitline';
+import { parsePlan, registrableDomain, type CustomRule, type Plan } from '@line/core/hitline';
 import { contactUrl, privacyUrl, toolUrl, type ToolSlug } from '@line/core/site';
 import { useEffect, useRef, useState } from 'react';
 import { planErrorText } from '../../src/plan-errors.ts';
+import { MAX_RULES, readRules, saveRules } from '../../src/storage.ts';
 import type { Lang, T } from '../../src/i18n/index.ts';
 import { useT } from '../../src/useLang.ts';
 import { Icon } from '../../src/ui.tsx';
@@ -19,12 +20,119 @@ const HOST = /^(?=.{1,253}$)([a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}
 interface Stored {
   domains: string[];
   plans: Record<string, Plan>;
+  rules: CustomRule[];
 }
 
-/** PopupSettings: design/hitline/PopupSettings.dc.html. Keys: domains, plans, lang, installedAt. */
+/** Custom platforms: requests whose URL contains a text become events of a named platform. */
+function Rules({
+  rules,
+  onSave,
+  t,
+}: {
+  rules: CustomRule[];
+  onSave: (r: CustomRule[]) => void;
+  t: T;
+}) {
+  const [adding, setAdding] = useState(false);
+  const [draft, setDraft] = useState({ name: '', match: '', event: '' });
+  const [err, setErr] = useState(false);
+  const add = () => {
+    const name = draft.name.trim();
+    const match = draft.match.trim();
+    if (!name || match.length < 3) {
+      setErr(true);
+      return;
+    }
+    onSave([
+      ...rules,
+      { name, match, ...(draft.event.trim() ? { event: draft.event.trim() } : {}) },
+    ]);
+    setDraft({ name: '', match: '', event: '' });
+    setAdding(false);
+    setErr(false);
+  };
+  return (
+    <section>
+      <h2 className="eyebrow">{t('settings.rules')}</h2>
+      <p className="hint">{t('settings.rulesHint')}</p>
+      {rules.map((r, i) => (
+        <div key={`${r.name}-${i}`} className="dom rule">
+          <span>
+            <strong>{r.name}</strong>
+            <span className="mono">{r.match}</span>
+            {r.event && (
+              <span className="mono soft">{t('settings.ruleEvent', { field: r.event })}</span>
+            )}
+          </span>
+          <button
+            type="button"
+            aria-label={t('settings.removeRule', { name: r.name })}
+            onClick={() => onSave(rules.filter((_, k) => k !== i))}
+          >
+            ×
+          </button>
+        </div>
+      ))}
+      {adding ? (
+        <form
+          className="rule-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            add();
+          }}
+        >
+          <label>
+            {t('settings.ruleName')}
+            <input
+              autoFocus
+              value={draft.name}
+              placeholder="Acme Analytics"
+              maxLength={40}
+              onChange={(e) => setDraft({ ...draft, name: e.target.value })}
+            />
+          </label>
+          <label>
+            {t('settings.ruleMatch')}
+            <input
+              value={draft.match}
+              placeholder="collect.acme.io"
+              maxLength={200}
+              onChange={(e) => setDraft({ ...draft, match: e.target.value })}
+            />
+          </label>
+          <label>
+            {t('settings.ruleField')}
+            <input
+              value={draft.event}
+              placeholder="event"
+              maxLength={80}
+              onChange={(e) => setDraft({ ...draft, event: e.target.value })}
+            />
+          </label>
+          {err && (
+            <p className="msg is-bad" role="alert">
+              <Icon name="alert" /> {t('settings.ruleInvalid')}
+            </p>
+          )}
+          <button type="submit" className="btn-p">
+            {t('settings.add')}
+          </button>
+        </form>
+      ) : (
+        rules.length < MAX_RULES && (
+          <button type="button" className="add" onClick={() => setAdding(true)}>
+            {t('settings.addRule')}
+          </button>
+        )
+      )}
+    </section>
+  );
+}
+
+/** PopupSettings: design/hitline/PopupSettings.dc.html. Keys: domains, plans, customRules, lang, installedAt. */
 export function Settings({ host, lang, onBack }: { host: string; lang: Lang; onBack: () => void }) {
   const { t } = useT();
-  const [s, setS] = useState<Stored>({ domains: [], plans: {} });
+  const [s, setS] = useState<Stored>({ domains: [], plans: {}, rules: [] });
   const [adding, setAdding] = useState(false);
   const [draft, setDraft] = useState('');
   // Messages are stored as functions so they follow a language change.
@@ -33,10 +141,11 @@ export function Settings({ host, lang, onBack }: { host: string; lang: Lang; onB
   const site = registrableDomain(host);
 
   const read = () =>
-    void browser.storage.local.get(['domains', 'plans']).then((r) =>
+    void browser.storage.local.get(['domains', 'plans', 'customRules']).then((r) =>
       setS({
         domains: Array.isArray(r.domains) ? (r.domains as string[]) : [],
         plans: r.plans && typeof r.plans === 'object' ? (r.plans as Record<string, Plan>) : {},
+        rules: readRules(r.customRules),
       }),
     );
   useEffect(read, []);
@@ -191,6 +300,8 @@ export function Settings({ host, lang, onBack }: { host: string; lang: Lang; onB
           />
         </div>
       </section>
+
+      <Rules rules={s.rules} onSave={(r) => void saveRules(r).then(read)} t={t} />
 
       <section>
         <div className="line">

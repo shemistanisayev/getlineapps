@@ -166,7 +166,7 @@ try {
   await frame(
     page,
     '2-events.png',
-    'Every GA4, Google Ads, Meta and TikTok event, decoded',
+    'Every event from 50 platforms, decoded',
     `<img class="full" src="${png(join(tmp, 'events.png'))}">`,
   );
   await frame(
@@ -229,7 +229,7 @@ render(
     <text font-family="Plus Jakarta Sans" font-weight="800" font-size="27" letter-spacing="-.8" fill="#FFFFFF">
       <tspan x="36" y="158">Is your tracking working?</tspan>
       <tspan x="36" y="194" fill="#C6F36B">Prove it</tspan><tspan> in one panel.</tspan></text>
-    <text x="36" y="238" font-family="Inter" font-weight="600" font-size="15" fill="#D0CBE6">GA4, Meta, TikTok, sGTM and consent</text>
+    <text x="36" y="238" font-family="Inter" font-weight="600" font-size="15" fill="#D0CBE6">50 platforms, GTM and consent</text>
     <rect x="0" y="272" width="440" height="8" fill="${BRANDS.hitline.accent}"/></svg>`,
   440,
   'promo-small-440x280.png',
@@ -261,8 +261,8 @@ render(
     <text font-family="Plus Jakarta Sans" font-weight="800" font-size="56" letter-spacing="-2" fill="#FFFFFF">
       <tspan x="90" y="286">Is your tracking working?</tspan>
       <tspan x="90" y="362" fill="#C6F36B">Prove it</tspan><tspan> in one panel.</tspan></text>
-    <text x="90" y="436" font-family="Inter" font-weight="400" font-size="22" fill="#D0CBE6">Free Chrome extension for GA4, Google Ads, Meta, TikTok,</text>
-    <text x="90" y="466" font-family="Inter" font-weight="400" font-size="22" fill="#D0CBE6">server-side GTM and Consent Mode.</text>
+    <text x="90" y="436" font-family="Inter" font-weight="400" font-size="22" fill="#D0CBE6">Free Chrome extension for GA4, Meta, TikTok and 47 more,</text>
+    <text x="90" y="466" font-family="Inter" font-weight="400" font-size="22" fill="#D0CBE6">GTM, server-side GTM and Consent Mode.</text>
     <rect x="796" y="112" width="508" height="364" rx="24" fill="#FFFFFF"/>
     <rect x="796" y="112" width="508" height="40" rx="24" fill="#F7F6FB"/><rect x="796" y="132" width="508" height="20" fill="#F7F6FB"/>
     <circle cx="824" cy="132" r="6" fill="#FF5F57"/><circle cx="844" cy="132" r="6" fill="#FEBC2E"/><circle cx="864" cy="132" r="6" fill="#28C840"/>

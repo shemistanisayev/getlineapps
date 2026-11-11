@@ -12,7 +12,7 @@ import { useRef, useState, type DragEvent } from 'react';
 import { joinList, type MessageKey, type T } from '../../src/i18n/index.ts';
 import { planErrorText } from '../../src/plan-errors.ts';
 import { useT } from '../../src/useLang.ts';
-import { Icon, Pill, PlatformBadge, PLATFORM_NAME, type Tone } from '../../src/ui.tsx';
+import { Icon, Pill, PlatformBadge, platformName, type Tone } from '../../src/ui.tsx';
 
 /** Download through a blob URL and <a download> (no downloads permission). */
 export function downloadText(name: string, text: string, type = 'text/csv') {
@@ -268,7 +268,7 @@ export function PlanTab({
                 {r.row.parameters.join(', ')}
               </span>
               <span role="cell" className="arr">
-                {arrived(r.arrived, PLATFORM_NAME[r.row.platform], t)}
+                {arrived(r.arrived, platformName(r.row.platform), t)}
               </span>
               <span role="cell">
                 <Pill tone={STATUS[r.status].tone} icon={STATUS[r.status].icon}>

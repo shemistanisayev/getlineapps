@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Hitline: Free Tracking Debugger for GA4, Meta, TikTok & More",
-    "description": "Free Chrome extension. See every GA4, Google Ads, Meta and TikTok event, spot server-side GTM and catch consent leaks inside Chrome DevTools.",
+    "description": "Free Chrome extension. See every event from GA4, Google Ads, Meta, TikTok and 46 more platforms, read GTM tags and catch consent leaks inside Chrome DevTools.",
     "ogAlt": "Hitline: is your tracking working? Prove it in one panel."
   },
   "nav": {
@@ -29,7 +29,7 @@
     "titleStart": "Is your tracking working?",
     "titleHighlight": "Prove it",
     "titleEnd": "in one panel.",
-    "lead": "See every GA4, Google Ads, Meta and TikTok event, spot server-side GTM and catch consent leaks, right inside Chrome DevTools.",
+    "lead": "See every event from GA4, Google Ads, Meta, TikTok and 46 more platforms, spot server-side GTM and catch consent leaks, right inside Chrome DevTools.",
     "secondary": "See a sample audit",
     "trust": ["No account", "Nothing leaves your browser", "Open source"],
     "mockLabel": "DevTools › Hitline",
@@ -127,7 +127,7 @@
     "issueText": "Meta AddToCart is sent without a value"
   },
   "marquee": {
-    "title": "Reads the tags you already use",
+    "title": "Reads 50 platforms you already use",
     "items": [
       {
         "platform": "ga",
@@ -154,8 +154,80 @@
         "label": "Server-side GTM"
       },
       {
+        "platform": "linkedin",
+        "label": "LinkedIn Insight"
+      },
+      {
+        "platform": "bing",
+        "label": "Microsoft Ads"
+      },
+      {
+        "platform": "x",
+        "label": "X Pixel"
+      },
+      {
+        "platform": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "platform": "snapchat",
+        "label": "Snapchat Pixel"
+      },
+      {
+        "platform": "reddit",
+        "label": "Reddit Pixel"
+      },
+      {
         "platform": "hj",
         "label": "Hotjar"
+      },
+      {
+        "platform": "clarity",
+        "label": "Microsoft Clarity"
+      },
+      {
+        "platform": "amplitude",
+        "label": "Amplitude"
+      },
+      {
+        "platform": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "platform": "segment",
+        "label": "Segment"
+      },
+      {
+        "platform": "posthog",
+        "label": "PostHog"
+      },
+      {
+        "platform": "adobe",
+        "label": "Adobe Analytics"
+      },
+      {
+        "platform": "matomo",
+        "label": "Matomo"
+      },
+      {
+        "platform": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "platform": "klaviyo",
+        "label": "Klaviyo"
+      },
+      {
+        "platform": "criteo",
+        "label": "Criteo"
+      },
+      {
+        "platform": "floodlight",
+        "label": "Floodlight"
+      },
+      {
+        "platform": "optimizely",
+        "label": "Optimizely"
       },
       {
         "platform": "datalayer",
@@ -194,17 +266,17 @@
   },
   "features": {
     "eyebrow": "Inside the panel",
-    "title": "Five views. One question: can you trust the numbers?",
+    "title": "Six views. One question: can you trust the numbers?",
     "tabsLabel": "Hitline views",
     "events": {
       "label": "Events",
       "eyebrow": "Event inspector",
       "title": "Every event, every parameter, every platform side by side.",
-      "lead": "Hitline reads the requests GA4, Google Ads, Meta and TikTok send, plus every dataLayer push.",
+      "lead": "Hitline reads the requests of 50 analytics, ad, CRM and testing platforms, plus every dataLayer push. Newest events come first and new ones light up as they arrive.",
       "bullets": [
-        "One click, all platforms on the same row",
+        "50 platforms on one list, and your own services as custom platforms",
         "Every parameter decoded, no query strings to read",
-        "Missing values flagged the moment they happen"
+        "Live: new events highlighted, newest first"
       ],
       "demo": {
         "event": "add_to_cart",
@@ -236,11 +308,11 @@
       "label": "GTM and sGTM",
       "eyebrow": "GTM and server-side",
       "title": "Know if a site runs server-side GTM, with the proof.",
-      "lead": "Most tools miss requests that go to a site's own subdomain. Hitline checks four signals and lists every GTM tag with its status.",
+      "lead": "Hitline reads the GTM container itself: every tag with its trigger, consent checks and status, and for each dataLayer event the tags it fired. Plus four signals for server-side GTM.",
       "bullets": [
-        "Four independent signals, not a guess",
-        "Every tag with type, trigger and status",
-        "See which platforms still send from the browser"
+        "Every tag with its trigger, consent checks and status",
+        "Each dataLayer event with the tags that fired on it",
+        "Four server-side signals, not a guess"
       ],
       "demo": {
         "title": "Server-side GTM",
@@ -250,6 +322,41 @@
           "Path uses the GA4 format",
           "server_container_url is set",
           "FPID cookie set by the server"
+        ]
+      }
+    },
+    "checks": {
+      "label": "Checks",
+      "eyebrow": "Data quality checks",
+      "title": "The mistakes that quietly break reports.",
+      "lead": "Hitline checks every event as it arrives and explains each problem: what happens, why it matters and how to fix it.",
+      "bullets": [
+        "E-mail addresses sent to ad and analytics platforms",
+        "The same purchase or lead sent twice",
+        "Purchases without an order ID, events without a value"
+      ],
+      "demo": {
+        "title": "Found on this page",
+        "count": "3 issues",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 page_view",
+            "status": "E-mail in the URL",
+            "tone": "bad"
+          },
+          {
+            "platform": "meta",
+            "label": "Meta Purchase",
+            "status": "Sent twice",
+            "tone": "warn"
+          },
+          {
+            "platform": "ga",
+            "label": "GA4 purchase",
+            "status": "No order ID",
+            "tone": "warn"
+          }
         ]
       }
     },
@@ -498,16 +605,24 @@
         "a": "No. Everything is analyzed in your browser. Only your settings are saved, and only on your computer."
       },
       {
+        "q": "Which platforms does Hitline read?",
+        "a": "50 of them: analytics (GA4, Adobe, Amplitude, Mixpanel, Segment, PostHog, Matomo and more), ad pixels (Google Ads, Meta, TikTok, LinkedIn, Microsoft Ads, X, Pinterest, Snapchat, Reddit, Criteo and more), session recording, CRM, tag managers, A/B testing tools and the dataLayer."
+      },
+      {
+        "q": "My tool is not on the list. Can Hitline still show it?",
+        "a": "Yes. Add it in Settings as a custom platform: a name and a part of its URL. Requests that only look like tracking are also listed under \"Other\"."
+      },
+      {
         "q": "How does it detect server-side GTM?",
         "a": "It checks where GA4 requests go, the request path, the server_container_url setting and cookies set by the server."
       },
       {
         "q": "How is it different from Tag Assistant?",
-        "a": "Tag Assistant focuses on Google tags. Hitline shows Google, Meta and TikTok side by side, checks consent and attribution, and compares events with your tracking plan."
+        "a": "Tag Assistant focuses on Google tags. Hitline shows 50 platforms side by side, reads your GTM tags and triggers, checks consent, attribution and data quality, and compares events with your tracking plan."
       },
       {
         "q": "Do I need DevTools open?",
-        "a": "The popup works without it. For the live event stream, open DevTools before the page loads, or reload once."
+        "a": "The popup works without it and updates itself while open. For the full event stream, open DevTools and the Hitline tab, then reload the page once. Chrome does not let extensions open DevTools, so the popup shows the shortcut and DevTools opens on the event you clicked."
       }
     ]
   },

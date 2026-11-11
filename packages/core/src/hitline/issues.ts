@@ -4,7 +4,11 @@ import { hitConsentStatus, MARKETING, type ConsentModel } from './consent.ts';
 import type { GtmContainer } from './gtm.ts';
 import type { PlanResult } from './plan.ts';
 import type { SgtmResult } from './sgtm.ts';
+import { pathOf } from './domain.ts';
+import { isTracked } from './platforms.ts';
 import type { Hit, Issue, IssueId, IssueTab, Platform, Severity } from './types.ts';
+
+const isTrackedHit = (h: Hit) => isTracked(h.platform) && h.route !== 'page';
 
 export const ISSUE_META: Record<IssueId, { severity: Severity; tab: IssueTab }> = {
   CONSENT_BEFORE: { severity: 'high', tab: 'consent' },
@@ -16,6 +20,10 @@ export const ISSUE_META: Record<IssueId, { severity: Severity; tab: IssueTab }> 
   PLAN_PARAMS: { severity: 'medium', tab: 'plan' },
   BROWSER_ONLY: { severity: 'info', tab: 'gtm' },
   NO_TRACKING: { severity: 'info', tab: 'events' },
+  PII_EMAIL: { severity: 'high', tab: 'events' },
+  DUPLICATE_EVENT: { severity: 'medium', tab: 'events' },
+  PURCHASE_NO_ID: { severity: 'medium', tab: 'events' },
+  MULTIPLE_GA4: { severity: 'info', tab: 'events' },
 };
 
 function issue(id: IssueId, key: string, data: Issue['data'], evidence: string[] = []): Issue {
@@ -79,7 +87,7 @@ export function consentIssues(
 ): Issue[] {
   const out = new Map<string, Issue>();
   for (const h of hits) {
-    if (![...MARKETING, 'hotjar'].includes(h.platform)) continue;
+    if (!MARKETING.includes(h.platform) && h.platform !== 'hotjar') continue;
     const s = hitConsentStatus(consent, h);
     const id: IssueId | null =
       s === 'before_consent'
@@ -157,6 +165,118 @@ export function sgtmIssues(s: SgtmResult): Issue[] {
       host: s.host ?? '',
     }),
   ];
+}
+
+/** Events that count once per action: two identical ones within a second are double tracking. */
+const ONE_SHOT =
+  /^(purchase|Purchase|CompletePayment|conversion|PlaceAnOrder|checkout|ecommerce_order|trackTransaction|generate_lead|Lead|SubmitForm|sign_up|CompleteRegistration|SignUp|add_to_cart|AddToCart|begin_checkout|InitiateCheckout|page_view|PageView|pageview|PAGE_VIEW)$/;
+const SAME_ACTION_MS = 1000;
+
+const paramsKey = (h: Hit) =>
+  h.params
+    .map((p) => `${p.key}=${p.value}`)
+    .sort()
+    .join('&');
+
+/**
+ * Same event sent twice for one action: same platform, account, event, page, route, request path
+ * and parameters within a second. Different paths are one event fanned out to two endpoints
+ * (merged by mergeFanOut), not a duplicate.
+ */
+export function duplicateIssues(hits: Hit[]): Issue[] {
+  const out = new Map<string, Issue>();
+  const sorted = hits
+    .filter((h) => isTrackedHit(h) && h.event !== '(unknown)' && ONE_SHOT.test(h.event))
+    .sort((a, b) => a.time - b.time);
+  for (let i = 1; i < sorted.length; i++) {
+    const h = sorted[i]!;
+    const prev = sorted
+      .slice(0, i)
+      .reverse()
+      .find(
+        (p) =>
+          h.time - p.time <= SAME_ACTION_MS &&
+          p.platform === h.platform &&
+          p.account === h.account &&
+          p.event === h.event &&
+          p.page === h.page &&
+          p.route === h.route &&
+          pathOf(p.url) === pathOf(h.url) &&
+          paramsKey(p) === paramsKey(h),
+      );
+    if (!prev) continue;
+    const key = `${h.platform}:${h.event}`;
+    const found = out.get(`DUPLICATE_EVENT:${key}`);
+    if (found) {
+      for (const id of [prev.id, h.id]) if (!found.evidence.includes(id)) found.evidence.push(id);
+    } else {
+      const it = issue('DUPLICATE_EVENT', key, { platform: h.platform, event: h.event }, [
+        prev.id,
+        h.id,
+      ]);
+      out.set(it.key, it);
+    }
+  }
+  return [...out.values()];
+}
+
+/** GA4 purchase without transaction_id: GA4 cannot remove duplicate purchases. */
+export function purchaseIdIssues(hits: Hit[]): Issue[] {
+  const bad = hits.filter(
+    (h) => h.platform === 'ga4' && h.event === 'purchase' && !hasValue(h, 'transaction_id'),
+  );
+  return bad.length
+    ? [
+        issue(
+          'PURCHASE_NO_ID',
+          'ga4:purchase',
+          { platform: 'ga4', event: 'purchase' },
+          bad.map((h) => h.id),
+        ),
+      ]
+    : [];
+}
+
+const EMAIL = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i;
+
+function emailIn(value: string): boolean {
+  if (!value.includes('@') && !/%40/i.test(value)) return false;
+  let v = value;
+  try {
+    v = decodeURIComponent(value);
+  } catch {
+    // keep the raw value
+  }
+  return EMAIL.test(v);
+}
+
+/** A plain e-mail address inside a tracking request (hashed values are 64 hex chars and never match). */
+export function piiIssues(hits: Hit[]): Issue[] {
+  const out = new Map<string, Issue>();
+  for (const h of hits) {
+    if (!isTrackedHit(h)) continue;
+    const field =
+      h.params.find((p) => emailIn(p.value))?.key ??
+      h.context.find((p) => emailIn(p.value))?.key ??
+      (emailIn(h.url) ? 'url' : undefined);
+    if (!field) continue;
+    const key = h.platform;
+    const found = out.get(`PII_EMAIL:${key}`);
+    if (found) found.evidence.push(h.id);
+    else {
+      const it = issue('PII_EMAIL', key, { platform: h.platform, event: h.event, field }, [h.id]);
+      out.set(it.key, it);
+    }
+  }
+  return [...out.values()];
+}
+
+/** More than one GA4 property receives data (often on purpose, so only info). */
+export function multipleGa4Issues(hits: Hit[]): Issue[] {
+  const ids = [
+    ...new Set(hits.filter((h) => h.platform === 'ga4' && h.account).map((h) => h.account!)),
+  ];
+  return ids.length > 1 ? [issue('MULTIPLE_GA4', 'ga4', { platform: 'ga4', ids })] : [];
 }
 
 const SEVERITY_ORDER: Record<Severity, number> = { high: 0, medium: 1, info: 2 };

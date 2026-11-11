@@ -67,7 +67,7 @@
         "surface": "DevTools",
         "question": "Is every tag and event really firing?",
         "answer": "events, GTM and consent, live",
-        "desc": "Watch GA4, Meta, TikTok and Google Ads events as they fire, check GTM, server-side GTM and consent, then export an audit.",
+        "desc": "Watch events from GA4, Meta, TikTok and 47 more platforms as they fire, check GTM, server-side GTM and consent, then export an audit.",
         "bullets": [
           "Live event feed for each platform",
           "GTM, server-side GTM and Consent Mode checks",
@@ -183,7 +183,7 @@
         "where": "The click that should count",
         "question": "Does this click reach every ad platform?",
         "finds": [
-          "Each event as it fires in GA4, Meta, TikTok and Google Ads",
+          "Each event as it fires in GA4, Meta, TikTok and 47 more platforms",
           "What GTM, server-side GTM and consent did with it",
           "Events your tracking plan expects but never see"
         ]

@@ -28,6 +28,7 @@ import type {
   Section,
   Severity,
   SeveritySection,
+  TableSection,
   KeyValueSection,
   TileTone,
 } from './types.ts';
@@ -377,6 +378,88 @@ function drawSeverity(
   return w.y - start;
 }
 
+const CELL = 10.5;
+
+function tableRowHeight(w: Writer, s: TableSection, row: string[], width: number, header = false) {
+  const font = header ? 'semibold' : 'regular';
+  return (
+    10 +
+    Math.max(
+      ...s.columns.map((c, i) =>
+        w.paragraph(
+          [{ text: row[i] ?? '', font: !header && c.mono ? 'mono' : font }],
+          0,
+          0,
+          c.width * width - 10,
+          header ? 9.5 : CELL,
+          C.ink,
+          1.45,
+          false,
+        ),
+      ),
+    )
+  );
+}
+
+function drawTable(w: Writer, s: TableSection, x: number, width: number, draw: boolean): number {
+  const start = w.y;
+  const head = s.columns.map((c) => c.label.toUpperCase());
+  const headH = tableRowHeight(w, s, head, width, true);
+  const first = s.rows[0];
+  if (draw) w.ensure(H2_LH + 8 + headH + (first ? tableRowHeight(w, s, first, width) : 0));
+  drawH2(w, s.title, x, draw);
+  w.y += H2_LH + 8;
+  const drawHead = () => {
+    if (draw) {
+      w.rect(x, w.y, width, headH, 0, C.tile);
+      let cx = x;
+      s.columns.forEach((c, i) => {
+        w.text(head[i]!, cx + 6, w.y + 5, 9.5, 'semibold', C.muted, { lineHeight: 1.45 });
+        cx += c.width * width;
+      });
+    }
+    w.y += headH;
+  };
+  drawHead();
+  for (const row of s.rows) {
+    const h = tableRowHeight(w, s, row, width);
+    if (draw) {
+      const before = w.pages.length;
+      w.ensure(h);
+      if (w.pages.length !== before) drawHead();
+      let cx = x;
+      s.columns.forEach((c, i) => {
+        w.paragraph(
+          [{ text: row[i] ?? '', font: c.mono ? 'mono' : 'regular' }],
+          cx + 6,
+          w.y + 5,
+          c.width * width - 10,
+          CELL,
+          C.ink,
+          1.45,
+        );
+        cx += c.width * width;
+      });
+      w.line(x, w.y + h, x + width, C.rowRule);
+    }
+    w.y += h;
+  }
+  if (s.note) {
+    w.y += 6;
+    w.y += w.paragraph(
+      [{ text: s.note, font: 'regular' }],
+      x,
+      w.y,
+      width,
+      10.5,
+      C.muted,
+      1.45,
+      draw,
+    );
+  }
+  return w.y - start;
+}
+
 function drawSection(
   w: Writer,
   s: Section,
@@ -390,6 +473,8 @@ function drawSection(
       return drawKv(w, s, x, width, draw);
     case 'severity':
       return drawSeverity(w, s, x, width, labels, draw);
+    case 'table':
+      return drawTable(w, s, x, width, draw);
     case 'text': {
       const start = w.y;
       drawH2(w, s.title, x, draw);
@@ -461,7 +546,7 @@ function drawSection(
 function drawExtra(w: Writer, s: ExtraSection, labels: Record<Severity, string>) {
   if (s.type !== 'columns') {
     w.y += GAP;
-    if (s.type !== 'kv' && s.type !== 'severity') {
+    if (s.type !== 'kv' && s.type !== 'severity' && s.type !== 'table') {
       const y0 = w.y;
       const h = drawSection(w, s, PAD_X, CONTENT_W, labels, false);
       w.y = y0;

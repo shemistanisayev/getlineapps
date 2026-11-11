@@ -17,3 +17,5 @@ export * from './gtm.ts';
 export * from './issues.ts';
 export * from './analyze.ts';
 export * from './popup.ts';
+export * from './platforms.ts';
+export * from './vendors.ts';

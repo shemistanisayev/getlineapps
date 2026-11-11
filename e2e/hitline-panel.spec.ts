@@ -58,13 +58,15 @@ test.describe('hitline panel', () => {
       /^dataLayer\s*3$/,
     ]);
 
+    // Newest first: the page_view that started the visit is the last row.
     const rows = page.getByRole('option');
     await expect(rows).toHaveCount(14);
-    await expect(rows.nth(0)).toContainText('42:18.204');
-    await expect(rows.nth(0)).toContainText('page_view');
-    await expect(rows.nth(0)).toContainText('sGTM');
-    await expect(rows.nth(8)).toContainText('AddToCart');
-    await expect(rows.nth(8)).toContainText('No value');
+    await expect(rows.nth(13)).toContainText('42:18.204');
+    await expect(rows.nth(13)).toContainText('page_view');
+    await expect(rows.nth(13)).toContainText('sGTM');
+    await expect(rows.nth(5)).toContainText('AddToCart');
+    await expect(rows.nth(5)).toContainText('No value');
+    await expect(page.locator('.site-chip')).toContainText('example.com');
 
     // The design's selected row: GA4 add_to_cart, linked to Meta AddToCart without a value.
     const selected = page.getByRole('option', { selected: true });
@@ -74,7 +76,7 @@ test.describe('hitline panel', () => {
     await expect(detail).toContainText('10:42:31.950');
     await expect(detail.locator('.code')).toContainText('POST');
     await expect(detail.locator('.code b')).toHaveText('data.example.com');
-    await expect(detail.locator('.prow')).toHaveText([
+    await expect(detail.locator('.params').first().locator('.prow')).toHaveText([
       'currencyUSD',
       'value89.90',
       'items[0].item_idLUMO-PRO-X',
@@ -103,6 +105,9 @@ test.describe('hitline panel', () => {
     // Hits that carry the item id: GA4 3 + dataLayer 3 ecommerce events, Meta 2, TikTok AddToCart 1.
     await expect(page.getByRole('option')).toHaveCount(9);
     await page.getByRole('searchbox').fill('');
+    // The Time header switches to oldest first.
+    await page.getByRole('button', { name: /Newest first/ }).click();
+    await expect(page.getByRole('option').first()).toContainText('page_view');
     await page.getByRole('option').first().click();
     await page.getByRole('listbox').focus();
     await page.keyboard.press('ArrowDown');
@@ -178,7 +183,9 @@ test.describe('hitline panel', () => {
     await expect(
       page.getByRole('heading', { name: 'Reload the page to start recording' }),
     ).toBeVisible();
-    await expect(page.locator('.watches .w-row')).toHaveCount(6);
+    await expect(page.locator('.watches .w-row')).toHaveCount(9);
+    await expect(page.locator('.watches')).toContainText('50 platforms in total');
+    await expect(page.locator('.listening')).toContainText('Listening');
     await expect(page.getByRole('button', { name: 'Audit PDF' })).toBeDisabled();
     await page.evaluate(() => document.fonts.ready);
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/hitline-panel-empty.png` });

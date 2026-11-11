@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Hitline: GA4, Meta, TikTok və s. üçün pulsuz tracking debugger",
-    "description": "Pulsuz Chrome extension. GA4, Google Ads, Meta və TikTok eventlərinin hamısını gör, server-side GTM-i tap və consent sızmalarını Chrome DevTools-un içində tut.",
+    "description": "Pulsuz Chrome extension. GA4, Google Ads, Meta, TikTok və daha 46 platformanın bütün eventlərini gör, GTM tag-larını oxu və consent sızmalarını Chrome DevTools-un içində tut.",
     "ogAlt": "Hitline: tracking-in işləyir? Bir paneldə sübut et."
   },
   "nav": {
@@ -29,7 +29,7 @@
     "titleStart": "Tracking-in işləyir?",
     "titleHighlight": "Sübut et,",
     "titleEnd": "bir paneldə.",
-    "lead": "GA4, Google Ads, Meta və TikTok eventlərinin hamısını gör, server-side GTM-i tap və consent sızmalarını elə Chrome DevTools-un içində tut.",
+    "lead": "GA4, Google Ads, Meta, TikTok və daha 46 platformanın bütün eventlərini gör, server-side GTM-i tap və consent sızmalarını elə Chrome DevTools-un içində tut.",
     "secondary": "Nümunə auditə bax",
     "trust": ["Hesab lazım deyil", "Heç nə brauzerdən çıxmır", "Açıq mənbə"],
     "mockLabel": "DevTools › Hitline",
@@ -127,7 +127,7 @@
     "issueText": "Meta AddToCart dəyərsiz göndərilir"
   },
   "marquee": {
-    "title": "Artıq istifadə etdiyin tag-ları oxuyur",
+    "title": "Artıq istifadə etdiyin 50 platformanı oxuyur",
     "items": [
       {
         "platform": "ga",
@@ -154,8 +154,80 @@
         "label": "Server-side GTM"
       },
       {
+        "platform": "linkedin",
+        "label": "LinkedIn Insight"
+      },
+      {
+        "platform": "bing",
+        "label": "Microsoft Ads"
+      },
+      {
+        "platform": "x",
+        "label": "X Pixel"
+      },
+      {
+        "platform": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "platform": "snapchat",
+        "label": "Snapchat Pixel"
+      },
+      {
+        "platform": "reddit",
+        "label": "Reddit Pixel"
+      },
+      {
         "platform": "hj",
         "label": "Hotjar"
+      },
+      {
+        "platform": "clarity",
+        "label": "Microsoft Clarity"
+      },
+      {
+        "platform": "amplitude",
+        "label": "Amplitude"
+      },
+      {
+        "platform": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "platform": "segment",
+        "label": "Segment"
+      },
+      {
+        "platform": "posthog",
+        "label": "PostHog"
+      },
+      {
+        "platform": "adobe",
+        "label": "Adobe Analytics"
+      },
+      {
+        "platform": "matomo",
+        "label": "Matomo"
+      },
+      {
+        "platform": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "platform": "klaviyo",
+        "label": "Klaviyo"
+      },
+      {
+        "platform": "criteo",
+        "label": "Criteo"
+      },
+      {
+        "platform": "floodlight",
+        "label": "Floodlight"
+      },
+      {
+        "platform": "optimizely",
+        "label": "Optimizely"
       },
       {
         "platform": "datalayer",
@@ -194,17 +266,17 @@
   },
   "features": {
     "eyebrow": "Panelin içi",
-    "title": "Beş görünüş. Bir sual: rəqəmlərə inanmaq olar?",
+    "title": "Altı görünüş. Bir sual: rəqəmlərə inanmaq olar?",
     "tabsLabel": "Hitline görünüşləri",
     "events": {
       "label": "Eventlər",
       "eyebrow": "Event inspektoru",
       "title": "Hər event, hər parametr, hər platforma yan-yana.",
-      "lead": "Hitline GA4, Google Ads, Meta və TikTok-un göndərdiyi sorğuları və hər dataLayer push-u oxuyur.",
+      "lead": "Hitline 50 analitika, reklam, CRM və test platformasının sorğularını və hər dataLayer push-u oxuyur. Ən yeni eventlər yuxarıdadır, yeniləri gələndə işıqlanır.",
       "bullets": [
-        "Bir klik, bütün platformalar eyni sətirdə",
+        "50 platforma bir siyahıda, öz servislərin isə öz platforma kimi",
         "Hər parametr açılıb, query string oxumağa ehtiyac yoxdur",
-        "Çatışmayan dəyərlər elə o an qeyd olunur"
+        "Canlı: yeni eventlər vurğulanır, ən yenisi yuxarıda"
       ],
       "demo": {
         "event": "add_to_cart",
@@ -236,11 +308,11 @@
       "label": "GTM və sGTM",
       "eyebrow": "GTM və server-side",
       "title": "Saytın server-side GTM işlətdiyini sübutla bil.",
-      "lead": "Alətlərin çoxu saytın öz subdomeninə gedən sorğuları görmür. Hitline dörd siqnalı yoxlayır və hər GTM tag-ını statusu ilə göstərir.",
+      "lead": "Hitline GTM konteynerinin özünü oxuyur: hər tag trigger-i, consent yoxlamaları və statusu ilə, hər dataLayer eventi üçün isə işə düşən tag-lar. Üstəlik server-side GTM üçün dörd siqnal.",
       "bullets": [
-        "Dörd müstəqil siqnal, təxmin yox",
-        "Hər tag növü, trigger-i və statusu ilə",
-        "Hansı platformaların hələ brauzerdən göndərdiyini gör"
+        "Hər tag trigger-i, consent yoxlamaları və statusu ilə",
+        "Hər dataLayer eventi və onda işə düşən tag-lar",
+        "Server-side üçün dörd siqnal, təxmin yox"
       ],
       "demo": {
         "title": "Server-side GTM",
@@ -250,6 +322,41 @@
           "Yol GA4 formatındadır",
           "server_container_url qurulub",
           "FPID cookie-ni server yazır"
+        ]
+      }
+    },
+    "checks": {
+      "label": "Yoxlamalar",
+      "eyebrow": "Məlumat keyfiyyəti",
+      "title": "Hesabatları səssizcə pozan səhvlər.",
+      "lead": "Hitline hər eventi gələn kimi yoxlayır və hər problemi izah edir: nə baş verir, niyə vacibdir və necə düzəlir.",
+      "bullets": [
+        "Reklam və analitika platformalarına gedən e-poçt ünvanları",
+        "Eyni alış və ya lead-in iki dəfə göndərilməsi",
+        "Sifariş ID-si olmayan alışlar, dəyəri olmayan eventlər"
+      ],
+      "demo": {
+        "title": "Bu səhifədə tapıldı",
+        "count": "3 problem",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 page_view",
+            "status": "URL-də e-poçt",
+            "tone": "bad"
+          },
+          {
+            "platform": "meta",
+            "label": "Meta Purchase",
+            "status": "İki dəfə getdi",
+            "tone": "warn"
+          },
+          {
+            "platform": "ga",
+            "label": "GA4 purchase",
+            "status": "Sifariş ID yoxdur",
+            "tone": "warn"
+          }
         ]
       }
     },
@@ -498,16 +605,24 @@
         "a": "Xeyr. Hər şey brauzerində analiz olunur. Yalnız ayarların saxlanılır, o da yalnız sənin kompüterində."
       },
       {
+        "q": "Hitline hansı platformaları oxuyur?",
+        "a": "50 platforma: analitika (GA4, Adobe, Amplitude, Mixpanel, Segment, PostHog, Matomo və s.), reklam pikselləri (Google Ads, Meta, TikTok, LinkedIn, Microsoft Ads, X, Pinterest, Snapchat, Reddit, Criteo və s.), sessiya yazma, CRM, tag menecerlər, A/B test alətləri və dataLayer."
+      },
+      {
+        "q": "Alətim siyahıda yoxdur. Hitline onu yenə göstərə bilər?",
+        "a": "Bəli. Onu Ayarlarda öz platforma kimi əlavə et: ad və URL-indən bir hissə. Sadəcə izləməyə oxşayan sorğular da \"Digər\" altında göstərilir."
+      },
+      {
         "q": "Server-side GTM-i necə tapır?",
         "a": "GA4 sorğularının haraya getdiyini, sorğunun yolunu, server_container_url ayarını və serverin yazdığı cookie-ləri yoxlayır."
       },
       {
         "q": "Tag Assistant-dan fərqi nədir?",
-        "a": "Tag Assistant Google tag-larına fokuslanır. Hitline Google, Meta və TikTok-u yan-yana göstərir, consent və atribusiyanı yoxlayır və eventləri tracking planınla müqayisə edir."
+        "a": "Tag Assistant Google tag-larına fokuslanır. Hitline 50 platformanı yan-yana göstərir, GTM tag və trigger-lərini oxuyur, consenti, atribusiyanı və məlumat keyfiyyətini yoxlayır və eventləri tracking planınla müqayisə edir."
       },
       {
         "q": "DevTools açıq olmalıdır?",
-        "a": "Popup onsuz da işləyir. Canlı event axını üçün DevTools-u səhifə yüklənmədən əvvəl aç və ya bir dəfə yenilə."
+        "a": "Popup onsuz da işləyir və açıq qaldıqca özü yenilənir. Tam event axını üçün DevTools-u və Hitline tabını aç, sonra səhifəni bir dəfə yenilə. Chrome extension-ların DevTools açmasına icazə vermir, ona görə popup qısayolu göstərir və DevTools kliklədiyin eventdə açılır."
       }
     ]
   },

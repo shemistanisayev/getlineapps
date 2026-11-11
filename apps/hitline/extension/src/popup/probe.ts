@@ -3,10 +3,15 @@
  * tab, allowed by activeTab. It reads resource URLs with their start times, dataLayer consent and
  * config commands, GTM ids, CMP globals and the listed cookie names. Nothing is sent anywhere.
  */
-import type { PopupProbe } from '@line/core/hitline';
+import { PLATFORM_LIST, type PopupProbe } from '@line/core/hitline';
+
+/** [platform id, page globals] pairs, passed into the page as an argument. */
+export const POPUP_GLOBALS: [string, string[]][] = PLATFORM_LIST.filter(
+  (p) => p.globals?.length,
+).map((p) => [p.id, p.globals!]);
 
 /** Runs inside the page. Must stay self-contained: executeScript serializes the function. */
-export function popupProbe(): PopupProbe {
+export function popupProbe(known: [string, string[]][] = []): PopupProbe {
   const toArray = (v: unknown): unknown[] | null => {
     if (Array.isArray(v)) return v;
     if (v && typeof v === 'object' && Object.prototype.toString.call(v) === '[object Arguments]') {
@@ -57,11 +62,17 @@ export function popupProbe(): PopupProbe {
     if (names.test(k)) cookies[k] = c.slice(eq + 1);
   }
   const gtm = w.google_tag_manager ? Object.keys(w.google_tag_manager as object) : [];
+  const globals = known
+    .filter(([, names]) => names.some((n) => typeof w[n] !== 'undefined'))
+    .map(([id]) => id);
+  const entries = performance.getEntriesByType('resource');
   return {
     url: location.href,
-    resources: performance
-      .getEntriesByType('resource')
-      .map((r) => ({ name: r.name, startTime: Math.round(r.startTime) })),
+    timeOrigin: performance.timeOrigin,
+    globals,
+    // Chrome keeps 250 resource entries unless the page asks for more: later requests are not listed.
+    bufferFull: entries.length >= 250,
+    resources: entries.map((r) => ({ name: r.name, startTime: Math.round(r.startTime) })),
     dataLayer: commands,
     dataLayerLength: dl.length,
     gtmIds: gtm.filter((k) => /^GTM-/.test(k)),
@@ -84,7 +95,9 @@ export function isRestricted(url: string | undefined): boolean {
 }
 
 export type ProbeState =
-  { kind: 'loading' } | { kind: 'restricted'; url?: string } | { kind: 'ready'; probe: PopupProbe };
+  | { kind: 'loading'; url?: string }
+  | { kind: 'restricted'; url?: string }
+  | { kind: 'ready'; probe: PopupProbe; tabId?: number };
 
 declare global {
   interface Window {
@@ -93,11 +106,20 @@ declare global {
   }
 }
 
+/** URL of the active tab (shown while the page is read). */
+export async function activeUrl(): Promise<string | undefined> {
+  if (window.__HITLINE_POPUP__) {
+    return window.__HITLINE_POPUP__ === 'restricted' ? undefined : window.__HITLINE_POPUP__.url;
+  }
+  const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+  return tab?.url;
+}
+
 export async function loadProbe(): Promise<ProbeState> {
   if (window.__HITLINE_POPUP__) {
     return window.__HITLINE_POPUP__ === 'restricted'
       ? { kind: 'restricted' }
-      : { kind: 'ready', probe: window.__HITLINE_POPUP__ };
+      : { kind: 'ready', probe: window.__HITLINE_POPUP__, tabId: 1 };
   }
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   if (!tab?.id || isRestricted(tab.url)) return { kind: 'restricted', url: tab?.url };
@@ -105,9 +127,10 @@ export async function loadProbe(): Promise<ProbeState> {
     const [res] = await browser.scripting.executeScript({
       target: { tabId: tab.id },
       func: popupProbe,
+      args: [POPUP_GLOBALS],
     });
     const probe = res?.result as PopupProbe | undefined;
-    return probe ? { kind: 'ready', probe } : { kind: 'restricted', url: tab.url };
+    return probe ? { kind: 'ready', probe, tabId: tab.id } : { kind: 'restricted', url: tab.url };
   } catch {
     // file:// without access, error pages, PDF viewer and similar.
     return { kind: 'restricted', url: tab.url };

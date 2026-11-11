@@ -11,6 +11,7 @@ export default tseslint.config(
       '**/.output/**',
       '**/.wxt/**',
       '**/.astro/**',
+      '**/.wrangler/**',
       'design/**',
       'docs/**',
       'test-results/**',
