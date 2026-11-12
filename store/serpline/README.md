@@ -2,17 +2,17 @@
 
 Bu qovluqda yükləməli olduğun hər şey var. Mətnlər `docs/serpline/STORE-LISTING.md` faylındadır.
 
-| Fayl                                              | Hara                                                    |
-| ------------------------------------------------- | ------------------------------------------------------- |
-| `serpline-1.0.0.zip`                              | "New item" düyməsindən sonra açılan yükləmə pəncərəsinə |
-| `screenshots/1-summary.png` ... `5-audit-pdf.png` | Store listing: Screenshots (ardıcıllıq 1-dən 5-ə)       |
-| `promo-small-440x280.png`                         | Store listing: Small promo tile                         |
-| `promo-marquee-1400x560.png`                      | Store listing: Marquee promo tile                       |
+| Fayl                                              | Hara                                              |
+| ------------------------------------------------- | ------------------------------------------------- |
+| `serpline-1.0.1.zip`                              | Package tabı: **Upload new package**              |
+| `screenshots/1-summary.png` ... `5-audit-pdf.png` | Store listing: Screenshots (ardıcıllıq 1-dən 5-ə) |
+| `promo-small-440x280.png`                         | Store listing: Small promo tile                   |
+| `promo-marquee-1400x560.png`                      | Store listing: Marquee promo tile                 |
 
-## 3 addım
+## Yeniləmə (Serpline artıq Developer Dashboard-dadır)
 
-1. `chrome.google.com/webstore/devconsole` aç, **New item** bas və `serpline-1.0.0.zip` faylını seç.
-2. **Store listing**, **Privacy practices** və **Distribution** tablarını `docs/serpline/STORE-LISTING.md` faylındakı mətnlərlə doldur, şəkilləri bu qovluqdan yüklə.
+1. `chrome.google.com/webstore/devconsole` aç, **Serpline**-ı seç, **Package** tabında **Upload new package** bas və `serpline-1.0.1.zip` faylını seç.
+2. **Store listing** tabında **Detailed description** mətnini `docs/serpline/STORE-LISTING.md` faylındakı ilə müqayisə et: fərqlidirsə, oradakını yapışdır. Şəkillər eynidir, toxunma.
 3. **Submit for review** bas. Təsdiq gələndə listing linkini mənə yaz.
 
 Ekran şəkilləri xəyali Lumo mağazasından çəkilib, real sayt deyil. Yeniləmək üçün: `pnpm store:serpline`.

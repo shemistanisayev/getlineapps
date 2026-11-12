@@ -1,14 +1,14 @@
 # Serpline: Chrome Web Store listing
 
-Everything to paste into the Chrome Web Store Developer Dashboard for Serpline 1.0.0. The files to upload are in `store/serpline/` (see `store/serpline/README.md`).
+Everything to paste into the Chrome Web Store Developer Dashboard for Serpline 1.0.1. The files to upload are in `store/serpline/` (see `store/serpline/README.md`).
 
 ## Package
 
 | Field | Value |
 |---|---|
-| File | `store/serpline/serpline-1.0.0.zip` |
+| File | `store/serpline/serpline-1.0.1.zip` |
 | Name | Serpline: SEO Checker & AI Crawler Audit for Google, ChatGPT & More (manifest name; short name Serpline) |
-| Version | 1.0.0 |
+| Version | 1.0.1 |
 | Category | Developer Tools |
 | Language | English (default), Azerbaijani (second listing language) |
 
