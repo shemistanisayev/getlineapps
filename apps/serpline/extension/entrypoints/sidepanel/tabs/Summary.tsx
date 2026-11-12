@@ -4,6 +4,7 @@ import { CheckRow, HeroCard, PanelCard, ScoreRing, Segmented, SerpResult } from 
 import type { T } from '../../../src/i18n/index.ts';
 import type { PreviewDevice } from '../../../src/storage.ts';
 import { StatusPill, clock, type Tone } from './common.tsx';
+import { HreflangCard, IndexCard, SchemaCard } from './SummaryCards.tsx';
 
 interface Row {
   label: string;
@@ -15,7 +16,10 @@ function has(audit: Audit, id: string) {
   return audit.issues.some((i) => i.id === id);
 }
 
-/** The nine on-page rows, in the design's order. */
+/**
+ * On-page rows in the design's order. Canonical and robots meta moved to the indexing card above
+ * in 1.1, so they are not shown twice.
+ */
 function checkRows(a: Audit, t: T): Row[] {
   const r = a.rendered;
   const rows: Row[] = [];
@@ -36,25 +40,6 @@ function checkRows(a: Audit, t: T): Row[] {
       : has(a, 'DESC_LONG')
         ? { tone: 'warn' as const, text: t('st.cutGoogle') }
         : { tone: 'ok' as const, text: t('st.chars', { n: r.description.length }) }),
-  });
-
-  rows.push({
-    label: t('row.canonical'),
-    ...(!r.canonical
-      ? { tone: 'mute' as const, text: t('st.notSet') }
-      : has(a, 'CANONICAL_OTHER')
-        ? { tone: 'warn' as const, text: t('st.canonOther') }
-        : { tone: 'ok' as const, text: t('st.canonSelf') }),
-  });
-
-  const robots = r.robots ?? a.raw?.robots ?? null;
-  rows.push({
-    label: t('row.robots'),
-    ...(a.noindex.meta || a.noindex.header
-      ? { tone: 'bad' as const, text: t('st.noindex') }
-      : robots
-        ? { tone: 'ok' as const, text: robots }
-        : { tone: 'mute' as const, text: t('st.notSet') }),
   });
 
   const h1 = r.headings.filter((h) => h.level === 1).length;
@@ -162,6 +147,8 @@ export function SummaryTab({
         </div>
       </HeroCard>
 
+      <IndexCard audit={audit} t={t} />
+
       <PanelCard title={t('sum.checks')}>
         {checkRows(audit, t).map((r) => (
           <CheckRow key={r.label} label={r.label} tone={r.tone === 'bad' ? 'problem' : undefined}>
@@ -222,6 +209,9 @@ export function SummaryTab({
           )}
         </div>
       </PanelCard>
+
+      <SchemaCard audit={audit} t={t} />
+      <HreflangCard audit={audit} t={t} />
     </>
   );
 }

@@ -12,3 +12,7 @@ export * from './diff.ts';
 export * from './links.ts';
 export * from './issues.ts';
 export * from './analyze.ts';
+export * from './live.ts';
+export * from './schema.ts';
+export * from './indexing.ts';
+export * from './hreflang.ts';

@@ -2,7 +2,9 @@
   "summary": "Serpline olduğunuz səhifənin SEO-sunu və AI crawler girişini yoxlayır. Hər şey brauzerinizdə hesablanır və bizə heç nə göndərilmir.",
   "reads": [
     "Cari tabdakı səhifəni, ikona basandan və ya qısayolu sıxandan sonra.",
-    "Həmin səhifənin xam HTML-ini, həmçinin saytın robots.txt və llms.txt fayllarını, birbaşa saytın özündən.",
+    "Həmin səhifənin xam HTML-ini, həmçinin saytın robots.txt, llms.txt və sitemap fayllarını, birbaşa saytın özündən.",
+    "Brauzerinizin səhifə üçün onsuz da saxladığı sürət rəqəmlərini (Core Web Vitals, sorğuların ölçüsü), şəkillərin və mətnin ölçüsünü, tabın içində ölçülür.",
+    "Səhifənin canonical səhifəsini və dil versiyalarını (hreflang), eyni saytdadırsa, işlədiyini və geri link verdiyini yoxlamaq üçün.",
     "Səhifədəki daxili linklərin statusunu, yalnız Check links düyməsinə basanda və ya bu ayarı yandıranda. Bu sorğular eyni sayta gedir."
   ],
   "stores": [

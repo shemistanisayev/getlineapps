@@ -1,7 +1,8 @@
 // @vitest-environment happy-dom
 /**
  * The Lumo scenario through the whole core (SPEC Phase 3 "done when"): the recorded fixture gives
- * the design's issues and score 56 after the link check (62 before it, PLAN decision 4).
+ * the design's issues plus NO_HTTPS (the fixture is plain http, Serpline 1.1) and score 52 after the
+ * link check (58 before it, PLAN decision 4).
  * Re-record with scripts/record-serpline-fixture.ts after changing apps/fixture/public/serpline.
  */
 import { readFileSync } from 'node:fs';
@@ -32,7 +33,7 @@ const linkResults = JSON.parse(fx('lumo-links.json')) as LinkResult[];
 describe('serpline core: Lumo scenario', () => {
   it('is the serpline tool', () => expect(TOOL).toBe('serpline'));
 
-  it('gives the design issues and score 56 after the link check', () => {
+  it('gives the design issues and score 52 after the link check', () => {
     const a = analyze({ ...input, linkResults });
     expect(a.issues.map((i) => `${i.severity} ${i.id}`)).toEqual([
       'high RAW_H1',
@@ -43,20 +44,21 @@ describe('serpline core: Lumo scenario', () => {
       'medium OG_DESC',
       'medium BROKEN_LINK',
       'medium AI_SEARCH_BLOCKED',
+      'medium NO_HTTPS',
       'low HEADING_SKIP',
       'low REDIRECT_LINKS',
     ]);
-    expect(a.counts).toEqual({ high: 2, medium: 6, low: 2 });
-    expect(a.score).toBe(56);
+    expect(a.counts).toEqual({ high: 2, medium: 7, low: 2 });
+    expect(a.score).toBe(52);
     expect(a.label).toBe('needs_work');
     // Tab badges as in PanelHeader: Headings 2, Links 2, Render 3, AI 1.
-    expect(a.byTab).toMatchObject({ headings: 2, links: 2, render: 3, ai: 1 });
+    expect(a.byTab).toMatchObject({ headings: 2, links: 2, render: 3, speed: 1, ai: 1 });
   });
 
-  it('gives 62 before the link check (link issues count only after it)', () => {
+  it('gives 58 before the link check (link issues count only after it)', () => {
     const a = analyze(input);
-    expect(a.counts).toEqual({ high: 2, medium: 5, low: 1 });
-    expect(a.score).toBe(62);
+    expect(a.counts).toEqual({ high: 2, medium: 6, low: 1 });
+    expect(a.score).toBe(58);
     expect(a.linkCheck).toBeNull();
     expect(a.byTab.links).toBe(0);
   });

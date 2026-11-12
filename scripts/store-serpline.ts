@@ -124,6 +124,8 @@ try {
   const page = await ext.context.newPage();
   // Desktop layout of the shop, scaled down into the 752 x 672 page area of the frame.
   await page.setViewportSize({ width: 1100, height: 983 });
+  // In front while it loads, so Chrome reports LCP and FCP for the Speed tab.
+  await page.bringToFront();
   await page.goto(serplineUrl());
   await page.addStyleTag({ content: 'html{scrollbar-width:none}' });
   await ext.clickAction(page);
@@ -133,7 +135,7 @@ try {
     `document.head.append(Object.assign(document.createElement('style'), { textContent: 'html,body,*{scrollbar-width:none}' }))`,
   );
 
-  // Links first: after the check the score is the design's 56.
+  // Links first, so the score includes the link check.
   await tab('Links');
   await until('Check 52 internal links');
   await evalIn(
@@ -144,7 +146,7 @@ try {
   await page.screenshot({ path: join(tmp, 'site.png') });
 
   await tab('Summary');
-  await until('2 high, 6 medium, 2 low');
+  await until('2 high, 7 medium');
   await ext.screenshot(PANEL, join(tmp, 'summary.png'), PANEL_SIZE);
   await tab('Render');
   await until('91% of the text needs JavaScript');
@@ -152,12 +154,13 @@ try {
   await tab('AI');
   await until('PerplexityBot is blocked');
   await ext.screenshot(PANEL, join(tmp, 'ai.png'), PANEL_SIZE);
-  await tab('Headings');
-  await until('OUTLINE');
-  await evalIn(`document.querySelector('[role=switch]').click()`, true);
+  // Speed (1.1) with its page highlight: the LCP element and the images with a finding.
+  await tab('Speed');
+  await until('SERVER RESPONSE');
+  await evalIn(`document.querySelector('#sp-hl-speed').click()`, true);
   await page.waitForSelector('[data-serpline-overlay]', { state: 'attached' });
   await page.waitForTimeout(400);
-  await ext.screenshot(PANEL, join(tmp, 'headings.png'), PANEL_SIZE);
+  await ext.screenshot(PANEL, join(tmp, 'speed.png'), PANEL_SIZE);
   await page.screenshot({ path: join(tmp, 'site-highlight.png') });
   await page.close();
 
@@ -228,9 +231,9 @@ try {
   );
   await frame(
     f,
-    '4-headings.png',
-    'Headings and missing alt text, on the page',
-    split(join(tmp, 'site-highlight.png'), join(tmp, 'headings.png')),
+    '4-speed.png',
+    'Core Web Vitals, images and mobile checks',
+    split(join(tmp, 'site-highlight.png'), join(tmp, 'speed.png')),
   );
   await frame(
     f,

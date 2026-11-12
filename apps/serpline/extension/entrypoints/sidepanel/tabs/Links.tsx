@@ -1,6 +1,6 @@
 /** Links tab (design/serpline/Links.dc.html): tiles, link check bar, filter chips, list, issue cards. */
 import { LINK_CHECK_MAX, type Audit, type CheckedLink } from '@line/core/serpline';
-import { CountTile } from '@line/ui/serpline';
+import { CountTile, Switch } from '@line/ui/serpline';
 import { useState, type ReactNode } from 'react';
 import type { T } from '../../../src/i18n/index.ts';
 import { IssueCard, StatusPill } from './common.tsx';
@@ -56,9 +56,15 @@ export function LinksTab({
   progress = null,
   plannedCount,
   onCheck,
+  highlight,
+  onHighlight,
+  highlightFailed,
   t,
 }: {
   audit: Audit;
+  highlight: boolean;
+  onHighlight: (on: boolean) => void;
+  highlightFailed: boolean;
   checkState: LinkCheckState;
   /** Links checked so far while the check runs. */
   progress?: { done: number; total: number } | null;
@@ -187,6 +193,20 @@ export function LinksTab({
           <CountTile value={links.nofollow} label={t('ln.nofollow')} />
         </div>
         {bar}
+        <div className="sp-switch-row">
+          <label htmlFor="sp-hl-links">{t('ln.highlight')}</label>
+          <Switch
+            id="sp-hl-links"
+            checked={highlight}
+            onChange={onHighlight}
+            label={t('ln.highlight')}
+          />
+        </div>
+        {highlightFailed && (
+          <p className="sp-muted" role="status">
+            {t('hd.highlightFailed')}
+          </p>
+        )}
       </section>
 
       <div className="sp-chips" role="group" aria-label={t('ln.filters')}>

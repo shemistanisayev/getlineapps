@@ -48,15 +48,23 @@ describe('serpline audit PDF', () => {
       'Page checked: /products/wireless-headphones-pro-x',
     ]);
     expect(cfg.tiles.map((x) => [x.value, x.suffix ?? '', x.label])).toEqual([
-      [56, '/100', 'SEO score'],
+      [52, '/100', 'SEO score'],
       [2, '', 'high priority'],
-      [6, '', 'medium priority'],
+      [7, '', 'medium priority'],
       [2, '', 'low priority'],
     ]);
     expect(cfg.keyValue.rows).toEqual([
+      {
+        k: 'Indexing',
+        v: 'Yes. Google and Bing allowed',
+      },
       { k: 'Title', v: 'Wireless Headphones Pro X | Lumo (32 characters)' },
       { k: 'Description', v: '191 characters, Google cuts it after 107 on mobile' },
       { k: 'Canonical and robots', v: 'Points to this page, index, follow' },
+      {
+        k: 'Structured data',
+        v: 'BreadcrumbList (Breadcrumb ready), Product (Product snippet ready)',
+      },
       {
         k: 'Raw HTML vs rendered',
         v: '38 of 412 words in raw HTML, H1 and Product schema added by JavaScript',
@@ -88,6 +96,11 @@ describe('serpline audit PDF', () => {
         'PerplexityBot is blocked in robots.txt.',
         'Remove the rule if you want Perplexity to cite the site.',
       ],
+      [
+        'medium',
+        'The page is not on HTTPS.',
+        'Serve the site over HTTPS and redirect http with a 301.',
+      ],
       ['low', 'An H4 follows an H2.', 'Make "Bluetooth 5.3" an H3.'],
       [
         'low',
@@ -107,7 +120,7 @@ describe('serpline audit PDF', () => {
     expect(Buffer.from(report.bytes.subarray(0, 5)).toString()).toBe('%PDF-');
     const text = report.layout.map((l) => l.text).join('\n');
     for (const s of [
-      '56',
+      '52',
       '/100',
       'Made with Serpline. The page was read in your browser and nothing was sent anywhere.',
       'Page 1 of 1',
@@ -123,10 +136,10 @@ describe('serpline audit PDF', () => {
   it('follows the language: Azerbaijani labels and fixes', () => {
     const cfg = serplineReport(audit, translator('az'), 'az', fonts, now);
     expect(cfg.eyebrow).toBe('SEO və AI axtarış auditi');
-    expect(cfg.keyValue.rows[5]!.v).toBe(
+    expect(cfg.keyValue.rows[7]!.v).toBe(
       '13 botdan 10-nə icazə var. PerplexityBot, CCBot və Bytespider bloklanıb. llms.txt yoxdur',
     );
-    expect(cfg.severity.items[9]!.text).toBe(
+    expect(cfg.severity.items[10]!.text).toBe(
       'Birbaşa /electronics/headphones və /help/returns ünvanlarına link ver.',
     );
   });

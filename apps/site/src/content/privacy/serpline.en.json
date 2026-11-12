@@ -2,7 +2,9 @@
   "summary": "Serpline checks the SEO and AI crawler access of the page you are on. Everything is worked out in your browser, and nothing is sent to us.",
   "reads": [
     "The page in the current tab, after you click the icon or press the shortcut.",
-    "The raw HTML of that same page, and the robots.txt and llms.txt of that site, fetched straight from the site.",
+    "The raw HTML of that same page, and the robots.txt, llms.txt and sitemap of that site, fetched straight from the site.",
+    "Speed numbers your browser already keeps for the page (Core Web Vitals, request sizes) and the size of its images and text, measured in the tab.",
+    "The canonical page and the language versions (hreflang) of the page, when they are on the same site, to check that they work and link back.",
     "The status of internal links on the page, only when you press Check links or turn that setting on. These requests go to the same site."
   ],
   "stores": [

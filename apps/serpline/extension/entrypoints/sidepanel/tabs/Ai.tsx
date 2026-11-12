@@ -1,6 +1,6 @@
 /** AI tab (design/serpline/Ai.dc.html): allowed count, bots by group, files for crawlers. */
 import type { Audit, BotGroup, BotOwner, BotStatus } from '@line/core/serpline';
-import { BotRow, HeroCard, LimeCta, PanelCard } from '@line/ui/serpline';
+import { BotRow, CheckRow, HeroCard, LimeCta, PanelCard } from '@line/ui/serpline';
 import { useState } from 'react';
 import type { T } from '../../../src/i18n/index.ts';
 import { StatusPill, issueTitle } from './common.tsx';
@@ -38,6 +38,65 @@ function BotStatusPill({ b, robotsFound, t }: { b: BotStatus; robotsFound: boole
     <StatusPill tone="mute" icon="check">
       {robotsFound ? t('ai.allowedStar') : t('ai.noRule')}
     </StatusPill>
+  );
+}
+
+/** What a crawler that skips JavaScript reads: raw HTML vs the rendered page. */
+function AiViewCard({ audit, t }: { audit: Audit; t: T }) {
+  const { raw, rendered, diff } = audit;
+  if (!raw || !diff) return null;
+  const share = diff.renderedWords
+    ? Math.min(100, Math.round((diff.rawWords / diff.renderedWords) * 100))
+    : 100;
+  const rawH1 = raw.headings.some((h) => h.level === 1);
+  const renderedH1 = rendered.headings.some((h) => h.level === 1);
+  const jsTypes = rendered.jsonLd.types.filter((x) => !raw.jsonLd.types.includes(x));
+  const row = (label: string, ok: boolean | null, text: string) => (
+    <CheckRow label={label} tone={ok === false ? 'problem' : undefined}>
+      <StatusPill
+        tone={ok === null ? 'mute' : ok ? 'ok' : 'bad'}
+        icon={ok === null ? 'dash' : ok ? undefined : 'x'}
+      >
+        {text}
+      </StatusPill>
+    </CheckRow>
+  );
+  return (
+    <PanelCard title={t('av.title')}>
+      {row(
+        t('av.text'),
+        share >= 50,
+        t('av.textValue', { percent: share, raw: diff.rawWords, rendered: diff.renderedWords }),
+      )}
+      {row(
+        t('av.h1'),
+        renderedH1 ? rawH1 : null,
+        !renderedH1 ? t('st.missing') : rawH1 ? t('av.sees') : t('av.misses'),
+      )}
+      {row(
+        t('av.title2'),
+        rendered.title ? !!raw.title : null,
+        !rendered.title ? t('st.missing') : raw.title ? t('av.sees') : t('av.misses'),
+      )}
+      {row(
+        t('av.desc'),
+        rendered.description ? !!raw.description : null,
+        !rendered.description ? t('st.missing') : raw.description ? t('av.sees') : t('av.misses'),
+      )}
+      {row(
+        t('av.schema'),
+        rendered.jsonLd.types.length ? !jsTypes.length : null,
+        !rendered.jsonLd.types.length
+          ? t('st.none')
+          : jsTypes.length
+            ? t('av.schemaMiss', { types: jsTypes.join(', ') })
+            : t('av.sees'),
+      )}
+      <div className="sp-excerpt">
+        <span className="sl-eyebrow">{t('av.excerpt')}</span>
+        <p className="mono">{raw.excerpt || t('av.empty')}</p>
+      </div>
+    </PanelCard>
   );
 }
 
@@ -101,6 +160,8 @@ export function AiTab({ audit, cta, t }: { audit: Audit; cta: string; t: T }) {
           <span className="sl-soft">{text}</span>
         </div>
       </HeroCard>
+
+      <AiViewCard audit={audit} t={t} />
 
       <PanelCard
         title={t('ai.bots')}

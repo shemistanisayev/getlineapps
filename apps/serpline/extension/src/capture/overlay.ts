@@ -8,7 +8,8 @@
 export interface OverlayMark {
   /** CSS path from @line/core/serpline extract (same structure as the live DOM). */
   path: string;
-  kind: 'heading' | 'image';
+  /** heading and info: dashed blue. image and problem: solid red. */
+  kind: 'heading' | 'image' | 'info' | 'problem';
   /** Bold part of the label ("H1", "No alt"). */
   label: string;
   /** Lighter part after it ("added by JavaScript"), optional. */
@@ -64,7 +65,7 @@ export function showOverlay(spec: OverlaySpec): number {
     }
     if (!el) continue;
     const box = document.createElement('div');
-    box.className = `box ${m.kind === 'heading' ? 'h' : 'i'}`;
+    box.className = `box ${m.kind === 'heading' || m.kind === 'info' ? 'h' : 'i'}`;
     const lab = document.createElement('div');
     lab.className = 'lab';
     lab.textContent = m.label;

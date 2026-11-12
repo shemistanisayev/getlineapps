@@ -273,3 +273,116 @@ Each phase ends with the checks from `apps/serpline/CLAUDE.md`, a commit and a s
 - Web Store listing URL after the first upload
 - Feedback recipient (same Resend key as Hitline if the domain is verified)
 - 3 public sites for QA
+
+## 14. Version 1.1: indexing, structured data, speed and mobile
+
+Approved by the owner on 2026-11-12 (ideas A and B). Same rules as before: no new permissions, no
+server, no data collection. Every new request goes to the checked site only (same origin), from the
+page, like the raw HTML fetch.
+
+### 14.1 Live measurement (`apps/serpline/extension/src/capture/measure.ts`)
+A second `executeScript` runs right after `readPage` (step "Measuring speed, reading the sitemap")
+and returns `LiveFacts` (`packages/core/src/serpline/live.ts`):
+- **Core Web Vitals of this visit:** buffered `PerformanceObserver` entries. LCP (last
+  `largest-contentful-paint`, with the element's CSS path), CLS (largest session window of
+  `layout-shift` without recent input, the 5 elements that moved most), INP (slowest interaction
+  from `event` entries; null until the user clicked or typed), FCP and TTFB from the navigation
+  entry. A tab that loaded in the background has no paint entries: the panel says so.
+- **Page weight:** resource timing grouped by kind (HTML, scripts, styles, images, fonts, other),
+  compressed body sizes, and the number of cross-origin requests that hide their size. Requests made
+  by Serpline itself are left out (`window.__serplineSince`, set by `readPage`).
+- **Images:** intrinsic and shown size, width/height or aspect-ratio set, `loading`, above the
+  first screen, bytes and type (resource timing, else the file extension).
+- **Mobile layout at the current window width:** horizontal overflow (and the elements sticking
+  out), text blocks under 12 px, tap targets under 24 x 24 px with the WCAG 2.5.8 spacing
+  exception and inline links in a sentence exempt.
+- **Sitemap:** the `Sitemap:` lines of robots.txt, else `/sitemap.xml`. Sitemap indexes are
+  followed; at most 8 files, `.gz` decompressed with `DecompressionStream`. Answers whether this URL
+  (or its canonical) is listed; "too big to read in full" when the limit stops it first.
+- **Canonical target:** HEAD (GET on 405) when the canonical is another same-origin URL.
+- **hreflang:** each same-origin alternate (at most 10) is fetched and parsed to see whether it
+  links back to this page.
+- The raw HTML response also returns `redirected`, `Content-Encoding`, `Cache-Control` and
+  `Strict-Transport-Security`.
+
+### 14.2 Indexing verdict (`indexing.ts`)
+"Can Google index this page?" on Summary: Yes / No / At risk from six rows: HTTP status, robots
+meta, X-Robots-Tag, robots.txt for Googlebot and Bingbot, canonical, sitemap. Any "bad" row
+(4xx/5xx, noindex, Googlebot blocked, canonical target 4xx/5xx) gives No; a "warn" row (only Bingbot
+blocked, canonical to another page) gives At risk. The sitemap row never decides the verdict.
+Canonical and robots meta moved from "On-page checks" into this card.
+
+### 14.3 Structured data (`schema.ts`)
+Each JSON-LD object (also inside `@graph`) is checked against a readable subset of Google's rich
+result rules: Product (with offers and aggregateRating), Article / NewsArticle / BlogPosting,
+BreadcrumbList, FAQPage, Organization, LocalBusiness / Store / Restaurant, Review, Event, Recipe,
+VideoObject, JobPosting, SoftwareApplication. Required properties decide "ready / not eligible";
+recommended ones are listed only. Other types show "No rich result". JSON-LD only.
+
+### 14.4 Rules added in 1.1 (same score formula as §4.5)
+| Id | Severity | Tab | Rule |
+|---|---|---|---|
+| HTTP_ERROR | High | Summary | raw response 4xx or 5xx |
+| ROBOTS_BLOCKED | High | Summary | Googlebot or Bingbot may not crawl this path |
+| CANONICAL_BROKEN | High | Summary | the canonical target answers 4xx or 5xx |
+| CANONICAL_REDIRECT | Medium | Summary | the canonical target redirects |
+| CANONICAL_MULTI | Medium | Summary | more than one different canonical URL |
+| SCHEMA_PARSE | Medium | Summary | a JSON-LD block is not valid JSON |
+| SCHEMA_REQUIRED | Medium | Summary | a rich result type misses a required property |
+| HREFLANG_INVALID | Medium | Summary | an hreflang code is not a language (+ script, region) or x-default; `-UK` and `-EU` are invalid |
+| HREFLANG_NO_RETURN | Medium | Summary | a same-origin alternate does not answer 200 or does not link back |
+| NO_HTTPS | Medium | Speed | the page is on http (localhost, *.localhost and *.test excepted) |
+| LCP_SLOW | Medium | Speed | LCP over 2.5 s |
+| CLS_HIGH | Medium | Speed | CLS over 0.1 |
+| INP_SLOW | Medium | Speed | INP over 200 ms |
+| IMG_LAZY_TOP | Medium | Speed | an image in the first screen has `loading="lazy"` |
+| IMG_HEAVY | Medium | Speed | an image over 200 KB |
+| MIXED_CONTENT | Medium | Speed | an https page loads images, scripts, styles, frames or media over http |
+| VIEWPORT_MISSING | Medium | Speed | no viewport meta, or no `width=device-width` |
+| H_SCROLL | Medium | Speed | the page is more than 4 px wider than the window |
+| HREFLANG_NO_SELF | Low | Summary | hreflang is used but no entry points to this page |
+| NOT_IN_SITEMAP | Low | Summary | a sitemap was read, the page is indexable and self-canonical, and it is not listed |
+| LINK_NO_TEXT | Low | Links | links without text, aria-label or image alt |
+| WEAK_ANCHOR | Low | Links | anchor text like "click here", "read more", "ətraflı", "подробнее" |
+| INTERNAL_NOFOLLOW | Low | Links | internal links with `rel="nofollow"` |
+| HTTP_LINKS | Low | Links | internal http links on an https page |
+| TTFB_SLOW | Low | Speed | TTFB over 800 ms |
+| IMG_NO_SIZE | Low | Speed | shown images without width/height or aspect-ratio |
+| IMG_FORMAT | Low | Speed | JPEG, PNG, GIF or BMP over 30 KB (or 200 x 200 px when the size is hidden) |
+| IMG_OVERSIZED | Low | Speed | intrinsic width over 300 px and over 1.5 x the shown width x DPR |
+| NO_COMPRESSION | Low | Speed | HTML over 2 KB without Content-Encoding |
+| VIEWPORT_ZOOM | Low | Speed | `user-scalable=no` or `maximum-scale` under 2 |
+| SMALL_TEXT | Low | Speed | at least 5 text blocks and over 20% of them under 12 px |
+| TAP_SMALL | Low | Speed | at least 3 crowded tap targets under 24 x 24 px |
+
+Live rules run only when the live step returned data. Thresholds follow Google's Core Web Vitals
+(good / needs improvement / poor: LCP 2.5 / 4 s, CLS 0.1 / 0.25, INP 200 / 500 ms, FCP 1.8 / 3 s,
+TTFB 0.8 / 1.8 s).
+
+### 14.5 Screens (no artboard; built from the existing cards, rows and pills)
+- **Tabs:** Summary, Headings, Links, Render, **Speed**, AI. Lime CTA on Render, Speed and AI
+  ("Want your pages to load faster?" on Speed).
+- **Summary:** score hero, indexing card (verdict pill and the six rows, then the issue cards of
+  HTTP_ERROR, ROBOTS_BLOCKED, CANONICAL_*, NOT_IN_SITEMAP), On-page checks (Title, Meta description,
+  H1, Image alt text, Structured data, Open Graph, hreflang), Google preview, structured data card
+  (per type: ready / not eligible / no rich result, missing required and recommended properties),
+  hreflang card when hreflang is used (per alternate: this page, links back, no return link, HTTP
+  status, invalid code, other site).
+- **Links:** "Highlight problem links on page" switch: broken and redirecting internal links (after
+  the check), links without text, vague anchors and internal nofollow.
+- **Speed:** blue hero with LCP, CLS and INP tiles and their rating, "Highlight on page" (LCP element
+  in blue, moved elements when CLS is a problem, images with a finding in red), Loading (FCP, TTFB,
+  page weight by kind), Images (lazy at the top, over 200 KB, bigger than shown, old format, no
+  size, with the first files), Mobile (viewport, horizontal scroll, small text, tap targets, with
+  the window width note), Server response (status, HTTPS, compression, Cache-Control, HSTS), the
+  Speed issue cards. Without live data: "Speed was not measured".
+- **AI:** "What AI crawlers see" card after the hero: text share, main heading, title, description
+  and schema visible or not in the raw HTML, and the first 40 words a crawler reads.
+- **Audit PDF:** the page table adds Indexing, Structured data and Speed (when measured); every new
+  rule has a fix line.
+
+### Phase 11: Version 1.1 (done 2026-11-12)
+- Core rules and tests (`checks.test.ts`), live measurement, the new cards and tab, EN and AZ copy,
+  PDF rows, privacy page and store listing updated, store package 1.1.0 (screenshot 4 is now Speed).
+- **Done when:** typecheck, lint, unit tests, build and the Serpline e2e (with axe on the Speed tab)
+  pass, and the screenshots show the new cards on the Lumo fixture.

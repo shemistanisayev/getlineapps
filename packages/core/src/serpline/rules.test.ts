@@ -8,7 +8,7 @@ import { planLinkCheck } from './links.ts';
 
 const URL_ = 'https://shop.example.com/p/one';
 const page = (head: string, body: string) =>
-  `<!doctype html><html lang="en"><head>${head}</head><body>${body}</body></html>`;
+  `<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1">${head}</head><body>${body}</body></html>`;
 const GOOD_HEAD =
   '<title>One | Shop</title><meta name="description" content="A short description."><meta property="og:description" content="x"><link rel="canonical" href="/p/one">';
 
@@ -85,7 +85,12 @@ describe('extract', () => {
       ),
       URL_,
     );
-    expect(f.jsonLd).toEqual({ blocks: 2, types: ['Organization', 'WebSite', 'Thing'], errors: 1 });
+    expect(f.jsonLd).toMatchObject({
+      blocks: 2,
+      types: ['Organization', 'WebSite', 'Thing'],
+      errors: 1,
+    });
+    expect(f.jsonLd.nodes.map((n) => n['@type'])).toEqual(['Organization', ['WebSite', 'Thing']]);
   });
 
   it('counts words of visible text only', () => {
@@ -149,7 +154,8 @@ describe('issue rules', () => {
 
   it('RAW_H1, RAW_TEXT and SCHEMA_JS need the raw HTML; none without it', () => {
     const rendered = page(
-      GOOD_HEAD + '<script type="application/ld+json">{"@type":"Product"}</script>',
+      GOOD_HEAD +
+        '<script type="application/ld+json">{"@type":"Product","name":"Big","offers":{"price":"1","priceCurrency":"USD"}}</script>',
       '<h1>Big</h1><p>' + 'word '.repeat(40) + '</p>',
     );
     const raw = page(GOOD_HEAD, '<p>word word</p>');

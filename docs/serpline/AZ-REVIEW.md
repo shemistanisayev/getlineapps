@@ -556,3 +556,247 @@ Fayl: `apps/serpline/extension/src/i18n/az.ts`. {n}, {type}, {bot} kimi yerlər 
 | `chk.files` | Reading robots.txt and llms.txt | robots.txt və llms.txt oxunur |
 | `ln.checkingN` | Checking links: {done} / {total} | Linklər yoxlanılır: {done} / {total} |
 | `ln.progress` | Link check progress | Link yoxlamasının gedişi |
+
+
+## Serpline 1.1: indexlənmə, structured data, sürət və mobil (2026-11-12)
+
+Fayl: `apps/serpline/extension/src/i18n/az.ts`. Eyni olan sətirlər (məsələn LCP, HSTS, Cache-Control kimi texniki adlar) göstərilmir. Məxfilik səhifəsinə də iki yeni sətir əlavə olunub: `apps/site/src/content/privacy/serpline.az.json` (`reads` siyahısı) və `settings`dəki məxfilik qeydi (`set.privacyNote`) sitemap-ı da adlandırır.
+
+| Açar | English | Azərbaycanca |
+|---|---|---|
+| `tab.speed` | Speed | Sürət |
+| `cta.speed` | Want your pages to load faster? | Səhifələrinin daha sürətli açılmasını istəyirsən? |
+| `call.c.index` | Can Google index it | Google index edə bilərmi |
+| `call.c.speed` | Core Web Vitals and images | Core Web Vitals və şəkillər |
+| `call.c.mobile` | Mobile layout | Mobil görünüş |
+| `call.c.sitemap` | Sitemap and hreflang | Sitemap və hreflang |
+| `chk.live` | Measuring speed, reading the sitemap | Sürət ölçülür, sitemap oxunur |
+| `ix.title` | Can Google index this page? | Google bu səhifəni index edə bilərmi? |
+| `ix.verdict.yes` | Yes | Bəli |
+| `ix.verdict.no` | No | Xeyr |
+| `ix.verdict.risky` | At risk | Riskli |
+| `ix.row.header` | X-Robots-Tag header | X-Robots-Tag başlığı |
+| `ix.note.unread` | Could not read | Oxuna bilmədi |
+| `ix.note.indexAllowed` | Allows indexing | Index-ə icazə verir |
+| `ix.note.blocked` | {bots} blocked | {bots} bloklanıb |
+| `ix.note.allowed` | Google and Bing allowed | Google və Bing-ə icazə var |
+| `ix.note.notSet` | Not set | Təyin olunmayıb |
+| `ix.note.broken` | Target answers {status} | Hədəf {status} qaytarır |
+| `ix.note.other` | Points to another page | Başqa səhifəni göstərir |
+| `ix.note.self` | Points to this page | Bu səhifəni göstərir |
+| `ix.note.notFound` | No sitemap found | Sitemap tapılmadı |
+| `ix.note.partial` | Too big to read in full | Tam oxumaq üçün çox böyükdür |
+| `ix.note.listed` | This page is listed | Bu səhifə var |
+| `ix.note.notListed` | This page is not listed | Bu səhifə yoxdur |
+| `sc.eligible` | {result} ready | {result} üçün hazırdır |
+| `sc.notEligible` | Not eligible | Uyğun deyil |
+| `sc.noResult` | No rich result | Rich result yoxdur |
+| `sc.required` | Required, missing: | Məcburi, çatışmır: |
+| `sc.recommended` | Recommended, missing: | Tövsiyə olunan, çatışmır: |
+| `sc.note` | Checked against Google's rich result rules for each type. JSON-LD only. | Hər tip Google-un rich result qaydaları ilə yoxlanılır. Yalnız JSON-LD. |
+| `hl.invalid` | Invalid code | Səhv kod |
+| `hl.otherSite` | Other site, not checked | Başqa sayt, yoxlanmayıb |
+| `hl.thisPage` | This page | Bu səhifə |
+| `hl.notChecked` | Not checked | Yoxlanmayıb |
+| `hl.unreached` | Not reached | Cavab yoxdur |
+| `hl.noReturn` | No return link | Geri link yoxdur |
+| `hl.linksBack` | Links back | Geri link var |
+| `hl.noSelf` | No entry points to this page. | Heç bir sətir bu səhifəni göstərmir. |
+| `hl.noXDefault` | No x-default. | x-default yoxdur. |
+| `hl.note` | Up to 10 pages on this site are fetched to check their return links. | Geri linkləri yoxlamaq üçün bu saytdan ən çox 10 səhifə oxunur. |
+| `av.title` | What AI crawlers see | AI crawlerlər nə görür |
+| `av.text` | Text | Mətn |
+| `av.textValue` | {percent}%, {raw} of {rendered} words | {percent}%, {rendered} sözdən {raw} |
+| `av.h1` | Main heading | Əsas başlıq |
+| `av.sees` | Visible | Görünür |
+| `av.misses` | Not visible | Görünmür |
+| `av.schemaMiss` | {types} not visible | {types} görünmür |
+| `av.excerpt` | First words a crawler reads | Crawlerin oxuduğu ilk sözlər |
+| `av.empty` | (no text in the raw HTML) | (xam HTML-də mətn yoxdur) |
+| `ln.highlight` | Highlight problem links on page | Problemli linkləri səhifədə göstər |
+| `ov.summaryOne` | Serpline highlights: {items} | Serpline göstərir: {items} |
+| `ov.links` | {n} links | {n} link |
+| `ov.elements` | {n} elements | {n} element |
+| `ov.noText` | No text | Mətn yoxdur |
+| `ov.weak` | Vague text | Qeyri-müəyyən mətn |
+| `ov.moves` | Moves | Yerini dəyişir |
+| `ov.lazy` | Lazy at the top | Yuxarıda lazy |
+| `ov.heavy` | Heavy | Ağır |
+| `ov.tooBig` | Too big | Çox böyük |
+| `ov.oldFormat` | Old format | Köhnə format |
+| `ov.noSize` | No size | Ölçü yoxdur |
+| `sp.rating.good` | Good | Yaxşı |
+| `sp.rating.needs_improvement` | Needs work | Yaxşılaşmalı |
+| `sp.rating.poor` | Poor | Zəif |
+| `sp.notMeasured` | Not measured | Ölçülməyib |
+| `sp.hero.good` | Core Web Vitals look good | Core Web Vitals yaxşıdır |
+| `sp.hero.mid` | Core Web Vitals need work | Core Web Vitals yaxşılaşmalıdır |
+| `sp.hero.poor` | Core Web Vitals are poor | Core Web Vitals zəifdir |
+| `sp.hero.none` | Core Web Vitals not measured yet | Core Web Vitals hələ ölçülməyib |
+| `sp.hero.note` | Measured in this visit on your computer. Real visitors on slower phones may see higher numbers. | Bu ziyarətdə, sənin kompüterində ölçülüb. Zəif telefonlu real ziyarətçilərdə rəqəmlər daha yüksək ola bilər. |
+| `sp.hero.hidden` | The tab was in the background while it loaded, so Chrome did not report LCP. Reload it in front, then check again. | Tab yüklənərkən arxa planda idi, ona görə Chrome LCP vermədi. Səhifəni ön planda yenilə və yenidən yoxla. |
+| `sp.hero.inp` | INP needs a click or a key press. Use the page a little, then check again. | INP üçün klik və ya düymə basmaq lazımdır. Səhifədən bir az istifadə et və yenidən yoxla. |
+| `sp.highlight` | Highlight on page | Səhifədə göstər |
+| `sp.load` | Loading | Yüklənmə |
+| `sp.metric.ttfb` | Server response (TTFB) | Server cavabı (TTFB) |
+| `sp.metricValue` | {value}, good up to {limit} | {value}, yaxşı həddi {limit} |
+| `sp.weight` | Page weight | Səhifənin çəkisi |
+| `sp.weightValue` | {size}, {n} requests | {size}, {n} sorğu |
+| `sp.weightUnknown` | {n} requests to other sites do not share their size, so the real weight is higher. | Başqa saytlara gedən {n} sorğu ölçüsünü göstərmir, ona görə real çəki daha böyükdür. |
+| `sp.kind.image` | Images | Şəkillər |
+| `sp.kind.script` | Scripts | Skriptlər |
+| `sp.kind.css` | Styles | Stillər |
+| `sp.kind.font` | Fonts | Şriftlər |
+| `sp.kind.other` | Other | Digər |
+| `sp.images` | Images | Şəkillər |
+| `sp.img.total` | {n} on the page | Səhifədə {n} |
+| `sp.img.count` | {n} images | {n} şəkil |
+| `sp.none` | None | Yoxdur |
+| `sp.andMore` | and {n} more | və daha {n} |
+| `sp.img.lazyTop` | Lazy-loaded at the top | Yuxarıda lazy-load |
+| `sp.img.heavy` | Over 200 KB | 200 KB-dan çox |
+| `sp.img.oversized` | Bigger than shown | Göstəriləndən böyük |
+| `sp.img.sizes` | {natural} px, shown at {shown} px | {natural} px, {shown} px göstərilir |
+| `sp.img.legacy` | JPEG, PNG or GIF | JPEG, PNG və ya GIF |
+| `sp.img.unsized` | No width and height | En və hündürlük yoxdur |
+| `sp.mobile` | Mobile | Mobil |
+| `sp.mob.vpNoDevice` | No width=device-width | width=device-width yoxdur |
+| `sp.mob.vpZoom` | Zoom is blocked | Zoom bloklanıb |
+| `sp.mob.overflow` | Horizontal scroll | Üfüqi scroll |
+| `sp.mob.overflowPx` | {px} px wider than the window | Pəncərədən {px} px enlidir |
+| `sp.mob.fits` | Fits the window | Pəncərəyə sığır |
+| `sp.mob.text` | Text under 12 px | 12 px-dən kiçik mətn |
+| `sp.mob.textSmall` | {m} of {n} text blocks | {n} mətn blokundan {m} |
+| `sp.mob.textOk` | None | Yoxdur |
+| `sp.mob.targets` | Tap targets under 24 px | 24 px-dən kiçik toxunma hədəfi |
+| `sp.mob.targetsSmall` | {m} of {n} | {n}-dən {m} |
+| `sp.mob.targetsOk` | None | Yoxdur |
+| `sp.mob.note` | Measured at your window width ({width} px). For a phone view, open DevTools device mode, reload, then check again. | Pəncərənin eninə görə ölçülüb ({width} px). Telefon görünüşü üçün DevTools-da device mode-u aç, səhifəni yenilə və yenidən yoxla. |
+| `sp.server` | Server response | Server cavabı |
+| `sp.srv.unread` | Could not read | Oxuna bilmədi |
+| `sp.srv.httpsOn` | Secure | Təhlükəsiz |
+| `sp.srv.httpsOff` | Plain http | Adi http |
+| `sp.srv.compression` | Compression | Sıxılma |
+| `sp.srv.none` | None | Yoxdur |
+| `sp.srv.notSet` | Not set | Təyin olunmayıb |
+| `sp.srv.on` | On | Aktivdir |
+| `sp.srv.redirected` | The page URL redirects to {url}. | Səhifənin URL-i {url} ünvanına yönləndirir. |
+| `sp.noLive.title` | Speed was not measured | Sürət ölçülmədi |
+| `sp.noLive.text` | Serpline could not measure this page. Check it again; the other tabs are complete. | Serpline bu səhifəni ölçə bilmədi. Yenidən yoxla; digər tablar tamdır. |
+| `issue.HTTP_ERROR.title` | The page answers HTTP {status} | Səhifə HTTP {status} qaytarır |
+| `issue.HTTP_ERROR.text` | Google does not index pages that answer with an error. | Google xəta qaytaran səhifələri index etmir. |
+| `issue.HTTP_ERROR.fix` | make the page answer 200, or redirect it with a 301. | səhifə 200 qaytarsın, ya da 301 ilə yönləndir. |
+| `issue.ROBOTS_BLOCKED.title` | {bots} are blocked in robots.txt | {bots} robots.txt-də bloklanıb |
+| `issue.ROBOTS_BLOCKED.title1` | {bot} is blocked in robots.txt | {bot} robots.txt-də bloklanıb |
+| `issue.ROBOTS_BLOCKED.text` | The search engine may not crawl this URL, so it cannot read the page or keep it fresh. | Axtarış sistemi bu URL-i crawl edə bilmir, ona görə səhifəni oxuya və yeniləyə bilmir. |
+| `issue.ROBOTS_BLOCKED.fix` | remove the Disallow rule that matches this path. | bu yola uyğun gələn Disallow qaydasını sil. |
+| `issue.CANONICAL_BROKEN.title` | The canonical points to a {status} page | Canonical {status} qaytaran səhifəni göstərir |
+| `issue.CANONICAL_BROKEN.text` | Google ignores a canonical to a missing page and may drop both. | Google olmayan səhifəyə göstərən canonical-ı nəzərə almır və hər ikisini çıxara bilər. |
+| `issue.CANONICAL_BROKEN.fix` | point the canonical to a live URL, usually this one. | canonical işləyən URL-i göstərsin, adətən bu səhifəni. |
+| `issue.CANONICAL_REDIRECT.title` | The canonical points to a redirect | Canonical yönləndirməni göstərir |
+| `issue.CANONICAL_REDIRECT.text` | {canonical} redirects to {target}. Mixed signals slow indexing. | {canonical} {target} ünvanına yönləndirir. Qarışıq siqnallar index-i yavaşladır. |
+| `issue.CANONICAL_REDIRECT.fix` | point the canonical to the final URL. | canonical son URL-i göstərsin. |
+| `issue.CANONICAL_MULTI.title` | The page has {count} different canonicals | Səhifədə {count} fərqli canonical var |
+| `issue.CANONICAL_MULTI.text` | With conflicting canonicals Google ignores all of them. | Ziddiyyətli canonical-lar olanda Google heç birini nəzərə almır. |
+| `issue.CANONICAL_MULTI.fix` | keep one canonical link in the head. | head-də bir canonical link saxla. |
+| `issue.SCHEMA_PARSE.title` | {count} JSON-LD blocks are not valid JSON | {count} JSON-LD bloku düzgün JSON deyil |
+| `issue.SCHEMA_PARSE.title1` | A JSON-LD block is not valid JSON | Bir JSON-LD bloku düzgün JSON deyil |
+| `issue.SCHEMA_PARSE.text` | Google skips structured data it cannot parse. | Google oxuya bilmədiyi structured data-nı ötürür. |
+| `issue.SCHEMA_PARSE.fix` | fix the JSON syntax, often a trailing comma or a stray quote. | JSON sintaksisini düzəlt, çox vaxt artıq vergül və ya dırnaq olur. |
+| `issue.SCHEMA_REQUIRED.title` | {type} schema misses {field} | {type} schema-da {field} yoxdur |
+| `issue.SCHEMA_REQUIRED.text` | Without its required properties the page cannot get a rich result. Missing: {fields}. | Məcburi xüsusiyyətlər olmadan səhifə rich result ala bilməz. Çatışmır: {fields}. |
+| `issue.SCHEMA_REQUIRED.fix` | add the missing properties to the JSON-LD. | çatışmayan xüsusiyyətləri JSON-LD-yə əlavə et. |
+| `issue.HREFLANG_INVALID.title` | hreflang "{code}" is not a valid code | hreflang "{code}" düzgün kod deyil |
+| `issue.HREFLANG_INVALID.text` | Google ignores alternates with codes it does not know. | Google tanımadığı kodlu alternativləri nəzərə almır. |
+| `issue.HREFLANG_INVALID.fix` | use a language code with an optional region, like en or en-GB. | dil kodu və istəsən region yaz, məsələn en və ya en-GB. |
+| `issue.HREFLANG_NO_RETURN.title` | {count} language versions do not link back | {count} dil versiyası geri link vermir |
+| `issue.HREFLANG_NO_RETURN.title1` | The {lang} version does not link back | {lang} versiyası geri link vermir |
+| `issue.HREFLANG_NO_RETURN.text` | hreflang works only when both pages point to each other. | hreflang yalnız iki səhifə bir-birini göstərəndə işləyir. |
+| `issue.HREFLANG_NO_RETURN.fix` | add the same hreflang set to every language version. | eyni hreflang dəstini hər dil versiyasına əlavə et. |
+| `issue.HREFLANG_NO_SELF.title` | hreflang has no entry for this page | hreflang-da bu səhifə üçün sətir yoxdur |
+| `issue.HREFLANG_NO_SELF.text` | Each language version should list itself too. | Hər dil versiyası özünü də siyahıya salmalıdır. |
+| `issue.HREFLANG_NO_SELF.fix` | add an hreflang link that points to this URL. | bu URL-i göstərən hreflang link əlavə et. |
+| `issue.NOT_IN_SITEMAP.title` | The page is not in the sitemap | Səhifə sitemap-da yoxdur |
+| `issue.NOT_IN_SITEMAP.text` | Pages in the sitemap are found and refreshed faster. | Sitemap-dakı səhifələr daha tez tapılır və yenilənir. |
+| `issue.NOT_IN_SITEMAP.fix` | add this URL to the sitemap if it should rank. | səhifə sıralanmalıdırsa, bu URL-i sitemap-a əlavə et. |
+| `issue.NO_HTTPS.title` | The page is not on HTTPS | Səhifə HTTPS-də deyil |
+| `issue.NO_HTTPS.text` | Chrome marks it "Not secure" and Google prefers HTTPS pages. | Chrome onu "Not secure" kimi göstərir, Google isə HTTPS səhifələrə üstünlük verir. |
+| `issue.NO_HTTPS.fix` | serve the site over HTTPS and redirect http with a 301. | saytı HTTPS ilə aç və http-ni 301 ilə yönləndir. |
+| `issue.LINK_NO_TEXT.title` | {count} links have no text | {count} linkin mətni yoxdur |
+| `issue.LINK_NO_TEXT.title1` | A link has no text | Bir linkin mətni yoxdur |
+| `issue.LINK_NO_TEXT.text` | Crawlers and screen readers cannot tell where these links go. | Crawlerlər və ekran oxuyucular bu linklərin hara getdiyini bilmir. |
+| `issue.LINK_NO_TEXT.fix` | add link text, an aria-label or an image alt. | link mətni, aria-label və ya şəkil alt-ı əlavə et. |
+| `issue.WEAK_ANCHOR.title` | {count} links say "{text}" | {count} linkdə "{text}" yazılıb |
+| `issue.WEAK_ANCHOR.title1` | A link says "{text}" | Bir linkdə "{text}" yazılıb |
+| `issue.WEAK_ANCHOR.text` | Vague link text tells Google nothing about the target page. | Qeyri-müəyyən link mətni Google-a hədəf səhifə barədə heç nə demir. |
+| `issue.WEAK_ANCHOR.fix` | describe the target in the link, like "Return policy". | hədəfi linkdə təsvir et, məsələn "Qaytarma qaydaları". |
+| `issue.INTERNAL_NOFOLLOW.title` | {count} internal links are nofollow | {count} daxili link nofollow-dur |
+| `issue.INTERNAL_NOFOLLOW.title1` | An internal link is nofollow | Bir daxili link nofollow-dur |
+| `issue.INTERNAL_NOFOLLOW.text` | nofollow on your own pages stops link value from flowing. | Öz səhifələrində nofollow link dəyərinin ötürülməsini dayandırır. |
+| `issue.INTERNAL_NOFOLLOW.fix` | remove rel="nofollow" from internal links. | daxili linklərdən rel="nofollow"-u sil. |
+| `issue.HTTP_LINKS.title` | {count} internal links use http | {count} daxili link http istifadə edir |
+| `issue.HTTP_LINKS.title1` | An internal link uses http | Bir daxili link http istifadə edir |
+| `issue.HTTP_LINKS.text` | Each one costs a redirect to HTTPS. | Hər biri HTTPS-ə əlavə yönləndirmə deməkdir. |
+| `issue.HTTP_LINKS.fix` | link to the https URLs. | https URL-lərə link ver. |
+| `issue.LCP_SLOW.title` | The main content shows after {ms} ms | Əsas məzmun {ms} ms sonra görünür |
+| `issue.LCP_SLOW.text` | Largest Contentful Paint should be under 2.5 s. Slow pages lose visitors. | Largest Contentful Paint 2.5 s-dən az olmalıdır. Yavaş səhifələr ziyarətçi itirir. |
+| `issue.LCP_SLOW.fix` | make the LCP element smaller, preload it and do not lazy-load it. | LCP elementini kiçilt, preload et və lazy-load etmə. |
+| `issue.CLS_HIGH.title` | The layout shifts while it loads (CLS {cls}) | Yüklənərkən görünüş sürüşür (CLS {cls}) |
+| `issue.CLS_HIGH.text` | Content that jumps makes people click the wrong thing. Keep CLS under 0.1. | Tullanan məzmun insanları səhv yerə kliklədir. CLS 0.1-dən az olmalıdır. |
+| `issue.CLS_HIGH.fix` | reserve space for images, ads and late content. | şəkillər, reklamlar və gec gələn məzmun üçün yer saxla. |
+| `issue.INP_SLOW.title` | The page reacts after {ms} ms | Səhifə {ms} ms sonra reaksiya verir |
+| `issue.INP_SLOW.text` | Interaction to Next Paint should be under 200 ms. | Interaction to Next Paint 200 ms-dən az olmalıdır. |
+| `issue.INP_SLOW.fix` | split long JavaScript tasks and run less code on each click. | uzun JavaScript tapşırıqlarını böl və hər klikdə az kod işlət. |
+| `issue.TTFB_SLOW.title` | The server answers after {ms} ms | Server {ms} ms sonra cavab verir |
+| `issue.TTFB_SLOW.text` | A slow first byte delays everything else. Aim for under 800 ms. | Yavaş ilk bayt qalan hər şeyi gecikdirir. Hədəf 800 ms-dən azdır. |
+| `issue.TTFB_SLOW.fix` | cache the HTML or use a CDN. | HTML-i cache et və ya CDN istifadə et. |
+| `issue.IMG_LAZY_TOP.title` | {count} images at the top are lazy-loaded | Yuxarıdakı {count} şəkil lazy-load olunur |
+| `issue.IMG_LAZY_TOP.title1` | An image at the top is lazy-loaded | Yuxarıdakı şəkil lazy-load olunur |
+| `issue.IMG_LAZY_TOP.text` | Lazy loading the first screen delays it. Files: {files}. | İlk ekranı lazy-load etmək onu gecikdirir. Fayllar: {files}. |
+| `issue.IMG_LAZY_TOP.fix` | remove loading="lazy" from images in the first screen. | ilk ekrandakı şəkillərdən loading="lazy"-ni sil. |
+| `issue.IMG_HEAVY.title` | {count} images are over 200 KB | {count} şəkil 200 KB-dan böyükdür |
+| `issue.IMG_HEAVY.title1` | An image is over 200 KB | Bir şəkil 200 KB-dan böyükdür |
+| `issue.IMG_HEAVY.text` | {file} is {kb} KB. Heavy images slow the page on phones. | {file} {kb} KB-dır. Ağır şəkillər telefonda səhifəni yavaşladır. |
+| `issue.IMG_HEAVY.fix` | compress it and serve WebP or AVIF. | sıx və WebP və ya AVIF ver. |
+| `issue.MIXED_CONTENT.title` | {count} files load over plain http | {count} fayl adi http ilə yüklənir |
+| `issue.MIXED_CONTENT.title1` | A file loads over plain http | Bir fayl adi http ilə yüklənir |
+| `issue.MIXED_CONTENT.text` | Browsers block or warn about http files on an HTTPS page. | Brauzerlər HTTPS səhifədə http faylları bloklayır və ya xəbərdarlıq edir. |
+| `issue.MIXED_CONTENT.fix` | load every image, script and style over https. | bütün şəkil, skript və stilləri https ilə yüklə. |
+| `issue.VIEWPORT_MISSING.title` | No mobile viewport | Mobil viewport yoxdur |
+| `issue.VIEWPORT_MISSING.text` | Without width=device-width phones show a shrunk desktop page. Google indexes the mobile version. | width=device-width olmadan telefon kiçilmiş desktop səhifəsi göstərir. Google mobil versiyanı index edir. |
+| `issue.VIEWPORT_MISSING.fix` | add <meta name="viewport" content="width=device-width, initial-scale=1">. | <meta name="viewport" content="width=device-width, initial-scale=1"> əlavə et. |
+| `issue.H_SCROLL.title` | The page is {px} px wider than the window | Səhifə pəncərədən {px} px enlidir |
+| `issue.H_SCROLL.text` | Something sticks out at {width} px, so the page scrolls sideways. | {width} px-də nə isə kənara çıxır, ona görə səhifə yana sürüşür. |
+| `issue.H_SCROLL.fix` | find the wide element with the highlight and make it fit. | enli elementi vurğulama ilə tap və onu sığdır. |
+| `issue.IMG_NO_SIZE.title` | {count} images have no width and height | {count} şəklin en və hündürlüyü yoxdur |
+| `issue.IMG_NO_SIZE.title1` | An image has no width and height | Bir şəklin en və hündürlüyü yoxdur |
+| `issue.IMG_NO_SIZE.text` | The page jumps when they load. Files: {files}. | Onlar yüklənəndə səhifə tullanır. Fayllar: {files}. |
+| `issue.IMG_NO_SIZE.fix` | set width and height, or a CSS aspect-ratio. | width və height, ya da CSS aspect-ratio yaz. |
+| `issue.IMG_FORMAT.title` | {count} images use an old format | {count} şəkil köhnə formatdadır |
+| `issue.IMG_FORMAT.title1` | An image uses an old format | Bir şəkil köhnə formatdadır |
+| `issue.IMG_FORMAT.text` | WebP and AVIF are often half the size. Files: {files}. | WebP və AVIF çox vaxt yarı ölçüdə olur. Fayllar: {files}. |
+| `issue.IMG_FORMAT.fix` | serve WebP or AVIF. | WebP və ya AVIF ver. |
+| `issue.IMG_OVERSIZED.title` | {count} images are bigger than shown | {count} şəkil göstəriləndən böyükdür |
+| `issue.IMG_OVERSIZED.title1` | An image is bigger than shown | Bir şəkil göstəriləndən böyükdür |
+| `issue.IMG_OVERSIZED.text` | {file} is {natural} px wide but shown at {shown} px. | {file} {natural} px enindədir, amma {shown} px göstərilir. |
+| `issue.IMG_OVERSIZED.fix` | resize it, or use srcset with smaller files. | ölçüsünü kiçilt və ya kiçik fayllarla srcset istifadə et. |
+| `issue.NO_COMPRESSION.title` | The HTML is not compressed | HTML sıxılmayıb |
+| `issue.NO_COMPRESSION.text` | The {kb} KB page is sent as is. | {kb} KB-lıq səhifə olduğu kimi göndərilir. |
+| `issue.NO_COMPRESSION.fix` | turn on gzip or brotli on the server. | serverdə gzip və ya brotli-ni aktiv et. |
+| `issue.VIEWPORT_ZOOM.title` | Zoom is blocked | Zoom bloklanıb |
+| `issue.VIEWPORT_ZOOM.text` | People with low vision cannot zoom in on a phone. | Zəif görən insanlar telefonda böyüdə bilmir. |
+| `issue.VIEWPORT_ZOOM.fix` | remove user-scalable=no and maximum-scale from the viewport. | viewport-dan user-scalable=no və maximum-scale-i sil. |
+| `issue.SMALL_TEXT.title` | {percent}% of the text is under 12 px | Mətnin {percent}%-i 12 px-dən kiçikdir |
+| `issue.SMALL_TEXT.text` | {count} text blocks are hard to read on a phone. | {count} mətn bloku telefonda çətin oxunur. |
+| `issue.SMALL_TEXT.fix` | use at least 14 px for body text. | əsas mətn üçün ən azı 14 px istifadə et. |
+| `issue.TAP_SMALL.title` | {count} tap targets are under 24 px | {count} toxunma hədəfi 24 px-dən kiçikdir |
+| `issue.TAP_SMALL.text` | Small links and buttons are easy to miss with a finger. | Kiçik link və düymələrə barmaqla düşmək çətindir. |
+| `issue.TAP_SMALL.fix` | make them at least 24 x 24 px, or add space around them. | onları ən azı 24 x 24 px et və ya ətrafında boşluq saxla. |
+| `rep.k.index` | Indexing | İndekslənmə |
+| `rep.k.speed` | Speed | Sürət |
+| `rep.v.notMeasured` | not measured | ölçülməyib |
+| `rep.v.weight` | {size} in {n} requests | {n} sorğuda {size} |
+| `rep.v.schemaNone` | No JSON-LD | JSON-LD yoxdur |
+| `sp.weightValue1` | {size}, 1 request | {size}, 1 sorğu |
+| `sp.img.count1` | 1 image | 1 şəkil |
+| `sp.noClicks` | No clicks yet | Hələ klik yoxdur |

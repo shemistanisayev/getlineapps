@@ -7,6 +7,8 @@
  * and llms.txt fetches are same-origin and need no host permission.
  */
 
+import type { LiveFacts, RawHeaders } from '@line/core/serpline';
+
 export const RAW_HTML_CAP = 5 * 1024 * 1024;
 export const TEXT_FILE_CAP = 500 * 1024;
 
@@ -24,6 +26,8 @@ export interface RawResponse extends FetchedFile {
   xRobotsTag: string | null;
   /** Final URL after redirects. */
   url: string;
+  redirected: boolean;
+  headers: RawHeaders;
 }
 
 export interface PageRead {
@@ -39,6 +43,8 @@ export interface PageRead {
   raw: RawResponse;
   robots: FetchedFile;
   llms: FetchedFile;
+  /** Measured in a second step (measure.ts); missing when that step failed. */
+  live?: LiveFacts | null;
 }
 
 /** Runs inside the page. Keep every helper inside this function body. */
@@ -83,6 +89,10 @@ export async function readPage(
     }
   }
 
+  // Requests made by Serpline start now; the speed numbers leave them out (measure.ts).
+  const w = window as unknown as { __serplineSince?: number };
+  w.__serplineSince ??= performance.now();
+
   // Serpline's own overlay (step 5) lives in one host node; it is not part of the page.
   const root = document.documentElement.cloneNode(true) as Element;
   root.querySelectorAll('[data-serpline-overlay]').forEach((n) => n.remove());
@@ -113,6 +123,12 @@ export async function readPage(
       ...raw.file,
       xRobotsTag: raw.res?.headers.get('x-robots-tag') ?? null,
       url: raw.res?.url ?? location.href,
+      redirected: raw.res?.redirected ?? false,
+      headers: {
+        contentEncoding: raw.res?.headers.get('content-encoding') ?? null,
+        cacheControl: raw.res?.headers.get('cache-control') ?? null,
+        hsts: raw.res?.headers.get('strict-transport-security') ?? null,
+      },
     },
     robots: robots.file,
     llms: llms.file,

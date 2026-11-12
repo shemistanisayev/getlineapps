@@ -3,12 +3,18 @@
  * buildLineReport. Every label comes from the UI dictionaries, so the PDF follows the language.
  * The issue fixes are the Report artboard's own short lines (PLAN decision 9).
  */
-import type { Audit, BotOwner, Issue } from '@line/core/serpline';
+import {
+  formatBytes,
+  formatMetric,
+  type Audit,
+  type BotOwner,
+  type Issue,
+} from '@line/core/serpline';
 import { contactUrl } from '@line/core/site';
 import type { LineReportConfig, ReportFonts, SeverityItem } from '@line/report';
 import { joinList, type Lang, type MessageKey, type T } from './i18n/index.ts';
 import { en } from './i18n/en.ts';
-import { issueTitle } from './issues.ts';
+import { issueFix, issueTitle } from './issues.ts';
 
 const ENGINE: Partial<Record<BotOwner, string>> = {
   openai: 'ChatGPT',
@@ -44,7 +50,11 @@ function fix(i: Issue, audit: Audit, t: T): string {
     const bot = audit.bots.find((b) => b.userAgent === i.params.bot);
     p.engine = (bot && ENGINE[bot.owner]) ?? String(i.params.bot);
   }
-  return t(`rep.fix.${i.id}` as MessageKey, p);
+  const k = `rep.fix.${i.id}`;
+  if (has(k)) return t(k, p);
+  // Rules added in 1.1 use the panel's own fix line, as a sentence.
+  const line = issueFix(t, i);
+  return line.charAt(0).toUpperCase() + line.slice(1);
 }
 
 export function issueItems(audit: Audit, t: T): SeverityItem[] {
@@ -96,7 +106,41 @@ export function pageRows(audit: Audit, t: T) {
     audit.llms === 'found' ? t('rep.v.llmsFound') : t('rep.v.llmsMissing'),
   ].join(' ');
 
+  const ix = audit.indexability;
+  const notes = ix.checks
+    .filter((c) => c.state === 'bad' || c.state === 'warn')
+    .map(
+      (c) =>
+        `${t(`ix.row.${c.id}` as MessageKey)}: ${t(`ix.note.${c.note}` as MessageKey, c.params)}`,
+    );
+  const index = t('rep.v.index', {
+    verdict: t(`ix.verdict.${ix.verdict}`),
+    notes: notes.length ? notes.join(', ') : t('ix.note.allowed'),
+  });
+
+  const v = audit.live?.vitals;
+  const metric = (m: 'lcp' | 'cls' | 'inp', x: number | null | undefined) =>
+    x === null || x === undefined ? t('rep.v.notMeasured') : formatMetric(m, x);
+  const speed = audit.live
+    ? `${t('rep.v.vitals', { lcp: metric('lcp', v?.lcp), cls: metric('cls', v?.cls), inp: metric('inp', v?.inp) })}, ${t('rep.v.weight', { size: formatBytes(audit.live.weight.bytes), n: audit.live.weight.requests })}`
+    : t('rep.v.notMeasured');
+
+  const schema = audit.schema.length
+    ? t('rep.v.schemaOk', {
+        items: audit.schema
+          .map((x) =>
+            !x.result
+              ? x.type
+              : x.missing.length
+                ? `${x.type} (${t('sc.notEligible').toLowerCase()})`
+                : `${x.type} (${t('sc.eligible', { result: x.result })})`,
+          )
+          .join(', '),
+      })
+    : t('rep.v.schemaNone');
+
   return [
+    { k: t('rep.k.index'), v: index },
     {
       k: t('rep.k.title'),
       v: r.title ? t('rep.v.title', { title: r.title, n: r.title.length }) : t('rep.v.missing'),
@@ -110,7 +154,9 @@ export function pageRows(audit: Audit, t: T) {
           : t('rep.v.descFits', { n: r.description.length }),
     },
     { k: t('rep.k.canon'), v: `${canonical}, ${robots}` },
+    { k: t('rep.k.schema'), v: schema },
     { k: t('rep.k.render'), v: render },
+    ...(audit.live ? [{ k: t('rep.k.speed'), v: speed }] : []),
     { k: t('rep.k.links'), v: links },
     { k: t('rep.k.ai'), v: ai },
   ];

@@ -2,10 +2,11 @@ import type { T } from '../../../src/i18n/index.ts';
 import type { ReadStep } from '../../../src/messages.ts';
 import { Icon } from '../../../src/ui.tsx';
 
-const STEPS: { id: ReadStep; key: 'chk.rendered' | 'chk.raw' | 'chk.files' }[] = [
+const STEPS: { id: ReadStep; key: 'chk.rendered' | 'chk.raw' | 'chk.files' | 'chk.live' }[] = [
   { id: 'rendered', key: 'chk.rendered' },
   { id: 'raw', key: 'chk.raw' },
   { id: 'files', key: 'chk.files' },
+  { id: 'live', key: 'chk.live' },
 ];
 
 /**
@@ -24,9 +25,11 @@ export function Checking({ done, t }: { done: ReadStep[]; t: T }) {
         aria-label={t('panel.checking')}
       >
         {STEPS.map((s) => {
+          // The live step starts once the raw HTML and the files are in.
+          const ready = s.id === 'live' ? done.includes('raw') && done.includes('files') : rendered;
           const state = done.includes(s.id)
             ? 'done'
-            : s.id === 'rendered' || rendered
+            : s.id === 'rendered' || ready
               ? 'busy'
               : 'wait';
           return (

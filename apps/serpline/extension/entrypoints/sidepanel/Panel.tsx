@@ -1,4 +1,10 @@
-import { analyze, planLinkCheck, type Audit, type LinkResult } from '@line/core/serpline';
+import {
+  analyze,
+  isWeakAnchor,
+  planLinkCheck,
+  type Audit,
+  type LinkResult,
+} from '@line/core/serpline';
 import { contactUrl } from '@line/core/site';
 import { FooterCta, PageRow, PanelTabs, type PanelTab } from '@line/ui/serpline';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -11,8 +17,8 @@ import {
   type CheckFailure,
 } from '../../src/capture/check.ts';
 import type { PageRead } from '../../src/capture/inject.ts';
-import type { OverlaySpec } from '../../src/capture/overlay.ts';
-import type { T } from '../../src/i18n/index.ts';
+import type { OverlayMark, OverlaySpec } from '../../src/capture/overlay.ts';
+import type { MessageKey, T } from '../../src/i18n/index.ts';
 import {
   OVERLAY_HIDDEN_MESSAGE,
   isCheckMessage,
@@ -32,13 +38,14 @@ import { HeadingsTab } from './tabs/Headings.tsx';
 import { LinksTab, type LinkCheckState } from './tabs/Links.tsx';
 import { RenderTab } from './tabs/Render.tsx';
 import { Settings } from './Settings.tsx';
+import { SpeedTab } from './tabs/Speed.tsx';
 import { SummaryTab } from './tabs/Summary.tsx';
 
 /**
  * The side panel (docs/serpline-SPEC.md §5): five result tabs, plus the Stale, idle, no-access and
  * restricted states (design: Stale).
  */
-const TAB_IDS = ['summary', 'headings', 'links', 'render', 'ai'] as const;
+const TAB_IDS = ['summary', 'headings', 'links', 'render', 'speed', 'ai'] as const;
 type TabId = (typeof TAB_IDS)[number];
 const PANEL_CTA = contactUrl({ source: 'serpline', medium: 'extension', campaign: 'panel_cta' });
 
@@ -54,24 +61,84 @@ function auditOf(page: PageRead, linkResults?: LinkResult[]): Audit | null {
     return analyze({
       url: page.url,
       renderedHtml: page.html,
-      raw: page.raw.status ? page.raw : null,
+      raw: page.raw.status ? { ...page.raw, finalUrl: page.raw.url } : null,
       robots: page.robots.status ? page.robots : null,
       llms: page.llms.status ? page.llms : null,
       linkResults,
+      live: page.live ?? null,
     });
   } catch {
     return null;
   }
 }
 
-/** What the page overlay draws: every heading (H1s added by JavaScript say so) and images without alt. */
-function overlaySpec(audit: Audit, t: T): OverlaySpec {
+/** Which tab drew the page overlay. */
+type HighlightMode = 'headings' | 'links' | 'speed';
+
+/**
+ * What the page overlay draws. Headings: every heading (H1s added by JavaScript say so) and images
+ * without alt. Links: links with problems. Speed: the LCP element, elements that moved, and images
+ * with a speed finding.
+ */
+function overlaySpec(audit: Audit, mode: HighlightMode, t: T): OverlaySpec {
+  const base = { hide: t('ov.hide'), hiddenMessage: OVERLAY_HIDDEN_MESSAGE };
+  const count = (n: number, one: MessageKey, many: MessageKey) => t(n === 1 ? one : many, { n });
+  if (mode === 'links') {
+    const marks: OverlayMark[] = [];
+    const seen = new Set<string>();
+    const push = (path: string, label: string) => {
+      if (seen.has(path)) return;
+      seen.add(path);
+      marks.push({ path, kind: 'problem', label });
+    };
+    for (const l of audit.linkCheck?.links ?? []) {
+      if (l.kind !== 'internal') continue;
+      if (l.state === 'broken') push(l.path, String(l.status ?? ''));
+      else if (l.state === 'redirect') push(l.path, t('ln.st.redirect'));
+    }
+    for (const l of audit.rendered.links) {
+      if (l.kind === 'other') continue;
+      if (l.emptyText) push(l.path, t('ov.noText'));
+      else if (isWeakAnchor(l.text)) push(l.path, t('ov.weak'));
+      else if (l.kind === 'internal' && l.nofollow) push(l.path, 'nofollow');
+    }
+    return {
+      ...base,
+      marks,
+      summary: t('ov.summaryOne', { items: count(marks.length, 'ov.link', 'ov.links') }),
+    };
+  }
+  if (mode === 'speed') {
+    const marks: OverlayMark[] = [];
+    const v = audit.live?.vitals;
+    if (v?.lcpPath) marks.push({ path: v.lcpPath, kind: 'info', label: 'LCP' });
+    // Elements that moved are marked only when the shift is a problem (CLS over 0.1).
+    if (audit.issues.some((i) => i.id === 'CLS_HIGH'))
+      for (const p of v?.clsPaths ?? [])
+        marks.push({ path: p, kind: 'problem', label: t('ov.moves') });
+    const img = audit.images;
+    const label = new Map<string, string>();
+    const tag = (list: { path: string }[] | undefined, text: string) =>
+      list?.forEach((i) => {
+        if (!label.has(i.path)) label.set(i.path, text);
+      });
+    tag(img?.lazyTop, t('ov.lazy'));
+    tag(img?.heavy, t('ov.heavy'));
+    tag(img?.oversized, t('ov.tooBig'));
+    tag(img?.legacy, t('ov.oldFormat'));
+    tag(img?.unsized, t('ov.noSize'));
+    for (const [path, text] of label) marks.push({ path, kind: 'problem', label: text });
+    return {
+      ...base,
+      marks,
+      summary: t('ov.summaryOne', { items: count(marks.length, 'ov.element', 'ov.elements') }),
+    };
+  }
   const js = jsOnlyHeadings(audit);
   const headings = audit.rendered.headings;
   const images = audit.rendered.images.filter((i) => i.alt === 'missing');
-  const n = (k1: 'ov.heading' | 'ov.image', k: 'ov.headings' | 'ov.images', c: number) =>
-    t(c === 1 ? k1 : k, { n: c });
   return {
+    ...base,
     marks: [
       ...headings.map((h) => ({
         path: h.path,
@@ -82,11 +149,9 @@ function overlaySpec(audit: Audit, t: T): OverlaySpec {
       ...images.map((i) => ({ path: i.path, kind: 'image' as const, label: t('hd.noAlt') })),
     ],
     summary: t('ov.summary', {
-      headings: n('ov.heading', 'ov.headings', headings.length),
-      images: n('ov.image', 'ov.images', images.length),
+      headings: count(headings.length, 'ov.heading', 'ov.headings'),
+      images: count(images.length, 'ov.image', 'ov.images'),
     }),
-    hide: t('ov.hide'),
-    hiddenMessage: OVERLAY_HIDDEN_MESSAGE,
   };
 }
 
@@ -100,7 +165,7 @@ export function Panel() {
   const [links, setLinks] = useState<{ results?: LinkResult[]; state: LinkCheckState }>({
     state: 'idle',
   });
-  const [highlight, setHighlight] = useState(false);
+  const [highlight, setHighlight] = useState<HighlightMode | null>(null);
   const [highlightFailed, setHighlightFailed] = useState(false);
   // The last page read: its origin is the only site Serpline can offer to allow (no tabs permission).
   const last = useRef<{ tabId: number; page: PageRead } | null>(null);
@@ -167,7 +232,7 @@ export function Panel() {
     });
     const onMessage = (msg: unknown, sender?: { tab?: { id?: number } }) => {
       if (isCheckMessage(msg)) void run(msg.tabId);
-      else if (isOverlayHiddenMessage(msg)) setHighlight(false);
+      else if (isOverlayHiddenMessage(msg)) setHighlight(null);
       else if (isProgressMessage(msg)) {
         const from = sender?.tab?.id;
         const step = msg.step;
@@ -191,7 +256,7 @@ export function Panel() {
       if (info.status === 'complete' && tabId === last.current?.tabId && busy.current === null) {
         markStale(tabId, true);
         // A new document has no overlay.
-        setHighlight(false);
+        setHighlight(null);
       }
     };
     browser.tabs.onActivated.addListener(onActivated);
@@ -233,7 +298,9 @@ export function Panel() {
     if (tabId === null || !tabbed) return;
     if (highlight && audit) {
       drawn.current = true;
-      void setOverlay(tabId, overlaySpec(audit, t)).then((n) => setHighlightFailed(n === null));
+      void setOverlay(tabId, overlaySpec(audit, highlight, t)).then((n) =>
+        setHighlightFailed(n === null),
+      );
     } else if (drawn.current) {
       drawn.current = false;
       void setOverlay(tabId, null);
@@ -248,7 +315,7 @@ export function Panel() {
     count: id === 'summary' ? 0 : (audit?.byTab[id] ?? 0),
     countLabel: issues(id === 'summary' ? 0 : (audit?.byTab[id] ?? 0)),
   }));
-  const limeTab = tab === 'render' || tab === 'ai';
+  const limeTab = tab === 'render' || tab === 'speed' || tab === 'ai';
   const planned = useMemo(() => (audit ? planLinkCheck(audit.rendered).length : 0), [audit]);
 
   const call: CallKind | null =
@@ -347,8 +414,8 @@ export function Panel() {
         {tabbed && audit && tab === 'headings' && (
           <HeadingsTab
             audit={audit}
-            highlight={highlight}
-            onHighlight={setHighlight}
+            highlight={highlight === 'headings'}
+            onHighlight={(on) => setHighlight(on ? 'headings' : null)}
             highlightFailed={highlightFailed}
             t={t}
           />
@@ -361,10 +428,23 @@ export function Panel() {
             progress={links.state === 'running' ? linkProgress : null}
             plannedCount={planned}
             onCheck={() => tabId !== null && page && void checkLinks(tabId, page)}
+            highlight={highlight === 'links'}
+            onHighlight={(on) => setHighlight(on ? 'links' : null)}
+            highlightFailed={highlightFailed}
             t={t}
           />
         )}
         {tabbed && audit && tab === 'render' && <RenderTab audit={audit} cta={PANEL_CTA} t={t} />}
+        {tabbed && audit && tab === 'speed' && (
+          <SpeedTab
+            audit={audit}
+            highlight={highlight === 'speed'}
+            onHighlight={(on) => setHighlight(on ? 'speed' : null)}
+            highlightFailed={highlightFailed}
+            cta={PANEL_CTA}
+            t={t}
+          />
+        )}
         {tabbed && audit && tab === 'ai' && <AiTab audit={audit} cta={PANEL_CTA} t={t} />}
       </main>
 

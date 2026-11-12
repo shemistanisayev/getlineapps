@@ -4,7 +4,7 @@
  */
 
 export type Severity = 'high' | 'medium' | 'low';
-export type IssueTab = 'summary' | 'headings' | 'links' | 'render' | 'ai';
+export type IssueTab = 'summary' | 'headings' | 'links' | 'render' | 'speed' | 'ai';
 
 export type IssueId =
   | 'RAW_H1'
@@ -22,7 +22,40 @@ export type IssueId =
   | 'H1_MULTI'
   | 'HEADING_SKIP'
   | 'REDIRECT_LINKS'
-  | 'TITLE_LONG';
+  | 'TITLE_LONG'
+  // Added in 1.1 (docs/serpline-SPEC.md §4.7)
+  | 'HTTP_ERROR'
+  | 'ROBOTS_BLOCKED'
+  | 'CANONICAL_BROKEN'
+  | 'CANONICAL_REDIRECT'
+  | 'CANONICAL_MULTI'
+  | 'SCHEMA_PARSE'
+  | 'SCHEMA_REQUIRED'
+  | 'HREFLANG_INVALID'
+  | 'HREFLANG_NO_RETURN'
+  | 'HREFLANG_NO_SELF'
+  | 'NO_HTTPS'
+  | 'NOT_IN_SITEMAP'
+  | 'LINK_NO_TEXT'
+  | 'WEAK_ANCHOR'
+  | 'INTERNAL_NOFOLLOW'
+  | 'HTTP_LINKS'
+  | 'LCP_SLOW'
+  | 'CLS_HIGH'
+  | 'INP_SLOW'
+  | 'TTFB_SLOW'
+  | 'IMG_LAZY_TOP'
+  | 'IMG_HEAVY'
+  | 'MIXED_CONTENT'
+  | 'VIEWPORT_MISSING'
+  | 'H_SCROLL'
+  | 'IMG_NO_SIZE'
+  | 'IMG_FORMAT'
+  | 'IMG_OVERSIZED'
+  | 'NO_COMPRESSION'
+  | 'VIEWPORT_ZOOM'
+  | 'SMALL_TEXT'
+  | 'TAP_SMALL';
 
 /** Rule order = display order inside one severity (the SPEC table order). */
 export const RULES: readonly { id: IssueId; severity: Severity; tab: IssueTab }[] = [
@@ -42,6 +75,39 @@ export const RULES: readonly { id: IssueId; severity: Severity; tab: IssueTab }[
   { id: 'HEADING_SKIP', severity: 'low', tab: 'headings' },
   { id: 'REDIRECT_LINKS', severity: 'low', tab: 'links' },
   { id: 'TITLE_LONG', severity: 'low', tab: 'summary' },
+  // Added in 1.1. Display order inside one severity follows this list.
+  { id: 'HTTP_ERROR', severity: 'high', tab: 'summary' },
+  { id: 'ROBOTS_BLOCKED', severity: 'high', tab: 'summary' },
+  { id: 'CANONICAL_BROKEN', severity: 'high', tab: 'summary' },
+  { id: 'CANONICAL_REDIRECT', severity: 'medium', tab: 'summary' },
+  { id: 'CANONICAL_MULTI', severity: 'medium', tab: 'summary' },
+  { id: 'SCHEMA_PARSE', severity: 'medium', tab: 'summary' },
+  { id: 'SCHEMA_REQUIRED', severity: 'medium', tab: 'summary' },
+  { id: 'HREFLANG_INVALID', severity: 'medium', tab: 'summary' },
+  { id: 'HREFLANG_NO_RETURN', severity: 'medium', tab: 'summary' },
+  { id: 'NO_HTTPS', severity: 'medium', tab: 'speed' },
+  { id: 'LCP_SLOW', severity: 'medium', tab: 'speed' },
+  { id: 'CLS_HIGH', severity: 'medium', tab: 'speed' },
+  { id: 'INP_SLOW', severity: 'medium', tab: 'speed' },
+  { id: 'IMG_LAZY_TOP', severity: 'medium', tab: 'speed' },
+  { id: 'IMG_HEAVY', severity: 'medium', tab: 'speed' },
+  { id: 'MIXED_CONTENT', severity: 'medium', tab: 'speed' },
+  { id: 'VIEWPORT_MISSING', severity: 'medium', tab: 'speed' },
+  { id: 'H_SCROLL', severity: 'medium', tab: 'speed' },
+  { id: 'HREFLANG_NO_SELF', severity: 'low', tab: 'summary' },
+  { id: 'NOT_IN_SITEMAP', severity: 'low', tab: 'summary' },
+  { id: 'LINK_NO_TEXT', severity: 'low', tab: 'links' },
+  { id: 'WEAK_ANCHOR', severity: 'low', tab: 'links' },
+  { id: 'INTERNAL_NOFOLLOW', severity: 'low', tab: 'links' },
+  { id: 'HTTP_LINKS', severity: 'low', tab: 'links' },
+  { id: 'TTFB_SLOW', severity: 'low', tab: 'speed' },
+  { id: 'IMG_NO_SIZE', severity: 'low', tab: 'speed' },
+  { id: 'IMG_FORMAT', severity: 'low', tab: 'speed' },
+  { id: 'IMG_OVERSIZED', severity: 'low', tab: 'speed' },
+  { id: 'NO_COMPRESSION', severity: 'low', tab: 'speed' },
+  { id: 'VIEWPORT_ZOOM', severity: 'low', tab: 'speed' },
+  { id: 'SMALL_TEXT', severity: 'low', tab: 'speed' },
+  { id: 'TAP_SMALL', severity: 'low', tab: 'speed' },
 ];
 
 /** Link issues count only after the link check ran (SPEC §4.5). */
@@ -88,7 +154,14 @@ export function scoreLabel(value: number): ScoreLabel {
 
 /** Issue count per tab (tab badges). Summary has no badge but its count is still returned. */
 export function countsByTab(issues: Issue[]): Record<IssueTab, number> {
-  const out: Record<IssueTab, number> = { summary: 0, headings: 0, links: 0, render: 0, ai: 0 };
+  const out: Record<IssueTab, number> = {
+    summary: 0,
+    headings: 0,
+    links: 0,
+    render: 0,
+    speed: 0,
+    ai: 0,
+  };
   for (const i of issues) out[i.tab]++;
   return out;
 }

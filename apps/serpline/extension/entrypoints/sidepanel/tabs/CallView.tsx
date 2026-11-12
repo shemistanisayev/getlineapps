@@ -8,14 +8,18 @@ import type { MessageKey, T } from '../../../src/i18n/index.ts';
 export type CallKind = 'stale' | 'idle' | 'noAccess' | 'restricted';
 
 const CHECKS: MessageKey[] = [
+  'call.c.index',
   'call.c.titleDesc',
   'call.c.canonical',
   'call.c.headings',
   'call.c.alt',
   'call.c.links',
   'call.c.schema',
+  'call.c.speed',
+  'call.c.mobile',
   'call.c.render',
   'call.c.bots',
+  'call.c.sitemap',
   'call.c.llms',
 ];
 

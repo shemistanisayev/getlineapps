@@ -53,7 +53,7 @@ describe('Serpline store listing', () => {
       `store/serpline/serpline-${pkg.version}.zip`,
       'store/serpline/promo-small-440x280.png',
       'store/serpline/promo-marquee-1400x560.png',
-      ...['1-summary', '2-render', '3-ai', '4-headings', '5-audit-pdf'].map(
+      ...['1-summary', '2-render', '3-ai', '4-speed', '5-audit-pdf'].map(
         (s) => `store/serpline/screenshots/${s}.png`,
       ),
     ])
@@ -65,7 +65,7 @@ describe('Serpline store listing', () => {
       const b = readFileSync(join(root, f));
       return [b.readUInt32BE(16), b.readUInt32BE(20)];
     };
-    for (const s of ['1-summary', '2-render', '3-ai', '4-headings', '5-audit-pdf'])
+    for (const s of ['1-summary', '2-render', '3-ai', '4-speed', '5-audit-pdf'])
       expect(size(`store/serpline/screenshots/${s}.png`), s).toEqual([1280, 800]);
     expect(size('store/serpline/promo-small-440x280.png')).toEqual([440, 280]);
     expect(size('store/serpline/promo-marquee-1400x560.png')).toEqual([1400, 560]);

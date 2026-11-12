@@ -1,10 +1,14 @@
 import {
   LINK_CHECK_CONCURRENCY,
   LINK_CHECK_TIMEOUT_MS,
+  extractHtml,
+  parseRobots,
   type LinkResult,
+  type LiveFacts,
 } from '@line/core/serpline';
 import { readPage, RAW_HTML_CAP, TEXT_FILE_CAP, type PageRead } from './inject.ts';
 import { checkLinksInPage } from './links.ts';
+import { measurePage, type MeasureArgs } from './measure.ts';
 import { hideOverlay, showOverlay, type OverlaySpec } from './overlay.ts';
 import { PROGRESS_MESSAGE } from '../messages.ts';
 
@@ -49,9 +53,41 @@ export async function checkTab(tabId: number): Promise<CheckResult> {
     if (/^(chrome|edge|about|chrome-extension):/.test(page.url)) {
       return { ok: false, reason: 'restricted' };
     }
-    return { ok: true, page };
+    return { ok: true, page: { ...page, live: await measureTab(tabId, page) } };
   } catch (error) {
     return { ok: false, reason: classifyError(String((error as Error)?.message ?? error)) };
+  }
+}
+
+/** What the live step needs from the first read: sitemap URLs, the canonical and hreflang links. */
+export function measureArgs(page: PageRead): MeasureArgs {
+  let facts: ReturnType<typeof extractHtml> | null;
+  try {
+    facts = extractHtml(page.html, page.url);
+  } catch {
+    facts = null;
+  }
+  const robotsOk = page.robots.status >= 200 && page.robots.status < 300;
+  return {
+    sitemaps: robotsOk ? parseRobots(page.robots.text).sitemaps : [],
+    canonical: facts?.canonical ?? null,
+    hreflang: facts?.hreflang ?? [],
+    progress: PROGRESS_MESSAGE,
+  };
+}
+
+/** Runs measurePage in the tab; null when it could not run (the rest of the audit still works). */
+export async function measureTab(tabId: number, page: PageRead): Promise<LiveFacts | null> {
+  try {
+    const [frame] = await browser.scripting.executeScript({
+      target: { tabId },
+      world: 'ISOLATED',
+      func: measurePage,
+      args: [measureArgs(page)],
+    });
+    return (frame?.result as LiveFacts | undefined) ?? null;
+  } catch {
+    return null;
   }
 }
 

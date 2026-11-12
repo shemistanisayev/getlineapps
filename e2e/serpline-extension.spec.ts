@@ -67,23 +67,38 @@ test.describe('serpline extension', () => {
     await page.goto(serplineUrl());
     await ext.clickAction(page);
     expect(await ext.hasPage(PANEL)).toBe(true);
-    // Summary (design: Main). 62 before the link check (PLAN decision 4).
+    // Summary (design: Main). Before the link check (PLAN decision 4). Serpline 1.1 adds the live
+    // checks (speed, images, mobile), whose low-priority count depends on the machine, so the score
+    // is read here and checked against the link issues below.
     await expect.poll(panelText).toContain('SEO score: needs work');
     const text = await panelText();
     expect(text).toContain('example.com/products/wireless-headphones-pro-x');
-    expect(text).toContain('2 high, 5 medium, 1 low priority issues');
-    expect(
-      await ext.evalIn(PANEL, `document.querySelector('.sl-ring').getAttribute('aria-label')`),
-    ).toBe('SEO score 62 of 100');
+    expect(text).toMatch(/2 high, 6 medium, \d+ low priority issues/);
+    const score = async () =>
+      Number(
+        /\d+/.exec(
+          await ext.evalIn<string>(
+            PANEL,
+            `document.querySelector('.sl-ring').getAttribute('aria-label')`,
+          ),
+        )![0],
+      );
+    const before = await score();
+    expect(before).toBeLessThanOrEqual(58);
+    // "Can Google index this page?" (1.1): every check passes on Lumo, the sitemap lists it.
+    expect(text).toMatch(/CAN GOOGLE INDEX THIS PAGE\?\s+Yes/);
+    expect(text).toMatch(/robots\.txt\s+Google and Bing allowed/);
+    expect(text).toMatch(/Sitemap\s+This page is listed/);
+    // Structured data (1.1): both types pass Google's required properties.
+    expect(text).toMatch(/BreadcrumbList\s+Breadcrumb ready/);
+    expect(text).toMatch(/Product\s+Product snippet ready/);
     const rows = await ext.evalIn<string[]>(
       PANEL,
-      `[...document.querySelectorAll('.sl-row')].map((r) => r.innerText.replace(/\\s+/g, ' ').trim())`,
+      `[...[...document.querySelectorAll('.sl-card')].find((c) => c.querySelector('.sl-eyebrow')?.textContent === 'On-page checks').querySelectorAll('.sl-row')].map((r) => r.innerText.replace(/\\s+/g, ' ').trim())`,
     );
     expect(rows).toEqual([
       'Title 32 characters',
       'Meta description Cut off in Google',
-      'Canonical Points to this page',
-      'Robots meta index, follow',
       'H1 Only after JavaScript',
       'Image alt text 3 of 9 missing',
       'Structured data Product added by JavaScript',
@@ -144,7 +159,8 @@ test.describe('serpline extension', () => {
       .poll(() => page.evaluate(() => document.querySelectorAll('[data-serpline-overlay]').length))
       .toBe(0);
 
-    // Links (design: Links): the check runs from the page, then the score drops to 56.
+    // Links (design: Links): the check runs from the page, then the score drops by 6 (one broken
+    // link, medium; redirects, low).
     await clickTab('Links');
     await expect.poll(panelText).toContain('Check 52 internal links');
     await clickButton('Check 52 internal links');
@@ -161,10 +177,9 @@ test.describe('serpline extension', () => {
     );
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-links.png`);
     await clickTab('Summary');
-    await expect.poll(panelText).toContain('2 high, 6 medium, 2 low priority issues');
-    expect(
-      await ext.evalIn(PANEL, `document.querySelector('.sl-ring').getAttribute('aria-label')`),
-    ).toBe('SEO score 56 of 100');
+    await expect.poll(panelText).toMatch(/2 high, 7 medium, \d+ low priority issues/);
+    const after = await score();
+    expect(after).toBe(before - 6);
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-summary-56.png`);
 
     // Audit PDF (design: Report): built in the panel from the extension's own fonts, saved through
@@ -203,7 +218,7 @@ test.describe('serpline extension', () => {
     await clickButton('Desktop');
     await expect.poll(panelText).toContain('Description: 191 characters, cut after 147');
 
-    // Shell: page row, 5 tabs, dark footer CTA on Summary, lime CTA on Render and AI.
+    // Shell: page row, 6 tabs, dark footer CTA on Summary, lime CTA on Render, Speed and AI.
     const shell = () =>
       ext.evalIn<{
         tabs: string[];
@@ -222,9 +237,11 @@ test.describe('serpline extension', () => {
         })`,
       );
     // Badges: issues per tab, as in PanelHeader after the link check.
-    expect(await shell()).toEqual({
-      tabs: ['Summary', 'Headings2', 'Links2', 'Render3', 'AI1'],
-      badges: ['2 issues', '2 issues', '3 issues', '1 issue'],
+    const sh = await shell();
+    expect(sh.tabs.slice(0, 4)).toEqual(['Summary', 'Headings2', 'Links2', 'Render3']);
+    expect(sh.tabs[4]).toMatch(/^Speed\d+$/);
+    expect(sh.tabs[5]).toBe('AI1');
+    expect(sh).toMatchObject({
       selected: 'Summary',
       footer: 'Need help fixing these?Get in touch',
       lime: '',
@@ -274,6 +291,12 @@ test.describe('serpline extension', () => {
     expect(ai).toMatch(/robots\.txt\s+Found, 38 lines/);
     expect(ai).toMatch(/sitemap\.xml\s+Listed in robots\.txt/);
     expect(ai).toMatch(/llms\.txt\s+Not found, optional/);
+    // What AI crawlers see (1.1): the raw HTML has 9% of the text and no H1.
+    expect(ai).toContain('WHAT AI CRAWLERS SEE');
+    expect(ai).toMatch(/Text\s+9%, 38 of 412 words/);
+    expect(ai).toMatch(/Main heading\s+Not visible/);
+    expect(ai).toMatch(/Structured data\s+Product not visible/);
+    expect(ai).toContain('FIRST WORDS A CRAWLER READS');
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-ai.png`);
     await clickButton('5 more bots');
     await expect.poll(async () => (await botRows()).length).toBe(13);
@@ -310,17 +333,52 @@ test.describe('serpline extension', () => {
     });
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-render.png`);
 
+    // Speed (1.1): Core Web Vitals of this visit, images, mobile and the server response.
+    await clickTab('Speed');
+    await expect.poll(panelText).toContain('SERVER RESPONSE');
+    const speed = await panelText();
+    expect(speed).toMatch(/Core Web Vitals (look good|need work|are poor|not measured yet)/);
+    expect(speed).toMatch(/LCP\s+[\d.]+ (ms|s)/);
+    expect(speed).toMatch(/CLS\s+\d\.\d\d/);
+    expect(speed).toMatch(/Page weight\s+[\d.]+ (B|KB|MB), \d+ requests/);
+    // The product pictures are 400 px files shown smaller (thumbnails at 84 px).
+    expect(speed).toMatch(/Bigger than shown\s+\d+ images/);
+    expect(speed).toContain('pro-x-front-small.jpg');
+    expect(speed).toMatch(/Viewport meta\s+width=device-width/);
+    expect(speed).toMatch(/HTTPS\s+Plain http/);
+    expect(speed).toContain('The page is not on HTTPS');
+    expect(speed).toMatch(/\d+ images are bigger than shown/);
+    expect(await shell()).toMatchObject({
+      footer: '',
+      lime: 'Want your pages to load faster?Get in touch',
+    });
+    // Highlight on page: the LCP element and the images with a finding.
+    await ext.evalIn(PANEL, `document.querySelector('#sp-hl-speed').click()`, true);
+    await expect
+      .poll(() => page.evaluate(() => document.querySelectorAll('[data-serpline-overlay]').length))
+      .toBe(1);
+    if (SHOTS) {
+      await ext.screenshot(PANEL, `${SHOTS}/serpline-speed.png`);
+      await page.screenshot({ path: `${SHOTS}/serpline-page-speed-highlight.png` });
+    }
+    await ext.evalIn(PANEL, `document.querySelector('#sp-hl-speed').click()`, true);
+    await expect
+      .poll(() => page.evaluate(() => document.querySelectorAll('[data-serpline-overlay]').length))
+      .toBe(0);
+
     // Same tab, same site: the panel goes Stale; "Check this page" works (activeTab is kept).
     await page.goto(serplineUrl('/electronics/headphones'));
     await expect.poll(panelText).toContain('You opened a new page');
     const stale = await panelText();
-    expect(stale).toMatch(/56\s+Previous result\s+\/products\/wireless-headphones-pro-x/);
+    expect(stale).toMatch(
+      new RegExp(`${after}\\s+Previous result\\s+/products/wireless-headphones-pro-x`),
+    );
     expect(stale).toContain('WHAT SERPLINE CHECKS');
     expect(stale).toContain('Want a full technical SEO audit?');
     expect(await ext.evalIn(PANEL, `document.querySelectorAll('[role=tab]').length`)).toBe(0);
     if (SHOTS) await ext.screenshot(PANEL, `${SHOTS}/serpline-stale.png`);
     // The previous result card opens the old result again.
-    await clickButton('56');
+    await clickButton(String(after));
     await expect.poll(panelText).toContain('example.com/products/wireless-headphones-pro-x');
     await page.reload();
     await expect.poll(panelText).toContain('You opened a new page');
@@ -352,7 +410,7 @@ test.describe('serpline extension', () => {
       'Check internal links on open',
       'Clear all settings',
       'MORE FREE TOOLS',
-      'Version 1.0.1',
+      'Version 1.1.0',
     ])
       expect(set).toContain(s);
     const hrefs = await ext.evalIn<string[]>(
@@ -450,7 +508,7 @@ test.describe('serpline extension', () => {
       PANEL,
       `document.head.append(Object.assign(document.createElement('style'), { textContent: '*{transition:none!important;animation:none!important}' }))`,
     );
-    for (const id of ['summary', 'headings', 'links', 'render', 'ai']) {
+    for (const id of ['summary', 'headings', 'links', 'render', 'speed', 'ai']) {
       await click(`#sl-tab-${id}`);
       await expect
         .poll(() =>

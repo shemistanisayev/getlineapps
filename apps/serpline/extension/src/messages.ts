@@ -32,7 +32,7 @@ export function isOverlayHiddenMessage(value: unknown): boolean {
  */
 export const PROGRESS_MESSAGE = 'serpline:progress';
 
-export type ReadStep = 'rendered' | 'raw' | 'files';
+export type ReadStep = 'rendered' | 'raw' | 'files' | 'live';
 
 export interface ProgressMessage {
   type: typeof PROGRESS_MESSAGE;

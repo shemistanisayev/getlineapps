@@ -39,6 +39,8 @@ export interface JsonLdFacts {
   types: string[];
   /** Blocks that are not valid JSON. */
   errors: number;
+  /** Top-level objects of every valid block (also the items of `@graph`), for the schema checks. */
+  nodes: Record<string, unknown>[];
 }
 
 export interface Section {
@@ -57,6 +59,8 @@ export interface PageFacts {
   title: string | null;
   description: string | null;
   canonical: string | null;
+  /** Every canonical link on the page, resolved (more than one different URL is an issue). */
+  canonicals: string[];
   robots: string | null;
   googlebot: string | null;
   lang: string | null;
@@ -75,6 +79,10 @@ export interface PageFacts {
   links: PageLink[];
   jsonLd: JsonLdFacts;
   words: number;
+  /** The first words of the visible text (main, else body): what a crawler reads first. */
+  excerpt: string;
+  /** Subresources (images, scripts, styles, frames, media) loaded over plain http. */
+  insecure: string[];
   sections: Section[];
 }
 
@@ -187,6 +195,17 @@ function linkKind(href: string, pageUrl: string): LinkKind {
     : 'external';
 }
 
+function collectNodes(value: unknown, out: Record<string, unknown>[]): void {
+  if (Array.isArray(value)) {
+    value.forEach((v) => collectNodes(v, out));
+    return;
+  }
+  if (!value || typeof value !== 'object') return;
+  const obj = value as Record<string, unknown>;
+  if (obj['@graph']) collectNodes(obj['@graph'], out);
+  if (obj['@type']) out.push(obj);
+}
+
 function collectTypes(value: unknown, out: string[]): void {
   if (Array.isArray(value)) {
     value.forEach((v) => collectTypes(v, out));
@@ -202,12 +221,14 @@ function collectTypes(value: unknown, out: string[]): void {
 }
 
 export function extractJsonLd(doc: Document): JsonLdFacts {
-  const facts: JsonLdFacts = { blocks: 0, types: [], errors: 0 };
+  const facts: JsonLdFacts = { blocks: 0, types: [], errors: 0, nodes: [] };
   for (const s of Array.from(doc.querySelectorAll('script[type]'))) {
     if ((s.getAttribute('type') ?? '').trim().toLowerCase() !== 'application/ld+json') continue;
     facts.blocks++;
     try {
-      collectTypes(JSON.parse(s.textContent ?? ''), facts.types);
+      const data: unknown = JSON.parse(s.textContent ?? '');
+      collectTypes(data, facts.types);
+      collectNodes(data, facts.nodes);
     } catch {
       facts.errors++;
     }
@@ -217,9 +238,10 @@ export function extractJsonLd(doc: Document): JsonLdFacts {
 
 export function extract(doc: Document, url: string): PageFacts {
   const titleEl = doc.querySelector('title');
-  const canonicalEl = Array.from(doc.querySelectorAll('link[rel][href]')).find((l) =>
+  const canonicalEls = Array.from(doc.querySelectorAll('link[rel][href]')).filter((l) =>
     (l.getAttribute('rel') ?? '').toLowerCase().split(/\s+/).includes('canonical'),
   );
+  const canonicals = canonicalEls.map((l) => resolve(l.getAttribute('href') ?? '', url));
   const hreflang = Array.from(doc.querySelectorAll('link[rel][hreflang][href]'))
     .filter((l) => (l.getAttribute('rel') ?? '').toLowerCase().split(/\s+/).includes('alternate'))
     .map((l) => ({
@@ -288,7 +310,8 @@ export function extract(doc: Document, url: string): PageFacts {
     url,
     title: titleEl ? clean(titleEl.textContent) : null,
     description: meta(doc, 'name', 'description'),
-    canonical: canonicalEl ? resolve(canonicalEl.getAttribute('href') ?? '', url) : null,
+    canonical: canonicals[0] ?? null,
+    canonicals,
     robots: meta(doc, 'name', 'robots'),
     googlebot: meta(doc, 'name', 'googlebot'),
     lang: clean(doc.documentElement?.getAttribute('lang')) || null,
@@ -307,8 +330,33 @@ export function extract(doc: Document, url: string): PageFacts {
     links,
     jsonLd: extractJsonLd(doc),
     words: countWords(doc.body),
+    excerpt: excerptOf(doc.querySelector('main') ?? doc.body),
+    insecure: insecureResources(doc, url),
     sections,
   };
+}
+
+export const EXCERPT_WORDS = 40;
+
+function excerptOf(root: Element | null): string {
+  if (!root) return '';
+  const words = textOf(root)
+    .split(/\s+/)
+    .filter((w) => WORD.test(w));
+  return words.slice(0, EXCERPT_WORDS).join(' ') + (words.length > EXCERPT_WORDS ? ' ...' : '');
+}
+
+const RESOURCE_SELECTOR =
+  'img[src], script[src], iframe[src], video[src], audio[src], source[src], link[rel~="stylesheet"][href]';
+
+function insecureResources(doc: Document, url: string): string[] {
+  const out: string[] = [];
+  for (const el of Array.from(doc.querySelectorAll(RESOURCE_SELECTOR))) {
+    const raw = el.getAttribute(el.tagName.toUpperCase() === 'LINK' ? 'href' : 'src') ?? '';
+    const abs = resolve(raw, url);
+    if (/^http:\/\//i.test(abs) && !out.includes(abs)) out.push(abs);
+  }
+  return out;
 }
 
 /** Parse HTML with the environment's DOMParser (side panel, or happy-dom in tests). */
