@@ -196,7 +196,7 @@ test.describe('hitline popup', () => {
     await page.getByRole('button', { name: 'Remove Acme' }).click();
     await expect(page.locator('.rule')).toHaveCount(0);
 
-    await expect(page.locator('.set-foot')).toContainText('Version 1.1.0');
+    await expect(page.locator('.set-foot')).toContainText('Version 1.2.0');
     await page.evaluate(() => document.fonts.ready);
     if (SHOTS)
       await page.screenshot({ path: `${SHOTS}/hitline-popup-settings.png`, fullPage: true });
