@@ -277,8 +277,65 @@ export async function measurePage(args: MeasureArgs): Promise<LiveFacts> {
     return { requests: all.length, bytes, byKind, unknownSize };
   }
 
+  /**
+   * Style rules that set a width, a height or an aspect-ratio (same-origin and inline sheets; the
+   * browser hides the rules of cross-origin sheets). Used to tell CSS-sized images from unsized ones.
+   */
+  function sizingRules(): CSSStyleRule[] {
+    const out: CSSStyleRule[] = [];
+    const set = (v: string) => !!v && v !== 'auto';
+    const walk = (rules: CSSRuleList) => {
+      for (const rule of Array.from(rules)) {
+        if (out.length > 5000) return;
+        const s = (rule as CSSStyleRule).style;
+        if (s && (rule as CSSStyleRule).selectorText) {
+          if (set(s.width) || set(s.height) || set(s.aspectRatio)) out.push(rule as CSSStyleRule);
+        }
+        const inner = (rule as CSSGroupingRule).cssRules;
+        if (inner) walk(inner);
+      }
+    };
+    for (const sheet of Array.from(document.styleSheets)) {
+      try {
+        walk(sheet.cssRules);
+      } catch {
+        /* cross-origin sheet */
+      }
+    }
+    return out;
+  }
+
   function images(): LiveFacts['images'] {
     const fold = window.innerHeight;
+    const width = window.innerWidth;
+    let rules: CSSStyleRule[] | null = null;
+    const set = (v: string) => !!v && v !== 'auto';
+    /** Width and height (or aspect-ratio) given by attributes, inline style or a style rule. */
+    const isSized = (img: HTMLImageElement, cs: CSSStyleDeclaration) => {
+      if (img.hasAttribute('width') && img.hasAttribute('height')) return true;
+      if (cs.aspectRatio && cs.aspectRatio !== 'auto' && !/^auto\b/.test(cs.aspectRatio))
+        return true;
+      let w = set(img.style.width) || img.hasAttribute('width');
+      let h = set(img.style.height) || img.hasAttribute('height');
+      if (set(img.style.aspectRatio)) return true;
+      // An absolutely positioned image fills a box the page already sized (next/image "fill").
+      if (cs.position === 'absolute' || cs.position === 'fixed') return true;
+      rules ??= sizingRules();
+      for (const rule of rules) {
+        if (w && h) break;
+        let hit: boolean;
+        try {
+          hit = img.matches(rule.selectorText);
+        } catch {
+          hit = false;
+        }
+        if (!hit) continue;
+        if (set(rule.style.aspectRatio)) return true;
+        w ||= set(rule.style.width);
+        h ||= set(rule.style.height);
+      }
+      return w && h;
+    };
     return Array.from(document.images)
       .slice(0, 300)
       .filter((img) => !img.closest('[data-serpline-overlay]'))
@@ -290,19 +347,29 @@ export async function measurePage(args: MeasureArgs): Promise<LiveFacts> {
         const entry = byName.get(src) as
           (PerformanceResourceTiming & { contentType?: string }) | undefined;
         const bytes = entry ? entry.encodedBodySize || entry.transferSize || null : null;
+        // The width the bitmap is drawn at: object-fit cover crops, so it needs more pixels.
+        const nw = img.naturalWidth;
+        const nh = img.naturalHeight;
+        const ratio = nw && nh ? nw / nh : 0;
+        const drawn =
+          ratio && cs.objectFit === 'cover'
+            ? Math.max(r.width, r.height * ratio)
+            : ratio && (cs.objectFit === 'contain' || cs.objectFit === 'scale-down')
+              ? Math.min(r.width, r.height * ratio)
+              : r.width;
         return {
           path: cssPath(img),
           src,
           file: fileOf(src),
-          naturalWidth: img.naturalWidth,
-          naturalHeight: img.naturalHeight,
+          naturalWidth: nw,
+          naturalHeight: nh,
           width: Math.round(r.width),
           height: Math.round(r.height),
-          sized:
-            (img.hasAttribute('width') && img.hasAttribute('height')) ||
-            (!!cs.aspectRatio && cs.aspectRatio !== 'auto'),
+          drawnWidth: Math.round(drawn),
+          sized: isSized(img, cs),
           loading: img.getAttribute('loading')?.toLowerCase() ?? null,
-          aboveFold: r.width > 0 && top < fold,
+          // Visible in the first screen: below the top edge of the page and inside the window width.
+          aboveFold: r.width > 0 && top < fold && r.left < width && r.right > 0,
           bytes,
           type: entry?.contentType || typeFromUrl(src),
         };
@@ -356,10 +423,13 @@ export async function measurePage(args: MeasureArgs): Promise<LiveFacts> {
       if (el.closest('[data-serpline-overlay]')) continue;
       const r = el.getBoundingClientRect();
       if (!(r.width > 0 && r.height > 0)) continue;
-      // A link inside a sentence is exempt (WCAG 2.5.8).
+      // A link inside a sentence is exempt (WCAG 2.5.8): compare with the text of the nearest
+      // block around it, so wrappers like <sup> or <span> do not hide the sentence.
       if (el.tagName === 'A' && getComputedStyle(el).display === 'inline') {
-        const parentText = (el.parentElement?.textContent ?? '').trim().length;
-        if (parentText > (el.textContent ?? '').trim().length + 1) continue;
+        let block = el.parentElement;
+        while (block && getComputedStyle(block).display === 'inline') block = block.parentElement;
+        const around = (block?.textContent ?? '').trim().length;
+        if (around > (el.textContent ?? '').trim().length + 1) continue;
       }
       // A target inside another target (an icon in a button) is the same target.
       if (boxes.some((b) => b.el.contains(el))) continue;

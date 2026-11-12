@@ -3,6 +3,7 @@
 import { describe, expect, it } from 'vitest';
 import { analyze, isWeakAnchor, zoomBlocked, type AnalyzeInput } from './analyze.ts';
 import { validHreflang } from './hreflang.ts';
+import { stateOf } from './links.ts';
 import { imageFindings, rate, type LiveFacts, type LiveImage } from './live.ts';
 import { checkSchema } from './schema.ts';
 
@@ -334,5 +335,50 @@ describe('speed, server and mobile', () => {
       }),
     });
     expect(a.issues.map((i) => i.id)).toEqual(['H_SCROLL', 'SMALL_TEXT', 'TAP_SMALL']);
+  });
+});
+
+describe('false positives found on real sites (QA 2026-11-12)', () => {
+  it('rate limits and bot protection are "not reached", never broken', () => {
+    const r = (status: number) => ({ url: 'u', status, redirected: false, finalUrl: 'u' });
+    expect([429, 403, 401, 503].map((s) => stateOf(r(s)))).toEqual([
+      'failed',
+      'failed',
+      'failed',
+      'failed',
+    ]);
+    expect([404, 410, 500].map((s) => stateOf(r(s)))).toEqual(['broken', 'broken', 'broken']);
+  });
+
+  it('code in link text is not a vague anchor', () => {
+    expect(isWeakAnchor('<details>')).toBe(false);
+    expect(isWeakAnchor('Details →')).toBe(true);
+  });
+
+  it('SVG, object-fit cover and small lazy icons are not image findings', () => {
+    const f = imageFindings(
+      [
+        img({ file: 'logo.svg', type: 'image/svg+xml', naturalWidth: 900, width: 100 }),
+        img({ file: 'cover.jpg', naturalWidth: 1200, width: 300, height: 400, drawnWidth: 900 }),
+        img({
+          file: 'icon.png',
+          aboveFold: true,
+          loading: 'lazy',
+          naturalWidth: 24,
+          width: 24,
+          height: 24,
+        }),
+      ],
+      1,
+    );
+    expect(f.oversized).toEqual([]);
+    expect(f.lazyTop).toEqual([]);
+  });
+
+  it('a separate mobile URL replaces the mobile viewport', () => {
+    const head =
+      HEAD.replace(VIEWPORT, '<meta name="viewport" content="width=1120">') +
+      '<link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.shop.example.com/p/one">';
+    expect(ids(page(head))).toEqual([]);
   });
 });

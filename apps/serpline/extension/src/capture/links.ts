@@ -29,6 +29,11 @@ export async function checkLinksInPage(
       /* panel closed */
     }
   }
+  let pauseUntil = 0;
+  async function waitPause() {
+    while (Date.now() < pauseUntil)
+      await new Promise((r) => setTimeout(r, pauseUntil - Date.now()));
+  }
   async function one(url: string): Promise<LinkResult> {
     const attempt = async (method: 'HEAD' | 'GET') => {
       const ctrl = new AbortController();
@@ -49,6 +54,14 @@ export async function checkLinksInPage(
       if (new URL(url).origin !== location.origin) throw new Error('not same origin');
       let res = await attempt('HEAD');
       if (res.status === 405) res = await attempt('GET');
+      // Rate limited: every worker waits (Retry-After, 2 s by default, at most 10 s), then this URL
+      // is asked again, twice at most. A 429 that stays is "not reached", never broken.
+      for (let tries = 0; res.status === 429 && tries < 2; tries++) {
+        const after = Number(res.headers.get('retry-after'));
+        pauseUntil = Date.now() + Math.min(10_000, after > 0 ? after * 1000 : 2000);
+        await waitPause();
+        res = await attempt('GET');
+      }
       return { url, status: res.status, redirected: res.redirected, finalUrl: res.url || url };
     } catch {
       return { url, status: 0, redirected: false, finalUrl: url };
@@ -60,6 +73,7 @@ export async function checkLinksInPage(
   async function worker() {
     while (next < urls.length) {
       const i = next++;
+      await waitPause();
       out[i] = await one(urls[i]!);
       done++;
       say();

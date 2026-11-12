@@ -46,7 +46,9 @@ export interface LiveImage {
   /** Shown size in CSS px. */
   width: number;
   height: number;
-  /** Both width and height attributes are set (or CSS aspect-ratio), so space is kept while it loads. */
+  /** Width the bitmap is drawn at (object-fit cover needs more than the box); defaults to width. */
+  drawnWidth?: number;
+  /** Width and height (attributes, inline style or a style rule) or an aspect-ratio are set, so space is kept while it loads. */
   sized: boolean;
   /** `loading` attribute, lower case, or null. */
   loading: string | null;
@@ -146,6 +148,8 @@ export function rate(metric: Metric, value: number): Rating {
   return 'poor';
 }
 
+/** A lazy image in the first screen counts from this shown area (px), about 100 x 100. */
+export const IMG_LAZY_MIN_AREA = 100 * 100;
 /** An image over this many bytes is heavy. */
 export const IMG_HEAVY_BYTES = 200 * 1024;
 /** Old formats are worth converting only above this size (bytes, or px area when bytes are unknown). */
@@ -198,7 +202,10 @@ export function imageFindings(images: LiveImage[], dpr: number): ImageFindings {
   const shown = images.filter((i) => i.width > 0 && i.height > 0 && !i.src.startsWith('data:'));
   const ratio = Math.max(1, dpr || 1);
   return {
-    lazyTop: shown.filter((i) => i.aboveFold && i.loading === 'lazy'),
+    // Small icons that load lazily do not hold up the first screen.
+    lazyTop: shown.filter(
+      (i) => i.aboveFold && i.loading === 'lazy' && i.width * i.height >= IMG_LAZY_MIN_AREA,
+    ),
     heavy: shown.filter((i) => (i.bytes ?? 0) > IMG_HEAVY_BYTES),
     unsized: shown.filter((i) => !i.sized),
     legacy: shown.filter(
@@ -210,8 +217,10 @@ export function imageFindings(images: LiveImage[], dpr: number): ImageFindings {
     ),
     oversized: shown.filter(
       (i) =>
+        // SVG is a vector: its intrinsic size says nothing about the bytes.
+        i.type !== 'image/svg+xml' &&
         i.naturalWidth >= IMG_OVERSIZE_MIN_PX &&
-        i.naturalWidth > i.width * ratio * IMG_OVERSIZE_FACTOR,
+        i.naturalWidth > (i.drawnWidth ?? i.width) * ratio * IMG_OVERSIZE_FACTOR,
     ),
   };
 }

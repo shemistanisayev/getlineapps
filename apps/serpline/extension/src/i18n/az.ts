@@ -502,6 +502,7 @@ export const az: Dictionary = {
   'sp.mob.vpOk': 'width=device-width',
   'sp.mob.vpNoDevice': 'width=device-width yoxdur',
   'sp.mob.vpZoom': 'Zoom bloklanıb',
+  'sp.mob.vpSeparate': 'Ayrıca mobil URL',
   'sp.mob.overflow': 'Üfüqi scroll',
   'sp.mob.overflowPx': 'Pəncərədən {px} px enlidir',
   'sp.mob.fits': 'Pəncərəyə sığır',
@@ -617,7 +618,7 @@ export const az: Dictionary = {
   'issue.MIXED_CONTENT.fix': 'bütün şəkil, skript və stilləri https ilə yüklə.',
   'issue.VIEWPORT_MISSING.title': 'Mobil viewport yoxdur',
   'issue.VIEWPORT_MISSING.text':
-    'width=device-width olmadan telefon kiçilmiş desktop səhifəsi göstərir. Google mobil versiyanı index edir.',
+    'width=device-width olmadan telefon kiçilmiş desktop səhifəsi göstərir. Google mobil versiyanı index edir. Telefonları ayrıca mobil səhifəyə göndərən sayt onu rel=alternate media ilə göstərməlidir.',
   'issue.VIEWPORT_MISSING.fix':
     '<meta name="viewport" content="width=device-width, initial-scale=1"> əlavə et.',
   'issue.H_SCROLL.title': 'Səhifə pəncərədən {px} px enlidir',

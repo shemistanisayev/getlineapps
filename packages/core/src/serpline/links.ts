@@ -90,9 +90,15 @@ function shortUrl(url: string, base: string): string {
   }
 }
 
+/**
+ * Answers that say "not now" or "not you" rather than "gone": rate limits (429), bot protection
+ * (401, 403) and maintenance (503). They are "not reached", never broken (QA on real sites).
+ */
+const NOT_REACHED = new Set([401, 403, 429, 503]);
+
 export function stateOf(r: LinkResult | undefined): LinkState {
   if (!r) return 'unchecked';
-  if (r.status === 0) return 'failed';
+  if (r.status === 0 || NOT_REACHED.has(r.status)) return 'failed';
   if (r.status >= 400) return 'broken';
   if (r.redirected || (r.status >= 300 && r.status < 400)) return 'redirect';
   return 'ok';

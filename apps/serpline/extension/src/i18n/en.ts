@@ -511,6 +511,7 @@ export const en = {
   'sp.mob.vpOk': 'width=device-width',
   'sp.mob.vpNoDevice': 'No width=device-width',
   'sp.mob.vpZoom': 'Zoom is blocked',
+  'sp.mob.vpSeparate': 'Separate mobile URL',
   'sp.mob.overflow': 'Horizontal scroll',
   'sp.mob.overflowPx': '{px} px wider than the window',
   'sp.mob.fits': 'Fits the window',
@@ -625,7 +626,7 @@ export const en = {
   'issue.MIXED_CONTENT.fix': 'load every image, script and style over https.',
   'issue.VIEWPORT_MISSING.title': 'No mobile viewport',
   'issue.VIEWPORT_MISSING.text':
-    'Without width=device-width phones show a shrunk desktop page. Google indexes the mobile version.',
+    'Without width=device-width phones show a shrunk desktop page. Google indexes the mobile version. A site that sends phones to a separate mobile page should link it with rel=alternate media.',
   'issue.VIEWPORT_MISSING.fix':
     'add <meta name="viewport" content="width=device-width, initial-scale=1">.',
   'issue.H_SCROLL.title': 'The page is {px} px wider than the window',

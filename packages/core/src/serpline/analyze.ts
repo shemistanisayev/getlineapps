@@ -193,7 +193,8 @@ export function isWeakAnchor(text: string): boolean {
   const t = text
     .toLowerCase()
     .replace(/\s+/g, ' ')
-    .replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '')
+    // Strip decoration like arrows and dots, but keep code such as "<details>" as it is.
+    .replace(/^[\s«‹←→›»\-–.:…!]+|[\s«‹←→›»\-–.:…!]+$/gu, '')
     .trim();
   return !!t && WEAK.has(t);
 }
@@ -551,9 +552,10 @@ export function analyze(input: AnalyzeInput): Audit {
   if (input.raw?.headers && rawOk && htmlBytes >= COMPRESS_MIN_BYTES && !encoding)
     add('NO_COMPRESSION', { kb: Math.round(htmlBytes / 1024) });
   const viewport = rendered.viewport;
-  if (!viewport || !/width\s*=\s*device-width/i.test(viewport))
+  // A page with a separate mobile URL (m-dot) may keep a desktop viewport; Google supports it.
+  if ((!viewport || !/width\s*=\s*device-width/i.test(viewport)) && !rendered.mobileAlternate)
     add('VIEWPORT_MISSING', {}, viewport ? [`<meta name="viewport" content="${viewport}">`] : []);
-  else if (zoomBlocked(viewport))
+  else if (viewport && zoomBlocked(viewport))
     add('VIEWPORT_ZOOM', {}, [`<meta name="viewport" content="${viewport}">`]);
   const m = live?.mobile;
   if (m && m.overflow > 4)

@@ -299,6 +299,10 @@ export function SpeedTab({
             <StatusPill tone="bad">{vw ? t('sp.mob.vpNoDevice') : t('st.missing')}</StatusPill>
           ) : audit.issues.some((i) => i.id === 'VIEWPORT_ZOOM') ? (
             <StatusPill tone="warn">{t('sp.mob.vpZoom')}</StatusPill>
+          ) : audit.rendered.mobileAlternate && !/device-width/i.test(vw ?? '') ? (
+            <StatusPill tone="mute" icon="dash">
+              {t('sp.mob.vpSeparate')}
+            </StatusPill>
           ) : (
             <StatusPill tone="ok">{t('sp.mob.vpOk')}</StatusPill>
           )}

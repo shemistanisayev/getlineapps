@@ -341,13 +341,11 @@ test.describe('serpline extension', () => {
     expect(speed).toMatch(/LCP\s+[\d.]+ (ms|s)/);
     expect(speed).toMatch(/CLS\s+\d\.\d\d/);
     expect(speed).toMatch(/Page weight\s+[\d.]+ (B|KB|MB), \d+ requests/);
-    // The product pictures are 400 px files shown smaller (thumbnails at 84 px).
-    expect(speed).toMatch(/Bigger than shown\s+\d+ images/);
-    expect(speed).toContain('pro-x-front-small.jpg');
+    // The fixture pictures are SVG (served for /img/*.jpg): a vector is never "bigger than shown".
+    expect(speed).toMatch(/Bigger than shown\s+None/);
     expect(speed).toMatch(/Viewport meta\s+width=device-width/);
     expect(speed).toMatch(/HTTPS\s+Plain http/);
     expect(speed).toContain('The page is not on HTTPS');
-    expect(speed).toMatch(/\d+ images are bigger than shown/);
     expect(await shell()).toMatchObject({
       footer: '',
       lime: 'Want your pages to load faster?Get in touch',

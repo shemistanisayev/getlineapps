@@ -65,6 +65,8 @@ export interface PageFacts {
   googlebot: string | null;
   lang: string | null;
   viewport: string | null;
+  /** Separate mobile URL (`<link rel="alternate" media="only screen and (max-width: 640px)">`). */
+  mobileAlternate: string | null;
   hreflang: { lang: string; href: string }[];
   og: {
     title: string | null;
@@ -242,6 +244,11 @@ export function extract(doc: Document, url: string): PageFacts {
     (l.getAttribute('rel') ?? '').toLowerCase().split(/\s+/).includes('canonical'),
   );
   const canonicals = canonicalEls.map((l) => resolve(l.getAttribute('href') ?? '', url));
+  const mobileEl = Array.from(doc.querySelectorAll('link[rel][media][href]')).find(
+    (l) =>
+      (l.getAttribute('rel') ?? '').toLowerCase().split(/\s+/).includes('alternate') &&
+      /max-width/i.test(l.getAttribute('media') ?? ''),
+  );
   const hreflang = Array.from(doc.querySelectorAll('link[rel][hreflang][href]'))
     .filter((l) => (l.getAttribute('rel') ?? '').toLowerCase().split(/\s+/).includes('alternate'))
     .map((l) => ({
@@ -316,6 +323,7 @@ export function extract(doc: Document, url: string): PageFacts {
     googlebot: meta(doc, 'name', 'googlebot'),
     lang: clean(doc.documentElement?.getAttribute('lang')) || null,
     viewport: meta(doc, 'name', 'viewport'),
+    mobileAlternate: mobileEl ? resolve(mobileEl.getAttribute('href') ?? '', url) : null,
     hreflang,
     og: {
       title: meta(doc, 'property', 'og:title'),

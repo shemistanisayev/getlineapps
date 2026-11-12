@@ -381,6 +381,22 @@ TTFB 0.8 / 1.8 s).
 - **Audit PDF:** the page table adds Indexing, Structured data and Speed (when measured); every new
   rule has a fix line.
 
+### 14.6 QA on real sites (2026-11-12)
+`scripts/qa-serpline.ts <urls>` loads the built extension, checks each URL with the link check and
+saves every tab's text to `test-results/qa-serpline/`. Run on shamistanisayev.com, MDN, react.dev,
+allbirds.com, azertag.az, Wikipedia, excalidraw.com and theguardian.com. Fixed false positives:
+- 401, 403, 429 and 503 link answers are "not reached", never broken; a 429 pauses every worker
+  (Retry-After, at most 10 s) and the URL is asked again twice (allbirds: 100 broken, then 0).
+- Link text that is code (`<details>`) is not a vague anchor (MDN).
+- SVG is never "bigger than shown"; object-fit cover counts the drawn width; images sized by an
+  inline style, a same-origin style rule or absolute positioning are sized (react.dev: 23, then 0).
+- A lazy image in the first screen counts only from about 100 x 100 px and inside the window width.
+- An inline link counts as "in a sentence" against its nearest block, so `<sup>[1]</sup>`
+  references are exempt (Wikipedia: 123 small targets, then 7).
+- A page with `<link rel="alternate" media="...max-width...">` (separate mobile URL) is not
+  VIEWPORT_MISSING. Sites that redirect phones by user agent (Wikipedia) cannot be detected; the
+  issue text says so.
+
 ### Phase 11: Version 1.1 (done 2026-11-12)
 - Core rules and tests (`checks.test.ts`), live measurement, the new cards and tab, EN and AZ copy,
   PDF rows, privacy page and store listing updated, store package 1.1.0 (screenshot 4 is now Speed).
