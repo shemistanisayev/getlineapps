@@ -4,7 +4,6 @@
  */
 export const en = {
   'popup.settings': 'Settings',
-  'popup.loading': 'Reading this page...',
   'popup.request': '{n} tracking request',
   'popup.requests': '{n} tracking requests',
   'popup.sgtm.yes': 'Server-side GTM detected',
@@ -493,6 +492,27 @@ export const en = {
   'report.setup.cmpKey': 'Cookie banner',
   'report.setup.noConsent': 'Not set up: Google tags send full hits whatever the visitor chooses',
   'report.setup.limitKey': 'Note',
+  'scan.opened': 'Page opened',
+  'scan.opening': 'Opening the page',
+  'scan.pageLoading': 'Page is loading',
+  'scan.pageLoaded': 'Page loaded',
+  'scan.har': 'Reading requests sent before DevTools opened',
+  'scan.harDone': 'Earlier requests read',
+  'scan.waiting': 'Waiting for tags and events',
+  'scan.waitingS': '{n} s',
+  'scan.label': 'Hitline is reading {host}',
+  'popup.empty.waited': 'Checked for {n} seconds after the page loaded',
+  'popup.listening': 'Listening for new events',
+  'popup.stillListening': 'Still listening. If a tag fires later, it shows up here',
+  'page.n': 'Page {n}',
+  'page.current': 'Current page',
+  'page.events': '{n} events',
+  'page.event': '1 event',
+  'page.issues': '{n} issues',
+  'page.issue': '1 issue',
+  'page.noIssues': 'No issues',
+  'page.none': 'No events on this page',
+  'page.listening': 'Listening for new events',
 } as const;
 
 export type MessageKey = keyof typeof en;

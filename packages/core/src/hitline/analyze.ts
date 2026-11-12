@@ -104,6 +104,8 @@ export interface Audit {
   /** Last page the session saw (what the inspected tab shows now). */
   currentUrl: string;
   pages: string[];
+  /** When each page in `pages` started (ms epoch); NaN when unknown. */
+  pageTimes: number[];
   /** Registrable domains of the pages, in visit order. */
   sites: string[];
   /** Events tab rows: tracked hits, data layers and Other, oldest first (no GTM events). */
@@ -242,6 +244,7 @@ export function analyze(input: SessionInput, settings: Settings = {}): Audit {
   const snapshots = [...input.snapshots].sort((a, b) => a.time - b.time);
   const firstUrl = navs[0]?.url ?? snapshots[0]?.url ?? input.requests[0]?.url ?? '';
   const pages = navs.length ? navs.map((n) => n.url) : [firstUrl];
+  const pageTimes = navs.length ? navs.map((n) => n.time) : [Number.NaN];
   const pageOf = pageIndexer(navs.length ? navs.map((n) => n.time) : [-Infinity]);
   const opts = { rules: settings.rules, other: settings.other };
 
@@ -490,6 +493,7 @@ export function analyze(input: SessionInput, settings: Settings = {}): Audit {
     pageUrl: firstUrl,
     currentUrl,
     pages,
+    pageTimes,
     sites: [...new Set(pages.map((u) => registrableDomain(hostOf(u))).filter(Boolean))],
     events,
     hits,

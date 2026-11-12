@@ -74,6 +74,7 @@ export function useCapture() {
     else {
       store.setReady('har');
       store.setReady('poll');
+      store.setLoadedAt(0);
     }
     return undefined;
   }, [store]);

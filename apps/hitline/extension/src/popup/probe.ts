@@ -66,7 +66,11 @@ export function popupProbe(known: [string, string[]][] = []): PopupProbe {
     .filter(([, names]) => names.some((n) => typeof w[n] !== 'undefined'))
     .map(([id]) => id);
   const entries = performance.getEntriesByType('resource');
+  const nav = performance.getEntriesByType('navigation')[0] as
+    PerformanceNavigationTiming | undefined;
   return {
+    readyState: document.readyState,
+    loadedAt: Math.round(nav?.loadEventEnd ?? 0),
     url: location.href,
     timeOrigin: performance.timeOrigin,
     globals,

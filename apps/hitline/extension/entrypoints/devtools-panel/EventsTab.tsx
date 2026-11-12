@@ -110,7 +110,100 @@ function focusMatch(audit: Audit, focus?: Focus | null): string | null {
   return best?.id ?? null;
 }
 
-export function EventsTab({ audit, focus }: { audit: Audit; focus?: Focus | null }) {
+/** Path of a page for its card header; with several sites, the host too. */
+function pagePath(url: string, withHost: boolean): string {
+  try {
+    const u = new URL(url);
+    const path = `${u.pathname}${u.search}` || '/';
+    return withHost ? `${u.host}${path}` : path;
+  } catch {
+    return url;
+  }
+}
+
+interface PageGroup {
+  page: number;
+  rows: Hit[];
+}
+
+/** One card per page visit (navigation), in the list's time order. */
+function PageHead({
+  audit,
+  group,
+  current,
+  open,
+  bad,
+  warn,
+  onToggle,
+  t,
+}: {
+  audit: Audit;
+  group: PageGroup;
+  current: boolean;
+  open: boolean;
+  bad: number;
+  warn: number;
+  onToggle: () => void;
+  t: T;
+}) {
+  const n = group.page + 1;
+  const url = audit.pages[group.page] ?? '';
+  const at = audit.pageTimes[group.page];
+  const count = group.rows.length;
+  const issues = bad + warn;
+  return (
+    <div className="pg-head">
+      <button type="button" className="pg-toggle" aria-expanded={open} onClick={onToggle}>
+        <span className="pg-n" title={t('page.n', { n })}>
+          {n}
+        </span>
+        <span className="mono pg-path" title={url}>
+          {pagePath(url, audit.sites.length > 1)}
+        </span>
+        {current && <span className="pg-cur">{t('page.current')}</span>}
+        <span className="ph-grow" />
+        {at !== undefined && Number.isFinite(at) && (
+          <span className="mono pg-tm">{fmtTime(at, true)}</span>
+        )}
+        <span className="pg-cnt">
+          {count === 1 ? t('page.event') : t('page.events', { n: count })}
+        </span>
+        {count > 0 &&
+          (issues ? (
+            <Pill tone={bad ? 'bad' : 'warn'} icon="alert">
+              {issues === 1 ? t('page.issue') : t('page.issues', { n: issues })}
+            </Pill>
+          ) : (
+            <Pill tone="ok" icon="check">
+              {t('page.noIssues')}
+            </Pill>
+          ))}
+        <span className={`pg-chev${open ? ' on' : ''}`} aria-hidden="true">
+          <Icon name="chevron" size={14} stroke={2.4} />
+        </span>
+      </button>
+    </div>
+  );
+}
+
+function Listening({ t }: { t: T }) {
+  return (
+    <div className="pg-listen">
+      <span className="listen-dot" aria-hidden="true" />
+      {t('page.listening')}
+    </div>
+  );
+}
+
+export function EventsTab({
+  audit,
+  focus,
+  listening = false,
+}: {
+  audit: Audit;
+  focus?: Focus | null;
+  listening?: boolean;
+}) {
   const { t } = useT();
   const [filter, setFilter] = useState<Platform | 'all'>('all');
   const [query, setQuery] = useState('');
@@ -151,6 +244,30 @@ export function EventsTab({ audit, focus }: { audit: Audit; focus?: Focus | null
     (e) => (filter === 'all' || e.platform === filter) && matches(e, query),
   );
   const fresh = useNewIds(useMemo(() => audit.events.map((e) => e.id), [audit]));
+  const [closed, setClosed] = useState<Set<number>>(new Set());
+  const currentPage = audit.pages.length - 1;
+  const status = new Map(
+    rows.map((h) => [h.id, rowStatus(h, issueIds, hitConsentStatus(audit.consent.model, h), t)]),
+  );
+  // Pages in list order; a page with no events still gets its card while nothing is filtered.
+  const groups: PageGroup[] = (() => {
+    const m = new Map<number, Hit[]>();
+    for (const h of rows) m.set(h.page, [...(m.get(h.page) ?? []), h]);
+    if (filter === 'all' && !query)
+      for (let i = 0; i < audit.pages.length; i++) m.set(i, m.get(i) ?? []);
+    return [...m.entries()]
+      .sort((a, b) => (newestFirst ? b[0] - a[0] : a[0] - b[0]))
+      .map(([page, list]) => ({ page, rows: list }));
+  })();
+  /** Rows the keyboard can reach: those in open cards. */
+  const shown = groups.flatMap((g) => (closed.has(g.page) ? [] : g.rows));
+  const toggle = (page: number) =>
+    setClosed((prev) => {
+      const next = new Set(prev);
+      if (next.has(page)) next.delete(page);
+      else next.add(page);
+      return next;
+    });
 
   // The popup asked for one event: scroll to it once (picked in the initial state above).
   useEffect(() => {
@@ -173,10 +290,12 @@ export function EventsTab({ audit, focus }: { audit: Audit; focus?: Focus | null
     const d = e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
     if (!d || !selected) return;
     e.preventDefault();
-    const i = rows.indexOf(selected);
-    const next = rows[Math.max(0, Math.min(rows.length - 1, i + d))];
+    const i = shown.indexOf(selected);
+    const next = i < 0 ? shown[0] : shown[Math.max(0, Math.min(shown.length - 1, i + d))];
     if (next) {
       setPicked(next.id);
+      // Each page card is its own list: moving into another page moves the focus there.
+      if (next.page !== selected.page) document.getElementById(`pg-list-${next.page}`)?.focus();
       document.getElementById(`ev-${next.id}`)?.scrollIntoView({ block: 'nearest' });
     }
   };
@@ -262,11 +381,6 @@ export function EventsTab({ audit, focus }: { audit: Audit; focus?: Focus | null
           <div
             ref={list}
             className="ev-rows"
-            role="listbox"
-            aria-label={t('events.listLabel')}
-            tabIndex={0}
-            aria-activedescendant={selected ? `ev-${selected.id}` : undefined}
-            onKeyDown={onKey}
             onScroll={(e) => {
               const top = (e.target as HTMLDivElement).scrollTop;
               if (top < 20) setSeenAtScroll(null);
@@ -274,30 +388,77 @@ export function EventsTab({ audit, focus }: { audit: Audit; focus?: Focus | null
                 setSeenAtScroll(new Set(audit.events.map((x) => x.id)));
             }}
           >
-            {rows.length === 0 && <p className="ev-none">{t('events.noMatch')}</p>}
-            {rows.map((h) => {
-              const st = rowStatus(h, issueIds, hitConsentStatus(audit.consent.model, h), t);
-              const on = h === selected;
+            {rows.length === 0 && groups.length === 0 && (
+              <p className="ev-none">{t('events.noMatch')}</p>
+            )}
+            {groups.map((g) => {
+              const open = !closed.has(g.page);
+              const current = g.page === currentPage;
+              const tones = g.rows.map((h) => status.get(h.id)?.tone);
+              const live = current && listening && open;
+              const label = `${t('page.n', { n: g.page + 1 })}: ${pagePath(audit.pages[g.page] ?? '', true)}`;
+              const holds = selected !== undefined && g.rows.includes(selected);
               return (
-                <div
-                  key={h.id}
-                  id={`ev-${h.id}`}
-                  role="option"
-                  aria-selected={on}
-                  className={`row ev-grid${on ? ' on' : ''}${st.tone === 'bad' && !on ? ' badrow' : ''}${fresh.has(h.id) ? ' is-new' : ''}`}
-                  onClick={() => setPicked(h.id)}
+                <section
+                  key={g.page}
+                  aria-label={label}
+                  className={`pg${current ? ' is-cur' : ''}${open ? '' : ' is-closed'}`}
                 >
-                  <span className="mono tm" title={h.approx ? t('events.approx') : undefined}>
-                    {h.approx ? '≈ ' : ''}
-                    {fmtTime(h.time)}
-                  </span>
-                  <PlatformBadge platform={h.platform} />
-                  <span className="mono evn">{h.event}</span>
-                  <RouteChip hit={h} t={t} />
-                  <Pill tone={st.tone} icon={st.icon}>
-                    {st.label}
-                  </Pill>
-                </div>
+                  <PageHead
+                    audit={audit}
+                    group={g}
+                    current={current}
+                    open={open}
+                    bad={tones.filter((x) => x === 'bad').length}
+                    warn={tones.filter((x) => x === 'warn').length}
+                    onToggle={() => toggle(g.page)}
+                    t={t}
+                  />
+                  {live && newestFirst && <Listening t={t} />}
+                  {open && g.rows.length > 0 && (
+                    <div
+                      id={`pg-list-${g.page}`}
+                      role="listbox"
+                      aria-label={`${t('events.listLabel')}, ${label}`}
+                      tabIndex={0}
+                      aria-activedescendant={holds ? `ev-${selected.id}` : undefined}
+                      onKeyDown={onKey}
+                    >
+                      {g.rows.map((h) => {
+                        const st = status.get(h.id)!;
+                        const on = h === selected;
+                        return (
+                          <div
+                            key={h.id}
+                            id={`ev-${h.id}`}
+                            role="option"
+                            aria-selected={on}
+                            className={`row ev-grid${on ? ' on' : ''}${st.tone === 'bad' && !on ? ' badrow' : ''}${fresh.has(h.id) ? ' is-new' : ''}`}
+                            onClick={() => setPicked(h.id)}
+                          >
+                            <span
+                              className="mono tm"
+                              title={h.approx ? t('events.approx') : undefined}
+                            >
+                              {h.approx ? '≈ ' : ''}
+                              {fmtTime(h.time)}
+                            </span>
+                            <PlatformBadge platform={h.platform} />
+                            <span className="mono evn">{h.event}</span>
+                            <RouteChip hit={h} t={t} />
+                            <Pill tone={st.tone} icon={st.icon}>
+                              {st.label}
+                            </Pill>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                  {open && g.rows.length === 0 && !live && (
+                    <p className="pg-none">{t('page.none')}</p>
+                  )}
+                  {live && !newestFirst && <Listening t={t} />}
+                </section>
               );
             })}
           </div>

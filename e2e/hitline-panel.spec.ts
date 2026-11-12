@@ -109,7 +109,7 @@ test.describe('hitline panel', () => {
     await page.getByRole('button', { name: /Newest first/ }).click();
     await expect(page.getByRole('option').first()).toContainText('page_view');
     await page.getByRole('option').first().click();
-    await page.getByRole('listbox').focus();
+    await page.getByRole('listbox').first().focus();
     await page.keyboard.press('ArrowDown');
     await expect(page.getByRole('option', { selected: true })).toContainText('PageView');
     await expect(page.locator('.ev-detail .code')).toContainText('facebook.com/tr/');

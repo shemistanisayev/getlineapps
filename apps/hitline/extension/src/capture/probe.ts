@@ -138,6 +138,8 @@ export function probeExpression(idx: ProbeIndex): string {
     href: location.href,
     referrer: document.referrer,
     timeOrigin: performance.timeOrigin,
+    readyState: document.readyState,
+    loadedAt: Math.round((performance.getEntriesByType('navigation')[0] || {}).loadEventEnd || 0),
     now: Date.now(),
     length: dl.length,
     timed: dl.timed,
@@ -163,6 +165,9 @@ export interface ProbeResult {
   href: string;
   referrer?: string;
   timeOrigin: number;
+  /** document.readyState and loadEventEnd (ms after timeOrigin, 0 while loading). */
+  readyState?: string;
+  loadedAt?: number;
   now: number;
   length: number;
   timed: boolean;

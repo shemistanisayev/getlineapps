@@ -71,6 +71,15 @@ export function gtmIdOf(url: string): string | null {
   return m ? m[1]!.toUpperCase() : null;
 }
 
+/** When the inspected page finished loading (ms epoch), null while it loads. */
+export function loadedAt(r: ProbeResult, prev: number | null): number | null {
+  if (r.readyState === undefined) return prev ?? r.now;
+  if (r.readyState !== 'complete') return null;
+  if (r.loadedAt) return Math.round(r.timeOrigin + r.loadedAt);
+  // "complete" but the load event is still running: count from now, keep the first time seen.
+  return prev ?? r.now;
+}
+
 export interface SourceOptions {
   /** Own domains from Settings: navigating between them never starts a new session. */
   ownDomains?: () => string[];
@@ -109,6 +118,7 @@ export class DevtoolsSource {
     const time = Date.now();
     this.pendingNav = { time, url };
     this.store.addNavigation({ time, url });
+    this.store.setLoadedAt(null);
     this.idx = { ...FRESH_INDEX };
     this.firstLook = true;
   };
@@ -221,6 +231,7 @@ export class DevtoolsSource {
       if (r.gtm.some((id) => !this.store.hasGtmScript(id))) this.readContainers(false);
       this.firstLook = false;
       this.idx = nextIndex(this.idx, r);
+      this.store.setLoadedAt(loadedAt(r, this.store.status.loadedAt));
       this.store.setReady('poll');
     });
   }

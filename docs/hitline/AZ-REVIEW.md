@@ -691,3 +691,27 @@ Landing (`apps/site/src/content/hitline/az.json`):
 | `faq[6].a` | The popup works without it and updates itself while open. For the full event stream, open DevTools and the Hitline tab, then reload the page once. Chrome does not let extensions open DevTools, so the popup shows the shortcut and DevTools opens on the event you clicked. | Popup onsuz da işləyir və açıq qaldıqca özü yenilənir. Tam event axını üçün DevTools-u və Hitline tabını aç, sonra səhifəni bir dəfə yenilə. Chrome extension-ların DevTools açmasına icazə vermir, ona görə popup qısayolu göstərir və DevTools kliklədiyin eventdə açılır. |
 
 Privacy səhifəsi (`apps/site/src/content/privacy/hitline.az.json`): "reads", "stores" və "notes" siyahıları yeniləndi (digər data layer-lər, popup-ın 2 saniyədən bir oxuması, öz platformalar, "DevTools-da göstər" qeydi, dataLayer taymeri).
+
+## 1.1: yükləmə vəziyyəti və səhifə kartları (2026-11-12)
+
+| Açar | English | Azərbaycanca |
+|---|---|---|
+| `scan.opened` | Page opened | Səhifə açıldı |
+| `scan.opening` | Opening the page | Səhifə açılır |
+| `scan.pageLoading` | Page is loading | Səhifə yüklənir |
+| `scan.pageLoaded` | Page loaded | Səhifə yükləndi |
+| `scan.har` | Reading requests sent before DevTools opened | DevTools açılmamışdan əvvəlki sorğular oxunur |
+| `scan.harDone` | Earlier requests read | Əvvəlki sorğular oxundu |
+| `scan.waiting` | Waiting for tags and events | Tag və eventlər gözlənilir |
+| `scan.waitingS` | {n} s | {n} san |
+| `scan.label` | Hitline is reading {host} | Hitline {host} saytını oxuyur |
+| `popup.empty.waited` | Checked for {n} seconds after the page loaded | Səhifə yükləndikdən sonra {n} saniyə yoxlandı |
+| `popup.listening` | Listening for new events | Yeni eventlər gözlənilir |
+| `popup.stillListening` | Still listening. If a tag fires later, it shows up here | Dinləməyə davam edir. Tag sonra işə düşsə, burada görünəcək |
+| `page.n` | Page {n} | Səhifə {n} |
+| `page.current` | Current page | Cari səhifə |
+| `page.events` / `page.event` | {n} events / 1 event | {n} event / 1 event |
+| `page.issues` / `page.issue` | {n} issues / 1 issue | {n} problem / 1 problem |
+| `page.noIssues` | No issues | Problem yoxdur |
+| `page.none` | No events on this page | Bu səhifədə event yoxdur |
+| `page.listening` | Listening for new events | Yeni eventlər gözlənilir |

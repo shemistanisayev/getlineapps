@@ -2,6 +2,8 @@ import { Logo } from '@line/ui';
 import { hostOf } from '@line/core/hitline';
 import { useEffect, useState } from 'react';
 import { inspectedTabId, useCapture } from '../../src/capture/useCapture.ts';
+import { waitLeft } from '../../src/capture/session.ts';
+import { useTick } from '../../src/Scan.tsx';
 import { downloadReport } from '../../src/pdf.ts';
 import { hitlineReport } from '../../src/report.ts';
 import { takeFocus, type Focus } from '../../src/storage.ts';
@@ -53,6 +55,9 @@ export function Panel() {
     plan: counts.plan > 0,
   };
   const current = hostOf(audit.currentUrl);
+  // "Nothing recorded" only once the page has loaded and its tags had time to fire.
+  const now = useTick(empty && !status.paused);
+  const scanning = empty && !status.paused && waitLeft(status, now) > 0;
 
   const onKey = (e: React.KeyboardEvent, i: number) => {
     const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
@@ -152,8 +157,8 @@ export function Panel() {
       <main className="pane" id={`pane-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
         {tab === 'plan' ? (
           <PlanTab audit={audit} plan={plan} onSave={savePlan} onRemove={removePlan} />
-        ) : empty && !status.ready ? (
-          <Loading host={current} />
+        ) : scanning ? (
+          <Loading host={current} status={status} now={now} />
         ) : empty ? (
           <EmptyState
             host={current}
@@ -162,7 +167,12 @@ export function Panel() {
             onPlan={() => setTab('plan')}
           />
         ) : tab === 'events' ? (
-          <EventsTab key={focus?.at ?? 'events'} audit={audit} focus={focus} />
+          <EventsTab
+            key={focus?.at ?? 'events'}
+            audit={audit}
+            focus={focus}
+            listening={!status.paused}
+          />
         ) : tab === 'gtm' ? (
           <GtmTab audit={audit} onReload={reload} />
         ) : tab === 'consent' ? (

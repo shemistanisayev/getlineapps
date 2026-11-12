@@ -94,6 +94,7 @@ const ICON = {
     </>
   ),
   dash: <path d="M7 12h10" />,
+  chevron: <path d="M6 9l6 6 6-6" />,
   x: <path d="M7 7l10 10M17 7L7 17" />,
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   click: (

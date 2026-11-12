@@ -1,4 +1,6 @@
 import { PLATFORM_LIST, SUPPORTED_COUNT } from '@line/core/hitline';
+import { GRACE_MS, waitLeft, type CaptureStatus } from '../../src/capture/session.ts';
+import { ScanSteps, Skeleton, type ScanStep } from '../../src/Scan.tsx';
 import { useT } from '../../src/useLang.ts';
 import { Icon, PlatformBadge } from '../../src/ui.tsx';
 
@@ -7,13 +9,63 @@ const isMac = typeof navigator !== 'undefined' && /Mac/i.test(navigator.platform
 /** A sample of what Hitline reads, one per group, shown on the first-open screen. */
 const SHOWN = ['ga4', 'ads', 'meta', 'tiktok', 'linkedin', 'hotjar', 'amplitude', 'gtm'];
 
-/** While the HAR backfill and the first page read run (under a second). */
-export function Loading({ host }: { host: string }) {
+/**
+ * Until the first event or the end of the wait after the page loads: what Hitline is doing,
+ * with skeleton rows where the events will land.
+ */
+export function Loading({
+  host,
+  status,
+  now,
+}: {
+  host: string;
+  status: CaptureStatus;
+  now: number;
+}) {
   const { t } = useT();
+  const loaded = status.loadedAt !== null;
+  const left = Math.min(GRACE_MS, waitLeft(status, now));
+  const steps: ScanStep[] = [
+    {
+      label: status.harDone ? t('scan.harDone') : t('scan.har'),
+      state: status.harDone ? 'done' : 'busy',
+    },
+    {
+      label: loaded ? t('scan.pageLoaded') : t('scan.pageLoading'),
+      state: loaded ? 'done' : 'busy',
+    },
+    {
+      label: t('scan.waiting'),
+      state: loaded ? 'busy' : 'wait',
+      end: t('scan.waitingS', { n: Math.ceil(left / 1000) }),
+    },
+  ];
   return (
-    <div className="loading-state" role="status" aria-live="polite">
-      <span className="spinner" aria-hidden="true" />
-      <span>{host ? t('panel.loading.host', { host }) : t('panel.loading')}</span>
+    <div className="loading-state">
+      <ScanSteps
+        className="scan-row"
+        steps={steps}
+        progress={loaded && status.ready ? 1 - left / GRACE_MS : null}
+        label={host ? t('panel.loading.host', { host }) : t('panel.loading')}
+      />
+      <div className="sk-table" aria-hidden="true">
+        <div className="th ev-grid">
+          <span>{t('events.th.time')}</span>
+          <span>{t('events.th.platform')}</span>
+          <span>{t('events.th.event')}</span>
+          <span>{t('events.th.route')}</span>
+          <span>{t('events.th.status')}</span>
+        </div>
+        {[62, 48, 70, 54].map((w, i) => (
+          <div key={i} className="row ev-grid">
+            <Skeleton w={56} h={12} />
+            <Skeleton w={i % 2 ? 64 : 80} h={20} r={6} />
+            <Skeleton w={`${w}%`} h={12} />
+            <Skeleton w={58} h={20} r={99} />
+            <Skeleton w={i % 2 ? 76 : 92} h={20} r={99} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

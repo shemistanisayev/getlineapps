@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { DevtoolsSource, type DevtoolsLike, type HarEntryLike } from './devtools.ts';
 import { toSnapshot, type ProbeResult } from './probe.ts';
-import { SessionStore } from './session.ts';
+import { GRACE_MS, SessionStore, waitLeft } from './session.ts';
 
 function fakeDevtools(
   har: HarEntryLike[],
@@ -183,5 +183,25 @@ describe('capture', () => {
     src.setPaused(false);
     finished[0]!(entry('https://www.facebook.com/tr/?id=1&ev=Lead'));
     expect(store.session.requests).toHaveLength(1);
+  });
+
+  it('waits for the page to load plus the grace time before "nothing recorded"', () => {
+    const store = new SessionStore();
+    let page = probe({ readyState: 'loading', loadedAt: 0 });
+    const { api, navigated } = fakeDevtools([], () => page);
+    const src = new DevtoolsSource(store, api);
+    src.start();
+    expect(store.status.harDone).toBe(true);
+    expect(store.status.loadedAt).toBeNull();
+    expect(waitLeft(store.status)).toBe(Number.POSITIVE_INFINITY);
+    page = probe({ readyState: 'complete', loadedAt: 800 });
+    src.poll();
+    const at = Math.round(page.timeOrigin + 800);
+    expect(store.status.loadedAt).toBe(at);
+    expect(waitLeft(store.status, at + 1000)).toBe(GRACE_MS - 1000);
+    expect(waitLeft(store.status, at + GRACE_MS + 1)).toBe(0);
+    // A new page starts the wait again.
+    navigated[0]!('https://example.com/next');
+    expect(store.status.loadedAt).toBeNull();
   });
 });

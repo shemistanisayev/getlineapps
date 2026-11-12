@@ -32,3 +32,122 @@ button {
 .mono {
   font-family: var(--line-font-mono);
 }
+
+/* Reading the page: steps, bar, skeleton, listening dot (src/Scan.tsx) */
+.scan {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+}
+.scan-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #344054;
+}
+.scan-step.is-wait {
+  color: #667085;
+}
+.scan-step.is-done .scan-ic {
+  color: #067647;
+}
+.scan-t {
+  flex-grow: 1;
+}
+.scan-end {
+  color: #475467;
+}
+.scan-ic {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+.scan-spin {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #e9e5fb;
+  border-top-color: #7f56d9;
+  animation: hx-scan-spin 0.8s linear infinite;
+}
+.scan-ring {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid #98a2b3;
+}
+.scan-bar {
+  height: 4px;
+  border-radius: 4px;
+  background: #eeedf3;
+  overflow: hidden;
+}
+.scan-bar i {
+  display: block;
+  height: 100%;
+  background: #7f56d9;
+  border-radius: 4px;
+  transition: width 0.25s linear;
+}
+.scan-bar i.is-idle {
+  width: 30%;
+  animation: hx-scan-slide 1.2s ease-in-out infinite;
+}
+.sk {
+  display: block;
+  max-width: 100%;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #f2f1f7 0%, #e7e5f0 40%, #f2f1f7 80%);
+  background-size: 200% 100%;
+  animation: hx-shimmer 1.3s linear infinite;
+}
+.listen-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #7f56d9;
+  animation: hx-listen 1.6s ease-in-out infinite;
+}
+@keyframes hx-scan-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes hx-scan-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(340%);
+  }
+}
+@keyframes hx-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes hx-listen {
+  50% {
+    opacity: 0.3;
+    transform: scale(0.75);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scan-spin,
+  .scan-bar i.is-idle,
+  .sk,
+  .listen-dot {
+    animation: none;
+  }
+  .scan-bar i {
+    transition: none;
+  }
+}

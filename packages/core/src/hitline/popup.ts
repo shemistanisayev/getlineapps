@@ -29,6 +29,10 @@ export interface PopupProbe {
   globals?: string[];
   /** The browser keeps a limited list of requests (250 by default); later ones are not listed. */
   bufferFull?: boolean;
+  /** document.readyState when read. Missing in old probes and fixtures: treated as loaded. */
+  readyState?: string;
+  /** performance loadEventEnd (ms after timeOrigin), 0 while the page is still loading. */
+  loadedAt?: number;
 }
 
 export interface PopupSummary {

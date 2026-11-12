@@ -29,6 +29,19 @@ export interface CaptureStatus {
   reloaded: boolean;
   /** Time of the last new hit (for the "new events" indicators). */
   lastAdded: number;
+  /** Requests sent before the panel opened have been read. */
+  harDone: boolean;
+  /** When the current page finished loading (ms epoch), null while it is still loading. */
+  loadedAt: number | null;
+}
+
+/** After the page loads, tags get this long to fire before "nothing found" is shown. */
+export const GRACE_MS = 5000;
+
+/** Milliseconds left before "no events" is final (Infinity while the page is still loading). */
+export function waitLeft(s: Pick<CaptureStatus, 'ready' | 'loadedAt'>, now = Date.now()): number {
+  if (!s.ready || s.loadedAt === null) return Number.POSITIVE_INFINITY;
+  return Math.max(0, s.loadedAt + GRACE_MS - now);
 }
 
 export class SessionStore {
@@ -49,6 +62,8 @@ export class SessionStore {
     openedAfterLoad: false,
     reloaded: false,
     lastAdded: 0,
+    harDone: false,
+    loadedAt: null,
   };
   /** Custom rules and "Other" from Settings: decide what is kept. */
   options: ClassifyOptions = { other: true };
@@ -87,7 +102,13 @@ export class SessionStore {
   /** Ready once the HAR backfill and the first page read are both done. */
   setReady(part: 'har' | 'poll') {
     this.readyParts.add(part);
+    if (part === 'har' && !this.status.harDone) this.setStatus({ harDone: true });
     if (this.readyParts.size >= 2 && !this.status.ready) this.setStatus({ ready: true });
+  }
+
+  /** The page finished loading at `at` (ms epoch), or null: a new page is loading. */
+  setLoadedAt(at: number | null) {
+    this.setStatus({ loadedAt: at });
   }
 
   setPaused(paused: boolean) {
@@ -161,7 +182,7 @@ export class SessionStore {
       gtmScripts: [...(input.gtmScripts ?? [])],
     };
     this.seen = new Set(input.requests.map((r) => `${r.time}|${r.method}|${r.url}`));
-    this.status = { ...this.status, ready: true };
+    this.status = { ...this.status, ready: true, harDone: true, loadedAt: 0 };
     this.changed();
   }
 

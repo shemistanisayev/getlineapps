@@ -3,7 +3,6 @@ import type { Dictionary } from './en.ts';
 /** Azerbaijani copy. Written by the agent, listed in docs/hitline/AZ-REVIEW.md for the owner. */
 export const az: Dictionary = {
   'popup.settings': 'Ayarlar',
-  'popup.loading': 'Səhifə oxunur...',
   'popup.request': '{n} tracking sorğusu',
   'popup.requests': '{n} tracking sorğusu',
   'popup.sgtm.yes': 'Server-side GTM tapıldı',
@@ -494,4 +493,25 @@ export const az: Dictionary = {
   'report.setup.noConsent':
     'Qurulmayıb: Google tagləri ziyarətçinin seçimindən asılı olmayaraq tam hit göndərir',
   'report.setup.limitKey': 'Qeyd',
+  'scan.opened': 'Səhifə açıldı',
+  'scan.opening': 'Səhifə açılır',
+  'scan.pageLoading': 'Səhifə yüklənir',
+  'scan.pageLoaded': 'Səhifə yükləndi',
+  'scan.har': 'DevTools açılmamışdan əvvəlki sorğular oxunur',
+  'scan.harDone': 'Əvvəlki sorğular oxundu',
+  'scan.waiting': 'Tag və eventlər gözlənilir',
+  'scan.waitingS': '{n} san',
+  'scan.label': 'Hitline {host} saytını oxuyur',
+  'popup.empty.waited': 'Səhifə yükləndikdən sonra {n} saniyə yoxlandı',
+  'popup.listening': 'Yeni eventlər gözlənilir',
+  'popup.stillListening': 'Dinləməyə davam edir. Tag sonra işə düşsə, burada görünəcək',
+  'page.n': 'Səhifə {n}',
+  'page.current': 'Cari səhifə',
+  'page.events': '{n} event',
+  'page.event': '1 event',
+  'page.issues': '{n} problem',
+  'page.issue': '1 problem',
+  'page.noIssues': 'Problem yoxdur',
+  'page.none': 'Bu səhifədə event yoxdur',
+  'page.listening': 'Yeni eventlər gözlənilir',
 };

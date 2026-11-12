@@ -5,6 +5,7 @@ import {
   UNKNOWN_EVENT,
   type Hit,
   type Issue,
+  type PopupProbe,
   type PopupSummary,
 } from '@line/core/hitline';
 import { contactUrl } from '@line/core/site';
@@ -17,6 +18,7 @@ import { setFocus, type Focus } from '../../src/storage.ts';
 import type { Lang, T } from '../../src/i18n/index.ts';
 import { useT } from '../../src/useLang.ts';
 import { fmtTime, Icon, Pill, PlatformBadge, platformName } from '../../src/ui.tsx';
+import { ScanSteps, Skeleton, useTick, type ScanStep } from '../../src/Scan.tsx';
 import { Settings } from './Settings.tsx';
 
 const CTA = contactUrl({ source: 'hitline', medium: 'extension', campaign: 'panel_cta' });
@@ -25,6 +27,8 @@ const MAX_ISSUES = 3;
 const MAX_EVENTS = 8;
 /** The popup reads the page again this often while it is open. */
 const REFRESH_MS = 2000;
+/** After the page loads, tags get this long to fire before "no tracking" is shown. */
+const GRACE_MS = 5000;
 const isMac = typeof navigator !== 'undefined' && /Mac/i.test(navigator.platform);
 
 /** Tile names in the popup (design/hitline/Main.dc.html). */
@@ -219,7 +223,19 @@ function EventRow({
 }
 
 /** Popup Main: design/hitline/Main.dc.html, plus the recent events list (1.1). */
-function Main({ s, tabId, t, lang }: { s: PopupSummary; tabId?: number; t: T; lang: Lang }) {
+function Main({
+  s,
+  tabId,
+  live,
+  t,
+  lang,
+}: {
+  s: PopupSummary;
+  tabId?: number;
+  live: boolean;
+  t: T;
+  lang: Lang;
+}) {
   const [pdf, setPdf] = useState<'idle' | 'busy' | 'error'>('idle');
   const [allTiles, setAllTiles] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
@@ -336,6 +352,12 @@ function Main({ s, tabId, t, lang }: { s: PopupSummary; tabId?: number; t: T; la
               {t('popup.moreEvents', { n: s.events.length - MAX_EVENTS })}
             </span>
           )}
+          {live && (
+            <span className="plisten">
+              <span className="listen-dot" aria-hidden="true" />
+              {t('popup.listening')}
+            </span>
+          )}
         </div>
       )}
       {s.bufferFull && (
@@ -384,7 +406,17 @@ function Main({ s, tabId, t, lang }: { s: PopupSummary; tabId?: number; t: T; la
 }
 
 /** PopupEmpty: design/hitline/PopupEmpty.dc.html. */
-function NoTracking({ host, t }: { host: string; t: T }) {
+function NoTracking({
+  host,
+  waited,
+  live,
+  t,
+}: {
+  host: string;
+  waited: boolean;
+  live: boolean;
+  t: T;
+}) {
   return (
     <>
       <div className="blank">
@@ -405,7 +437,16 @@ function NoTracking({ host, t }: { host: string; t: T }) {
         </span>
         <span className="disp">{t('popup.empty.title')}</span>
         <span className="blank-t">{t('popup.empty.text', { host })}</span>
+        {waited && (
+          <span className="soft small">{t('popup.empty.waited', { n: GRACE_MS / 1000 })}</span>
+        )}
       </div>
+      {live && (
+        <p className="pnote">
+          <span className="listen-dot" aria-hidden="true" />
+          {t('popup.stillListening')}
+        </p>
+      )}
       <div className="checked">
         <span className="eyebrow">{t('popup.empty.checked')}</span>
         <div className="chips">
@@ -478,11 +519,56 @@ function Restricted({ moved, t }: { moved: boolean; t: T }) {
   );
 }
 
-function Loading({ t }: { t: T }) {
+/** When the page finished loading (ms epoch), null while it loads. Old probes count as loaded. */
+function loadedAtOf(p: PopupProbe | undefined, firstComplete: number | null): number | null {
+  if (!p) return null;
+  if (p.readyState === undefined) return 0;
+  if (p.readyState !== 'complete') return null;
+  if (p.loadedAt && p.timeOrigin) return Math.round(p.timeOrigin + p.loadedAt);
+  return firstComplete;
+}
+
+/** Until tracking shows up or the wait is over: what Hitline is doing, with skeleton tiles. */
+function Scanning({
+  read,
+  loadedAt,
+  now,
+  host,
+  t,
+}: {
+  read: boolean;
+  loadedAt: number | null;
+  now: number;
+  host: string;
+  t: T;
+}) {
+  const left = loadedAt === null ? GRACE_MS : Math.max(0, loadedAt + GRACE_MS - now);
+  const steps: ScanStep[] = [
+    { label: read ? t('scan.opened') : t('scan.opening'), state: read ? 'done' : 'busy' },
+    {
+      label: loadedAt === null ? t('scan.pageLoading') : t('scan.pageLoaded'),
+      state: !read ? 'wait' : loadedAt === null ? 'busy' : 'done',
+    },
+    {
+      label: t('scan.waiting'),
+      state: loadedAt === null ? 'wait' : 'busy',
+      end: t('scan.waitingS', { n: Math.ceil(left / 1000) }),
+    },
+  ];
   return (
-    <div className="loading" role="status" aria-live="polite">
-      <span className="spinner" aria-hidden="true" />
-      {t('popup.loading')}
+    <div className="scanning">
+      <ScanSteps
+        steps={steps}
+        progress={loadedAt === null ? null : 1 - left / GRACE_MS}
+        label={t('scan.label', { host })}
+      />
+      <Skeleton h={96} r={16} />
+      <div className="sk-tiles">
+        <Skeleton h={44} r={12} />
+        <Skeleton h={44} r={12} />
+        <Skeleton h={44} r={12} />
+        <Skeleton h={44} r={12} />
+      </div>
     </div>
   );
 }
@@ -494,6 +580,8 @@ export function Popup() {
   const [moved, setMoved] = useState(false);
   const [added, setAdded] = useState(0);
   const last = useRef<{ url: string; n: number } | null>(null);
+  /** First time this page was seen "complete" (used when it has no load time yet). */
+  const [complete, setComplete] = useState<{ url: string; at: number } | null>(null);
 
   const read = (initial = false) =>
     void loadProbe().then((next) => {
@@ -503,6 +591,10 @@ export function Popup() {
         if (prev && prev.url === next.probe.url && n > prev.n) setAdded(n - prev.n);
         else if (prev && prev.url !== next.probe.url) setAdded(0);
         last.current = { url: next.probe.url, n };
+        if (next.probe.readyState === 'complete') {
+          const at = Date.now();
+          setComplete((c) => (c?.url === next.probe.url ? c : { url: next.probe.url, at }));
+        }
         setMoved(false);
         setState(next);
       } else if (!initial && last.current) {
@@ -533,6 +625,22 @@ export function Popup() {
   );
   const url = state.kind === 'ready' ? state.probe.url : state.url;
   const host = summary?.host ?? (url ? hostOf(url) : '');
+  const probe = state.kind === 'ready' ? state.probe : undefined;
+  const loadedAt = loadedAtOf(probe, probe && complete?.url === probe.url ? complete.at : null);
+  // Ticks while nothing is found yet, so the wait can end on time.
+  const now = useTick((state.kind === 'loading' || Boolean(summary?.noTracking)) && !moved);
+  const scanning =
+    state.kind === 'loading' ||
+    (summary !== null && summary.noTracking && (loadedAt === null || loadedAt + GRACE_MS > now));
+  const live = state.kind === 'ready' && !moved && !window.__HITLINE_POPUP__;
+
+  // The wait just ended: read once more so "no tracking" uses the freshest look at the page.
+  const wasScanning = useRef(scanning);
+  useEffect(() => {
+    if (wasScanning.current && !scanning && state.kind === 'ready') read();
+    wasScanning.current = scanning;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scanning]);
 
   if (view === 'settings') {
     return (
@@ -547,22 +655,26 @@ export function Popup() {
       {state.kind !== 'restricted' && (
         <SiteBar
           url={url}
-          live={state.kind === 'ready' && !moved && !window.__HITLINE_POPUP__}
+          live={live}
           added={added}
           onRefresh={state.kind === 'ready' ? () => read() : undefined}
           t={t}
         />
       )}
-      {state.kind === 'loading' && <Loading t={t} />}
+      {scanning && !moved && (
+        <Scanning read={state.kind === 'ready'} loadedAt={loadedAt} now={now} host={host} t={t} />
+      )}
       {(state.kind === 'restricted' || moved) && <Restricted moved={moved} t={t} />}
       {summary &&
         !moved &&
+        !scanning &&
         (summary.noTracking ? (
-          <NoTracking host={host} t={t} />
+          <NoTracking host={host} waited={loadedAt !== 0} live={live} t={t} />
         ) : (
           <Main
             s={summary}
             tabId={state.kind === 'ready' ? state.tabId : undefined}
+            live={live}
             t={t}
             lang={lang}
           />
