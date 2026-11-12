@@ -800,3 +800,44 @@ Fayl: `apps/serpline/extension/src/i18n/az.ts`. Eyni olan sətirlər (məsələn
 | `sp.weightValue1` | {size}, 1 request | {size}, 1 sorğu |
 | `sp.img.count1` | 1 image | 1 şəkil |
 | `sp.noClicks` | No clicks yet | Hələ klik yoxdur |
+
+## Landing: Serpline 1.1 (2026-11-12)
+
+Fayl: `apps/site/src/content/serpline/az.json`. Tab adları (Speed) landingdəki digər tablar kimi ingiliscə qalır.
+
+| Açar | English | Azərbaycanca |
+|---|---|---|
+| `meta.description` | Free Chrome extension. Indexing, technical SEO, Core Web Vitals, JavaScript rendering and AI crawler checks for the page you are on, in one side panel. | Pulsuz Chrome extension. Açıq olan səhifə üçün indekslənmə, texniki SEO, Core Web Vitals, JavaScript render və AI crawler yoxlamaları bir yan paneldə. |
+| `hero.lead` | Indexing, technical SEO, Core Web Vitals and AI crawler checks for the page you are on, in one Chrome side panel | Açıq olan səhifə üçün indekslənmə, texniki SEO, Core Web Vitals və AI crawler yoxlamaları, hamısı bir Chrome yan panelində |
+| `features.title` | Six tabs, one side panel | Altı tab, bir yan panel |
+| `features.summary.title` | A score, an indexing verdict and a checklist the moment the panel opens | Panel açılan kimi skor, indekslənmə cavabı və yoxlama siyahısı |
+| `features.summary.lead` | Can Google index the page, then title, description, H1, alt text, structured data, Open Graph and hreflang, each with a clear status | Google səhifəni index edə bilərmi, sonra title, description, H1, alt mətn, strukturlaşdırılmış data, Open Graph və hreflang, hər biri aydın statusla |
+| `features.summary.bullets.0` | One score out of 100, weighted by priority | Prioritetə görə hesablanan 100 üzərindən bir skor |
+| `features.summary.bullets.1` | Structured data checked against Google rich result rules | Structured data Google-un rich result qaydaları ilə yoxlanılır |
+| `features.summary.bullets.2` | Google preview for desktop and mobile, plus an audit PDF | Desktop və mobil üçün Google önizləməsi, üstəlik audit PDF |
+| `features.summary.demo.index` | Can Google index it?: Yes | Google index edə bilərmi?: Bəli |
+| `features.summary.demo.rows.0` | Title: 32 characters | Title: 32 simvol |
+| `features.summary.demo.rows.1` | Meta description: Cut off in Google | Meta description: Google-da kəsilir |
+| `features.summary.demo.rows.2` | H1: Only after JavaScript | H1: Yalnız JavaScript-dən sonra |
+| `features.summary.demo.rows.3` | Product schema: Product snippet ready | Product schema: Product snippet üçün hazırdır |
+| `features.links.bullets.0` | 404s and redirect chains in one list | 404-lər və yönləndirmə zəncirləri bir siyahıda |
+| `features.links.bullets.1` | Vague anchors and links without text, highlighted on the page | Qeyri-müəyyən və mətnsiz linklər səhifənin üstündə göstərilir |
+| `features.links.bullets.2` | Only the site you are on is contacted | Yalnız açıq olduğun sayta sorğu gedir |
+| `features.speed.title` | Core Web Vitals, images and mobile, measured on the page | Core Web Vitals, şəkillər və mobil, birbaşa səhifədə ölçülür |
+| `features.speed.lead` | LCP, CLS and INP of your visit with Google thresholds, page weight, the server response and every image or tap target that slows the page down | Ziyarətinin LCP, CLS və INP göstəriciləri Google-un hədləri ilə, səhifənin çəkisi, server cavabı və səhifəni yavaşladan hər şəkil və toxunma hədəfi |
+| `features.speed.bullets.0` | Heavy, oversized, lazy and unsized images by file name | Ağır, böyük, lazy və ölçüsüz şəkillər fayl adı ilə |
+| `features.speed.bullets.1` | Mobile checks for the viewport, sideways scroll, small text and tap targets | Viewport, yana sürüşmə, kiçik mətn və toxunma hədəfləri üçün mobil yoxlamalar |
+| `features.speed.bullets.2` | The LCP element highlighted right on the page | LCP elementi birbaşa səhifədə göstərilir |
+| `features.speed.demo.vitals.0` | LCP Needs work | LCP Yaxşılaşmalı |
+| `features.speed.demo.vitals.1` | CLS Good | CLS Yaxşı |
+| `features.speed.demo.vitals.2` | INP Good | INP Yaxşı |
+| `features.speed.demo.rows.0` | Over 200 KB: 2 images | 200 KB-dan çox: 2 şəkil |
+| `features.speed.demo.rows.1` | Bigger than shown: 4 images | Göstəriləndən böyük: 4 şəkil |
+| `features.speed.demo.rows.3` | Compression: brotli | Sıxılma: brotli |
+| `features.ai.bullets.0` | The exact robots.txt line behind every block | Hər bloklamanın arxasındakı dəqiq robots.txt sətri |
+| `features.ai.bullets.1` | What AI crawlers see: the share of text, the heading and the schema they can read | AI crawlerlər nə görür: mətnin hansı hissəsini, başlığı və schema-nı oxuya bilirlər |
+| `features.ai.demo.seen` | Text AI crawlers see | AI crawlerlərin gördüyü mətn |
+| `faq.items.3.q` | Does it crawl my whole site? | Bütün saytımı crawl edir? |
+| `faq.items.3.a` | No. It checks the open page, the site’s robots.txt, llms.txt and sitemap, and the status of the internal links on that page. | Xeyr. Açıq səhifəni, saytın robots.txt, llms.txt və sitemap fayllarını və həmin səhifədəki daxili linklərin statusunu yoxlayır. |
+| `faq.items.4.q` | Does it measure page speed? | Səhifənin sürətini ölçür? |
+| `faq.items.4.a` | Yes. The Speed tab shows the Core Web Vitals of your visit (LCP, CLS and INP), the page weight, the server response, image problems and mobile layout checks. The numbers come from your own browser, so real visitors on slower phones may see higher ones. | Bəli. Speed tabı ziyarətinin Core Web Vitals göstəricilərini (LCP, CLS və INP), səhifənin çəkisini, server cavabını, şəkil problemlərini və mobil yoxlamaları göstərir. Rəqəmlər sənin brauzerindən gəlir, ona görə zəif telefonlu real ziyarətçilərdə daha yüksək ola bilər. |

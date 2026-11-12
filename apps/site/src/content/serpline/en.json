@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Serpline: Free SEO Checker for Google, ChatGPT & More",
-    "description": "Free Chrome extension. Technical SEO checks, JavaScript rendering, a Google preview and AI crawler access for the page you are on, in one side panel.",
+    "description": "Free Chrome extension. Indexing, technical SEO, Core Web Vitals, JavaScript rendering and AI crawler checks for the page you are on, in one side panel.",
     "ogAlt": "Serpline: see your page the way Google and AI do."
   },
   "nav": {
@@ -24,7 +24,7 @@
     "titleStart": "See your page the way",
     "titleHighlight": "Google and AI",
     "titleEnd": "do",
-    "lead": "Technical SEO checks, JavaScript rendering and AI crawler access for the page you are on, in one Chrome side panel",
+    "lead": "Indexing, technical SEO, Core Web Vitals and AI crawler checks for the page you are on, in one Chrome side panel",
     "secondary": "Try the SERP preview",
     "trustLabel": "Serpline is",
     "trust": ["No account", "Nothing leaves your browser", "Open source"],
@@ -36,14 +36,46 @@
       "label": "Needs work",
       "issues": "10 issues found",
       "rows": [
-        { "label": "Title", "status": "Fits", "tone": "ok" },
-        { "label": "Description", "status": "Cut off", "tone": "warn" },
-        { "label": "Canonical", "status": "This page", "tone": "ok" },
-        { "label": "H1", "status": "JS only", "tone": "bad" },
-        { "label": "Alt text", "status": "3 missing", "tone": "warn" },
-        { "label": "Schema", "status": "JS only", "tone": "warn" },
-        { "label": "GPTBot", "status": "Allowed", "tone": "ok" },
-        { "label": "PerplexityBot", "status": "Blocked", "tone": "bad" }
+        {
+          "label": "Title",
+          "status": "Fits",
+          "tone": "ok"
+        },
+        {
+          "label": "Description",
+          "status": "Cut off",
+          "tone": "warn"
+        },
+        {
+          "label": "Canonical",
+          "status": "This page",
+          "tone": "ok"
+        },
+        {
+          "label": "H1",
+          "status": "JS only",
+          "tone": "bad"
+        },
+        {
+          "label": "Alt text",
+          "status": "3 missing",
+          "tone": "warn"
+        },
+        {
+          "label": "Schema",
+          "status": "JS only",
+          "tone": "warn"
+        },
+        {
+          "label": "GPTBot",
+          "status": "Allowed",
+          "tone": "ok"
+        },
+        {
+          "label": "PerplexityBot",
+          "status": "Blocked",
+          "tone": "bad"
+        }
       ]
     },
     "serp": {
@@ -52,30 +84,112 @@
       "desc": "Active noise cancelling, 30-hour battery and fast charging",
       "note": "Description cut after 107 characters"
     },
-    "toast": { "value": "91%", "line1": "of the text needs", "line2": "JavaScript" }
+    "toast": {
+      "value": "91%",
+      "line1": "of the text needs",
+      "line2": "JavaScript"
+    }
   },
   "marquee": {
     "title": "Checks what search engines and AI crawlers see",
     "items": [
-      { "mark": "google", "label": "Google preview" },
-      { "mark": "openai", "label": "GPTBot" },
-      { "mark": "openai", "label": "OAI-SearchBot" },
-      { "mark": "openai", "label": "ChatGPT-User" },
-      { "mark": "anthropic", "label": "ClaudeBot" },
-      { "mark": "anthropic", "label": "Claude-SearchBot" },
-      { "mark": "perplexity", "label": "PerplexityBot" },
-      { "mark": "google", "label": "Google-Extended" },
-      { "mark": "apple", "label": "Applebot-Extended" },
-      { "mark": "bytedance", "label": "Bytespider" },
-      { "mark": "meta", "label": "Meta-ExternalAgent" },
-      { "mark": "bot", "label": "CCBot" },
-      { "mark": "file", "label": "robots.txt", "code": true },
-      { "mark": "file", "label": "llms.txt", "code": true },
-      { "mark": "link", "label": "rel=canonical", "code": true },
-      { "mark": "eye", "label": "Meta robots" },
-      { "mark": "globe", "label": "hreflang", "code": true },
-      { "mark": "braces", "label": "JSON-LD" },
-      { "mark": "share", "label": "Open Graph" }
+      {
+        "mark": "google",
+        "label": "Google preview"
+      },
+      {
+        "mark": "google",
+        "label": "Googlebot"
+      },
+      {
+        "mark": "eye",
+        "label": "Core Web Vitals"
+      },
+      {
+        "mark": "file",
+        "label": "sitemap.xml",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "Rich results"
+      },
+      {
+        "mark": "openai",
+        "label": "GPTBot"
+      },
+      {
+        "mark": "openai",
+        "label": "OAI-SearchBot"
+      },
+      {
+        "mark": "openai",
+        "label": "ChatGPT-User"
+      },
+      {
+        "mark": "anthropic",
+        "label": "ClaudeBot"
+      },
+      {
+        "mark": "anthropic",
+        "label": "Claude-SearchBot"
+      },
+      {
+        "mark": "perplexity",
+        "label": "PerplexityBot"
+      },
+      {
+        "mark": "google",
+        "label": "Google-Extended"
+      },
+      {
+        "mark": "apple",
+        "label": "Applebot-Extended"
+      },
+      {
+        "mark": "bytedance",
+        "label": "Bytespider"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta-ExternalAgent"
+      },
+      {
+        "mark": "bot",
+        "label": "CCBot"
+      },
+      {
+        "mark": "file",
+        "label": "robots.txt",
+        "code": true
+      },
+      {
+        "mark": "file",
+        "label": "llms.txt",
+        "code": true
+      },
+      {
+        "mark": "link",
+        "label": "rel=canonical",
+        "code": true
+      },
+      {
+        "mark": "eye",
+        "label": "Meta robots"
+      },
+      {
+        "mark": "globe",
+        "label": "hreflang",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "JSON-LD"
+      },
+      {
+        "mark": "share",
+        "label": "Open Graph"
+      }
     ]
   },
   "problem": {
@@ -135,28 +249,49 @@
   },
   "features": {
     "eyebrow": "Inside the side panel",
-    "title": "Five tabs, one side panel",
+    "title": "Six tabs, one side panel",
     "tabsLabel": "Serpline tabs",
     "summary": {
       "label": "Summary",
-      "title": "A score and a checklist the moment the panel opens",
-      "lead": "Title, description, canonical, robots, H1, alt text, structured data and Open Graph, each with a clear status",
+      "title": "A score, an indexing verdict and a checklist the moment the panel opens",
+      "lead": "Can Google index the page, then title, description, H1, alt text, structured data, Open Graph and hreflang, each with a clear status",
       "bullets": [
         "One score out of 100, weighted by priority",
-        "Google preview for desktop and mobile",
-        "Audit PDF with every issue and its fix"
+        "Structured data checked against Google rich result rules",
+        "Google preview for desktop and mobile, plus an audit PDF"
       ],
       "demo": {
         "scoreAria": "SEO score 56",
         "label": "SEO score: needs work",
         "counts": "2 high, 6 medium, 2 low",
         "rows": [
-          { "label": "Title", "status": "32 characters", "tone": "ok" },
-          { "label": "Meta description", "status": "Cut off in Google", "tone": "warn" },
-          { "label": "Canonical", "status": "Points to this page", "tone": "ok" },
-          { "label": "H1", "status": "Only after JavaScript", "tone": "bad", "hl": true },
-          { "label": "Open Graph", "status": "og:description missing", "tone": "warn" }
-        ]
+          {
+            "label": "Title",
+            "status": "32 characters",
+            "tone": "ok"
+          },
+          {
+            "label": "Meta description",
+            "status": "Cut off in Google",
+            "tone": "warn"
+          },
+          {
+            "label": "H1",
+            "status": "Only after JavaScript",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Product schema",
+            "status": "Product snippet ready",
+            "tone": "ok"
+          }
+        ],
+        "index": {
+          "label": "Can Google index it?",
+          "status": "Yes",
+          "tone": "ok"
+        }
       }
     },
     "headings": {
@@ -175,11 +310,29 @@
             "status": "JavaScript only",
             "tone": "bad"
           },
-          { "level": 2, "text": "Product details" },
-          { "level": 3, "text": "Noise cancelling" },
-          { "level": 2, "text": "Specifications" },
-          { "level": 4, "text": "Bluetooth 5.3", "status": "Skips H3", "tone": "warn", "hl": true },
-          { "level": 2, "text": "Reviews (128)" }
+          {
+            "level": 2,
+            "text": "Product details"
+          },
+          {
+            "level": 3,
+            "text": "Noise cancelling"
+          },
+          {
+            "level": 2,
+            "text": "Specifications"
+          },
+          {
+            "level": 4,
+            "text": "Bluetooth 5.3",
+            "status": "Skips H3",
+            "tone": "warn",
+            "hl": true
+          },
+          {
+            "level": 2,
+            "text": "Reviews (128)"
+          }
         ]
       }
     },
@@ -187,7 +340,11 @@
       "label": "Links",
       "title": "Broken and redirected links, found from the page itself",
       "lead": "Internal, external and nofollow links with anchor text. Internal links get a real status check from your browser",
-      "bullets": ["404s and redirect chains in one list", "Only the site you are on is contacted"],
+      "bullets": [
+        "404s and redirect chains in one list",
+        "Vague anchors and links without text, highlighted on the page",
+        "Only the site you are on is contacted"
+      ],
       "demo": {
         "internal": "internal",
         "external": "external",
@@ -231,18 +388,83 @@
         "words": "374 words"
       }
     },
+    "speed": {
+      "label": "Speed",
+      "title": "Core Web Vitals, images and mobile, measured on the page",
+      "lead": "LCP, CLS and INP of your visit with Google thresholds, page weight, the server response and every image or tap target that slows the page down",
+      "bullets": [
+        "Heavy, oversized, lazy and unsized images by file name",
+        "Mobile checks for the viewport, sideways scroll, small text and tap targets",
+        "The LCP element highlighted right on the page"
+      ],
+      "demo": {
+        "vitals": [
+          {
+            "k": "LCP",
+            "value": "2.9 s",
+            "status": "Needs work",
+            "tone": "warn"
+          },
+          {
+            "k": "CLS",
+            "value": "0.02",
+            "status": "Good",
+            "tone": "ok"
+          },
+          {
+            "k": "INP",
+            "value": "120 ms",
+            "status": "Good",
+            "tone": "ok"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Over 200 KB",
+            "status": "2 images",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Bigger than shown",
+            "status": "4 images",
+            "tone": "warn"
+          },
+          {
+            "label": "Viewport meta",
+            "status": "width=device-width",
+            "tone": "ok"
+          },
+          {
+            "label": "Compression",
+            "status": "brotli",
+            "tone": "ok"
+          }
+        ]
+      }
+    },
     "ai": {
       "label": "AI",
       "title": "Which AI crawlers can read the site, and what they see",
       "lead": "Rules for GPTBot, ClaudeBot, PerplexityBot, Google-Extended and more from robots.txt, split into search bots and training bots, plus llms.txt",
       "bullets": [
         "The exact robots.txt line behind every block",
-        "How much of the page a crawler without JavaScript reads"
+        "What AI crawlers see: the share of text, the heading and the schema they can read"
       ],
       "demo": {
         "rows": [
-          { "mark": "openai", "label": "GPTBot", "status": "Allowed", "tone": "ok" },
-          { "mark": "anthropic", "label": "ClaudeBot", "status": "Allowed", "tone": "ok" },
+          {
+            "mark": "openai",
+            "label": "GPTBot",
+            "status": "Allowed",
+            "tone": "ok"
+          },
+          {
+            "mark": "anthropic",
+            "label": "ClaudeBot",
+            "status": "Allowed",
+            "tone": "ok"
+          },
           {
             "mark": "perplexity",
             "label": "PerplexityBot",
@@ -250,11 +472,26 @@
             "tone": "bad",
             "hl": true
           },
-          { "mark": "google", "label": "Google-Extended", "status": "Allowed", "tone": "ok" },
-          { "mark": "commoncrawl", "label": "CCBot", "status": "Blocked", "tone": "bad" }
+          {
+            "mark": "google",
+            "label": "Google-Extended",
+            "status": "Allowed",
+            "tone": "ok"
+          },
+          {
+            "mark": "commoncrawl",
+            "label": "CCBot",
+            "status": "Blocked",
+            "tone": "bad"
+          }
         ],
         "llms": "llms.txt",
-        "llmsStatus": "Not found"
+        "llmsStatus": "Not found",
+        "seen": {
+          "label": "Text AI crawlers see",
+          "status": "9%",
+          "tone": "bad"
+        }
       }
     }
   },
@@ -363,7 +600,11 @@
       },
       {
         "q": "Does it crawl my whole site?",
-        "a": "No. It checks the open page, the site's robots.txt and llms.txt, and the status of internal links on that page."
+        "a": "No. It checks the open page, the site’s robots.txt, llms.txt and sitemap, and the status of the internal links on that page."
+      },
+      {
+        "q": "Does it measure page speed?",
+        "a": "Yes. The Speed tab shows the Core Web Vitals of your visit (LCP, CLS and INP), the page weight, the server response, image problems and mobile layout checks. The numbers come from your own browser, so real visitors on slower phones may see higher ones."
       },
       {
         "q": "Does it send my pages anywhere?",

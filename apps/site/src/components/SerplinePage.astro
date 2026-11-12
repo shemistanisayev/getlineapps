@@ -72,6 +72,7 @@ const tabs = [
   { id: 'he', tab: f.headings },
   { id: 'li', tab: f.links },
   { id: 're', tab: f.render },
+  { id: 'sp', tab: f.speed },
   { id: 'ai', tab: f.ai },
 ] as const;
 
@@ -834,6 +835,25 @@ const indent = (level: number) => (level === 1 ? 16 : 16 + (level - 1) * 18);
                           <span style="font-size:12px">{f.summary.demo.counts}</span>
                         </span>
                       </div>
+                      <div class="prow ixrow">
+                        <span class="grow" style="font-weight:600">
+                          {f.summary.demo.index.label}
+                        </span>
+                        <span class={`pill ${f.summary.demo.index.tone}`}>
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            set:html={toneIcon(f.summary.demo.index.tone)}
+                          />
+                          {f.summary.demo.index.status}
+                        </span>
+                      </div>
                       {f.summary.demo.rows.map((r) => (
                         <div class:list={['prow', { hlrow: r.hl }]}>
                           <span class="grow">{r.label}</span>
@@ -986,13 +1006,74 @@ const indent = (level: number) => (level === 1 ? 16 : 16 + (level - 1) * 18);
                       </div>
                     </div>
                   )}
+                  {x.id === 'sp' && (
+                    <div class="pcard">
+                      <div class="tiles3 vitals">
+                        {f.speed.demo.vitals.map((v) => (
+                          <div>
+                            <div class="vk">{v.k}</div>
+                            <b class="disp">{v.value}</b>
+                            <span class={`pill ${v.tone}`}>
+                              <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                set:html={toneIcon(v.tone)}
+                              />
+                              {v.status}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                      {f.speed.demo.rows.map((r) => (
+                        <div class:list={['prow', { hlrow: r.hl }]}>
+                          <span class="grow">{r.label}</span>
+                          <span class={`pill ${r.tone}`}>
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="3"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              set:html={toneIcon(r.tone)}
+                            />
+                            {r.status}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   {x.id === 'ai' && (
                     <div class="pcard" style="padding-top:6px">
-                      {f.ai.demo.rows.map((r, i) => (
-                        <div
-                          class:list={['prow', { hlrow: r.hl }]}
-                          style={i === 0 ? 'border-top:none' : undefined}
-                        >
+                      <div class="prow ixrow" style="border-top:none">
+                        <span class="grow" style="font-weight:600">
+                          {f.ai.demo.seen.label}
+                        </span>
+                        <span class={`pill ${f.ai.demo.seen.tone}`}>
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            set:html={toneIcon(f.ai.demo.seen.tone, true)}
+                          />
+                          {f.ai.demo.seen.status}
+                        </span>
+                      </div>
+                      {f.ai.demo.rows.map((r) => (
+                        <div class:list={['prow', { hlrow: r.hl }]}>
                           <Mark name={r.mark} size={22} />
                           <span class="grow" style="font-weight:600">
                             {r.label}

@@ -1322,6 +1322,7 @@ body.sl-page {
 #tb-he:checked ~ .tbar-w label[for='tb-he'],
 #tb-li:checked ~ .tbar-w label[for='tb-li'],
 #tb-re:checked ~ .tbar-w label[for='tb-re'],
+#tb-sp:checked ~ .tbar-w label[for='tb-sp'],
 #tb-ai:checked ~ .tbar-w label[for='tb-ai'] {
   background: var(--night);
   color: #ffffff;
@@ -1330,6 +1331,7 @@ body.sl-page {
 #tb-he:focus-visible ~ .tbar-w label[for='tb-he'],
 #tb-li:focus-visible ~ .tbar-w label[for='tb-li'],
 #tb-re:focus-visible ~ .tbar-w label[for='tb-re'],
+#tb-sp:focus-visible ~ .tbar-w label[for='tb-sp'],
 #tb-ai:focus-visible ~ .tbar-w label[for='tb-ai'] {
   outline: 3px solid var(--p);
   outline-offset: 2px;
@@ -1338,6 +1340,7 @@ body.sl-page {
 #tb-he:checked ~ .panes .p-he,
 #tb-li:checked ~ .panes .p-li,
 #tb-re:checked ~ .panes .p-re,
+#tb-sp:checked ~ .panes .p-sp,
 #tb-ai:checked ~ .panes .p-ai {
   display: grid;
 }
@@ -1452,6 +1455,33 @@ body.sl-page {
 .lp .tiles3 .t-bad b,
 .lp .tiles3 .t-bad div {
   color: #b42318;
+}
+/* Speed tab demo (Serpline 1.1): Core Web Vitals tiles */
+.lp .tiles3.vitals > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+.lp .tiles3.vitals .vk {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #475467;
+}
+.lp .tiles3.vitals .pill {
+  max-width: 100%;
+  white-space: normal;
+  height: auto;
+  min-height: 22px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  line-height: 1.2;
+}
+/* "Can Google index it?" and "Text AI crawlers see" rows (Serpline 1.1) */
+.lp .ixrow {
+  background: #f7f6fb;
 }
 .lp .lrow {
   display: flex;

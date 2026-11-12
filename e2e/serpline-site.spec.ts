@@ -119,7 +119,7 @@ test.describe('serpline landing', () => {
     );
   });
 
-  test('the five feature tabs work with the keyboard', async ({ page }) => {
+  test('the six feature tabs work with the keyboard', async ({ page }) => {
     await page.goto(`${SITE}/serpline`);
     await expect(page.locator('.p-su')).toBeVisible();
     await page.locator('#tb-su').focus();
@@ -127,6 +127,10 @@ test.describe('serpline landing', () => {
     await expect(page.locator('#tb-he')).toBeChecked();
     await expect(page.locator('.p-he')).toBeVisible();
     await expect(page.locator('.p-su')).toBeHidden();
+    // Speed (Serpline 1.1) sits between Render and AI.
+    await page.locator('label[for="tb-sp"]').click();
+    await expect(page.locator('.p-sp')).toBeVisible();
+    await expect(page.locator('.p-sp').getByText('LCP', { exact: true })).toBeVisible();
     await page.locator('label[for="tb-ai"]').click();
     await expect(page.locator('.p-ai')).toBeVisible();
     await expect(page.locator('.p-ai').getByText('PerplexityBot', { exact: true })).toBeVisible();

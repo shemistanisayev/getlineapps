@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Serpline: Google, ChatGPT və s. üçün pulsuz SEO yoxlayıcı",
-    "description": "Pulsuz Chrome extension. Açıq olan səhifə üçün texniki SEO yoxlamaları, JavaScript render, Google önizləməsi və AI crawler girişi bir yan paneldə.",
+    "description": "Pulsuz Chrome extension. Açıq olan səhifə üçün indekslənmə, texniki SEO, Core Web Vitals, JavaScript render və AI crawler yoxlamaları bir yan paneldə.",
     "ogAlt": "Serpline: səhifəni Google və AI necə görürsə, elə gör."
   },
   "nav": {
@@ -24,7 +24,7 @@
     "titleStart": "Səhifəni",
     "titleHighlight": "Google və AI",
     "titleEnd": "necə görürsə, elə gör",
-    "lead": "Açıq olan səhifə üçün texniki SEO yoxlamaları, JavaScript render və AI crawler girişi, hamısı bir Chrome yan panelində",
+    "lead": "Açıq olan səhifə üçün indekslənmə, texniki SEO, Core Web Vitals və AI crawler yoxlamaları, hamısı bir Chrome yan panelində",
     "secondary": "SERP önizləməni yoxla",
     "trustLabel": "Serpline",
     "trust": ["Hesab lazım deyil", "Heç nə brauzerdən çıxmır", "Açıq mənbə"],
@@ -36,14 +36,46 @@
       "label": "Düzəliş lazımdır",
       "issues": "10 problem tapıldı",
       "rows": [
-        { "label": "Title", "status": "Sığır", "tone": "ok" },
-        { "label": "Description", "status": "Kəsilir", "tone": "warn" },
-        { "label": "Canonical", "status": "Bu səhifə", "tone": "ok" },
-        { "label": "H1", "status": "Yalnız JS", "tone": "bad" },
-        { "label": "Alt mətn", "status": "3 yoxdur", "tone": "warn" },
-        { "label": "Schema", "status": "Yalnız JS", "tone": "warn" },
-        { "label": "GPTBot", "status": "İcazə var", "tone": "ok" },
-        { "label": "PerplexityBot", "status": "Bloklanıb", "tone": "bad" }
+        {
+          "label": "Title",
+          "status": "Sığır",
+          "tone": "ok"
+        },
+        {
+          "label": "Description",
+          "status": "Kəsilir",
+          "tone": "warn"
+        },
+        {
+          "label": "Canonical",
+          "status": "Bu səhifə",
+          "tone": "ok"
+        },
+        {
+          "label": "H1",
+          "status": "Yalnız JS",
+          "tone": "bad"
+        },
+        {
+          "label": "Alt mətn",
+          "status": "3 yoxdur",
+          "tone": "warn"
+        },
+        {
+          "label": "Schema",
+          "status": "Yalnız JS",
+          "tone": "warn"
+        },
+        {
+          "label": "GPTBot",
+          "status": "İcazə var",
+          "tone": "ok"
+        },
+        {
+          "label": "PerplexityBot",
+          "status": "Bloklanıb",
+          "tone": "bad"
+        }
       ]
     },
     "serp": {
@@ -52,30 +84,112 @@
       "desc": "Active noise cancelling, 30-hour battery and fast charging",
       "note": "Description 107 simvoldan sonra kəsilir"
     },
-    "toast": { "value": "91%", "line1": "mətn JavaScript-dən", "line2": "asılıdır" }
+    "toast": {
+      "value": "91%",
+      "line1": "mətn JavaScript-dən",
+      "line2": "asılıdır"
+    }
   },
   "marquee": {
     "title": "Axtarış sistemlərinin və AI crawler-lərin nə gördüyünü yoxlayır",
     "items": [
-      { "mark": "google", "label": "Google önizləmə" },
-      { "mark": "openai", "label": "GPTBot" },
-      { "mark": "openai", "label": "OAI-SearchBot" },
-      { "mark": "openai", "label": "ChatGPT-User" },
-      { "mark": "anthropic", "label": "ClaudeBot" },
-      { "mark": "anthropic", "label": "Claude-SearchBot" },
-      { "mark": "perplexity", "label": "PerplexityBot" },
-      { "mark": "google", "label": "Google-Extended" },
-      { "mark": "apple", "label": "Applebot-Extended" },
-      { "mark": "bytedance", "label": "Bytespider" },
-      { "mark": "meta", "label": "Meta-ExternalAgent" },
-      { "mark": "bot", "label": "CCBot" },
-      { "mark": "file", "label": "robots.txt", "code": true },
-      { "mark": "file", "label": "llms.txt", "code": true },
-      { "mark": "link", "label": "rel=canonical", "code": true },
-      { "mark": "eye", "label": "Meta robots" },
-      { "mark": "globe", "label": "hreflang", "code": true },
-      { "mark": "braces", "label": "JSON-LD" },
-      { "mark": "share", "label": "Open Graph" }
+      {
+        "mark": "google",
+        "label": "Google önizləmə"
+      },
+      {
+        "mark": "google",
+        "label": "Googlebot"
+      },
+      {
+        "mark": "eye",
+        "label": "Core Web Vitals"
+      },
+      {
+        "mark": "file",
+        "label": "sitemap.xml",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "Rich results"
+      },
+      {
+        "mark": "openai",
+        "label": "GPTBot"
+      },
+      {
+        "mark": "openai",
+        "label": "OAI-SearchBot"
+      },
+      {
+        "mark": "openai",
+        "label": "ChatGPT-User"
+      },
+      {
+        "mark": "anthropic",
+        "label": "ClaudeBot"
+      },
+      {
+        "mark": "anthropic",
+        "label": "Claude-SearchBot"
+      },
+      {
+        "mark": "perplexity",
+        "label": "PerplexityBot"
+      },
+      {
+        "mark": "google",
+        "label": "Google-Extended"
+      },
+      {
+        "mark": "apple",
+        "label": "Applebot-Extended"
+      },
+      {
+        "mark": "bytedance",
+        "label": "Bytespider"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta-ExternalAgent"
+      },
+      {
+        "mark": "bot",
+        "label": "CCBot"
+      },
+      {
+        "mark": "file",
+        "label": "robots.txt",
+        "code": true
+      },
+      {
+        "mark": "file",
+        "label": "llms.txt",
+        "code": true
+      },
+      {
+        "mark": "link",
+        "label": "rel=canonical",
+        "code": true
+      },
+      {
+        "mark": "eye",
+        "label": "Meta robots"
+      },
+      {
+        "mark": "globe",
+        "label": "hreflang",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "JSON-LD"
+      },
+      {
+        "mark": "share",
+        "label": "Open Graph"
+      }
     ]
   },
   "problem": {
@@ -135,28 +249,49 @@
   },
   "features": {
     "eyebrow": "Yan panelin içində",
-    "title": "Beş tab, bir yan panel",
+    "title": "Altı tab, bir yan panel",
     "tabsLabel": "Serpline tabları",
     "summary": {
       "label": "Summary",
-      "title": "Panel açılan kimi skor və yoxlama siyahısı",
-      "lead": "Title, description, canonical, robots, H1, alt mətn, strukturlaşdırılmış data və Open Graph, hər biri aydın statusla",
+      "title": "Panel açılan kimi skor, indekslənmə cavabı və yoxlama siyahısı",
+      "lead": "Google səhifəni index edə bilərmi, sonra title, description, H1, alt mətn, strukturlaşdırılmış data, Open Graph və hreflang, hər biri aydın statusla",
       "bullets": [
         "Prioritetə görə hesablanan 100 üzərindən bir skor",
-        "Desktop və mobil üçün Google önizləməsi",
-        "Hər problem və onun həlli ilə audit PDF"
+        "Structured data Google-un rich result qaydaları ilə yoxlanılır",
+        "Desktop və mobil üçün Google önizləməsi, üstəlik audit PDF"
       ],
       "demo": {
         "scoreAria": "SEO skoru 56",
         "label": "SEO skoru: düzəliş lazımdır",
         "counts": "2 yüksək, 6 orta, 2 aşağı",
         "rows": [
-          { "label": "Title", "status": "32 simvol", "tone": "ok" },
-          { "label": "Meta description", "status": "Google-da kəsilir", "tone": "warn" },
-          { "label": "Canonical", "status": "Bu səhifəni göstərir", "tone": "ok" },
-          { "label": "H1", "status": "Yalnız JavaScript-dən sonra", "tone": "bad", "hl": true },
-          { "label": "Open Graph", "status": "og:description yoxdur", "tone": "warn" }
-        ]
+          {
+            "label": "Title",
+            "status": "32 simvol",
+            "tone": "ok"
+          },
+          {
+            "label": "Meta description",
+            "status": "Google-da kəsilir",
+            "tone": "warn"
+          },
+          {
+            "label": "H1",
+            "status": "Yalnız JavaScript-dən sonra",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Product schema",
+            "status": "Product snippet üçün hazırdır",
+            "tone": "ok"
+          }
+        ],
+        "index": {
+          "label": "Google index edə bilərmi?",
+          "status": "Bəli",
+          "tone": "ok"
+        }
       }
     },
     "headings": {
@@ -175,9 +310,18 @@
             "status": "Yalnız JavaScript",
             "tone": "bad"
           },
-          { "level": 2, "text": "Product details" },
-          { "level": 3, "text": "Noise cancelling" },
-          { "level": 2, "text": "Specifications" },
+          {
+            "level": 2,
+            "text": "Product details"
+          },
+          {
+            "level": 3,
+            "text": "Noise cancelling"
+          },
+          {
+            "level": 2,
+            "text": "Specifications"
+          },
           {
             "level": 4,
             "text": "Bluetooth 5.3",
@@ -185,7 +329,10 @@
             "tone": "warn",
             "hl": true
           },
-          { "level": 2, "text": "Reviews (128)" }
+          {
+            "level": 2,
+            "text": "Reviews (128)"
+          }
         ]
       }
     },
@@ -195,6 +342,7 @@
       "lead": "Anchor mətni ilə daxili, xarici və nofollow linklər. Daxili linklərin statusunu brauzerin real yoxlayır",
       "bullets": [
         "404-lər və yönləndirmə zəncirləri bir siyahıda",
+        "Qeyri-müəyyən və mətnsiz linklər səhifənin üstündə göstərilir",
         "Yalnız açıq olduğun sayta sorğu gedir"
       ],
       "demo": {
@@ -240,18 +388,83 @@
         "words": "374 söz"
       }
     },
+    "speed": {
+      "label": "Speed",
+      "title": "Core Web Vitals, şəkillər və mobil, birbaşa səhifədə ölçülür",
+      "lead": "Ziyarətinin LCP, CLS və INP göstəriciləri Google-un hədləri ilə, səhifənin çəkisi, server cavabı və səhifəni yavaşladan hər şəkil və toxunma hədəfi",
+      "bullets": [
+        "Ağır, böyük, lazy və ölçüsüz şəkillər fayl adı ilə",
+        "Viewport, yana sürüşmə, kiçik mətn və toxunma hədəfləri üçün mobil yoxlamalar",
+        "LCP elementi birbaşa səhifədə göstərilir"
+      ],
+      "demo": {
+        "vitals": [
+          {
+            "k": "LCP",
+            "value": "2.9 s",
+            "status": "Yaxşılaşmalı",
+            "tone": "warn"
+          },
+          {
+            "k": "CLS",
+            "value": "0.02",
+            "status": "Yaxşı",
+            "tone": "ok"
+          },
+          {
+            "k": "INP",
+            "value": "120 ms",
+            "status": "Yaxşı",
+            "tone": "ok"
+          }
+        ],
+        "rows": [
+          {
+            "label": "200 KB-dan çox",
+            "status": "2 şəkil",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Göstəriləndən böyük",
+            "status": "4 şəkil",
+            "tone": "warn"
+          },
+          {
+            "label": "Viewport meta",
+            "status": "width=device-width",
+            "tone": "ok"
+          },
+          {
+            "label": "Sıxılma",
+            "status": "brotli",
+            "tone": "ok"
+          }
+        ]
+      }
+    },
     "ai": {
       "label": "AI",
       "title": "Hansı AI crawler-lər saytı oxuya bilir və nə görürlər",
       "lead": "robots.txt-dən GPTBot, ClaudeBot, PerplexityBot, Google-Extended və başqaları üçün qaydalar, axtarış və təlim botlarına bölünmüş, üstəlik llms.txt",
       "bullets": [
         "Hər bloklamanın arxasındakı dəqiq robots.txt sətri",
-        "JavaScript işlətməyən crawler səhifənin nə qədərini oxuyur"
+        "AI crawlerlər nə görür: mətnin hansı hissəsini, başlığı və schema-nı oxuya bilirlər"
       ],
       "demo": {
         "rows": [
-          { "mark": "openai", "label": "GPTBot", "status": "İcazə var", "tone": "ok" },
-          { "mark": "anthropic", "label": "ClaudeBot", "status": "İcazə var", "tone": "ok" },
+          {
+            "mark": "openai",
+            "label": "GPTBot",
+            "status": "İcazə var",
+            "tone": "ok"
+          },
+          {
+            "mark": "anthropic",
+            "label": "ClaudeBot",
+            "status": "İcazə var",
+            "tone": "ok"
+          },
           {
             "mark": "perplexity",
             "label": "PerplexityBot",
@@ -259,11 +472,26 @@
             "tone": "bad",
             "hl": true
           },
-          { "mark": "google", "label": "Google-Extended", "status": "İcazə var", "tone": "ok" },
-          { "mark": "commoncrawl", "label": "CCBot", "status": "Bloklanıb", "tone": "bad" }
+          {
+            "mark": "google",
+            "label": "Google-Extended",
+            "status": "İcazə var",
+            "tone": "ok"
+          },
+          {
+            "mark": "commoncrawl",
+            "label": "CCBot",
+            "status": "Bloklanıb",
+            "tone": "bad"
+          }
         ],
         "llms": "llms.txt",
-        "llmsStatus": "Tapılmadı"
+        "llmsStatus": "Tapılmadı",
+        "seen": {
+          "label": "AI crawlerlərin gördüyü mətn",
+          "status": "9%",
+          "tone": "bad"
+        }
       }
     }
   },
@@ -372,7 +600,11 @@
       },
       {
         "q": "Bütün saytımı crawl edir?",
-        "a": "Xeyr. Açıq səhifəni, saytın robots.txt və llms.txt fayllarını və həmin səhifədəki daxili linklərin statusunu yoxlayır."
+        "a": "Xeyr. Açıq səhifəni, saytın robots.txt, llms.txt və sitemap fayllarını və həmin səhifədəki daxili linklərin statusunu yoxlayır."
+      },
+      {
+        "q": "Səhifənin sürətini ölçür?",
+        "a": "Bəli. Speed tabı ziyarətinin Core Web Vitals göstəricilərini (LCP, CLS və INP), səhifənin çəkisini, server cavabını, şəkil problemlərini və mobil yoxlamaları göstərir. Rəqəmlər sənin brauzerindən gəlir, ona görə zəif telefonlu real ziyarətçilərdə daha yüksək ola bilər."
       },
       {
         "q": "Səhifələrimi haraya isə göndərir?",

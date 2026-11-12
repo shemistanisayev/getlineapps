@@ -515,6 +515,8 @@ export const serplineSchema = z.object({
         scoreAria: text,
         label: text,
         counts: text,
+        /** "Can Google index it?" row (Serpline 1.1). */
+        index: statusRow,
         rows: z.array(statusRow).min(1),
       }),
     }),
@@ -552,8 +554,17 @@ export const serplineSchema = z.object({
         words: text,
       }),
     }),
+    /** Speed tab (Serpline 1.1): three Core Web Vitals tiles and finding rows. */
+    speed: slTab.extend({
+      demo: z.object({
+        vitals: z.array(z.object({ k: text, value: text, status: text, tone })).length(3),
+        rows: z.array(statusRow).min(1),
+      }),
+    }),
     ai: slTab.extend({
       demo: z.object({
+        /** "What AI crawlers see" row (Serpline 1.1). */
+        seen: statusRow,
         rows: z.array(statusRow.extend({ mark: slMark })).min(1),
         llms: text,
         llmsStatus: text,
