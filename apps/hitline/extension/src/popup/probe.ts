@@ -130,6 +130,9 @@ export async function loadProbe(): Promise<ProbeState> {
   try {
     const [res] = await browser.scripting.executeScript({
       target: { tabId: tab.id },
+      // The page's own world: dataLayer, google_tag_manager, fbq, lintrk and the other tag globals
+      // live there and are invisible from the default isolated world. The probe only reads.
+      world: 'MAIN',
       func: popupProbe,
       args: [POPUP_GLOBALS],
     });

@@ -410,11 +410,14 @@ function NoTracking({
   host,
   waited,
   live,
+  full,
   t,
 }: {
   host: string;
   waited: boolean;
   live: boolean;
+  /** Chrome stopped listing requests: tracking sent later is not visible here. */
+  full: boolean;
   t: T;
 }) {
   return (
@@ -435,12 +438,17 @@ function NoTracking({
             <path d="M3 12h4l2-5 4 10 2-5h6" />
           </svg>
         </span>
-        <span className="disp">{t('popup.empty.title')}</span>
+        <span className="disp">{t(full ? 'popup.empty.titleFull' : 'popup.empty.title')}</span>
         <span className="blank-t">{t('popup.empty.text', { host })}</span>
         {waited && (
           <span className="soft small">{t('popup.empty.waited', { n: GRACE_MS / 1000 })}</span>
         )}
       </div>
+      {full && (
+        <p className="buffer-note">
+          <Icon name="alert" /> {t('popup.bufferFull')}
+        </p>
+      )}
       {live && (
         <p className="pnote">
           <span className="listen-dot" aria-hidden="true" />
@@ -669,7 +677,13 @@ export function Popup() {
         !moved &&
         !scanning &&
         (summary.noTracking ? (
-          <NoTracking host={host} waited={loadedAt !== 0} live={live} t={t} />
+          <NoTracking
+            host={host}
+            waited={loadedAt !== 0}
+            live={live}
+            full={summary.bufferFull}
+            t={t}
+          />
         ) : (
           <Main
             s={summary}

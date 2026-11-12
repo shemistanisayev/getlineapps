@@ -1003,6 +1003,7 @@ body {
 .ev-list {
   flex: 1 1 0;
   min-width: 0;
+  container-type: inline-size;
   background: #ffffff;
   border-right: 1px solid #dcd9e6;
   display: flex;
@@ -1013,7 +1014,31 @@ body {
   grid-template-columns: 104px 136px minmax(0, 1fr) 96px 120px;
   gap: 12px;
   align-items: center;
-  padding: 0 20px;
+  --pad: 20px;
+  padding: 0 var(--pad);
+}
+/* The rows sit in page cards (12px gap plus a 1px border): the header lines up with them. */
+.ev-list .th.ev-grid {
+  padding: 0 calc(var(--pad) + 13px);
+}
+.ev-grid > * {
+  min-width: 0;
+}
+.ev-list .th > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Narrow DevTools window: the event name keeps its room, the route moves to the detail panel. */
+@container (max-width: 760px) {
+  .ev-grid {
+    grid-template-columns: 92px 128px minmax(96px, 1fr) 112px;
+    gap: 10px;
+    --pad: 14px;
+  }
+  .ev-grid > :nth-child(4) {
+    display: none;
+  }
 }
 .ev-list .th {
   height: 36px;
@@ -1064,7 +1089,8 @@ body {
 }
 .ev-detail {
   width: 560px;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 380px;
   padding: 18px 20px;
   display: flex;
   flex-direction: column;

@@ -513,6 +513,7 @@ export const en = {
   'page.noIssues': 'No issues',
   'page.none': 'No events on this page',
   'page.listening': 'Listening for new events',
+  'popup.empty.titleFull': 'No tracking in the first 250 requests',
 } as const;
 
 export type MessageKey = keyof typeof en;

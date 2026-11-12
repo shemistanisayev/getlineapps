@@ -514,4 +514,5 @@ export const az: Dictionary = {
   'page.noIssues': 'Problem yoxdur',
   'page.none': 'Bu səhifədə event yoxdur',
   'page.listening': 'Yeni eventlər gözlənilir',
+  'popup.empty.titleFull': 'İlk 250 sorğuda tracking yoxdur',
 };

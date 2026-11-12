@@ -715,3 +715,4 @@ Privacy səhifəsi (`apps/site/src/content/privacy/hitline.az.json`): "reads", "
 | `page.noIssues` | No issues | Problem yoxdur |
 | `page.none` | No events on this page | Bu səhifədə event yoxdur |
 | `page.listening` | Listening for new events | Yeni eventlər gözlənilir |
+| `popup.empty.titleFull` | No tracking in the first 250 requests | İlk 250 sorğuda tracking yoxdur |
