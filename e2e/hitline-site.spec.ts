@@ -15,7 +15,7 @@ test.describe('hitline landing', () => {
     await expect(page).toHaveTitle(/^Hitline/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-      'Is your tracking working? Prove it in one panel.',
+      'Is your tracking working? Prove it in one panel',
     );
     // tools.json: Hitline is live, so the nav and the hero link to the listing.
     const store = page.locator(
@@ -151,7 +151,7 @@ test.describe('hitline uninstall page', () => {
       `${SITE}/hitline/uninstalled?utm_source=hitline&utm_medium=extension&utm_campaign=uninstall&v=1.0.0`,
     );
     await expect(page.locator('meta[name=robots]')).toHaveAttribute('content', 'noindex');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Hitline is removed.');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Hitline is removed');
 
     await page.getByRole('button', { name: 'Send feedback' }).click();
     await expect(page.getByRole('status')).toHaveText('Pick a reason or write a few words.');

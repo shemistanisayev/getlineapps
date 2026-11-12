@@ -4,7 +4,11 @@
     "status": "live",
     "storeUrl": "https://chromewebstore.google.com/detail/hitline-tracking-debugger/aemdmmghojdopdjjhggajgdedmejkoaf"
   },
-  { "slug": "serpline", "status": "soon", "storeUrl": null },
+  {
+    "slug": "serpline",
+    "status": "live",
+    "storeUrl": "https://chromewebstore.google.com/detail/phenmbccpeaclhpnclildfndbchgpnmn"
+  },
   { "slug": "rivaline", "status": "soon", "storeUrl": null },
   { "slug": "foldline", "status": "soon", "storeUrl": null },
   { "slug": "markline", "status": "soon", "storeUrl": null }

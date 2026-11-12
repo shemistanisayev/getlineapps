@@ -4,9 +4,7 @@ import { expect, test } from '@playwright/test';
 const SITE = 'http://localhost:4321';
 
 test.describe('serpline landing', () => {
-  test('renders the hero, says "coming soon" until the store listing exists, loads nothing remote', async ({
-    page,
-  }) => {
+  test('renders the hero, links to the store listing, loads nothing remote', async ({ page }) => {
     const remote: string[] = [];
     page.on('request', (r) => {
       if (!r.url().startsWith(SITE)) remote.push(r.url());
@@ -15,10 +13,17 @@ test.describe('serpline landing', () => {
     await expect(page).toHaveTitle('Serpline: Free SEO Checker for Google, ChatGPT & More');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-      'See your page the way Google and AI do.',
+      'See your page the way Google and AI do',
     );
-    await expect(page.locator('a[href*="chromewebstore"]')).toHaveCount(0);
-    await expect(page.getByText('Coming soon to Chrome').first()).toBeVisible();
+    // tools.json: Serpline is live in the Chrome Web Store (2026-11-12).
+    await expect(
+      page
+        .locator(
+          'a[href="https://chromewebstore.google.com/detail/phenmbccpeaclhpnclildfndbchgpnmn"]',
+        )
+        .first(),
+    ).toBeVisible();
+    await expect(page.getByText('Coming soon to Chrome')).toHaveCount(0);
     await page.waitForLoadState('networkidle');
     expect(remote).toEqual([]);
   });
@@ -131,7 +136,7 @@ test.describe('serpline landing', () => {
     await page.goto(`${SITE}/az/serpline`);
     await expect(page.locator('html')).toHaveAttribute('lang', 'az');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Google və AI');
-    await expect(page.getByText('Tezliklə Chrome-da').first()).toBeVisible();
+    await expect(page.getByText('Tezliklə Chrome-da')).toHaveCount(0);
     await page.getByRole('button', { name: 'Mobil' }).click();
     await expect(page.locator('[data-sp="d-status"]')).toHaveText('107 simvoldan sonra kəsilir');
   });
@@ -161,7 +166,7 @@ test.describe('serpline uninstall page', () => {
       `${SITE}/serpline/uninstalled?utm_source=serpline&utm_medium=extension&utm_campaign=uninstall&v=0.1.0`,
     );
     await expect(page.locator('meta[name=robots]')).toHaveAttribute('content', 'noindex');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Serpline is removed.');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Serpline is removed');
     await page.getByText('It missed problems on my site').click();
     await page.getByLabel(/Anything else/).fill('My SPA was not read');
     await page.getByRole('button', { name: 'Send feedback' }).click();
@@ -177,9 +182,10 @@ test.describe('serpline uninstall page', () => {
       'href',
       'https://shamistanisayev.com/?utm_source=serpline&utm_medium=extension&utm_campaign=uninstall',
     );
+    // Live in the store: reinstalling goes straight to the listing.
     await expect(page.getByRole('link', { name: 'Reinstall Serpline' })).toHaveAttribute(
       'href',
-      '/serpline',
+      'https://chromewebstore.google.com/detail/phenmbccpeaclhpnclildfndbchgpnmn',
     );
   });
 });

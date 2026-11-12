@@ -5,19 +5,23 @@ import { TOOL_SLUGS } from '../packages/core/src/site.ts';
 const SITE = 'http://localhost:4321';
 
 test.describe('site', () => {
-  test('hub shows five tools, Hitline live, the rest coming soon, links only to landings that exist', async ({
+  test('hub shows five tools, Hitline and Serpline live, the rest coming soon, links only to landings that exist', async ({
     page,
   }) => {
     await page.goto(`${SITE}/`);
     await expect(page).toHaveTitle(/Line apps/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('.tc')).toHaveCount(5);
-    // tools.json: Hitline is live in the Chrome Web Store (2026-11-11), the others are still soon.
-    await expect(page.locator('.tc .soon')).toHaveCount(4);
-    await expect(page.locator('.tc a.add')).toHaveCount(1);
-    await expect(page.locator('.tc a.add')).toHaveAttribute(
+    // tools.json: Hitline (2026-11-11) and Serpline (2026-11-12) are live, the others are still soon.
+    await expect(page.locator('.tc .soon')).toHaveCount(3);
+    await expect(page.locator('.tc a.add')).toHaveCount(2);
+    await expect(page.locator('.tc[data-tool="hitline"] a.add')).toHaveAttribute(
       'href',
       'https://chromewebstore.google.com/detail/hitline-tracking-debugger/aemdmmghojdopdjjhggajgdedmejkoaf',
+    );
+    await expect(page.locator('.tc[data-tool="serpline"] a.add')).toHaveAttribute(
+      'href',
+      'https://chromewebstore.google.com/detail/phenmbccpeaclhpnclildfndbchgpnmn',
     );
     // Hitline (Faza 3) and Serpline (Faza 4) have landings; the others get one in their own phase.
     const withLanding = ['hitline', 'serpline'];
@@ -34,7 +38,7 @@ test.describe('site', () => {
     await page.getByRole('button', { name: 'SEO specialist' }).click();
     await expect(page.locator('.tc.dim')).toHaveCount(4);
     await expect(page.locator('.tc[data-tool="serpline"]')).not.toHaveClass(/dim/);
-    await expect(page.locator('[data-hint-text]')).toHaveText('Serpline is built for you.');
+    await expect(page.locator('[data-hint-text]')).toHaveText('Serpline is built for you');
   });
 
   test('check point pins switch the panel', async ({ page }) => {
