@@ -42,7 +42,26 @@ export interface PageRead {
 }
 
 /** Runs inside the page. Keep every helper inside this function body. */
-export async function readPage(rawCap: number, fileCap: number): Promise<PageRead> {
+export async function readPage(
+  rawCap: number,
+  fileCap: number,
+  progress?: string,
+): Promise<PageRead> {
+  /** Tells the side panel which part is done (it shows the steps while it waits). */
+  function say(step: string) {
+    if (!progress) return;
+    try {
+      // Injected into the page (isolated world): the extension API is the global chrome object.
+      const api = (
+        globalThis as unknown as {
+          chrome?: { runtime?: { sendMessage(m: unknown): Promise<unknown> | void } };
+        }
+      ).chrome;
+      void Promise.resolve(api?.runtime?.sendMessage({ type: progress, step })).catch(() => {});
+    } catch {
+      /* panel closed */
+    }
+  }
   async function get(url: string, cap: number) {
     try {
       const res = await fetch(url, { cache: 'no-store', credentials: 'include' });
@@ -68,11 +87,20 @@ export async function readPage(rawCap: number, fileCap: number): Promise<PageRea
   const root = document.documentElement.cloneNode(true) as Element;
   root.querySelectorAll('[data-serpline-overlay]').forEach((n) => n.remove());
   const rendered = '<!doctype html>\n' + root.outerHTML;
+  say('rendered');
 
-  const [raw, robots, llms] = await Promise.all([
-    get(location.href, rawCap),
-    get(location.origin + '/robots.txt', fileCap),
-    get(location.origin + '/llms.txt', fileCap),
+  const [raw, [robots, llms]] = await Promise.all([
+    get(location.href, rawCap).then((r) => {
+      say('raw');
+      return r;
+    }),
+    Promise.all([
+      get(location.origin + '/robots.txt', fileCap),
+      get(location.origin + '/llms.txt', fileCap),
+    ]).then((r) => {
+      say('files');
+      return r;
+    }),
   ]);
 
   return {

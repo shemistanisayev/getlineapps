@@ -17,6 +17,8 @@ import {
   OVERLAY_HIDDEN_MESSAGE,
   isCheckMessage,
   isOverlayHiddenMessage,
+  isProgressMessage,
+  type ReadStep,
 } from '../../src/messages.ts';
 import { getAutoCheckLinks, getPreviewDevice, type PreviewDevice } from '../../src/storage.ts';
 import { downloadReport } from '../../src/pdf.ts';
@@ -25,6 +27,7 @@ import { useT } from '../../src/useLang.ts';
 import { jsOnlyHeadings } from './tabs/common.tsx';
 import { AiTab } from './tabs/Ai.tsx';
 import { CallView, type CallKind } from './tabs/CallView.tsx';
+import { Checking } from './tabs/Checking.tsx';
 import { HeadingsTab } from './tabs/Headings.tsx';
 import { LinksTab, type LinkCheckState } from './tabs/Links.tsx';
 import { RenderTab } from './tabs/Render.tsx';
@@ -102,6 +105,10 @@ export function Panel() {
   // The last page read: its origin is the only site Serpline can offer to allow (no tabs permission).
   const last = useRef<{ tabId: number; page: PageRead } | null>(null);
   const busy = useRef<number | null>(null);
+  // Progress reported by the page while it is read, and while its links are checked.
+  const [steps, setSteps] = useState<ReadStep[]>([]);
+  const [linkProgress, setLinkProgress] = useState<{ done: number; total: number } | null>(null);
+  const linkTab = useRef<number | null>(null);
   // Bumped on every check, so a slow link check never lands on a newer page.
   const generation = useRef(0);
 
@@ -114,8 +121,11 @@ export function Panel() {
     const base = auditOf(page);
     if (!base) return;
     setLinks({ state: 'running' });
+    setLinkProgress(null);
+    linkTab.current = tabId;
     const results = await runLinkCheck(tabId, planLinkCheck(base.rendered));
     if (gen !== generation.current) return;
+    linkTab.current = null;
     setLinks(results ? { results, state: 'done' } : { state: 'failed' });
   }, []);
 
@@ -135,6 +145,7 @@ export function Panel() {
     async (tabId: number) => {
       if (busy.current === tabId) return;
       busy.current = tabId;
+      setSteps([]);
       setView({ kind: 'checking' });
       const res = await checkTab(tabId);
       busy.current = null;
@@ -154,9 +165,16 @@ export function Panel() {
     void activeTabId().then((id) => {
       if (id !== undefined) void run(id);
     });
-    const onMessage = (msg: unknown) => {
+    const onMessage = (msg: unknown, sender?: { tab?: { id?: number } }) => {
       if (isCheckMessage(msg)) void run(msg.tabId);
       else if (isOverlayHiddenMessage(msg)) setHighlight(false);
+      else if (isProgressMessage(msg)) {
+        const from = sender?.tab?.id;
+        const step = msg.step;
+        if (step && from === busy.current) setSteps((s) => (s.includes(step) ? s : [...s, step]));
+        if (msg.total && from === linkTab.current)
+          setLinkProgress({ done: msg.done ?? 0, total: msg.total });
+      }
     };
     browser.runtime.onMessage.addListener(onMessage);
     return () => browser.runtime.onMessage.removeListener(onMessage);
@@ -289,7 +307,7 @@ export function Panel() {
         role={tabbed ? 'tabpanel' : undefined}
         aria-labelledby={tabbed ? `sl-tab-${tab}` : undefined}
       >
-        {view.kind === 'checking' && <p className="sp-muted">{t('panel.checking')}</p>}
+        {view.kind === 'checking' && <Checking done={steps} t={t} />}
         {tabbed && pdf === 'failed' && (
           <p className="sp-note sp-note--bad" role="status">
             {t('rep.failed')}
@@ -340,6 +358,7 @@ export function Panel() {
             key={`${links.state}-${view.kind === 'result' ? view.checkedAt.getTime() : 0}`}
             audit={audit}
             checkState={links.state}
+            progress={links.state === 'running' ? linkProgress : null}
             plannedCount={planned}
             onCheck={() => tabId !== null && page && void checkLinks(tabId, page)}
             t={t}

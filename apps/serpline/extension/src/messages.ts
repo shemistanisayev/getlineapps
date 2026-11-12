@@ -25,3 +25,26 @@ export function isOverlayHiddenMessage(value: unknown): boolean {
     (value as { type?: unknown }).type === OVERLAY_HIDDEN_MESSAGE
   );
 }
+
+/**
+ * Page -> side panel while a check runs: which part of the page read finished (step), or how many
+ * internal links are checked (done of total). Stays inside the extension, nothing leaves the browser.
+ */
+export const PROGRESS_MESSAGE = 'serpline:progress';
+
+export type ReadStep = 'rendered' | 'raw' | 'files';
+
+export interface ProgressMessage {
+  type: typeof PROGRESS_MESSAGE;
+  step?: ReadStep;
+  done?: number;
+  total?: number;
+}
+
+export function isProgressMessage(value: unknown): value is ProgressMessage {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    (value as { type?: unknown }).type === PROGRESS_MESSAGE
+  );
+}

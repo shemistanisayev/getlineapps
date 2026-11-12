@@ -10,7 +10,25 @@ export async function checkLinksInPage(
   urls: string[],
   concurrency: number,
   timeoutMs: number,
+  progress?: string,
 ): Promise<LinkResult[]> {
+  let done = 0;
+  /** Tells the side panel how many links are checked. */
+  function say() {
+    if (!progress) return;
+    try {
+      const api = (
+        globalThis as unknown as {
+          chrome?: { runtime?: { sendMessage(m: unknown): Promise<unknown> | void } };
+        }
+      ).chrome;
+      void Promise.resolve(
+        api?.runtime?.sendMessage({ type: progress, done, total: urls.length }),
+      ).catch(() => {});
+    } catch {
+      /* panel closed */
+    }
+  }
   async function one(url: string): Promise<LinkResult> {
     const attempt = async (method: 'HEAD' | 'GET') => {
       const ctrl = new AbortController();
@@ -43,6 +61,8 @@ export async function checkLinksInPage(
     while (next < urls.length) {
       const i = next++;
       out[i] = await one(urls[i]!);
+      done++;
+      say();
     }
   }
   await Promise.all(Array.from({ length: Math.min(concurrency, urls.length) }, worker));

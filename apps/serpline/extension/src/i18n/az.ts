@@ -370,4 +370,9 @@ export const az: Dictionary = {
     'Nəyin JavaScript-ə ehtiyacı olduğunu və hansı AI botların səhifəni oxuya bildiyini gör. Növbəti dəfə {key} bas.',
   'welcome.built': 'Müəllif: Şəmistan İsayev',
   'welcome.contact': 'Texniki SEO auditi lazımdır? Əlaqə saxla',
+  'chk.rendered': 'Səhifə brauzerdə göründüyü kimi oxunur',
+  'chk.raw': 'Xam HTML yüklənir',
+  'chk.files': 'robots.txt və llms.txt oxunur',
+  'ln.checkingN': 'Linklər yoxlanılır: {done} / {total}',
+  'ln.progress': 'Link yoxlamasının gedişi',
 };

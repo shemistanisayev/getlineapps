@@ -53,12 +53,15 @@ function LinkStatus({ l, t }: { l: CheckedLink; t: T }) {
 export function LinksTab({
   audit,
   checkState,
+  progress = null,
   plannedCount,
   onCheck,
   t,
 }: {
   audit: Audit;
   checkState: LinkCheckState;
+  /** Links checked so far while the check runs. */
+  progress?: { done: number; total: number } | null;
   /** Unique internal URLs the check will request (max 100). */
   plannedCount: number;
   onCheck: () => void;
@@ -135,11 +138,32 @@ export function LinksTab({
           disabled={checkState === 'running'}
         >
           {checkState === 'running'
-            ? t('ln.checking', { n: links.internal })
+            ? progress
+              ? t('ln.checkingN', { done: progress.done, total: progress.total })
+              : t('ln.checking', { n: links.internal })
             : links.internal === 1
               ? t('ln.checkBtn1')
               : t('ln.checkBtn', { n: links.internal })}
         </button>
+        {checkState === 'running' && (
+          <div
+            className="sp-progress"
+            role="progressbar"
+            aria-label={t('ln.progress')}
+            aria-valuemin={0}
+            aria-valuemax={progress?.total ?? 100}
+            aria-valuenow={progress?.done ?? 0}
+          >
+            <i
+              className={progress ? '' : 'is-idle'}
+              style={
+                progress
+                  ? { width: `${Math.round((progress.done / progress.total) * 100)}%` }
+                  : undefined
+              }
+            />
+          </div>
+        )}
         {checkState === 'failed' && (
           <span className="sp-note sp-note--bad" role="status">
             {t('ln.checkFailed')}

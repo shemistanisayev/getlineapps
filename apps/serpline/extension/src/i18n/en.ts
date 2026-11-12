@@ -373,6 +373,11 @@ export const en = {
     'See what needs JavaScript and which AI bots can read the page. Next time press {key}.',
   'welcome.built': 'Built by Shamistan Isayev',
   'welcome.contact': 'Need a technical SEO audit? Get in touch',
+  'chk.rendered': 'Reading the page as the browser shows it',
+  'chk.raw': 'Fetching the raw HTML',
+  'chk.files': 'Reading robots.txt and llms.txt',
+  'ln.checkingN': 'Checking links: {done} / {total}',
+  'ln.progress': 'Link check progress',
 } as const;
 
 export type MessageKey = keyof typeof en;

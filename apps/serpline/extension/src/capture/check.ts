@@ -6,6 +6,7 @@ import {
 import { readPage, RAW_HTML_CAP, TEXT_FILE_CAP, type PageRead } from './inject.ts';
 import { checkLinksInPage } from './links.ts';
 import { hideOverlay, showOverlay, type OverlaySpec } from './overlay.ts';
+import { PROGRESS_MESSAGE } from '../messages.ts';
 
 /**
  * Why a check could not run:
@@ -40,7 +41,7 @@ export async function checkTab(tabId: number): Promise<CheckResult> {
       target: { tabId },
       world: 'ISOLATED',
       func: readPage,
-      args: [RAW_HTML_CAP, TEXT_FILE_CAP],
+      args: [RAW_HTML_CAP, TEXT_FILE_CAP, PROGRESS_MESSAGE],
     });
     const page = frame?.result as PageRead | undefined;
     if (!page) return { ok: false, reason: 'noAccess' };
@@ -82,7 +83,7 @@ export async function runLinkCheck(tabId: number, urls: string[]): Promise<LinkR
       target: { tabId },
       world: 'ISOLATED',
       func: checkLinksInPage,
-      args: [urls, LINK_CHECK_CONCURRENCY, LINK_CHECK_TIMEOUT_MS],
+      args: [urls, LINK_CHECK_CONCURRENCY, LINK_CHECK_TIMEOUT_MS, PROGRESS_MESSAGE],
     });
     return (frame?.result as LinkResult[] | undefined) ?? null;
   } catch {

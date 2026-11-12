@@ -546,3 +546,13 @@ Fayl: `apps/serpline/extension/src/i18n/az.ts`. {n}, {type}, {bot} kimi yerlər 
 | `welcome.s3.text` | See what needs JavaScript and which AI bots can read the page. Next time press {key}. | Nəyin JavaScript-ə ehtiyacı olduğunu və hansı AI botların səhifəni oxuya bildiyini gör. Növbəti dəfə {key} bas. |
 | `welcome.built` | Built by Shamistan Isayev | Müəllif: Şəmistan İsayev |
 | `welcome.contact` | Need a technical SEO audit? Get in touch | Texniki SEO auditi lazımdır? Əlaqə saxla |
+
+## Yoxlama addımları və link sayğacı (2026-11-12)
+
+| Açar | English | Azərbaycanca |
+|---|---|---|
+| `chk.rendered` | Reading the page as the browser shows it | Səhifə brauzerdə göründüyü kimi oxunur |
+| `chk.raw` | Fetching the raw HTML | Xam HTML yüklənir |
+| `chk.files` | Reading robots.txt and llms.txt | robots.txt və llms.txt oxunur |
+| `ln.checkingN` | Checking links: {done} / {total} | Linklər yoxlanılır: {done} / {total} |
+| `ln.progress` | Link check progress | Link yoxlamasının gedişi |
