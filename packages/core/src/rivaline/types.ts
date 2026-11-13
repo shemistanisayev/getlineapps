@@ -93,6 +93,8 @@ export interface FoundTool {
   category: Category;
   mark?: string;
   ids: string[];
+  /** What the tool is when the page shows no ID ("chat", "web push"), from the rule. */
+  kind?: string;
   /** IDs joined, else the kind label, else empty. */
   label: string;
   evidence: Evidence[];

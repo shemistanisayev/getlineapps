@@ -395,3 +395,108 @@ describe('matchRule', () => {
     expect(t?.label).toBe('1234567');
   });
 });
+
+describe('Rivaline 1.1 tools (local and popular)', () => {
+  it('finds each new tool by its documented script, request, global, cookie or element', () => {
+    const cases: Array<[string, Partial<PageSnapshot>]> = [
+      ['vk_ads', { scripts: ['https://top-fwz1.mail.ru/js/code.js'] }],
+      [
+        'adsense',
+        {
+          scripts: [
+            'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-123456',
+          ],
+        },
+      ],
+      ['google_ad_manager', { scripts: ['https://securepubads.g.doubleclick.net/tag/js/gpt.js'] }],
+      ['appsflyer', { scripts: ['https://websdk.appsflyer.com/?st=banners'] }],
+      ['branch', { scripts: ['https://cdn.branch.io/branch-latest.min.js'] }],
+      ['smartlook', { scripts: ['https://web-sdk.smartlook.com/recorder.js'] }],
+      ['logrocket', { scripts: ['https://cdn.lr-ingest.io/LogRocket.min.js'] }],
+      ['lucky_orange', { scripts: ['https://tools.luckyorange.com/core/lo.js?site-id=abc'] }],
+      ['fathom', { scripts: ['https://cdn.usefathom.com/script.js'] }],
+      ['adriver', { resources: ['https://ad.adriver.ru/cgi-bin/merle.cgi?sid=123'] }],
+      [
+        'cloudflare_analytics',
+        { scripts: ['https://static.cloudflareinsights.com/beacon.min.js/v8b253dfe'] },
+      ],
+      ['simple_analytics', { scripts: ['https://scripts.simpleanalyticscdn.com/latest.js'] }],
+      ['liveinternet', { resources: ['https://counter.yadro.ru/hit?t52.6;r'] }],
+      ['callrail', { scripts: ['https://cdn.callrail.com/companies/123/abc/12/swap.js'] }],
+      ['ringostat', { scripts: ['https://script.ringostat.com/v4/ab/abc.js'] }],
+      ['calltouch', { scripts: ['https://mod.calltouch.ru/init.js?id=abc'] }],
+      ['kommo', { scripts: ['https://forms.amocrm.ru/forms/assets/js/amoforms.js'] }],
+      [
+        'bitrix24',
+        { scripts: ['https://cdn-ru.bitrix24.ru/b123/crm/site_button/loader_1_abc.js'] },
+      ],
+      ['carrot_quest', { scripts: ['https://cdn.carrotquest.app/api.min.js'] }],
+      [
+        'sendpulse',
+        {
+          scripts: [
+            'https://web.webpushs.com/js/push/abc.js',
+            'https://cdn.sendpulse.com/js/push/abc_0.js',
+          ],
+        },
+      ],
+      ['onesignal', { scripts: ['https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js'] }],
+      ['pushowl', { scripts: ['https://cdn.pushowl.com/latest/sdks/pushowl-sdk.js'] }],
+      ['pushengage', { scripts: ['https://clientcdn.pushengage.com/sdks/pushengage-web-sdk.js'] }],
+      ['jivo', { scripts: ['https://code.jivosite.com/widget/AbCdEf'] }],
+      ['chatra', { scripts: ['https://call.chatra.io/chatra.js'] }],
+      ['smartsupp', { scripts: ['https://www.smartsuppchat.com/loader.js'] }],
+      ['whatsapp', { selectors: ['a[href*="wa.me/"]'] }],
+      ['opencart', { scripts: ['https://shop.example.com/catalog/view/javascript/common.js'] }],
+      ['bitrix_cms', { scripts: ['https://shop.example.com/bitrix/js/main/core/core.js'] }],
+      ['drupal', { globals: ['drupalSettings'] }],
+      ['joomla', { meta: { generator: 'Joomla! - Open Source Content Management' } }],
+      ['framer', { meta: { generator: 'Framer 2c8f1b5' } }],
+      ['tabby', { scripts: ['https://checkout.tabby.ai/tabby-promo.js'] }],
+      ['tamara', { scripts: ['https://cdn.tamara.co/widget-v2/tamara-widget.js'] }],
+      ['admitad', { scripts: ['https://www.artfut.com/static/tagtag.min.js?campaign_code=abc'] }],
+    ];
+    for (const [id, p] of cases) expect(ids(snap(p)), id).toContain(id);
+  });
+
+  it('IDs and kinds: VK pixel id, AdSense publisher, labels for tools without an ID', () => {
+    const s = snap({
+      scripts: [
+        'https://top-fwz1.mail.ru/js/code.js',
+        'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890',
+        'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js',
+      ],
+      inline: [
+        'var _tmr = window._tmr || (window._tmr = []); _tmr.push({id: "3301234", type: "pageView"});',
+      ],
+      selectors: ['a[href*="wa.me/"]'],
+    });
+    expect(tool(s, 'vk_ads')?.label).toBe('3301234');
+    expect(tool(s, 'adsense')?.label).toBe('ca-pub-1234567890');
+    expect(tool(s, 'onesignal')).toMatchObject({ kind: 'web push', label: 'web push' });
+    expect(tool(s, 'whatsapp')?.kind).toBe('click to chat');
+  });
+
+  it('no false positives from look-alike paths and hosts', () => {
+    const s = snap({
+      scripts: [
+        'https://shop.example.com/assets/catalog/view.js',
+        'https://shop.example.com/js/bitrix-like.js',
+        'https://cdn.example.com/framer-motion.js',
+        'https://www.googletagmanager.com/gtag/js?id=G-ABC',
+      ],
+      selectors: [],
+      meta: { generator: 'Hugo 0.120' },
+    });
+    for (const id of [
+      'opencart',
+      'bitrix_cms',
+      'framer',
+      'joomla',
+      'drupal',
+      'whatsapp',
+      'adsense',
+    ])
+      expect(ids(s), id).not.toContain(id);
+  });
+});

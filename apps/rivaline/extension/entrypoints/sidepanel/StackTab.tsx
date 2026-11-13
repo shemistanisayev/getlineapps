@@ -117,7 +117,13 @@ export function StackTab({
                 key={tool.id}
                 icon={toolIcon(tool)}
                 name={tool.name}
-                id={tool.label || undefined}
+                id={
+                  tool.ids.length
+                    ? tool.label
+                    : tool.kind
+                      ? t(`kind.${tool.kind}` as MessageKey)
+                      : undefined
+                }
                 expanded={open === tool.id}
                 detailId={`rv-detail-${tool.id}`}
                 onToggle={() => setOpen(open === tool.id ? null : tool.id)}

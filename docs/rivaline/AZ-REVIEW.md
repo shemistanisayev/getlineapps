@@ -41,13 +41,24 @@ Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host}, {hex} kimi yerlər 
 | `cat.tagmanagement` | Tag management | Teq idarəetməsi |
 | `cat.consent` | Consent | Consent |
 | `cat.crm` | CRM | CRM |
-| `cat.email` | Email | E-poçt |
+| `cat.email` | Email and push | E-poçt və push |
 | `cat.chat` | Chat | Çat |
 | `cat.abtesting` | A/B testing | A/B test |
 | `cat.ecommerce` | E-commerce | E-ticarət |
 | `cat.reviews` | Reviews | Rəylər |
 | `cat.payments` | Payments | Ödənişlər |
 | `cat.affiliate` | Affiliate | Partnyor proqramı |
+| `kind.banner` | banner | banner |
+| `kind.chat` | chat | çat |
+| `kind.widget` | widget | vidcet |
+| `kind.messaging` | messaging | mesajlaşma |
+| `kind.store` | store | mağaza |
+| `kind.forms` | forms | formalar |
+| `kind.web push` | web push | veb push |
+| `kind.sells ads` | sells ads | reklam satır |
+| `kind.app links` | app links | tətbiq linkləri |
+| `kind.call tracking` | call tracking | zəng izləmə |
+| `kind.click to chat` | click to chat | klikləyib yazmaq |
 | `chips.label` | Categories | Kateqoriyalar |
 | `chips.all` | All | Hamısı |
 | `stack.title` | {tools} in {cats} | {cats} {tools} |

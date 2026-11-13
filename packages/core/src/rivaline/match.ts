@@ -103,6 +103,7 @@ export function matchRule(rule: Rule, snap: PageSnapshot): FoundTool | null {
     category: rule.category,
     mark: rule.mark,
     ids,
+    ...(rule.kind ? { kind: rule.kind } : {}),
     label: ids.length ? ids.join(', ') : (rule.kind ?? ''),
     evidence: ev,
   };

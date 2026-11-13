@@ -4,6 +4,7 @@ import { ADVERTISING } from './advertising.ts';
 import { ANALYTICS } from './analytics.ts';
 import { AB_TESTING, AFFILIATE, ECOMMERCE, PAYMENTS, REVIEWS } from './commerce.ts';
 import { CHAT, CRM, EMAIL } from './crm-email-chat.ts';
+import { MORE } from './more.ts';
 import { CONSENT, TAG_MANAGEMENT } from './tags-consent.ts';
 
 export { AD_CHANNELS } from './advertising.ts';
@@ -22,6 +23,7 @@ export const RULES: Rule[] = [
   ...REVIEWS,
   ...PAYMENTS,
   ...AFFILIATE,
+  ...MORE,
 ];
 
 /** Global paths collectSnapshot checks (`Shopify`, `$crisp` ...). */

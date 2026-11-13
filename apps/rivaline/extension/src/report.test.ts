@@ -57,7 +57,7 @@ describe('rivaline competitor report', () => {
       'Advertising',
       'Analytics',
       'Tag management',
-      'Email',
+      'Email and push',
       'Chat',
       'E-commerce',
       'Reviews',
