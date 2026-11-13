@@ -85,7 +85,18 @@ async function cdpSocket(url: string) {
  */
 export async function loadExtensionCdp(
   slug: string,
-  { args = [], port = 9333, channel }: { args?: string[]; port?: number; channel?: string } = {},
+  {
+    args = [],
+    port = 9333,
+    channel,
+    dir,
+  }: {
+    args?: string[];
+    port?: number;
+    channel?: string;
+    /** Unpacked extension folder; defaults to the tool's WXT build (spikes pass a scratch one). */
+    dir?: string;
+  } = {},
 ): Promise<CdpExtension> {
   const profile = mkdtempSync(join(tmpdir(), `line-${slug}-cdp-`));
   const launch = (ch: string) =>
@@ -118,7 +129,7 @@ export async function loadExtensionCdp(
   ).json()) as { webSocketDebuggerUrl: string; Browser: string };
   const browserCdp = await cdpSocket(webSocketDebuggerUrl);
   const { id } = await browserCdp.send<{ id: string }>('Extensions.loadUnpacked', {
-    path: extensionDir(slug),
+    path: dir ?? extensionDir(slug),
   });
   // A click before the service worker has registered its listeners is lost.
   const isOurs = (w: { url(): string }) => w.url().startsWith(`chrome-extension://${id}/`);
