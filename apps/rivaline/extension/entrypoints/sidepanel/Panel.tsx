@@ -12,7 +12,7 @@ import { AdsTab } from './AdsTab.tsx';
 import { BrandTab } from './BrandTab.tsx';
 import { Settings } from './Settings.tsx';
 import { StackTab } from './StackTab.tsx';
-import { AccessView, EmptyView, Reading, RestrictedView } from './Views.tsx';
+import { AccessView, EmptyView, FailedView, Reading, RestrictedView } from './Views.tsx';
 
 /**
  * Side panel (docs/rivaline-SPEC.md §3.1 and §7). One panel per window; results are kept in
@@ -21,12 +21,22 @@ import { AccessView, EmptyView, Reading, RestrictedView } from './Views.tsx';
 type Tab = 'stack' | 'ads' | 'brand';
 type View =
   | { kind: 'idle' }
-  | { kind: 'reading'; tabId: number; done: ScanStep[] }
+  | { kind: 'reading'; tabId: number; done: ScanStep[]; startedAt: number; stepAt: number }
   | { kind: 'result'; result: ScanResult }
   | { kind: 'access' }
-  | { kind: 'restricted' };
+  | { kind: 'restricted' }
+  | { kind: 'failed'; tabId: number };
 
 const TOAST_MS = 2500;
+/** A page that never answers (an open alert, a frozen tab): stop waiting and offer a retry. */
+const SCAN_TIMEOUT_MS = 45_000;
+/** The icon click that opened the panel also sends a scan message: one read is enough. */
+const SAME_SCAN_MS = 2_000;
+const tabExists = (tabId: number) =>
+  browser.tabs.get(tabId).then(
+    () => true,
+    () => false,
+  );
 const LIBRARY_COUNT = 4;
 
 export function Panel() {
@@ -42,21 +52,49 @@ export function Panel() {
   const cache = useRef(new Map<number, ScanResult>());
   /** Each scan gets a number; a slower, older scan never overwrites a newer one. */
   const run = useRef(0);
+  /**
+   * The scan in progress: which tab, since when, whether the panel started it on opening, and
+   * whether it already has the page's tools.
+   */
+  const busy = useRef<{ tabId: number; at: number; onOpen: boolean; read: boolean } | null>(null);
 
-  const scan = useCallback(async (tabId: number) => {
+  const scan = useCallback(async (tabId: number, onOpen = false) => {
     const id = ++run.current;
-    setView({ kind: 'reading', tabId, done: [] });
-    const { windowId } = await browser.tabs.get(tabId);
-    const outcome = await scanTab(tabId, windowId, (step) => {
-      if (run.current === id)
-        setView((v) => (v.kind === 'reading' ? { ...v, done: [...v.done, step] } : v));
+    const startedAt = Date.now();
+    busy.current = { tabId, at: startedAt, onOpen, read: false };
+    setView({ kind: 'reading', tabId, done: [], startedAt, stepAt: startedAt });
+    const windowId = await browser.tabs.get(tabId).then(
+      (t) => t.windowId,
+      () => undefined,
+    );
+    // The tab was closed: the next active tab gets its own state from onActivated.
+    if (windowId === undefined) return;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const timeout = new Promise<'timeout'>((ok) => {
+      timer = setTimeout(() => ok('timeout'), SCAN_TIMEOUT_MS);
     });
+    const outcome = await Promise.race([
+      scanTab(tabId, windowId, (step) => {
+        if (run.current !== id) return;
+        if (step === 'tools' && busy.current) busy.current.read = true;
+        setView((v) =>
+          v.kind === 'reading' ? { ...v, done: [...v.done, step], stepAt: Date.now() } : v,
+        );
+      }),
+      timeout,
+    ]);
+    clearTimeout(timer);
     if (run.current !== id) return;
-    if (outcome.ok) {
+    busy.current = null;
+    if (outcome === 'timeout') {
+      setView({ kind: 'failed', tabId });
+    } else if (outcome.ok) {
       cache.current.set(tabId, outcome.result);
       setView({ kind: 'result', result: outcome.result });
     } else {
       cache.current.delete(tabId);
+      // Closed while it was read: no Access flash, the newly active tab takes over.
+      if (!(await tabExists(tabId)) || run.current !== id) return;
       setView({ kind: outcome.reason === 'restricted' ? 'restricted' : 'access' });
     }
   }, []);
@@ -65,6 +103,7 @@ export function Panel() {
   const show = useCallback(
     async (tabId: number) => {
       const id = ++run.current;
+      busy.current = null;
       const probe = await probeTab(tabId);
       if (run.current !== id) return;
       if (!probe.ok) {
@@ -81,10 +120,16 @@ export function Panel() {
   useEffect(() => {
     void actionShortcut().then(setKeys);
     void activeTabId().then((id) => {
-      if (id !== undefined) void scan(id);
+      if (id !== undefined) void scan(id, true);
+      else setView({ kind: 'access' });
     });
     const onMessage = (msg: unknown) => {
-      if (isScanMessage(msg)) void scan(msg.tabId);
+      if (!isScanMessage(msg)) return;
+      // The click that opened the panel: the panel is already reading that tab. Any later click
+      // reads the page again.
+      const b = busy.current;
+      if (b?.onOpen && b.tabId === msg.tabId && Date.now() - b.at < SAME_SCAN_MS) return;
+      void scan(msg.tabId);
     };
     browser.runtime.onMessage.addListener(onMessage);
     return () => browser.runtime.onMessage.removeListener(onMessage);
@@ -96,6 +141,9 @@ export function Panel() {
     const onActivated = ({ tabId }: { tabId: number }) => void show(tabId);
     const onUpdated = (tabId: number, info: { status?: string }) => {
       if (info.status !== 'complete') return;
+      // A click during loading: the scan in progress waits for this load and reads the page.
+      const b = busy.current;
+      if (b && b.tabId === tabId && !b.read) return;
       void activeTabId().then((id) => {
         if (id === tabId) {
           cache.current.delete(tabId);
@@ -208,8 +256,11 @@ export function Panel() {
       />
 
       <main className="rp-body" id="rv-body" aria-busy={view.kind === 'reading'}>
-        {view.kind === 'reading' && <Reading done={view.done} t={t} />}
-        {(view.kind === 'idle' || view.kind === 'access') && <AccessView keys={keys} t={t} />}
+        {view.kind === 'reading' && (
+          <Reading key={view.startedAt} done={view.done} stepAt={view.stepAt} t={t} />
+        )}
+        {view.kind === 'access' && <AccessView keys={keys} t={t} />}
+        {view.kind === 'failed' && <FailedView t={t} onRetry={() => void scan(view.tabId)} />}
         {view.kind === 'restricted' && <RestrictedView t={t} />}
         {result && tab === 'stack' && empty && (
           <EmptyView host={new URL(result.url).host} waited={result.waited} t={t} />

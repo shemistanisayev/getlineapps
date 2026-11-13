@@ -676,8 +676,8 @@ export function ButtonPreview({
 }) {
   return (
     <div className="rv-btnprev">
-      <span className="rv-btnprev-btn" style={style}>
-        {label}
+      <span className="rv-btnprev-btn" style={style} title={label}>
+        <span className="rv-btnprev-label">{label}</span>
       </span>
       <span className="rv-btnprev-spec rv-mono">
         {spec.map((line) => (

@@ -32,6 +32,11 @@ export const az: Dictionary = {
   'read.tools': 'Marketinq alətləri axtarılır',
   'read.brand': 'Rənglər və şriftlər oxunur',
   'read.logo': 'Loqo götürülür',
+  'read.seconds': '{s} san',
+  'panel.failed.title': 'Bu səhifə cavab vermir',
+  'panel.failed.text':
+    'Rivaline 45 saniyə gözlədi. Səhifədə açıq pəncərə varsa bağla və ya səhifəni yenilə, sonra yenidən yoxla.',
+  'panel.failed.retry': 'Yenidən yoxla',
   'cat.advertising': 'Reklam',
   'cat.analytics': 'Analitika',
   'cat.tagmanagement': 'Teq idarəetməsi',
@@ -133,6 +138,9 @@ export const az: Dictionary = {
   'brand.logo': 'Loqo',
   'brand.logoFrom': 'Səhifə başlığından, {w} x {h} px',
   'brand.logoMissing': 'Səhifənin ən yuxarısına qalx və Səhifəni yenidən oxu düyməsinə bas',
+  'brand.logoCovered':
+    'Loqonun üstündə pəncərə açılıb. Onu səhifədə bağla və Səhifəni yenidən oxu düyməsinə bas',
+  'brand.noLogo': 'Səhifə başlığında loqo tapılmadı',
   'brand.logoAlt': '{host} loqosu',
   'brand.copyPng': 'PNG-ni kopyala',
   'brand.downloadPng': 'PNG-ni yüklə',

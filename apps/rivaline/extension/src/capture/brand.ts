@@ -151,6 +151,28 @@ export function collectBrand(): BrandRaw {
       break;
     }
   }
+  /*
+   * Covered: a pop-up or cookie banner is drawn over the logo (QA: HubSpot's banner, a city
+   * picker on umico.az), so a screenshot crop would show the pop-up. Five points inside the logo;
+   * each must hit the logo, something inside it or a box that holds it.
+   */
+  const covered = (el: Element, r: DOMRect) => {
+    let hidden = 0;
+    for (const [fx, fy] of [
+      [0.5, 0.5],
+      [0.25, 0.3],
+      [0.75, 0.3],
+      [0.25, 0.7],
+      [0.75, 0.7],
+    ] as const) {
+      const x = r.left + r.width * fx;
+      const y = r.top + r.height * fy;
+      if (x < 0 || y < 0 || x >= vw || y >= vh) continue;
+      const hit = document.elementFromPoint(x, y);
+      if (hit && hit !== el && !el.contains(hit) && !hit.contains(el)) hidden++;
+    }
+    return hidden >= 2;
+  };
   let logo: BrandRaw['logo'] = null;
   if (logoEl) {
     const r = logoEl.getBoundingClientRect();
@@ -161,6 +183,8 @@ export function collectBrand(): BrandRaw {
       svg: svg && svg.length <= 50_000 ? svg : undefined,
       inView: r.top >= 0 && r.left >= 0 && r.bottom <= vh && r.right <= vw,
       viewportWidth: vw,
+      covered: covered(logoEl, r),
+      color: getComputedStyle(logoEl).color,
     };
   }
 
@@ -195,11 +219,16 @@ export function collectBrand(): BrandRaw {
   /*
    * Main button: the largest visible link or button with a background in the first viewport.
    * Buttons in the page content win over ones in the header or navigation (QA: a country picker
-   * in the header was bigger than the hero button).
+   * in the header was bigger than the hero button), and filled buttons win over outline buttons
+   * that have the background they sit on (QA: HubSpot's white "Get started free" next to the
+   * orange "Get a demo").
    */
   let button: ButtonRaw | null = null;
-  let best = 0;
-  let bestInContent = false;
+  let best: [number, number, number] = [-1, -1, -1];
+  const better = (a: [number, number, number], b: [number, number, number]) => {
+    for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i]! > b[i]!;
+    return false;
+  };
   for (const el of Array.from(document.querySelectorAll('a, button'))) {
     if (inOverlay(el)) continue;
     const cs = getComputedStyle(el);
@@ -209,12 +238,12 @@ export function collectBrand(): BrandRaw {
     const label = (el as HTMLElement).innerText?.trim() ?? '';
     // A word, not a page number or an icon.
     if ((label.match(/\p{L}/gu) ?? []).length < 2) continue;
-    const area = r.width * r.height;
     const inContent = !el.closest('header, nav, [role="banner"], [role="navigation"]');
-    if (bestInContent && !inContent) continue;
-    if (inContent === bestInContent && area <= best) continue;
-    best = area;
-    bestInContent = inContent;
+    const filled = el.parentElement ? cs.backgroundColor !== bgOf(el.parentElement) : true;
+    const score: [number, number, number] = [inContent ? 1 : 0, filled ? 1 : 0, r.width * r.height];
+    if (!better(score, best)) continue;
+    best = score;
+    const borderWidth = parseFloat(cs.borderTopWidth) || 0;
     button = {
       bg: cs.backgroundColor,
       color: cs.color,
@@ -225,6 +254,9 @@ export function collectBrand(): BrandRaw {
       weight: cs.fontWeight,
       size: parseFloat(cs.fontSize),
       label: label.slice(0, 60),
+      ...(borderWidth > 0 && cs.borderTopStyle !== 'none'
+        ? { border: { width: borderWidth, color: cs.borderTopColor } }
+        : {}),
     };
   }
 

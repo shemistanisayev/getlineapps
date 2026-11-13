@@ -164,6 +164,12 @@ kbd {
   border-radius: 50%;
   border: 2px solid #dcd9e6;
 }
+.rp-step-s {
+  margin-left: auto;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  color: #475467;
+}
 .rp-progress {
   height: 4px;
   border-radius: 4px;
@@ -175,7 +181,7 @@ kbd {
   height: 100%;
   border-radius: 4px;
   background: #0e7490;
-  transition: width 0.4s ease;
+  transition: width 0.25s linear;
 }
 .rp-sk-block {
   display: flex;

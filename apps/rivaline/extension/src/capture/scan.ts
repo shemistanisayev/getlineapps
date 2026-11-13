@@ -103,6 +103,50 @@ async function cropLogo(windowId: number, kit: BrandKit | null): Promise<Blob | 
 }
 
 /**
+ * The logo from its inline SVG, as a PNG at twice its size: used when the screenshot cannot show
+ * it (a pop-up covers it, or it is below the fold). Drawn in the panel from the markup alone, so
+ * nothing is fetched. null when the SVG draws nothing (for example a sprite `<use>`).
+ */
+export async function svgLogo(kit: BrandKit | null): Promise<Blob | null> {
+  const logo = kit?.logo;
+  if (!logo?.svg || logo.rect.width < 4 || logo.rect.height < 4) return null;
+  // outerHTML from an HTML page has no xmlns: add it, or the markup parses as plain XML.
+  const markup = /^<svg[^>]*\sxmlns=/.test(logo.svg)
+    ? logo.svg
+    : logo.svg.replace(/^<svg\b/, '<svg xmlns="http://www.w3.org/2000/svg"');
+  const doc = new DOMParser().parseFromString(markup, 'image/svg+xml');
+  const svg = doc.documentElement;
+  if (svg.nodeName.toLowerCase() !== 'svg' || doc.querySelector('parsererror')) return null;
+  const w = Math.round(logo.rect.width * 2);
+  const h = Math.round(logo.rect.height * 2);
+  svg.setAttribute('width', String(w));
+  svg.setAttribute('height', String(h));
+  if (logo.color)
+    svg.setAttribute('style', `${svg.getAttribute('style') ?? ''};color:${logo.color}`);
+  const url = URL.createObjectURL(
+    new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }),
+  );
+  try {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    const canvas = new OffscreenCanvas(w, h);
+    const ctx = canvas.getContext('2d')!;
+    ctx.drawImage(img, 0, 0, w, h);
+    const px = ctx.getImageData(0, 0, w, h).data;
+    let drawn = false;
+    for (let i = 3; i < px.length; i += 4)
+      if (px[i]! > 0) {
+        drawn = true;
+        break;
+      }
+    return drawn ? await canvas.convertToBlob({ type: 'image/png' }) : null;
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
+/**
  * Reads the tab. `onStep` reports each finished step so the panel can show progress.
  * A tab that cannot be read gives Restricted or Access (SPEC §3.1).
  */
@@ -149,6 +193,7 @@ export async function scanTab(
     } catch {
       logo = null;
     }
+    if (!logo) logo = await svgLogo(brand).catch(() => null);
     onStep('logo');
 
     return {

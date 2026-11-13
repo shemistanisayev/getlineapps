@@ -33,6 +33,11 @@ export const en = {
   'read.tools': 'Finding marketing tools',
   'read.brand': 'Reading colors and fonts',
   'read.logo': 'Taking the logo',
+  'read.seconds': '{s} s',
+  'panel.failed.title': 'This page is not answering',
+  'panel.failed.text':
+    'Rivaline waited 45 seconds. Close any dialog open on the page, or reload it, then try again.',
+  'panel.failed.retry': 'Try again',
   'cat.advertising': 'Advertising',
   'cat.analytics': 'Analytics',
   'cat.tagmanagement': 'Tag management',
@@ -134,6 +139,9 @@ export const en = {
   'brand.logo': 'Logo',
   'brand.logoFrom': 'From the page header, {w} x {h} px',
   'brand.logoMissing': 'Scroll to the top of the page and press Read the page again',
+  'brand.logoCovered':
+    'A pop-up covers the logo. Close it on the page and press Read the page again',
+  'brand.noLogo': 'No logo found in the page header',
   'brand.logoAlt': 'Logo of {host}',
   'brand.copyPng': 'Copy PNG',
   'brand.downloadPng': 'Download PNG',

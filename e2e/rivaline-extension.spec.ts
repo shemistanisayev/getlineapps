@@ -547,6 +547,55 @@ test.describe('rivaline extension', () => {
     await mira.close();
   });
 
+  test('a pop-up over the logo: no screenshot of the pop-up, the SVG logo instead (QA)', async () => {
+    const kova = await ext.context.newPage();
+    await kova.goto(kovaUrl());
+    // A cookie banner drawn over the header, like HubSpot's in QA.
+    const cover = () =>
+      kova.evaluate(() => {
+        const d = document.createElement('div');
+        d.style.cssText =
+          'position:fixed;top:0;left:0;right:0;height:120px;background:#222;z-index:99';
+        document.body.append(d);
+      });
+    await cover();
+    await ext.clickAction(kova);
+    await expect
+      .poll(() => ext.evalIn<boolean>(PANEL, `Boolean(document.querySelector('#rv-tab-brand'))`))
+      .toBe(true);
+    await click('#rv-tab-brand');
+    await poll('A pop-up covers the logo. Close it on the page and press Read the page again');
+    expect(
+      await ext.evalIn<number>(PANEL, `document.querySelectorAll('.rp-logo img').length`),
+    ).toBe(0);
+
+    // The same banner over an inline SVG logo (umico.az in QA): the panel draws the SVG itself.
+    await kova.reload();
+    await kova.evaluate(() => {
+      const a = document.querySelector('header a[href="/"]')!;
+      a.innerHTML =
+        '<svg viewBox="0 0 90 30" width="90" height="30" fill="currentColor" style="color:#2f5d46"><rect width="90" height="30" rx="6"/></svg>';
+    });
+    await cover();
+    await ext.clickAction(kova);
+    await poll('Copy SVG');
+    const px = await ext.evalIn<{ w: number; h: number; green: boolean }>(
+      PANEL,
+      `(async () => {
+        const img = document.querySelector('.rp-logo img');
+        await img.decode();
+        const c = new OffscreenCanvas(img.naturalWidth, img.naturalHeight);
+        const x = c.getContext('2d');
+        x.drawImage(img, 0, 0);
+        const [r, g, b, a] = x.getImageData(img.naturalWidth / 2, img.naturalHeight / 2, 1, 1).data;
+        return { w: img.naturalWidth, h: img.naturalHeight, green: a > 200 && g > r && g > b };
+      })()`,
+    );
+    // Twice the logo's size, in its own color (currentColor), not the dark banner.
+    expect(px).toEqual({ w: 180, h: 60, green: true });
+    await kova.close();
+  });
+
   test('Chrome pages and the PDF viewer get the Restricted state', async () => {
     const page = await ext.context.newPage();
     await page.goto('chrome://version');

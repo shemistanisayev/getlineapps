@@ -191,6 +191,28 @@ describe('fonts, button, exports', () => {
     };
     expect(brandButton(raw)?.label).toBe('Shop the whole routine…');
     expect(brandButton({ ...raw, bg: 'rgba(0, 0, 0, 0)' })).toBeNull();
+    expect(brandButton(raw)?.border).toBeNull();
+  });
+
+  it('an outline button keeps its border for the preview (QA: HubSpot)', () => {
+    const raw = {
+      bg: 'rgb(255, 255, 255)',
+      color: 'rgb(255, 72, 0)',
+      radius: '8px',
+      height: 68,
+      paddingX: 32,
+      family: '"HubSpot Sans", sans-serif',
+      weight: '500',
+      size: 18,
+      label: 'Get started free',
+    };
+    expect(brandButton({ ...raw, border: { width: 2, color: 'rgb(255, 72, 0)' } })?.border).toBe(
+      '2px #FF4800',
+    );
+    expect(brandButton({ ...raw, border: { width: 0, color: 'rgb(0, 0, 0)' } })?.border).toBeNull();
+    expect(
+      brandButton({ ...raw, border: { width: 1, color: 'rgba(0, 0, 0, 0)' } })?.border,
+    ).toBeNull();
   });
 
   it('slug and file names', () => {
@@ -226,6 +248,8 @@ describe('fonts, button, exports', () => {
     // The screenshot's own scale wins over the page's devicePixelRatio (page zoom).
     expect(logoCrop(logo, 2)).toEqual({ x: 80, y: 106, width: 185, height: 68 });
     expect(logoCrop({ ...logo, inView: false })).toBeNull();
+    // A pop-up or cookie banner over the logo: the screenshot would show the pop-up (QA).
+    expect(logoCrop({ ...logo, covered: true })).toBeNull();
     expect(logoCrop(null)).toBeNull();
   });
 });

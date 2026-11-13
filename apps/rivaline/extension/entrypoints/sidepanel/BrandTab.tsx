@@ -27,6 +27,13 @@ import { downloadBlob, palettePng } from '../../src/palette.ts';
 type Format = 'css' | 'json' | 'png';
 const COPIED_MS = 2000;
 
+/** A button as light as the white card needs an outline to be seen (QA: HubSpot). */
+const isLight = (hex: string) => {
+  const n = parseInt(hex.slice(1, 7), 16);
+  const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 235;
+};
+
 const roleLabel = (t: T) => (role: BrandColor['role']) => t(`role.${role}` as MessageKey);
 
 /** Brand tab (design: Brand) and its export sheet (design: BrandExport). */
@@ -119,7 +126,15 @@ export function BrandTab({
             </div>
           </div>
         ) : (
-          <p className="rp-muted">{t('brand.logoMissing')}</p>
+          <p className="rp-muted">
+            {t(
+              !kit.logo
+                ? 'brand.noLogo'
+                : kit.logo.covered
+                  ? 'brand.logoCovered'
+                  : 'brand.logoMissing',
+            )}
+          </p>
         )}
       </RvCard>
 
@@ -164,6 +179,11 @@ export function BrandTab({
               borderRadius: b.radius,
               background: b.background,
               color: b.text,
+              border: b.border
+                ? `${b.border.split(' ')[0]} solid ${b.border.split(' ')[1]}`
+                : isLight(b.background)
+                  ? '1px solid #c9c5d6'
+                  : undefined,
               fontFamily: `"${b.family}", Arial, sans-serif`,
               fontSize: Math.min(b.size, 16),
               fontWeight: Number(b.weight) || 600,

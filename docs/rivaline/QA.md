@@ -43,6 +43,22 @@ Ads tab: every site got four library links with the brand and domain filled in (
 - **Self-hosted Google fonts** (Roboto on umico.az and azertag.az) show "self", which is true for those files.
 - **Body font** shows the first family of `body`'s font stack (Guardian: "Times New Roman" before its own font loads on body).
 
+## Panel behaviour (owner request after step 10)
+
+`pnpm exec tsx scripts/ux-rivaline.ts` records every state the side panel shows, with its time, in seven scenarios on a local test server. Found and fixed:
+
+| Scenario | Before | After |
+|---|---|---|
+| First click, panel closed | "Read this tab?" flashed before the reading steps | Header, then the reading steps, then the result in about 1.6 s |
+| Click while the page is still loading | Correct, but the bar sat at 8% for 6 s, then jumped to 100% | The bar keeps moving inside each step; a step that takes 3 s or more shows its seconds |
+| Tab closed while it is read | "Read this tab?" flashed | The next tab's result shows at once |
+| An alert open on the page | The panel waited forever | After 45 s: "This page is not answering" with Try again |
+| Logo under a pop-up or cookie banner (HubSpot, umico.az) | The crop showed the pop-up (a black bar, a gray stripe) | A covered logo is never cropped. An inline SVG logo is drawn from its markup (umico.az shows its logo); otherwise the panel says to close the pop-up and read again |
+| Main button (HubSpot) | A white outline button, invisible on the white card, label cut | Filled buttons win over outline ones (now the orange "Get a demo"); the preview shows the button's own border, an outline for white buttons, and "..." for long labels |
+| No logo in the header | "Scroll to the top" (wrong advice) | "No logo found in the page header" |
+
+New page in the same tab, a single-page app changing its URL and Read the page again were already correct (about 1.6 s each). The pop-up and SVG cases are e2e tested on Kova.
+
 ## Accessibility (axe-core, WCAG 2.1 A and AA)
 
 - Side panel: axe is injected into the real side panel over CDP (`e2e/rivaline-extension.spec.ts`) and runs on Stack, StackDetail, Ads, Brand, the export sheet, Settings, Access, Empty and Restricted. No violations; each run confirms axe evaluated more than 10 passing rules. Fixed on the way: muted text and section labels on the panel's gray background (4.28:1, now Neutral `#475467`), and the color swatch buttons' names now include their visible role and hex (WCAG 2.5.3; the copy hint is the tooltip).

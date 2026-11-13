@@ -24,6 +24,8 @@ export interface ButtonRaw {
   weight: string;
   size: number;
   label: string;
+  /** The button's own border, when it has one (outline buttons). */
+  border?: { width: number; color: string };
 }
 
 export interface BrandRaw {
@@ -42,6 +44,10 @@ export interface BrandRaw {
     inView: boolean;
     /** The viewport's width in CSS px, to scale the crop to the screenshot. */
     viewportWidth?: number;
+    /** Something else (a pop-up, a cookie banner) is drawn over the logo: no screenshot crop. */
+    covered?: boolean;
+    /** The logo's computed text color, for an SVG drawn with currentColor. */
+    color?: string;
   } | null;
   headings: FontRaw | null;
   body: FontRaw | null;
@@ -341,6 +347,8 @@ export interface BrandButton {
   weight: string;
   size: number;
   label: string;
+  /** "2px #FF4800" when the button has a visible border, else null. */
+  border: string | null;
 }
 
 const MAX_LABEL = 24;
@@ -351,6 +359,7 @@ export function brandButton(raw: ButtonRaw | null): BrandButton | null {
   const fg = parseColor(raw.color);
   if (!bg || !fg || bg.a === 0) return null;
   const label = raw.label.replace(/\s+/g, ' ').trim();
+  const line = raw.border && raw.border.width > 0 ? parseColor(raw.border.color) : null;
   return {
     background: toHex(bg),
     text: toHex(fg),
@@ -361,6 +370,7 @@ export function brandButton(raw: ButtonRaw | null): BrandButton | null {
     weight: raw.weight,
     size: Math.round(raw.size),
     label: label.length > MAX_LABEL ? `${label.slice(0, MAX_LABEL - 1).trimEnd()}…` : label,
+    border: line && line.a > 0 ? `${Math.round(raw.border!.width)}px ${toHex(line)}` : null,
   };
 }
 
@@ -429,7 +439,8 @@ export function exportFileNames(slug: string) {
 
 /**
  * Where to crop the logo out of captureVisibleTab. null when it is not fully in the first
- * viewport: the panel then asks to scroll to the top and read the page again.
+ * viewport (the panel then asks to scroll to the top and read the page again) or when something
+ * covers it (the panel shows the inline SVG instead, or asks to close the pop-up).
  * `scale` is screenshot pixels per CSS pixel. The screenshot follows the screen's scale, which can
  * differ from the page's devicePixelRatio (page zoom), so the panel passes
  * screenshot width / viewport width; without it the page's devicePixelRatio is used.
@@ -438,7 +449,8 @@ export function logoCrop(
   logo: BrandRaw['logo'],
   scale?: number,
 ): { x: number; y: number; width: number; height: number } | null {
-  if (!logo || !logo.inView || logo.rect.width < 4 || logo.rect.height < 4) return null;
+  if (!logo || !logo.inView || logo.covered || logo.rect.width < 4 || logo.rect.height < 4)
+    return null;
   const d = scale && scale > 0 ? scale : logo.dpr || 1;
   return {
     x: Math.floor(logo.rect.x * d),

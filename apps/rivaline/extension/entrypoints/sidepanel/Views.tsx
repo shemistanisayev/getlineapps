@@ -1,6 +1,7 @@
 import { contactUrl } from '@line/core/site';
 import { Logo } from '@line/ui';
-import { RvCard } from '@line/ui/rivaline';
+import { RvButton, RvCard } from '@line/ui/rivaline';
+import { useEffect, useState } from 'react';
 import type { ScanStep } from '../../src/capture/scan.ts';
 import type { MessageKey, T } from '../../src/i18n/index.ts';
 import { Icon, Keys } from '../../src/ui.tsx';
@@ -14,12 +15,27 @@ const STEPS: Array<{ id: ScanStep; key: MessageKey }> = [
   { id: 'logo', key: 'read.logo' },
 ];
 
+/** Seconds on one step before the panel shows how long it has been waiting. */
+const SHOW_SECONDS_AFTER = 3;
+
 /**
  * While a page is read: each step with its own state, a progress bar and a skeleton of the Stack
  * tab, so a slow page never looks like a broken panel (carried over from Hitline and Serpline).
+ * The bar keeps moving inside the current step (the first one waits for the page to load and
+ * for late tags, often several seconds), and a slow step shows its seconds.
  */
-export function Reading({ done, t }: { done: ScanStep[]; t: T }) {
+export function Reading({ done, stepAt, t }: { done: ScanStep[]; stepAt: number; t: T }) {
   const next = STEPS.find((s) => !done.includes(s.id))?.id;
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 250);
+    return () => clearInterval(timer);
+  }, []);
+  const inStep = Math.max(0, now - stepAt);
+  // Eases toward 90% of the step's share, never reaching the next step on its own.
+  const part = 0.9 * (1 - Math.exp(-inStep / 2000));
+  const width = Math.round(((done.length + part) / STEPS.length) * 100);
+  const seconds = Math.floor(inStep / 1000);
   return (
     <>
       <section
@@ -42,11 +58,14 @@ export function Reading({ done, t }: { done: ScanStep[]; t: T }) {
                 )}
               </span>
               {t(s.key)}
+              {state === 'busy' && seconds >= SHOW_SECONDS_AFTER && (
+                <span className="rp-step-s">{t('read.seconds', { s: seconds })}</span>
+              )}
             </div>
           );
         })}
         <div className="rp-progress" aria-hidden="true">
-          <i style={{ width: `${Math.max(8, Math.round((done.length / STEPS.length) * 100))}%` }} />
+          <i style={{ width: `${Math.max(4, Math.min(100, width))}%` }} />
         </div>
       </section>
       <div className="rp-sk-block" aria-hidden="true">
@@ -60,6 +79,17 @@ export function Reading({ done, t }: { done: ScanStep[]; t: T }) {
         <span className="rp-sk" style={{ height: 220, borderRadius: 14 }} />
       </div>
     </>
+  );
+}
+
+/** The page did not answer in time (an open dialog, a frozen tab): a way out, not a spinner. */
+export function FailedView({ t, onRetry }: { t: T; onRetry: () => void }) {
+  return (
+    <section className="card rp-call" role="alert">
+      <h1>{t('panel.failed.title')}</h1>
+      <p>{t('panel.failed.text')}</p>
+      <RvButton onClick={onRetry}>{t('panel.failed.retry')}</RvButton>
+    </section>
   );
 }
 

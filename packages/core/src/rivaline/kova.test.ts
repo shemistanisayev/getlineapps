@@ -137,6 +137,7 @@ describe('Kova ads and brand (Ads, Brand, BrandExport)', () => {
       weight: '600',
       size: 15,
       label: 'Shop the routine',
+      border: null,
     });
     expect(logoCrop(kit.logo)).not.toBeNull();
   });

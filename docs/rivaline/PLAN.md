@@ -236,6 +236,12 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 - **Consent note.** When a consent platform is found but analytics or ad pixels are missing, the Stack tab tells the user to accept the banner and read the page again (new string `stack.consentNote`, in AZ-REVIEW).
 - **Accessibility.** axe in the real side panel found two issues, both fixed: muted text on the gray panel background (now Neutral `#475467`) and swatch names that did not include their visible text.
 
+## After step 10 (2026-11-13, owner: "fix UI errors, loading you cannot feel, a scan that does not start")
+
+- `scripts/ux-rivaline.ts` records the panel's states in seven scenarios; fixes and results in `docs/rivaline/QA.md` ("Panel behaviour").
+- Panel: no Access flash on opening or when a tab closes mid-read, the click that opens the panel does not start a second read, a page that never answers ends in "This page is not answering" after 45 s, the progress bar moves inside each step and slow steps show their seconds.
+- Brand: covered logos are not cropped (inline SVG drawn from its markup instead), filled buttons win, the button preview shows borders and cuts long labels. New strings in AZ-REVIEW.
+
 ## Questions for the owner
 
 1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
