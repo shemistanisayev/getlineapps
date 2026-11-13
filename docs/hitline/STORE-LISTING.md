@@ -1,14 +1,14 @@
 # Hitline: Chrome Web Store listing
 
-Everything to paste into the Chrome Web Store Developer Dashboard for Hitline 1.2.0. The files to upload are in `store/hitline/` (see `store/hitline/README.md`).
+Everything to paste into the Chrome Web Store Developer Dashboard for Hitline 1.2.1. The files to upload are in `store/hitline/` (see `store/hitline/README.md`).
 
 ## Package
 
 | Field | Value |
 |---|---|
-| File | `store/hitline/hitline-1.2.0.zip` |
+| File | `store/hitline/hitline-1.2.1.zip` |
 | Name | Hitline: Tracking Debugger for GA4, Meta, TikTok & More (manifest name; short name Hitline) |
-| Version | 1.2.0 |
+| Version | 1.2.1 |
 | Category | Developer Tools |
 | Language | English (default), Azerbaijani (second listing language) |
 
@@ -179,6 +179,12 @@ https://getlineapps.com/privacy/hitline
 ## After approval
 
 Send the listing link (`https://chromewebstore.google.com/detail/...`) to the agent. It sets Hitline to `live` with that `storeUrl` in `apps/site/src/content/tools.json`, so every "Add to Chrome" button on getlineapps.com points to the listing.
+
+## What changed in 1.2.1 (for the "What's new" note, optional)
+
+```
+The DevTools panel now fits any window: docked to the side, at the bottom or in a small window, nothing overlaps or scrolls sideways.
+```
 
 ## What changed in 1.2.0 (for the "What's new" note, optional)
 

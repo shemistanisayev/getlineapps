@@ -1,14 +1,14 @@
 # Serpline: Chrome Web Store listing
 
-Everything to paste into the Chrome Web Store Developer Dashboard for Serpline 1.1.0. The files to upload are in `store/serpline/` (see `store/serpline/README.md`).
+Everything to paste into the Chrome Web Store Developer Dashboard for Serpline 1.1.1. The files to upload are in `store/serpline/` (see `store/serpline/README.md`).
 
 ## Package
 
 | Field | Value |
 |---|---|
-| File | `store/serpline/serpline-1.1.0.zip` |
+| File | `store/serpline/serpline-1.1.1.zip` |
 | Name | Serpline: SEO Checker & AI Crawler Audit for Google, ChatGPT & More (manifest name; short name Serpline) |
-| Version | 1.1.0 |
+| Version | 1.1.1 |
 | Category | Developer Tools |
 | Language | English (default), Azerbaijani (second listing language) |
 
@@ -218,3 +218,9 @@ https://getlineapps.com/privacy/serpline
 ## After approval
 
 Send the listing link (`https://chromewebstore.google.com/detail/...`) to the agent. It sets Serpline to `live` with that `storeUrl` in `apps/site/src/content/tools.json`, so every "Add to Chrome" button on getlineapps.com points to the listing.
+
+## What changed in 1.1.1 (for the "What's new" note, optional)
+
+```
+The side panel stays readable when you make it narrow: the Render table and the Core Web Vitals no longer get cut off.
+```
