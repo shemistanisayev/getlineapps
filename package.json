@@ -19,7 +19,8 @@
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "lighthouse": "node scripts/lighthouse.mjs",
     "store:hitline": "tsx scripts/store-hitline.ts",
-    "store:serpline": "pnpm --filter @line/serpline-extension zip && tsx scripts/store-serpline.ts"
+    "store:serpline": "pnpm --filter @line/serpline-extension zip && tsx scripts/store-serpline.ts",
+    "store:rivaline": "pnpm --filter @line/rivaline-extension zip && tsx scripts/store-rivaline.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

@@ -9,7 +9,13 @@ export function collectBrand(): BrandRaw {
   const MAX_ELEMENTS = 4000;
   const vw = innerWidth;
   const vh = innerHeight;
-  const bottom = Math.min(2 * vh, document.documentElement.scrollHeight);
+  // Sample the first two viewports, but only down to where the content ends: on a short page the
+  // empty canvas under it would otherwise count as background, and the result would depend on
+  // the window height.
+  const contentBottom = document.body
+    ? Math.ceil(document.body.getBoundingClientRect().bottom)
+    : document.documentElement.scrollHeight;
+  const bottom = Math.max(1, Math.min(2 * vh, contentBottom));
 
   const alpha = (c: string) => {
     const m = /rgba?\(([^)]+)\)/.exec(c);

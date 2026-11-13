@@ -2,7 +2,7 @@
   "backgrounds": [
     {
       "color": "rgb(255, 253, 249)",
-      "area": 203822
+      "area": 194678
     },
     {
       "color": "rgb(30, 43, 36)",
@@ -234,7 +234,8 @@
       "height": 34
     },
     "dpr": 1,
-    "inView": true
+    "inView": true,
+    "viewportWidth": 1016
   },
   "headings": {
     "family": "Fraunces, Georgia, serif",

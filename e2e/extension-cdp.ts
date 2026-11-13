@@ -90,24 +90,32 @@ export async function loadExtensionCdp(
     port = 9333,
     channel,
     dir,
+    realWindow,
   }: {
     args?: string[];
     port?: number;
     channel?: string;
     /** Unpacked extension folder; defaults to the tool's WXT build (spikes pass a scratch one). */
     dir?: string;
+    /**
+     * No emulated viewport: pages get the real window size, so captureVisibleTab matches the page
+     * exactly (store screenshots with a cropped logo). Default: Playwright's 1280 x 720 emulation.
+     */
+    realWindow?: boolean;
   } = {},
 ): Promise<CdpExtension> {
   const profile = mkdtempSync(join(tmpdir(), `line-${slug}-cdp-`));
   const launch = (ch: string) =>
     chromium.launchPersistentContext(profile, {
       channel: ch,
+      ...(realWindow ? { viewport: null } : {}),
       headless: false,
       timezoneId: 'UTC',
       ignoreDefaultArgs: ['--disable-extensions'],
       args: [
         '--enable-unsafe-extension-debugging',
         `--remote-debugging-port=${port}`,
+        ...(realWindow ? ['--window-size=1500,1000'] : []),
         ...(process.env.CI ? ['--headless=new'] : []),
         ...args,
       ],
