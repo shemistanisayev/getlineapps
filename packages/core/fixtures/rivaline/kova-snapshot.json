@@ -1,0 +1,88 @@
+{
+  "url": "http://example.com/",
+  "origin": "http://example.com",
+  "title": "Kova | Skincare that keeps it simple",
+  "lang": "en",
+  "scripts": [
+    "https://s.pinimg.com/ct/core.js",
+    "https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=C9H3KQ7RC77U2M0V5PLG&lib=ttq",
+    "https://connect.facebook.net/en_US/fbevents.js",
+    "https://www.googletagmanager.com/gtm.js?id=GTM-N4KV8R",
+    "https://cdn.shopify.com/shopifycloud/storefront/assets/storefront-kova.js",
+    "https://static.hotjar.com/c/hotjar-3918274.js?sv=6",
+    "https://chimpstatic.com/mcjs-connected/js/users/5f2b8c1d/a91c4e7b0d.js",
+    "https://widget.intercom.io/widget/kv7x2m",
+    "https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js",
+    "https://js.klarna.com/web-sdk/v1/klarna.js",
+    "https://www.paypal.com/sdk/js?client-id=kova-sandbox&components=messages",
+    "https://www.googletagmanager.com/gtag/js?id=G-8XK2LM4QPZ&l=dataLayer&cx=c"
+  ],
+  "inline": [
+    "\n      window.Shopify = window.Shopify || {};\n      Shopify.shop = 'kova-skincare.myshopify.com';\n      Shopify.theme = { name: 'Dawn', id: 141205 };\n    ",
+    "\n      (function (w, d, s, l, i) {\n        w[l] = w[l] || [];\n        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });\n        var f = d.getElementsByTagName(s)[0],\n          j = d.createElement(s);\n        j.async = true;\n        j.src = 'https://www.googletagmanager.com/gtm.js?id",
+    "\n      !(function (f, b, e, v, n, t, s) {\n        if (f.fbq) return;\n        n = f.fbq = function () {\n          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);\n        };\n        if (!f._fbq) f._fbq = n;\n        n.push = n;\n        n.loaded = !0;\n        n.version = '2.0' … fbq('init', '418273650912345');\n      fbq('track', 'PageView');\n     … fbq('track', 'PageView');\n    ",
+    "\n      !(function (w, d, t) {\n        w.TiktokAnalyticsObject = t;\n        var ttq = (w[t] = w[t] || []);\n        ttq._i = ttq._i || {};\n        ttq.load = function (e) {\n          ttq._i[e] = [];\n          var o = d.createElement('script');\n          o.async = !0;\n          o.src = 'https://analyti … ttq.load('C9H3KQ7RC77U2M0V5PLG');\n        ttq.page();\n      })(window, document,",
+    "\n      !(function (e) {\n        if (!window.pintrk) {\n          window.pintrk = function () {\n            window.pintrk.queue.push(Array.prototype.slice.call(arguments));\n          };\n          var n = window.pintrk;\n          ((n.queue = []), (n.version = '3.0'));\n          var t = document.createE … pintrk('load', '2612345678901');\n      pintrk('page');\n     … pintrk('page');\n    ",
+    "\n      (function (h, o, t, j, a, r) {\n        h.hj =\n          h.hj ||\n          function () {\n            (h.hj.q = h.hj.q || []).push(arguments);\n          };\n        h._hjSettings = { hjid: 3918274, hjsv: 6 };\n        a = o.getElementsByTagName('head')[0];\n        r = o.createElement('script');\n ",
+    "\n      window.intercomSettings = { api_base: 'https://api-iam.intercom.io', app_id: 'kv7x2m' };\n    "
+  ],
+  "resources": [
+    "https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=DM+Sans:wght@400;500;600&display=swap",
+    "https://cdn.shopify.com/shopifycloud/storefront/assets/storefront-kova.js",
+    "https://chimpstatic.com/mcjs-connected/js/users/5f2b8c1d/a91c4e7b0d.js",
+    "https://widget.intercom.io/widget/kv7x2m",
+    "https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js",
+    "https://js.klarna.com/web-sdk/v1/klarna.js",
+    "https://www.paypal.com/sdk/js?client-id=kova-sandbox&components=messages",
+    "https://www.googletagmanager.com/gtm.js?id=GTM-N4KV8R",
+    "https://connect.facebook.net/en_US/fbevents.js",
+    "https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=C9H3KQ7RC77U2M0V5PLG&lib=ttq",
+    "https://s.pinimg.com/ct/core.js",
+    "https://static.hotjar.com/c/hotjar-3918274.js?sv=6",
+    "https://api-iam.intercom.io/messenger/web/ping",
+    "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11284956/?random=1&cv=11&fst=1",
+    "https://www.googletagmanager.com/gtag/js?id=G-8XK2LM4QPZ&l=dataLayer&cx=c",
+    "https://www.facebook.com/tr/?id=418273650912345&ev=PageView&noscript=1",
+    "https://analytics.tiktok.com/api/v2/pixel?event=Pageview",
+    "https://ct.pinterest.com/v3/?tid=2612345678901&event=init",
+    "https://vc.hotjar.io/sessions/start",
+    "https://www.google-analytics.com/g/collect?v=2&tid=G-8XK2LM4QPZ&en=page_view"
+  ],
+  "resourcesFull": false,
+  "globals": [
+    "fbq",
+    "ttq",
+    "pintrk",
+    "hj",
+    "Intercom",
+    "Shopify",
+    "Trustpilot",
+    "Klarna",
+    "paypal"
+  ],
+  "values": {
+    "ttq._i": ["C9H3KQ7RC77U2M0V5PLG"],
+    "hjSiteSettings.site_id": "3918274",
+    "google_tag_manager": ["GTM-N4KV8R"],
+    "Shopify.theme.name": "Dawn"
+  },
+  "cookies": [
+    "_shopify_y",
+    "intercom-id-kv7x2m",
+    "_gcl_au",
+    "_fbp",
+    "_ttp",
+    "_pin_unauth",
+    "_hjSessionUser_3918274",
+    "_ga",
+    "_ga_8XK2LM4QPZ"
+  ],
+  "meta": {
+    "og:site_name": "Kova"
+  },
+  "links": ["fonts.googleapis.com"],
+  "selectors": [".trustpilot-widget", "klarna-placement", "[data-pp-message]"],
+  "consentCommand": false,
+  "emailForm": false,
+  "readyState": "complete"
+}

@@ -152,7 +152,7 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 3. **Logo crop** uses `devicePixelRatio` from `collectBrand` to map CSS px to the capture (the capture is in device pixels: 1923x1140 at DPR 1.5 in the check).
 4. **TikTok country.** The builder sends the country only when TikTok knows it (EU, EEA, CH, UK), otherwise `all`. Final behaviour depends on question 2.
 5. **Stack numbers on Kova** (SPEC §11): 13 tools in 8 categories, 3 gaps (server-side, consent, CRM), IDs from Main (`418273650912345`, `C9H3KQ7RC77U2M0V5PLG`, `AW-11284956`, `2612345678901`, `G-8XK2LM4QPZ`, `site 3918274`, `GTM-N4KV8R`). Step 4 asserts them.
-6. **Rules seed.** Rivaline's rules start from Hitline's 50-platform URL patterns (same hosts, one source) plus the SPEC list, to about 120 tools. Shared patterns are imported, not copied, so a fix in one tool reaches both.
+6. **Rules.** Hitline's platform list has no URL patterns of its own (they live in its request classifier, built for decoded hits), so Rivaline keeps its own 128 rules in `packages/core/src/rivaline/rules/`. Shared with Hitline: the consent platform list (a test keeps every `KNOWN_CMPS` name covered) and the registrable-domain helper.
 7. **Report layout.** If `buildLineReport` has no two-column block or swatches yet, they are added as optional section kinds; Hitline and Serpline snapshots must stay identical.
 8. **Copy.** Core returns ids, numbers and evidence only; every sentence goes into EN and AZ dictionaries, listed in `docs/rivaline/AZ-REVIEW.md`.
 
@@ -174,6 +174,17 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 - **Chip order:** the design sorts category chips by count (Advertising 4, Analytics 2, Payments 2, Tag management 1), while the list groups follow the SPEC's category order. Step 5 keeps both.
 - **Tabs in Access and Restricted:** no tab is selected and counts are hidden, but the first tab stays focusable so the tab list is reachable by keyboard.
 
+## Step 4 notes (2026-11-13)
+
+- **Fixture.** `apps/rivaline/fixture/public/kova.html` is SitePage with the real vendor snippets (GTM, Meta, TikTok, Pinterest, Hotjar, Mailchimp, Intercom, Shopify, Trustpilot, Klarna, PayPal). `vendors.ts` answers every https URL through Playwright: script stubs define the globals, set the cookies and send one request each; Google Fonts CSS and Fraunces / DM Sans files come from `@fontsource`. Glowbar has Shopify, GA4 with a Consent Mode default, Meta, Klaviyo and Cookiebot; Mira Studio has nothing. The e2e suite routes the vendors too, so no request leaves the machine.
+- **Recording.** `pnpm tsx scripts/record-rivaline-fixture.ts` runs the extension's own `collectSnapshot` and `collectBrand` (`apps/rivaline/extension/src/capture/`) on the three sites and writes `packages/core/fixtures/rivaline/*.json`. Core tests read those files.
+- **Inline scripts.** SPEC §4.1 keeps the first 300 characters of each inline script, but `fbq('init', ...)`, `ttq.load(...)` and `pintrk('load', ...)` sit after character 300 in the real snippets. The snapshot also keeps 80-character excerpts around those ID calls (at most 6 per script), still never whole scripts.
+- **Accent color** uses HSV saturation: HSL calls pale tints saturated and picked Kova's `#F1E3C2` product tile instead of the brand yellow `#EBC56B`.
+- **Color order** follows the design (Primary, Text, Background, Accent, Surface) in the Brand tab, the export and the PDF. The SPEC lists the roles in the order they are worked out.
+- **Labels without an ID:** chat tools "chat", reviews "widget", buy-now-pay-later "messaging", consent "banner", Mailchimp "forms", Shopify shows its theme name ("Dawn").
+- **Marks row** puts only the first analytics tool before the ad pixels (design: Shopify, GTM, GA4, Meta, TikTok, Google Ads, Pinterest, then "+6"; Hotjar is in the +6).
+- **Serpline e2e:** its LCP check failed now and then when tests ran in parallel. Chrome reports LCP only for a visible tab, and the panel correctly says "Not measured" with the reason. The test now accepts that state; Serpline itself is unchanged.
+
 ## Questions for the owner
 
 1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
@@ -187,7 +198,7 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 | 1 | P0 | This plan and the API check | Done: this file, `scripts/spike-rivaline.ts` |
 | 2 | P1 | `apps/rivaline/extension` scaffold (side panel, background, shortcut, welcome, uninstall URL, manifest test), `apps/rivaline/fixture` skeleton, workspace and CI | Done: icon click (real, via CDP) opens the panel; the probe reads Kova in the MAIN world; same-site navigation reads again, another tab or site shows Access with the real shortcut, `chrome://version` and the PDF viewer show Restricted (e2e on Edge and Chrome stable 157). Fixture on port 4402 serves the design hosts. AZ text in `docs/rivaline/AZ-REVIEW.md` |
 | 3 | P2 | Rivaline panel theme and shell in `@line/ui/rivaline`, new marks, category glyphs, preview section, contrast tests | Done: `@line/ui/rivaline` (PanelHeader with tabs, StackHero, GapStrip, CategoryChips, ToolGroup and ToolRow with evidence, NotFoundCard, LimeCta, LibraryRow, fields, LogoBox, Swatch, FontRow, ButtonPreview, Segmented, CodeBlock, Sheet, Toast) and `rivaline.css`; 11 new marks from simple-icons and 13 category glyphs; preview section with the design's demo data; 32 contrast pairs tested. The panel uses the new header |
-| 4 | P3 | `packages/core/src/rivaline` (rules ~120, match, IDs, evidence, summary, gaps, ad builders, brand functions) + Kova, Glowbar, Mira fixture | Kova: 13 tools, 8 categories, 3 gaps, the design IDs |
+| 4 | P3 | `packages/core/src/rivaline` (rules ~120, match, IDs, evidence, summary, gaps, ad builders, brand functions) + Kova, Glowbar, Mira fixture | Done: 128 rules in 12 categories, server-side signal, gaps, summary, chips, ad library builders, ISO country list, brand kit (ΔE merge, roles, fonts, button, CSS and JSON export, logo crop). Kova recorded with the extension's own collectSnapshot and collectBrand gives 13 tools in 8 categories, the design IDs, 3 gaps, "+6", the 5 colors, Fraunces and DM Sans, the button and the BrandExport CSS exactly. 53 core tests |
 | 5B | P8 | `/rivaline` landing with `#finder`, `/rivaline/uninstalled`, SEO, AZ, published early as `soon` | Screenshots 1440 / 820 / 390, axe clean, deployed |
 | 5 | P4 | Scan pipeline with reading steps, PanelHeader, Stack, StackDetail, Access, Restricted, Empty | Match artboards on the fixture |
 | 6 | P5 | Ads, Brand, BrandExport | Exported files open |

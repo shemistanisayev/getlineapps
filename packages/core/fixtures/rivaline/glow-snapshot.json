@@ -1,0 +1,41 @@
+{
+  "url": "http://example.net/",
+  "origin": "http://example.net",
+  "title": "Glowbar | Clean beauty",
+  "lang": "en",
+  "scripts": [
+    "https://connect.facebook.net/en_US/fbevents.js",
+    "https://consent.cookiebot.com/uc.js",
+    "https://cdn.shopify.com/shopifycloud/storefront/assets/storefront-glow.js",
+    "https://www.googletagmanager.com/gtag/js?id=G-GLOW2026",
+    "https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=GlowBX"
+  ],
+  "inline": [
+    "\n      window.Shopify = { shop: 'glowbar.myshopify.com', theme: { name: 'Sense', id: 2 } };\n    ",
+    "\n      window.dataLayer = window.dataLayer || [];\n      function gtag() {\n        dataLayer.push(arguments);\n      }\n      gtag('consent', 'default', { ad_storage: 'denied', analytics_storage: 'denied' });\n      gtag('js', new Date());\n      gtag('config', 'G-GLOW2026');\n     … gtag('config', 'G-GLOW2026');\n    ",
+    "\n      !(function (f, b, e, v, n, t, s) {\n        if (f.fbq) return;\n        n = f.fbq = function () {\n          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);\n        };\n        if (!f._fbq) f._fbq = n;\n        n.push = n;\n        n.loaded = !0;\n        n.version = '2.0' … fbq('init', '902718364501928');\n      fbq('track', 'PageView');\n     … fbq('track', 'PageView');\n    "
+  ],
+  "resources": [
+    "https://consent.cookiebot.com/uc.js",
+    "https://cdn.shopify.com/shopifycloud/storefront/assets/storefront-glow.js",
+    "https://www.googletagmanager.com/gtag/js?id=G-GLOW2026",
+    "https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=GlowBX",
+    "https://connect.facebook.net/en_US/fbevents.js",
+    "https://www.google-analytics.com/g/collect?v=2&tid=G-GLOW2026&en=page_view",
+    "https://www.facebook.com/tr/?id=902718364501928&ev=PageView&noscript=1"
+  ],
+  "resourcesFull": false,
+  "globals": ["fbq", "Cookiebot", "_learnq", "klaviyo", "Shopify"],
+  "values": {
+    "Shopify.theme.name": "Sense"
+  },
+  "cookies": ["CookieConsent", "_shopify_y", "_ga", "_ga_GLOW2026", "_fbp"],
+  "meta": {
+    "og:site_name": "Glowbar"
+  },
+  "links": [],
+  "selectors": [],
+  "consentCommand": true,
+  "emailForm": false,
+  "readyState": "complete"
+}

@@ -8,5 +8,9 @@
   "scripts": {
     "start": "tsx server.ts",
     "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/fraunces": "^5.3.0"
   }
 }

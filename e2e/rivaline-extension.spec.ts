@@ -4,6 +4,7 @@
  */
 import { expect, test } from '@playwright/test';
 import { glowUrl, kovaUrl, miraUrl, rivalineHostArgs } from '../apps/rivaline/fixture/hosts.ts';
+import { routeRivalineVendors } from '../apps/rivaline/fixture/vendors.ts';
 import { readManifest, requireBuilt } from './extension.ts';
 import { loadExtensionCdp, type CdpExtension } from './extension-cdp.ts';
 
@@ -21,6 +22,8 @@ test.describe('rivaline extension', () => {
   test.beforeAll(async () => {
     requireBuilt('rivaline');
     ext = await loadExtensionCdp('rivaline', { args: rivalineHostArgs(), port: 9335 });
+    // Kova and Glowbar load real vendor URLs: answer them all locally.
+    await routeRivalineVendors(ext.context);
   });
   test.afterAll(async () => ext?.close());
 

@@ -5,18 +5,497 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kova | Skincare that keeps it simple</title>
     <meta property="og:site_name" content="Kova" />
-    <link rel="stylesheet" href="/site.css" />
-    <!-- Step 2 skeleton. The full SitePage (design/rivaline/SitePage.dc.html) and vendor stubs come in step 4. -->
+    <meta name="description" content="Three steps, gentle formulas, made in small batches." />
+    <!--
+      Kova: the fictional shop from design/rivaline/SitePage.dc.html (docs/rivaline-SPEC.md §11).
+      Every vendor URL below is answered locally by Playwright (apps/rivaline/fixture/vendors.ts),
+      so nothing leaves the machine. 13 tools in 8 categories, no consent tool, no CRM, GA4 sent to
+      www.google-analytics.com (no server-side).
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=DM+Sans:wght@400;500;600&display=swap"
+    />
+    <script>
+      window.Shopify = window.Shopify || {};
+      Shopify.shop = 'kova-skincare.myshopify.com';
+      Shopify.theme = { name: 'Dawn', id: 141205 };
+    </script>
+    <script
+      src="https://cdn.shopify.com/shopifycloud/storefront/assets/storefront-kova.js"
+      defer
+    ></script>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s);
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-N4KV8R');
+    </script>
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '418273650912345');
+      fbq('track', 'PageView');
+    </script>
+    <!-- TikTok Pixel -->
+    <script>
+      !(function (w, d, t) {
+        w.TiktokAnalyticsObject = t;
+        var ttq = (w[t] = w[t] || []);
+        ttq._i = ttq._i || {};
+        ttq.load = function (e) {
+          ttq._i[e] = [];
+          var o = d.createElement('script');
+          o.async = !0;
+          o.src = 'https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=' + e + '&lib=' + t;
+          var a = d.getElementsByTagName('script')[0];
+          a.parentNode.insertBefore(o, a);
+        };
+        ttq.page = function () {};
+        ttq.load('C9H3KQ7RC77U2M0V5PLG');
+        ttq.page();
+      })(window, document, 'ttq');
+    </script>
+    <!-- Pinterest Tag -->
+    <script>
+      !(function (e) {
+        if (!window.pintrk) {
+          window.pintrk = function () {
+            window.pintrk.queue.push(Array.prototype.slice.call(arguments));
+          };
+          var n = window.pintrk;
+          ((n.queue = []), (n.version = '3.0'));
+          var t = document.createElement('script');
+          ((t.async = !0), (t.src = e));
+          var r = document.getElementsByTagName('script')[0];
+          r.parentNode.insertBefore(t, r);
+        }
+      })('https://s.pinimg.com/ct/core.js');
+      pintrk('load', '2612345678901');
+      pintrk('page');
+    </script>
+    <!-- Hotjar -->
+    <script>
+      (function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: 3918274, hjsv: 6 };
+        a = o.getElementsByTagName('head')[0];
+        r = o.createElement('script');
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+    <!-- Mailchimp site connection (pop-up form) -->
+    <script
+      id="mcjs"
+      src="https://chimpstatic.com/mcjs-connected/js/users/5f2b8c1d/a91c4e7b0d.js"
+      async
+    ></script>
+    <!-- Intercom -->
+    <script>
+      window.intercomSettings = { api_base: 'https://api-iam.intercom.io', app_id: 'kv7x2m' };
+    </script>
+    <script src="https://widget.intercom.io/widget/kv7x2m" async></script>
+    <!-- Trustpilot, Klarna and PayPal messaging -->
+    <script
+      src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+      async
+    ></script>
+    <script
+      src="https://js.klarna.com/web-sdk/v1/klarna.js"
+      data-client-id="kova-client"
+      async
+    ></script>
+    <script
+      src="https://www.paypal.com/sdk/js?client-id=kova-sandbox&components=messages"
+      data-namespace="paypal"
+      async
+    ></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'DM Sans', Arial, sans-serif;
+        color: #1e2b24;
+        background: #fffdf9;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .serif {
+        font-family: Fraunces, Georgia, serif;
+      }
+      .bar {
+        height: 34px;
+        background: #1e2b24;
+        color: #f6f1ea;
+        font-size: 12.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      header {
+        height: 72px;
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        padding: 0 40px;
+        border-bottom: 1px solid #e6ded2;
+      }
+      .site-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: #1e2b24;
+      }
+      .site-logo i {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #2f5d46;
+        box-shadow: inset -6px -6px 0 #ebc56b;
+      }
+      header nav {
+        display: flex;
+        gap: 26px;
+        font-size: 14.5px;
+        font-weight: 500;
+      }
+      .grow {
+        flex-grow: 1;
+      }
+      .icons {
+        display: flex;
+        gap: 18px;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 40px;
+        padding: 48px 40px 36px;
+        background: #f6f1ea;
+        align-items: center;
+      }
+      .hero-text {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .eyebrow {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #2f5d46;
+      }
+      h1 {
+        margin: 0;
+        font-size: 52px;
+        line-height: 1.04;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .lead {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #44544a;
+        max-width: 380px;
+      }
+      .ctas {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .btn {
+        height: 50px;
+        padding: 0 28px;
+        border-radius: 999px;
+        background: #2f5d46;
+        color: #f6f1ea;
+        font-size: 15px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+      }
+      .quiz {
+        font-size: 15px;
+        font-weight: 600;
+        border-bottom: 2px solid #ebc56b;
+      }
+      .trust {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #44544a;
+      }
+      .trust b {
+        color: #1e2b24;
+      }
+      .visual {
+        position: relative;
+        height: 380px;
+        border-radius: 28px;
+        background: #dce5d8;
+        overflow: hidden;
+      }
+      .visual span {
+        position: absolute;
+      }
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        padding: 28px 40px;
+      }
+      .product {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .product .img {
+        height: 120px;
+        border-radius: 18px;
+      }
+      .product .row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .klarna-line {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12.5px;
+        color: #44544a;
+      }
+      .chat {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #2f5d46;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 24px -8px rgba(30, 43, 36, 0.6);
+      }
+    </style>
   </head>
-  <body class="kova">
+  <body>
+    <div class="bar">Free shipping over $40. Easy 30-day returns.</div>
     <header>
-      <a href="/" class="site-logo" aria-label="Kova">Kova</a>
-      <nav><a href="/collections/all">Shop</a><a href="/pages/about">About</a></nav>
+      <a href="/" class="site-logo serif" aria-label="Kova home"><i></i>kova</a>
+      <nav>
+        <a href="/collections/all">Shop all</a><a href="/collections/skincare">Skincare</a
+        ><a href="/collections/body">Body</a><a href="/collections/sets">Sets</a
+        ><a href="/blogs/journal">Journal</a>
+      </nav>
+      <span class="grow"></span>
+      <span class="icons" aria-hidden="true">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        >
+          <circle cx="11" cy="11" r="6.5"></circle>
+          <path d="M20 20l-4.2-4.2"></path>
+        </svg>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        >
+          <circle cx="12" cy="8" r="4"></circle>
+          <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path>
+        </svg>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linejoin="round"
+        >
+          <path d="M5 8h14l-1.2 12H6.2z"></path>
+          <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+        </svg>
+      </span>
     </header>
     <main>
-      <h1>Skincare that keeps it simple</h1>
-      <p>A fictional site for testing Rivaline. Nothing here is real.</p>
-      <a class="cta" href="/collections/all">Shop the routine</a>
+      <section class="hero">
+        <div class="hero-text">
+          <span class="eyebrow">New: the Daily Duo</span>
+          <h1 class="serif">Skincare that keeps it simple.</h1>
+          <p class="lead">Three steps, gentle formulas, made in small batches.</p>
+          <div class="ctas">
+            <a class="btn" href="/collections/all">Shop the routine</a>
+            <a class="quiz" href="/pages/quiz">Take the skin quiz</a>
+          </div>
+          <div class="trust">
+            Reviews on
+            <span
+              class="trustpilot-widget"
+              data-template-id="5419b6a8b0d04a076446a9ad"
+              data-businessunit-id="kova"
+              ><b>Trustpilot</b></span
+            >
+          </div>
+        </div>
+        <div class="visual" aria-hidden="true">
+          <span
+            style="
+              right: 40px;
+              top: 36px;
+              width: 120px;
+              height: 120px;
+              border-radius: 50%;
+              background: #ebc56b;
+            "
+          ></span>
+          <span
+            style="
+              left: 22%;
+              bottom: 0;
+              width: 120px;
+              height: 250px;
+              border-radius: 30px 30px 0 0;
+              background: #2f5d46;
+            "
+          ></span>
+          <span
+            style="
+              left: calc(22% + 36px);
+              bottom: 250px;
+              width: 48px;
+              height: 34px;
+              border-radius: 8px 8px 0 0;
+              background: #1e2b24;
+            "
+          ></span>
+          <span
+            class="serif"
+            style="
+              left: calc(22% + 30px);
+              bottom: 120px;
+              color: #f6f1ea;
+              font-size: 22px;
+              font-weight: 600;
+            "
+            >kova</span
+          >
+          <span
+            style="
+              left: calc(22% + 150px);
+              bottom: 0;
+              width: 100px;
+              height: 170px;
+              border-radius: 50px 50px 0 0;
+              background: #f6f1ea;
+            "
+          ></span>
+          <span
+            style="
+              left: calc(22% + 172px);
+              bottom: 170px;
+              width: 56px;
+              height: 20px;
+              border-radius: 6px 6px 0 0;
+              background: #ebc56b;
+            "
+          ></span>
+        </div>
+      </section>
+      <section class="products" aria-label="Bestsellers">
+        <div class="product">
+          <div class="img" style="background: #e6ded2"></div>
+          <div class="row"><span>Daily Cleanser</span><span>$24</span></div>
+          <div class="klarna-line">
+            or 3 payments with
+            <klarna-placement data-key="credit-promotion-badge" data-purchase-amount="2400"
+              >Klarna</klarna-placement
+            >
+          </div>
+        </div>
+        <div class="product">
+          <div class="img" style="background: #dce5d8"></div>
+          <div class="row"><span>Barrier Serum</span><span>$38</span></div>
+          <div class="klarna-line">
+            or 3 payments with
+            <klarna-placement data-key="credit-promotion-badge" data-purchase-amount="3800"
+              >Klarna</klarna-placement
+            >
+          </div>
+        </div>
+        <div class="product">
+          <div class="img" style="background: #f1e3c2"></div>
+          <div class="row"><span>Night Cream</span><span>$42</span></div>
+          <div class="klarna-line">
+            or 3 payments with
+            <klarna-placement data-key="credit-promotion-badge" data-purchase-amount="4200"
+              >Klarna</klarna-placement
+            >
+          </div>
+        </div>
+      </section>
+      <div data-pp-message data-pp-amount="38" hidden></div>
     </main>
+    <span class="chat" aria-hidden="true"
+      ><svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#F6F1EA"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M5 5h14v10h-8l-4 4v-4H5z"></path></svg
+    ></span>
   </body>
 </html>

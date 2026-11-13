@@ -1,0 +1,19 @@
+{
+  "url": "http://example.org/",
+  "origin": "http://example.org",
+  "title": "Mira Studio | Illustration",
+  "lang": "en",
+  "scripts": [],
+  "inline": [],
+  "resources": [],
+  "resourcesFull": false,
+  "globals": [],
+  "values": {},
+  "cookies": [],
+  "meta": {},
+  "links": [],
+  "selectors": [],
+  "consentCommand": false,
+  "emailForm": false,
+  "readyState": "complete"
+}

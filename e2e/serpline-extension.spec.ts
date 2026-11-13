@@ -338,7 +338,9 @@ test.describe('serpline extension', () => {
     await expect.poll(panelText).toContain('SERVER RESPONSE');
     const speed = await panelText();
     expect(speed).toMatch(/Core Web Vitals (look good|need work|are poor|not measured yet)/);
-    expect(speed).toMatch(/LCP\s+[\d.]+ (ms|s)/);
+    // Chrome reports LCP only for a page that was visible: under parallel test load the tab can be
+    // in the background, and the panel then shows "Not measured" with the reason.
+    expect(speed).toMatch(/LCP\s+([\d.]+ (ms|s)|(\.\.\.\s+)?Not measured)/);
     expect(speed).toMatch(/CLS\s+\d\.\d\d/);
     expect(speed).toMatch(/Page weight\s+[\d.]+ (B|KB|MB), \d+ requests/);
     // The fixture pictures are SVG (served for /img/*.jpg): a vector is never "bigger than shown".

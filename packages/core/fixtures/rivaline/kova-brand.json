@@ -1,0 +1,265 @@
+{
+  "backgrounds": [
+    {
+      "color": "rgb(255, 253, 249)",
+      "area": 203822
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "area": 34544
+    },
+    {
+      "color": "rgb(47, 93, 70)",
+      "area": 484
+    },
+    {
+      "color": "rgb(246, 241, 234)",
+      "area": 292357
+    },
+    {
+      "color": "rgb(47, 93, 70)",
+      "area": 8827
+    },
+    {
+      "color": "rgb(220, 229, 216)",
+      "area": 106088
+    },
+    {
+      "color": "rgb(235, 197, 107)",
+      "area": 14400
+    },
+    {
+      "color": "rgb(47, 93, 70)",
+      "area": 30000
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "area": 1632
+    },
+    {
+      "color": "rgb(246, 241, 234)",
+      "area": 17000
+    },
+    {
+      "color": "rgb(235, 197, 107)",
+      "area": 1120
+    },
+    {
+      "color": "rgb(230, 222, 210)",
+      "area": 35839
+    },
+    {
+      "color": "rgb(220, 229, 216)",
+      "area": 35841
+    },
+    {
+      "color": "rgb(241, 227, 194)",
+      "area": 35839
+    },
+    {
+      "color": "rgb(47, 93, 70)",
+      "area": 3136
+    }
+  ],
+  "texts": [
+    {
+      "color": "rgb(246, 241, 234)",
+      "bg": "rgb(30, 43, 36)",
+      "weight": 550,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 112,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 116,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 116,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 58,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 58,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 102,
+      "link": true
+    },
+    {
+      "color": "rgb(47, 93, 70)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 216,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 1560,
+      "link": false
+    },
+    {
+      "color": "rgb(68, 84, 74)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 832,
+      "link": false
+    },
+    {
+      "color": "rgb(246, 241, 234)",
+      "bg": "rgb(47, 93, 70)",
+      "weight": 240,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 270,
+      "link": true
+    },
+    {
+      "color": "rgb(68, 84, 74)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 130,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 130,
+      "link": false
+    },
+    {
+      "color": "rgb(246, 241, 234)",
+      "bg": "rgb(220, 229, 216)",
+      "weight": 88,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 210,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 45,
+      "link": false
+    },
+    {
+      "color": "rgb(68, 84, 74)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 225,
+      "link": false
+    },
+    {
+      "color": "rgb(68, 84, 74)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 75,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 195,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 45,
+      "link": false
+    },
+    {
+      "color": "rgb(68, 84, 74)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 225,
+      "link": false
+    },
+    {
+      "color": "rgb(68, 84, 74)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 75,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 165,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 45,
+      "link": false
+    },
+    {
+      "color": "rgb(68, 84, 74)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 225,
+      "link": false
+    },
+    {
+      "color": "rgb(68, 84, 74)",
+      "bg": "rgb(255, 253, 249)",
+      "weight": 75,
+      "link": false
+    }
+  ],
+  "rootColors": [],
+  "logo": {
+    "rect": {
+      "x": 40,
+      "y": 53,
+      "width": 92.5,
+      "height": 34
+    },
+    "dpr": 1,
+    "inView": true
+  },
+  "headings": {
+    "family": "Fraunces, Georgia, serif",
+    "weight": "600",
+    "size": 52
+  },
+  "body": {
+    "family": "\"DM Sans\", Arial, sans-serif",
+    "weight": "400",
+    "size": 16
+  },
+  "fonts": {
+    "google": ["Fraunces", "DM Sans"],
+    "adobe": false,
+    "faces": ["Fraunces", "DM Sans"]
+  },
+  "button": {
+    "bg": "rgb(47, 93, 70)",
+    "color": "rgb(246, 241, 234)",
+    "radius": "999px",
+    "height": 50,
+    "paddingX": 28,
+    "family": "\"DM Sans\", Arial, sans-serif",
+    "weight": "600",
+    "size": 15,
+    "label": "Shop the routine"
+  }
+}
