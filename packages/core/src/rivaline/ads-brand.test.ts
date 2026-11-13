@@ -109,6 +109,19 @@ describe('colors', () => {
     expect(m.of('rgb(255, 253, 249)')).toBe('#F6F1EA');
   });
 
+  it('near-black grays are never the accent (QA: Wikipedia, HubSpot)', () => {
+    const roles = colorRoles({
+      backgrounds: [{ color: '#FFFFFF', area: 1000 }],
+      texts: [
+        { color: '#202122', bg: '#FFFFFF', weight: 500, link: false },
+        { color: '#101418', bg: '#FFFFFF', weight: 300, link: false },
+        { color: '#3366CC', bg: '#FFFFFF', weight: 80, link: true },
+      ],
+      button: null,
+    });
+    expect(roles.find((r) => r.role === 'accent')).toBeUndefined();
+  });
+
   it('primary falls back to the most used link color without a main button', () => {
     const roles = colorRoles({
       backgrounds: [{ color: '#FFFFFF', area: 1000 }],
@@ -158,6 +171,10 @@ describe('fonts, button, exports', () => {
     expect(fontSource('Proxima Nova', fonts)).toBe('adobe');
     expect(fontSource('Brand', { ...fonts, adobe: false })).toBe('self');
     expect(fontSource('Arial', fonts)).toBe('system');
+    // Google Fonts through @import: no googleapis link, but files from fonts.gstatic.com.
+    expect(
+      fontSource('Roboto', { google: [], gstatic: true, adobe: false, faces: ['Roboto'] }),
+    ).toBe('google');
   });
 
   it('button label is cut at 24 characters, transparent buttons are ignored', () => {

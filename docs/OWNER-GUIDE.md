@@ -49,15 +49,15 @@ Extension-ların içindəki linklər (privacy, silinmə səhifəsi, digər alət
 
 ## 7. Növbəti Line alətinə başlamaq
 
-Hər alət ayrıca fazadır (`docs/line-family-PLAN.md`). Yeni söhbət aç və o fazanın promptunu yapışdır. Hitline və Serpline hazırdır, növbəti Rivaline-dır:
+Hər alət ayrıca fazadır (`docs/line-family-PLAN.md`). Yeni söhbət aç və o fazanın promptunu yapışdır. Hitline, Serpline və Rivaline hazırdır, növbəti Foldline-dır:
 
 ```
-Start Rivaline. Read CLAUDE.md, docs/rivaline-SPEC.md, the family docs and Faza 5 of docs/line-family-PLAN.md.
+Start Foldline. Read CLAUDE.md, docs/foldline-SPEC.md, the family docs and Faza 6 of docs/line-family-PLAN.md.
 Follow the family docs where the SPEC disagrees. Reuse packages/ui, packages/report, packages/site-kit and the fixtures.
 Do step 1 (SPEC Phase 0) and stop. After each step: checks for all apps, commit, push, short report in Azerbaijani, wait for me.
 ```
 
-Agent Hitline və Serpline-da qurulan hissələri (loqolar, PDF, sayt, test mağazası, Store skripti, side panel testləri) yenidən istifadə edəcək.
+Agent Hitline, Serpline və Rivaline-da qurulan hissələri (loqolar, PDF, sayt, test mağazası, Store skripti, side panel testləri) yenidən istifadə edəcək.
 
 ## 8. Serpline
 
@@ -88,7 +88,64 @@ Paneldə yanlış problem görsən (məsələn sayt düzgündür, amma Serpline 
 Serpline shows <problem> on <url>, but I think it is wrong. Check it and fix it if Serpline is wrong.
 ```
 
-## 9. Bir şey sınanda
+## 9. Rivaline
+
+Yuxarıdakı 2-5-ci bölmələr Rivaline üçün də eynidir: "Hitline" sözünü "Rivaline" ilə əvəz et (Store paketi `store/rivaline/`, mətnlər `docs/rivaline/STORE-LISTING.md`, rəy səhifəsi `getlineapps.com/rivaline/uninstalled`, rəy e-poçtunun mövzusu `Rivaline feedback: <səbəb>`). Rivaline Store-a üçüncü extension yeri açılanda yüklənir, o vaxta qədər landingdə "Tezliklə" yazılır.
+
+**Yeni versiya buraxmaq**
+
+1. Agentə yaz: `Release Rivaline 1.0.1: <nə dəyişdi>. Bump the version, run all checks, rebuild store/rivaline and push.`
+2. `chrome.google.com/webstore/devconsole` aç, Rivaline-ı seç, **Package** bölməsində **Upload new package** bas və `store/rivaline/rivaline-1.0.1.zip` faylını seç.
+3. **Submit for review** bas.
+
+**Domeni dəyişmək**
+
+5-ci bölmədəki prompt Rivaline-ı da əhatə edir. Rivaline-ın Settings-dəki linkləri (privacy, digər alətlər) və silinmə səhifəsi yalnız yeni versiya ilə dəyişir, ona görə domendən sonra Rivaline üçün də yeni versiya burax.
+
+**Öz Chrome-unda yoxlamaq**
+
+1. Agentə yaz: `Build Rivaline.` Sonra `chrome://extensions` aç, **Developer mode**-u yandır, **Load unpacked** bas və `apps\rivaline\extension\.output\chrome-mv3` qovluğunu seç.
+2. Rəqibin saytını aç və Rivaline ikonuna bas (və ya `Alt+Shift+V`). Sağda yan panel açılır: Stack, Ads və Brand tabları.
+3. Başqa taba keçəndə panel "Bu tab oxunsun?" soruşur: ikona yenidən bas. Rivaline səhifəni yalnız sən basanda oxuyur.
+4. Saytda cookie banneri varsa, bəzi alətlər yalnız razılıqdan sonra yüklənir. Banneri qəbul et və **Səhifəni yenidən oxu** bas.
+
+**Yeni alət tanıtmaq (detection qaydası)**
+
+Rivaline bir aləti tanımırsa (məsələn sayt yeni bir çat və ya CRM işlədir), saytın linkini agentə ver:
+
+```
+Rivaline does not find <alətin adı> on <url>. Add a detection rule with a test and push.
+```
+
+Qaydalar `packages/core/src/rivaline/rules/` qovluğundadır, hər qayda testlə yoxlanır. Yeni qayda yeni versiya ilə istifadəçilərə çatır.
+
+**Bir tapıntı səhv görünürsə**
+
+Rivaline saytda olmayan bir alət göstərirsə və ya rəng rolu səhvdirsə:
+
+```
+Rivaline shows <tapıntı> on <url>, but I think it is wrong. Check the evidence and fix it if Rivaline is wrong.
+```
+
+Paneldə hər alətə bassan, "Rivaline bunu necə tapdı" bölməsində sübutu (skript, sorğu, cookie) görürsən. Onu da agentə yapışdıra bilərsən.
+
+**Real saytlarda yoxlama (QA)**
+
+```
+Run Rivaline QA on <url1> <url2> <url3> and tell me about any false positives.
+```
+
+Agent `scripts/qa-rivaline.ts` ilə hər saytı açır, Stack, Ads və Brand tablarının şəklini çəkir. Nəticələr `docs/rivaline/QA.md` faylına yazılır.
+
+**Rəy e-poçtları**
+
+Rivaline-ı silən adam `getlineapps.com/rivaline/uninstalled` səhifəsində rəy yazsa, sənə 4-cü bölmədəki kimi e-poçt gəlir. Rəydə "bu aləti tapmadı" kimi bir şey yazılıbsa, mətni agentə yapışdır:
+
+```
+A Rivaline user wrote: <rəy>. Find out if a detection rule is missing or wrong and fix it.
+```
+
+## 10. Bir şey sınanda
 
 - GitHub-da **Actions** tabında qırmızı X görsən, agentə yaz: `CI failed on main, find out why and fix it.`
 - Sayt açılmırsa, Cloudflare Pages-də son deploy-a bax və ya agentə yaz: `getlineapps.com is down, check the last deploy.`

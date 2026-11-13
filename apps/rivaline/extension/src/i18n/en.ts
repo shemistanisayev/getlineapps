@@ -249,6 +249,8 @@ export const en = {
   'rep.sev.low': 'Low',
   'rep.saved': 'PDF saved: {file}',
   'rep.failed': 'The PDF could not be made. Try again.',
+  'stack.consentNote':
+    'This site has a consent banner. Tools that wait for consent show up after you accept it and press Read the page again.',
   'welcome.title': 'Rivaline is ready.',
   'welcome.accent': 'Any site, one click.',
   'welcome.lead':

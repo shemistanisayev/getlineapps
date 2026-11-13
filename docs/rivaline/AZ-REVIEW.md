@@ -64,6 +64,7 @@ Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host}, {hex} kimi yerlər 
 | `stack.more` | {n} more tools | Daha {n} alət |
 | `stack.list` | Tools on this page | Bu səhifədəki alətlər |
 | `stack.full` | Chrome lists only the first 250 requests of a page, so a tool that loaded later may be missing. | Chrome səhifənin yalnız ilk 250 sorğusunu göstərir, ona görə sonra yüklənən alət görünməyə bilər. |
+| `stack.consentNote` | This site has a consent banner. Tools that wait for consent show up after you accept it and press Read the page again. | Bu saytda consent banneri var. Razılıq gözləyən alətlər onu qəbul edib Səhifəni yenidən oxu düyməsinə basandan sonra görünür. |
 | `gaps.one` | 1 gap | 1 boşluq |
 | `gaps.other` | {n} gaps | {n} boşluq |
 | `gap.GAP_SERVER_SIDE.short` | server-side tracking | server-side izləmə |

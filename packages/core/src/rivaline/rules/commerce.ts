@@ -78,8 +78,10 @@ export const ECOMMERCE: Rule[] = [
     id: 'adobe_commerce',
     name: 'Adobe Commerce',
     category: ecommerce,
-    script: [/\/static\/(version\d+\/)?frontend\/[^/]+\/[^/]+\//],
-    cookie: [c('mage-cache-sessid')],
+    // Versioned static paths (/static/version1712/frontend/...) or Magento's own module files.
+    // A plain /static/frontend/ path is not enough (theguardian.com serves fonts from one).
+    script: [/\/static\/version\d+\/frontend\//, /\/Magento_[A-Za-z]+\//],
+    cookie: [c('mage-cache-sessid'), c('form_key')],
   },
   {
     id: 'bigcommerce',

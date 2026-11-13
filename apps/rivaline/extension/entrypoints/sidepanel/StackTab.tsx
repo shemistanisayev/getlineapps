@@ -45,6 +45,8 @@ export function StackTab({
   const [chip, setChip] = useState<'all' | Category>('all');
   const [open, setOpen] = useState<string | null>(null);
   const host = new URL(result.url).host;
+  const has = (c: Category) => stack.tools.some((x) => x.category === c);
+  const consentWaits = has('consent') && (!has('analytics') || !has('advertising'));
 
   const groups = stack.groups.filter((g) => chip === 'all' || g.category === chip);
   const chips = [
@@ -127,6 +129,9 @@ export function StackTab({
         ))}
       </RvCard>
       {result.snapshot.resourcesFull && <p className="rp-muted">{t('stack.full')}</p>}
+      {/* Many sites load tags only after consent (QA: theguardian.com): say so instead of
+          letting "No analytics" read as the whole truth. */}
+      {consentWaits && <p className="rp-muted">{t('stack.consentNote')}</p>}
       {stack.gaps.length > 0 && (
         <NotFoundCard
           title={t('notFound.title')}

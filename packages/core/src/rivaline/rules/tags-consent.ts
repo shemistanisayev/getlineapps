@@ -150,6 +150,25 @@ export const CONSENT: Rule[] = [
     global: ['axeptioSettings'],
   },
   {
+    id: 'sourcepoint',
+    name: 'Sourcepoint',
+    category,
+    kind: 'banner',
+    // Often served from the site's own subdomain (sourcepoint.theguardian.com).
+    script: [u('privacy-mgmt.com', ''), /\/unified\/[\d.]+\/gdpr-tcf\./, /\/wrapperMessaging/],
+    global: ['_sp_'],
+    cookie: [c('consentUUID')],
+  },
+  {
+    id: 'hubspot_banner',
+    name: 'HubSpot cookie banner',
+    category,
+    mark: 'hubspot',
+    kind: 'banner',
+    script: [u('hs-banner.com', '')],
+    cookie: [c('__hs_cookie_cat_pref')],
+  },
+  {
     id: 'cookiefirst',
     name: 'CookieFirst',
     category,

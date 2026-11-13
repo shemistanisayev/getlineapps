@@ -3,8 +3,13 @@ import { c, cp, u } from './helpers.ts';
 
 const category = 'analytics' as const;
 
-/** GA4 collects on Google's hosts; the same path on another host is server-side (match.ts). */
-export const GOOGLE_COLLECT_HOSTS = /(^|\.)(google-analytics\.com|analytics\.google\.com)$/;
+/**
+ * GA4 collects on Google's hosts; the same path on another host is server-side (match.ts).
+ * stats.g.doubleclick.net/g/collect is GA4's Google Signals copy, not a server-side container
+ * (found on real sites in QA, same as Hitline 1.1).
+ */
+export const GOOGLE_COLLECT_HOSTS =
+  /(^|\.)(google-analytics\.com|analytics\.google\.com|doubleclick\.net|google\.com|googletagmanager\.com|googleadservices\.com|googlesyndication\.com)$/;
 
 export const ANALYTICS: Rule[] = [
   {

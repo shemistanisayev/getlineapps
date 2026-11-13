@@ -36,8 +36,27 @@ export function collectBrand(): BrandRaw {
   const bodyBg = document.body ? getComputedStyle(document.body).backgroundColor : 'transparent';
   const canvas = alpha(htmlBg) > 0.5 ? htmlBg : alpha(bodyBg) > 0.5 ? bodyBg : 'rgb(255, 255, 255)';
 
+  /*
+   * Overlays are not the brand: dialogs, cookie banners and country pop-ups (found in QA on real
+   * shops). Skipped: anything inside a dialog, and large fixed layers that are not the header.
+   */
+  const all = Array.from(document.body?.querySelectorAll('*') ?? []).slice(0, MAX_ELEMENTS);
+  const overlays: Element[] = Array.from(
+    document.querySelectorAll(
+      'dialog[open], [role="dialog"], [role="alertdialog"], [aria-modal="true"]',
+    ),
+  );
+  for (const el of all) {
+    const cs = getComputedStyle(el);
+    if (cs.position !== 'fixed' || !shown(cs)) continue;
+    if (el.closest('header, [role="banner"]') || el.querySelector('header, nav')) continue;
+    const r = el.getBoundingClientRect();
+    if (visibleArea(r) > vw * vh * 0.15) overlays.push(el);
+  }
+  const inOverlay = (el: Element) => overlays.some((o) => o === el || o.contains(el));
+  const elements = all.filter((el) => !inOverlay(el));
+
   /* Painted backgrounds: own visible area minus the areas of opaque elements drawn over it. */
-  const elements = Array.from(document.body?.querySelectorAll('*') ?? []).slice(0, MAX_ELEMENTS);
   const opaque = new Map<Element, { color: string; area: number }>();
   for (const el of elements) {
     const cs = getComputedStyle(el);
@@ -107,15 +126,35 @@ export function collectBrand(): BrandRaw {
     'header a[href="/"]',
     'header [class*=logo]',
   ];
-  let logo: BrandRaw['logo'] = null;
+  const visible = (e: Element) => {
+    const r = e.getBoundingClientRect();
+    return r.width > 4 && r.height > 4 && shown(getComputedStyle(e)) && !inOverlay(e);
+  };
+  // Home links written as full URLs (https://shop.example/) count like href="/".
+  const homeLinks = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('header a[href], [role="banner"] a[href]'),
+  ).filter((a) => {
+    try {
+      const u = new URL(a.href);
+      return u.origin === location.origin && (u.pathname === '/' || u.pathname === '');
+    } catch {
+      return false;
+    }
+  });
+  const fromHome = homeLinks.map((a) => a.querySelector('img, svg') ?? a).filter(visible);
+  let logoEl: Element | undefined;
   for (const sel of LOGO) {
-    const el = Array.from(document.querySelectorAll(sel)).find((e) => {
-      const r = e.getBoundingClientRect();
-      return r.width > 4 && r.height > 4 && shown(getComputedStyle(e));
-    });
-    if (!el) continue;
-    const r = el.getBoundingClientRect();
-    const svg = el.tagName.toLowerCase() === 'svg' ? el.outerHTML : undefined;
+    logoEl = Array.from(document.querySelectorAll(sel)).find(visible);
+    if (logoEl) break;
+    if (sel === '[class*=logo] img' && fromHome[0]) {
+      logoEl = fromHome[0];
+      break;
+    }
+  }
+  let logo: BrandRaw['logo'] = null;
+  if (logoEl) {
+    const r = logoEl.getBoundingClientRect();
+    const svg = logoEl.tagName.toLowerCase() === 'svg' ? logoEl.outerHTML : undefined;
     logo = {
       rect: { x: r.left, y: r.top, width: r.width, height: r.height },
       dpr: devicePixelRatio,
@@ -123,7 +162,6 @@ export function collectBrand(): BrandRaw {
       inView: r.top >= 0 && r.left >= 0 && r.bottom <= vh && r.right <= vw,
       viewportWidth: vw,
     };
-    break;
   }
 
   /* Fonts. */
@@ -144,6 +182,9 @@ export function collectBrand(): BrandRaw {
       /* not a URL */
     }
   }
+  const gstatic = performance
+    .getEntriesByType('resource')
+    .some((e) => e.name.startsWith('https://fonts.gstatic.com/'));
   const adobe =
     document.querySelector('link[href*="use.typekit.net"], script[src*="use.typekit.net"]') !==
     null;
@@ -151,18 +192,29 @@ export function collectBrand(): BrandRaw {
     ...new Set(Array.from(document.fonts).map((f) => f.family.replace(/^['"]|['"]$/g, ''))),
   ];
 
-  /* Main button: the largest visible link or button with a background in the first viewport. */
+  /*
+   * Main button: the largest visible link or button with a background in the first viewport.
+   * Buttons in the page content win over ones in the header or navigation (QA: a country picker
+   * in the header was bigger than the hero button).
+   */
   let button: ButtonRaw | null = null;
   let best = 0;
+  let bestInContent = false;
   for (const el of Array.from(document.querySelectorAll('a, button'))) {
+    if (inOverlay(el)) continue;
     const cs = getComputedStyle(el);
     if (!shown(cs) || alpha(cs.backgroundColor) < 0.5) continue;
     const r = el.getBoundingClientRect();
     if (r.top < 0 || r.bottom > vh || r.height > 120 || r.width > vw * 0.6) continue;
     const label = (el as HTMLElement).innerText?.trim() ?? '';
+    // A word, not a page number or an icon.
+    if ((label.match(/\p{L}/gu) ?? []).length < 2) continue;
     const area = r.width * r.height;
-    if (!label || area <= best) continue;
+    const inContent = !el.closest('header, nav, [role="banner"], [role="navigation"]');
+    if (bestInContent && !inContent) continue;
+    if (inContent === bestInContent && area <= best) continue;
     best = area;
+    bestInContent = inContent;
     button = {
       bg: cs.backgroundColor,
       color: cs.color,
@@ -183,7 +235,7 @@ export function collectBrand(): BrandRaw {
     logo,
     headings: font(document.querySelector('h1') ?? document.querySelector('h2')),
     body: font(document.body),
-    fonts: { google: [...new Set(google)], adobe, faces },
+    fonts: { google: [...new Set(google)], gstatic, adobe, faces },
     button,
   };
 }

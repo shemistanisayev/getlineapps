@@ -43,8 +43,8 @@
     "https://www.googletagmanager.com/gtag/js?id=G-8XK2LM4QPZ&l=dataLayer&cx=c",
     "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11284956/?random=1&cv=11&fst=1",
     "https://www.facebook.com/tr/?id=418273650912345&ev=PageView&noscript=1",
-    "https://analytics.tiktok.com/api/v2/pixel?event=Pageview",
     "https://ct.pinterest.com/v3/?tid=2612345678901&event=init",
+    "https://analytics.tiktok.com/api/v2/pixel?event=Pageview",
     "https://vc.hotjar.io/sessions/start",
     "https://www.google-analytics.com/g/collect?v=2&tid=G-8XK2LM4QPZ&en=page_view"
   ],
@@ -71,8 +71,8 @@
     "intercom-id-kv7x2m",
     "_gcl_au",
     "_fbp",
-    "_ttp",
     "_pin_unauth",
+    "_ttp",
     "_hjSessionUser_3918274",
     "_ga",
     "_ga_8XK2LM4QPZ"

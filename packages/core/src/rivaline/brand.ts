@@ -48,6 +48,8 @@ export interface BrandRaw {
   fonts: {
     /** Families requested from fonts.googleapis.com. */
     google: string[];
+    /** A font file came from fonts.gstatic.com (Google Fonts through @import or a CSS file). */
+    gstatic?: boolean;
     /** A use.typekit.net stylesheet is present. */
     adobe: boolean;
     /** Families with an @font-face on the page. */
@@ -119,6 +121,33 @@ export function saturation({ r, g, b }: Rgba): number {
   const max = Math.max(r, g, b);
   return max === 0 ? 0 : (max - Math.min(r, g, b)) / max;
 }
+
+function luminance({ r, g, b }: Rgba): number {
+  const c = (v: number) => {
+    const x = v / 255;
+    return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * c(r) + 0.7152 * c(g) + 0.0722 * c(b);
+}
+
+/** WCAG contrast of two colors, 1 to 21. */
+export function contrastRatio(a: Rgba, b: Rgba): number {
+  const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p) as [number, number];
+  return (x + 0.05) / (y + 0.05);
+}
+
+/** Text that can be read on that background (3:1, the large-text level). */
+function readable(text: string, bg: string | undefined): boolean {
+  const a = parseColor(text);
+  const b = bg ? parseColor(bg) : null;
+  return !a || !b || contrastRatio(a, b) >= 3;
+}
+
+/** Max minus min channel, 0 to 1: how far a color is from gray. */
+export function chroma({ r, g, b }: Rgba): number {
+  return (Math.max(r, g, b) - Math.min(r, g, b)) / 255;
+}
+const MIN_CHROMA = 0.2;
 
 /** Colors closer than this are one color (SPEC §6). */
 export const MERGE_DELTA_E = 6;
@@ -207,7 +236,9 @@ export function colorRoles(raw: Pick<BrandRaw, 'backgrounds' | 'texts' | 'button
     'text',
     heaviest(
       raw.texts
-        .filter((t) => all.of(t.bg) === roles.background)
+        // Text that does not stand out from the background sits on a picture (QA: allbirds.com),
+        // so it is not the text color.
+        .filter((t) => all.of(t.bg) === roles.background && readable(t.color, roles.background))
         .map((t): [string | null, number] => [all.of(t.color), t.weight]),
       used,
     ),
@@ -224,7 +255,10 @@ export function colorRoles(raw: Pick<BrandRaw, 'backgrounds' | 'texts' | 'button
           used,
         ),
   );
-  const saturated = all.clusters.filter((c) => !used.has(c.hex) && saturation(c.rgb) >= SATURATED);
+  // Saturated and colorful: HSV saturation alone calls near-black grays (#101418) saturated.
+  const saturated = all.clusters.filter(
+    (c) => !used.has(c.hex) && saturation(c.rgb) >= SATURATED && chroma(c.rgb) >= MIN_CHROMA,
+  );
   set('accent', saturated[0]?.hex);
   set('surface', heaviest(bgs, used));
   return ROLE_ORDER.filter((r) => roles[r]).map((role) => ({ role, hex: roles[role]! }));
@@ -277,6 +311,7 @@ export function fontSource(family: string, fonts: BrandRaw['fonts']): FontSource
   const has = (list: string[]) => list.some((x) => x.toLowerCase() === f);
   if (has(fonts.google)) return 'google';
   if (fonts.adobe && has(fonts.faces)) return 'adobe';
+  if (fonts.gstatic && has(fonts.faces)) return 'google';
   if (has(fonts.faces)) return 'self';
   return 'system';
 }

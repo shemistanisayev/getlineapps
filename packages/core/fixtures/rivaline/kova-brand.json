@@ -249,6 +249,7 @@
   },
   "fonts": {
     "google": ["Fraunces", "DM Sans"],
+    "gstatic": false,
     "adobe": false,
     "faces": ["Fraunces", "DM Sans"]
   },

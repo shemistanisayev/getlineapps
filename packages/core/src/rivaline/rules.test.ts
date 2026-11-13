@@ -233,6 +233,14 @@ describe('tag management and server-side', () => {
     expect(analyzeStack(s).gaps.map((g) => g.id)).not.toContain('GAP_SERVER_SIDE');
   });
 
+  it("GA4's Google Signals copy on stats.g.doubleclick.net is not server-side (QA)", () => {
+    const s = snap({
+      scripts: ['https://www.googletagmanager.com/gtag/js?id=G-ABCDEF1'],
+      resources: ['https://stats.g.doubleclick.net/g/collect?v=2&tid=G-ABCDEF1'],
+    });
+    expect(tool(s, 'sgtm')).toBeUndefined();
+  });
+
   it('Tealium and Segment', () => {
     const s = snap({
       scripts: [
@@ -256,6 +264,39 @@ describe('consent', () => {
     ['https://cmp.osano.com/abc/osano.js', 'osano'],
   ])('%s is %s', (url, id) => {
     expect(ids(snap({ scripts: [url] }))).toEqual([id]);
+  });
+
+  it('Sourcepoint from its own subdomain, the HubSpot cookie banner (QA)', () => {
+    expect(
+      ids(
+        snap({
+          scripts: [
+            'https://sourcepoint.theguardian.com/unified/4.41.0/gdpr-tcf.e7290277.bundle.js',
+          ],
+          cookies: ['consentUUID'],
+        }),
+      ),
+    ).toEqual(['sourcepoint']);
+    expect(ids(snap({ scripts: ['https://js.hs-banner.com/v2/123/banner.js'] }))).toEqual([
+      'hubspot_banner',
+    ]);
+  });
+
+  it('a plain /static/frontend/ path is not Adobe Commerce (QA: theguardian.com)', () => {
+    expect(
+      ids(
+        snap({ resources: ['https://assets.guim.co.uk/static/frontend/fonts/guardian/x.woff2'] }),
+      ),
+    ).toEqual([]);
+    expect(
+      ids(
+        snap({
+          scripts: [
+            'https://shop.example/static/version1712/frontend/Magento/luma/en_US/requirejs/require.js',
+          ],
+        }),
+      ),
+    ).toEqual(['adobe_commerce']);
   });
 
   it('a Consent Mode command counts as consent', () => {

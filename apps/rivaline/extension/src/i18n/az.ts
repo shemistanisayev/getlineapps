@@ -248,6 +248,8 @@ export const az: Dictionary = {
   'rep.sev.low': 'Aşağı',
   'rep.saved': 'PDF saxlanıldı: {file}',
   'rep.failed': 'PDF hazırlamaq alınmadı. Yenidən yoxla.',
+  'stack.consentNote':
+    'Bu saytda consent banneri var. Razılıq gözləyən alətlər onu qəbul edib Səhifəni yenidən oxu düyməsinə basandan sonra görünür.',
   'welcome.title': 'Rivaline hazırdır.',
   'welcome.accent': 'İstənilən sayt, bir klik.',
   'welcome.lead':

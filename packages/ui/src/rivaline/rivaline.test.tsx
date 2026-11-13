@@ -157,7 +157,7 @@ describe('Rivaline components', () => {
   it('swatch and code block', () => {
     expect(
       renderToStaticMarkup(<Swatch role="Primary" hex="#2F5D46" copyLabel="Copy #2F5D46" />),
-    ).toContain('aria-label="Copy #2F5D46"');
+    ).toContain('title="Copy #2F5D46"');
     const code = renderToStaticMarkup(
       <CodeBlock label="CSS variables" code={':root {\n  --kova-primary: #2F5D46;\n}'} />,
     );

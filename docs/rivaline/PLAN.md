@@ -229,11 +229,18 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 - **Store screenshots** read Kova in a real window (`loadExtensionCdp(..., { realWindow: true })`): with Playwright's emulated viewport, `captureVisibleTab` does not match the page and the logo crop lands off target. Real Chrome has no emulation; the e2e logo check passes either way.
 - **Listing copy** names only the four ad libraries and no list of tools (Serpline 1.0.0 was rejected for a keyword list); the test fails on any line with more than four commas or more than four tool names.
 
+## Step 10 notes (2026-11-13)
+
+- **False positives.** Google Signals (`stats.g.doubleclick.net`) no longer counts as server-side GTM; Adobe Commerce needs Magento's own paths or cookies; Sourcepoint and HubSpot's cookie banner are new consent rules. Each has a regression test.
+- **Brand on real sites.** Overlays (dialogs, cookie banners, country pop-ups) are skipped; accent needs real color; the text role needs a readable color; Google Fonts are recognized from `fonts.gstatic.com`; the main button prefers the page content over the header; home links written as full URLs find the logo.
+- **Consent note.** When a consent platform is found but analytics or ad pixels are missing, the Stack tab tells the user to accept the banner and read the page again (new string `stack.consentNote`, in AZ-REVIEW).
+- **Accessibility.** axe in the real side panel found two issues, both fixed: muted text on the gray panel background (now Neutral `#475467`) and swatch names that did not include their visible text.
+
 ## Questions for the owner
 
 1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
 2. **TikTok link.** (Hint added in step 6: the TikTok row says "Ads shown in Europe. Press Search on TikTok's page"; tell me if you want it removed.) The link opens TikTok's library with the brand and country filled in, but the user must press Search, and it covers Europe only. Proposal: keep it, the row already says "Ads shown in Europe"; add a short hint "Press Search on TikTok's page". Alternative: leave the hint out.
-3. **QA sites** (step 10): name at least 3 public sites (one Shopify store, one big brand, one Azerbaijani site would be ideal). Otherwise I pick them, as for Serpline.
+3. **QA sites** (step 10): no sites named, so the agent picked 9 (two Shopify stores, two SaaS brands, two Azerbaijani sites, a news site, Wikipedia, shamistanisayev.com). List and verdicts in `docs/rivaline/QA.md`.
 
 ## Step order (Faza 5)
 
@@ -249,6 +256,6 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 | 7 | P6 | Settings, EN + AZ, `AZ-REVIEW.md` | Done: Settings from the gear (default country with ISO names in the UI language, the real shortcut with Change opening `chrome://extensions/shortcuts`, language, Clear all settings with the privacy note, More free tools with `more_tools`, footer: version, Privacy without UTM, Contact with `settings`). The e2e switches to Azerbaijani and checks that no English panel text is left on the Stack and Brand tabs, also at 280 px; Clear all settings empties storage. `AZ-REVIEW.md` lists every panel string |
 | 8 | P7 | Competitor report PDF, welcome, uninstall hook | Done: `rivalineReport()` through `buildLineReport` gives the Report artboard on Kova (header, 13 / 8 / 4 / 3 gaps tiles, Stack table with IDs, three gaps with High and Medium, Brand kit swatches with the font and button line next to the four ad library links, dark CTA with `pdf_footer`, one A4 page), EN and AZ; "Report PDF" in the header saves `rivaline-report-<host>-<yyyy-mm-dd>.pdf` (e2e). `@line/report` needed no change (columns, swatches and links were already there). Welcome (step 2) and the uninstall URL to `/rivaline/uninstalled` (step 5B page) are tested |
 | 9 | P9 | Store package (`pnpm store:rivaline`), listing doc, release | Done: version 1.0.0; `pnpm store:rivaline` builds `store/rivaline/` (zip, icons, 5 screenshots 1280x800 from the real side panel on Kova: Stack, Ads, Brand, Export, Report; promo tiles 440x280 and 1400x560); `docs/rivaline/STORE-LISTING.md` (EN + AZ texts, permission justifications, privacy tab), `store/rivaline/README.md` for the owner; a test keeps listing, manifest, shortcut, file names and image sizes in line and blocks keyword lists; GitHub release `rivaline-v1.0.0` with the zip (published after the owner's go-ahead). Upload waits for the third Web Store slot |
-| 10 | P10 | QA on real sites, responsive check, Lighthouse, axe, OWNER-GUIDE chapter | No false positives, `docs/rivaline/QA.md` |
+| 10 | P10 | QA on real sites, responsive check, Lighthouse, axe, OWNER-GUIDE chapter | Done: 9 real sites (`scripts/qa-rivaline.ts`), 10 false positives fixed with regression tests, consent note in the Stack tab, axe in the real side panel on 9 views, Lighthouse 95 to 100, `docs/rivaline/QA.md`, OWNER-GUIDE chapter 9 (Azerbaijani). Store package rebuilt as 1.0.0 (not uploaded yet) |
 
 Each step ends with typecheck, lint, tests and build for every app and package, screenshots of the touched screens, commit, push and a short Azerbaijani report.

@@ -630,7 +630,8 @@ export function Swatch({
   onCopy?: () => void;
 }) {
   return (
-    <button type="button" className="rv-sw" aria-label={copyLabel} onClick={onCopy}>
+    // The name is the visible role and hex (WCAG 2.5.3), the copy hint is the tooltip.
+    <button type="button" className="rv-sw" title={copyLabel} onClick={onCopy}>
       <i style={{ background: hex }} />
       <span className="rv-sw-role">{role}</span>
       <span className="rv-sw-hex rv-mono">{hex}</span>

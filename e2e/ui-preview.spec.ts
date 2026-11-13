@@ -34,7 +34,7 @@ for (const width of [1440, 820, 390]) {
       .getByRole('tab', { name: /^Brand/ })
       .first()
       .click();
-    await expect(riva.getByRole('button', { name: 'Copy #2F5D46' })).toBeVisible();
+    await expect(riva.getByRole('button', { name: 'Primary #2F5D46' })).toBeVisible();
     await riva
       .getByRole('tab', { name: /^Stack/ })
       .first()
