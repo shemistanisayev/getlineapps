@@ -21,7 +21,12 @@ export interface CdpExtension {
   /** Clicks the extension's toolbar icon on this page's tab. */
   clickAction(page: Page): Promise<void>;
   /** Evaluates an expression in the extension page whose URL contains `path` (side panel ...). */
-  evalIn<T = unknown>(path: string, expression: string, userGesture?: boolean): Promise<T>;
+  evalIn<T = unknown>(
+    path: string,
+    expression: string,
+    userGesture?: boolean,
+    size?: { width: number; height: number },
+  ): Promise<T>;
   /**
    * PNG of an extension page that Playwright cannot see (the side panel). `size` emulates a
    * viewport (CSS px) and pixel ratio first, for crisp store screenshots.
@@ -173,11 +178,24 @@ export async function loadExtensionCdp(
         page.close();
       }
     },
-    async evalIn<T>(path: string, expression: string, userGesture = false): Promise<T> {
+    async evalIn<T>(
+      path: string,
+      expression: string,
+      userGesture = false,
+      size?: { width: number; height: number },
+    ): Promise<T> {
       const target = await jsonTarget(path);
       if (!target?.webSocketDebuggerUrl) throw new Error(`No extension page ${path}`);
       const page = await cdpSocket(target.webSocketDebuggerUrl);
       try {
+        if (size) {
+          await page.send('Emulation.setDeviceMetricsOverride', {
+            ...size,
+            deviceScaleFactor: 1,
+            mobile: false,
+          });
+          await wait(300);
+        }
         const r = await page.send<{
           result: { value: T };
           exceptionDetails?: { text: string; exception?: { description?: string } };

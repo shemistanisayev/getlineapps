@@ -126,7 +126,9 @@ export function AttributionTab({ audit }: { audit: Audit }) {
         <div
           className="th at-grid"
           role="row"
-          style={{ gridTemplateColumns: `220px repeat(${shown.length}, minmax(0, 1fr))` }}
+          style={{
+            gridTemplateColumns: `var(--at-key, 220px) repeat(${shown.length}, minmax(0, 1fr))`,
+          }}
         >
           <span role="columnheader">{t('at.th.param')}</span>
           {shown.map(({ s, i }) => (
@@ -146,7 +148,9 @@ export function AttributionTab({ audit }: { audit: Audit }) {
             key={label}
             className="row at-grid"
             role="row"
-            style={{ gridTemplateColumns: `220px repeat(${shown.length}, minmax(0, 1fr))` }}
+            style={{
+              gridTemplateColumns: `var(--at-key, 220px) repeat(${shown.length}, minmax(0, 1fr))`,
+            }}
           >
             <span role="cell" className="kv">
               {label}

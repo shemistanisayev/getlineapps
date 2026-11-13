@@ -13,7 +13,6 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  min-width: 900px;
 }
 .ph-grow {
   flex-grow: 1;
@@ -1998,4 +1997,399 @@ button.rec-pill {
 }
 .pg [role='listbox']:focus-visible {
   box-shadow: inset 0 0 0 2px #7f56d9;
+}
+
+/*
+ * Responsive: DevTools can be docked to the side or bottom, and the window can be small. Nothing
+ * may overlap or push the panel sideways. Wide layouts stay as in the design; below each width
+ * the columns stack and the pane scrolls.
+ */
+.btn-s,
+.btn-p,
+.btn-ink,
+.rec-pill,
+.ph-tab {
+  white-space: nowrap;
+}
+.ph-actions,
+.site-chip {
+  min-width: 0;
+}
+.pg-toggle {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+.pg-path {
+  flex: 1 1 120px;
+}
+.pg-toggle > .ph-grow {
+  display: none;
+}
+.d-head {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+.d-head .d-ev {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.hero-top,
+.tl-head,
+.at-head,
+.fmt-top {
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+.cta {
+  flex-wrap: wrap;
+}
+
+/* The event table follows its own width (the list shares the row with the detail). */
+@container (max-width: 760px) {
+  .ev-grid {
+    grid-template-columns: minmax(0, 92px) minmax(0, 128px) minmax(80px, 1fr) auto;
+  }
+}
+@container (max-width: 440px) {
+  .ev-grid {
+    grid-template-columns: 66px 22px minmax(0, 1fr) auto;
+    gap: 8px;
+    --pad: 10px;
+  }
+  .ev-grid > .pf {
+    font-size: 0;
+    gap: 0;
+  }
+  .ev-list .th.ev-grid > :nth-child(2) {
+    visibility: hidden;
+  }
+}
+
+/* GTM tags table */
+.tags {
+  container-type: inline-size;
+}
+@container (max-width: 560px) {
+  .tag-grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) auto;
+    padding: 0 14px;
+  }
+  .tag-grid > :nth-child(3) {
+    display: none;
+  }
+}
+@container (max-width: 380px) {
+  .tag-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .tag-grid > :nth-child(2) {
+    display: none;
+  }
+  .tag-more {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+}
+
+/* Header: tabs move to their own row. */
+@media (max-width: 1100px) {
+  .ph {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 0 12px;
+    padding: 0 12px;
+  }
+  .ph-logo,
+  .ph-actions {
+    min-height: 44px;
+  }
+  .ph > .ph-grow {
+    display: none;
+  }
+  .ph-actions {
+    margin-left: auto;
+  }
+  .ph-tabs {
+    order: 3;
+    flex: 1 1 100%;
+    height: 40px;
+    margin: 0 -12px;
+    padding: 0 6px;
+    border-top: 1px solid #eae8f0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .ph-tab {
+    flex-shrink: 0;
+  }
+
+  /* Empty state */
+  .empty {
+    flex-wrap: wrap;
+    align-items: safe center;
+    align-content: safe center;
+    justify-content: safe center;
+    gap: 24px 40px;
+    padding: 24px;
+    overflow-y: auto;
+  }
+  .empty-main {
+    width: auto;
+    flex: 1 1 320px;
+    max-width: 520px;
+  }
+  .watches {
+    width: auto;
+    flex: 1 1 300px;
+    max-width: 400px;
+  }
+}
+
+/* Below 900 px the side columns go under the main one; events: the detail moves under the list. */
+@media (max-width: 900px) {
+  /* GTM: the sGTM card goes under the tables. */
+  .gtm {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .gtm-main {
+    flex: 0 0 auto;
+  }
+  .gtm-side {
+    width: auto;
+    flex-shrink: 0;
+  }
+  .gtm-side > .ph-grow {
+    display: none;
+  }
+  .tags,
+  .gtm-ev {
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+  .gtm-ev-list,
+  .ge-detail {
+    max-height: 420px;
+  }
+
+  /* Consent and plan setup: one column. */
+  .two {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .two > .side,
+  .two > .main {
+    width: auto;
+    flex: 0 0 auto;
+  }
+  .two > .main > .ph-grow {
+    display: none;
+  }
+  .two .tl {
+    max-height: 480px;
+  }
+  .drop {
+    flex: 0 0 auto;
+    min-height: 320px;
+  }
+
+  /* Attribution */
+  .steps {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .step-w {
+    flex: 1 1 200px;
+  }
+  .at-foot {
+    flex-wrap: wrap;
+  }
+  .at-foot > * {
+    flex: 1 1 280px;
+  }
+  .at-cta {
+    width: auto;
+  }
+
+  /* Plan */
+  .pl {
+    overflow-y: auto;
+  }
+  .pl-top {
+    flex-wrap: wrap;
+  }
+  .pl-name {
+    width: auto;
+    flex: 1 1 100%;
+  }
+  .pl-count {
+    flex: 1 1 120px;
+  }
+  .pl-actions {
+    flex-direction: row;
+    flex: 1 1 100%;
+  }
+  .pl-table {
+    flex: 0 0 auto;
+    overflow: auto;
+  }
+  .pl-table .pl-grid {
+    min-width: 780px;
+  }
+  .pl-rows {
+    overflow: visible;
+  }
+
+  .ev-bar {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+  }
+  .ev-bar > .ph-grow {
+    display: none;
+  }
+  .chips {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  .search {
+    flex: 1 1 100%;
+    width: auto;
+  }
+  .ev-body {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .ev-list {
+    flex: 0 0 auto;
+    height: min(60vh, 520px);
+    min-height: 240px;
+    border-right: 0;
+    border-bottom: 1px solid #dcd9e6;
+  }
+  .ev-detail {
+    width: auto;
+    min-width: 0;
+    flex: 0 0 auto;
+    overflow: visible;
+    padding: 16px 14px;
+  }
+  .gtm-ev {
+    flex-direction: column;
+  }
+  .gtm-ev-list {
+    width: auto;
+    max-height: 260px;
+  }
+  .ge-detail {
+    max-height: none;
+  }
+}
+
+/* Narrow (DevTools docked to the side) */
+@media (max-width: 640px) {
+  .ph-actions {
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 6px 0;
+  }
+  .gtm,
+  .two,
+  .at,
+  .pl,
+  .loading-state {
+    padding: 12px;
+  }
+  .stats {
+    flex-wrap: wrap;
+  }
+  .stat,
+  .stat.wide {
+    flex: 1 1 110px;
+    padding: 12px 14px;
+  }
+  .stat.wide {
+    flex-basis: 100%;
+    border-bottom: 1px solid #eae8f0;
+  }
+  .stat.wide + .stat {
+    border-left: none;
+  }
+  .prow {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+  .tl-row {
+    grid-template-columns: 22px 76px minmax(0, 1fr);
+    gap: 4px 8px;
+    padding: 8px 12px;
+  }
+  .tl-row > :nth-child(4),
+  .tl-row > :nth-child(5) {
+    grid-column: 2 / 4;
+  }
+  .tl-choice {
+    flex-wrap: wrap;
+  }
+  .sig-grid {
+    grid-template-columns: minmax(0, 1fr) 76px 76px;
+    padding: 0 12px;
+  }
+  .at-table {
+    --at-key: 130px;
+    overflow-x: auto;
+  }
+  .steps {
+    flex-direction: column;
+  }
+  .step-w {
+    flex: 0 0 auto;
+    flex-direction: column;
+  }
+  .arrow {
+    width: auto;
+    height: 22px;
+    transform: rotate(90deg);
+  }
+  .empty {
+    padding: 16px;
+  }
+  .empty h2 {
+    font-size: 24px;
+  }
+  .drop h2 {
+    font-size: 21px;
+  }
+  .empty-actions {
+    flex-wrap: wrap;
+  }
+}
+
+/* Grid cells may shrink; long names end in an ellipsis or wrap instead of running into the next cell. */
+.tag-grid > *,
+.pl-grid > *,
+.sig-grid > *,
+.at-grid > * {
+  min-width: 0;
+}
+.tag-x {
+  display: flex;
+  overflow: hidden;
+}
+.pl-table .th > *,
+.at-table .th > *,
+.sigs .th > * {
+  overflow-wrap: anywhere;
+}
+
+/* Short window (DevTools docked at the bottom): the tab scrolls instead of cutting off the side cards. */
+.gtm,
+.two {
+  overflow-y: auto;
+}
+.gtm-side > *,
+.two > .side > * {
+  flex-shrink: 0;
 }
