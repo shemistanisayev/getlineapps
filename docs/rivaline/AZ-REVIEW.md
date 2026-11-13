@@ -2,9 +2,9 @@
 
 Agent yazıb, sən yoxlayırsan. Dəyişmək istədiyin sətri burada və ya göstərilən faylda düzəlt (və ya agentə yaz). Alət və platforma adları (Rivaline, Meta Pixel, Stack, Ads, Brand) tərcümə olunmur. Bu siyahı hər addımda böyüyür.
 
-## Side panel və salamlama səhifəsi (addım 2, 3, 5 və 6)
+## Side panel, Settings və salamlama səhifəsi (addım 2, 3, 5, 6 və 7)
 
-Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host}, {hex} kimi yerlər avtomatik dolur. "Consent", kitabxana adları (Meta Ad Library və s.) və şrift mənbələri (Google Fonts) ingiliscə saxlanılıb.
+Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host}, {hex} kimi yerlər avtomatik dolur. "Consent", kitabxana adları (Meta Ad Library və s.), şrift mənbələri (Google Fonts) və tab adları (Stack, Ads, Brand) ingiliscə saxlanılıb. Ölkə adları Chrome-un öz tərcüməsindən gəlir.
 
 | Açar | English | Azərbaycanca |
 |---|---|---|
@@ -178,6 +178,26 @@ Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host}, {hex} kimi yerlər 
 | `export.toast.json` | JSON copied to clipboard | JSON kopyalandı |
 | `export.toast.png` | PNG palette copied to clipboard | PNG palitra kopyalandı |
 | `export.palette` | Palette of {name} | {name} palitrası |
+| `set.back` | Back to results | Nəticələrə qayıt |
+| `set.ads` | Ad libraries | Reklam kitabxanaları |
+| `set.country` | Default country | Defolt ölkə |
+| `set.countryHint` | Used for the Meta, Google and TikTok searches. TikTok only knows European countries. | Meta, Google və TikTok axtarışlarında işlənir. TikTok yalnız Avropa ölkələrini tanıyır. |
+| `set.shortcut` | Keyboard shortcut | Klaviatura qısayolu |
+| `set.noShortcut` | Not set | Təyin olunmayıb |
+| `set.change` | Change | Dəyiş |
+| `set.language` | Language | Dil |
+| `set.data` | Your data | Məlumatların |
+| `set.clear` | Clear all settings | Bütün ayarları sil |
+| `set.cleared` | All settings are cleared. | Bütün ayarlar silindi. |
+| `set.privacyNote` | Only these settings are saved, and only on this computer. Rivaline sends nothing anywhere and forgets each page when you close the tab. | Yalnız bu ayarlar saxlanılır, o da yalnız bu kompüterdə. Rivaline heç yerə heç nə göndərmir və tabı bağlayanda hər səhifəni unudur. |
+| `set.more` | More free tools | Daha çox pulsuz alət |
+| `set.tool.hitline` | Tracking and consent audit | İzləmə və consent auditi |
+| `set.tool.serpline` | SEO and AI search | SEO və AI axtarış |
+| `set.tool.foldline` | Landing page CRO | Landing səhifə CRO |
+| `set.tool.markline` | Feedback screenshots | Rəy üçün ekran şəkilləri |
+| `set.version` | Version {v} | Versiya {v} |
+| `set.privacy` | Privacy | Məxfilik |
+| `set.contact` | Contact | Əlaqə |
 | `welcome.title` | Rivaline is ready. | Rivaline hazırdır. |
 | `welcome.accent` | Any site, one click. | İstənilən sayt, bir klik. |
 | `welcome.lead` | Three steps and you will see what a site runs, where it advertises and how its brand looks. | Üç addım və saytın nə işlətdiyini, harada reklam verdiyini və brendinin necə göründüyünü görəcəksən. |

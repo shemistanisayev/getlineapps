@@ -2,7 +2,7 @@ import { isLang, type Lang } from './i18n/index.ts';
 
 /**
  * Settings in chrome.storage.local (docs/rivaline-SPEC.md §3 and §7). These keys and nothing else:
- * lang, country, installedAt. country comes with Settings (step 7). Scan results are never stored.
+ * lang, country, installedAt. Scan results are never stored.
  */
 export async function getLang(): Promise<Lang> {
   const { lang } = await browser.storage.local.get('lang');
@@ -25,4 +25,17 @@ export async function actionShortcut(): Promise<string[]> {
 export async function getCountry(): Promise<string> {
   const { country } = await browser.storage.local.get('country');
   return typeof country === 'string' && country ? country : 'ALL';
+}
+
+export async function setCountry(country: string): Promise<void> {
+  await browser.storage.local.set({ country });
+}
+
+export async function setLang(lang: Lang): Promise<void> {
+  await browser.storage.local.set({ lang });
+}
+
+/** "Clear all settings": removes every key Rivaline stores (lang, country, installedAt). */
+export async function clearSettings(): Promise<void> {
+  await browser.storage.local.clear();
 }

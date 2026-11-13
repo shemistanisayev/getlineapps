@@ -354,6 +354,94 @@ test.describe('rivaline extension', () => {
     await glow.close();
   });
 
+  test('Settings: country default, shortcut, language switch, clear (design: Settings)', async () => {
+    const kova = await ext.context.newPage();
+    await kova.goto(kovaUrl());
+    await ext.clickAction(kova);
+    await click('#rv-tab-stack');
+    await poll('13 tools in 8 categories');
+
+    await click('[aria-label="Settings"]');
+    await poll('Default country');
+    const text = await panelText();
+    expect(text).toMatch(/Keyboard shortcut\s*Alt\s*Shift\s*V/);
+    expect(text).toContain('Only these settings are saved, and only on this computer.');
+    const links = await ext.evalIn<string[]>(
+      PANEL,
+      `[...document.querySelectorAll('a')].map((a) => a.href)`,
+    );
+    expect(links).toEqual([
+      'https://getlineapps.com/hitline?utm_source=rivaline&utm_medium=extension&utm_campaign=more_tools',
+      'https://getlineapps.com/serpline?utm_source=rivaline&utm_medium=extension&utm_campaign=more_tools',
+      'https://getlineapps.com/foldline?utm_source=rivaline&utm_medium=extension&utm_campaign=more_tools',
+      'https://getlineapps.com/markline?utm_source=rivaline&utm_medium=extension&utm_campaign=more_tools',
+      'https://getlineapps.com/privacy/rivaline',
+      'https://shamistanisayev.com/?utm_source=rivaline&utm_medium=extension&utm_campaign=settings',
+    ]);
+    await shot('panel-settings');
+
+    // Default country: saved, and the Ads tab starts from it.
+    const pick = (id: string, value: string) =>
+      ext.evalIn(
+        PANEL,
+        `(() => { const el = document.getElementById(${JSON.stringify(id)}); el.value = ${JSON.stringify(value)}; el.dispatchEvent(new Event('change', { bubbles: true })); })()`,
+        true,
+      );
+    await pick('rp-country', 'FR');
+    await expect
+      .poll(() =>
+        ext.evalIn<unknown>(PANEL, `chrome.storage.local.get('country').then((r) => r.country)`),
+      )
+      .toBe('FR');
+    await click('[aria-label="Back to results"]');
+    await click('#rv-tab-ads');
+    await expect
+      .poll(() => ext.evalIn<string>(PANEL, `document.querySelector('.rv-lib a')?.href ?? ''`))
+      .toContain('country=FR');
+    expect(await ext.evalIn<string>(PANEL, `document.querySelectorAll('.rv-lib a')[2].href`)).toBe(
+      'https://library.tiktok.com/ads?region=FR&adv_name=Kova',
+    );
+
+    // Language: every panel string changes to Azerbaijani.
+    await click('#rv-tab-stack');
+    await click('[aria-label="Settings"]');
+    await pick('rp-lang', 'az');
+    await poll('Ayarlar');
+    await click('[aria-label="Nəticələrə qayıt"]');
+    await poll('8 kateqoriyada 13 alət');
+    const az = await panelText();
+    expect(az).toContain('Shopify mağazası'.split(' ')[0]);
+    expect(az).toContain('3 boşluq');
+    expect(az).toContain('BU SƏHİFƏDƏ TAPILMADI');
+    expect(az).toContain('Ana səhifə');
+    for (const en of ['tools in', 'Not found', 'Home page', 'gaps', 'Get in touch', 'Advertising'])
+      expect(az, en).not.toContain(en);
+    expect(
+      await ext.evalIn<number>(PANEL, 'document.documentElement.scrollWidth', false, {
+        width: 280,
+        height: 700,
+      }),
+    ).toBeLessThanOrEqual(280);
+    await shot('panel-stack-az');
+    await click('#rv-tab-brand');
+    await poll('Kopyalamaq üçün rəngə bas');
+    const azBrand = await panelText();
+    for (const en of ['Click a color', 'Headings', 'Main button', 'Copy PNG'])
+      expect(azBrand, en).not.toContain(en);
+
+    // Clear all settings: back to English and all countries.
+    await click('[aria-label="Ayarlar"]');
+    await clickText('button', 'Bütün ayarları sil');
+    await poll('All settings are cleared.');
+    expect(
+      await ext.evalIn<Record<string, unknown>>(PANEL, `chrome.storage.local.get(null)`),
+    ).toEqual({});
+    await click('[aria-label="Back to results"]');
+    await click('#rv-tab-stack');
+    await poll('13 tools in 8 categories');
+    await kova.close();
+  });
+
   test('Chrome pages and the PDF viewer get the Restricted state', async () => {
     const page = await ext.context.newPage();
     await page.goto('chrome://version');

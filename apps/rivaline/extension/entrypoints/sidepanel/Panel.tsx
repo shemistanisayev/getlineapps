@@ -7,13 +7,13 @@ import { actionShortcut } from '../../src/storage.ts';
 import { useT } from '../../src/useLang.ts';
 import { AdsTab } from './AdsTab.tsx';
 import { BrandTab } from './BrandTab.tsx';
+import { Settings } from './Settings.tsx';
 import { StackTab } from './StackTab.tsx';
 import { AccessView, EmptyView, Reading, RestrictedView } from './Views.tsx';
 
 /**
  * Side panel (docs/rivaline-SPEC.md §3.1 and §7). One panel per window; results are kept in
- * memory per tab, never stored. Settings come with step 7, the report PDF with step 8
- * (docs/rivaline/PLAN.md).
+ * memory per tab, never stored. The report PDF comes with step 8 (docs/rivaline/PLAN.md).
  */
 type Tab = 'stack' | 'ads' | 'brand';
 type View =
@@ -32,6 +32,7 @@ export function Panel() {
   const [tab, setTab] = useState<Tab>('stack');
   const [keys, setKeys] = useState<string[]>([]);
   const [toast, setToast] = useState<string | null>(null);
+  const [settings, setSettings] = useState(false);
   /** The library row the Stack tab jumped to (highlighted in the Ads tab, step 6). */
   const [library, setLibrary] = useState<string | null>(null);
   const cache = useRef(new Map<number, ScanResult>());
@@ -128,6 +129,13 @@ export function Panel() {
   const readable = view.kind === 'result' || view.kind === 'reading';
   const empty = result !== null && result.stack.tools.length === 0;
 
+  if (settings)
+    return (
+      <div className="rp">
+        <Settings lang={lang} t={t} onBack={() => setSettings(false)} />
+      </div>
+    );
+
   return (
     <div className="rp">
       <PanelHeader
@@ -135,6 +143,7 @@ export function Panel() {
         settingsLabel={t('panel.settings')}
         pdfLabel={t('panel.pdf')}
         readDisabled={!result}
+        onSettings={() => setSettings(true)}
         pdfDisabled
         onReadAgain={result ? () => void scan(result.tabId) : undefined}
         tabsLabel={t('panel.sections')}

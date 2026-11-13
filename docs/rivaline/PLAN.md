@@ -210,6 +210,12 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 - **Main button preview** keeps the page's colors, radius and font but caps height (48 px), padding (28 px) and size (16 px) so a huge hero button still fits the panel; the values next to it are the real ones.
 - **Tab memory.** The panel keeps the tab the user picked (Brand stays Brand on the next site); "Open in <library>" in the Stack tab switches to Ads and highlights that row until another tab is picked.
 
+## Step 7 notes (2026-11-13)
+
+- **Country hint.** The design says the default country is used for "Meta, Google and LinkedIn searches"; the LinkedIn link has no country and TikTok does, so the hint says "Meta, Google and TikTok searches. TikTok only knows European countries."
+- **Tab names** (Stack, Ads, Brand), library names, "Consent" and font sources stay in English in AZ, as in the design and the other tools; country names come from Chrome (`Intl.DisplayNames`).
+- **Clear all settings** removes every stored key (lang, country, installedAt), like Serpline; the welcome page is not shown again because it only opens on install.
+
 ## Questions for the owner
 
 1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
@@ -227,7 +233,7 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 | 5B | P8 | `/rivaline` landing with `#finder`, `/rivaline/uninstalled`, SEO, AZ, published early as `soon` | Done: landing EN + AZ from `content/rivaline/*.json` (design copy, no closing periods, Alt Shift V), `#finder` island with the extension's own builders (`@line/core/rivaline/ads`, `parseFinderQuery`), Coming soon while `soon`, `/rivaline/uninstalled` through `ToolUninstall.astro` (teal accent), OG image (`gen:rivaline`), SoftwareApplication + FAQPage JSON-LD; sitemap, `llms.txt` and the hub card pick it up. Screenshots 1440 / 820 / 390 with no sideways scroll, axe clean on all three pages. Deployed by CI on push |
 | 5 | P4 | Scan pipeline with reading steps, PanelHeader, Stack, StackDetail, Access, Restricted, Empty | Done: scan waits for `load`, then 1.5 s for late tags (2.5 s more if nothing is found), reads the snapshot (MAIN), the brand (isolated) and crops the logo; results cached per tab and shown again on a switch when the tab is still on that page. Stack on Kova matches Main and StackDetail (13 tools, the IDs, chips by count, evidence, Copy ID, Open in Meta Ad Library jumps to Ads); Access, Restricted and Empty (Mira) as designed. E2E on Edge and Chrome stable |
 | 6 | P5 | Ads, Brand, BrandExport | Done: Ads with editable brand, domain and country (Settings default, ISO names from Intl.DisplayNames), four library rows with status pills, the row the Stack tab jumped to highlighted, Open all 4, Copy links; Brand with the cropped logo (Copy PNG, Download PNG, Copy SVG for inline SVG), 5 colors with copy, fonts with their source, the main button drawn with its own values; export sheet with CSS variables, JSON and a 1200 x 400 PNG palette (copy, download). On Kova the e2e checks the links, the colors, fonts, button, the logo pixels and the three downloaded files |
-| 7 | P6 | Settings, EN + AZ, `AZ-REVIEW.md` | Language switch changes every string |
+| 7 | P6 | Settings, EN + AZ, `AZ-REVIEW.md` | Done: Settings from the gear (default country with ISO names in the UI language, the real shortcut with Change opening `chrome://extensions/shortcuts`, language, Clear all settings with the privacy note, More free tools with `more_tools`, footer: version, Privacy without UTM, Contact with `settings`). The e2e switches to Azerbaijani and checks that no English panel text is left on the Stack and Brand tabs, also at 280 px; Clear all settings empties storage. `AZ-REVIEW.md` lists every panel string |
 | 8 | P7 | Competitor report PDF, welcome, uninstall hook | Kova PDF matches Report |
 | 9 | P9 | Store package (`pnpm store:rivaline`), listing doc, release | `store/rivaline/` |
 | 10 | P10 | QA on real sites, responsive check, Lighthouse, axe, OWNER-GUIDE chapter | No false positives, `docs/rivaline/QA.md` |
