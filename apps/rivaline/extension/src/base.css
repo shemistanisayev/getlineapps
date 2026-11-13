@@ -1,0 +1,34 @@
+@import '@line/ui/fonts.css';
+@import '@line/ui/tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--line-font-ui);
+  color: var(--line-ink);
+  background: var(--line-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid #0e7490;
+  outline-offset: 2px;
+}
+
+.disp {
+  font-family: var(--line-font-display);
+}
+
+.mono {
+  font-family: var(--line-font-mono);
+}

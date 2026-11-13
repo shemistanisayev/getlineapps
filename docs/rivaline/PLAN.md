@@ -156,6 +156,14 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 7. **Report layout.** If `buildLineReport` has no two-column block or swatches yet, they are added as optional section kinds; Hitline and Serpline snapshots must stay identical.
 8. **Copy.** Core returns ids, numbers and evidence only; every sentence goes into EN and AZ dictionaries, listed in `docs/rivaline/AZ-REVIEW.md`.
 
+## Step 2 notes (2026-11-13)
+
+- **Fixture hosts.** Kova, Glowbar and Mira Studio answer on `example.com`, `example.net` and `example.org` (host-resolver rules to port 4402, `apps/rivaline/fixture/hosts.ts`), so the panel shows the design hosts. The SPEC's `kova.localhost`, `glow.localhost` and `mira.localhost` reach the same pages. Lumo (Hitline, Serpline) also uses `example.com`, but every e2e suite starts its own browser with its own rules, so they never meet. Pages are a skeleton; the full SitePage and vendor stubs come in step 4.
+- **Access copy.** The design says "You switched to example.net." Without the `tabs` permission Chrome hides the URL of a tab that was not granted, so the panel says "You switched tabs." (same limit as Serpline).
+- **Restricted list** gets a fourth line, "PDF files opened in Chrome", because the API check showed PDFs need their own rule.
+- **Shortcut** is read from `commands.getAll` on the Access card and the welcome page; when people remove it, both say how to set one instead of showing empty keys.
+- The panel reads again on every tab switch and on `complete` of the active tab. Step 5 adds the cache by tab and origin (SPEC §3.1) and the reading steps.
+
 ## Questions for the owner
 
 1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
@@ -167,7 +175,7 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 | Step | SPEC | What | Done when |
 |---|---|---|---|
 | 1 | P0 | This plan and the API check | Done: this file, `scripts/spike-rivaline.ts` |
-| 2 | P1 | `apps/rivaline/extension` scaffold (side panel, background, shortcut, welcome, uninstall URL, manifest test), `apps/rivaline/fixture` skeleton, workspace and CI | Real icon click opens the panel and the probe works on the fixture |
+| 2 | P1 | `apps/rivaline/extension` scaffold (side panel, background, shortcut, welcome, uninstall URL, manifest test), `apps/rivaline/fixture` skeleton, workspace and CI | Done: icon click (real, via CDP) opens the panel; the probe reads Kova in the MAIN world; same-site navigation reads again, another tab or site shows Access with the real shortcut, `chrome://version` and the PDF viewer show Restricted (e2e on Edge and Chrome stable 157). Fixture on port 4402 serves the design hosts. AZ text in `docs/rivaline/AZ-REVIEW.md` |
 | 3 | P2 | Rivaline panel theme and shell in `@line/ui/rivaline`, new marks, category glyphs, preview section, contrast tests | Preview |
 | 4 | P3 | `packages/core/src/rivaline` (rules ~120, match, IDs, evidence, summary, gaps, ad builders, brand functions) + Kova, Glowbar, Mira fixture | Kova: 13 tools, 8 categories, 3 gaps, the design IDs |
 | 5B | P8 | `/rivaline` landing with `#finder`, `/rivaline/uninstalled`, SEO, AZ, published early as `soon` | Screenshots 1440 / 820 / 390, axe clean, deployed |

@@ -22,6 +22,13 @@ export default defineConfig({
       timeout: 60_000,
     },
     {
+      // Rivaline fixture: Kova, Glowbar and Mira Studio (docs/rivaline-SPEC.md §11).
+      command: 'pnpm --filter @line/rivaline-fixture start',
+      url: 'http://localhost:4402/__rivaline',
+      reuseExistingServer: !process.env.CI,
+      timeout: 60_000,
+    },
+    {
       command: 'pnpm --filter @line/ui preview',
       url: 'http://localhost:4310',
       reuseExistingServer: !process.env.CI,

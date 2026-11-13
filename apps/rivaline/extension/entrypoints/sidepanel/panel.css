@@ -1,0 +1,173 @@
+/* Step 2 shell. Colors and sizes from design/rivaline (Access, Restricted); the full shell comes in step 3. */
+body {
+  background: #efedf5;
+  font-size: 13px;
+}
+.rp {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.rp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  height: 52px;
+  padding: 0 14px;
+  background: #ffffff;
+  border-bottom: 1px solid #dcd9e6;
+}
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  border: 1px solid #dcd9e6;
+  background: #ffffff;
+  color: #344054;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn:hover {
+  background: #f9fafb;
+}
+.rp-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  min-width: 0;
+}
+.card {
+  background: #ffffff;
+  border: 1px solid #dcd9e6;
+  border-radius: 14px;
+  box-shadow:
+    0 1px 2px rgba(16, 24, 40, 0.06),
+    0 4px 12px -6px rgba(52, 30, 120, 0.12);
+}
+.eyebrow {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #667085;
+}
+.rp-call {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.rp-call h1 {
+  margin: 0;
+  font-family: var(--line-font-display);
+  font-size: 18px;
+  font-weight: 800;
+}
+.rp-call p {
+  margin: 0;
+  line-height: 1.5;
+  color: #344054;
+}
+.rp-ways {
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rp-ways li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  line-height: 1.5;
+  color: #344054;
+}
+.rp-ways b {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: #cffafe;
+  color: #155e75;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.keys {
+  display: inline-flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+kbd {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #101828;
+  background: #eae8f0;
+  border-radius: 6px;
+  padding: 3px 7px;
+  box-shadow: inset 0 -1px 0 #c9c5d6;
+}
+.rp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rp-list li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #344054;
+}
+.rp-list.ok svg {
+  color: #067647;
+}
+.rp-list.no svg {
+  color: #b42318;
+}
+.rp-muted {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #667085;
+}
+.rp-read {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.rp-host {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rp-host span {
+  color: #667085;
+}
+.rp-read dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 14px;
+}
+.rp-read dt {
+  color: #475467;
+}
+.rp-read dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
