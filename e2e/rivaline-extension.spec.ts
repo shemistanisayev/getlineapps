@@ -71,25 +71,78 @@ test.describe('rivaline extension', () => {
     }
   });
 
-  test('icon click opens the side panel and reads the page in the MAIN world', async () => {
+  const poll = (text: string) =>
+    expect.poll(panelText, { timeout: 20_000, intervals: [250] }).toContain(text);
+  const click = (selector: string) =>
+    ext.evalIn(PANEL, `document.querySelector(${JSON.stringify(selector)}).click()`, true);
+  const clickText = (tag: string, text: string) =>
+    ext.evalIn(
+      PANEL,
+      `[...document.querySelectorAll(${JSON.stringify(tag)})].find((e) => e.textContent.includes(${JSON.stringify(text)})).click()`,
+      true,
+    );
+
+  test('icon click reads Kova: the Stack tab as in the design (Main, StackDetail)', async () => {
     const kova = await ext.context.newPage();
     await kova.goto(kovaUrl());
     await ext.clickAction(kova);
     expect(await ext.hasPage(PANEL)).toBe(true);
-    await expect.poll(panelText).toContain('PAGE READ');
-    expect(await panelText()).toContain('Kova | Skincare that keeps it simple');
-    expect(await panelText()).toContain('example.com');
-    await shot('panel-read');
-    // Header (step 3): a page is read, so Stack is the current tab and Report PDF is on.
+    // Reading steps first, then the result.
+    await poll('13 tools in 8 categories');
+    const text = await panelText();
+    expect(text).toContain('Shopify store running Meta, TikTok, Google and Pinterest ads');
+    expect(text).toContain('Home page');
+    expect(text).toMatch(/3 gaps\s*: server-side tracking, consent banner, CRM/);
+    for (const id of [
+      '418273650912345',
+      'C9H3KQ7RC77U2M0V5PLG',
+      'AW-11284956',
+      '2612345678901',
+      'G-8XK2LM4QPZ',
+      'site 3918274',
+      'GTM-N4KV8R',
+    ])
+      expect(text).toContain(id);
+    expect(text).toContain('NOT FOUND ON THIS PAGE');
+    expect(text).toContain('All 4 ad pixels send straight from the browser.');
+    // Header: Stack is current with its counts; Report PDF waits for step 8.
     expect(
       await ext.evalIn<string[]>(
         PANEL,
-        `[...document.querySelectorAll('[role=tab][aria-selected=true]')].map((t) => t.textContent)`,
+        `[...document.querySelectorAll('[role=tab]')].map((t) => t.textContent)`,
       ),
-    ).toEqual(['Stack']);
-    expect(await ext.evalIn<boolean>(PANEL, `document.querySelector('.rv-pdf').disabled`)).toBe(
-      false,
-    );
+    ).toEqual(['Stack13', 'Ads4', 'Brand5']);
+    expect(
+      await ext.evalIn<string[]>(
+        PANEL,
+        `[...document.querySelectorAll('.rv-chip')].slice(0, 5).map((c) => c.textContent)`,
+      ),
+    ).toEqual(['All 13', 'Advertising 4', 'Analytics 2', 'Payments 2', 'Tag management 1']);
+    await shot('panel-stack');
+
+    // StackDetail: the Advertising chip filters, Meta Pixel opens with its evidence.
+    await clickText('.rv-chip', 'Advertising');
+    await clickText('.rv-trow', 'Meta Pixel');
+    await poll('How Rivaline found it');
+    const detail = await panelText();
+    expect(detail).toMatch(/Script\s+connect\.facebook\.net\/en_US\/fbevents\.js/);
+    expect(detail).toMatch(/Global\s+window\.fbq/);
+    expect(detail).toMatch(/Cookie\s+_fbp/);
+    expect(detail).toMatch(/Request\s+www\.facebook\.com\/tr/);
+    expect(detail).not.toContain('Google Analytics 4');
+    await shot('panel-stack-detail');
+    // "Open in Meta Ad Library" goes to the Ads tab.
+    await clickText('button', 'Open in Meta Ad Library');
+    await expect
+      .poll(() =>
+        ext.evalIn<string>(
+          PANEL,
+          `document.querySelector('[role=tab][aria-selected=true]').textContent`,
+        ),
+      )
+      .toBe('Ads4');
+    await click('#rv-tab-stack');
+
     // Narrow side panel: nothing scrolls sideways at 280 px.
     expect(
       await ext.evalIn<number>(PANEL, 'document.documentElement.scrollWidth', false, {
@@ -98,22 +151,29 @@ test.describe('rivaline extension', () => {
       }),
     ).toBeLessThanOrEqual(280);
     if (SHOTS)
-      await ext.screenshot(PANEL, `${SHOTS}/rivaline-panel-read-280.png`, {
+      await ext.screenshot(PANEL, `${SHOTS}/rivaline-panel-stack-280.png`, {
         width: 280,
         height: 700,
       });
+    await kova.close();
+  });
+
+  test('tab switches: Access, a click, cache by tab, Empty on Mira Studio', async () => {
+    const kova = await ext.context.newPage();
+    await kova.goto(kovaUrl());
+    await ext.clickAction(kova);
+    await poll('13 tools in 8 categories');
 
     // Same tab, same site: activeTab is kept, the new page is read without a click.
     await kova.goto(kovaUrl('/collections/all'));
-    await expect.poll(panelText).toContain('/collections/all');
+    await poll('/collections/all');
 
-    // Another tab, not clicked: Access with the real shortcut.
+    // Another tab, not clicked: Access with the real shortcut, no current tab, no counts.
     const glow = await ext.context.newPage();
     await glow.goto(glowUrl());
     await glow.bringToFront();
-    await expect.poll(panelText).toContain('Read this tab?');
+    await poll('Read this tab?');
     expect(await panelText()).toMatch(/Alt\s*Shift\s*V/);
-    // Access: no current tab, no counts, Read again and Report PDF are off.
     expect(
       await ext.evalIn<number>(PANEL, `document.querySelectorAll('[aria-selected=true]').length`),
     ).toBe(0);
@@ -122,15 +182,31 @@ test.describe('rivaline extension', () => {
     );
     await shot('panel-access');
 
-    // A click on that tab reads it.
+    // A click reads Glowbar: Cookiebot and Consent Mode, so no consent gap.
     await ext.clickAction(glow);
-    await expect.poll(panelText).toContain('Glowbar | Clean beauty');
+    await poll('5 tools in 5 categories');
+    expect(await panelText()).toMatch(/2 gaps\s*: server-side tracking, CRM/);
 
-    // Same tab, another site: the grant is gone, Access again.
+    // Back to Kova: the cached result shows at once.
+    await kova.bringToFront();
+    await poll('13 tools in 8 categories');
+
+    // Same tab, another site: the grant is gone (Access); a click reads Mira Studio: Empty.
+    await glow.bringToFront();
     await glow.goto(miraUrl());
-    await expect.poll(panelText).toContain('Read this tab?');
+    await poll('Read this tab?');
     await ext.clickAction(glow);
-    await expect.poll(panelText).toContain('Mira Studio | Illustration');
+    await poll('No marketing tools found');
+    const empty = await panelText();
+    expect(empty).toContain('No analytics, ad pixels, CRM or chat on example.org.');
+    expect(empty).toMatch(/Read \d+ s after the page finished loading\./);
+    expect(
+      await ext.evalIn<string[]>(
+        PANEL,
+        `[...document.querySelectorAll('[role=tab]')].map((t) => t.textContent)`,
+      ),
+    ).toEqual(['Stack0', 'Ads4', expect.stringMatching(/^Brand\d$/)]);
+    await shot('panel-empty');
     await kova.close();
     await glow.close();
   });

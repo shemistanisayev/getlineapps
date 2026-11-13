@@ -116,34 +116,199 @@ kbd {
   line-height: 1.5;
   color: #667085;
 }
-.rp-read {
-  padding: 14px;
+
+/* Reading: steps, progress bar and a skeleton of the Stack tab. */
+.rp-scan {
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 0;
 }
-.rp-host {
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.rp-host span {
-  color: #667085;
-}
-.rp-read dl {
-  margin: 0;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 6px 14px;
-}
-.rp-read dt {
+.rp-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: #475467;
 }
-.rp-read dd {
-  margin: 0;
+.rp-step.is-done {
+  color: #101828;
+}
+.rp-step.is-busy {
+  color: #101828;
   font-weight: 600;
-  text-align: right;
-  overflow-wrap: anywhere;
+}
+.rp-step-ic {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.rp-step.is-done .rp-step-ic {
+  border-radius: 50%;
+  background: #ecfdf3;
+  color: #067647;
+}
+.rp-spin {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #cffafe;
+  border-top-color: #0e7490;
+  animation: rp-spin 0.8s linear infinite;
+}
+.rp-ring {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #dcd9e6;
+}
+.rp-progress {
+  height: 4px;
+  border-radius: 4px;
+  background: #eae8f0;
+  overflow: hidden;
+}
+.rp-progress i {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: #0e7490;
+  transition: width 0.4s ease;
+}
+.rp-sk-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rp-sk-row {
+  display: flex;
+  gap: 6px;
+}
+.rp-sk {
+  display: block;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #e6e3ee 0%, #f2f0f7 50%, #e6e3ee 100%);
+  background-size: 200% 100%;
+  animation: rp-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes rp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rp-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+/* Access */
+.rp-ping {
+  display: inline-flex;
+  border-radius: 9px;
+  animation: rp-ping 1.6s infinite;
+}
+@keyframes rp-ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(14, 116, 144, 0.5);
+  }
+  80%,
+  100% {
+    box-shadow: 0 0 0 12px rgba(14, 116, 144, 0);
+  }
+}
+
+/* Empty (design: Empty) */
+.rp-empty {
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  background: #f7f6fb;
+}
+.rp-empty h1 {
+  margin: 0;
+  font-family: var(--line-font-display);
+  font-size: 18px;
+  font-weight: 800;
+}
+.rp-empty p {
+  margin: 0;
+  max-width: 320px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #475467;
+}
+.rp-empty-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #dcd9e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rp-checked {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 4px 0;
+}
+.rp-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rp-tags li {
+  font-size: 11.5px;
+  color: #344054;
+  background: #ffffff;
+  border: 1px solid #dcd9e6;
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+.rp-zero {
+  background: #c6f36b;
+  border-radius: 14px;
+  color: #1a2e05;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rp-zero div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.rp-zero b {
+  font-size: 14px;
+}
+.rp-zero span {
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.rp-zero .rv-btn {
+  align-self: flex-start;
+}
+.rp-next {
+  padding: 16px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rp-spin,
+  .rp-sk,
+  .rp-ping {
+    animation: none;
+  }
 }

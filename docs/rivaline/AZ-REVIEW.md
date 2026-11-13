@@ -2,9 +2,9 @@
 
 Agent yazıb, sən yoxlayırsan. Dəyişmək istədiyin sətri burada və ya göstərilən faylda düzəlt (və ya agentə yaz). Alət və platforma adları (Rivaline, Meta Pixel, Stack, Ads, Brand) tərcümə olunmur. Bu siyahı hər addımda böyüyür.
 
-## Side panel və salamlama səhifəsi (addım 2 və 3)
+## Side panel və salamlama səhifəsi (addım 2, 3 və 5)
 
-Fayl: `apps/rivaline/extension/src/i18n/az.ts`.
+Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host} kimi yerlər avtomatik dolur. Kateqoriya adlarından "Consent" ingiliscə saxlanılıb, çünki marketoloqlar onu belə işlədir.
 
 | Açar | English | Azərbaycanca |
 |---|---|---|
@@ -17,8 +17,6 @@ Fayl: `apps/rivaline/extension/src/i18n/az.ts`.
 | `tab.brand` | Brand | Brand |
 | `panel.reading` | Reading this page... | Səhifə oxunur... |
 | `panel.readAgain` | Read the page again | Səhifəni yenidən oxu |
-| `panel.idle.title` | Read a site | Saytı oxu |
-| `panel.idle.text` | Rivaline reads a page only after you ask it to. | Rivaline səhifəni yalnız sən istəyəndən sonra oxuyur. |
 | `panel.access.title` | Read this tab? | Bu tab oxunsun? |
 | `panel.access.text` | You switched tabs. Rivaline reads a page only after you ask it to. | Başqa taba keçdin. Rivaline səhifəni yalnız sən istəyəndən sonra oxuyur. |
 | `panel.access.icon` | Click the Rivaline icon in the toolbar | Alətlər panelində Rivaline ikonuna bas |
@@ -34,14 +32,86 @@ Fayl: `apps/rivaline/extension/src/i18n/az.ts`.
 | `panel.restricted.store` | The Chrome Web Store | Chrome Web Store-da |
 | `panel.restricted.extensions` | Pages of other extensions | Başqa extension-ların səhifələrində |
 | `panel.restricted.pdf` | PDF files opened in Chrome | Chrome-da açılan PDF fayllarında |
-| `panel.read.title` | Page read | Oxunan səhifə |
-| `panel.read.page` | Page | Səhifə |
-| `panel.read.scripts` | Scripts | Skriptlər |
-| `panel.read.requests` | Requests | Sorğular |
-| `panel.read.state` | Loading | Yüklənmə |
-| `panel.read.loaded` | Finished | Bitib |
-| `panel.read.loading` | Still loading | Hələ yüklənir |
-| `panel.read.note` | Stack, Ads and Brand come next. Nothing left your browser. | Stack, Ads və Brand növbəti addımlardadır. Heç nə brauzerindən çıxmadı. |
+| `read.load` | Waiting for the page to finish loading | Səhifənin yüklənməsi gözlənilir |
+| `read.tools` | Finding marketing tools | Marketinq alətləri axtarılır |
+| `read.brand` | Reading colors and fonts | Rənglər və şriftlər oxunur |
+| `read.logo` | Taking the logo | Loqo götürülür |
+| `cat.advertising` | Advertising | Reklam |
+| `cat.analytics` | Analytics | Analitika |
+| `cat.tagmanagement` | Tag management | Teq idarəetməsi |
+| `cat.consent` | Consent | Consent |
+| `cat.crm` | CRM | CRM |
+| `cat.email` | Email | E-poçt |
+| `cat.chat` | Chat | Çat |
+| `cat.abtesting` | A/B testing | A/B test |
+| `cat.ecommerce` | E-commerce | E-ticarət |
+| `cat.reviews` | Reviews | Rəylər |
+| `cat.payments` | Payments | Ödənişlər |
+| `cat.affiliate` | Affiliate | Partnyor proqramı |
+| `chips.label` | Categories | Kateqoriyalar |
+| `chips.all` | All | Hamısı |
+| `stack.title` | {tools} in {cats} | {cats} {tools} |
+| `n.tool.one` | {n} tool | {n} alət |
+| `n.tool.other` | {n} tools | {n} alət |
+| `n.cat.one` | {n} category | {n} kateqoriyada |
+| `n.cat.other` | {n} categories | {n} kateqoriyada |
+| `stack.storeAds` | {platform} store running {channels} ads | {channels} reklamları işlədən {platform} mağazası |
+| `stack.siteAds` | {platform} site running {channels} ads | {channels} reklamları işlədən {platform} saytı |
+| `stack.store` | {platform} store | {platform} mağazası |
+| `stack.site` | {platform} site | {platform} saytı |
+| `stack.ads` | Running {channels} ads | {channels} reklamları işlədir |
+| `stack.home` | Home page | Ana səhifə |
+| `stack.more` | {n} more tools | Daha {n} alət |
+| `stack.list` | Tools on this page | Bu səhifədəki alətlər |
+| `stack.full` | Chrome lists only the first 250 requests of a page, so a tool that loaded later may be missing. | Chrome səhifənin yalnız ilk 250 sorğusunu göstərir, ona görə sonra yüklənən alət görünməyə bilər. |
+| `gaps.one` | 1 gap | 1 boşluq |
+| `gaps.other` | {n} gaps | {n} boşluq |
+| `gap.GAP_SERVER_SIDE.short` | server-side tracking | server-side izləmə |
+| `gap.GAP_CONSENT.short` | consent banner | consent banneri |
+| `gap.GAP_CRM.short` | CRM | CRM |
+| `gap.GAP_ANALYTICS.short` | analytics | analitika |
+| `gap.GAP_SERVER_SIDE.title` | Server-side tracking | Server-side izləmə |
+| `gap.GAP_CONSENT.title` | Consent banner | Consent banneri |
+| `gap.GAP_CRM.title` | CRM | CRM |
+| `gap.GAP_ANALYTICS.title` | Analytics | Analitika |
+| `gap.GAP_SERVER_SIDE.one` | The ad pixel sends straight from the browser. | Reklam pikseli birbaşa brauzerdən göndərir. |
+| `gap.GAP_SERVER_SIDE.other` | All {n} ad pixels send straight from the browser. | {n} reklam pikselinin hamısı birbaşa brauzerdən göndərir. |
+| `gap.GAP_CONSENT.text` | No consent platform or consent update found. | Nə consent platforması, nə də consent yeniləməsi tapıldı. |
+| `gap.GAP_CRM.text` | No HubSpot, Salesforce or Zoho script on the page. | Səhifədə HubSpot, Salesforce və ya Zoho skripti yoxdur. |
+| `gap.GAP_ANALYTICS.text` | No analytics tool found on this page. | Bu səhifədə analitika aləti tapılmadı. |
+| `notFound.title` | Not found on this page | Bu səhifədə tapılmadı |
+| `notFound.cta` | Want these in place on your own site? | Bunların öz saytında qurulmasını istəyirsən? |
+| `cta.touch` | Get in touch | Əlaqə saxla |
+| `detail.how` | How Rivaline found it | Rivaline bunu necə tapdı |
+| `detail.copyId` | Copy ID | ID-ni kopyala |
+| `detail.copied` | ID copied to clipboard | ID kopyalandı |
+| `detail.openIn` | Open in {library} | {library}-da aç |
+| `ev.Script` | Script | Skript |
+| `ev.Request` | Request | Sorğu |
+| `ev.Global` | Global | Qlobal |
+| `ev.Cookie` | Cookie | Cookie |
+| `ev.Meta` | Meta | Meta |
+| `ev.Element` | Element | Element |
+| `lib.meta` | Meta Ad Library | Meta Ad Library |
+| `lib.google` | Google Ads Transparency Center | Google Ads Transparency Center |
+| `lib.tiktok` | TikTok Ad Library | TikTok Ad Library |
+| `lib.linkedin` | LinkedIn Ad Library | LinkedIn Ad Library |
+| `count.stack` | {n} tools | {n} alət |
+| `count.ads` | {n} ad libraries | {n} reklam kitabxanası |
+| `count.brand` | {n} colors | {n} rəng |
+| `empty.title` | No marketing tools found | Marketinq aləti tapılmadı |
+| `empty.text` | No analytics, ad pixels, CRM or chat on {host}. Visits and leads from this site are not measured. | {host} saytında analitika, reklam pikseli, CRM və ya çat yoxdur. Bu saytdan gələn ziyarətlər və lidlər ölçülmür. |
+| `empty.checked` | What Rivaline checked | Rivaline nəyi yoxladı |
+| `empty.t1` | page scripts | səhifə skriptləri |
+| `empty.t2` | cookies | cookie-lər |
+| `empty.t3` | window globals | qlobal dəyişənlər |
+| `empty.t4` | meta tags | meta teqlər |
+| `empty.t5` | loaded resources | yüklənən fayllar |
+| `empty.still` | The Ads and Brand tabs still work for this site. | Ads və Brand tabları bu sayt üçün yenə işləyir. |
+| `empty.waited` | Read {s} s after the page finished loading. | Səhifə yükləndikdən {s} san sonra oxundu. |
+| `empty.ctaTitle` | Starting from zero? | Sıfırdan başlayırsan? |
+| `empty.ctaText` | Analytics, ad pixels and consent, set up and tested. | Analitika, reklam pikselləri və consent, qurulmuş və yoxlanmış. |
+| `panel.next` | This tab is being built. The Stack tab already works. | Bu tab hazırlanır. Stack tabı artıq işləyir. |
 | `welcome.title` | Rivaline is ready. | Rivaline hazırdır. |
 | `welcome.accent` | Any site, one click. | İstənilən sayt, bir klik. |
 | `welcome.lead` | Three steps and you will see what a site runs, where it advertises and how its brand looks. | Üç addım və saytın nə işlətdiyini, harada reklam verdiyini və brendinin necə göründüyünü görəcəksən. |

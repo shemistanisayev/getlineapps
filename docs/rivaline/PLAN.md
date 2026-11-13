@@ -193,6 +193,15 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 - **Report section** keeps the design's `#report` anchor and its paper mock with the 5 Kova swatches. The hero accent is `#67E8F9` with the lime underline; the marquee and tab bar have the padding that keeps hover lift from being clipped.
 - **Hub test** now expects a link to `/rivaline` (the landing exists, status stays `soon`).
 
+## Step 5 notes (2026-11-13)
+
+- **Reading steps** (carried over): waiting for the page to load, finding tools, reading colors and fonts, taking the logo, with a progress bar and a skeleton of the Stack tab. Empty appears only after the page has finished loading and one more read for late tags, and says how long Rivaline waited ("Read 4 s after the page finished loading").
+- **Cache.** One result per tab, in memory. A tab switch probes the tab (`executeScript` returning its URL): same URL shows the cached result at once, another page is read again, no access gives Access. Closing a tab drops its result.
+- **Summary line** says "store" only for selling platforms (Shopify, WooCommerce, Adobe Commerce, BigCommerce, Salesforce Commerce Cloud, PrestaShop, Ecwid) and "site" for WordPress, Webflow, Wix, Squarespace and Tilda ("WordPress site running Meta ads").
+- **Brand count on Empty.** The design's header shows "Brand 4" for Mira Studio; the real page has 5 color roles, so the panel shows 5. The count is always computed.
+- **250 requests.** When Chrome's resource list is full the Stack tab says that a tool loaded later may be missing (carried over from Hitline 1.1).
+- **Ads and Brand tabs** show a one-line note until step 6; Settings and Report PDF stay inactive until steps 7 and 8.
+
 ## Questions for the owner
 
 1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
@@ -208,7 +217,7 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 | 3 | P2 | Rivaline panel theme and shell in `@line/ui/rivaline`, new marks, category glyphs, preview section, contrast tests | Done: `@line/ui/rivaline` (PanelHeader with tabs, StackHero, GapStrip, CategoryChips, ToolGroup and ToolRow with evidence, NotFoundCard, LimeCta, LibraryRow, fields, LogoBox, Swatch, FontRow, ButtonPreview, Segmented, CodeBlock, Sheet, Toast) and `rivaline.css`; 11 new marks from simple-icons and 13 category glyphs; preview section with the design's demo data; 32 contrast pairs tested. The panel uses the new header |
 | 4 | P3 | `packages/core/src/rivaline` (rules ~120, match, IDs, evidence, summary, gaps, ad builders, brand functions) + Kova, Glowbar, Mira fixture | Done: 128 rules in 12 categories, server-side signal, gaps, summary, chips, ad library builders, ISO country list, brand kit (ΔE merge, roles, fonts, button, CSS and JSON export, logo crop). Kova recorded with the extension's own collectSnapshot and collectBrand gives 13 tools in 8 categories, the design IDs, 3 gaps, "+6", the 5 colors, Fraunces and DM Sans, the button and the BrandExport CSS exactly. 53 core tests |
 | 5B | P8 | `/rivaline` landing with `#finder`, `/rivaline/uninstalled`, SEO, AZ, published early as `soon` | Done: landing EN + AZ from `content/rivaline/*.json` (design copy, no closing periods, Alt Shift V), `#finder` island with the extension's own builders (`@line/core/rivaline/ads`, `parseFinderQuery`), Coming soon while `soon`, `/rivaline/uninstalled` through `ToolUninstall.astro` (teal accent), OG image (`gen:rivaline`), SoftwareApplication + FAQPage JSON-LD; sitemap, `llms.txt` and the hub card pick it up. Screenshots 1440 / 820 / 390 with no sideways scroll, axe clean on all three pages. Deployed by CI on push |
-| 5 | P4 | Scan pipeline with reading steps, PanelHeader, Stack, StackDetail, Access, Restricted, Empty | Match artboards on the fixture |
+| 5 | P4 | Scan pipeline with reading steps, PanelHeader, Stack, StackDetail, Access, Restricted, Empty | Done: scan waits for `load`, then 1.5 s for late tags (2.5 s more if nothing is found), reads the snapshot (MAIN), the brand (isolated) and crops the logo; results cached per tab and shown again on a switch when the tab is still on that page. Stack on Kova matches Main and StackDetail (13 tools, the IDs, chips by count, evidence, Copy ID, Open in Meta Ad Library jumps to Ads); Access, Restricted and Empty (Mira) as designed. E2E on Edge and Chrome stable |
 | 6 | P5 | Ads, Brand, BrandExport | Exported files open |
 | 7 | P6 | Settings, EN + AZ, `AZ-REVIEW.md` | Language switch changes every string |
 | 8 | P7 | Competitor report PDF, welcome, uninstall hook | Kova PDF matches Report |
