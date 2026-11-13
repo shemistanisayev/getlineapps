@@ -14,6 +14,8 @@
     "./ui.css": "./src/ui.css",
     "./serpline": "./src/serpline/index.ts",
     "./serpline.css": "./src/serpline/serpline.css",
+    "./rivaline": "./src/rivaline/index.ts",
+    "./rivaline.css": "./src/rivaline/rivaline.css",
     "./fonts/*": "./fonts/*",
     "./icons/*": "./icons/*"
   },

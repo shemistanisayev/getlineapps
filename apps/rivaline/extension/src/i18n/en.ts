@@ -4,6 +4,12 @@
  */
 export const en = {
   'list.and': 'and',
+  'panel.sections': 'Rivaline sections',
+  'panel.settings': 'Settings',
+  'panel.pdf': 'Report PDF',
+  'tab.stack': 'Stack',
+  'tab.ads': 'Ads',
+  'tab.brand': 'Brand',
   'panel.reading': 'Reading this page...',
   'panel.readAgain': 'Read the page again',
   'panel.idle.title': 'Read a site',

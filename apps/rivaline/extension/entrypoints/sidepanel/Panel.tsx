@@ -1,4 +1,5 @@
 import { Logo } from '@line/ui';
+import { PanelHeader } from '@line/ui/rivaline';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { activeTabId, readTab } from '../../src/capture/check.ts';
 import type { PageProbe } from '../../src/capture/probe.ts';
@@ -8,9 +9,11 @@ import { Icon, Keys } from '../../src/ui.tsx';
 import { useT } from '../../src/useLang.ts';
 
 /**
- * Step 2 shell (docs/rivaline/PLAN.md): reads the granted tab and shows the Access and Restricted
- * states. The Stack, Ads and Brand tabs replace the "Page read" card in steps 5 and 6.
+ * Panel shell (docs/rivaline/PLAN.md steps 2 and 3): PanelHeader with the Stack, Ads and Brand
+ * tabs, the Access and Restricted states. The tab contents replace the "Page read" card in
+ * steps 5 and 6; counts appear with them.
  */
+type Tab = 'stack' | 'ads' | 'brand';
 type View =
   | { kind: 'idle' }
   | { kind: 'reading' }
@@ -29,6 +32,7 @@ export function Panel() {
   const { t } = useT();
   const [view, setView] = useState<View>({ kind: 'idle' });
   const [keys, setKeys] = useState<string[]>([]);
+  const [tab, setTab] = useState<Tab>('stack');
   const busy = useRef<number | null>(null);
 
   const read = useCallback(async (tabId: number) => {
@@ -79,22 +83,24 @@ export function Panel() {
 
   return (
     <div className="rp">
-      <header className="rp-head">
-        <Logo brand="rivaline" theme="light" size={24} word />
-        {view.kind === 'result' && (
-          <button
-            type="button"
-            className="icon-btn"
-            title={t('panel.readAgain')}
-            aria-label={t('panel.readAgain')}
-            onClick={() => void read(view.tabId)}
-          >
-            <Icon name="refresh" size={16} stroke={2.2} />
-          </button>
-        )}
-      </header>
+      <PanelHeader
+        readAgainLabel={t('panel.readAgain')}
+        settingsLabel={t('panel.settings')}
+        pdfLabel={t('panel.pdf')}
+        readDisabled={view.kind !== 'result'}
+        onReadAgain={view.kind === 'result' ? () => void read(view.tabId) : undefined}
+        tabsLabel={t('panel.sections')}
+        tabs={[
+          { id: 'stack', label: t('tab.stack') },
+          { id: 'ads', label: t('tab.ads') },
+          { id: 'brand', label: t('tab.brand') },
+        ]}
+        active={view.kind === 'result' ? tab : null}
+        onSelect={setTab}
+        panelId="rv-body"
+      />
 
-      <main className="rp-body">
+      <main className="rp-body" id="rv-body">
         {view.kind === 'reading' && (
           <p className="rp-muted" role="status">
             {t('panel.reading')}

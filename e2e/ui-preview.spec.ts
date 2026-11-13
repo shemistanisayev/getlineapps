@@ -22,6 +22,23 @@ for (const width of [1440, 820, 390]) {
       await page.locator('.sl-serp--desktop').evaluate((e) => (e as HTMLElement).style.transform),
     ).toMatch(/^scale\(0\.\d+\)$/);
     await page.getByRole('button', { name: 'Mobile' }).click();
+    // Rivaline panel pieces (Faza 5 step 3): tabs, an expanded tool, the gaps card.
+    const riva = page.locator('#rivaline');
+    await expect(riva.getByRole('tablist', { name: 'Rivaline sections' }).first()).toBeVisible();
+    await expect(riva.getByRole('button', { name: /Meta Pixel/ })).toHaveAttribute(
+      'aria-expanded',
+      'true',
+    );
+    await expect(riva.getByRole('region', { name: 'Not found on this page' })).toBeVisible();
+    await riva
+      .getByRole('tab', { name: /^Brand/ })
+      .first()
+      .click();
+    await expect(riva.getByRole('button', { name: 'Copy #2F5D46' })).toBeVisible();
+    await riva
+      .getByRole('tab', { name: /^Stack/ })
+      .first()
+      .click();
     await page.evaluate(() => document.fonts.ready);
     // Fonts are self-hosted: no request may leave localhost.
     const fonts = await page.evaluate(() =>

@@ -164,6 +164,16 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 - **Shortcut** is read from `commands.getAll` on the Access card and the welcome page; when people remove it, both say how to set one instead of showing empty keys.
 - The panel reads again on every tab switch and on `complete` of the active tab. Step 5 adds the cache by tab and origin (SPEC §3.1) and the reading steps.
 
+## Step 3 notes (2026-11-13)
+
+- **New marks** (simple-icons, unaltered): Osano, Zoho, Brevo, LiveChat, WooCommerce, BigCommerce, Wix, Squarespace, Afterpay, Rakuten, Tilda. Afterpay's mint is too light for a tint, so its tile is the mint with a black mark, as the designs draw Snapchat and Klarna.
+- **No mark in simple-icons** (removed at the brands' request or never there): LinkedIn, Microsoft, Adobe, Salesforce, Klaviyo, Amplitude, Clarity, Optimizely, Criteo, Taboola, Segment and others. They use the category glyph (SPEC §4.2). The LinkedIn library row keeps the design's neutral "library" mark.
+- **Category glyphs** (`RIVALINE_GLYPHS`): advertising, analytics, tag management, consent, CRM, email, chat, A/B testing, e-commerce, reviews, payments, affiliate, server-side. Tones neutral, brand (teal tint) and warning.
+- **Contrast changes for AA:** the hero "+N" tile uses 8% white plus a ring instead of 18% white (3.8:1 to 4.6:1); disabled buttons use `#475467` instead of `#667085` on `#EAE8F0` (4.1:1 to 6.3:1).
+- **Narrow panels:** swatches fill by width (5 in the 400 px panel, fewer below), under 380 px the evidence and library pills lose their indent, under 320 px Report PDF shows only its icon (the label stays for screen readers). Checked at 280 px in e2e.
+- **Chip order:** the design sorts category chips by count (Advertising 4, Analytics 2, Payments 2, Tag management 1), while the list groups follow the SPEC's category order. Step 5 keeps both.
+- **Tabs in Access and Restricted:** no tab is selected and counts are hidden, but the first tab stays focusable so the tab list is reachable by keyboard.
+
 ## Questions for the owner
 
 1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
@@ -176,7 +186,7 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 |---|---|---|---|
 | 1 | P0 | This plan and the API check | Done: this file, `scripts/spike-rivaline.ts` |
 | 2 | P1 | `apps/rivaline/extension` scaffold (side panel, background, shortcut, welcome, uninstall URL, manifest test), `apps/rivaline/fixture` skeleton, workspace and CI | Done: icon click (real, via CDP) opens the panel; the probe reads Kova in the MAIN world; same-site navigation reads again, another tab or site shows Access with the real shortcut, `chrome://version` and the PDF viewer show Restricted (e2e on Edge and Chrome stable 157). Fixture on port 4402 serves the design hosts. AZ text in `docs/rivaline/AZ-REVIEW.md` |
-| 3 | P2 | Rivaline panel theme and shell in `@line/ui/rivaline`, new marks, category glyphs, preview section, contrast tests | Preview |
+| 3 | P2 | Rivaline panel theme and shell in `@line/ui/rivaline`, new marks, category glyphs, preview section, contrast tests | Done: `@line/ui/rivaline` (PanelHeader with tabs, StackHero, GapStrip, CategoryChips, ToolGroup and ToolRow with evidence, NotFoundCard, LimeCta, LibraryRow, fields, LogoBox, Swatch, FontRow, ButtonPreview, Segmented, CodeBlock, Sheet, Toast) and `rivaline.css`; 11 new marks from simple-icons and 13 category glyphs; preview section with the design's demo data; 32 contrast pairs tested. The panel uses the new header |
 | 4 | P3 | `packages/core/src/rivaline` (rules ~120, match, IDs, evidence, summary, gaps, ad builders, brand functions) + Kova, Glowbar, Mira fixture | Kova: 13 tools, 8 categories, 3 gaps, the design IDs |
 | 5B | P8 | `/rivaline` landing with `#finder`, `/rivaline/uninstalled`, SEO, AZ, published early as `soon` | Screenshots 1440 / 820 / 390, axe clean, deployed |
 | 5 | P4 | Scan pipeline with reading steps, PanelHeader, Stack, StackDetail, Access, Restricted, Empty | Match artboards on the fixture |

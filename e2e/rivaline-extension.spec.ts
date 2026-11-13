@@ -77,6 +77,28 @@ test.describe('rivaline extension', () => {
     expect(await panelText()).toContain('Kova | Skincare that keeps it simple');
     expect(await panelText()).toContain('example.com');
     await shot('panel-read');
+    // Header (step 3): a page is read, so Stack is the current tab and Report PDF is on.
+    expect(
+      await ext.evalIn<string[]>(
+        PANEL,
+        `[...document.querySelectorAll('[role=tab][aria-selected=true]')].map((t) => t.textContent)`,
+      ),
+    ).toEqual(['Stack']);
+    expect(await ext.evalIn<boolean>(PANEL, `document.querySelector('.rv-pdf').disabled`)).toBe(
+      false,
+    );
+    // Narrow side panel: nothing scrolls sideways at 280 px.
+    expect(
+      await ext.evalIn<number>(PANEL, 'document.documentElement.scrollWidth', false, {
+        width: 280,
+        height: 700,
+      }),
+    ).toBeLessThanOrEqual(280);
+    if (SHOTS)
+      await ext.screenshot(PANEL, `${SHOTS}/rivaline-panel-read-280.png`, {
+        width: 280,
+        height: 700,
+      });
 
     // Same tab, same site: activeTab is kept, the new page is read without a click.
     await kova.goto(kovaUrl('/collections/all'));
@@ -88,6 +110,13 @@ test.describe('rivaline extension', () => {
     await glow.bringToFront();
     await expect.poll(panelText).toContain('Read this tab?');
     expect(await panelText()).toMatch(/Alt\s*Shift\s*V/);
+    // Access: no current tab, no counts, Read again and Report PDF are off.
+    expect(
+      await ext.evalIn<number>(PANEL, `document.querySelectorAll('[aria-selected=true]').length`),
+    ).toBe(0);
+    expect(await ext.evalIn<boolean>(PANEL, `document.querySelector('.rv-pdf').disabled`)).toBe(
+      true,
+    );
     await shot('panel-access');
 
     // A click on that tab reads it.

@@ -120,10 +120,56 @@ export const MARKLINE_GLYPHS = {
   download: { title: 'Download', d: 'M12 4v11M7 10l5 5 5-5M5 20h14' },
 } satisfies Record<string, GlyphDef>;
 
+/**
+ * Rivaline stack categories (docs/rivaline-SPEC.md §4.2). A tool without a brand mark in the
+ * designs or simple-icons shows its category glyph instead. Same line style as the other sets.
+ */
+export const RIVALINE_GLYPHS = {
+  advertising: {
+    title: 'Advertising',
+    d: 'M4 10v4h3l6 4V6l-6 4zM16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11',
+  },
+  analytics: { title: 'Analytics', d: 'M4 20h16M7 16v-4M12 16V7M17 16v-6' },
+  tagmanagement: {
+    title: 'Tag management',
+    d: 'M3.5 11.5V5a1.5 1.5 0 0 1 1.5-1.5h6.5l9 9-8 8z' + C(8, 8, 1.4),
+  },
+  consent: { title: 'Consent', d: shield + 'M9 12l2 2 4-4' },
+  crm: {
+    title: 'CRM',
+    d: C(9, 8, 3) + 'M3.5 19a5.5 5.5 0 0 1 11 0M16 5.5a3 3 0 0 1 0 5.5M17.5 14a5 5 0 0 1 3 5',
+  },
+  email: { title: 'Email', d: R(3, 5, 18, 14, 2.5) + 'M3.5 7l8.5 6 8.5-6' },
+  chat: { title: 'Chat', d: 'M4 5h16v11H9l-5 4z' + 'M8 9.5h8M8 12.5h5' },
+  abtesting: { title: 'A/B testing', d: R(3, 5, 8, 14, 2) + R(13, 5, 8, 14, 2) + 'M7 9v6M17 9v6' },
+  ecommerce: {
+    title: 'E-commerce',
+    d: 'M3 4h2.5l2.2 10.5h10.6L20.5 7H6.6' + C(9, 19, 1.5) + C(17, 19, 1.5),
+  },
+  reviews: {
+    title: 'Reviews',
+    d: 'M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z',
+  },
+  payments: { title: 'Payments', d: R(3, 5.5, 18, 13, 2.5) + 'M3 10h18M7 15h4' },
+  affiliate: {
+    title: 'Affiliate',
+    d: 'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1',
+  },
+  server: {
+    title: 'Server-side',
+    d: R(4, 4, 16, 7, 2) + R(4, 13, 16, 7, 2) + 'M8 7.5h.01M8 16.5h.01',
+  },
+} satisfies Record<string, GlyphDef>;
+
 export type FoldlineGlyph = keyof typeof FOLDLINE_GLYPHS;
 export type MarklineGlyph = keyof typeof MARKLINE_GLYPHS;
+export type RivalineGlyph = keyof typeof RIVALINE_GLYPHS;
 
-export const GLYPH_SETS = { foldline: FOLDLINE_GLYPHS, markline: MARKLINE_GLYPHS } as const;
+export const GLYPH_SETS = {
+  foldline: FOLDLINE_GLYPHS,
+  markline: MARKLINE_GLYPHS,
+  rivaline: RIVALINE_GLYPHS,
+} as const;
 export type GlyphSet = keyof typeof GLYPH_SETS;
 
 /** [tint, ink] per tone, from each tool's Glyph artboard. */
@@ -143,5 +189,10 @@ export const GLYPH_TONES = {
     bad: ['#FEF3F2', '#B42318'],
     ok: ['#ECFDF3', '#067647'],
     dark: ['rgba(255,255,255,.14)', '#FFFFFF'],
+  },
+  rivaline: {
+    neutral: ['#EEEDF3', '#475467'],
+    brand: ['#ECFEFF', '#155E75'],
+    warning: ['#FFFAEB', '#B54708'],
   },
 } as const;

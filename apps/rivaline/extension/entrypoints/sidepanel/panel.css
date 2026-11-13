@@ -1,4 +1,4 @@
-/* Step 2 shell. Colors and sizes from design/rivaline (Access, Restricted); the full shell comes in step 3. */
+/* Panel body (steps 2 and 3). Colors and sizes from design/rivaline (Access, Restricted); header and tabs come from @line/ui/rivaline. */
 body {
   background: #efedf5;
   font-size: 13px;
@@ -7,30 +7,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-.rp-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  height: 52px;
-  padding: 0 14px;
-  background: #ffffff;
-  border-bottom: 1px solid #dcd9e6;
-}
-.icon-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  border: 1px solid #dcd9e6;
-  background: #ffffff;
-  color: #344054;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.icon-btn:hover {
-  background: #f9fafb;
 }
 .rp-body {
   display: flex;

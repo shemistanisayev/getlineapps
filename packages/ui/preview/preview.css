@@ -37,7 +37,7 @@ code,
 .pv-section {
   padding-top: 48px;
 }
-.pv-section h2 {
+.pv-section > h2 {
   margin: 0 0 18px;
   font-family: var(--line-font-display);
   font-size: 24px;
@@ -244,4 +244,74 @@ code,
 .pv-sl-contrast {
   flex: 1 1 420px;
   min-width: 0;
+}
+.rv-panel {
+  background: #efedf5;
+  font-size: 13px;
+}
+.pv-rv-body {
+  background: #efedf5;
+}
+.pv-rv-pad {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pv-rv-fonts {
+  padding-bottom: 4px;
+  gap: 0;
+}
+.pv-rv-fonts .rv-cardhead {
+  padding-bottom: 8px;
+}
+.pv-rv-two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+}
+.pv-rv-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+.pv-rv-logo {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.pv-rv-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pv-rv-kova {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1e2b24;
+}
+.pv-rv-kova i {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2f5d46;
+  box-shadow: inset -5px -5px 0 #ebc56b;
+}
+.pv-rv-sheet {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 -12px 32px -12px rgba(16, 24, 40, 0.3);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pv-rv-toast .rv-toast {
+  position: static;
+  transform: none;
+  width: max-content;
 }

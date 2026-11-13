@@ -3,6 +3,12 @@ import type { Dictionary } from './en.ts';
 /** Azerbaijani copy. Written by the agent, listed in docs/rivaline/AZ-REVIEW.md for the owner. */
 export const az: Dictionary = {
   'list.and': 'və',
+  'panel.sections': 'Rivaline bölmələri',
+  'panel.settings': 'Ayarlar',
+  'panel.pdf': 'Hesabat PDF',
+  'tab.stack': 'Stack',
+  'tab.ads': 'Ads',
+  'tab.brand': 'Brand',
   'panel.reading': 'Səhifə oxunur...',
   'panel.readAgain': 'Səhifəni yenidən oxu',
   'panel.idle.title': 'Saytı oxu',

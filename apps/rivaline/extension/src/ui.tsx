@@ -3,12 +3,6 @@ const ICON = {
   check: <path d="M5 12.5l4.5 4.5L19 7.5" />,
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   x: <path d="M6 6l12 12M18 6L6 18" />,
-  refresh: (
-    <>
-      <path d="M20 11a8 8 0 1 0-2.3 5.7" />
-      <path d="M20 4v7h-7" />
-    </>
-  ),
 };
 
 export type IconName = keyof typeof ICON;

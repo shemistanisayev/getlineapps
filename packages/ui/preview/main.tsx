@@ -5,7 +5,9 @@ import '../src/fonts.css';
 import '../src/tokens.css';
 import '../src/ui.css';
 import '../src/serpline/serpline.css';
+import '../src/rivaline/rivaline.css';
 import './preview.css';
+import { RivalineDemo } from './RivalineDemo.tsx';
 import { SerplineDemo } from './SerplineDemo.tsx';
 import {
   BRANDS,
@@ -89,7 +91,7 @@ function App() {
         <HubLogo theme="dark" size={44} />
         <p>
           Line family UI preview: <code>packages/ui</code>. Logo, HubLogo, tokens, Button, Pill,
-          Card, Table, CTA band, Serpline panel, Glyph, Mark and extension icons.
+          Card, Table, CTA band, Serpline and Rivaline panels, Glyph, Mark and extension icons.
         </p>
       </header>
 
@@ -282,6 +284,10 @@ function App() {
 
       <Section id="serpline" title="Serpline side panel (400 px)">
         <SerplineDemo />
+      </Section>
+
+      <Section id="rivaline" title="Rivaline side panel (400 px)">
+        <RivalineDemo />
       </Section>
 
       <Section id="glyphs" title="Glyphs (Foldline, Markline)">

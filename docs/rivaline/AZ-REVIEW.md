@@ -2,13 +2,19 @@
 
 Agent yazıb, sən yoxlayırsan. Dəyişmək istədiyin sətri burada və ya göstərilən faylda düzəlt (və ya agentə yaz). Alət və platforma adları (Rivaline, Meta Pixel, Stack, Ads, Brand) tərcümə olunmur. Bu siyahı hər addımda böyüyür; landing mətnləri 5B addımında əlavə olunacaq.
 
-## Side panel və salamlama səhifəsi (addım 2)
+## Side panel və salamlama səhifəsi (addım 2 və 3)
 
 Fayl: `apps/rivaline/extension/src/i18n/az.ts`.
 
 | Açar | English | Azərbaycanca |
 |---|---|---|
 | `list.and` | and | və |
+| `panel.sections` | Rivaline sections | Rivaline bölmələri |
+| `panel.settings` | Settings | Ayarlar |
+| `panel.pdf` | Report PDF | Hesabat PDF |
+| `tab.stack` | Stack | Stack |
+| `tab.ads` | Ads | Ads |
+| `tab.brand` | Brand | Brand |
 | `panel.reading` | Reading this page... | Səhifə oxunur... |
 | `panel.readAgain` | Read the page again | Səhifəni yenidən oxu |
 | `panel.idle.title` | Read a site | Saytı oxu |
