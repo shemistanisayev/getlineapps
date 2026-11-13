@@ -5,6 +5,7 @@ import { defineConfig } from 'wxt';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const iconDir = join(here, '../../../packages/ui/icons/rivaline');
+const fontDir = join(here, '../../../packages/report/fonts');
 
 // Manifest: exactly what docs/rivaline-SPEC.md §3 lists. No host_permissions, no content scripts.
 // Shortcut Alt+Shift+V: Chrome 157 does not give Alt+Shift+R to extensions (docs/rivaline/PLAN.md).
@@ -13,6 +14,8 @@ export default defineConfig({
   srcDir: '.',
   outDir: '.output',
   zip: { artifactTemplate: 'rivaline-{{version}}.zip' },
+  // pdf-lib is one large chunk, loaded only when a report PDF is made.
+  vite: () => ({ build: { chunkSizeWarningLimit: 1600 } }),
   manifest: {
     // Store title (max 75): brand first, then what people search for. Toolbar and menus use short_name.
     name: 'Rivaline: Competitor Research for Meta, Google, TikTok Ads & More',
@@ -36,6 +39,12 @@ export default defineConfig({
     'build:publicAssets': (_wxt, assets) => {
       for (const file of readdirSync(iconDir).filter((f) => f.endsWith('.png'))) {
         assets.push({ absoluteSrc: join(iconDir, file), relativeDest: file });
+      }
+      // Fonts for the report PDF (embedded by pdf-lib, loaded from the extension itself).
+      for (const file of readdirSync(fontDir).filter(
+        (f) => f.endsWith('.ttf') || f === 'OFL.txt',
+      )) {
+        assets.push({ absoluteSrc: join(fontDir, file), relativeDest: `fonts/${file}` });
       }
     },
   },

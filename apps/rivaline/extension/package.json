@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@line/core": "workspace:*",
+    "@line/report": "workspace:*",
     "@line/ui": "workspace:*",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"

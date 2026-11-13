@@ -3,7 +3,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { activeTabId } from '../../src/capture/check.ts';
 import { probeTab, scanTab, type ScanResult, type ScanStep } from '../../src/capture/scan.ts';
 import { isScanMessage } from '../../src/messages.ts';
-import { actionShortcut } from '../../src/storage.ts';
+import { brandDomain, brandName, libraryLinks } from '@line/core/rivaline';
+import { downloadReport } from '../../src/pdf.ts';
+import { rivalineReport } from '../../src/report.ts';
+import { actionShortcut, getCountry } from '../../src/storage.ts';
 import { useT } from '../../src/useLang.ts';
 import { AdsTab } from './AdsTab.tsx';
 import { BrandTab } from './BrandTab.tsx';
@@ -13,7 +16,7 @@ import { AccessView, EmptyView, Reading, RestrictedView } from './Views.tsx';
 
 /**
  * Side panel (docs/rivaline-SPEC.md §3.1 and §7). One panel per window; results are kept in
- * memory per tab, never stored. The report PDF comes with step 8 (docs/rivaline/PLAN.md).
+ * memory per tab, never stored.
  */
 type Tab = 'stack' | 'ads' | 'brand';
 type View =
@@ -33,6 +36,7 @@ export function Panel() {
   const [keys, setKeys] = useState<string[]>([]);
   const [toast, setToast] = useState<string | null>(null);
   const [settings, setSettings] = useState(false);
+  const [pdfBusy, setPdfBusy] = useState(false);
   /** The library row the Stack tab jumped to (highlighted in the Ads tab, step 6). */
   const [library, setLibrary] = useState<string | null>(null);
   const cache = useRef(new Map<number, ScanResult>());
@@ -126,6 +130,33 @@ export function Panel() {
   };
 
   const result = view.kind === 'result' ? view.result : null;
+
+  /** Report PDF (SPEC §8): the default searches with the Settings country, in the panel language. */
+  const makePdf = async (r: ScanResult) => {
+    setPdfBusy(true);
+    try {
+      const country = await getCountry();
+      const searchBrand = brandName(r.snapshot);
+      const links = libraryLinks(
+        { brand: searchBrand, domain: brandDomain(r.url), country },
+        r.stack.tools,
+      );
+      const file = await downloadReport((fonts) =>
+        rivalineReport(
+          { url: r.url, stack: r.stack, brand: r.brand, links, searchBrand },
+          t,
+          lang,
+          fonts,
+          new Date(),
+        ),
+      );
+      setToast(t('rep.saved', { file }));
+    } catch {
+      setToast(t('rep.failed'));
+    } finally {
+      setPdfBusy(false);
+    }
+  };
   const readable = view.kind === 'result' || view.kind === 'reading';
   const empty = result !== null && result.stack.tools.length === 0;
 
@@ -144,7 +175,8 @@ export function Panel() {
         pdfLabel={t('panel.pdf')}
         readDisabled={!result}
         onSettings={() => setSettings(true)}
-        pdfDisabled
+        pdfDisabled={pdfBusy}
+        onPdf={result ? () => void makePdf(result) : undefined}
         onReadAgain={result ? () => void scan(result.tabId) : undefined}
         tabsLabel={t('panel.sections')}
         tabs={[

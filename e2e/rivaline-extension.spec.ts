@@ -299,6 +299,39 @@ test.describe('rivaline extension', () => {
     await kova.close();
   });
 
+  test('Report PDF: rivaline-report-<host>-<date>.pdf with the Kova stack (design: Report)', async () => {
+    const kova = await ext.context.newPage();
+    await kova.goto(kovaUrl());
+    await ext.clickAction(kova);
+    await click('#rv-tab-stack');
+    await poll('13 tools in 8 categories');
+    await ext.evalIn(
+      PANEL,
+      `(() => {
+        window.__pdf = [];
+        const make = URL.createObjectURL.bind(URL);
+        URL.createObjectURL = (b) => { if (b.type === 'application/pdf') window.__pdf.push(b); return make(b); };
+        HTMLAnchorElement.prototype.click = function () { window.__pdfName = this.download; };
+      })()`,
+    );
+    expect(await ext.evalIn<boolean>(PANEL, `document.querySelector('.rv-pdf').disabled`)).toBe(
+      false,
+    );
+    await click('.rv-pdf');
+    await poll('PDF saved: rivaline-report-example.com-');
+    const pdf = await ext.evalIn<{ name: string; head: string; size: number }>(
+      PANEL,
+      `(async () => {
+        const b = window.__pdf[0];
+        return { name: window.__pdfName, head: await b.slice(0, 5).text(), size: b.size };
+      })()`,
+    );
+    expect(pdf.name).toMatch(/^rivaline-report-example\.com-\d{4}-\d{2}-\d{2}\.pdf$/);
+    expect(pdf.head).toBe('%PDF-');
+    expect(pdf.size).toBeGreaterThan(20_000);
+    await kova.close();
+  });
+
   test('tab switches: Access, a click, cache by tab, Empty on Mira Studio', async () => {
     const kova = await ext.context.newPage();
     await kova.goto(kovaUrl());

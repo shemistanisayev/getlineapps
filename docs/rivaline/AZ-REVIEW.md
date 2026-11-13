@@ -2,9 +2,9 @@
 
 Agent yazıb, sən yoxlayırsan. Dəyişmək istədiyin sətri burada və ya göstərilən faylda düzəlt (və ya agentə yaz). Alət və platforma adları (Rivaline, Meta Pixel, Stack, Ads, Brand) tərcümə olunmur. Bu siyahı hər addımda böyüyür.
 
-## Side panel, Settings və salamlama səhifəsi (addım 2, 3, 5, 6 və 7)
+## Side panel, Settings, PDF və salamlama səhifəsi (addım 2 ilə 8 arası)
 
-Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host}, {hex} kimi yerlər avtomatik dolur. "Consent", kitabxana adları (Meta Ad Library və s.), şrift mənbələri (Google Fonts) və tab adları (Stack, Ads, Brand) ingiliscə saxlanılıb. Ölkə adları Chrome-un öz tərcüməsindən gəlir.
+Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host}, {hex} kimi yerlər avtomatik dolur. `rep.*` açarları rəqib hesabatı PDF-indədir. "Consent", kitabxana adları (Meta Ad Library və s.), şrift mənbələri (Google Fonts) və tab adları (Stack, Ads, Brand) ingiliscə saxlanılıb. Ölkə adları Chrome-un öz tərcüməsindən gəlir.
 
 | Açar | English | Azərbaycanca |
 |---|---|---|
@@ -198,6 +198,52 @@ Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host}, {hex} kimi yerlər 
 | `set.version` | Version {v} | Versiya {v} |
 | `set.privacy` | Privacy | Məxfilik |
 | `set.contact` | Contact | Əlaqə |
+| `rep.eyebrow` | Competitor report | Rəqib hesabatı |
+| `rep.subline` | Page read: {page}. Brand name used for ad searches: {brand} | Oxunan səhifə: {page}. Reklam axtarışlarında işlənən brend adı: {brand} |
+| `rep.home` | home page | ana səhifə |
+| `rep.tile.tools.one` | tool | alət |
+| `rep.tile.tools.other` | tools | alət |
+| `rep.tile.cats.one` | category | kateqoriya |
+| `rep.tile.cats.other` | categories | kateqoriya |
+| `rep.tile.pixels.one` | ad pixel | reklam pikseli |
+| `rep.tile.pixels.other` | ad pixels | reklam pikseli |
+| `rep.tile.gaps.one` | gap | boşluq |
+| `rep.tile.gaps.other` | gaps | boşluq |
+| `rep.stack` | Stack | Stack |
+| `rep.stack.noneK` | Tools | Alətlər |
+| `rep.stack.noneV` | No marketing tools found on this page | Bu səhifədə marketinq aləti tapılmadı |
+| `rep.gaps` | Gaps and opportunities | Boşluqlar və imkanlar |
+| `rep.gap.GAP_SERVER_SIDE.lead` | No server-side tracking. | Server-side izləmə yoxdur. |
+| `rep.gap.GAP_SERVER_SIDE.one` | The ad pixel sends from the browser, so blocked requests never reach the ad platform. | Reklam pikseli brauzerdən göndərir, ona görə bloklanan sorğular reklam platformasına çatmır. |
+| `rep.gap.GAP_SERVER_SIDE.other` | All {n} ad pixels send from the browser, so blocked requests never reach the ad platforms. | {n} reklam pikselinin hamısı brauzerdən göndərir, ona görə bloklanan sorğular reklam platformalarına çatmır. |
+| `rep.gap.GAP_CONSENT.lead` | No consent banner. | Consent banneri yoxdur. |
+| `rep.gap.GAP_CONSENT.text` | Ad pixels load for every visitor before any choice is made. | Reklam pikselləri hər ziyarətçi üçün seçimdən əvvəl yüklənir. |
+| `rep.gap.GAP_CONSENT.analytics` | Tracking loads for every visitor before any choice is made. | İzləmə hər ziyarətçi üçün seçimdən əvvəl yüklənir. |
+| `rep.gap.GAP_CRM.lead` | No CRM on the site. | Saytda CRM yoxdur. |
+| `rep.gap.GAP_CRM.email` | {email} collects emails, but chat and form leads are not tied to one customer record. | {email} e-poçtları toplayır, amma çat və form lidləri bir müştəri qeydinə bağlanmır. |
+| `rep.gap.GAP_CRM.text` | Leads from chat and forms are not tied to one customer record. | Çat və formlardan gələn lidlər bir müştəri qeydinə bağlanmır. |
+| `rep.gap.GAP_ANALYTICS.lead` | No analytics. | Analitika yoxdur. |
+| `rep.gap.GAP_ANALYTICS.text` | Visits and sales from this site are not measured. | Bu saytdan gələn ziyarətlər və satışlar ölçülmür. |
+| `rep.none.lead` | No gaps found. | Boşluq tapılmadı. |
+| `rep.none.text` | Analytics, consent, CRM and server-side tracking are all in place. | Analitika, consent, CRM və server-side izləmə yerindədir. |
+| `rep.brand` | Brand kit | Brend dəsti |
+| `rep.brand.fonts` | {heading} for headings, {body} for body. | Başlıqlar üçün {heading}, mətn üçün {body}. |
+| `rep.brand.font` | {family} {weight} | {family} {weight} |
+| `rep.brand.button` | Main button {hex}, {shape}. | Əsas düymə {hex}, {shape}. |
+| `rep.shape.round` | fully rounded | tam yuvarlaq |
+| `rep.shape.radius` | {r} corners | {r} künclər |
+| `rep.shape.square` | square corners | düz künclər |
+| `rep.brand.none` | No brand colors could be read on this page. | Bu səhifədə brend rəngi oxumaq mümkün olmadı. |
+| `rep.libs` | Ad libraries | Reklam kitabxanaları |
+| `rep.cta.title` | Need help closing gaps like these? | Belə boşluqları bağlamağa kömək lazımdır? |
+| `rep.cta.sub` | Shamistan Isayev, analytics and server-side tracking | Shamistan Isayev, analitika və server-side izləmə |
+| `rep.footer` | Made with Rivaline. No data left the browser. | Rivaline ilə hazırlanıb. Heç bir məlumat brauzerdən çıxmadı. |
+| `rep.pageOf` | Page {i} of {n} | Səhifə {i} / {n} |
+| `rep.sev.high` | High | Yüksək |
+| `rep.sev.medium` | Medium | Orta |
+| `rep.sev.low` | Low | Aşağı |
+| `rep.saved` | PDF saved: {file} | PDF saxlanıldı: {file} |
+| `rep.failed` | The PDF could not be made. Try again. | PDF hazırlamaq alınmadı. Yenidən yoxla. |
 | `welcome.title` | Rivaline is ready. | Rivaline hazırdır. |
 | `welcome.accent` | Any site, one click. | İstənilən sayt, bir klik. |
 | `welcome.lead` | Three steps and you will see what a site runs, where it advertises and how its brand looks. | Üç addım və saytın nə işlətdiyini, harada reklam verdiyini və brendinin necə göründüyünü görəcəksən. |
