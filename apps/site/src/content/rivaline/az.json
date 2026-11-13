@@ -1,0 +1,366 @@
+{
+  "meta": {
+    "title": "Rivaline: Meta, Google və s. üçün pulsuz rəqib araşdırması",
+    "description": "Pulsuz Chrome extension. İstənilən saytın martech stack-ini gör, reklamlarını Meta, Google, TikTok və LinkedIn reklam kitabxanalarında aç, brend rənglərini və şriftlərini kopyala, hamısı bir yan paneldə.",
+    "ogAlt": "Rivaline: istənilən rəqibin stack-ini, reklamlarını və brendini bir paneldə gör."
+  },
+  "nav": {
+    "label": "Rivaline bölmələri",
+    "features": "İmkanlar",
+    "finder": "Reklam kitabxanası axtarışı",
+    "how": "Necə işləyir",
+    "privacy": "Məxfilik",
+    "faq": "Suallar"
+  },
+  "add": {
+    "nav": "Chrome-a əlavə et",
+    "hero": "Chrome-a əlavə et, pulsuzdur",
+    "band": "Chrome-a əlavə et",
+    "soonNav": "Tezliklə",
+    "soonHero": "Tezliklə Chrome-da"
+  },
+  "hero": {
+    "pill": "Pulsuz Chrome extension",
+    "titleStart": "İstənilən rəqibin stack-i, reklamları və brendi",
+    "titleHighlight": "bir paneldə",
+    "lead": "Rivaline saytın işlətdiyi analitikanı, reklam piksellərini, CRM-i və çatı göstərir, reklamlarını dörd reklam kitabxanasında açır, rənglərini və şriftlərini çıxarır. Birbaşa Chrome-un yan panelində",
+    "secondary": "Reklam kitabxanası axtarışını yoxla",
+    "trustLabel": "Niyə yoxlamaq təhlükəsizdir",
+    "trust": ["Hesab lazım deyil", "Heç nə brauzerindən çıxmır", "Açıq mənbə"],
+    "mock": {
+      "label": "Kova demo mağazasında Rivaline yan paneli",
+      "url": "example.com",
+      "siteTitle": "Skincare that keeps it simple.",
+      "siteButton": "Shop the routine",
+      "tabs": { "stack": "Stack", "ads": "Ads", "brand": "Brand" },
+      "host": "example.com",
+      "title": "8 kateqoriyada 13 alət",
+      "rows": [
+        { "mark": "meta", "name": "Meta Pixel", "id": "4182736509…" },
+        { "mark": "tiktok", "name": "TikTok Pixel", "id": "C9H3KQ7R…" },
+        { "mark": "googleads", "name": "Google Ads", "id": "AW-11284956" },
+        { "mark": "googleanalytics", "name": "Google Analytics 4", "id": "G-8XK2LM4Q…" },
+        { "mark": "googletagmanager", "name": "Tag Manager", "id": "GTM-N4KV8R" },
+        { "mark": "intercom", "name": "Intercom", "id": "chat" }
+      ]
+    },
+    "kit": {
+      "eyebrow": "Brend dəsti",
+      "hint": "HEX üçün üzərinə gəl",
+      "headingFont": "Fraunces",
+      "headings": "başlıqlar",
+      "bodyFont": "DM Sans",
+      "body": "mətn"
+    },
+    "toast": { "eyebrow": "Tapılmadı", "text": "Bu saytda server-side izləmə yoxdur" }
+  },
+  "marquee": {
+    "title": "Marketoloqların işlətdiyi alətləri tanıyır",
+    "items": [
+      { "mark": "googleanalytics", "label": "Google Analytics 4" },
+      { "mark": "googletagmanager", "label": "Tag Manager" },
+      { "mark": "googleads", "label": "Google Ads" },
+      { "mark": "meta", "label": "Meta Pixel" },
+      { "mark": "tiktok", "label": "TikTok Pixel" },
+      { "mark": "pinterest", "label": "Pinterest Tag" },
+      { "mark": "snapchat", "label": "Snap Pixel" },
+      { "mark": "hotjar", "label": "Hotjar" },
+      { "mark": "mixpanel", "label": "Mixpanel" },
+      { "mark": "hubspot", "label": "HubSpot" },
+      { "mark": "mailchimp", "label": "Mailchimp" },
+      { "mark": "intercom", "label": "Intercom" },
+      { "mark": "zendesk", "label": "Zendesk" },
+      { "mark": "shopify", "label": "Shopify" },
+      { "mark": "wordpress", "label": "WordPress" },
+      { "mark": "webflow", "label": "Webflow" },
+      { "mark": "trustpilot", "label": "Trustpilot" },
+      { "mark": "klarna", "label": "Klarna" },
+      { "mark": "stripe", "label": "Stripe" },
+      { "mark": "paypal", "label": "PayPal" }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Problem",
+    "title": "Rəqibi araşdırmaq on tab və view-source tələb edir",
+    "lead": "Cavablar artıq səhifədədir. Sadəcə səpələnib",
+    "cards": [
+      {
+        "title": "Stack mənbə kodunda gizlənir",
+        "text": "Saytın hansı piksel, CRM və çat işlətdiyini tapmaq skriptləri sətir-sətir oxumaq deməkdir"
+      },
+      {
+        "title": "Dörd reklam kitabxanası, dörd axtarış",
+        "text": "Meta, Google, TikTok və LinkedIn hər dəfə brendin adını yenidən yazmağı istəyir"
+      },
+      {
+        "title": "Brend rəngləri damcıladanla",
+        "text": "Yoxla, kopyala, yapışdır, təkrar et. Hər rəng, hər şrift və düymə stili üçün"
+      }
+    ]
+  },
+  "features": {
+    "eyebrow": "Panelin içi",
+    "title": "Üç tab. İstənilən sayt haqqında tam mənzərə",
+    "tabsLabel": "Rivaline imkanları",
+    "stack": {
+      "label": "Stack",
+      "title": "Hər alət, nə iş gördüyünə görə qruplaşdırılıb",
+      "lead": "Analitika, reklam pikselləri, teq menecerləri, e-poçt, çat, rəylər, ödənişlər və altdakı platforma, hər biri işlətdiyi ID ilə",
+      "bullets": [
+        "GTM-N4KV8R və G-8XK2LM4QPZ kimi ID-lər, kopyalamağa hazır",
+        "Hər tapıntının sübutu: skript, cookie və ya qlobal dəyişən",
+        "Boşluqlar da göstərilir: server-side izləmə, consent, CRM"
+      ],
+      "demo": {
+        "advertising": "Reklam",
+        "emailChat": "E-poçt və çat",
+        "notFoundStrong": "Tapılmadı:",
+        "notFound": "server-side izləmə, consent banneri, CRM"
+      }
+    },
+    "ads": {
+      "label": "Ads",
+      "title": "Dörd reklam kitabxanası, axtarış artıq edilib",
+      "lead": "Rivaline brendin adını və domeni özü doldurur, ona görə Meta, Google, TikTok və LinkedIn düz nəticələrdə açılır",
+      "bullets": [
+        "Dördünü bir kliklə aç",
+        "Defolt ölkəni Ayarlarda bir dəfə seç",
+        "Hansı kanalın saytda pikseli olduğunu gör"
+      ],
+      "demo": {
+        "searchesBrand": "\"Kova\" axtarılır",
+        "searchesDomain": "example.com axtarılır",
+        "openAll": "Dördünü yeni tablarda aç"
+      }
+    },
+    "brand": {
+      "label": "Brand",
+      "title": "Brend dəsti, damcıladan olmadan",
+      "lead": "Loqo, rolları ilə rənglər, şrift adları və əsas düymənin stili. CSS dəyişənləri, PNG palitra və ya JSON kimi export et",
+      "bullets": [
+        "HEX-i kopyalamaq üçün istənilən rəngə bas",
+        "Yalnız şrift adları, şrift faylları heç vaxt",
+        "Prezentasiya və ya maket üçün hazır"
+      ],
+      "demo": { "headings": "Başlıqlar", "body": "Mətn" }
+    },
+    "report": {
+      "label": "Hesabat",
+      "title": "Növbəti görüş üçün bir PDF",
+      "lead": "Stack, boşluqlar, reklam kitabxanası linkləri və brend dəsti bir A4 səhifədə, brauzerində hazırlanır",
+      "bullets": [
+        "Satış zəngi və ya müştəri təqdimatı üçün hazır",
+        "Seçilə bilən mətn və işləyən linklər",
+        "Kompüterində hazırlanır, heç yerə göndərilmir"
+      ],
+      "demo": {
+        "date": "7 noyabr 2026",
+        "eyebrow": "Rəqib hesabatı",
+        "tools": "alət",
+        "categories": "kateqoriya",
+        "pixels": "reklam pikseli",
+        "gaps": "boşluq",
+        "high": "Yüksək",
+        "rows": [
+          {
+            "strong": "Server-side izləmə yoxdur.",
+            "text": "4 pikselin hamısı brauzerdən göndərir."
+          },
+          { "strong": "Consent banneri yoxdur.", "text": "Piksellər seçimdən əvvəl yüklənir." }
+        ]
+      }
+    }
+  },
+  "finder": {
+    "eyebrow": "Pulsuz alət, quraşdırmadan",
+    "title": "Reklam kitabxanası axtarışı",
+    "lead": "Brend adı və ya domen yaz. Dörd reklam kitabxanasında axtarış açılmağa hazır olur. Bu səhifədə işləyir və heç yerə heç nə göndərmir",
+    "label": "Brend və ya domen",
+    "placeholder": "example.com və ya brend adı",
+    "default": "example.com",
+    "brand": "Brend: {brand}",
+    "typeAbove": "yuxarıda yaz",
+    "searchesBrand": "\"{q}\" axtarılır",
+    "searchesDomain": "{q} axtarılır",
+    "needsDomain": "Domen lazımdır",
+    "typeBrand": "Brend adı yaz",
+    "open": "Axtarışı aç",
+    "opensNewTab": "yeni tabda açılır",
+    "libs": {
+      "meta": "Meta Ad Library",
+      "google": "Google Ads Transparency",
+      "tiktok": "TikTok Ad Library",
+      "linkedin": "LinkedIn Ad Library"
+    },
+    "tiktokNote": "TikTok kitabxanası Avropada göstərilən reklamları əhatə edir",
+    "band": "Pikselləri, brend dəstini və PDF-i də istəyirsən? Extension bunu istənilən saytdan edir"
+  },
+  "how": {
+    "eyebrow": "Necə işləyir",
+    "title": "Üç addım, quraşdırma yoxdur",
+    "steps": [
+      {
+        "title": "Rivaline-ı Chrome-a əlavə et",
+        "text": "Chrome Web Store-dan pulsuz. Hesab açmaq lazım deyil"
+      },
+      {
+        "title": "Saytı aç, ikona bas",
+        "text": "Yan panel səhifənin yanında açılır. Və ya bas",
+        "keys": ["Alt", "Shift", "V"]
+      },
+      {
+        "title": "Hesabatı yüklə",
+        "text": "Stack, boşluqlar, reklam linkləri və brend dəsti bir PDF-də"
+      }
+    ]
+  },
+  "report": {
+    "eyebrow": "Rəqib hesabatı",
+    "titleStart": "Rəqibdə var, səndə yoxdur?",
+    "titleHighlight": "Qurulmasını tapşır",
+    "titleEnd": "Rivaline-ı yaradan adama",
+    "text": "Bir klik istənilən saytı hesabata çevirir: stack, boşluqlar, reklam kitabxanaları və brend dəsti. Komandanla paylaş və ya mənə göndər. Böyüyən brendlər üçün analitika, server-side izləmə, consent və reklam piksellərini qururam",
+    "cta": "Audit sifariş et",
+    "from": "Müəllif:",
+    "paper": {
+      "date": "7 noyabr 2026",
+      "eyebrow": "Rəqib hesabatı",
+      "host": "example.com",
+      "tools": "alət, 8 kateqoriyada",
+      "gaps": "boşluq",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Yüksək",
+          "strong": "Server-side izləmə yoxdur.",
+          "text": "4 reklam pikselinin hamısı brauzerdən göndərir."
+        },
+        {
+          "tone": "bad",
+          "label": "Yüksək",
+          "strong": "Consent banneri yoxdur.",
+          "text": "Piksellər seçimdən əvvəl yüklənir."
+        },
+        {
+          "tone": "warn",
+          "label": "Orta",
+          "strong": "Saytda CRM yoxdur.",
+          "text": "Lidlər ayrı-ayrı alətlərdə qalır."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Məxfilik",
+    "title": "Araşdırman brauzerində qalır",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Server yoxdur",
+        "text": "Bütün analiz Chrome-un içində gedir. Rivaline özü heç bir sorğu göndərmir"
+      },
+      {
+        "icon": "lock",
+        "title": "Minimal icazələr",
+        "text": "Yan panel, aktiv tab və lokal yaddaş. Bütün saytlarına giriş yoxdur"
+      },
+      {
+        "icon": "chart",
+        "title": "İçində izləmə yoxdur",
+        "text": "Extension səni izləmir. Tabı bağlayanda nəticələr silinir"
+      },
+      {
+        "icon": "code",
+        "title": "Açıq mənbə",
+        "text": "Kodu oxu və bu səhifədəki hər iddianı özün yoxla"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Suallar",
+    "title": "Suallar",
+    "askBefore": "Başqa sualın var?",
+    "askLink": "Birbaşa məndən soruş",
+    "items": [
+      {
+        "q": "Rivaline həqiqətən pulsuzdur?",
+        "a": "Bəli. Ödənişli plan, hesab və istifadə limiti yoxdur."
+      },
+      {
+        "q": "Haraya isə məlumat göndərir?",
+        "a": "Xeyr. Rivaline səhifəni brauzerində oxuyur və nəticəni tabı bağlayana qədər yaddaşda saxlayır. Yalnız ayarların saxlanılır, o da yalnız kompüterində."
+      },
+      {
+        "q": "Alətləri necə tanıyır?",
+        "a": "Skript ünvanlarını, cookie adlarını, səhifənin qlobal dəyişənlərini və meta teqləri təxminən 130 marketinq alətindən ibarət öz siyahısı ilə tutuşdurur. Hər tapıntı tapdığı sübutu göstərir."
+      },
+      {
+        "q": "Rəqibin reklam büdcəsini göstərə bilir?",
+        "a": "Xeyr. Reklam kitabxanaları büdcəni yox, hansı reklamların getdiyini göstərir. Rivaline həmin kitabxanaları axtarışı artıq doldurulmuş halda açır."
+      },
+      {
+        "q": "Yeni tabda niyə ikona yenidən basmalıyam?",
+        "a": "Rivaline Chrome-un activeTab icazəsini işlədir. Səhifəni yalnız sən istəyəndən sonra oxuya bilir, ona görə girdiyin bütün saytlara heç vaxt girişi olmur."
+      },
+      {
+        "q": "TikTok niyə yalnız Avropa reklamlarını göstərir?",
+        "a": "TikTok reklam kitabxanası Aİ, AİZ, İsveçrə və Böyük Britaniyada göstərilən reklamları əhatə edir. Rivaline brendi və ölkəni doldurur, sonra TikTok səhifəsində Search düyməsinə basırsan."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Line ailəsi",
+    "title": "Eyni ailədən daha çox pulsuz alət",
+    "tools": {
+      "hitline": {
+        "text": "Saytın əslində hansı izləmə məlumatını göndərdiyini birbaşa DevTools-da gör",
+        "open": "Hitline-ı aç"
+      },
+      "serpline": {
+        "text": "İstənilən səhifə üçün texniki SEO və AI axtarış yoxlamaları",
+        "open": "Serpline-ı aç"
+      },
+      "foldline": {
+        "text": "Landing səhifənin konversiyasına nəyin mane olduğunu tap",
+        "open": "Foldline-ı aç"
+      },
+      "markline": {
+        "text": "Saniyələr içində ekran şəkli çək, qeyd et və paylaş",
+        "open": "Markline-ı aç"
+      }
+    }
+  },
+  "footer": { "builtBy": "Hazırlayan", "privacy": "Məxfilik siyasəti", "source": "Mənbə kodu" },
+  "uninstall": {
+    "meta": {
+      "title": "Getməyinə təəssüf edirik | Rivaline",
+      "description": "Rivaline-ı niyə sildiyini bizə de. Bir klik növbəti versiyanı daha yaxşı etməyə kömək edir."
+    },
+    "titleStart": "Rivaline silindi",
+    "titleEnd": "Niyə getdin?",
+    "lead": "Bir klik növbəti versiyanı daha yaxşı etməyə kömək edir",
+    "reasonsLabel": "Səbəb",
+    "reasons": [
+      "Saytda alətləri tapmadı",
+      "Yalnız bir dəfə lazım idi",
+      "Başa düşmək çətin idi",
+      "Başqa alət işlədirəm"
+    ],
+    "moreLabel": "Başqa nəsə?",
+    "optional": "(istəyə görə)",
+    "placeholder": "Hansı saytı və ya aləti tapmadı?",
+    "send": "Rəy göndər",
+    "sending": "Göndərilir...",
+    "thanks": "Təşəkkür edirik. Rəyin göndərildi.",
+    "error": "Göndərmək alınmadı. Bir dəqiqədən sonra yenidən yoxla.",
+    "pickOne": "Səbəb seç və ya bir neçə söz yaz.",
+    "reinstall": "Rivaline-ı yenidən quraşdır",
+    "card": {
+      "eyebrow": "Öz saytında boşluq gördün?",
+      "title": "Onları sənin üçün bağlaya bilərəm",
+      "text": "Analitika, server-side izləmə, consent və reklam pikselləri. Nəyin çatışmadığının aydın siyahısını və işləyən quraşdırmanı alırsan",
+      "cta": "Audit sifariş et",
+      "sub": "Shamistan Isayev, analitika və izləmə"
+    }
+  }
+}

@@ -14,7 +14,8 @@
     "gen:og": "tsx scripts/og.ts",
     "screens": "tsx scripts/screens.ts",
     "gen:hitline": "tsx scripts/hitline-assets.ts",
-    "gen:serpline": "tsx scripts/serpline-assets.ts"
+    "gen:serpline": "tsx scripts/serpline-assets.ts",
+    "gen:rivaline": "tsx scripts/rivaline-assets.ts"
   },
   "dependencies": {
     "@line/core": "workspace:*",

@@ -23,8 +23,9 @@ test.describe('site', () => {
       'href',
       'https://chromewebstore.google.com/detail/phenmbccpeaclhpnclildfndbchgpnmn',
     );
-    // Hitline (Faza 3) and Serpline (Faza 4) have landings; the others get one in their own phase.
-    const withLanding = ['hitline', 'serpline'];
+    // Hitline (Faza 3), Serpline (Faza 4) and Rivaline (Faza 5B, published early as "soon") have
+    // landings; the others get one in their own phase.
+    const withLanding = ['hitline', 'serpline', 'rivaline'];
     for (const slug of withLanding) {
       await expect(page.locator(`a[href="/${slug}"]`).first()).toBeVisible();
     }

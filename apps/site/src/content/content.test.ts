@@ -11,6 +11,7 @@ import {
   hitlineSchema,
   hubSchema,
   serplineSchema,
+  rivalineSchema,
   privacyPageSchema,
   privacyToolSchema,
   sharedSchema,
@@ -54,6 +55,7 @@ describe('site content', () => {
       for (const s of TOOL_SLUGS) privacyToolSchema.parse(read(`privacy/${s}.${l}.json`));
       hitlineSchema.parse(read(`hitline/${l}.json`));
       serplineSchema.parse(read(`serpline/${l}.json`));
+      rivalineSchema.parse(read(`rivaline/${l}.json`));
     }
   });
 
@@ -168,6 +170,30 @@ describe('serpline landing content', () => {
     const c = serplineSchema.parse(read('serpline/en.json'));
     expect(c.preview.descDefault).toHaveLength(191);
     expect(c.hero.serp.note).toContain('107');
+  });
+});
+
+describe('rivaline landing content', () => {
+  it('has no links or UTM in the copy', () => {
+    for (const l of ['en', 'az']) {
+      for (const s of allStrings(rivalineSchema.parse(read(`rivaline/${l}.json`))))
+        expect(s).not.toMatch(/https?:|utm_/);
+    }
+  });
+
+  it('follows the naming rule for the landing title (60 characters at most)', () => {
+    const en = rivalineSchema.parse(read('rivaline/en.json'));
+    const az = rivalineSchema.parse(read('rivaline/az.json'));
+    expect(en.meta.title).toBe('Rivaline: Free Competitor Research for Meta, Google & More');
+    expect(az.meta.title).toMatch(/^Rivaline: .* və s\. üçün /);
+    for (const t of [en.meta.title, az.meta.title]) expect(t.length).toBeLessThanOrEqual(60);
+  });
+
+  it('the shortcut is the one the extension registers (Alt+Shift+V)', () => {
+    for (const l of ['en', 'az']) {
+      const c = rivalineSchema.parse(read(`rivaline/${l}.json`));
+      expect(c.how.steps[1]!.keys).toEqual(['Alt', 'Shift', 'V']);
+    }
   });
 });
 

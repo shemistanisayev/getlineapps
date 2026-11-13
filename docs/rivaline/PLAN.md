@@ -185,6 +185,14 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 - **Marks row** puts only the first analytics tool before the ad pixels (design: Shopify, GTM, GA4, Meta, TikTok, Google Ads, Pinterest, then "+6"; Hotjar is in the +6).
 - **Serpline e2e:** its LCP check failed now and then when tests ran in parallel. Chrome reports LCP only for a visible tab, and the panel correctly says "Not measured" with the reason. The test now accepts that state; Serpline itself is unchanged.
 
+## Step 5B notes (2026-11-13)
+
+- **Finder input.** As in the design: a domain gives the domain and a brand from its first label (`example.com` gives "Example", `kova.co.uk` gives "Kova"); a brand name leaves Google, which searches by domain, at "Needs a domain". The country is always "all" on the landing (the extension has the country select). A line under the cards says TikTok covers Europe.
+- **FAQ** gets a sixth question about TikTok's European-only library (owner question 2 still open for the panel hint).
+- **Copy.** Headings, leads and card texts lose the closing period (family rule); the demo site text ("Skincare that keeps it simple.") and FAQ answers keep theirs. "How it works" shows Alt Shift V.
+- **Report section** keeps the design's `#report` anchor and its paper mock with the 5 Kova swatches. The hero accent is `#67E8F9` with the lime underline; the marquee and tab bar have the padding that keeps hover lift from being clipped.
+- **Hub test** now expects a link to `/rivaline` (the landing exists, status stays `soon`).
+
 ## Questions for the owner
 
 1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
@@ -199,7 +207,7 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 | 2 | P1 | `apps/rivaline/extension` scaffold (side panel, background, shortcut, welcome, uninstall URL, manifest test), `apps/rivaline/fixture` skeleton, workspace and CI | Done: icon click (real, via CDP) opens the panel; the probe reads Kova in the MAIN world; same-site navigation reads again, another tab or site shows Access with the real shortcut, `chrome://version` and the PDF viewer show Restricted (e2e on Edge and Chrome stable 157). Fixture on port 4402 serves the design hosts. AZ text in `docs/rivaline/AZ-REVIEW.md` |
 | 3 | P2 | Rivaline panel theme and shell in `@line/ui/rivaline`, new marks, category glyphs, preview section, contrast tests | Done: `@line/ui/rivaline` (PanelHeader with tabs, StackHero, GapStrip, CategoryChips, ToolGroup and ToolRow with evidence, NotFoundCard, LimeCta, LibraryRow, fields, LogoBox, Swatch, FontRow, ButtonPreview, Segmented, CodeBlock, Sheet, Toast) and `rivaline.css`; 11 new marks from simple-icons and 13 category glyphs; preview section with the design's demo data; 32 contrast pairs tested. The panel uses the new header |
 | 4 | P3 | `packages/core/src/rivaline` (rules ~120, match, IDs, evidence, summary, gaps, ad builders, brand functions) + Kova, Glowbar, Mira fixture | Done: 128 rules in 12 categories, server-side signal, gaps, summary, chips, ad library builders, ISO country list, brand kit (ΔE merge, roles, fonts, button, CSS and JSON export, logo crop). Kova recorded with the extension's own collectSnapshot and collectBrand gives 13 tools in 8 categories, the design IDs, 3 gaps, "+6", the 5 colors, Fraunces and DM Sans, the button and the BrandExport CSS exactly. 53 core tests |
-| 5B | P8 | `/rivaline` landing with `#finder`, `/rivaline/uninstalled`, SEO, AZ, published early as `soon` | Screenshots 1440 / 820 / 390, axe clean, deployed |
+| 5B | P8 | `/rivaline` landing with `#finder`, `/rivaline/uninstalled`, SEO, AZ, published early as `soon` | Done: landing EN + AZ from `content/rivaline/*.json` (design copy, no closing periods, Alt Shift V), `#finder` island with the extension's own builders (`@line/core/rivaline/ads`, `parseFinderQuery`), Coming soon while `soon`, `/rivaline/uninstalled` through `ToolUninstall.astro` (teal accent), OG image (`gen:rivaline`), SoftwareApplication + FAQPage JSON-LD; sitemap, `llms.txt` and the hub card pick it up. Screenshots 1440 / 820 / 390 with no sideways scroll, axe clean on all three pages. Deployed by CI on push |
 | 5 | P4 | Scan pipeline with reading steps, PanelHeader, Stack, StackDetail, Access, Restricted, Empty | Match artboards on the fixture |
 | 6 | P5 | Ads, Brand, BrandExport | Exported files open |
 | 7 | P6 | Settings, EN + AZ, `AZ-REVIEW.md` | Language switch changes every string |

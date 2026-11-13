@@ -4,6 +4,7 @@
  */
 import { z } from 'astro/zod';
 import { TOOL_SLUGS } from '@line/core/site';
+import { MARK_NAMES, type MarkName } from '@line/ui/marks';
 
 const text = z.string().min(1);
 const list = z.array(text).min(1);
@@ -626,8 +627,151 @@ export const serplineSchema = z.object({
   uninstall: uninstallSchema,
 });
 
+/** Brand marks on the Rivaline landing (@line/ui marks). */
+const rvMark = z.enum(MARK_NAMES as [MarkName, ...MarkName[]]);
+const rvTab = z.object({ label: text, title: text, lead: text, bullets: z.array(text).length(3) });
+
+/** The Rivaline landing (/rivaline): design/rivaline/Landing.dc.html. */
+export const rivalineSchema = z.object({
+  meta: z.object({ title: text, description: text, ogAlt: text }),
+  nav: z.object({ label: text, features: text, finder: text, how: text, privacy: text, faq: text }),
+  add: z.object({ nav: text, hero: text, band: text, soonNav: text, soonHero: text }),
+  hero: z.object({
+    pill: text,
+    titleStart: text,
+    titleHighlight: text,
+    lead: text,
+    secondary: text,
+    trustLabel: text,
+    trust: z.array(text).length(3),
+    mock: z.object({
+      label: text,
+      url: text,
+      siteTitle: text,
+      siteButton: text,
+      tabs: z.object({ stack: text, ads: text, brand: text }),
+      host: text,
+      title: text,
+      rows: z.array(z.object({ mark: rvMark, name: text, id: text })).length(6),
+    }),
+    kit: z.object({
+      eyebrow: text,
+      hint: text,
+      headingFont: text,
+      headings: text,
+      bodyFont: text,
+      body: text,
+    }),
+    toast: z.object({ eyebrow: text, text }),
+  }),
+  marquee: z.object({
+    title: text,
+    items: z.array(z.object({ mark: rvMark, label: text })).min(8),
+  }),
+  problem: z.object({
+    eyebrow: text,
+    title: text,
+    lead: text,
+    cards: z.array(z.object({ title: text, text })).length(3),
+  }),
+  features: z.object({
+    eyebrow: text,
+    title: text,
+    tabsLabel: text,
+    stack: rvTab.extend({
+      demo: z.object({ advertising: text, emailChat: text, notFoundStrong: text, notFound: text }),
+    }),
+    ads: rvTab.extend({
+      demo: z.object({ searchesBrand: text, searchesDomain: text, openAll: text }),
+    }),
+    brand: rvTab.extend({ demo: z.object({ headings: text, body: text }) }),
+    report: rvTab.extend({
+      demo: z.object({
+        date: text,
+        eyebrow: text,
+        tools: text,
+        categories: text,
+        pixels: text,
+        gaps: text,
+        high: text,
+        rows: z.array(z.object({ strong: text, text })).length(2),
+      }),
+    }),
+  }),
+  finder: z.object({
+    eyebrow: text,
+    title: text,
+    lead: text,
+    label: text,
+    placeholder: text,
+    default: text,
+    brand: text,
+    typeAbove: text,
+    searchesBrand: text,
+    searchesDomain: text,
+    needsDomain: text,
+    typeBrand: text,
+    open: text,
+    opensNewTab: text,
+    libs: z.object({ meta: text, google: text, tiktok: text, linkedin: text }),
+    tiktokNote: text,
+    band: text,
+  }),
+  how: z.object({
+    eyebrow: text,
+    title: text,
+    steps: z
+      .array(z.object({ title: text, text, keys: z.array(text).min(1).optional() }))
+      .length(3),
+  }),
+  report: z.object({
+    eyebrow: text,
+    titleStart: text,
+    titleHighlight: text,
+    titleEnd: text,
+    text,
+    cta: text,
+    from: text,
+    paper: z.object({
+      date: text,
+      eyebrow: text,
+      host: text,
+      tools: text,
+      gaps: text,
+      rows: z.array(z.object({ tone, label: text, strong: text, text })).length(3),
+    }),
+  }),
+  privacy: z.object({
+    eyebrow: text,
+    title: text,
+    items: z
+      .array(z.object({ icon: z.enum(['server', 'lock', 'chart', 'code']), title: text, text }))
+      .length(4),
+  }),
+  faq: z.object({
+    eyebrow: text,
+    title: text,
+    askBefore: text,
+    askLink: text,
+    items: z.array(z.object({ q: text, a: text })).min(1),
+  }),
+  more: z.object({
+    eyebrow: text,
+    title: text,
+    tools: z.object({
+      hitline: z.object({ text, open: text }),
+      serpline: z.object({ text, open: text }),
+      foldline: z.object({ text, open: text }),
+      markline: z.object({ text, open: text }),
+    }),
+  }),
+  footer: z.object({ builtBy: text, privacy: text, source: text }),
+  uninstall: uninstallSchema,
+});
+
 export type Tools = z.infer<typeof toolsSchema>;
 export type Serpline = z.infer<typeof serplineSchema>;
+export type Rivaline = z.infer<typeof rivalineSchema>;
 export type Uninstall = z.infer<typeof uninstallSchema>;
 export type Hitline = z.infer<typeof hitlineSchema>;
 export type Shared = z.infer<typeof sharedSchema>;

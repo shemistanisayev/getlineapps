@@ -11,6 +11,7 @@
     "./serpline": "./src/serpline/index.ts",
     "./serpline/serp": "./src/serpline/serp.ts",
     "./rivaline": "./src/rivaline/index.ts",
+    "./rivaline/ads": "./src/rivaline/ads.ts",
     "./foldline": "./src/foldline/index.ts",
     "./markline": "./src/markline/index.ts"
   },

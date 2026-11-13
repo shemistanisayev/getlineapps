@@ -58,7 +58,7 @@ test.describe('serpline landing', () => {
     expect(text).toMatch(/^# Line apps\n\n> /);
     expect(text).toContain('[Serpline](https://getlineapps.com/serpline)');
     expect(text).toContain('[Hitline](https://getlineapps.com/hitline)');
-    expect(text).not.toContain('(https://getlineapps.com/rivaline)');
+    expect(text).not.toContain('(https://getlineapps.com/foldline)');
   });
 
   test('contact links carry the landing UTM, internal links carry none', async ({ page }) => {

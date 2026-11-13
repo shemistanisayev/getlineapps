@@ -115,3 +115,23 @@ export function libraryLinks(
     found: tools.some((t) => t.id === LIBRARY_TOOL[id]),
   }));
 }
+
+/**
+ * The landing's #finder input (design/rivaline/Landing.dc.html): a domain gives the domain and a
+ * brand from its first label ("example.com" -> "Example"); anything else is the brand and Google,
+ * which searches by domain, has nothing to search yet.
+ */
+export function parseFinderQuery(input: string): { brand: string; domain: string | null } {
+  const raw = input.trim();
+  const host = (
+    raw
+      .replace(/^https?:\/\//i, '')
+      .replace(/^www\./i, '')
+      .split(/[/?#]/)[0] ?? ''
+  ).toLowerCase();
+  const isDomain = /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(host) && !/\s/.test(raw);
+  if (!isDomain) return { brand: raw.slice(0, MAX_BRAND).trim(), domain: null };
+  const domain = registrableDomain(host);
+  const first = domain.split('.')[0] ?? '';
+  return { brand: first ? first[0]!.toUpperCase() + first.slice(1) : '', domain };
+}

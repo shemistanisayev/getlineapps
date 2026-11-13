@@ -3,6 +3,7 @@ import { file, glob } from 'astro/loaders';
 import {
   hitlineSchema,
   serplineSchema,
+  rivalineSchema,
   hubSchema,
   privacyPageSchema,
   privacyToolSchema,
@@ -56,5 +57,10 @@ export const collections = {
   serpline: defineCollection({
     loader: glob({ pattern: '*.json', base: 'src/content/serpline', generateId: byFileName }),
     schema: serplineSchema,
+  }),
+  /** Rivaline landing and uninstall page: rivaline/en.json, rivaline/az.json. */
+  rivaline: defineCollection({
+    loader: glob({ pattern: '*.json', base: 'src/content/rivaline', generateId: byFileName }),
+    schema: rivalineSchema,
   }),
 };

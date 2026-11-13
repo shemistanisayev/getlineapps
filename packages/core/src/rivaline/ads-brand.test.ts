@@ -5,6 +5,7 @@ import {
   libraryLinks,
   linkedinLibraryUrl,
   metaLibraryUrl,
+  parseFinderQuery,
   tiktokLibraryUrl,
 } from './ads.ts';
 import {
@@ -207,5 +208,19 @@ describe('fonts, button, exports', () => {
     expect(logoCrop(logo)).toEqual({ x: 60, y: 79, width: 139, height: 51 });
     expect(logoCrop({ ...logo, inView: false })).toBeNull();
     expect(logoCrop(null)).toBeNull();
+  });
+});
+
+describe('finder query (landing #finder)', () => {
+  it('a domain gives the domain and a brand from its first label', () => {
+    expect(parseFinderQuery('example.com')).toEqual({ brand: 'Example', domain: 'example.com' });
+    expect(parseFinderQuery('https://www.shop.kova.co.uk/products?x=1')).toEqual({
+      brand: 'Kova',
+      domain: 'kova.co.uk',
+    });
+  });
+  it('a brand name has no domain', () => {
+    expect(parseFinderQuery('  Kova Skin ')).toEqual({ brand: 'Kova Skin', domain: null });
+    expect(parseFinderQuery('')).toEqual({ brand: '', domain: null });
   });
 });

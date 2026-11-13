@@ -28,6 +28,9 @@ test.describe('a11y: getlineapps.com', () => {
     '/serpline',
     '/az/serpline',
     '/serpline/uninstalled',
+    '/rivaline',
+    '/az/rivaline',
+    '/rivaline/uninstalled',
     '/privacy/hitline',
     '/404',
   ]) {

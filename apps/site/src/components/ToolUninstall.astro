@@ -9,15 +9,28 @@ import Base from '../layouts/Base.astro';
 import Logo from './Logo.astro';
 import { HONEYPOT_FIELD } from '@line/site-kit/feedback';
 import { contactUrl } from '@line/core/site';
-import { getHitline, getSerpline, getTool, localePath, type Locale } from '../lib/site.ts';
+import type { Uninstall } from '../content/schemas.ts';
+import {
+  getHitline,
+  getRivaline,
+  getSerpline,
+  getTool,
+  localePath,
+  type Locale,
+} from '../lib/site.ts';
 
-type UninstallTool = 'hitline' | 'serpline';
+type UninstallTool = 'hitline' | 'serpline' | 'rivaline';
 interface Props {
   locale: Locale;
   slug: UninstallTool;
 }
 const { locale, slug } = Astro.props;
-const u = (slug === 'hitline' ? await getHitline(locale) : await getSerpline(locale)).uninstall;
+const LOAD: Record<UninstallTool, (l: Locale) => Promise<{ uninstall: Uninstall }>> = {
+  hitline: getHitline,
+  serpline: getSerpline,
+  rivaline: getRivaline,
+};
+const u = (await LOAD[slug](locale)).uninstall;
 const tool = await getTool(slug);
 const reinstall =
   tool.status === 'live' && tool.storeUrl ? tool.storeUrl : localePath(locale, `/${slug}`);
@@ -28,6 +41,8 @@ const ACCENT: Record<UninstallTool, string> = {
     '--ua:#7f56d9;--ua-d:#6941c6;--ua-t:#53389e;--ua-bg:#faf8ff;--ua-ring:#f4ebff;--ua-glow:rgba(127,86,217,.55);--ua-glow0:rgba(127,86,217,0);--ua-sh:rgba(83,56,158,.3)',
   serpline:
     '--ua:#2563eb;--ua-d:#1d4ed8;--ua-t:#1d4ed8;--ua-bg:#eff6ff;--ua-ring:rgba(37,99,235,.15);--ua-glow:rgba(37,99,235,.55);--ua-glow0:rgba(37,99,235,0);--ua-sh:rgba(30,64,175,.3)',
+  rivaline:
+    '--ua:#0e7490;--ua-d:#155e75;--ua-t:#155e75;--ua-bg:#ecfeff;--ua-ring:rgba(14,116,144,.15);--ua-glow:rgba(14,116,144,.55);--ua-glow0:rgba(14,116,144,0);--ua-sh:rgba(21,94,117,.3)',
 };
 const seo = {
   title: u.meta.title,

@@ -1,0 +1,363 @@
+{
+  "meta": {
+    "title": "Rivaline: Free Competitor Research for Meta, Google & More",
+    "description": "Free Chrome extension. See any site's martech stack, open its ads in Meta, Google, TikTok and LinkedIn ad libraries and copy its brand colors and fonts, in one side panel.",
+    "ogAlt": "Rivaline: see any rival's stack, ads and brand in one panel."
+  },
+  "nav": {
+    "label": "Rivaline sections",
+    "features": "Features",
+    "finder": "Ad library finder",
+    "how": "How it works",
+    "privacy": "Privacy",
+    "faq": "FAQ"
+  },
+  "add": {
+    "nav": "Add to Chrome",
+    "hero": "Add to Chrome, it's free",
+    "band": "Add to Chrome",
+    "soonNav": "Coming soon",
+    "soonHero": "Coming soon to Chrome"
+  },
+  "hero": {
+    "pill": "Free Chrome extension",
+    "titleStart": "See any rival's stack, ads and brand in",
+    "titleHighlight": "one panel",
+    "lead": "Rivaline shows the analytics, ad pixels, CRM and chat a site runs, opens its ads in four ad libraries and pulls its colors and fonts. Right in Chrome's side panel",
+    "secondary": "Try the ad library finder",
+    "trustLabel": "Why it is safe to try",
+    "trust": ["No account", "Nothing leaves your browser", "Open source"],
+    "mock": {
+      "label": "Rivaline side panel on the Kova demo shop",
+      "url": "example.com",
+      "siteTitle": "Skincare that keeps it simple.",
+      "siteButton": "Shop the routine",
+      "tabs": { "stack": "Stack", "ads": "Ads", "brand": "Brand" },
+      "host": "example.com",
+      "title": "13 tools in 8 categories",
+      "rows": [
+        { "mark": "meta", "name": "Meta Pixel", "id": "4182736509…" },
+        { "mark": "tiktok", "name": "TikTok Pixel", "id": "C9H3KQ7R…" },
+        { "mark": "googleads", "name": "Google Ads", "id": "AW-11284956" },
+        { "mark": "googleanalytics", "name": "Google Analytics 4", "id": "G-8XK2LM4Q…" },
+        { "mark": "googletagmanager", "name": "Tag Manager", "id": "GTM-N4KV8R" },
+        { "mark": "intercom", "name": "Intercom", "id": "chat" }
+      ]
+    },
+    "kit": {
+      "eyebrow": "Brand kit",
+      "hint": "Hover to see HEX",
+      "headingFont": "Fraunces",
+      "headings": "headings",
+      "bodyFont": "DM Sans",
+      "body": "body"
+    },
+    "toast": { "eyebrow": "Not found", "text": "No server-side tracking on this site" }
+  },
+  "marquee": {
+    "title": "Recognizes the tools marketers use",
+    "items": [
+      { "mark": "googleanalytics", "label": "Google Analytics 4" },
+      { "mark": "googletagmanager", "label": "Tag Manager" },
+      { "mark": "googleads", "label": "Google Ads" },
+      { "mark": "meta", "label": "Meta Pixel" },
+      { "mark": "tiktok", "label": "TikTok Pixel" },
+      { "mark": "pinterest", "label": "Pinterest Tag" },
+      { "mark": "snapchat", "label": "Snap Pixel" },
+      { "mark": "hotjar", "label": "Hotjar" },
+      { "mark": "mixpanel", "label": "Mixpanel" },
+      { "mark": "hubspot", "label": "HubSpot" },
+      { "mark": "mailchimp", "label": "Mailchimp" },
+      { "mark": "intercom", "label": "Intercom" },
+      { "mark": "zendesk", "label": "Zendesk" },
+      { "mark": "shopify", "label": "Shopify" },
+      { "mark": "wordpress", "label": "WordPress" },
+      { "mark": "webflow", "label": "Webflow" },
+      { "mark": "trustpilot", "label": "Trustpilot" },
+      { "mark": "klarna", "label": "Klarna" },
+      { "mark": "stripe", "label": "Stripe" },
+      { "mark": "paypal", "label": "PayPal" }
+    ]
+  },
+  "problem": {
+    "eyebrow": "The problem",
+    "title": "Researching a rival takes ten tabs and view-source",
+    "lead": "The answers are already on the page. They are just scattered",
+    "cards": [
+      {
+        "title": "The stack hides in source code",
+        "text": "Finding which pixels, CRM and chat a site uses means reading its scripts line by line"
+      },
+      {
+        "title": "Four ad libraries, four searches",
+        "text": "Meta, Google, TikTok and LinkedIn each want the brand typed again, every time"
+      },
+      {
+        "title": "Brand colors by eyedropper",
+        "text": "Inspect, copy, paste, repeat. For every color, every font and the button style"
+      }
+    ]
+  },
+  "features": {
+    "eyebrow": "Inside the panel",
+    "title": "Three tabs. A full picture of any site",
+    "tabsLabel": "Rivaline features",
+    "stack": {
+      "label": "Stack",
+      "title": "Every tool, grouped by what it does",
+      "lead": "Analytics, ad pixels, tag managers, email, chat, reviews, payments and the platform underneath, each with the ID it uses",
+      "bullets": [
+        "IDs like GTM-N4KV8R and G-8XK2LM4QPZ, ready to copy",
+        "Evidence for each match: script, cookie or global",
+        "Gaps listed too: server-side tracking, consent, CRM"
+      ],
+      "demo": {
+        "advertising": "Advertising",
+        "emailChat": "Email and chat",
+        "notFoundStrong": "Not found:",
+        "notFound": "server-side tracking, consent banner, CRM"
+      }
+    },
+    "ads": {
+      "label": "Ads",
+      "title": "Four ad libraries, already searched",
+      "lead": "Rivaline fills in the brand name and the domain, so Meta, Google, TikTok and LinkedIn open on the right results",
+      "bullets": [
+        "Open all four in one click",
+        "Pick your default country once in Settings",
+        "See which channels have a pixel on the site"
+      ],
+      "demo": {
+        "searchesBrand": "Searches \"Kova\"",
+        "searchesDomain": "Searches example.com",
+        "openAll": "Open all 4 in new tabs"
+      }
+    },
+    "brand": {
+      "label": "Brand",
+      "title": "The brand kit, without the eyedropper",
+      "lead": "Logo, colors with their roles, font names and the main button style. Export as CSS variables, a PNG palette or JSON",
+      "bullets": [
+        "Click any color to copy its HEX",
+        "Font names only, never the font files",
+        "Ready for a pitch deck or a mockup"
+      ],
+      "demo": { "headings": "Headings", "body": "Body" }
+    },
+    "report": {
+      "label": "Report",
+      "title": "One PDF for the next meeting",
+      "lead": "Stack, gaps, ad library links and the brand kit on one A4 page, built in your browser",
+      "bullets": [
+        "Ready for a sales call or a client pitch",
+        "Selectable text and working links",
+        "Made on your computer, sent nowhere"
+      ],
+      "demo": {
+        "date": "Nov 7, 2026",
+        "eyebrow": "Competitor report",
+        "tools": "tools",
+        "categories": "categories",
+        "pixels": "ad pixels",
+        "gaps": "gaps",
+        "high": "High",
+        "rows": [
+          { "strong": "No server-side tracking.", "text": "All 4 pixels send from the browser." },
+          { "strong": "No consent banner.", "text": "Pixels load before any choice." }
+        ]
+      }
+    }
+  },
+  "finder": {
+    "eyebrow": "Free tool, no install",
+    "title": "Ad library finder",
+    "lead": "Type a brand or a domain. Four ad library searches are ready to open. It runs on this page and sends nothing anywhere",
+    "label": "Brand or domain",
+    "placeholder": "example.com or a brand name",
+    "default": "example.com",
+    "brand": "Brand: {brand}",
+    "typeAbove": "type above",
+    "searchesBrand": "Searches \"{q}\"",
+    "searchesDomain": "Searches {q}",
+    "needsDomain": "Needs a domain",
+    "typeBrand": "Type a brand",
+    "open": "Open search",
+    "opensNewTab": "opens in a new tab",
+    "libs": {
+      "meta": "Meta Ad Library",
+      "google": "Google Ads Transparency",
+      "tiktok": "TikTok Ad Library",
+      "linkedin": "LinkedIn Ad Library"
+    },
+    "tiktokNote": "TikTok's library covers ads shown in Europe",
+    "band": "Want the pixels, brand kit and a PDF too? The extension does it from any site"
+  },
+  "how": {
+    "eyebrow": "How it works",
+    "title": "Three steps, no setup",
+    "steps": [
+      {
+        "title": "Add Rivaline to Chrome",
+        "text": "Free from the Chrome Web Store. No account to create"
+      },
+      {
+        "title": "Open a site, click the icon",
+        "text": "The side panel opens next to the page. Or press",
+        "keys": ["Alt", "Shift", "V"]
+      },
+      {
+        "title": "Download the report",
+        "text": "Stack, gaps, ad links and brand kit in one PDF"
+      }
+    ]
+  },
+  "report": {
+    "eyebrow": "Competitor report",
+    "titleStart": "Your rival has it and you don't?",
+    "titleHighlight": "Get it set up",
+    "titleEnd": "by the person who built Rivaline",
+    "text": "One click turns any site into a report: stack, gaps, ad libraries and brand kit. Share it with your team, or send it to me. I set up analytics, server-side tracking, consent and ad pixels for growing brands",
+    "cta": "Book an audit",
+    "from": "From",
+    "paper": {
+      "date": "Nov 7, 2026",
+      "eyebrow": "Competitor report",
+      "host": "example.com",
+      "tools": "tools in 8 categories",
+      "gaps": "gaps",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "High",
+          "strong": "No server-side tracking.",
+          "text": "All 4 ad pixels send from the browser."
+        },
+        {
+          "tone": "bad",
+          "label": "High",
+          "strong": "No consent banner.",
+          "text": "Pixels load before any choice."
+        },
+        {
+          "tone": "warn",
+          "label": "Medium",
+          "strong": "No CRM on the site.",
+          "text": "Leads stay in separate tools."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Privacy",
+    "title": "Your research stays in your browser",
+    "items": [
+      {
+        "icon": "server",
+        "title": "No server",
+        "text": "All analysis runs inside Chrome. Rivaline makes no requests of its own"
+      },
+      {
+        "icon": "lock",
+        "title": "Minimal permissions",
+        "text": "Side panel, active tab and local storage. No access to all your sites"
+      },
+      {
+        "icon": "chart",
+        "title": "No tracking inside",
+        "text": "The extension doesn't track you. Results disappear when you close the tab"
+      },
+      {
+        "icon": "code",
+        "title": "Open source",
+        "text": "Read the code and check every claim on this page for yourself"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Questions",
+    "askBefore": "Something else?",
+    "askLink": "Ask me directly",
+    "items": [
+      {
+        "q": "Is Rivaline really free?",
+        "a": "Yes. There is no paid plan, no account and no usage limit."
+      },
+      {
+        "q": "Does it send any data anywhere?",
+        "a": "No. Rivaline reads the page in your browser and keeps the result in memory until you close the tab. Only your settings are saved, and only on your computer."
+      },
+      {
+        "q": "How does it recognize tools?",
+        "a": "It matches script addresses, cookie names, page globals and meta tags against its own list of about 130 marketing tools. Every match shows the evidence it found."
+      },
+      {
+        "q": "Can it show a competitor's ad spend?",
+        "a": "No. Ad libraries show which ads are running, not budgets. Rivaline opens those libraries with the search already filled in."
+      },
+      {
+        "q": "Why do I click the icon again on a new tab?",
+        "a": "Rivaline uses Chrome's activeTab permission. It can read a page only after you ask, so it never has access to every site you visit."
+      },
+      {
+        "q": "Why does TikTok show only European ads?",
+        "a": "TikTok's ad library covers ads shown in the EU, the EEA, Switzerland and the UK. Rivaline fills in the brand and the country, then you press Search on TikTok's page."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "The Line family",
+    "title": "More free tools from the same family",
+    "tools": {
+      "hitline": {
+        "text": "See what tracking a site really sends, right in DevTools",
+        "open": "Open Hitline"
+      },
+      "serpline": {
+        "text": "Technical SEO and AI search checks for any page",
+        "open": "Open Serpline"
+      },
+      "foldline": {
+        "text": "Find what stops a landing page from converting",
+        "open": "Open Foldline"
+      },
+      "markline": {
+        "text": "Screenshot, mark up and share feedback in seconds",
+        "open": "Open Markline"
+      }
+    }
+  },
+  "footer": { "builtBy": "Built by", "privacy": "Privacy policy", "source": "Source code" },
+  "uninstall": {
+    "meta": {
+      "title": "Sorry to see you go | Rivaline",
+      "description": "Tell us why you removed Rivaline. One click helps make the next version better."
+    },
+    "titleStart": "Rivaline is removed",
+    "titleEnd": "What made you leave?",
+    "lead": "One click helps make the next version better",
+    "reasonsLabel": "Reason",
+    "reasons": [
+      "It missed tools on a site",
+      "I only needed it once",
+      "Too hard to understand",
+      "I use another tool"
+    ],
+    "moreLabel": "Anything else?",
+    "optional": "(optional)",
+    "placeholder": "Which site or tool did it miss?",
+    "send": "Send feedback",
+    "sending": "Sending...",
+    "thanks": "Thank you. Your feedback was sent.",
+    "error": "Sending failed. Please try again in a minute.",
+    "pickOne": "Pick a reason or write a few words.",
+    "reinstall": "Reinstall Rivaline",
+    "card": {
+      "eyebrow": "Saw gaps on your own site?",
+      "title": "I can close them for you",
+      "text": "Analytics, server-side tracking, consent and ad pixels. You get a clear list of what is missing and a working setup",
+      "cta": "Book an audit",
+      "sub": "Shamistan Isayev, analytics and tracking"
+    }
+  }
+}
