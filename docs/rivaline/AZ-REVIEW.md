@@ -2,9 +2,9 @@
 
 Agent yazıb, sən yoxlayırsan. Dəyişmək istədiyin sətri burada və ya göstərilən faylda düzəlt (və ya agentə yaz). Alət və platforma adları (Rivaline, Meta Pixel, Stack, Ads, Brand) tərcümə olunmur. Bu siyahı hər addımda böyüyür.
 
-## Side panel və salamlama səhifəsi (addım 2, 3 və 5)
+## Side panel və salamlama səhifəsi (addım 2, 3, 5 və 6)
 
-Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host} kimi yerlər avtomatik dolur. Kateqoriya adlarından "Consent" ingiliscə saxlanılıb, çünki marketoloqlar onu belə işlədir.
+Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host}, {hex} kimi yerlər avtomatik dolur. "Consent", kitabxana adları (Meta Ad Library və s.) və şrift mənbələri (Google Fonts) ingiliscə saxlanılıb.
 
 | Açar | English | Azərbaycanca |
 |---|---|---|
@@ -111,7 +111,73 @@ Fayl: `apps/rivaline/extension/src/i18n/az.ts`. {n}, {host} kimi yerlər avtomat
 | `empty.waited` | Read {s} s after the page finished loading. | Səhifə yükləndikdən {s} san sonra oxundu. |
 | `empty.ctaTitle` | Starting from zero? | Sıfırdan başlayırsan? |
 | `empty.ctaText` | Analytics, ad pixels and consent, set up and tested. | Analitika, reklam pikselləri və consent, qurulmuş və yoxlanmış. |
-| `panel.next` | This tab is being built. The Stack tab already works. | Bu tab hazırlanır. Stack tabı artıq işləyir. |
+| `ads.searchFor` | Search for | Axtarış |
+| `ads.brand` | Brand name | Brend adı |
+| `ads.domain` | Domain | Domen |
+| `ads.country` | Country | Ölkə |
+| `ads.allCountries` | All countries | Bütün ölkələr |
+| `ads.desc.meta` | Facebook, Instagram and Messenger ads | Facebook, Instagram və Messenger reklamları |
+| `ads.desc.google` | Search, YouTube, Shopping and Display ads | Search, YouTube, Shopping və Display reklamları |
+| `ads.desc.tiktok` | Ads shown in Europe. Press Search on TikTok’s page | Avropada göstərilən reklamlar. TikTok səhifəsində Search-ə bas |
+| `ads.desc.linkedin` | Sponsored content on LinkedIn | LinkedIn-də sponsorlu məzmun |
+| `ads.tool.meta` | Meta Pixel | Meta Pixel |
+| `ads.tool.google` | Google Ads tag | Google Ads teqi |
+| `ads.tool.tiktok` | TikTok Pixel | TikTok Pixel |
+| `ads.tool.linkedin` | LinkedIn Insight Tag | LinkedIn Insight Tag |
+| `ads.found` | {tool} on site | {tool} saytdadır |
+| `ads.missing` | No {tool} | {tool} yoxdur |
+| `ads.open` | Open {library} | {library}-nı aç |
+| `ads.openAll` | Open all 4 in new tabs | Dördünü yeni tablarda aç |
+| `ads.copyLinks` | Copy links | Linkləri kopyala |
+| `ads.copied` | Links copied to clipboard | Linklər kopyalandı |
+| `ads.note` | A pixel shows the site can measure ads on that channel. The library shows which ads are running now. | Piksel saytın həmin kanalda reklamı ölçə bildiyini göstərir. Kitabxana isə hazırda hansı reklamların getdiyini göstərir. |
+| `brand.logo` | Logo | Loqo |
+| `brand.logoFrom` | From the page header, {w} x {h} px | Səhifə başlığından, {w} x {h} px |
+| `brand.logoMissing` | Scroll to the top of the page and press Read the page again | Səhifənin ən yuxarısına qalx və Səhifəni yenidən oxu düyməsinə bas |
+| `brand.logoAlt` | Logo of {host} | {host} loqosu |
+| `brand.copyPng` | Copy PNG | PNG-ni kopyala |
+| `brand.downloadPng` | Download PNG | PNG-ni yüklə |
+| `brand.copySvg` | Copy SVG | SVG-ni kopyala |
+| `brand.logoCopied` | Logo copied to clipboard | Loqo kopyalandı |
+| `brand.svgCopied` | SVG copied to clipboard | SVG kopyalandı |
+| `brand.colors` | Colors | Rənglər |
+| `brand.clickCopy` | Click a color to copy | Kopyalamaq üçün rəngə bas |
+| `brand.copyHex` | Copy {hex} | {hex} kopyala |
+| `brand.hexCopied` | {hex} copied to clipboard | {hex} kopyalandı |
+| `brand.noColors` | No colors could be read on this page. | Bu səhifədə rəng oxumaq mümkün olmadı. |
+| `role.primary` | Primary | Əsas |
+| `role.text` | Text | Mətn |
+| `role.background` | Background | Fon |
+| `role.accent` | Accent | Vurğu |
+| `role.surface` | Surface | Səth |
+| `brand.fonts` | Fonts | Şriftlər |
+| `brand.headings` | Headings | Başlıqlar |
+| `brand.body` | Body | Mətn |
+| `brand.fontDetail` | {weight}, {size} px | {weight}, {size} px |
+| `src.google` | Google Fonts | Google Fonts |
+| `src.adobe` | Adobe Fonts | Adobe Fonts |
+| `src.self` | Self-hosted | Öz serverində |
+| `src.system` | System | Sistem |
+| `brand.button` | Main button | Əsas düymə |
+| `brand.noButton` | No main button in the first screen of this page. | Bu səhifənin ilk ekranında əsas düymə yoxdur. |
+| `brand.btnBg` | background {hex} | fon {hex} |
+| `brand.btnBox` | radius {radius}, height {h}px | radius {radius}, hündürlük {h}px |
+| `brand.btnFont` | {family} {weight}, {size}px | {family} {weight}, {size}px |
+| `brand.export` | Export | Export |
+| `fmt.css` | CSS variables | CSS dəyişənləri |
+| `fmt.json` | JSON | JSON |
+| `fmt.png` | PNG palette | PNG palitra |
+| `export.title` | Export brand kit | Brend dəstini export et |
+| `export.close` | Close | Bağla |
+| `export.format` | Format | Format |
+| `export.copy` | Copy | Kopyala |
+| `export.copied` | Copied | Kopyalandı |
+| `export.download` | Download {file} | {file} yüklə |
+| `export.note` | Font names only. Rivaline never downloads font files. | Yalnız şrift adları. Rivaline şrift fayllarını heç vaxt yükləmir. |
+| `export.toast.css` | CSS copied to clipboard | CSS kopyalandı |
+| `export.toast.json` | JSON copied to clipboard | JSON kopyalandı |
+| `export.toast.png` | PNG palette copied to clipboard | PNG palitra kopyalandı |
+| `export.palette` | Palette of {name} | {name} palitrası |
 | `welcome.title` | Rivaline is ready. | Rivaline hazırdır. |
 | `welcome.accent` | Any site, one click. | İstənilən sayt, bir klik. |
 | `welcome.lead` | Three steps and you will see what a site runs, where it advertises and how its brand looks. | Üç addım və saytın nə işlətdiyini, harada reklam verdiyini və brendinin necə göründüyünü görəcəksən. |

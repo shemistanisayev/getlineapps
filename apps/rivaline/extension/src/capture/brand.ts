@@ -115,6 +115,7 @@ export function collectBrand(): BrandRaw {
       dpr: devicePixelRatio,
       svg: svg && svg.length <= 50_000 ? svg : undefined,
       inView: r.top >= 0 && r.left >= 0 && r.bottom <= vh && r.right <= vw,
+      viewportWidth: vw,
     };
     break;
   }

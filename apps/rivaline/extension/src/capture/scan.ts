@@ -84,11 +84,13 @@ function readyState(): { state: DocumentReadyState; type: string; url: string } 
 
 /** Cuts the logo out of a screenshot of the visible tab. */
 async function cropLogo(windowId: number, kit: BrandKit | null): Promise<Blob | null> {
-  const box = logoCrop(kit?.logo ?? null);
-  if (!box) return null;
+  if (!logoCrop(kit?.logo ?? null)) return null;
   const dataUrl = await browser.tabs.captureVisibleTab(windowId, { format: 'png' });
   const shot = await createImageBitmap(await (await fetch(dataUrl)).blob());
   try {
+    // Screenshot pixels per CSS pixel: the screen's scale, not always the page's devicePixelRatio.
+    const vw = kit?.logo?.viewportWidth;
+    const box = logoCrop(kit?.logo ?? null, vw ? shot.width / vw : undefined)!;
     const w = Math.min(box.width, shot.width - box.x);
     const h = Math.min(box.height, shot.height - box.y);
     if (w < 4 || h < 4) return null;

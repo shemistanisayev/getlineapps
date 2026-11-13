@@ -202,10 +202,18 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 - **250 requests.** When Chrome's resource list is full the Stack tab says that a tool loaded later may be missing (carried over from Hitline 1.1).
 - **Ads and Brand tabs** show a one-line note until step 6; Settings and Report PDF stay inactive until steps 7 and 8.
 
+## Step 6 notes (2026-11-13)
+
+- **Logo crop scale.** `captureVisibleTab` follows the screen's scale (1.5 on this Windows machine), not always the page's `devicePixelRatio`, so the first crop missed the logo. The crop now uses screenshot width / viewport width; the e2e checks the crop has Kova's dark wordmark in it.
+- **Ads edits** are not saved and reset on the next read (SPEC §5). The country select starts at the Settings default (`country`, "All countries" until step 7). TikTok gets the country only for EU, EEA, CH and UK.
+- **Downloads** use a blob URL and `<a download>` (no `downloads` permission): `kova.css`, `kova-brand.json`, `kova-palette.png`, and `kova-logo.png` for the logo.
+- **Main button preview** keeps the page's colors, radius and font but caps height (48 px), padding (28 px) and size (16 px) so a huge hero button still fits the panel; the values next to it are the real ones.
+- **Tab memory.** The panel keeps the tab the user picked (Brand stays Brand on the next site); "Open in <library>" in the Stack tab switches to Ads and highlights that row until another tab is picked.
+
 ## Questions for the owner
 
 1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
-2. **TikTok link.** The link opens TikTok's library with the brand and country filled in, but the user must press Search, and it covers Europe only. Proposal: keep it, the row already says "Ads shown in Europe"; add a short hint "Press Search on TikTok's page". Alternative: leave the hint out.
+2. **TikTok link.** (Hint added in step 6: the TikTok row says "Ads shown in Europe. Press Search on TikTok's page"; tell me if you want it removed.) The link opens TikTok's library with the brand and country filled in, but the user must press Search, and it covers Europe only. Proposal: keep it, the row already says "Ads shown in Europe"; add a short hint "Press Search on TikTok's page". Alternative: leave the hint out.
 3. **QA sites** (step 10): name at least 3 public sites (one Shopify store, one big brand, one Azerbaijani site would be ideal). Otherwise I pick them, as for Serpline.
 
 ## Step order (Faza 5)
@@ -218,7 +226,7 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 | 4 | P3 | `packages/core/src/rivaline` (rules ~120, match, IDs, evidence, summary, gaps, ad builders, brand functions) + Kova, Glowbar, Mira fixture | Done: 128 rules in 12 categories, server-side signal, gaps, summary, chips, ad library builders, ISO country list, brand kit (ΔE merge, roles, fonts, button, CSS and JSON export, logo crop). Kova recorded with the extension's own collectSnapshot and collectBrand gives 13 tools in 8 categories, the design IDs, 3 gaps, "+6", the 5 colors, Fraunces and DM Sans, the button and the BrandExport CSS exactly. 53 core tests |
 | 5B | P8 | `/rivaline` landing with `#finder`, `/rivaline/uninstalled`, SEO, AZ, published early as `soon` | Done: landing EN + AZ from `content/rivaline/*.json` (design copy, no closing periods, Alt Shift V), `#finder` island with the extension's own builders (`@line/core/rivaline/ads`, `parseFinderQuery`), Coming soon while `soon`, `/rivaline/uninstalled` through `ToolUninstall.astro` (teal accent), OG image (`gen:rivaline`), SoftwareApplication + FAQPage JSON-LD; sitemap, `llms.txt` and the hub card pick it up. Screenshots 1440 / 820 / 390 with no sideways scroll, axe clean on all three pages. Deployed by CI on push |
 | 5 | P4 | Scan pipeline with reading steps, PanelHeader, Stack, StackDetail, Access, Restricted, Empty | Done: scan waits for `load`, then 1.5 s for late tags (2.5 s more if nothing is found), reads the snapshot (MAIN), the brand (isolated) and crops the logo; results cached per tab and shown again on a switch when the tab is still on that page. Stack on Kova matches Main and StackDetail (13 tools, the IDs, chips by count, evidence, Copy ID, Open in Meta Ad Library jumps to Ads); Access, Restricted and Empty (Mira) as designed. E2E on Edge and Chrome stable |
-| 6 | P5 | Ads, Brand, BrandExport | Exported files open |
+| 6 | P5 | Ads, Brand, BrandExport | Done: Ads with editable brand, domain and country (Settings default, ISO names from Intl.DisplayNames), four library rows with status pills, the row the Stack tab jumped to highlighted, Open all 4, Copy links; Brand with the cropped logo (Copy PNG, Download PNG, Copy SVG for inline SVG), 5 colors with copy, fonts with their source, the main button drawn with its own values; export sheet with CSS variables, JSON and a 1200 x 400 PNG palette (copy, download). On Kova the e2e checks the links, the colors, fonts, button, the logo pixels and the three downloaded files |
 | 7 | P6 | Settings, EN + AZ, `AZ-REVIEW.md` | Language switch changes every string |
 | 8 | P7 | Competitor report PDF, welcome, uninstall hook | Kova PDF matches Report |
 | 9 | P9 | Store package (`pnpm store:rivaline`), listing doc, release | `store/rivaline/` |

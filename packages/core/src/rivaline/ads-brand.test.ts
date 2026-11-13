@@ -206,6 +206,8 @@ describe('fonts, button, exports', () => {
   it('logo crop in device pixels, only when the logo is in view', () => {
     const logo = { rect: { x: 40, y: 53, width: 92.5, height: 34 }, dpr: 1.5, inView: true };
     expect(logoCrop(logo)).toEqual({ x: 60, y: 79, width: 139, height: 51 });
+    // The screenshot's own scale wins over the page's devicePixelRatio (page zoom).
+    expect(logoCrop(logo, 2)).toEqual({ x: 80, y: 106, width: 185, height: 68 });
     expect(logoCrop({ ...logo, inView: false })).toBeNull();
     expect(logoCrop(null)).toBeNull();
   });

@@ -20,3 +20,9 @@ export async function actionShortcut(): Promise<string[]> {
   const key = commands.find((c) => c.name === '_execute_action')?.shortcut ?? '';
   return key ? key.split('+') : [];
 }
+
+/** Default country for the ad library searches (Settings, step 7). "ALL" when not set. */
+export async function getCountry(): Promise<string> {
+  const { country } = await browser.storage.local.get('country');
+  return typeof country === 'string' && country ? country : 'ALL';
+}

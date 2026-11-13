@@ -40,6 +40,8 @@ export interface BrandRaw {
     svg?: string;
     /** The whole logo is inside the first viewport. */
     inView: boolean;
+    /** The viewport's width in CSS px, to scale the crop to the screenshot. */
+    viewportWidth?: number;
   } | null;
   headings: FontRaw | null;
   body: FontRaw | null;
@@ -391,14 +393,18 @@ export function exportFileNames(slug: string) {
 }
 
 /**
- * Where to crop the logo out of captureVisibleTab (device pixels). null when it is not fully in
- * the first viewport: the panel then asks to scroll to the top and read the page again.
+ * Where to crop the logo out of captureVisibleTab. null when it is not fully in the first
+ * viewport: the panel then asks to scroll to the top and read the page again.
+ * `scale` is screenshot pixels per CSS pixel. The screenshot follows the screen's scale, which can
+ * differ from the page's devicePixelRatio (page zoom), so the panel passes
+ * screenshot width / viewport width; without it the page's devicePixelRatio is used.
  */
 export function logoCrop(
   logo: BrandRaw['logo'],
+  scale?: number,
 ): { x: number; y: number; width: number; height: number } | null {
   if (!logo || !logo.inView || logo.rect.width < 4 || logo.rect.height < 4) return null;
-  const d = logo.dpr || 1;
+  const d = scale && scale > 0 ? scale : logo.dpr || 1;
   return {
     x: Math.floor(logo.rect.x * d),
     y: Math.floor(logo.rect.y * d),

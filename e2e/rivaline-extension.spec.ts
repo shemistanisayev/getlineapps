@@ -158,10 +158,153 @@ test.describe('rivaline extension', () => {
     await kova.close();
   });
 
+  test('Ads and Brand on Kova, and the brand kit exports (Ads, Brand, BrandExport)', async () => {
+    const kova = await ext.context.newPage();
+    await kova.goto(kovaUrl());
+    await ext.clickAction(kova);
+    await poll('13 tools in 8 categories');
+
+    // Ads: the four searches are the core builders' output, the status pills follow the stack.
+    await click('#rv-tab-ads');
+    await poll('SEARCH FOR');
+    const hrefs = await ext.evalIn<string[]>(
+      PANEL,
+      `[...document.querySelectorAll('.rv-lib a')].map((a) => a.href)`,
+    );
+    expect(hrefs).toEqual([
+      'https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&search_type=keyword_unordered&q=Kova',
+      'https://adstransparency.google.com/?region=anywhere&domain=example.com',
+      'https://library.tiktok.com/ads?region=all&adv_name=Kova',
+      'https://www.linkedin.com/ad-library/search?accountOwner=Kova',
+    ]);
+    const ads = await panelText();
+    for (const s of [
+      'Meta Pixel on site',
+      'Google Ads tag on site',
+      'TikTok Pixel on site',
+      'No LinkedIn Insight Tag',
+    ])
+      expect(ads).toContain(s);
+    // Editing the brand and the country updates the links (nothing is saved).
+    await ext.evalIn(
+      PANEL,
+      `(() => {
+        const set = (el, v) => {
+          const proto = Object.getPrototypeOf(el);
+          Object.getOwnPropertyDescriptor(proto, 'value').set.call(el, v);
+          el.dispatchEvent(new Event(el.tagName === 'SELECT' ? 'change' : 'input', { bubbles: true }));
+        };
+        set(document.querySelector('.rv-field input'), 'Kova Skin');
+        set(document.querySelector('.rv-field select'), 'DE');
+      })()`,
+      true,
+    );
+    await expect
+      .poll(() => ext.evalIn<string>(PANEL, `document.querySelector('.rv-lib a').href`))
+      .toContain('country=DE&search_type=keyword_unordered&q=Kova+Skin');
+    expect(await ext.evalIn<string>(PANEL, `document.querySelectorAll('.rv-lib a')[2].href`)).toBe(
+      'https://library.tiktok.com/ads?region=DE&adv_name=Kova+Skin',
+    );
+    await shot('panel-ads');
+
+    // Brand: the 5 Kova colors, Fraunces and DM Sans from Google Fonts, the main button, the logo.
+    await click('#rv-tab-brand');
+    await poll('Click a color to copy');
+    const brand = await panelText();
+    for (const hex of ['#2F5D46', '#1E2B24', '#F6F1EA', '#EBC56B', '#DCE5D8'])
+      expect(brand).toContain(hex);
+    expect(brand).toMatch(/Primary\s+#2F5D46/);
+    expect(brand).toMatch(/Accent\s+#EBC56B/);
+    expect(brand).toMatch(/Headings\s+Fraunces\s+600, 52 px\s+Google Fonts/);
+    expect(brand).toMatch(/Body\s+DM Sans\s+400, 16 px\s+Google Fonts/);
+    expect(brand).toContain('Shop the routine');
+    expect(brand).toContain('radius 999px, height 50px');
+    expect(brand).toContain('DM Sans 600, 15px');
+    // The logo is cropped from the visible tab.
+    const logo = await ext.evalIn<{ w: number; h: number }>(
+      PANEL,
+      `(async () => { const img = document.querySelector('.rv-logobox img'); await img.decode(); return { w: img.naturalWidth, h: img.naturalHeight }; })()`,
+    );
+    expect(logo.w).toBeGreaterThan(40);
+    expect(logo.h).toBeGreaterThan(15);
+    // ...and it really shows the logo: Kova's dark wordmark, not an empty piece of the header.
+    const dark = await ext.evalIn<number>(
+      PANEL,
+      `(() => {
+        const img = document.querySelector('.rv-logobox img');
+        const c = new OffscreenCanvas(img.naturalWidth, img.naturalHeight);
+        const g = c.getContext('2d');
+        g.drawImage(img, 0, 0);
+        const d = g.getImageData(0, 0, c.width, c.height).data;
+        let n = 0;
+        for (let i = 0; i < d.length; i += 4) if (d[i] + d[i + 1] + d[i + 2] < 300) n++;
+        return n / (d.length / 4);
+      })()`,
+    );
+    expect(dark).toBeGreaterThan(0.05);
+    await shot('panel-brand');
+
+    // Export: catch what the Download buttons save, then check each file.
+    await ext.evalIn(
+      PANEL,
+      `(() => {
+        window.__saved = [];
+        const make = URL.createObjectURL.bind(URL);
+        URL.createObjectURL = (b) => { window.__saved.push(b); return make(b); };
+        HTMLAnchorElement.prototype.click = function () { window.__names = [...(window.__names || []), this.download]; };
+      })()`,
+    );
+    await clickText('.rp-export button', 'CSS variables');
+    await poll('Export brand kit');
+    await new Promise((r) => setTimeout(r, 500));
+    await shot('panel-export');
+    await clickText('.rv-sheet button', 'Download kova.css');
+    await clickText('.rv-seg button', 'JSON');
+    await clickText('.rv-sheet button', 'Download kova-brand.json');
+    await clickText('.rv-seg button', 'PNG palette');
+    await expect
+      .poll(() => ext.evalIn<boolean>(PANEL, `Boolean(document.querySelector('.rp-palette'))`))
+      .toBe(true);
+    await clickText('.rv-sheet button', 'Download kova-palette.png');
+    const saved = await ext.evalIn<{
+      names: string[];
+      css: string;
+      json: Record<string, unknown>;
+      png: { type: string; w: number; h: number };
+    }>(
+      PANEL,
+      `(async () => {
+        const blobs = window.__saved.filter((b) => ['text/css', 'application/json', 'image/png'].includes(b.type));
+        const find = (t) => blobs.filter((b) => b.type === t).pop();
+        const png = find('image/png');
+        const bmp = await createImageBitmap(png);
+        return {
+          names: window.__names,
+          css: await find('text/css').text(),
+          json: JSON.parse(await find('application/json').text()),
+          png: { type: png.type, w: bmp.width, h: bmp.height },
+        };
+      })()`,
+    );
+    expect(saved.names).toEqual(['kova.css', 'kova-brand.json', 'kova-palette.png']);
+    expect(saved.css).toContain('--kova-primary: #2F5D46;');
+    expect(saved.css).toContain('--kova-font-heading: "Fraunces", serif;');
+    expect(saved.css).toContain('--kova-button-radius: 999px;');
+    expect(saved.json).toMatchObject({
+      brand: 'kova',
+      colors: { primary: '#2F5D46', accent: '#EBC56B' },
+      fonts: { body: '"DM Sans", sans-serif' },
+    });
+    expect(saved.png).toEqual({ type: 'image/png', w: 1200, h: 400 });
+    await kova.close();
+  });
+
   test('tab switches: Access, a click, cache by tab, Empty on Mira Studio', async () => {
     const kova = await ext.context.newPage();
     await kova.goto(kovaUrl());
     await ext.clickAction(kova);
+    // The panel keeps the tab the user picked (Brand, from the test before): go back to Stack.
+    await click('#rv-tab-stack');
     await poll('13 tools in 8 categories');
 
     // Same tab, same site: activeTab is kept, the new page is read without a click.

@@ -1,17 +1,19 @@
-import { PanelHeader, RvCard, Toast } from '@line/ui/rivaline';
+import { PanelHeader, Toast } from '@line/ui/rivaline';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { activeTabId } from '../../src/capture/check.ts';
 import { probeTab, scanTab, type ScanResult, type ScanStep } from '../../src/capture/scan.ts';
 import { isScanMessage } from '../../src/messages.ts';
 import { actionShortcut } from '../../src/storage.ts';
 import { useT } from '../../src/useLang.ts';
+import { AdsTab } from './AdsTab.tsx';
+import { BrandTab } from './BrandTab.tsx';
 import { StackTab } from './StackTab.tsx';
 import { AccessView, EmptyView, Reading, RestrictedView } from './Views.tsx';
 
 /**
  * Side panel (docs/rivaline-SPEC.md §3.1 and §7). One panel per window; results are kept in
- * memory per tab, never stored. Ads and Brand fill in with step 6, Settings with step 7, the
- * report PDF with step 8 (docs/rivaline/PLAN.md).
+ * memory per tab, never stored. Settings come with step 7, the report PDF with step 8
+ * (docs/rivaline/PLAN.md).
  */
 type Tab = 'stack' | 'ads' | 'brand';
 type View =
@@ -25,13 +27,13 @@ const TOAST_MS = 2500;
 const LIBRARY_COUNT = 4;
 
 export function Panel() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const [view, setView] = useState<View>({ kind: 'idle' });
   const [tab, setTab] = useState<Tab>('stack');
   const [keys, setKeys] = useState<string[]>([]);
   const [toast, setToast] = useState<string | null>(null);
   /** The library row the Stack tab jumped to (highlighted in the Ads tab, step 6). */
-  const [, setLibrary] = useState<string | null>(null);
+  const [library, setLibrary] = useState<string | null>(null);
   const cache = useRef(new Map<number, ScanResult>());
   /** Each scan gets a number; a slower, older scan never overwrites a newer one. */
   const run = useRef(0);
@@ -157,7 +159,10 @@ export function Panel() {
           },
         ]}
         active={readable ? tab : null}
-        onSelect={setTab}
+        onSelect={(id) => {
+          setLibrary(null);
+          setTab(id);
+        }}
         panelId="rv-body"
       />
 
@@ -179,10 +184,18 @@ export function Panel() {
             }}
           />
         )}
-        {result && tab !== 'stack' && (
-          <RvCard className="rp-next">
-            <p className="rp-muted">{t('panel.next')}</p>
-          </RvCard>
+        {result && tab === 'ads' && (
+          <AdsTab
+            key={result.readAt}
+            result={result}
+            t={t}
+            lang={lang}
+            highlight={library}
+            onToast={setToast}
+          />
+        )}
+        {result && tab === 'brand' && (
+          <BrandTab key={result.readAt} result={result} t={t} onToast={setToast} />
         )}
       </main>
       {toast && <Toast>{toast}</Toast>}

@@ -312,3 +312,69 @@ kbd {
     animation: none;
   }
 }
+
+/* Ads and Brand tabs (design: Ads, Brand, BrandExport) */
+.rp-pad {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rp-two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+}
+.rp-mono-in {
+  font-size: 12.5px;
+}
+.rp-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+.rp-note {
+  padding: 0 4px;
+}
+.rp-logo {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.rp-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rp-fonts {
+  padding-bottom: 4px;
+  gap: 0;
+}
+.rp-fonts .rv-cardhead {
+  padding-bottom: 8px;
+}
+.rp-export {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  font-weight: 600;
+  color: #344054;
+}
+.rp-export > span {
+  margin-right: 2px;
+}
+.rp-palette {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px #dcd9e6;
+}
+@media (max-width: 340px) {
+  .rp-two,
+  .rp-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

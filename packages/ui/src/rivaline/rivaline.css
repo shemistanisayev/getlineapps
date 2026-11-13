@@ -43,6 +43,9 @@
     background 0.15s,
     transform 0.15s;
 }
+.rv-btn svg {
+  flex-shrink: 0;
+}
 .rv-btn--lg {
   height: 40px;
   font-size: 13.5px;
