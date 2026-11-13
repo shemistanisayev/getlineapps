@@ -51,7 +51,7 @@ Chrome stable 157.0.8103.39, Windows 11, 2026-11-13:
 | `chrome://version`, `chrome://extensions` | `executeScript`: "Cannot access a chrome:// URL" → Restricted. Note: `captureVisibleTab` **works** there after a click, so Restricted must be decided by the probe, never by the capture |
 | Chrome Web Store | `executeScript`: "The extensions gallery cannot be scripted." → Restricted |
 | PDF viewer | **Differs from the SPEC**: `executeScript` succeeds (Chrome hosts the PDF in an HTML page, dark `#282828` body). The probe returns `document.contentType`; `application/pdf` → Restricted |
-| `Alt+Shift+R` (`_execute_action`) | **Fails**: Chrome 157 leaves the shortcut empty (`commands.getAll` shows `""`). `Alt+Shift+V`, `Alt+Shift+K` and `Alt+Shift+Y` were assigned in the same test, so `Alt+Shift+R` is taken by Chrome itself. **Question 1** |
+| `Alt+Shift+R` (`_execute_action`) | **Fails**: Chrome 157 leaves the shortcut empty (`commands.getAll` shows `""`). `Alt+Shift+V`, `Alt+Shift+K` and `Alt+Shift+Y` were assigned in the same test, so `Alt+Shift+R` is taken by Chrome itself. Owner chose **`Alt+Shift+V`** (question 1) |
 
 Restricted vs Access is decided by the error text: `chrome://`, `chrome-extension://`, `edge://`, "extensions gallery" and a `application/pdf` probe → Restricted; everything else → Access.
 
@@ -158,7 +158,7 @@ apps/site/src/scripts/ad-finder.ts   vanilla island for #finder, imports @line/c
 
 ## Questions for the owner
 
-1. **Shortcut.** Chrome 157 does not give `Alt+Shift+R` to extensions. The design shows Alt Shift R in Access, Settings, Welcome and the landing. Proposal: **`Alt+Shift+V`** (free in the check; "riVal"). Other options: no default shortcut (people set their own in Settings), or another letter.
+1. **Shortcut.** Answered 2026-11-13: **`Alt+Shift+V`** ("riVal"). Chrome 157 does not give `Alt+Shift+R` to extensions. The manifest, Access, Settings, Welcome and the landing show Alt Shift V instead of the design's Alt Shift R; the panel always shows the real shortcut from `commands.getAll`.
 2. **TikTok link.** The link opens TikTok's library with the brand and country filled in, but the user must press Search, and it covers Europe only. Proposal: keep it, the row already says "Ads shown in Europe"; add a short hint "Press Search on TikTok's page". Alternative: leave the hint out.
 3. **QA sites** (step 10): name at least 3 public sites (one Shopify store, one big brand, one Azerbaijani site would be ideal). Otherwise I pick them, as for Serpline.
 
