@@ -3,7 +3,7 @@
  * snapshot and the brand data of Kova, Glowbar and Mira Studio, read in a real browser with the
  * extension's own collectSnapshot and collectBrand. Vendor URLs are answered locally.
  *
- *   pnpm tsx scripts/record-rivaline-fixture.ts
+ *   pnpm tsx scripts/record-rivaline-fixture.ts  (Kova also gets its site read for the 1.1 Offer tab)
  */
 import { chromium } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -15,6 +15,7 @@ import {
   VALUE_PATHS,
 } from '../packages/core/src/rivaline/index.ts';
 import { collectBrand } from '../apps/rivaline/extension/src/capture/brand.ts';
+import { collectSite } from '../apps/rivaline/extension/src/capture/site.ts';
 import { collectSnapshot } from '../apps/rivaline/extension/src/capture/snapshot.ts';
 import {
   RIVALINE_PORT,
@@ -70,6 +71,8 @@ for (const [name, url, brand] of [
   if (brand) {
     const raw = await page.evaluate(inPage(collectBrand));
     writeFileSync(`${OUT}${name}-brand.json`, `${JSON.stringify(raw, null, 2)}\n`);
+    const site = await page.evaluate(inPage(collectSite));
+    writeFileSync(`${OUT}${name}-site.json`, `${JSON.stringify(site, null, 2)}\n`);
   }
   console.log(`${name}: recorded`);
   await page.close();

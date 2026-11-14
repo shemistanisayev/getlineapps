@@ -13,13 +13,17 @@ import {
   analyzeStack,
   brandKit,
   logoCrop,
+  siteInfo,
   type BrandKit,
+  type SiteInfo,
+  type SiteRaw,
   type BrandRaw,
   type PageSnapshot,
   type Stack,
 } from '@line/core/rivaline';
 import { classifyError, isRestrictedPage, type ReadFailure } from './check.ts';
 import { collectBrand } from './brand.ts';
+import { collectSite } from './site.ts';
 import { collectSnapshot, type SnapshotArgs } from './snapshot.ts';
 
 const ARGS: SnapshotArgs = {
@@ -45,6 +49,8 @@ export interface ScanResult {
   snapshot: PageSnapshot;
   stack: Stack;
   brand: BrandKit | null;
+  /** Offer, channels, markets and lead capture (1.1); null when the page could not be read. */
+  site: SiteInfo | null;
   /** The logo cropped from the visible tab, PNG. */
   logo: Blob | null;
   /** Seconds between the page finishing loading and the final read. */
@@ -185,6 +191,12 @@ export async function scanTab(
     } catch {
       brand = null;
     }
+    let site: SiteInfo | null = null;
+    try {
+      site = siteInfo(await inPage<SiteRaw>(tabId, 'ISOLATED', collectSite), stack);
+    } catch {
+      site = null;
+    }
     onStep('brand');
 
     let logo: Blob | null = null;
@@ -205,6 +217,7 @@ export async function scanTab(
         snapshot,
         stack,
         brand,
+        site,
         logo,
         waited,
         readAt: Date.now(),

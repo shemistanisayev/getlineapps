@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kova | Skincare that keeps it simple</title>
     <meta property="og:site_name" content="Kova" />
+    <!-- Rivaline 1.1 Offer tab: language versions and the brand's profiles (fictional). -->
+    <link rel="alternate" hreflang="en-us" href="https://example.com/" />
+    <link rel="alternate" hreflang="en-gb" href="https://example.com/en-gb/" />
+    <link rel="alternate" hreflang="de-de" href="https://example.com/de/" />
+    <link rel="alternate" hreflang="x-default" href="https://example.com/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Kova",
+        "url": "https://example.com/",
+        "email": "hello@example.com",
+        "sameAs": [
+          "https://www.instagram.com/kova.skin",
+          "https://www.tiktok.com/@kova.skin",
+          "https://www.pinterest.com/kovaskin"
+        ]
+      }
+    </script>
     <meta name="description" content="Three steps, gentle formulas, made in small batches." />
     <!--
       Kova: the fictional shop from design/rivaline/SitePage.dc.html (docs/rivaline-SPEC.md §11).
@@ -302,6 +321,40 @@
         font-size: 12.5px;
         color: #44544a;
       }
+      /* Footer in the hero's own color and the body text color, so the brand kit stays the same. */
+      footer {
+        background: #f6f1ea;
+        color: #1e2b24;
+        padding: 28px 40px;
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+        font-size: 13px;
+      }
+      footer form {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      footer input,
+      footer button {
+        font: inherit;
+        color: inherit;
+        background: #f6f1ea;
+        border: 1px solid #1e2b24;
+        border-radius: 999px;
+        padding: 6px 12px;
+      }
+      footer .social {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      footer a {
+        color: #1e2b24;
+      }
       .chat {
         position: fixed;
         right: 24px;
@@ -484,6 +537,24 @@
       </section>
       <div data-pp-message data-pp-amount="38" hidden></div>
     </main>
+    <footer>
+      <div class="news">
+        <b>Get 10% off your first order with code WELCOME10</b>
+        <form onsubmit="return false;">
+          <input type="email" name="email" placeholder="Your email" aria-label="Email" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <nav class="social" aria-label="Kova elsewhere">
+        <a href="https://www.instagram.com/kova.skin">Instagram</a>
+        <a href="https://www.tiktok.com/@kova.skin">TikTok</a>
+        <a href="https://www.youtube.com/@kovaskin">YouTube</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://example.com/">Share</a>
+        <a href="https://apps.apple.com/us/app/kova-skincare/id1234567890">App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=com.example.kova">Google Play</a>
+        <a href="mailto:hello@example.com">hello@example.com</a>
+      </nav>
+    </footer>
     <span class="chat" aria-hidden="true"
       ><svg
         width="24"

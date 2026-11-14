@@ -57,6 +57,18 @@
       "area": 35839
     },
     {
+      "color": "rgb(246, 241, 234)",
+      "area": 108088
+    },
+    {
+      "color": "rgb(246, 241, 234)",
+      "area": 5053
+    },
+    {
+      "color": "rgb(246, 241, 234)",
+      "area": 2683
+    },
+    {
       "color": "rgb(47, 93, 70)",
       "area": 3136
     }
@@ -223,6 +235,60 @@
       "bg": "rgb(255, 253, 249)",
       "weight": 75,
       "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 624,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 117,
+      "link": false
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 117,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 78,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 91,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 65,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 117,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 143,
+      "link": true
+    },
+    {
+      "color": "rgb(30, 43, 36)",
+      "bg": "rgb(246, 241, 234)",
+      "weight": 221,
+      "link": true
     }
   ],
   "rootColors": [],
@@ -235,7 +301,9 @@
     },
     "dpr": 1,
     "inView": true,
-    "viewportWidth": 1016
+    "viewportWidth": 1016,
+    "covered": false,
+    "color": "rgb(30, 43, 36)"
   },
   "headings": {
     "family": "Fraunces, Georgia, serif",

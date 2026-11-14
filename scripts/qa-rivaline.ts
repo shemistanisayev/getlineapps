@@ -19,10 +19,13 @@ import {
   VALUE_PATHS,
   analyzeStack,
   brandKit,
+  siteInfo,
   type BrandRaw,
+  type SiteRaw,
   type PageSnapshot,
 } from '../packages/core/src/rivaline/index.ts';
 import { collectBrand } from '../apps/rivaline/extension/src/capture/brand.ts';
+import { collectSite } from '../apps/rivaline/extension/src/capture/site.ts';
 import { collectSnapshot } from '../apps/rivaline/extension/src/capture/snapshot.ts';
 import { loadExtensionCdp } from '../e2e/extension-cdp.ts';
 
@@ -88,6 +91,7 @@ try {
       )) as PageSnapshot;
       const raw = (await page.evaluate(inPage(collectBrand))) as BrandRaw;
       const stack = analyzeStack(snap);
+      const siteRaw = (await page.evaluate(inPage(collectSite))) as SiteRaw;
       writeFileSync(
         join(out, `${name}.json`),
         JSON.stringify(
@@ -104,6 +108,7 @@ try {
             gaps: stack.gaps,
             summary: { ...stack.summary, marks: stack.summary.marks.map((m) => m.id) },
             brand: brandKit(raw),
+            site: siteInfo(siteRaw, stack),
           },
           null,
           2,
