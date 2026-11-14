@@ -526,3 +526,42 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | `lead.chat` | Live chat | Canlı çat |
 | `lead.whatsapp` | WhatsApp | WhatsApp |
 | `lead.forms` | CRM forms | CRM formaları |
+
+## Compare (Rivaline 1.1, step 4)
+
+| Açar | English | Azərbaycanca |
+|---|---|---|
+| `cmp.open` | Compare two sites | İki saytı müqayisə et |
+| `cmp.title` | Compare | Müqayisə |
+| `cmp.needTwo.title` | Read two sites to compare them | Müqayisə üçün iki sayt oxu |
+| `cmp.needTwo.text` | Rivaline compares tabs it has read in this window. Nothing is saved. | Rivaline bu pəncərədə oxuduğu tabları müqayisə edir. Heç nə saxlanmır. |
+| `cmp.needTwo.s1` | Open the first competitor and click the Rivaline icon | Birinci rəqibi aç və Rivaline ikonuna bas |
+| `cmp.needTwo.s2` | Open the second one in another tab and click the icon again | İkincini başqa tabda aç və ikona yenə bas |
+| `cmp.needTwo.s3` | Come back here and pick the two sites | Bura qayıt və iki saytı seç |
+| `cmp.sites` | Sites | Saytlar |
+| `cmp.siteA` | First site | Birinci sayt |
+| `cmp.siteB` | Second site | İkinci sayt |
+| `cmp.note` | Each site as Rivaline read it. Read a page again to update it. | Hər sayt Rivaline-ın oxuduğu kimi. Yeniləmək üçün səhifəni yenidən oxu. |
+| `cmp.numbers` | At a glance | Bir baxışda |
+| `cmp.n.tools` | Marketing tools | Marketinq alətləri |
+| `cmp.n.adPixels` | Ad pixels | Reklam pikselləri |
+| `cmp.n.offers` | Offers | Təkliflər |
+| `cmp.n.profiles` | Social profiles | Sosial profillər |
+| `cmp.n.apps` | Apps | Tətbiqlər |
+| `cmp.n.languages` | Languages | Dillər |
+| `cmp.stack` | Stack | Stack |
+| `cmp.only` | Only {site} | Yalnız {site} |
+| `cmp.both` | Both | Hər ikisi |
+| `cmp.basics` | Basics | Əsaslar |
+| `cmp.has.GAP_SERVER_SIDE` | Server-side tracking | Server-side izləmə |
+| `cmp.has.GAP_CONSENT` | Consent banner | Consent banneri |
+| `cmp.has.GAP_CRM` | CRM | CRM |
+| `cmp.has.GAP_ANALYTICS` | Analytics | Analitika |
+| `cmp.ads` | Ad channels | Reklam kanalları |
+| `cmp.noAds` | Neither site has an ad pixel | Heç bir saytda reklam pikseli yoxdur |
+| `cmp.noOffers` | Neither site shows an offer | Heç bir saytda təklif yoxdur |
+| `cmp.apps` | Apps | Tətbiqlər |
+| `cmp.brand` | Brand | Brend |
+| `cmp.yes` | Yes | Var |
+| `cmp.no` | No | Yox |
+| `cmp.none` | None | Yoxdur |

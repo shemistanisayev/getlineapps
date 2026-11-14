@@ -10,6 +10,7 @@ export * from './match.ts';
 export * from './ads.ts';
 export * from './brand.ts';
 export * from './research.ts';
+export * from './compare.ts';
 export * from './countries.ts';
 export {
   RULES,

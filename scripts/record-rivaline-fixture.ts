@@ -71,6 +71,9 @@ for (const [name, url, brand] of [
   if (brand) {
     const raw = await page.evaluate(inPage(collectBrand));
     writeFileSync(`${OUT}${name}-brand.json`, `${JSON.stringify(raw, null, 2)}\n`);
+  }
+  // Site reads for the Offer tab and Compare (Kova and Glowbar).
+  if (name !== 'mira') {
     const site = await page.evaluate(inPage(collectSite));
     writeFileSync(`${OUT}${name}-site.json`, `${JSON.stringify(site, null, 2)}\n`);
   }

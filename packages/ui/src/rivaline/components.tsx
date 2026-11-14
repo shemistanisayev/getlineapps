@@ -59,6 +59,13 @@ const PATHS = {
   ),
   check: <path d="M5 12.5l4.5 4.5L19 7.5" />,
   close: <path d="M6 6l12 12M18 6L6 18" />,
+  /* Two columns side by side (Compare, Rivaline 1.1). */
+  compare: (
+    <>
+      <rect x="3.5" y="4.5" width="7" height="15" rx="1.5" />
+      <rect x="13.5" y="4.5" width="7" height="15" rx="1.5" />
+    </>
+  ),
 };
 
 export type RvIconName = keyof typeof PATHS;
@@ -158,6 +165,9 @@ export interface PanelHeaderProps<Id extends string> {
   readDisabled?: boolean;
   pdfDisabled?: boolean;
   settingsPressed?: boolean;
+  /** Compare two read sites (Rivaline 1.1); the button shows only when both are given. */
+  compareLabel?: string;
+  onCompare?: () => void;
   tabsLabel: string;
   tabs: RvTab<Id>[];
   /** null: no tab is current and counts are hidden (Access, Restricted). */
@@ -182,6 +192,17 @@ export function PanelHeader<Id extends string>(p: PanelHeaderProps<Id>) {
         >
           <RvIcon name="refresh" size={15} stroke={2} />
         </button>
+        {p.compareLabel && p.onCompare ? (
+          <button
+            type="button"
+            className="rv-ib"
+            aria-label={p.compareLabel}
+            title={p.compareLabel}
+            onClick={p.onCompare}
+          >
+            <RvIcon name="compare" size={16} stroke={2} />
+          </button>
+        ) : null}
         <button
           type="button"
           className="rv-ib"

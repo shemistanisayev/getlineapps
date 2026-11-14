@@ -12,7 +12,7 @@ import type { ScanResult } from '../../src/capture/scan.ts';
 import type { Lang, MessageKey, T } from '../../src/i18n/index.ts';
 
 /** Network names are brand names: the same in every language. */
-const NETWORK: Record<SocialNetwork, { name: string; icon: ToolIcon }> = {
+export const NETWORK: Record<SocialNetwork, { name: string; icon: ToolIcon }> = {
   instagram: { name: 'Instagram', icon: { mark: 'instagram' } },
   facebook: { name: 'Facebook', icon: { mark: 'facebook' } },
   tiktok: { name: 'TikTok', icon: { mark: 'tiktok' } },
@@ -25,7 +25,7 @@ const NETWORK: Record<SocialNetwork, { name: string; icon: ToolIcon }> = {
   threads: { name: 'Threads', icon: { mark: 'threads' } },
   vk: { name: 'VK', icon: { mark: 'vk' } },
 };
-const STORE: Record<AppLink['store'], { name: string; icon: ToolIcon }> = {
+export const STORE: Record<AppLink['store'], { name: string; icon: ToolIcon }> = {
   appstore: { name: 'App Store', icon: { mark: 'appstore' } },
   googleplay: { name: 'Google Play', icon: { mark: 'googleplay' } },
 };

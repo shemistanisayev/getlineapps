@@ -9,6 +9,7 @@ import { rivalineReport } from '../../src/report.ts';
 import { actionShortcut, getCountry } from '../../src/storage.ts';
 import { useT } from '../../src/useLang.ts';
 import { AdsTab } from './AdsTab.tsx';
+import { CompareView } from './CompareView.tsx';
 import { OfferTab } from './OfferTab.tsx';
 import { BrandTab } from './BrandTab.tsx';
 import { Settings } from './Settings.tsx';
@@ -51,6 +52,26 @@ export function Panel() {
   /** The library row the Stack tab jumped to (highlighted in the Ads tab, step 6). */
   const [library, setLibrary] = useState<string | null>(null);
   const cache = useRef(new Map<number, ScanResult>());
+  /** The same results as a list for Compare (newest first); kept in step with the cache. */
+  const [reads, setReads] = useState<ScanResult[]>([]);
+  const [compare, setCompare] = useState(false);
+  const sync = useCallback(
+    () => setReads([...cache.current.values()].sort((x, y) => y.readAt - x.readAt)),
+    [],
+  );
+  const keep = useCallback(
+    (r: ScanResult) => {
+      cache.current.set(r.tabId, r);
+      sync();
+    },
+    [sync],
+  );
+  const forget = useCallback(
+    (tabId: number) => {
+      if (cache.current.delete(tabId)) sync();
+    },
+    [sync],
+  );
   /** Each scan gets a number; a slower, older scan never overwrites a newer one. */
   const run = useRef(0);
   /**
@@ -59,46 +80,49 @@ export function Panel() {
    */
   const busy = useRef<{ tabId: number; at: number; onOpen: boolean; read: boolean } | null>(null);
 
-  const scan = useCallback(async (tabId: number, onOpen = false) => {
-    const id = ++run.current;
-    const startedAt = Date.now();
-    busy.current = { tabId, at: startedAt, onOpen, read: false };
-    setView({ kind: 'reading', tabId, done: [], startedAt, stepAt: startedAt });
-    const windowId = await browser.tabs.get(tabId).then(
-      (t) => t.windowId,
-      () => undefined,
-    );
-    // The tab was closed: the next active tab gets its own state from onActivated.
-    if (windowId === undefined) return;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const timeout = new Promise<'timeout'>((ok) => {
-      timer = setTimeout(() => ok('timeout'), SCAN_TIMEOUT_MS);
-    });
-    const outcome = await Promise.race([
-      scanTab(tabId, windowId, (step) => {
-        if (run.current !== id) return;
-        if (step === 'tools' && busy.current) busy.current.read = true;
-        setView((v) =>
-          v.kind === 'reading' ? { ...v, done: [...v.done, step], stepAt: Date.now() } : v,
-        );
-      }),
-      timeout,
-    ]);
-    clearTimeout(timer);
-    if (run.current !== id) return;
-    busy.current = null;
-    if (outcome === 'timeout') {
-      setView({ kind: 'failed', tabId });
-    } else if (outcome.ok) {
-      cache.current.set(tabId, outcome.result);
-      setView({ kind: 'result', result: outcome.result });
-    } else {
-      cache.current.delete(tabId);
-      // Closed while it was read: no Access flash, the newly active tab takes over.
-      if (!(await tabExists(tabId)) || run.current !== id) return;
-      setView({ kind: outcome.reason === 'restricted' ? 'restricted' : 'access' });
-    }
-  }, []);
+  const scan = useCallback(
+    async (tabId: number, onOpen = false) => {
+      const id = ++run.current;
+      const startedAt = Date.now();
+      busy.current = { tabId, at: startedAt, onOpen, read: false };
+      setView({ kind: 'reading', tabId, done: [], startedAt, stepAt: startedAt });
+      const windowId = await browser.tabs.get(tabId).then(
+        (t) => t.windowId,
+        () => undefined,
+      );
+      // The tab was closed: the next active tab gets its own state from onActivated.
+      if (windowId === undefined) return;
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const timeout = new Promise<'timeout'>((ok) => {
+        timer = setTimeout(() => ok('timeout'), SCAN_TIMEOUT_MS);
+      });
+      const outcome = await Promise.race([
+        scanTab(tabId, windowId, (step) => {
+          if (run.current !== id) return;
+          if (step === 'tools' && busy.current) busy.current.read = true;
+          setView((v) =>
+            v.kind === 'reading' ? { ...v, done: [...v.done, step], stepAt: Date.now() } : v,
+          );
+        }),
+        timeout,
+      ]);
+      clearTimeout(timer);
+      if (run.current !== id) return;
+      busy.current = null;
+      if (outcome === 'timeout') {
+        setView({ kind: 'failed', tabId });
+      } else if (outcome.ok) {
+        keep(outcome.result);
+        setView({ kind: 'result', result: outcome.result });
+      } else {
+        forget(tabId);
+        // Closed while it was read: no Access flash, the newly active tab takes over.
+        if (!(await tabExists(tabId)) || run.current !== id) return;
+        setView({ kind: outcome.reason === 'restricted' ? 'restricted' : 'access' });
+      }
+    },
+    [keep, forget],
+  );
 
   /** Another tab, or a new page: show the cached result if the tab is still on that page. */
   const show = useCallback(
@@ -147,12 +171,12 @@ export function Panel() {
       if (b && b.tabId === tabId && !b.read) return;
       void activeTabId().then((id) => {
         if (id === tabId) {
-          cache.current.delete(tabId);
+          forget(tabId);
           void show(tabId);
         }
       });
     };
-    const onRemoved = (tabId: number) => cache.current.delete(tabId);
+    const onRemoved = (tabId: number) => forget(tabId);
     browser.tabs.onActivated.addListener(onActivated);
     browser.tabs.onUpdated.addListener(onUpdated);
     browser.tabs.onRemoved.addListener(onRemoved);
@@ -161,7 +185,7 @@ export function Panel() {
       browser.tabs.onUpdated.removeListener(onUpdated);
       browser.tabs.onRemoved.removeListener(onRemoved);
     };
-  }, [show]);
+  }, [show, forget]);
 
   useEffect(() => {
     if (!toast) return;
@@ -216,6 +240,19 @@ export function Panel() {
       </div>
     );
 
+  if (compare)
+    return (
+      <div className="rp">
+        <CompareView
+          reads={reads}
+          current={result?.tabId ?? null}
+          t={t}
+          lang={lang}
+          onBack={() => setCompare(false)}
+        />
+      </div>
+    );
+
   return (
     <div className="rp">
       <PanelHeader
@@ -223,6 +260,8 @@ export function Panel() {
         settingsLabel={t('panel.settings')}
         pdfLabel={t('panel.pdf')}
         readDisabled={!result}
+        compareLabel={t('cmp.open')}
+        onCompare={() => setCompare(true)}
         onSettings={() => setSettings(true)}
         pdfDisabled={pdfBusy}
         onPdf={result ? () => void makePdf(result) : undefined}

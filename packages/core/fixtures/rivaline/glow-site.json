@@ -1,0 +1,72 @@
+{
+  "url": "http://example.net/",
+  "lang": "en",
+  "title": "Glowbar | Clean beauty",
+  "description": "",
+  "meta": {
+    "og:site_name": "Glowbar"
+  },
+  "h1": "Clean beauty, delivered monthly.",
+  "sub": "Build your box, skip any month.",
+  "ctas": ["Build my box"],
+  "announcement": "",
+  "texts": [
+    {
+      "text": "glowbar",
+      "where": "header"
+    },
+    {
+      "text": "Makeup",
+      "where": "nav"
+    },
+    {
+      "text": "Skin",
+      "where": "nav"
+    },
+    {
+      "text": "Bestsellers",
+      "where": "nav"
+    },
+    {
+      "text": "Clean beauty, delivered monthly.",
+      "where": "main"
+    },
+    {
+      "text": "Build your box, skip any month.",
+      "where": "main"
+    },
+    {
+      "text": "Build my box",
+      "where": "main"
+    },
+    {
+      "text": "Your first box 20% off with code GLOW20",
+      "where": "main"
+    },
+    {
+      "text": "Instagram",
+      "where": "footer"
+    },
+    {
+      "text": "TikTok",
+      "where": "footer"
+    },
+    {
+      "text": "Facebook",
+      "where": "footer"
+    }
+  ],
+  "links": [
+    "http://example.net/",
+    "http://example.net/collections/makeup",
+    "http://example.net/collections/skin",
+    "http://example.net/collections/bestsellers",
+    "http://example.net/pages/box",
+    "https://www.instagram.com/glowbar.beauty",
+    "https://www.tiktok.com/@glowbar",
+    "https://www.facebook.com/glowbarbeauty"
+  ],
+  "hreflang": [],
+  "jsonld": [],
+  "emailForm": false
+}

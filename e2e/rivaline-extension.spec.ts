@@ -412,6 +412,78 @@ test.describe('rivaline extension', () => {
     await kova.close();
   });
 
+  test('Compare: Kova and Glowbar side by side, from memory (1.1)', async () => {
+    const back = () => click('[aria-label="Back to results"]');
+    const kova = await ext.context.newPage();
+    await kova.goto(kovaUrl());
+    await ext.clickAction(kova);
+    await expect
+      .poll(() => ext.evalIn<boolean>(PANEL, `Boolean(document.querySelector('#rv-tab-stack'))`))
+      .toBe(true);
+    await click('#rv-tab-stack');
+    await poll('13 tools in 8 categories');
+    await click('[aria-label="Compare two sites"]');
+    await poll('Read two sites to compare them');
+    await back();
+
+    const glow = await ext.context.newPage();
+    await glow.goto(glowUrl());
+    await ext.clickAction(glow);
+    await poll('5 tools in 5 categories');
+    await click('[aria-label="Compare two sites"]');
+    await poll('Marketing tools');
+    const text = await panelText();
+    // The tab in front comes first.
+    expect(
+      await ext.evalIn<string[]>(
+        PANEL,
+        `[...document.querySelectorAll('select')].map((s) => s.selectedOptions[0].textContent)`,
+      ),
+    ).toEqual(['example.net', 'example.com']);
+    expect(text).toMatch(/Marketing tools\s*5\s*13/);
+    expect(text).toMatch(/Social profiles\s*3\s*4/);
+    // Section labels are drawn in capitals.
+    expect(text).toMatch(/Only example\.net\s*2\s*Cookiebot\s*Klaviyo/i);
+    expect(text).toMatch(/Only example\.com\s*10\s*TikTok Pixel/i);
+    expect(text).toMatch(/Both\s*3\s*Meta Pixel\s*Google Analytics 4\s*Shopify/i);
+    expect(text).toMatch(/Consent banner\s*Yes\s*No/);
+    expect(text).toMatch(/TikTok\s*No\s*Yes/);
+    expect(text).toMatch(/Instagram\s*glowbar\.beauty\s*kova\.skin/);
+    expect(text).toMatch(/Email sign-up\s*Klaviyo\s*Mailchimp/);
+    expect(text).toMatch(/Primary\s*#DB2777\s*#2F5D46/);
+    expect(text).toMatch(/Surface\s*None\s*#DCE5D8/);
+    expect(text).toMatch(/Headings\s*Arial\s*Fraunces/);
+
+    // Picking the other side's site swaps them.
+    await ext.evalIn(
+      PANEL,
+      `(() => { const el = document.getElementById('rp-cmp-a'); el.value = el.options[1].value; el.dispatchEvent(new Event('change', { bubbles: true })); })()`,
+      true,
+    );
+    await expect.poll(panelText).toMatch(/Marketing tools\s*13\s*5/);
+    expect(
+      await ext.evalIn<number>(PANEL, 'document.documentElement.scrollWidth', false, {
+        width: 280,
+        height: 700,
+      }),
+    ).toBeLessThanOrEqual(280);
+    await shot('panel-compare');
+    if (SHOTS)
+      await ext.screenshot(PANEL, `${SHOTS}/rivaline-panel-compare-full.png`, {
+        width: 380,
+        height: 2400,
+      });
+    await back();
+    await poll('5 tools in 5 categories');
+
+    // A closed tab leaves Compare.
+    await kova.close();
+    await click('[aria-label="Compare two sites"]');
+    await poll('Read two sites to compare them');
+    await back();
+    await glow.close();
+  });
+
   test('tab switches: Access, a click, cache by tab, Empty on Mira Studio', async () => {
     const kova = await ext.context.newPage();
     await kova.goto(kovaUrl());
@@ -628,6 +700,10 @@ test.describe('rivaline extension', () => {
     await poll('Export brand kit');
     await axe('export');
     await click('.rv-sheet [aria-label="Close"]');
+    await click('[aria-label="Compare two sites"]');
+    await poll('Read two sites to compare them');
+    await axe('compare, one site');
+    await click('[aria-label="Back to results"]');
     await click('[aria-label="Settings"]');
     await poll('Default country');
     await axe('settings');
@@ -642,6 +718,10 @@ test.describe('rivaline extension', () => {
     await click('#rv-tab-stack');
     await poll('No marketing tools found');
     await axe('empty');
+    await click('[aria-label="Compare two sites"]');
+    await poll('Marketing tools');
+    await axe('compare');
+    await click('[aria-label="Back to results"]');
     await mira.goto('chrome://version');
     await ext.clickAction(mira);
     await poll("Rivaline can't read this page");
