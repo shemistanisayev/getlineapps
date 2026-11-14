@@ -6,14 +6,14 @@ Bu qovluqda yükləməli olduğun hər şey var. Mətnlər `docs/rivaline/STORE-
 
 | Fayl                                         | Hara                                              |
 | -------------------------------------------- | ------------------------------------------------- |
-| `rivaline-1.0.0.zip`                         | New item: paketi yüklə                            |
+| `rivaline-1.1.0.zip`                         | New item: paketi yüklə                            |
 | `screenshots/1-stack.png` ... `5-report.png` | Store listing: Screenshots (ardıcıllıq 1-dən 5-ə) |
 | `promo-small-440x280.png`                    | Store listing: Small promo tile                   |
 | `promo-marquee-1400x560.png`                 | Store listing: Marquee promo tile                 |
 
 ## İlk yükləmə (limit artandan sonra)
 
-1. `chrome.google.com/webstore/devconsole` aç, **New item** bas və `rivaline-1.0.0.zip` faylını seç.
+1. `chrome.google.com/webstore/devconsole` aç, **New item** bas və `rivaline-1.1.0.zip` faylını seç.
 2. **Store listing**, **Privacy** və **Distribution** tablarını `docs/rivaline/STORE-LISTING.md`-dəki mətnlərlə doldur, şəkilləri bu qovluqdan yüklə.
 3. **Submit for review** bas. Təsdiqdən sonra listing linkini agentə yaz.
 

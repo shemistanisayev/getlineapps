@@ -285,7 +285,7 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | Açar | English | Azərbaycanca |
 |---|---|---|
 | `meta.title` | Rivaline: Free Competitor Research for Meta, Google & More | Rivaline: Meta, Google və s. üçün pulsuz rəqib araşdırması |
-| `meta.description` | Free Chrome extension. See any site's martech stack, open its ads in Meta, Google, TikTok and LinkedIn ad libraries and copy its brand colors and fonts, in one side panel. | Pulsuz Chrome extension. İstənilən saytın martech stack-ini gör, reklamlarını Meta, Google, TikTok və LinkedIn reklam kitabxanalarında aç, brend rənglərini və şriftlərini kopyala, hamısı bir yan paneldə. |
+| `meta.description` | Free Chrome extension. See a rival's martech stack, offers and channels, open its ads in four ad libraries, compare two sites and copy its brand kit. | Pulsuz Chrome extension. Rəqibin martech stack-ini, təkliflərini və kanallarını gör, reklamlarını dörd reklam kitabxanasında aç, iki saytı müqayisə et və brend dəstini kopyala. |
 | `meta.ogAlt` | Rivaline: see any rival's stack, ads and brand in one panel. | Rivaline: istənilən rəqibin stack-ini, reklamlarını və brendini bir paneldə gör. |
 | `nav.label` | Rivaline sections | Rivaline bölmələri |
 | `nav.features` | Features | İmkanlar |
@@ -301,7 +301,7 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | `hero.pill` | Free Chrome extension | Pulsuz Chrome extension |
 | `hero.titleStart` | See any rival's stack, ads and brand in | İstənilən rəqibin stack-i, reklamları və brendi |
 | `hero.titleHighlight` | one panel | bir paneldə |
-| `hero.lead` | Rivaline shows the analytics, ad pixels, CRM and chat a site runs, opens its ads in four ad libraries and pulls its colors and fonts. Right in Chrome's side panel | Rivaline saytın işlətdiyi analitikanı, reklam piksellərini, CRM-i və çatı göstərir, reklamlarını dörd reklam kitabxanasında açır, rənglərini və şriftlərini çıxarır. Birbaşa Chrome-un yan panelində |
+| `hero.lead` | Rivaline shows the tools a site runs, what it offers, where else the brand is and its ads in four ad libraries, with its colors and fonts. Right in Chrome's side panel | Rivaline saytın işlətdiyi alətləri, nə təklif etdiyini, brendin başqa harada olduğunu və dörd reklam kitabxanasındakı reklamlarını göstərir, rənglərini və şriftlərini çıxarır. Birbaşa Chrome-un yan panelində |
 | `hero.secondary` | Try the ad library finder | Reklam kitabxanası axtarışını yoxla |
 | `hero.trustLabel` | Why it is safe to try | Niyə yoxlamaq təhlükəsizdir |
 | `hero.trust.0` | No account | Hesab lazım deyil |
@@ -326,7 +326,7 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | `problem.cards.2.title` | Brand colors by eyedropper | Brend rəngləri damcıladanla |
 | `problem.cards.2.text` | Inspect, copy, paste, repeat. For every color, every font and the button style | Yoxla, kopyala, yapışdır, təkrar et. Hər rəng, hər şrift və düymə stili üçün |
 | `features.eyebrow` | Inside the panel | Panelin içi |
-| `features.title` | Three tabs. A full picture of any site | Üç tab. İstənilən sayt haqqında tam mənzərə |
+| `features.title` | Everything about a rival, in one panel | Rəqib haqqında hər şey, bir paneldə |
 | `features.tabsLabel` | Rivaline features | Rivaline imkanları |
 | `features.stack.title` | Every tool, grouped by what it does | Hər alət, nə iş gördüyünə görə qruplaşdırılıb |
 | `features.stack.lead` | Analytics, ad pixels, tag managers, email, chat, reviews, payments and the platform underneath, each with the ID it uses | Analitika, reklam pikselləri, teq menecerləri, e-poçt, çat, rəylər, ödənişlər və altdakı platforma, hər biri işlətdiyi ID ilə |
@@ -354,7 +354,7 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | `features.brand.demo.body` | Body | Mətn |
 | `features.report.label` | Report | Hesabat |
 | `features.report.title` | One PDF for the next meeting | Növbəti görüş üçün bir PDF |
-| `features.report.lead` | Stack, gaps, ad library links and the brand kit on one A4 page, built in your browser | Stack, boşluqlar, reklam kitabxanası linkləri və brend dəsti bir A4 səhifədə, brauzerində hazırlanır |
+| `features.report.lead` | Stack, gaps, offer, channels, ad library links and the brand kit in one PDF, built in your browser | Stack, boşluqlar, təklif, kanallar, reklam kitabxanası linkləri və brend dəsti bir PDF-də, brauzerində hazırlanır |
 | `features.report.bullets.0` | Ready for a sales call or a client pitch | Satış zəngi və ya müştəri təqdimatı üçün hazır |
 | `features.report.bullets.1` | Selectable text and working links | Seçilə bilən mətn və işləyən linklər |
 | `features.report.bullets.2` | Made on your computer, sent nowhere | Kompüterində hazırlanır, heç yerə göndərilmir |
@@ -396,7 +396,7 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | `report.titleStart` | Your rival has it and you don't? | Rəqibdə var, səndə yoxdur? |
 | `report.titleHighlight` | Get it set up | Qurulmasını tapşır |
 | `report.titleEnd` | by the person who built Rivaline | Rivaline-ı yaradan adama |
-| `report.text` | One click turns any site into a report: stack, gaps, ad libraries and brand kit. Share it with your team, or send it to me. I set up analytics, server-side tracking, consent and ad pixels for growing brands | Bir klik istənilən saytı hesabata çevirir: stack, boşluqlar, reklam kitabxanaları və brend dəsti. Komandanla paylaş və ya mənə göndər. Böyüyən brendlər üçün analitika, server-side izləmə, consent və reklam piksellərini qururam |
+| `report.text` | One click turns any site into a report: stack, gaps, offer, channels, ad libraries and brand kit. Share it with your team, or send it to me. I set up analytics, server-side tracking, consent and ad pixels for growing brands | Bir klik istənilən saytı hesabata çevirir: stack, boşluqlar, təklif, kanallar, reklam kitabxanaları və brend dəsti. Komandanla paylaş və ya mənə göndər. Böyüyən brendlər üçün analitika, server-side izləmə, consent və reklam piksellərini qururam |
 | `report.cta` | Book an audit | Audit sifariş et |
 | `report.from` | From | Müəllif: |
 | `report.paper.date` | Nov 7, 2026 | 7 noyabr 2026 |
@@ -431,13 +431,13 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | `faq.items.1.q` | Does it send any data anywhere? | Haraya isə məlumat göndərir? |
 | `faq.items.1.a` | No. Rivaline reads the page in your browser and keeps the result in memory until you close the tab. Only your settings are saved, and only on your computer. | Xeyr. Rivaline səhifəni brauzerində oxuyur və nəticəni tabı bağlayana qədər yaddaşda saxlayır. Yalnız ayarların saxlanılır, o da yalnız kompüterində. |
 | `faq.items.2.q` | How does it recognize tools? | Alətləri necə tanıyır? |
-| `faq.items.2.a` | It matches script addresses, cookie names, page globals and meta tags against its own list of about 130 marketing tools. Every match shows the evidence it found. | Skript ünvanlarını, cookie adlarını, səhifənin qlobal dəyişənlərini və meta teqləri təxminən 130 marketinq alətindən ibarət öz siyahısı ilə tutuşdurur. Hər tapıntı tapdığı sübutu göstərir. |
+| `faq.items.2.a` | It matches script addresses, cookie names, page globals and meta tags against its own list of about 160 marketing tools. Every match shows the evidence it found. | Skript ünvanlarını, cookie adlarını, səhifənin qlobal dəyişənlərini və meta teqləri təxminən 160 marketinq alətindən ibarət öz siyahısı ilə tutuşdurur. Hər tapıntı tapdığı sübutu göstərir. |
 | `faq.items.3.q` | Can it show a competitor's ad spend? | Rəqibin reklam büdcəsini göstərə bilir? |
 | `faq.items.3.a` | No. Ad libraries show which ads are running, not budgets. Rivaline opens those libraries with the search already filled in. | Xeyr. Reklam kitabxanaları büdcəni yox, hansı reklamların getdiyini göstərir. Rivaline həmin kitabxanaları axtarışı artıq doldurulmuş halda açır. |
-| `faq.items.4.q` | Why do I click the icon again on a new tab? | Yeni tabda niyə ikona yenidən basmalıyam? |
-| `faq.items.4.a` | Rivaline uses Chrome's activeTab permission. It can read a page only after you ask, so it never has access to every site you visit. | Rivaline Chrome-un activeTab icazəsini işlədir. Səhifəni yalnız sən istəyəndən sonra oxuya bilir, ona görə girdiyin bütün saytlara heç vaxt girişi olmur. |
-| `faq.items.5.q` | Why does TikTok show only European ads? | TikTok niyə yalnız Avropa reklamlarını göstərir? |
-| `faq.items.5.a` | TikTok's ad library covers ads shown in the EU, the EEA, Switzerland and the UK. Rivaline fills in the brand and the country, then you press Search on TikTok's page. | TikTok reklam kitabxanası Aİ, AİZ, İsveçrə və Böyük Britaniyada göstərilən reklamları əhatə edir. Rivaline brendi və ölkəni doldurur, sonra TikTok səhifəsində Search düyməsinə basırsan. |
+| `faq.items.4.q` | Can I compare two competitors? | İki rəqibi müqayisə edə bilərəm? |
+| `faq.items.4.a` | Yes. Read each site in its own tab, then press Compare in the panel. Rivaline puts the two results side by side: tools, ad channels, offers, social profiles, markets and brand colors. Nothing is saved. | Bəli. Hər saytı öz tabında oxu, sonra paneldə Müqayisə düyməsinə bas. Rivaline iki nəticəni yan-yana qoyur: alətlər, reklam kanalları, təkliflər, sosial profillər, bazarlar və brend rəngləri. Heç nə saxlanmır. |
+| `faq.items.5.q` | Why do I click the icon again on a new tab? | Yeni tabda niyə ikona yenidən basmalıyam? |
+| `faq.items.5.a` | Rivaline uses Chrome's activeTab permission. It can read a page only after you ask, so it never has access to every site you visit. | Rivaline Chrome-un activeTab icazəsini işlədir. Səhifəni yalnız sən istəyəndən sonra oxuya bilir, ona görə girdiyin bütün saytlara heç vaxt girişi olmur. |
 | `more.eyebrow` | The Line family | Line ailəsi |
 | `more.title` | More free tools from the same family | Eyni ailədən daha çox pulsuz alət |
 | `more.tools.hitline.text` | See what tracking a site really sends, right in DevTools | Saytın əslində hansı izləmə məlumatını göndərdiyini birbaşa DevTools-da gör |
@@ -451,7 +451,7 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | `footer.builtBy` | Built by | Hazırlayan |
 | `footer.privacy` | Privacy policy | Məxfilik siyasəti |
 | `footer.source` | Source code | Mənbə kodu |
-| `uninstall.meta.title` | Sorry to see you go / Rivaline | Getməyinə təəssüf edirik / Rivaline |
+| `uninstall.meta.title` | Sorry to see you go \| Rivaline | Getməyinə təəssüf edirik \| Rivaline |
 | `uninstall.meta.description` | Tell us why you removed Rivaline. One click helps make the next version better. | Rivaline-ı niyə sildiyini bizə de. Bir klik növbəti versiyanı daha yaxşı etməyə kömək edir. |
 | `uninstall.titleStart` | Rivaline is removed | Rivaline silindi |
 | `uninstall.titleEnd` | What made you leave? | Niyə getdin? |
@@ -565,3 +565,34 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | `cmp.yes` | Yes | Var |
 | `cmp.no` | No | Yox |
 | `cmp.none` | None | Yoxdur |
+
+## Rivaline 1.1: PDF and landing (step 5)
+
+| Açar | English | Azərbaycanca |
+|---|---|---|
+| `rep.offer` | Offer and channels | Təklif və kanallar |
+| `rep.offer.headline` | Headline | Əsas başlıq |
+| `rep.offer.social` | Social profiles | Sosial profillər |
+| `hero.mock.tabs.offer` | Offer | Təklif |
+| `features.offer.label` | Offer | Təklif |
+| `features.offer.title` | What they sell and where they are | Nə satırlar və harada varlar |
+| `features.offer.lead` | The headline, the offers on the page, prices, social profiles, apps, markets and how the site catches leads | Əsas başlıq, səhifədəki aksiyalar, qiymətlər, sosial profillər, tətbiqlər, bazarlar və saytın müştəri məlumatını necə topladığı |
+| `features.offer.bullets.0` | Discounts, promo codes, free delivery and installments, in English, Azerbaijani, Russian and Turkish | Endirim, promo kod, pulsuz çatdırılma və taksit: Azərbaycan, ingilis, rus və türk dillərində |
+| `features.offer.bullets.1` | Instagram, TikTok, YouTube, Telegram and other profiles, plus App Store and Google Play | Instagram, TikTok, YouTube, Telegram və digər profillər, App Store və Google Play |
+| `features.offer.bullets.2` | The languages, countries and currency the site serves | Saytın xidmət etdiyi dillər, ölkələr və valyuta |
+| `features.offer.demo.offers` | Offers | Təkliflər |
+| `features.offer.demo.free` | Free delivery | Pulsuz çatdırılma |
+| `features.offer.demo.code` | Promo code | Promo kod |
+| `features.offer.demo.channels` | Channels | Kanallar |
+| `features.compare.label` | Compare | Müqayisə |
+| `features.compare.title` | Two rivals, side by side | İki rəqib, yan-yana |
+| `features.compare.lead` | Read two sites, then see which tools, offers and channels only one of them has | İki saytı oxu, sonra hansı alət, təklif və kanalın yalnız birində olduğunu gör |
+| `features.compare.bullets.0` | Tools only on one site, and on both | Yalnız bir saytda və hər ikisində olan alətlər |
+| `features.compare.bullets.1` | Ad channels, offers, social profiles and markets in one table | Reklam kanalları, təkliflər, sosial profillər və bazarlar bir cədvəldə |
+| `features.compare.bullets.2` | Uses what Rivaline already read. Nothing is saved | Rivaline-ın artıq oxuduğunu işlədir. Heç nə saxlanmır |
+| `features.compare.demo.tools` | Marketing tools | Marketinq alətləri |
+| `features.compare.demo.offers` | Offers | Təkliflər |
+| `features.compare.demo.profiles` | Social profiles | Sosial profillər |
+| `features.compare.demo.only` | Only example.com | Yalnız example.com |
+| `faq.items.6.q` | Why does TikTok show only European ads? | TikTok niyə yalnız Avropa reklamlarını göstərir? |
+| `faq.items.6.a` | TikTok's ad library covers ads shown in the EU, the EEA, Switzerland and the UK. Rivaline fills in the brand and the country, then you press Search on TikTok's page. | TikTok reklam kitabxanası Aİ, AİZ, İsveçrə və Böyük Britaniyada göstərilən reklamları əhatə edir. Rivaline brendi və ölkəni doldurur, sonra TikTok səhifəsində Search düyməsinə basırsan. |

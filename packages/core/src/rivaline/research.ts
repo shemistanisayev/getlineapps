@@ -265,7 +265,7 @@ const PROMO: Array<[PromoKind, RegExp]> = [
   ],
   [
     'installments',
-    /taksit|faizsiz|hissə-hissə|interest[- ]free|installments?|рассрочк|\bor \d+ payments\b|\d+\s?(ay|aylıq)\b/i,
+    /taksit|faizsiz|hissə-hissə|interest[- ]free|installments?|рассрочк|\bor \d+ payments\b/i,
   ],
   ['returns', /\d+[- ]day (free )?returns|free returns|pulsuz qaytarma|возврат|ücretsiz iade/i],
   ['gift', /free gift|hədiyyə|подар|hediye/i],

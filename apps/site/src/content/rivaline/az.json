@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Rivaline: Meta, Google və s. üçün pulsuz rəqib araşdırması",
-    "description": "Pulsuz Chrome extension. İstənilən saytın martech stack-ini gör, reklamlarını Meta, Google, TikTok və LinkedIn reklam kitabxanalarında aç, brend rənglərini və şriftlərini kopyala, hamısı bir yan paneldə.",
+    "description": "Pulsuz Chrome extension. Rəqibin martech stack-ini, təkliflərini və kanallarını gör, reklamlarını dörd reklam kitabxanasında aç, iki saytı müqayisə et və brend dəstini kopyala.",
     "ogAlt": "Rivaline: istənilən rəqibin stack-ini, reklamlarını və brendini bir paneldə gör."
   },
   "nav": {
@@ -23,7 +23,7 @@
     "pill": "Pulsuz Chrome extension",
     "titleStart": "İstənilən rəqibin stack-i, reklamları və brendi",
     "titleHighlight": "bir paneldə",
-    "lead": "Rivaline saytın işlətdiyi analitikanı, reklam piksellərini, CRM-i və çatı göstərir, reklamlarını dörd reklam kitabxanasında açır, rənglərini və şriftlərini çıxarır. Birbaşa Chrome-un yan panelində",
+    "lead": "Rivaline saytın işlətdiyi alətləri, nə təklif etdiyini, brendin başqa harada olduğunu və dörd reklam kitabxanasındakı reklamlarını göstərir, rənglərini və şriftlərini çıxarır. Birbaşa Chrome-un yan panelində",
     "secondary": "Reklam kitabxanası axtarışını yoxla",
     "trustLabel": "Niyə yoxlamaq təhlükəsizdir",
     "trust": ["Hesab lazım deyil", "Heç nə brauzerindən çıxmır", "Açıq mənbə"],
@@ -32,16 +32,45 @@
       "url": "example.com",
       "siteTitle": "Skincare that keeps it simple.",
       "siteButton": "Shop the routine",
-      "tabs": { "stack": "Stack", "ads": "Ads", "brand": "Brand" },
+      "tabs": {
+        "stack": "Stack",
+        "offer": "Təklif",
+        "ads": "Ads",
+        "brand": "Brand"
+      },
       "host": "example.com",
       "title": "8 kateqoriyada 13 alət",
       "rows": [
-        { "mark": "meta", "name": "Meta Pixel", "id": "4182736509…" },
-        { "mark": "tiktok", "name": "TikTok Pixel", "id": "C9H3KQ7R…" },
-        { "mark": "googleads", "name": "Google Ads", "id": "AW-11284956" },
-        { "mark": "googleanalytics", "name": "Google Analytics 4", "id": "G-8XK2LM4Q…" },
-        { "mark": "googletagmanager", "name": "Tag Manager", "id": "GTM-N4KV8R" },
-        { "mark": "intercom", "name": "Intercom", "id": "chat" }
+        {
+          "mark": "meta",
+          "name": "Meta Pixel",
+          "id": "4182736509…"
+        },
+        {
+          "mark": "tiktok",
+          "name": "TikTok Pixel",
+          "id": "C9H3KQ7R…"
+        },
+        {
+          "mark": "googleads",
+          "name": "Google Ads",
+          "id": "AW-11284956"
+        },
+        {
+          "mark": "googleanalytics",
+          "name": "Google Analytics 4",
+          "id": "G-8XK2LM4Q…"
+        },
+        {
+          "mark": "googletagmanager",
+          "name": "Tag Manager",
+          "id": "GTM-N4KV8R"
+        },
+        {
+          "mark": "intercom",
+          "name": "Intercom",
+          "id": "chat"
+        }
       ]
     },
     "kit": {
@@ -52,31 +81,94 @@
       "bodyFont": "DM Sans",
       "body": "mətn"
     },
-    "toast": { "eyebrow": "Tapılmadı", "text": "Bu saytda server-side izləmə yoxdur" }
+    "toast": {
+      "eyebrow": "Tapılmadı",
+      "text": "Bu saytda server-side izləmə yoxdur"
+    }
   },
   "marquee": {
     "title": "Marketoloqların işlətdiyi alətləri tanıyır",
     "items": [
-      { "mark": "googleanalytics", "label": "Google Analytics 4" },
-      { "mark": "googletagmanager", "label": "Tag Manager" },
-      { "mark": "googleads", "label": "Google Ads" },
-      { "mark": "meta", "label": "Meta Pixel" },
-      { "mark": "tiktok", "label": "TikTok Pixel" },
-      { "mark": "pinterest", "label": "Pinterest Tag" },
-      { "mark": "snapchat", "label": "Snap Pixel" },
-      { "mark": "hotjar", "label": "Hotjar" },
-      { "mark": "mixpanel", "label": "Mixpanel" },
-      { "mark": "hubspot", "label": "HubSpot" },
-      { "mark": "mailchimp", "label": "Mailchimp" },
-      { "mark": "intercom", "label": "Intercom" },
-      { "mark": "zendesk", "label": "Zendesk" },
-      { "mark": "shopify", "label": "Shopify" },
-      { "mark": "wordpress", "label": "WordPress" },
-      { "mark": "webflow", "label": "Webflow" },
-      { "mark": "trustpilot", "label": "Trustpilot" },
-      { "mark": "klarna", "label": "Klarna" },
-      { "mark": "stripe", "label": "Stripe" },
-      { "mark": "paypal", "label": "PayPal" }
+      {
+        "mark": "googleanalytics",
+        "label": "Google Analytics 4"
+      },
+      {
+        "mark": "googletagmanager",
+        "label": "Tag Manager"
+      },
+      {
+        "mark": "googleads",
+        "label": "Google Ads"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "mark": "tiktok",
+        "label": "TikTok Pixel"
+      },
+      {
+        "mark": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "mark": "snapchat",
+        "label": "Snap Pixel"
+      },
+      {
+        "mark": "hotjar",
+        "label": "Hotjar"
+      },
+      {
+        "mark": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "mark": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "mark": "mailchimp",
+        "label": "Mailchimp"
+      },
+      {
+        "mark": "intercom",
+        "label": "Intercom"
+      },
+      {
+        "mark": "zendesk",
+        "label": "Zendesk"
+      },
+      {
+        "mark": "shopify",
+        "label": "Shopify"
+      },
+      {
+        "mark": "wordpress",
+        "label": "WordPress"
+      },
+      {
+        "mark": "webflow",
+        "label": "Webflow"
+      },
+      {
+        "mark": "trustpilot",
+        "label": "Trustpilot"
+      },
+      {
+        "mark": "klarna",
+        "label": "Klarna"
+      },
+      {
+        "mark": "stripe",
+        "label": "Stripe"
+      },
+      {
+        "mark": "paypal",
+        "label": "PayPal"
+      }
     ]
   },
   "problem": {
@@ -100,7 +192,7 @@
   },
   "features": {
     "eyebrow": "Panelin içi",
-    "title": "Üç tab. İstənilən sayt haqqında tam mənzərə",
+    "title": "Rəqib haqqında hər şey, bir paneldə",
     "tabsLabel": "Rivaline imkanları",
     "stack": {
       "label": "Stack",
@@ -116,6 +208,22 @@
         "emailChat": "E-poçt və çat",
         "notFoundStrong": "Tapılmadı:",
         "notFound": "server-side izləmə, consent banneri, CRM"
+      }
+    },
+    "offer": {
+      "label": "Təklif",
+      "title": "Nə satırlar və harada varlar",
+      "lead": "Əsas başlıq, səhifədəki aksiyalar, qiymətlər, sosial profillər, tətbiqlər, bazarlar və saytın müştəri məlumatını necə topladığı",
+      "bullets": [
+        "Endirim, promo kod, pulsuz çatdırılma və taksit: Azərbaycan, ingilis, rus və türk dillərində",
+        "Instagram, TikTok, YouTube, Telegram və digər profillər, App Store və Google Play",
+        "Saytın xidmət etdiyi dillər, ölkələr və valyuta"
+      ],
+      "demo": {
+        "offers": "Təkliflər",
+        "free": "Pulsuz çatdırılma",
+        "code": "Promo kod",
+        "channels": "Kanallar"
       }
     },
     "ads": {
@@ -142,12 +250,31 @@
         "Yalnız şrift adları, şrift faylları heç vaxt",
         "Prezentasiya və ya maket üçün hazır"
       ],
-      "demo": { "headings": "Başlıqlar", "body": "Mətn" }
+      "demo": {
+        "headings": "Başlıqlar",
+        "body": "Mətn"
+      }
+    },
+    "compare": {
+      "label": "Müqayisə",
+      "title": "İki rəqib, yan-yana",
+      "lead": "İki saytı oxu, sonra hansı alət, təklif və kanalın yalnız birində olduğunu gör",
+      "bullets": [
+        "Yalnız bir saytda və hər ikisində olan alətlər",
+        "Reklam kanalları, təkliflər, sosial profillər və bazarlar bir cədvəldə",
+        "Rivaline-ın artıq oxuduğunu işlədir. Heç nə saxlanmır"
+      ],
+      "demo": {
+        "tools": "Marketinq alətləri",
+        "offers": "Təkliflər",
+        "profiles": "Sosial profillər",
+        "only": "Yalnız example.com"
+      }
     },
     "report": {
       "label": "Hesabat",
       "title": "Növbəti görüş üçün bir PDF",
-      "lead": "Stack, boşluqlar, reklam kitabxanası linkləri və brend dəsti bir A4 səhifədə, brauzerində hazırlanır",
+      "lead": "Stack, boşluqlar, təklif, kanallar, reklam kitabxanası linkləri və brend dəsti bir PDF-də, brauzerində hazırlanır",
       "bullets": [
         "Satış zəngi və ya müştəri təqdimatı üçün hazır",
         "Seçilə bilən mətn və işləyən linklər",
@@ -166,7 +293,10 @@
             "strong": "Server-side izləmə yoxdur.",
             "text": "4 pikselin hamısı brauzerdən göndərir."
           },
-          { "strong": "Consent banneri yoxdur.", "text": "Piksellər seçimdən əvvəl yüklənir." }
+          {
+            "strong": "Consent banneri yoxdur.",
+            "text": "Piksellər seçimdən əvvəl yüklənir."
+          }
         ]
       }
     }
@@ -219,7 +349,7 @@
     "titleStart": "Rəqibdə var, səndə yoxdur?",
     "titleHighlight": "Qurulmasını tapşır",
     "titleEnd": "Rivaline-ı yaradan adama",
-    "text": "Bir klik istənilən saytı hesabata çevirir: stack, boşluqlar, reklam kitabxanaları və brend dəsti. Komandanla paylaş və ya mənə göndər. Böyüyən brendlər üçün analitika, server-side izləmə, consent və reklam piksellərini qururam",
+    "text": "Bir klik istənilən saytı hesabata çevirir: stack, boşluqlar, təklif, kanallar, reklam kitabxanaları və brend dəsti. Komandanla paylaş və ya mənə göndər. Böyüyən brendlər üçün analitika, server-side izləmə, consent və reklam piksellərini qururam",
     "cta": "Audit sifariş et",
     "from": "Müəllif:",
     "paper": {
@@ -292,11 +422,15 @@
       },
       {
         "q": "Alətləri necə tanıyır?",
-        "a": "Skript ünvanlarını, cookie adlarını, səhifənin qlobal dəyişənlərini və meta teqləri təxminən 130 marketinq alətindən ibarət öz siyahısı ilə tutuşdurur. Hər tapıntı tapdığı sübutu göstərir."
+        "a": "Skript ünvanlarını, cookie adlarını, səhifənin qlobal dəyişənlərini və meta teqləri təxminən 160 marketinq alətindən ibarət öz siyahısı ilə tutuşdurur. Hər tapıntı tapdığı sübutu göstərir."
       },
       {
         "q": "Rəqibin reklam büdcəsini göstərə bilir?",
         "a": "Xeyr. Reklam kitabxanaları büdcəni yox, hansı reklamların getdiyini göstərir. Rivaline həmin kitabxanaları axtarışı artıq doldurulmuş halda açır."
+      },
+      {
+        "q": "İki rəqibi müqayisə edə bilərəm?",
+        "a": "Bəli. Hər saytı öz tabında oxu, sonra paneldə Müqayisə düyməsinə bas. Rivaline iki nəticəni yan-yana qoyur: alətlər, reklam kanalları, təkliflər, sosial profillər, bazarlar və brend rəngləri. Heç nə saxlanmır."
       },
       {
         "q": "Yeni tabda niyə ikona yenidən basmalıyam?",
@@ -330,7 +464,11 @@
       }
     }
   },
-  "footer": { "builtBy": "Hazırlayan", "privacy": "Məxfilik siyasəti", "source": "Mənbə kodu" },
+  "footer": {
+    "builtBy": "Hazırlayan",
+    "privacy": "Məxfilik siyasəti",
+    "source": "Mənbə kodu"
+  },
   "uninstall": {
     "meta": {
       "title": "Getməyinə təəssüf edirik | Rivaline",

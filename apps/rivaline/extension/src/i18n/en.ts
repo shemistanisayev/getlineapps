@@ -113,6 +113,9 @@ export const en = {
   'cmp.yes': 'Yes',
   'cmp.no': 'No',
   'cmp.none': 'None',
+  'rep.offer': 'Offer and channels',
+  'rep.offer.headline': 'Headline',
+  'rep.offer.social': 'Social profiles',
   'read.seconds': '{s} s',
   'panel.failed.title': 'This page is not answering',
   'panel.failed.text':

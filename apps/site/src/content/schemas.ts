@@ -649,7 +649,7 @@ export const rivalineSchema = z.object({
       url: text,
       siteTitle: text,
       siteButton: text,
-      tabs: z.object({ stack: text, ads: text, brand: text }),
+      tabs: z.object({ stack: text, offer: text, ads: text, brand: text }),
       host: text,
       title: text,
       rows: z.array(z.object({ mark: rvMark, name: text, id: text })).length(6),
@@ -681,10 +681,16 @@ export const rivalineSchema = z.object({
     stack: rvTab.extend({
       demo: z.object({ advertising: text, emailChat: text, notFoundStrong: text, notFound: text }),
     }),
+    offer: rvTab.extend({
+      demo: z.object({ offers: text, free: text, code: text, channels: text }),
+    }),
     ads: rvTab.extend({
       demo: z.object({ searchesBrand: text, searchesDomain: text, openAll: text }),
     }),
     brand: rvTab.extend({ demo: z.object({ headings: text, body: text }) }),
+    compare: rvTab.extend({
+      demo: z.object({ tools: text, offers: text, profiles: text, only: text }),
+    }),
     report: rvTab.extend({
       demo: z.object({
         date: text,

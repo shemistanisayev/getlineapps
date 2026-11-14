@@ -92,10 +92,12 @@ Serpline shows <problem> on <url>, but I think it is wrong. Check it and fix it 
 
 Yuxarıdakı 2-5-ci bölmələr Rivaline üçün də eynidir: "Hitline" sözünü "Rivaline" ilə əvəz et (Store paketi `store/rivaline/`, mətnlər `docs/rivaline/STORE-LISTING.md`, rəy səhifəsi `getlineapps.com/rivaline/uninstalled`, rəy e-poçtunun mövzusu `Rivaline feedback: <səbəb>`). Rivaline Store-a üçüncü extension yeri açılanda yüklənir, o vaxta qədər landingdə "Tezliklə" yazılır.
 
+**1.1 versiyasında nə var:** Stack (təxminən 160 alət, yerli alətlər daxil), **Təklif** tabı (aksiyalar, promo kodlar, qiymətlər, sosial profillər, tətbiqlər, bazarlar, müştəri məlumatını necə topladıqları), Ads, Brand, başlıqdakı **Müqayisə** düyməsi (oxunmuş iki tabı yan-yana qoyur) və hamısını birləşdirən PDF hesabatı. Store-a ilk dəfə 1.1.0 yüklənəcək.
+
 **Yeni versiya buraxmaq**
 
-1. Agentə yaz: `Release Rivaline 1.0.1: <nə dəyişdi>. Bump the version, run all checks, rebuild store/rivaline and push.`
-2. `chrome.google.com/webstore/devconsole` aç, Rivaline-ı seç, **Package** bölməsində **Upload new package** bas və `store/rivaline/rivaline-1.0.1.zip` faylını seç.
+1. Agentə yaz: `Release Rivaline 1.1.1: <nə dəyişdi>. Bump the version, run all checks, rebuild store/rivaline and push.`
+2. `chrome.google.com/webstore/devconsole` aç, Rivaline-ı seç, **Package** bölməsində **Upload new package** bas və `store/rivaline/rivaline-1.1.1.zip` faylını seç.
 3. **Submit for review** bas.
 
 **Domeni dəyişmək**

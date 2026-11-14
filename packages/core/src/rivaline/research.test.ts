@@ -132,6 +132,8 @@ describe('offers in English, Azerbaijani, Russian and Turkish', () => {
     expect(kinds('Бесплатная доставка от 3000 ₽')).toEqual(['shipping']);
     expect(kinds('Free returns within 60 days')).toEqual(['returns']);
     expect(kinds('Hədiyyə sertifikatları')).toEqual(['gift']);
+    // A month count alone is not an installment offer (QA: shamistanisayev.com).
+    expect(kinds('12 aylıq yol xəritəsi, büdcə bölgüsü')).toEqual([]);
     expect(kinds('GET PREPPED FOR THE BLACK FRIDAY SALE')).toEqual(['sale']);
   });
 

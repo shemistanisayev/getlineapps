@@ -78,3 +78,35 @@ New page in the same tab, a single-page app changing its URL and Read the page a
 - Pressing `Alt+Shift+V` needs a person; the command is registered as `_execute_action` (manifest test) and fires the same click handler the tests use.
 - The ad library pages themselves (Meta, Google, TikTok, LinkedIn) are not opened by the tests; the URL builders are unit tested against the formats checked in step 1.
 - `setUninstallURL`: Chrome has no API to read it back; the URL builder is unit tested and `/rivaline/uninstalled` is tested in the site e2e.
+
+## Rivaline 1.1.0 (2026-11-14)
+
+The 1.1 build read the 13 sites (the 9 above plus kontakt.az, irshad.az, bakuelectronics.az and tap.az) with `scripts/qa-rivaline.ts`, which now also saves the Offer tab result.
+
+| Site | Tools | Offers found | Prices | Profiles, apps, WhatsApp | Languages, currency | Leads |
+|---|---|---|---|---|---|---|
+| `allbirds.com` | 10 | discount and sale (Black Friday, up to 70% off), free shipping | $52.50 to $105 | 6 profiles | 11 languages, USD | email, SMS (Attentive) |
+| `gymshark.com` | 12 | Black Friday sale, 15% off for email sign-up | none on the home page | 7 profiles | 5 languages | chat (Intercom) |
+| `hubspot.com` | 12 | none | none | 6 profiles, 2 apps | 6 languages | CRM forms (HubSpot) |
+| `notion.com` | 8 | none | none | 5 profiles | 19 languages, USD | none |
+| `umico.az` | 9 | up to 80% off, 24-month installments, free delivery | none on the home page | 4 profiles, 2 apps | az, ru | web push (OneSignal) |
+| `kontakt.az` | 11 | gift cards, free delivery | 1.85 to 3899.99 AZN | 6 profiles, WhatsApp | az, ru, AZN | chat (LiveChat), WhatsApp |
+| `irshad.az` | 8 | installments, discount | 16.11 to 7399.99 AZN | 7 profiles, 2 apps, WhatsApp | az, ru, AZN | WhatsApp |
+| `bakuelectronics.az` | 9 | none | none | 6 profiles, 2 apps | az | email form, chat (LiveChat) |
+| `tap.az` | 2 (AdRiver, Cloudflare Web Analytics) | none | 5 to 12000 AZN | 2 profiles, 1 app | az, ru, AZN | none |
+| `azertag.az` | 4 | none | none | 7 profiles, 2 apps | az | none |
+| `theguardian.com` | 1 | none | none | 6 profiles | en | none |
+| `en.wikipedia.org` | 0 | none | none | none | en | none |
+| `shamistanisayev.com` | 0 | none (after the fix below) | none | LinkedIn | az, en | none |
+
+Found and fixed in 1.1 QA:
+
+| Where | Problem | Fix |
+|---|---|---|
+| Offers (shamistanisayev.com) | "12 aylıq yol xəritəsi" (a 12-month roadmap) counted as installments | A month count alone no longer counts; installments need "taksit", "faizsiz", "hissə-hissə", "interest-free" or "or N payments". Test in `research.test.ts` |
+| Top bar (allbirds, gymshark, HubSpot) | Two carousel messages merged, countdown digits, a utility menu taken as an announcement | Only the first message, digits removed, bars full of links skipped (step 2) |
+| Buttons (gymshark, HubSpot) | Country picker buttons and "Skip to content" | Fixed layers and skip links skipped (step 2) |
+| WhatsApp (bakuelectronics.az) | A WhatsApp channel counted as chat | Only numbers and business chat links count (step 2) |
+| Russian offers | `\w` does not match Cyrillic, "бесплатная доставка" was missed | Cyrillic letter range (step 2) |
+
+Known limits: offers are read from the page the user opened (usually the home page), so a shop's product prices show only where they are on that page; in-house analytics and region-specific tools Rivaline does not know still need a rule.

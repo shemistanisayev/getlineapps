@@ -1110,6 +1110,8 @@ body.rv-page {
   color: var(--ink);
 }
 .lp #tb-st:checked ~ .tbar-w label[for='tb-st'],
+.lp #tb-of:checked ~ .tbar-w label[for='tb-of'],
+.lp #tb-cp:checked ~ .tbar-w label[for='tb-cp'],
 .lp #tb-ad:checked ~ .tbar-w label[for='tb-ad'],
 .lp #tb-br:checked ~ .tbar-w label[for='tb-br'],
 .lp #tb-rp:checked ~ .tbar-w label[for='tb-rp'] {
@@ -1117,6 +1119,8 @@ body.rv-page {
   color: #ffffff;
 }
 .lp #tb-st:focus-visible ~ .tbar-w label[for='tb-st'],
+.lp #tb-of:focus-visible ~ .tbar-w label[for='tb-of'],
+.lp #tb-cp:focus-visible ~ .tbar-w label[for='tb-cp'],
 .lp #tb-ad:focus-visible ~ .tbar-w label[for='tb-ad'],
 .lp #tb-br:focus-visible ~ .tbar-w label[for='tb-br'],
 .lp #tb-rp:focus-visible ~ .tbar-w label[for='tb-rp'] {
@@ -1131,6 +1135,8 @@ body.rv-page {
   animation: lp-pane 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .lp #tb-st:checked ~ .panes .p-st,
+.lp #tb-of:checked ~ .panes .p-of,
+.lp #tb-cp:checked ~ .panes .p-cp,
 .lp #tb-ad:checked ~ .panes .p-ad,
 .lp #tb-br:checked ~ .panes .p-br,
 .lp #tb-rp:checked ~ .panes .p-rp {
@@ -1259,6 +1265,63 @@ body.rv-page {
   background: var(--p);
   color: #ffffff;
   transform: rotate(45deg);
+}
+/* Offer and Compare demos (Rivaline 1.1) */
+.lp .srow.ocol {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  font-weight: 500;
+}
+.lp .ochip {
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #ecfeff;
+  color: #155e75;
+  font-size: 11.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+.lp .ocode {
+  padding: 1px 6px;
+  border: 1px dashed #c9c5d6;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.lp .crow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid #eae8f0;
+  font-size: 13px;
+  color: var(--mut);
+}
+.lp .crow b {
+  color: var(--ink);
+}
+.lp .crow.chead {
+  border-top: none;
+  font-size: 11px;
+  font-weight: 700;
+}
+.lp .cchips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 14px 14px;
+}
+.lp .cchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 4px;
+  border: 1px solid #dcd9e6;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
 }
 .lp .sall {
   margin: 10px;

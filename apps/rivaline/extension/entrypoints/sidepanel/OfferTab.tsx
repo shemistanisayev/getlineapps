@@ -1,65 +1,35 @@
-import type {
-  AppLink,
-  LeadCapture,
-  PriceRange,
-  PromoKind,
-  SiteInfo,
-  SocialNetwork,
-} from '@line/core/rivaline';
+import type { AppLink, PromoKind, SiteInfo, SocialNetwork } from '@line/core/rivaline';
 import { CardHead, RvCard, RvIcon, ToolIconView, type ToolIcon } from '@line/ui/rivaline';
 import type { ReactNode } from 'react';
 import type { ScanResult } from '../../src/capture/scan.ts';
 import type { Lang, MessageKey, T } from '../../src/i18n/index.ts';
+import {
+  NETWORK_NAMES,
+  STORE_NAMES,
+  displayNames,
+  leadTools,
+  priceLine,
+} from '../../src/offer-format.ts';
 
 /** Network names are brand names: the same in every language. */
 export const NETWORK: Record<SocialNetwork, { name: string; icon: ToolIcon }> = {
-  instagram: { name: 'Instagram', icon: { mark: 'instagram' } },
-  facebook: { name: 'Facebook', icon: { mark: 'facebook' } },
-  tiktok: { name: 'TikTok', icon: { mark: 'tiktok' } },
-  youtube: { name: 'YouTube', icon: { mark: 'youtube' } },
+  instagram: { name: NETWORK_NAMES.instagram, icon: { mark: 'instagram' } },
+  facebook: { name: NETWORK_NAMES.facebook, icon: { mark: 'facebook' } },
+  tiktok: { name: NETWORK_NAMES.tiktok, icon: { mark: 'tiktok' } },
+  youtube: { name: NETWORK_NAMES.youtube, icon: { mark: 'youtube' } },
   // simple-icons has no LinkedIn mark (the Ads tab does the same).
-  linkedin: { name: 'LinkedIn', icon: { mark: 'link' } },
-  x: { name: 'X', icon: { mark: 'x' } },
-  telegram: { name: 'Telegram', icon: { mark: 'telegram' } },
-  pinterest: { name: 'Pinterest', icon: { mark: 'pinterest' } },
-  threads: { name: 'Threads', icon: { mark: 'threads' } },
-  vk: { name: 'VK', icon: { mark: 'vk' } },
+  linkedin: { name: NETWORK_NAMES.linkedin, icon: { mark: 'link' } },
+  x: { name: NETWORK_NAMES.x, icon: { mark: 'x' } },
+  telegram: { name: NETWORK_NAMES.telegram, icon: { mark: 'telegram' } },
+  pinterest: { name: NETWORK_NAMES.pinterest, icon: { mark: 'pinterest' } },
+  threads: { name: NETWORK_NAMES.threads, icon: { mark: 'threads' } },
+  vk: { name: NETWORK_NAMES.vk, icon: { mark: 'vk' } },
 };
 export const STORE: Record<AppLink['store'], { name: string; icon: ToolIcon }> = {
-  appstore: { name: 'App Store', icon: { mark: 'appstore' } },
-  googleplay: { name: 'Google Play', icon: { mark: 'googleplay' } },
+  appstore: { name: STORE_NAMES.appstore, icon: { mark: 'appstore' } },
+  googleplay: { name: STORE_NAMES.googleplay, icon: { mark: 'googleplay' } },
 };
 const MAX_REGIONS = 6;
-
-function money(n: number, currency: string | null, lang: Lang) {
-  try {
-    if (currency)
-      return new Intl.NumberFormat(lang, {
-        style: 'currency',
-        currency,
-        maximumFractionDigits: n % 1 ? 2 : 0,
-      }).format(n);
-  } catch {
-    /* an unknown code: the number alone */
-  }
-  return new Intl.NumberFormat(lang, { maximumFractionDigits: 2 }).format(n);
-}
-
-function names(lang: Lang, type: 'language' | 'region') {
-  let dn: Intl.DisplayNames | null = null;
-  try {
-    dn = new Intl.DisplayNames([lang, 'en'], { type });
-  } catch {
-    dn = null;
-  }
-  return (code: string) => {
-    try {
-      return dn?.of(code) ?? code;
-    } catch {
-      return code;
-    }
-  };
-}
 
 /** A link row: icon, name, the handle or number, and an open button (a new tab, on click only). */
 function LinkRow({
@@ -118,18 +88,6 @@ function CopyButton({ label, onCopy }: { label: string; onCopy: () => void }) {
   );
 }
 
-function priceLine(p: PriceRange, lang: Lang, t: T) {
-  const min = money(p.min, p.currency, lang);
-  const max = money(p.max, p.currency, lang);
-  return p.min === p.max
-    ? t('offer.priceOne', { min, n: p.count })
-    : t('offer.priceRange', { min, max, n: p.count });
-}
-
-function leadTools(l: LeadCapture, t: T) {
-  return l.tools.length ? l.tools.join(', ') : t('leads.onPage');
-}
-
 /** Offer tab (Rivaline 1.1, docs/rivaline/PLAN-1.1.md step 3). Read only; nothing is saved. */
 export function OfferTab({
   result,
@@ -153,8 +111,8 @@ export function OfferTab({
       /* clipboard blocked */
     }
   };
-  const language = names(lang, 'language');
-  const region = names(lang, 'region');
+  const language = displayNames(lang, 'language');
+  const region = displayNames(lang, 'region');
   const anyChannel =
     channels.social.length +
       channels.apps.length +

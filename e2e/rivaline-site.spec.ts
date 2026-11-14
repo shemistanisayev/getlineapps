@@ -111,14 +111,25 @@ test.describe('rivaline landing', () => {
     }
   });
 
-  test('the four feature tabs work with the keyboard', async ({ page }) => {
+  test('the six feature tabs work with the keyboard (1.1: Offer and Compare)', async ({ page }) => {
     await page.goto(`${SITE}/rivaline`);
+    await expect(page.locator('.tbar label')).toHaveText([
+      'Stack',
+      'Offer',
+      'Ads',
+      'Brand',
+      'Compare',
+      'Report',
+    ]);
     await expect(page.locator('.p-st')).toBeVisible();
     await page.locator('#tb-st').focus();
     await page.keyboard.press('ArrowRight');
-    await expect(page.locator('#tb-ad')).toBeChecked();
-    await expect(page.locator('.p-ad')).toBeVisible();
+    await expect(page.locator('#tb-of')).toBeChecked();
+    await expect(page.locator('.p-of')).toBeVisible();
+    await expect(page.locator('.p-of')).toContainText('WELCOME10');
     await expect(page.locator('.p-st')).toBeHidden();
+    await page.locator('label[for="tb-cp"]').click();
+    await expect(page.locator('.p-cp')).toContainText('Only example.com');
     await page.locator('label[for="tb-rp"]').click();
     await expect(page.locator('.p-rp')).toBeVisible();
   });

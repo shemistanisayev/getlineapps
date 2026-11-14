@@ -1,7 +1,8 @@
 /**
  * Chrome Web Store package for Rivaline (docs/rivaline-SPEC.md Phase 9), written to store/rivaline/:
  *   rivaline-<version>.zip           production build (wxt zip)
- *   screenshots/1-stack.png ...      5 screenshots, 1280x800, from the real side panel on Kova
+ *   screenshots/1-stack.png ...      5 screenshots, 1280x800, from the real side panel on Kova:
+ *                                    Stack, Offer, Compare (Kova and Glowbar), Ads, Report PDF
  *   promo-small-440x280.png          small promo tile
  *   promo-marquee-1400x560.png       marquee promo tile
  *
@@ -21,14 +22,21 @@ import {
   brandKit,
   brandName,
   libraryLinks,
+  siteInfo,
   type BrandRaw,
   type PageSnapshot,
+  type SiteRaw,
 } from '../packages/core/src/rivaline/index.ts';
 import { buildLineReport } from '../packages/report/src/index.ts';
 import { loadReportFontsNode } from '../packages/report/src/fonts-node.ts';
 import { translator } from '../apps/rivaline/extension/src/i18n/index.ts';
 import { rivalineReport } from '../apps/rivaline/extension/src/report.ts';
-import { RIVALINE_PORT, kovaUrl, rivalineHostArgs } from '../apps/rivaline/fixture/hosts.ts';
+import {
+  RIVALINE_PORT,
+  glowUrl,
+  kovaUrl,
+  rivalineHostArgs,
+} from '../apps/rivaline/fixture/hosts.ts';
 import { createFixtureServer } from '../apps/rivaline/fixture/server.ts';
 import { routeRivalineVendors } from '../apps/rivaline/fixture/vendors.ts';
 import { loadExtensionCdp } from '../e2e/extension-cdp.ts';
@@ -134,19 +142,28 @@ try {
   await page.bringToFront();
 
   await ext.screenshot(PANEL, join(tmp, 'stack.png'), PANEL_SIZE);
+  await click('#rv-tab-offer');
+  await until('Page language');
+  await ext.screenshot(PANEL, join(tmp, 'offer.png'), PANEL_SIZE);
   await click('#rv-tab-ads');
   await until('SEARCH FOR');
   await ext.screenshot(PANEL, join(tmp, 'ads.png'), PANEL_SIZE);
-  await click('#rv-tab-brand');
-  await until('Click a color to copy');
-  await ext.screenshot(PANEL, join(tmp, 'brand.png'), PANEL_SIZE);
-  await evalIn(
-    `[...document.querySelectorAll('.rp-export button')].find((b) => b.textContent === 'CSS variables').click()`,
-    true,
-  );
-  await until('Export brand kit');
-  await new Promise((r) => setTimeout(r, 600));
-  await ext.screenshot(PANEL, join(tmp, 'export.png'), PANEL_SIZE);
+
+  // Compare: read Glowbar in a second tab, come back to Kova, open Compare.
+  await click('#rv-tab-stack');
+  const glow = await ext.context.newPage();
+  await glow.bringToFront();
+  await glow.goto(glowUrl());
+  await ext.clickAction(glow);
+  await until('5 tools in 5 categories');
+  await page.bringToFront();
+  await until('13 tools in 8 categories');
+  await click('[aria-label="Compare two sites"]');
+  await until('Marketing tools');
+  await new Promise((r) => setTimeout(r, 400));
+  await ext.screenshot(PANEL, join(tmp, 'compare.png'), PANEL_SIZE);
+  await click('[aria-label="Back to results"]');
+  await glow.close();
   await page.close();
 
   // The report PDF from the same fixture, shown in the browser's PDF viewer.
@@ -162,6 +179,7 @@ try {
         url: snap.url,
         stack,
         brand: brandKit(fx<BrandRaw>('kova-brand')),
+        site: siteInfo(fx<SiteRaw>('kova-site'), stack),
         searchBrand: brandName(snap),
         links: libraryLinks({ brand: brandName(snap), domain: brandDomain(snap.url) }, stack.tools),
       },
@@ -201,21 +219,16 @@ try {
   );
   await frame(
     f,
-    '2-ads.png',
+    '2-offer.png',
+    'Their offers, social channels and markets',
+    split(site, join(tmp, 'offer.png')),
+  );
+  await frame(f, '3-compare.png', 'Two rivals side by side', split(site, join(tmp, 'compare.png')));
+  await frame(
+    f,
+    '4-ads.png',
     'Its ads in four ad libraries, one click away',
     split(site, join(tmp, 'ads.png')),
-  );
-  await frame(
-    f,
-    '3-brand.png',
-    'Logo, colors, fonts and the main button',
-    split(site, join(tmp, 'brand.png')),
-  );
-  await frame(
-    f,
-    '4-export.png',
-    'Export the brand kit as CSS, JSON or a PNG palette',
-    split(site, join(tmp, 'export.png')),
   );
   await frame(
     f,

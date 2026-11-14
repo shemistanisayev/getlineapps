@@ -8,6 +8,7 @@ import {
   type BrandKit,
   type Gap,
   type LibraryLink,
+  type SiteInfo,
   type Stack,
 } from '@line/core/rivaline';
 import { contactUrl } from '@line/core/site';
@@ -20,6 +21,7 @@ import type {
   SeverityItem,
 } from '@line/report';
 import type { Lang, MessageKey, T } from './i18n/index.ts';
+import { NETWORK_NAMES, STORE_NAMES, displayNames, leadTools, priceLine } from './offer-format.ts';
 
 export function dateLabel(d: Date, lang: Lang): string {
   return new Intl.DateTimeFormat(lang === 'az' ? 'az-Latn-AZ' : 'en-US', {
@@ -91,6 +93,62 @@ export function brandNote(kit: BrandKit, t: T): string {
   return parts.join(' ');
 }
 
+/**
+ * Offer and channels (Rivaline 1.1): what the site says and sells, where else the brand is, its
+ * markets and how it catches leads. Empty rows are left out.
+ */
+export function offerRows(site: SiteInfo, t: T, lang: Lang): KeyValueRow[] {
+  const { offer, channels, markets, leads } = site;
+  const language = displayNames(lang, 'language');
+  const rows: Array<KeyValueRow | null> = [
+    offer.headline ? { k: t('rep.offer.headline'), v: offer.headline } : null,
+    offer.promos.length
+      ? {
+          k: t('offer.offers'),
+          v: offer.promos
+            .map(
+              // The offer's own closing period goes, so the list reads "...returns; Installments".
+              (p) =>
+                `${p.kinds.map((k) => t(`promo.${k}` as MessageKey)).join(', ')}: ${p.text.replace(/[.!]+$/, '')}`,
+            )
+            .join('; '),
+        }
+      : null,
+    offer.prices ? { k: t('offer.prices'), v: priceLine(offer.prices, lang, t) } : null,
+    channels.social.length
+      ? {
+          k: t('rep.offer.social'),
+          v: channels.social.map((s) => `${NETWORK_NAMES[s.network]} ${s.handle}`).join(', '),
+        }
+      : null,
+    channels.apps.length
+      ? { k: t('cmp.apps'), v: channels.apps.map((a) => STORE_NAMES[a.store]).join(', ') }
+      : null,
+    channels.whatsapp.length ? { k: 'WhatsApp', v: channels.whatsapp.join(', ') } : null,
+    {
+      k: t('markets.title'),
+      v:
+        [
+          (markets.languages.length ? markets.languages : [markets.pageLang].filter(Boolean))
+            .map(language)
+            .join(', '),
+          markets.currency ?? '',
+        ]
+          .filter(Boolean)
+          .join('; ') || t('markets.none'),
+    },
+    leads.length
+      ? {
+          k: t('leads.title'),
+          v: leads
+            .map((l) => `${t(`lead.${l.way}` as MessageKey)} (${leadTools(l, t)})`)
+            .join(', '),
+        }
+      : null,
+  ];
+  return rows.filter((r): r is KeyValueRow => r !== null);
+}
+
 export interface ReportInput {
   url: string;
   stack: Stack;
@@ -99,6 +157,8 @@ export interface ReportInput {
   links: LibraryLink[];
   /** The brand name those searches use. */
   searchBrand: string;
+  /** Offer, channels, markets and leads (1.1); left out when the page was not read for it. */
+  site?: SiteInfo | null;
 }
 
 export function rivalineReport(
@@ -131,6 +191,8 @@ export function rivalineReport(
     })),
   };
   const extras: ExtraSection[] = [{ type: 'columns', columns: [brandSection, libsSection] }];
+  if (input.site)
+    extras.push({ type: 'kv', title: t('rep.offer'), rows: offerRows(input.site, t, lang) });
 
   return {
     tool: 'rivaline',

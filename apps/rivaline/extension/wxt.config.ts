@@ -21,7 +21,7 @@ export default defineConfig({
     name: 'Rivaline: Competitor Research for Meta, Google, TikTok Ads & More',
     short_name: 'Rivaline',
     description:
-      "See any site's martech stack, open its ads in 4 ad libraries and copy its brand colors and fonts. Free, no account.",
+      "See a rival's martech stack, offers and social channels, open its ads in 4 ad libraries and compare two sites. Free, no account.",
     minimum_chrome_version: '116',
     permissions: ['activeTab', 'scripting', 'storage', 'sidePanel'],
     icons: { 16: 'icon-16.png', 32: 'icon-32.png', 48: 'icon-48.png', 128: 'icon-128.png' },

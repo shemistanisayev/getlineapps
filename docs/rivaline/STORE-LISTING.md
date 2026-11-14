@@ -1,6 +1,6 @@
 # Rivaline: Chrome Web Store listing
 
-Everything to paste into the Chrome Web Store Developer Dashboard for Rivaline 1.0.0. The files to upload are in `store/rivaline/` (see `store/rivaline/README.md`).
+Everything to paste into the Chrome Web Store Developer Dashboard for Rivaline 1.1.0. The files to upload are in `store/rivaline/` (see `store/rivaline/README.md`).
 
 Rivaline waits for the third extension slot (docs/line-family-PLAN.md, "Web Store limiti"): upload it once the limit is raised. Until then its landing shows "Coming soon".
 
@@ -8,9 +8,9 @@ Rivaline waits for the third extension slot (docs/line-family-PLAN.md, "Web Stor
 
 | Field | Value |
 |---|---|
-| File | `store/rivaline/rivaline-1.0.0.zip` |
+| File | `store/rivaline/rivaline-1.1.0.zip` |
 | Name | Rivaline: Competitor Research for Meta, Google, TikTok Ads & More (manifest name; short name Rivaline) |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Category | Tools (Developer Tools if Tools is not offered) |
 | Language | English (default), Azerbaijani (second listing language) |
 
@@ -22,25 +22,35 @@ Rivaline waits for the third extension slot (docs/line-family-PLAN.md, "Web Stor
 Rivaline: Competitor Research for Meta, Google, TikTok Ads & More
 ```
 
-**Short description** (from the manifest, 115 of 132 characters)
+**Short description** (from the manifest, 128 of 132 characters)
 
 ```
-See any site's martech stack, open its ads in 4 ad libraries and copy its brand colors and fonts. Free, no account.
+See a rival's martech stack, offers and social channels, open its ads in 4 ad libraries and compare two sites. Free, no account.
 ```
 
 **Detailed description**
 
 ```
-See any rival's stack, ads and brand in one panel.
+See any rival's stack, offers, ads and brand in one panel.
 
-Rivaline opens in Chrome's side panel next to the site you are looking at. Click the icon (or press Alt+Shift+V) and it shows which marketing tools the site runs, opens its ads in four ad libraries and pulls its brand style. One more click turns it all into a competitor report PDF.
+Rivaline opens in Chrome's side panel next to the site you are looking at. Click the icon (or press Alt+Shift+V) and it shows which marketing tools the site runs, opens its ads in four ad libraries and pulls its brand style. It also shows what the site offers and where else the brand is, and puts two competitors side by side. One more click turns it all into a competitor report PDF.
 
 STACK
 - Every marketing tool a site runs, grouped by what it does: from analytics and ad pixels to chat and payments
 - The ID each tool uses, ready to copy, from the tag manager container to the pixel and the analytics property
 - The evidence behind every match: the script, request, global, cookie, meta tag or page element Rivaline found
 - Gaps worth a conversation: no server-side tracking, no consent banner, no CRM or no analytics
-- About 130 tools are recognized, and a server-side tag manager is spotted when the site has one
+- About 160 tools are recognized, and a server-side tag manager is spotted when the site has one
+
+OFFER
+- What the site says and sells: the headline, the buttons and the announcement bar
+- Discounts, promo codes, free delivery and installments in four languages, Azerbaijani and Russian included
+- The price range on the page, with the languages and the currency the site serves
+- The social profiles and apps the site links to, and how it catches leads
+
+COMPARE
+- Read two competitors in two tabs and see them side by side
+- Tools only one of them has, ad channels, offers, social profiles and brand colors in one view
 
 ADS
 - The brand name and the domain are filled in for you, so each library opens on the right search
@@ -55,7 +65,7 @@ BRAND
 - Export the kit as CSS variables, JSON or a PNG palette. Font names only, never the font files
 
 COMPETITOR REPORT PDF
-- Stack, gaps, brand kit and the four ad library links on one A4 page, ready for a sales call or a client pitch
+- Stack, gaps, offer and brand kit with the four ad library links in one PDF, ready for a sales call or a client pitch
 
 PRIVATE BY DESIGN
 - No account, no server, no analytics inside the extension
@@ -70,25 +80,35 @@ Free, with no paid plan and no usage limit. Built by Shamistan Isayev, analytics
 
 ## Store listing (Azerbaijani)
 
-**Short description** (Azerbaijani, 129 of 132 characters)
+**Short description** (Azerbaijani, 128 of 132 characters)
 
 ```
-İstənilən saytın martech stack-ini gör, reklamlarını 4 reklam kitabxanasında aç, brend rənglərini və şriftlərini kopyala. Pulsuz.
+Rəqibin martech stack-ini, təkliflərini və sosial kanallarını gör, reklamlarını 4 kitabxanada aç, iki saytı müqayisə et. Pulsuz.
 ```
 
 **Detailed description**
 
 ```
-İstənilən rəqibin stack-i, reklamları və brendi bir paneldə.
+İstənilən rəqibin stack-i, təklifləri, reklamları və brendi bir paneldə.
 
-Rivaline baxdığın saytın yanında, Chrome-un yan panelində açılır. İkona bas (və ya Alt+Shift+V) və o, saytın hansı marketinq alətlərini işlətdiyini göstərir, reklamlarını dörd reklam kitabxanasında açır və brend stilini çıxarır. Bir klik daha hamısını rəqib hesabatı PDF-inə çevirir.
+Rivaline baxdığın saytın yanında, Chrome-un yan panelində açılır. İkona bas (və ya Alt+Shift+V) və o, saytın hansı marketinq alətlərini işlətdiyini göstərir, reklamlarını dörd reklam kitabxanasında açır və brend stilini çıxarır. Saytın nə təklif etdiyini və brendin başqa harada olduğunu da göstərir, iki rəqibi yan-yana qoyur. Bir klik daha hamısını rəqib hesabatı PDF-inə çevirir.
 
 STACK
 - Saytın işlətdiyi hər marketinq aləti, nə iş gördüyünə görə qruplaşdırılmış: analitika və reklam piksellərindən çat və ödənişlərə qədər
 - Hər alətin işlətdiyi ID, kopyalamağa hazır: teq menecer konteynerindən piksel və analitika ID-sinə qədər
 - Hər tapıntının sübutu: Rivaline-ın tapdığı skript, sorğu, qlobal dəyişən, cookie, meta teq və ya səhifə elementi
 - Danışmağa dəyər boşluqlar: server-side izləmə, consent banneri, CRM və ya analitika olmaması
-- Təxminən 130 alət tanınır, sayt server-side teq menecer işlədirsə, o da görünür
+- Təxminən 160 alət tanınır, sayt server-side teq menecer işlədirsə, o da görünür
+
+TƏKLİF
+- Saytın nə dediyi və nə satdığı: əsas başlıq, düymələr və elan zolağı
+- Endirim, promo kod, pulsuz çatdırılma və taksit dörd dildə, Azərbaycan və rus dilləri daxil
+- Səhifədəki qiymət aralığı, saytın xidmət etdiyi dillər və valyuta
+- Saytın link verdiyi sosial profillər və tətbiqlər, müştəri məlumatını necə topladığı
+
+MÜQAYİSƏ
+- İki rəqibi iki tabda oxu və yan-yana gör
+- Yalnız birində olan alətlər, reklam kanalları, təkliflər, sosial profillər və brend rəngləri bir yerdə
 
 ADS
 - Brend adı və domen sənin üçün doldurulur, ona görə hər kitabxana düz axtarışda açılır
@@ -103,7 +123,7 @@ BRAND
 - Dəsti CSS dəyişənləri, JSON və ya PNG palitra kimi export et. Yalnız şrift adları, şrift faylları heç vaxt
 
 RƏQİB HESABATI PDF
-- Stack, boşluqlar, brend dəsti və dörd reklam kitabxanası linki bir A4 səhifədə, satış zəngi və ya müştəri təqdimatı üçün hazır
+- Stack, boşluqlar, təklif və brend dəsti dörd reklam kitabxanası linki ilə bir PDF-də, satış zəngi və ya müştəri təqdimatı üçün hazır
 
 MƏXFİLİK ƏSASDIR
 - Hesab, server və extension-un içində analitika yoxdur
@@ -121,11 +141,11 @@ Pulsuzdur, pullu plan və istifadə limiti yoxdur. Müəllif: Şəmistan İsayev
 | Field | File |
 |---|---|
 | Store icon 128x128 | inside the zip (`icon-128.png`); also `store/rivaline/icon-128.png` |
-| Screenshots 1280x800 (5) | `store/rivaline/screenshots/1-stack.png`, `2-ads.png`, `3-brand.png`, `4-export.png`, `5-report.png` |
+| Screenshots 1280x800 (5) | `store/rivaline/screenshots/1-stack.png`, `2-offer.png`, `3-compare.png`, `4-ads.png`, `5-report.png` |
 | Small promo tile 440x280 | `store/rivaline/promo-small-440x280.png` |
 | Marquee promo tile 1400x560 | `store/rivaline/promo-marquee-1400x560.png` |
 
-Screenshots are made from the fictional Kova shop (`apps/rivaline/fixture`), not from a real site. Regenerate with `pnpm store:rivaline` (see the header of `scripts/store-rivaline.ts`).
+Screenshots are made from the fictional Kova and Glowbar shops (`apps/rivaline/fixture`), not from real sites. Regenerate with `pnpm store:rivaline` (see the header of `scripts/store-rivaline.ts`).
 
 ## Additional fields
 
@@ -149,7 +169,7 @@ Show the marketing tools, ad library links and brand style of the site in the cu
 | Permission | Justification to paste |
 |---|---|
 | `activeTab` | When the user clicks the Rivaline icon or presses its shortcut, Rivaline reads that tab to show its marketing tools and brand style, and takes one screenshot of the visible page to cut out the logo. Without that action it has no access to any tab. |
-| `scripting` | Runs read-only functions in the tab the user chose: one lists the page's scripts, loaded resources, cookie names, page globals and meta tags to recognize marketing tools; one reads computed colors, fonts, the logo position and the main button style. Nothing on the page is changed and nothing is sent anywhere. |
+| `scripting` | Runs read-only functions in the tab the user chose: one lists the page's scripts, loaded resources, cookie names, page globals and meta tags to recognize marketing tools; one reads computed colors, fonts, the logo position and the main button style; one reads the visible text, links and structured data to show the site's offers, social profiles and languages. Nothing on the page is changed and nothing is sent anywhere. |
 | `storage` | Saves the user's settings in chrome.storage.local on their computer: interface language and the default country for ad library searches. Nothing else is stored. |
 | `sidePanel` | Shows the results in Chrome's side panel next to the page. |
 | Host permissions | None requested. |

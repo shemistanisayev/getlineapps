@@ -12,7 +12,7 @@ const read = (rel: string) => readFileSync(join(root, rel), 'utf8');
 const listing = read('docs/rivaline/STORE-LISTING.md').replace(/\r\n/g, '\n');
 const config = read('apps/rivaline/extension/wxt.config.ts');
 const pkg = JSON.parse(read('apps/rivaline/extension/package.json')) as { version: string };
-const SHOTS = ['1-stack', '2-ads', '3-brand', '4-export', '5-report'];
+const SHOTS = ['1-stack', '2-offer', '3-compare', '4-ads', '5-report'];
 
 /** The first fenced block after a line that contains `label`. */
 function block(label: string, from = 0): string {

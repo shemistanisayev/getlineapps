@@ -10,6 +10,8 @@ import {
   libraryLinks,
   type BrandRaw,
   type PageSnapshot,
+  siteInfo,
+  type SiteRaw,
 } from '@line/core/rivaline';
 import { buildLineReport } from '@line/report';
 import { loadReportFontsNode } from '@line/report/node';
@@ -154,5 +156,41 @@ describe('rivaline competitor report', () => {
     expect(cfg.keyValue.rows).toEqual([{ k: 'Tools', v: 'No marketing tools found on this page' }]);
     expect(cfg.severity.items.map((i) => i.lead)).toEqual(['No analytics.']);
     expect((await buildLineReport(cfg)).pages).toBe(1);
+  });
+
+  it('1.1: the offer and channels section, in the panel language', async () => {
+    const site = siteInfo(load<SiteRaw>('kova-site'), stack);
+    const cfg = rivalineReport({ ...input, site }, translator('en'), 'en', fonts, now);
+    const offer = cfg.extras?.find((e) => e.type === 'kv');
+    expect(offer).toMatchObject({ type: 'kv', title: 'Offer and channels' });
+    expect(offer && 'rows' in offer ? offer.rows : []).toEqual([
+      { k: 'Headline', v: 'Skincare that keeps it simple.' },
+      {
+        k: 'Offers',
+        v: 'Free delivery, Returns: Free shipping over $40. Easy 30-day returns; Installments: or 3 payments with Klarna; Promo code, Discount: Get 10% off your first order with code WELCOME10',
+      },
+      { k: 'Prices on this page', v: '$24 to $42, 3 prices' },
+      {
+        k: 'Social profiles',
+        v: 'Instagram kova.skin, TikTok @kova.skin, YouTube @kovaskin, Pinterest kovaskin',
+      },
+      { k: 'Apps', v: 'App Store, Google Play' },
+      { k: 'Markets', v: 'German, English; USD' },
+      { k: 'How they catch leads', v: 'Email sign-up (Mailchimp), Live chat (Intercom)' },
+    ]);
+    for (const lang of ['en', 'az'] as const) {
+      const report = await buildLineReport(
+        rivalineReport({ ...input, site }, translator(lang), lang, fonts, now),
+      );
+      // The section flows to a second page; the CTA stays at the end.
+      expect(report.pages).toBeLessThanOrEqual(2);
+      const text = report.layout.map((l) => l.text).join(' ');
+      expect(text).toContain(lang === 'en' ? 'Offer and channels' : 'Təklif və kanallar');
+      if (process.env.REPORT_OUT)
+        writeFileSync(
+          join(process.env.REPORT_OUT, `rivaline-report-1.1-${lang}.pdf`),
+          report.bytes,
+        );
+    }
   });
 });

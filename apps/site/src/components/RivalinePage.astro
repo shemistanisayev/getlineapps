@@ -75,8 +75,10 @@ const marquee = [
 const f = c.features;
 const tabs = [
   { id: 'st', tab: f.stack },
+  { id: 'of', tab: f.offer },
   { id: 'ad', tab: f.ads },
   { id: 'br', tab: f.brand },
+  { id: 'cp', tab: f.compare },
   { id: 'rp', tab: f.report },
 ] as const;
 
@@ -316,6 +318,9 @@ const finderTexts = JSON.stringify({
                     <div class="mtabs">
                       <span class="mtab on">
                         {c.hero.mock.tabs.stack} <b>13</b>
+                      </span>
+                      <span class="mtab">
+                        {c.hero.mock.tabs.offer} <b>3</b>
                       </span>
                       <span class="mtab">
                         {c.hero.mock.tabs.ads} <b>4</b>
@@ -569,6 +574,76 @@ const finderTexts = JSON.stringify({
                           <span>
                             <b>{f.stack.demo.notFoundStrong}</b> {f.stack.demo.notFound}
                           </span>
+                        </div>
+                      </div>
+                    )}
+                    {x.id === 'of' && (
+                      <div class="sbox">
+                        <div class="sgrp">{f.offer.demo.offers}</div>
+                        <div class="srow ocol">
+                          <span class="ochip">{f.offer.demo.free}</span>
+                          <span>Free shipping over $40</span>
+                        </div>
+                        <div class="srow ocol">
+                          <span class="ochip">{f.offer.demo.code}</span>
+                          <span>
+                            Get 10% off your first order with code{' '}
+                            <span class="mono ocode">WELCOME10</span>
+                          </span>
+                        </div>
+                        <div class="sgrp line">{f.offer.demo.channels}</div>
+                        {(
+                          [
+                            ['instagram', 'Instagram', 'kova.skin'],
+                            ['tiktok', 'TikTok', '@kova.skin'],
+                            ['appstore', 'App Store', '1234567890'],
+                          ] as const
+                        ).map(([mk, name, handle]) => (
+                          <div class="srow">
+                            <Mark name={mk} size={28} />
+                            <span class="col0">
+                              <span>{name}</span>
+                              <span class="mono sid">{handle}</span>
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {x.id === 'cp' && (
+                      <div class="sbox">
+                        <div class="crow chead">
+                          <span />
+                          <span>example.com</span>
+                          <span>example.net</span>
+                        </div>
+                        {(
+                          [
+                            [f.compare.demo.tools, 13, 5],
+                            [f.compare.demo.offers, 3, 1],
+                            [f.compare.demo.profiles, 4, 3],
+                          ] as const
+                        ).map(([label, a, b]) => (
+                          <div class="crow">
+                            <span>{label}</span>
+                            <b>{a}</b>
+                            <b>{b}</b>
+                          </div>
+                        ))}
+                        <div class="sgrp line">{f.compare.demo.only}</div>
+                        <div class="cchips">
+                          {(
+                            [
+                              ['tiktok', 'TikTok Pixel'],
+                              ['googleads', 'Google Ads'],
+                              ['hotjar', 'Hotjar'],
+                              ['intercom', 'Intercom'],
+                            ] as const
+                          ).map(([mk, name]) => (
+                            <span class="cchip">
+                              <Mark name={mk} size={18} />
+                              {name}
+                            </span>
+                          ))}
                         </div>
                       </div>
                     )}

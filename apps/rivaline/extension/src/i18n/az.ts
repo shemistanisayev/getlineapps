@@ -112,6 +112,9 @@ export const az: Dictionary = {
   'cmp.yes': 'Var',
   'cmp.no': 'Yox',
   'cmp.none': 'Yoxdur',
+  'rep.offer': 'Təklif və kanallar',
+  'rep.offer.headline': 'Əsas başlıq',
+  'rep.offer.social': 'Sosial profillər',
   'read.seconds': '{s} san',
   'panel.failed.title': 'Bu səhifə cavab vermir',
   'panel.failed.text':

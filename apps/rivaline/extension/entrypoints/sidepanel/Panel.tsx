@@ -216,7 +216,7 @@ export function Panel() {
       );
       const file = await downloadReport((fonts) =>
         rivalineReport(
-          { url: r.url, stack: r.stack, brand: r.brand, links, searchBrand },
+          { url: r.url, stack: r.stack, brand: r.brand, links, searchBrand, site: r.site },
           t,
           lang,
           fonts,

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Rivaline: Free Competitor Research for Meta, Google & More",
-    "description": "Free Chrome extension. See any site's martech stack, open its ads in Meta, Google, TikTok and LinkedIn ad libraries and copy its brand colors and fonts, in one side panel.",
+    "description": "Free Chrome extension. See a rival's martech stack, offers and channels, open its ads in four ad libraries, compare two sites and copy its brand kit.",
     "ogAlt": "Rivaline: see any rival's stack, ads and brand in one panel."
   },
   "nav": {
@@ -23,7 +23,7 @@
     "pill": "Free Chrome extension",
     "titleStart": "See any rival's stack, ads and brand in",
     "titleHighlight": "one panel",
-    "lead": "Rivaline shows the analytics, ad pixels, CRM and chat a site runs, opens its ads in four ad libraries and pulls its colors and fonts. Right in Chrome's side panel",
+    "lead": "Rivaline shows the tools a site runs, what it offers, where else the brand is and its ads in four ad libraries, with its colors and fonts. Right in Chrome's side panel",
     "secondary": "Try the ad library finder",
     "trustLabel": "Why it is safe to try",
     "trust": ["No account", "Nothing leaves your browser", "Open source"],
@@ -32,16 +32,45 @@
       "url": "example.com",
       "siteTitle": "Skincare that keeps it simple.",
       "siteButton": "Shop the routine",
-      "tabs": { "stack": "Stack", "ads": "Ads", "brand": "Brand" },
+      "tabs": {
+        "stack": "Stack",
+        "offer": "Offer",
+        "ads": "Ads",
+        "brand": "Brand"
+      },
       "host": "example.com",
       "title": "13 tools in 8 categories",
       "rows": [
-        { "mark": "meta", "name": "Meta Pixel", "id": "4182736509…" },
-        { "mark": "tiktok", "name": "TikTok Pixel", "id": "C9H3KQ7R…" },
-        { "mark": "googleads", "name": "Google Ads", "id": "AW-11284956" },
-        { "mark": "googleanalytics", "name": "Google Analytics 4", "id": "G-8XK2LM4Q…" },
-        { "mark": "googletagmanager", "name": "Tag Manager", "id": "GTM-N4KV8R" },
-        { "mark": "intercom", "name": "Intercom", "id": "chat" }
+        {
+          "mark": "meta",
+          "name": "Meta Pixel",
+          "id": "4182736509…"
+        },
+        {
+          "mark": "tiktok",
+          "name": "TikTok Pixel",
+          "id": "C9H3KQ7R…"
+        },
+        {
+          "mark": "googleads",
+          "name": "Google Ads",
+          "id": "AW-11284956"
+        },
+        {
+          "mark": "googleanalytics",
+          "name": "Google Analytics 4",
+          "id": "G-8XK2LM4Q…"
+        },
+        {
+          "mark": "googletagmanager",
+          "name": "Tag Manager",
+          "id": "GTM-N4KV8R"
+        },
+        {
+          "mark": "intercom",
+          "name": "Intercom",
+          "id": "chat"
+        }
       ]
     },
     "kit": {
@@ -52,31 +81,94 @@
       "bodyFont": "DM Sans",
       "body": "body"
     },
-    "toast": { "eyebrow": "Not found", "text": "No server-side tracking on this site" }
+    "toast": {
+      "eyebrow": "Not found",
+      "text": "No server-side tracking on this site"
+    }
   },
   "marquee": {
     "title": "Recognizes the tools marketers use",
     "items": [
-      { "mark": "googleanalytics", "label": "Google Analytics 4" },
-      { "mark": "googletagmanager", "label": "Tag Manager" },
-      { "mark": "googleads", "label": "Google Ads" },
-      { "mark": "meta", "label": "Meta Pixel" },
-      { "mark": "tiktok", "label": "TikTok Pixel" },
-      { "mark": "pinterest", "label": "Pinterest Tag" },
-      { "mark": "snapchat", "label": "Snap Pixel" },
-      { "mark": "hotjar", "label": "Hotjar" },
-      { "mark": "mixpanel", "label": "Mixpanel" },
-      { "mark": "hubspot", "label": "HubSpot" },
-      { "mark": "mailchimp", "label": "Mailchimp" },
-      { "mark": "intercom", "label": "Intercom" },
-      { "mark": "zendesk", "label": "Zendesk" },
-      { "mark": "shopify", "label": "Shopify" },
-      { "mark": "wordpress", "label": "WordPress" },
-      { "mark": "webflow", "label": "Webflow" },
-      { "mark": "trustpilot", "label": "Trustpilot" },
-      { "mark": "klarna", "label": "Klarna" },
-      { "mark": "stripe", "label": "Stripe" },
-      { "mark": "paypal", "label": "PayPal" }
+      {
+        "mark": "googleanalytics",
+        "label": "Google Analytics 4"
+      },
+      {
+        "mark": "googletagmanager",
+        "label": "Tag Manager"
+      },
+      {
+        "mark": "googleads",
+        "label": "Google Ads"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "mark": "tiktok",
+        "label": "TikTok Pixel"
+      },
+      {
+        "mark": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "mark": "snapchat",
+        "label": "Snap Pixel"
+      },
+      {
+        "mark": "hotjar",
+        "label": "Hotjar"
+      },
+      {
+        "mark": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "mark": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "mark": "mailchimp",
+        "label": "Mailchimp"
+      },
+      {
+        "mark": "intercom",
+        "label": "Intercom"
+      },
+      {
+        "mark": "zendesk",
+        "label": "Zendesk"
+      },
+      {
+        "mark": "shopify",
+        "label": "Shopify"
+      },
+      {
+        "mark": "wordpress",
+        "label": "WordPress"
+      },
+      {
+        "mark": "webflow",
+        "label": "Webflow"
+      },
+      {
+        "mark": "trustpilot",
+        "label": "Trustpilot"
+      },
+      {
+        "mark": "klarna",
+        "label": "Klarna"
+      },
+      {
+        "mark": "stripe",
+        "label": "Stripe"
+      },
+      {
+        "mark": "paypal",
+        "label": "PayPal"
+      }
     ]
   },
   "problem": {
@@ -100,7 +192,7 @@
   },
   "features": {
     "eyebrow": "Inside the panel",
-    "title": "Three tabs. A full picture of any site",
+    "title": "Everything about a rival, in one panel",
     "tabsLabel": "Rivaline features",
     "stack": {
       "label": "Stack",
@@ -116,6 +208,22 @@
         "emailChat": "Email and chat",
         "notFoundStrong": "Not found:",
         "notFound": "server-side tracking, consent banner, CRM"
+      }
+    },
+    "offer": {
+      "label": "Offer",
+      "title": "What they sell and where they are",
+      "lead": "The headline, the offers on the page, prices, social profiles, apps, markets and how the site catches leads",
+      "bullets": [
+        "Discounts, promo codes, free delivery and installments, in English, Azerbaijani, Russian and Turkish",
+        "Instagram, TikTok, YouTube, Telegram and other profiles, plus App Store and Google Play",
+        "The languages, countries and currency the site serves"
+      ],
+      "demo": {
+        "offers": "Offers",
+        "free": "Free delivery",
+        "code": "Promo code",
+        "channels": "Channels"
       }
     },
     "ads": {
@@ -142,12 +250,31 @@
         "Font names only, never the font files",
         "Ready for a pitch deck or a mockup"
       ],
-      "demo": { "headings": "Headings", "body": "Body" }
+      "demo": {
+        "headings": "Headings",
+        "body": "Body"
+      }
+    },
+    "compare": {
+      "label": "Compare",
+      "title": "Two rivals, side by side",
+      "lead": "Read two sites, then see which tools, offers and channels only one of them has",
+      "bullets": [
+        "Tools only on one site, and on both",
+        "Ad channels, offers, social profiles and markets in one table",
+        "Uses what Rivaline already read. Nothing is saved"
+      ],
+      "demo": {
+        "tools": "Marketing tools",
+        "offers": "Offers",
+        "profiles": "Social profiles",
+        "only": "Only example.com"
+      }
     },
     "report": {
       "label": "Report",
       "title": "One PDF for the next meeting",
-      "lead": "Stack, gaps, ad library links and the brand kit on one A4 page, built in your browser",
+      "lead": "Stack, gaps, offer, channels, ad library links and the brand kit in one PDF, built in your browser",
       "bullets": [
         "Ready for a sales call or a client pitch",
         "Selectable text and working links",
@@ -162,8 +289,14 @@
         "gaps": "gaps",
         "high": "High",
         "rows": [
-          { "strong": "No server-side tracking.", "text": "All 4 pixels send from the browser." },
-          { "strong": "No consent banner.", "text": "Pixels load before any choice." }
+          {
+            "strong": "No server-side tracking.",
+            "text": "All 4 pixels send from the browser."
+          },
+          {
+            "strong": "No consent banner.",
+            "text": "Pixels load before any choice."
+          }
         ]
       }
     }
@@ -216,7 +349,7 @@
     "titleStart": "Your rival has it and you don't?",
     "titleHighlight": "Get it set up",
     "titleEnd": "by the person who built Rivaline",
-    "text": "One click turns any site into a report: stack, gaps, ad libraries and brand kit. Share it with your team, or send it to me. I set up analytics, server-side tracking, consent and ad pixels for growing brands",
+    "text": "One click turns any site into a report: stack, gaps, offer, channels, ad libraries and brand kit. Share it with your team, or send it to me. I set up analytics, server-side tracking, consent and ad pixels for growing brands",
     "cta": "Book an audit",
     "from": "From",
     "paper": {
@@ -289,11 +422,15 @@
       },
       {
         "q": "How does it recognize tools?",
-        "a": "It matches script addresses, cookie names, page globals and meta tags against its own list of about 130 marketing tools. Every match shows the evidence it found."
+        "a": "It matches script addresses, cookie names, page globals and meta tags against its own list of about 160 marketing tools. Every match shows the evidence it found."
       },
       {
         "q": "Can it show a competitor's ad spend?",
         "a": "No. Ad libraries show which ads are running, not budgets. Rivaline opens those libraries with the search already filled in."
+      },
+      {
+        "q": "Can I compare two competitors?",
+        "a": "Yes. Read each site in its own tab, then press Compare in the panel. Rivaline puts the two results side by side: tools, ad channels, offers, social profiles, markets and brand colors. Nothing is saved."
       },
       {
         "q": "Why do I click the icon again on a new tab?",
@@ -327,7 +464,11 @@
       }
     }
   },
-  "footer": { "builtBy": "Built by", "privacy": "Privacy policy", "source": "Source code" },
+  "footer": {
+    "builtBy": "Built by",
+    "privacy": "Privacy policy",
+    "source": "Source code"
+  },
   "uninstall": {
     "meta": {
       "title": "Sorry to see you go | Rivaline",
