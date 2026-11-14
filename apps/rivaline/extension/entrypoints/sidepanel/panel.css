@@ -795,7 +795,9 @@ kbd {
   box-shadow: inset 0 0 0 1px rgba(16, 24, 40, 0.15);
   flex-shrink: 0;
 }
+/* Settings keeps its select at 60%; in Compare it fills its column. */
 .rp-cmp-body .rp-select {
   width: 100%;
+  max-width: none;
   min-width: 0;
 }
