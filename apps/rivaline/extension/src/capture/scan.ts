@@ -40,7 +40,7 @@ export const LATE_TAGS_MS = 1_500;
 /** Nothing found yet: give late tags one more chance before saying so. */
 export const EMPTY_RETRY_MS = 2_500;
 
-export type ScanStep = 'load' | 'tools' | 'brand' | 'logo';
+export type ScanStep = 'load' | 'tools' | 'offer' | 'brand' | 'logo';
 
 export interface ScanResult {
   tabId: number;
@@ -185,17 +185,19 @@ export async function scanTab(
     const waited = Math.round((Date.now() - loadedAt) / 1000);
     onStep('tools');
 
-    let brand: BrandKit | null = null;
-    try {
-      brand = brandKit(await inPage<BrandRaw>(tabId, 'ISOLATED', collectBrand));
-    } catch {
-      brand = null;
-    }
     let site: SiteInfo | null = null;
     try {
       site = siteInfo(await inPage<SiteRaw>(tabId, 'ISOLATED', collectSite), stack);
     } catch {
       site = null;
+    }
+    onStep('offer');
+
+    let brand: BrandKit | null = null;
+    try {
+      brand = brandKit(await inPage<BrandRaw>(tabId, 'ISOLATED', collectBrand));
+    } catch {
+      brand = null;
     }
     onStep('brand');
 

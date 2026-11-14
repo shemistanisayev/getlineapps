@@ -9,6 +9,7 @@ import { rivalineReport } from '../../src/report.ts';
 import { actionShortcut, getCountry } from '../../src/storage.ts';
 import { useT } from '../../src/useLang.ts';
 import { AdsTab } from './AdsTab.tsx';
+import { OfferTab } from './OfferTab.tsx';
 import { BrandTab } from './BrandTab.tsx';
 import { Settings } from './Settings.tsx';
 import { StackTab } from './StackTab.tsx';
@@ -18,7 +19,7 @@ import { AccessView, EmptyView, FailedView, Reading, RestrictedView } from './Vi
  * Side panel (docs/rivaline-SPEC.md §3.1 and §7). One panel per window; results are kept in
  * memory per tab, never stored.
  */
-type Tab = 'stack' | 'ads' | 'brand';
+type Tab = 'stack' | 'offer' | 'ads' | 'brand';
 type View =
   | { kind: 'idle' }
   | { kind: 'reading'; tabId: number; done: ScanStep[]; startedAt: number; stepAt: number }
@@ -235,6 +236,12 @@ export function Panel() {
             countLabel: t('count.stack', { n: result?.stack.tools.length ?? 0 }),
           },
           {
+            id: 'offer',
+            label: t('tab.offer'),
+            count: result?.site?.offer.promos.length,
+            countLabel: t('count.offer', { n: result?.site?.offer.promos.length ?? 0 }),
+          },
+          {
             id: 'ads',
             label: t('tab.ads'),
             count: result ? LIBRARY_COUNT : undefined,
@@ -275,6 +282,9 @@ export function Panel() {
               setTab('ads');
             }}
           />
+        )}
+        {result && tab === 'offer' && (
+          <OfferTab key={result.readAt} result={result} t={t} lang={lang} onToast={setToast} />
         )}
         {result && tab === 'ads' && (
           <AdsTab

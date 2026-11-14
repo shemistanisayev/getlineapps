@@ -113,7 +113,7 @@ test.describe('rivaline extension', () => {
         PANEL,
         `[...document.querySelectorAll('[role=tab]')].map((t) => t.textContent)`,
       ),
-    ).toEqual(['Stack13', 'Ads4', 'Brand5']);
+    ).toEqual(['Stack13', 'Offer3', 'Ads4', 'Brand5']);
     expect(
       await ext.evalIn<string[]>(
         PANEL,
@@ -334,6 +334,84 @@ test.describe('rivaline extension', () => {
     await kova.close();
   });
 
+  test('Offer tab on Kova: what they say, offers, channels, markets, leads (1.1)', async () => {
+    const kova = await ext.context.newPage();
+    await kova.goto(kovaUrl());
+    await ext.clickAction(kova);
+    await expect
+      .poll(() => ext.evalIn<boolean>(PANEL, `Boolean(document.querySelector('#rv-tab-offer'))`))
+      .toBe(true);
+    await click('#rv-tab-stack');
+    await poll('13 tools in 8 categories');
+    await click('#rv-tab-offer');
+    await poll('Page language');
+    const text = await panelText();
+    for (const s of [
+      'Free shipping over $40. Easy 30-day returns.',
+      'Skincare that keeps it simple.',
+      'Three steps, gentle formulas, made in small batches.',
+      'Shop the routine',
+      'Kova | Skincare that keeps it simple',
+      'or 3 payments with Klarna',
+      'Get 10% off your first order with code WELCOME10',
+      '$24 to $42, 3 prices',
+      'kova.skin',
+      '@kova.skin',
+      '@kovaskin',
+      'com.example.kova',
+      'hello@example.com',
+      'English',
+      'German',
+      'Germany, United Kingdom, United States',
+      'USD',
+      'Mailchimp',
+      'Intercom',
+    ])
+      expect(text, s).toContain(s);
+    expect(text).toMatch(/Free delivery\s*Returns/);
+    // A share link is not a profile; links open the profile in a new tab.
+    const links = await ext.evalIn<Array<[string, string]>>(
+      PANEL,
+      `[...document.querySelectorAll('.rp-link a')].map((a) => [a.getAttribute('aria-label'), a.href])`,
+    );
+    expect(links).toEqual([
+      ['Open Instagram', 'https://www.instagram.com/kova.skin'],
+      ['Open TikTok', 'https://www.tiktok.com/@kova.skin'],
+      ['Open YouTube', 'https://www.youtube.com/@kovaskin'],
+      ['Open Pinterest', 'https://www.pinterest.com/kovaskin'],
+      ['Open App Store', 'https://apps.apple.com/app/id1234567890'],
+      ['Open Google Play', 'https://play.google.com/store/apps/details?id=com.example.kova'],
+    ]);
+    expect(
+      await ext.evalIn<string[]>(
+        PANEL,
+        `[...document.querySelectorAll('.rp-link a')].map((a) => a.target + ' ' + a.rel)`,
+      ),
+    ).toEqual(Array(6).fill('_blank noopener noreferrer'));
+    // Copy the promo code.
+    await ext.evalIn(
+      PANEL,
+      `navigator.clipboard.writeText = (v) => { window.__copied = v; return Promise.resolve(); }; true`,
+    );
+    await click('[aria-label="Copy code WELCOME10"]');
+    await poll('Code copied');
+    expect(await ext.evalIn<string>(PANEL, 'window.__copied')).toBe('WELCOME10');
+    // Narrow side panel: nothing scrolls sideways at 280 px.
+    expect(
+      await ext.evalIn<number>(PANEL, 'document.documentElement.scrollWidth', false, {
+        width: 280,
+        height: 700,
+      }),
+    ).toBeLessThanOrEqual(280);
+    await shot('panel-offer');
+    if (SHOTS)
+      await ext.screenshot(PANEL, `${SHOTS}/rivaline-panel-offer-full.png`, {
+        width: 380,
+        height: 2000,
+      });
+    await kova.close();
+  });
+
   test('tab switches: Access, a click, cache by tab, Empty on Mira Studio', async () => {
     const kova = await ext.context.newPage();
     await kova.goto(kovaUrl());
@@ -383,7 +461,7 @@ test.describe('rivaline extension', () => {
         PANEL,
         `[...document.querySelectorAll('[role=tab]')].map((t) => t.textContent)`,
       ),
-    ).toEqual(['Stack0', 'Ads4', expect.stringMatching(/^Brand\d$/)]);
+    ).toEqual(['Stack0', 'Offer0', 'Ads4', expect.stringMatching(/^Brand\d$/)]);
     await shot('panel-empty');
     await kova.close();
     await glow.close();
@@ -458,6 +536,28 @@ test.describe('rivaline extension', () => {
       }),
     ).toBeLessThanOrEqual(280);
     await shot('panel-stack-az');
+    await click('#rv-tab-offer');
+    await poll('Səhifənin dili');
+    const azOffer = await panelText();
+    expect(azOffer).toContain('Pulsuz çatdırılma');
+    // Azerbaijani number format: "US$ 24" with a no-break space.
+    expect(azOffer).toMatch(/US\$\s24 ilə US\$\s42 arası, 3 qiymət/);
+    for (const en of [
+      'What they say',
+      'Offers',
+      'Channels',
+      'Markets',
+      'Free delivery',
+      'Page language',
+    ])
+      expect(azOffer.toLowerCase(), en).not.toContain(en.toLowerCase());
+    expect(
+      await ext.evalIn<number>(PANEL, 'document.documentElement.scrollWidth', false, {
+        width: 280,
+        height: 700,
+      }),
+    ).toBeLessThanOrEqual(280);
+    await shot('panel-offer-az');
     await click('#rv-tab-brand');
     await poll('Kopyalamaq üçün rəngə bas');
     const azBrand = await panelText();
@@ -515,6 +615,9 @@ test.describe('rivaline extension', () => {
     await clickText('.rv-trow', 'Meta Pixel');
     await poll('How Rivaline found it');
     await axe('stack detail');
+    await click('#rv-tab-offer');
+    await poll('Page language');
+    await axe('offer');
     await click('#rv-tab-ads');
     await poll('Meta Ad Library');
     await axe('ads');

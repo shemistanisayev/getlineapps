@@ -71,6 +71,22 @@ const EXTRA = [
   ['afterpay', 'afterpay'],
   ['rakuten', 'rakuten'],
   ['tildapublishing', 'tilda'],
+  // Rivaline 1.1 Offer tab: social profiles and app stores (docs/rivaline/PLAN-1.1.md step 3).
+  ['instagram', 'instagram'],
+  ['facebook', 'facebook'],
+  ['youtube', 'youtube'],
+  ['telegram', 'telegram'],
+  ['threads', 'threads'],
+  ['vk', 'vk'],
+  ['whatsapp', 'whatsapp'],
+  ['appstore', 'appstore'],
+  ['googleplay', 'googleplay'],
+  // Rivaline 1.1 stack tools that simple-icons carries.
+  ['drupal', 'drupal'],
+  ['joomla', 'joomla'],
+  ['framer', 'framer'],
+  ['cloudflare', 'cloudflare'],
+  ['googleadsense', 'adsense'],
 ];
 const icons = Object.values(si).filter((i) => i && typeof i === 'object' && i.slug);
 const mix = (hex, a) => {

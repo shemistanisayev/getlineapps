@@ -925,6 +925,19 @@
   }
 }
 @media (max-width: 320px) {
+  /* Four tabs with counts (Rivaline 1.1) fit 280 px. */
+  .rv-tabs {
+    padding: 0 2px;
+    gap: 0;
+  }
+  .rv-tab {
+    padding: 0 5px;
+    gap: 4px;
+    font-size: 12.5px;
+  }
+  .rv-badge {
+    padding: 1px 5px;
+  }
   .rv-pdf-label {
     position: absolute;
     width: 1px;

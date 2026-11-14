@@ -508,3 +508,189 @@ kbd {
   font-weight: 600;
   text-decoration: none;
 }
+
+/* Offer tab (Rivaline 1.1, docs/rivaline/PLAN-1.1.md step 3) */
+.rp-ann {
+  margin: 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #ecfeff;
+  color: #155e75;
+  font-size: 13px;
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rp-ann-label,
+.rp-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #475467;
+}
+.rp-ann-label {
+  color: #155e75;
+}
+.rp-say {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rp-headline {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #101828;
+  overflow-wrap: anywhere;
+}
+.rp-subline {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #344054;
+}
+.rp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rp-value {
+  font-size: 13.5px;
+  color: #101828;
+}
+.rp-ctas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rp-ctas li {
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid #dcd9e6;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #344054;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.rp-serp {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f7f6fb;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #344054;
+  overflow-wrap: anywhere;
+}
+.rp-serp b {
+  color: #101828;
+  font-size: 13.5px;
+}
+.rp-promos,
+.rp-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.rp-promos li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid #eae8f0;
+}
+.rp-promos li:first-child,
+.rp-links li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.rp-promo-kinds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.rp-promo-text {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #101828;
+  overflow-wrap: anywhere;
+}
+.rp-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 3px 3px 3px 10px;
+  border: 1px dashed #c9c5d6;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #101828;
+}
+.rp-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid #eae8f0;
+}
+.rp-link-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.rp-link-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #101828;
+}
+.rp-link-value {
+  font-size: 11.5px;
+  color: #475467;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rp-facts {
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 8px 12px;
+  font-size: 13px;
+}
+.rp-fact {
+  display: contents;
+}
+.rp-facts dt {
+  color: #475467;
+}
+.rp-facts dd {
+  margin: 0;
+  color: #101828;
+  overflow-wrap: anywhere;
+}
+/* Offer kinds in Rivaline's own tint (not a status: no icon, no status color). */
+.rp-kind {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #ecfeff;
+  color: #155e75;
+  font-size: 12px;
+  font-weight: 700;
+}

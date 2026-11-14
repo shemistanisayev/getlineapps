@@ -11,6 +11,7 @@ const CTA = contactUrl({ source: 'rivaline', medium: 'extension', campaign: 'pan
 const STEPS: Array<{ id: ScanStep; key: MessageKey }> = [
   { id: 'load', key: 'read.load' },
   { id: 'tools', key: 'read.tools' },
+  { id: 'offer', key: 'read.offer' },
   { id: 'brand', key: 'read.brand' },
   { id: 'logo', key: 'read.logo' },
 ];

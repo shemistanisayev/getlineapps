@@ -475,3 +475,54 @@ Fayl: `apps/site/src/content/rivaline/az.json`. {brand}, {q} kimi yerlər avtoma
 | `uninstall.card.text` | Analytics, server-side tracking, consent and ad pixels. You get a clear list of what is missing and a working setup | Analitika, server-side izləmə, consent və reklam pikselləri. Nəyin çatışmadığının aydın siyahısını və işləyən quraşdırmanı alırsan |
 | `uninstall.card.cta` | Book an audit | Audit sifariş et |
 | `uninstall.card.sub` | Shamistan Isayev, analytics and tracking | Shamistan Isayev, analitika və izləmə |
+
+## Offer tab (Rivaline 1.1, step 3)
+
+| Açar | English | Azərbaycanca |
+|---|---|---|
+| `tab.offer` | Offer | Təklif |
+| `count.offer` | {n} offers | {n} təklif |
+| `read.offer` | Reading the offer and channels | Təklif və kanallar oxunur |
+| `offer.unread` | Read the page again to see its offer. | Təklifi görmək üçün səhifəni yenidən oxu. |
+| `offer.say` | What they say | Nə deyirlər |
+| `offer.topBar` | Top bar | Yuxarı zolaq |
+| `offer.noHeadline` | No headline on this page | Bu səhifədə əsas başlıq yoxdur |
+| `offer.buttons` | Buttons | Düymələr |
+| `offer.search` | In search results | Axtarış nəticələrində |
+| `offer.offers` | Offers | Təkliflər |
+| `offer.noOffers` | No discounts, codes or free delivery on this page | Bu səhifədə endirim, promo kod və ya pulsuz çatdırılma yoxdur |
+| `offer.copyCode` | Copy code {code} | {code} kodunu kopyala |
+| `offer.codeCopied` | Code copied | Kod kopyalandı |
+| `offer.prices` | Prices on this page | Bu səhifədəki qiymətlər |
+| `offer.priceRange` | {min} to {max}, {n} prices | {min} ilə {max} arası, {n} qiymət |
+| `offer.priceOne` | {min}, {n} prices | {min}, {n} qiymət |
+| `promo.discount` | Discount | Endirim |
+| `promo.code` | Promo code | Promo kod |
+| `promo.shipping` | Free delivery | Pulsuz çatdırılma |
+| `promo.sale` | Sale | Kampaniya |
+| `promo.installments` | Installments | Taksit |
+| `promo.gift` | Gift | Hədiyyə |
+| `promo.returns` | Returns | Qaytarma |
+| `channels.title` | Channels | Kanallar |
+| `channels.none` | No social profiles, apps or contacts linked on this page | Bu səhifədə sosial profil, tətbiq və ya əlaqə linki yoxdur |
+| `channels.open` | Open {name} | {name} aç |
+| `channels.email` | Email | E-poçt |
+| `channels.phone` | Phone | Telefon |
+| `channels.copy` | Copy {value} | {value} kopyala |
+| `channels.copied` | Copied | Kopyalandı |
+| `markets.title` | Markets | Bazarlar |
+| `markets.pageLang` | Page language | Səhifənin dili |
+| `markets.languages` | Language versions | Dil versiyaları |
+| `markets.regions` | Countries | Ölkələr |
+| `markets.currency` | Currency | Valyuta |
+| `markets.more` | and {n} more | və daha {n} |
+| `markets.none` | Not shown | Göstərilmir |
+| `leads.title` | How they catch leads | Müştəri məlumatını necə toplayırlar |
+| `leads.none` | No sign-up form, chat or push on this page | Bu səhifədə abunə forması, çat və ya push yoxdur |
+| `leads.onPage` | A form on the page | Səhifədə forma |
+| `lead.email` | Email sign-up | E-poçt abunəsi |
+| `lead.sms` | SMS sign-up | SMS abunəsi |
+| `lead.push` | Web push | Veb push |
+| `lead.chat` | Live chat | Canlı çat |
+| `lead.whatsapp` | WhatsApp | WhatsApp |
+| `lead.forms` | CRM forms | CRM formaları |

@@ -62,7 +62,7 @@ const RECORDER = `(() => {
   window.__rec = []; window.__t0 = performance.now();
   const state = () => {
     const scan = document.querySelector('.rp-scan');
-    if (scan) return 'reading ' + document.querySelectorAll('.rp-step.is-done').length + '/4';
+    if (scan) return 'reading ' + document.querySelectorAll('.rp-step.is-done').length + '/5';
     const h1 = document.querySelector('.rp-call h1, .rp-empty h1');
     if (h1) return 'view: ' + h1.textContent;
     const hero = document.querySelector('.rv-hero, [class*=hero]');
