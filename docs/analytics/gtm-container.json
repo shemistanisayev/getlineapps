@@ -1,6 +1,6 @@
 {
   "exportFormatVersion": 2,
-  "exportTime": "2026-11-16 18:09:54",
+  "exportTime": "2026-11-16 18:21:33",
   "containerVersion": {
     "path": "accounts/0/containers/0/versions/0",
     "accountId": "0",
@@ -15,7 +15,7 @@
       "usageContext": [
         "WEB"
       ],
-      "fingerprint": "1794852594124",
+      "fingerprint": "1794853293823",
       "tagManagerUrl": "",
       "features": {},
       "tagIds": [
@@ -53,51 +53,6 @@
                     "value": "true"
                   }
                 ]
-              },
-              {
-                "type": "MAP",
-                "map": [
-                  {
-                    "type": "TEMPLATE",
-                    "key": "parameter",
-                    "value": "page_type"
-                  },
-                  {
-                    "type": "TEMPLATE",
-                    "key": "parameterValue",
-                    "value": "{{DLV - page_type}}"
-                  }
-                ]
-              },
-              {
-                "type": "MAP",
-                "map": [
-                  {
-                    "type": "TEMPLATE",
-                    "key": "parameter",
-                    "value": "page_locale"
-                  },
-                  {
-                    "type": "TEMPLATE",
-                    "key": "parameterValue",
-                    "value": "{{DLV - page_locale}}"
-                  }
-                ]
-              },
-              {
-                "type": "MAP",
-                "map": [
-                  {
-                    "type": "TEMPLATE",
-                    "key": "parameter",
-                    "value": "page_tool"
-                  },
-                  {
-                    "type": "TEMPLATE",
-                    "key": "parameterValue",
-                    "value": "{{DLV - page_tool}}"
-                  }
-                ]
               }
             ]
           }
@@ -112,7 +67,7 @@
         "consentSettings": {
           "consentStatus": "NOT_SET"
         },
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -543,7 +498,7 @@
         "consentSettings": {
           "consentStatus": "NOT_SET"
         },
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       }
     ],
     "trigger": [
@@ -570,7 +525,7 @@
             ]
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       }
     ],
     "variable": [
@@ -587,7 +542,7 @@
             "value": "G-WX35DJ8R7K"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -612,7 +567,7 @@
             "value": "page_type"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -637,7 +592,7 @@
             "value": "page_locale"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -662,7 +617,7 @@
             "value": "page_tool"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -687,7 +642,7 @@
             "value": "tool_slug"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -712,7 +667,7 @@
             "value": "cta_location"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -737,7 +692,7 @@
             "value": "link_url"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -762,7 +717,7 @@
             "value": "link_domain"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -787,7 +742,7 @@
             "value": "link_text"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -812,7 +767,7 @@
             "value": "content_type"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -837,7 +792,7 @@
             "value": "content_id"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -862,7 +817,7 @@
             "value": "language_to"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -887,7 +842,7 @@
             "value": "section_id"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -912,7 +867,7 @@
             "value": "faq_question"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -937,7 +892,7 @@
             "value": "faq_index"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -962,7 +917,7 @@
             "value": "tab_id"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -987,7 +942,7 @@
             "value": "role_id"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1012,7 +967,7 @@
             "value": "checkpoint_id"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1037,7 +992,7 @@
             "value": "web_tool"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1062,7 +1017,7 @@
             "value": "tool_action"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1087,7 +1042,7 @@
             "value": "tool_item"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1112,7 +1067,7 @@
             "value": "file_name"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1137,7 +1092,7 @@
             "value": "file_extension"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1162,7 +1117,7 @@
             "value": "percent_scrolled"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1187,7 +1142,7 @@
             "value": "feedback_reason"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1212,7 +1167,7 @@
             "value": "has_message"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       },
       {
         "accountId": "0",
@@ -1237,7 +1192,7 @@
             "value": "error_type"
           }
         ],
-        "fingerprint": "1794852594124"
+        "fingerprint": "1794853293823"
       }
     ],
     "builtInVariable": [
@@ -1272,6 +1227,6 @@
         "name": "Event"
       }
     ],
-    "fingerprint": "1794852594124"
+    "fingerprint": "1794853293823"
   }
 }

@@ -233,12 +233,19 @@ describe('initAnalytics', () => {
     document.dispatchEvent(new CustomEvent('line:track', { detail: { event: 'not_an_event' } }));
     const dl = (window as DL).dataLayer!;
     expect(dl[0]).toEqual({ page_type: 'uninstall', page_locale: 'az', page_tool: 'hitline' });
-    expect(dl.slice(1).map((e) => e.event)).toEqual(['contact_click', 'feedback_submit']);
-    expect(dl[1]).toMatchObject({ cta_location: 'uninstall', tool_slug: 'hitline' });
+    // gtag('set', context) as an Arguments object, for the Google tag (page_view included).
+    const set = dl[1] as unknown as IArguments;
+    expect(Object.prototype.toString.call(set)).toBe('[object Arguments]');
+    expect([...set]).toEqual([
+      'set',
+      { page_type: 'uninstall', page_locale: 'az', page_tool: 'hitline' },
+    ]);
+    expect(dl.slice(2).map((e) => e.event)).toEqual(['contact_click', 'feedback_submit']);
+    expect(dl[2]).toMatchObject({ cta_location: 'uninstall', tool_slug: 'hitline' });
 
     // A second call is ignored; the listeners above are still on.
     initAnalytics();
-    expect(dl).toHaveLength(3);
+    expect(dl).toHaveLength(4);
 
     // Feature tab: the label click selects the radio, only its change event counts.
     html(
@@ -263,7 +270,7 @@ describe('GTM container', () => {
     const re = new RegExp(eventRegex());
     for (const e of Object.keys(EVENTS)) expect(re.test(e)).toBe(true);
     expect(re.test('gtm.js')).toBe(false);
-    const ev = c.containerVersion.tag.find((x) => x.type === 'gaawe')!;
+    const ev = c.containerVersion.tag.find((x) => x.name === 'GA4 - Line events')!;
     const table = ev.parameter.find((p) => p.key === 'eventSettingsTable') as {
       list: { map: { value: string }[] }[];
     };

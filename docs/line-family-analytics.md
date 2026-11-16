@@ -11,17 +11,19 @@ Site only. Extensions never load analytics (CLAUDE.md, non-negotiable rules).
 | GA4 web stream `getlineapps.com web` | `G-WX35DJ8R7K` | stream 16353580008 |
 | Site build variable | `PUBLIC_GTM_ID=GTM-WNZQGVXL` | GitHub repo variable, read by the deploy job in `.github/workflows/ci.yml` |
 
-GA4 settings: time zone Baku, event data retention 14 months, enhanced measurement only page views
-(scrolls, outbound clicks, site search, forms, video, file downloads are off: the site sends its own
-events below, so nothing is counted twice).
+GA4 settings: time zone Baku, event data retention 14 months, enhanced measurement off (the site
+sends its own events below, so nothing is counted twice; page_view comes from the Google tag).
 
 ## How it works
 
 1. `Base.astro` (only when `PUBLIC_GTM_ID` is set) writes Consent Mode v2 defaults (all denied) in `<head>`.
 2. `initAnalytics()` (`packages/site-kit/src/analytics.ts`) pushes the page context
-   `{ page_type, page_locale, page_tool }` and starts one delegated listener for clicks, inputs,
+   `{ page_type, page_locale, page_tool }` (as a data layer object for GTM variables and as
+   `gtag('set', ...)` so the Google tag adds it to every hit, page_view included) and starts one delegated listener for clicks, inputs,
    section visibility and scroll depth.
-3. The consent banner loads GTM only after "Accept". Until then `track()` pushes nothing.
+3. The consent banner loads GTM only after "Accept" and sends the Consent Mode update first, as an
+   Arguments object (GTM ignores arrays; GA4 would then keep sending denied pings, gcs=G100).
+   Until then `track()` pushes nothing.
 4. GTM: tag `GA4 - Google tag` (All Pages, sends `page_view` with the page context) and tag
    `GA4 - Line events` (trigger `CE - Line events`, event name `{{Event}}`, every parameter below).
 

@@ -33,7 +33,7 @@
     },
     {
       "name": "page_locale",
-      "about": "en or az"
+      "about": "en, az, tr, ru, ro, uk, pt, nl, es or fr"
     },
     {
       "name": "page_tool",
