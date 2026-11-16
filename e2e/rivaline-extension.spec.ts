@@ -612,8 +612,8 @@ test.describe('rivaline extension', () => {
     await poll('Səhifənin dili');
     const azOffer = await panelText();
     expect(azOffer).toContain('Pulsuz çatdırılma');
-    // Azerbaijani number format: "US$ 24" with a no-break space.
-    expect(azOffer).toMatch(/US\$\s24 ilə US\$\s42 arası, 3 qiymət/);
+    // Azerbaijani number format: "US$ 24" or "$ 24" (depends on the ICU version) with a no-break space.
+    expect(azOffer).toMatch(/(US)?\$\s24 ilə (US)?\$\s42 arası, 3 qiymət/);
     for (const en of [
       'What they say',
       'Offers',
