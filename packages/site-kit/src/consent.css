@@ -1,4 +1,8 @@
-/* Consent banner. Needs @line/ui tokens.css. Reject and Accept have equal weight. */
+/*
+ * Consent banner. Reject and Accept have equal weight.
+ * Every color has the @line/ui tokens.css value as fallback, so the banner stays solid and
+ * readable on pages that do not load tokens.css (getlineapps.com does not).
+ */
 .line-consent {
   position: fixed;
   z-index: 60;
@@ -12,12 +16,12 @@
   gap: 16px;
   padding: 16px 18px;
   border-radius: 16px;
-  background: var(--line-night);
-  color: var(--line-on-night);
+  background: var(--line-night, #120d24);
+  color: var(--line-on-night, #edeaf8);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.12),
     0 20px 40px -18px rgba(0, 0, 0, 0.6);
-  font-family: var(--line-font-ui);
+  font-family: var(--line-font-ui, Inter, Arial, sans-serif);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -26,7 +30,7 @@
   flex: 1;
 }
 .line-consent a {
-  color: var(--line-white);
+  color: var(--line-white, #ffffff);
   font-weight: 600;
   text-decoration: underline;
 }
@@ -43,12 +47,12 @@
   font: inherit;
   font-weight: 700;
   cursor: pointer;
-  background: var(--line-white);
-  color: var(--line-ink);
+  background: var(--line-white, #ffffff);
+  color: var(--line-ink, #101828);
 }
 .line-consent button:focus-visible,
 .line-consent a:focus-visible {
-  outline: 3px solid var(--line-white);
+  outline: 3px solid var(--line-white, #ffffff);
   outline-offset: 2px;
 }
 @media (max-width: 520px) {

@@ -85,3 +85,12 @@ describe('consent banner', () => {
     }
   });
 });
+
+describe('consent banner CSS', () => {
+  it('every color has a fallback, so the banner is solid without tokens.css', async () => {
+    const { readFileSync } = await import('node:fs');
+    const css = readFileSync('packages/site-kit/src/consent.css', 'utf8');
+    expect(css).not.toMatch(/var\(--[\w-]+\)/);
+    expect(css).toMatch(/\.line-consent \{[^}]*background: var\(--line-night, #120d24\)/);
+  });
+});
