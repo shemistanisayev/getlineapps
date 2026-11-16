@@ -1,0 +1,46 @@
+{
+  "summary": "Hitline muestra las etiquetas y los eventos de tracking de la página que estás inspeccionando. No recoge, guarda ni envía ningún dato sobre ti ni sobre las páginas que revisas.",
+  "reads": [
+    "Las peticiones de red, el dataLayer y otras capas de datos de la página (adobeDataLayer, digitalData, utag_data), los contenedores de GTM y qué herramientas de tracking conocidas están cargadas en la pestaña inspeccionada, además de las cookies de tracking _ga, _gcl_*, _fbp, _fbc, _ttp y FPID, solo mientras la pestaña Hitline de Chrome DevTools está abierta.",
+    "La página de la pestaña actual, solo después de que hagas clic en el icono de Hitline para abrir el popup, y de nuevo cada 2 segundos mientras el popup sigue abierto.",
+    "Un archivo de plan de tracking, solo si eliges cargar uno. Se lee en tu navegador."
+  ],
+  "stores": [
+    "Tus ajustes en el almacenamiento de Chrome de tu ordenador: el idioma, los dominios que indicas como tu propio sitio, los planes de tracking que cargas (solo nombres de eventos y parámetros) y las plataformas personalizadas que añades (un nombre y una parte de una URL).",
+    "Cuando haces clic en \"Show in DevTools\" en el popup, una nota breve sobre qué evento mostrar se guarda en la memoria de Chrome hasta que el panel la lee. Desaparece cuando se cierra Chrome.",
+    "Los resultados se quedan en el panel abierto y desaparecen cuando cierras DevTools o el popup."
+  ],
+  "never": [
+    "Leer pestañas en las que no abriste Hitline",
+    "Leer lo que escribes en los formularios",
+    "Enviar eventos, páginas o resultados a ningún servidor",
+    "Guardar un historial de los sitios que revisaste"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Leer la pestaña actual, y solo después de que hagas clic en el icono."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Ejecutar la función de lectura en esa pestaña."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Guardar tus ajustes en tu ordenador."
+    },
+    {
+      "name": "devtools_page",
+      "manifest": "key:devtools_page",
+      "why": "Añadir la pestaña Hitline a DevTools. Chrome le da las peticiones de la pestaña inspeccionada solo mientras DevTools está abierto."
+    }
+  ],
+  "notes": [
+    "El PDF de auditoría se genera en tu navegador y se guarda donde tú elijas.",
+    "Mientras la pestaña Hitline está abierta, y cuando haces clic en \"Reload page\", Hitline añade un pequeño temporizador al dataLayer de esa página que anota cuándo se añade cada entrada. No lee nada más y no envía nada.",
+    "Hitline no hace ninguna petición de red propia."
+  ]
+}

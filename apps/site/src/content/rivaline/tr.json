@@ -1,0 +1,504 @@
+{
+  "meta": {
+    "title": "Rivaline: Ücretsiz Rakip Analizi, Meta, Google ve Fazlası",
+    "description": "Ücretsiz Chrome eklentisi. Bir rakibin martech stack'ini, tekliflerini ve kanallarını gör, reklamlarını dört reklam kütüphanesinde aç, iki siteyi karşılaştır ve marka kitini kopyala.",
+    "ogAlt": "Rivaline: herhangi bir rakibin stack'ini, reklamlarını ve markasını tek panelde gör."
+  },
+  "nav": {
+    "label": "Rivaline bölümleri",
+    "features": "Özellikler",
+    "finder": "Reklam kütüphanesi bulucu",
+    "how": "Nasıl çalışır",
+    "privacy": "Gizlilik",
+    "faq": "SSS"
+  },
+  "add": {
+    "nav": "Chrome'a ekle",
+    "hero": "Chrome'a ekle, ücretsiz",
+    "band": "Chrome'a ekle",
+    "soonNav": "Çok yakında",
+    "soonHero": "Çok yakında Chrome'da"
+  },
+  "hero": {
+    "pill": "Ücretsiz Chrome eklentisi",
+    "titleStart": "Herhangi bir rakibin stack'ini, reklamlarını ve markasını",
+    "titleHighlight": "tek panelde gör",
+    "lead": "Rivaline bir sitenin kullandığı araçları, ne sunduğunu, markanın başka nerelerde olduğunu ve dört reklam kütüphanesindeki reklamlarını, renkleri ve fontlarıyla birlikte gösterir. Doğrudan Chrome'un yan panelinde",
+    "secondary": "Reklam kütüphanesi bulucuyu dene",
+    "trustLabel": "Denemek neden güvenli",
+    "trust": ["Hesap yok", "Hiçbir şey tarayıcından çıkmaz", "Açık kaynak"],
+    "mock": {
+      "label": "Kova demo mağazasında Rivaline yan paneli",
+      "url": "example.com",
+      "siteTitle": "Skincare that keeps it simple.",
+      "siteButton": "Shop the routine",
+      "tabs": {
+        "stack": "Stack",
+        "offer": "Teklif",
+        "ads": "Reklamlar",
+        "brand": "Marka"
+      },
+      "host": "example.com",
+      "title": "8 kategoride 13 araç",
+      "rows": [
+        {
+          "mark": "meta",
+          "name": "Meta Pixel",
+          "id": "4182736509…"
+        },
+        {
+          "mark": "tiktok",
+          "name": "TikTok Pixel",
+          "id": "C9H3KQ7R…"
+        },
+        {
+          "mark": "googleads",
+          "name": "Google Ads",
+          "id": "AW-11284956"
+        },
+        {
+          "mark": "googleanalytics",
+          "name": "Google Analytics 4",
+          "id": "G-8XK2LM4Q…"
+        },
+        {
+          "mark": "googletagmanager",
+          "name": "Tag Manager",
+          "id": "GTM-N4KV8R"
+        },
+        {
+          "mark": "intercom",
+          "name": "Intercom",
+          "id": "chat"
+        }
+      ]
+    },
+    "kit": {
+      "eyebrow": "Marka kiti",
+      "hint": "HEX'i görmek için üzerine gel",
+      "headingFont": "Fraunces",
+      "headings": "başlıklar",
+      "bodyFont": "DM Sans",
+      "body": "metin"
+    },
+    "toast": {
+      "eyebrow": "Bulunamadı",
+      "text": "Bu sitede server-side tracking yok"
+    }
+  },
+  "marquee": {
+    "title": "Pazarlamacıların kullandığı araçları tanır",
+    "items": [
+      {
+        "mark": "googleanalytics",
+        "label": "Google Analytics 4"
+      },
+      {
+        "mark": "googletagmanager",
+        "label": "Tag Manager"
+      },
+      {
+        "mark": "googleads",
+        "label": "Google Ads"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "mark": "tiktok",
+        "label": "TikTok Pixel"
+      },
+      {
+        "mark": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "mark": "snapchat",
+        "label": "Snap Pixel"
+      },
+      {
+        "mark": "hotjar",
+        "label": "Hotjar"
+      },
+      {
+        "mark": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "mark": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "mark": "mailchimp",
+        "label": "Mailchimp"
+      },
+      {
+        "mark": "intercom",
+        "label": "Intercom"
+      },
+      {
+        "mark": "zendesk",
+        "label": "Zendesk"
+      },
+      {
+        "mark": "shopify",
+        "label": "Shopify"
+      },
+      {
+        "mark": "wordpress",
+        "label": "WordPress"
+      },
+      {
+        "mark": "webflow",
+        "label": "Webflow"
+      },
+      {
+        "mark": "trustpilot",
+        "label": "Trustpilot"
+      },
+      {
+        "mark": "klarna",
+        "label": "Klarna"
+      },
+      {
+        "mark": "stripe",
+        "label": "Stripe"
+      },
+      {
+        "mark": "paypal",
+        "label": "PayPal"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Sorun",
+    "title": "Bir rakibi araştırmak on sekme ve view-source gerektirir",
+    "lead": "Cevaplar zaten sayfada. Sadece dağınık halde",
+    "cards": [
+      {
+        "title": "Stack kaynak kodda saklanır",
+        "text": "Bir sitenin hangi pikselleri, CRM'i ve canlı sohbeti kullandığını bulmak, script'lerini satır satır okumak demektir"
+      },
+      {
+        "title": "Dört reklam kütüphanesi, dört arama",
+        "text": "Meta, Google, TikTok ve LinkedIn her seferinde markanın yeniden yazılmasını ister"
+      },
+      {
+        "title": "Damlalıkla marka renkleri",
+        "text": "İncele, kopyala, yapıştır, tekrarla. Her renk, her font ve buton stili için"
+      }
+    ]
+  },
+  "features": {
+    "eyebrow": "Panelin içinde",
+    "title": "Bir rakip hakkında her şey, tek panelde",
+    "tabsLabel": "Rivaline özellikleri",
+    "stack": {
+      "label": "Stack",
+      "title": "Her araç, ne iş yaptığına göre gruplanmış",
+      "lead": "Analitik, reklam pikselleri, etiket yöneticileri, e-posta, canlı sohbet, yorumlar, ödemeler ve altta yatan platform, her biri kullandığı ID ile",
+      "bullets": [
+        "GTM-N4KV8R ve G-8XK2LM4QPZ gibi ID'ler, kopyalamaya hazır",
+        "Her eşleşme için kanıt: script, çerez ya da global değişken",
+        "Eksikler de listelenir: server-side tracking, consent, CRM"
+      ],
+      "demo": {
+        "advertising": "Reklam",
+        "emailChat": "E-posta ve sohbet",
+        "notFoundStrong": "Bulunamadı:",
+        "notFound": "server-side tracking, consent banner'ı, CRM"
+      }
+    },
+    "offer": {
+      "label": "Teklif",
+      "title": "Ne satıyorlar ve neredeler",
+      "lead": "Ana başlık, sayfadaki teklifler, fiyatlar, sosyal medya profilleri, uygulamalar, pazarlar ve sitenin lead'leri nasıl topladığı",
+      "bullets": [
+        "İndirimler, promosyon kodları, ücretsiz kargo ve taksitler; İngilizce, Azerbaycanca, Rusça ve Türkçe",
+        "Instagram, TikTok, YouTube, Telegram ve diğer profiller, ayrıca App Store ve Google Play",
+        "Sitenin hizmet verdiği diller, ülkeler ve para birimi"
+      ],
+      "demo": {
+        "offers": "Teklifler",
+        "free": "Ücretsiz kargo",
+        "code": "Promosyon kodu",
+        "channels": "Kanallar"
+      }
+    },
+    "ads": {
+      "label": "Reklamlar",
+      "title": "Dört reklam kütüphanesi, arama hazır",
+      "lead": "Rivaline marka adını ve domaini doldurur, böylece Meta, Google, TikTok ve LinkedIn doğru sonuçlarla açılır",
+      "bullets": [
+        "Dördünü tek tıkla aç",
+        "Varsayılan ülkeni Ayarlar'da bir kez seç",
+        "Hangi kanalların sitede pikseli olduğunu gör"
+      ],
+      "demo": {
+        "searchesBrand": "\"Kova\" aranır",
+        "searchesDomain": "example.com aranır",
+        "openAll": "4'ünü de yeni sekmelerde aç"
+      }
+    },
+    "brand": {
+      "label": "Marka",
+      "title": "Damlalık olmadan marka kiti",
+      "lead": "Logo, rolleriyle renkler, font adları ve ana buton stili. CSS değişkenleri, PNG palet ya da JSON olarak dışa aktar",
+      "bullets": [
+        "HEX kodunu kopyalamak için herhangi bir renge tıkla",
+        "Yalnızca font adları, asla font dosyaları",
+        "Bir sunum ya da mockup için hazır"
+      ],
+      "demo": {
+        "headings": "Başlıklar",
+        "body": "Metin"
+      }
+    },
+    "compare": {
+      "label": "Karşılaştır",
+      "title": "İki rakip, yan yana",
+      "lead": "İki siteyi oku, sonra hangi araçların, tekliflerin ve kanalların yalnızca birinde olduğunu gör",
+      "bullets": [
+        "Yalnızca bir sitede ve ikisinde de olan araçlar",
+        "Reklam kanalları, teklifler, sosyal medya profilleri ve pazarlar tek tabloda",
+        "Rivaline'ın zaten okuduklarını kullanır. Hiçbir şey kaydedilmez"
+      ],
+      "demo": {
+        "tools": "Pazarlama araçları",
+        "offers": "Teklifler",
+        "profiles": "Sosyal medya profilleri",
+        "only": "Yalnızca example.com"
+      }
+    },
+    "report": {
+      "label": "Rapor",
+      "title": "Bir sonraki toplantı için tek bir PDF",
+      "lead": "Stack, eksikler, teklif, kanallar, reklam kütüphanesi linkleri ve marka kiti tek bir PDF'te, tarayıcında hazırlanır",
+      "bullets": [
+        "Bir satış görüşmesi ya da müşteri sunumu için hazır",
+        "Seçilebilir metin ve çalışan linkler",
+        "Bilgisayarında hazırlanır, hiçbir yere gönderilmez"
+      ],
+      "demo": {
+        "date": "7 Kasım 2026",
+        "eyebrow": "Rakip raporu",
+        "tools": "araç",
+        "categories": "kategori",
+        "pixels": "reklam pikseli",
+        "gaps": "eksik",
+        "high": "Yüksek",
+        "rows": [
+          {
+            "strong": "Server-side tracking yok.",
+            "text": "4 pikselin hepsi tarayıcıdan gönderiyor."
+          },
+          {
+            "strong": "Consent banner'ı yok.",
+            "text": "Pikseller herhangi bir seçimden önce yükleniyor."
+          }
+        ]
+      }
+    }
+  },
+  "finder": {
+    "eyebrow": "Ücretsiz araç, kurulum yok",
+    "title": "Reklam kütüphanesi bulucu",
+    "lead": "Bir marka ya da domain yaz. Dört reklam kütüphanesi araması açılmaya hazır olur. Bu sayfada çalışır ve hiçbir yere hiçbir şey göndermez",
+    "label": "Marka ya da domain",
+    "placeholder": "example.com ya da bir marka adı",
+    "default": "example.com",
+    "brand": "Marka: {brand}",
+    "typeAbove": "yukarıya yaz",
+    "searchesBrand": "\"{q}\" aranır",
+    "searchesDomain": "{q} aranır",
+    "needsDomain": "Domain gerekli",
+    "typeBrand": "Bir marka yaz",
+    "open": "Aramayı aç",
+    "opensNewTab": "yeni sekmede açılır",
+    "libs": {
+      "meta": "Meta Ad Library",
+      "google": "Google Ads Transparency",
+      "tiktok": "TikTok Ad Library",
+      "linkedin": "LinkedIn Ad Library"
+    },
+    "tiktokNote": "TikTok'un kütüphanesi Avrupa'da gösterilen reklamları kapsar",
+    "band": "Pikselleri, marka kitini ve bir PDF'i de mi istiyorsun? Eklenti bunu her siteden yapar"
+  },
+  "how": {
+    "eyebrow": "Nasıl çalışır",
+    "title": "Üç adım, kurulum yok",
+    "steps": [
+      {
+        "title": "Rivaline'ı Chrome'a ekle",
+        "text": "Chrome Web Mağazası'nda ücretsiz. Hesap açmana gerek yok"
+      },
+      {
+        "title": "Bir site aç, simgeye tıkla",
+        "text": "Yan panel sayfanın yanında açılır. Ya da şuna bas",
+        "keys": ["Alt", "Shift", "V"]
+      },
+      {
+        "title": "Raporu indir",
+        "text": "Stack, eksikler, reklam linkleri ve marka kiti tek bir PDF'te"
+      }
+    ]
+  },
+  "report": {
+    "eyebrow": "Rakip raporu",
+    "titleStart": "Rakibinde var, sende yok mu?",
+    "titleHighlight": "Kurdur",
+    "titleEnd": "hem de Rivaline'ı geliştiren kişiye",
+    "text": "Tek tık herhangi bir siteyi rapora çevirir: stack, eksikler, teklif, kanallar, reklam kütüphaneleri ve marka kiti. Ekibinle paylaş ya da bana gönder. Büyüyen markalar için analitik, server-side tracking, consent ve reklam piksellerini kuruyorum",
+    "cta": "Denetim ayarla",
+    "from": "Hazırlayan",
+    "paper": {
+      "date": "7 Kasım 2026",
+      "eyebrow": "Rakip raporu",
+      "host": "example.com",
+      "tools": "araç, 8 kategoride",
+      "gaps": "eksik",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Yüksek",
+          "strong": "Server-side tracking yok.",
+          "text": "4 reklam pikselinin hepsi tarayıcıdan gönderiyor."
+        },
+        {
+          "tone": "bad",
+          "label": "Yüksek",
+          "strong": "Consent banner'ı yok.",
+          "text": "Pikseller herhangi bir seçimden önce yükleniyor."
+        },
+        {
+          "tone": "warn",
+          "label": "Orta",
+          "strong": "Sitede CRM yok.",
+          "text": "Lead'ler ayrı araçlarda kalıyor."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Gizlilik",
+    "title": "Araştırman tarayıcında kalır",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Sunucu yok",
+        "text": "Tüm analiz Chrome içinde çalışır. Rivaline kendi adına hiçbir istek yapmaz"
+      },
+      {
+        "icon": "lock",
+        "title": "Minimum izin",
+        "text": "Yan panel, aktif sekme ve yerel depolama. Tüm sitelerine erişim yok"
+      },
+      {
+        "icon": "chart",
+        "title": "İçinde takip yok",
+        "text": "Eklenti seni takip etmez. Sekmeyi kapattığında sonuçlar silinir"
+      },
+      {
+        "icon": "code",
+        "title": "Açık kaynak",
+        "text": "Kodu oku ve bu sayfadaki her iddiayı kendin kontrol et"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "SSS",
+    "title": "Sorular",
+    "askBefore": "Başka bir şey mi var?",
+    "askLink": "Doğrudan bana sor",
+    "items": [
+      {
+        "q": "Rivaline gerçekten ücretsiz mi?",
+        "a": "Evet. Ücretli plan, hesap ve kullanım limiti yok."
+      },
+      {
+        "q": "Bir yere veri gönderiyor mu?",
+        "a": "Hayır. Rivaline sayfayı tarayıcında okur ve sonucu sen sekmeyi kapatana kadar bellekte tutar. Yalnızca ayarların kaydedilir, o da sadece kendi bilgisayarında."
+      },
+      {
+        "q": "Araçları nasıl tanıyor?",
+        "a": "Script adreslerini, çerez adlarını, sayfa global değişkenlerini ve meta etiketlerini yaklaşık 160 pazarlama aracından oluşan kendi listesiyle karşılaştırır. Her eşleşme bulduğu kanıtı gösterir."
+      },
+      {
+        "q": "Bir rakibin reklam harcamasını gösterebilir mi?",
+        "a": "Hayır. Reklam kütüphaneleri bütçeleri değil, hangi reklamların yayında olduğunu gösterir. Rivaline bu kütüphaneleri arama önceden doldurulmuş halde açar."
+      },
+      {
+        "q": "İki rakibi karşılaştırabilir miyim?",
+        "a": "Evet. Her siteyi kendi sekmesinde oku, sonra paneldeki Karşılaştır'a bas. Rivaline iki sonucu yan yana koyar: araçlar, reklam kanalları, teklifler, sosyal medya profilleri, pazarlar ve marka renkleri. Hiçbir şey kaydedilmez."
+      },
+      {
+        "q": "Yeni bir sekmede neden simgeye tekrar tıklıyorum?",
+        "a": "Rivaline Chrome'un activeTab iznini kullanır. Bir sayfayı yalnızca sen istedikten sonra okuyabilir, bu yüzden ziyaret ettiğin her siteye asla erişimi olmaz."
+      },
+      {
+        "q": "TikTok neden yalnızca Avrupa'daki reklamları gösteriyor?",
+        "a": "TikTok'un reklam kütüphanesi AB, AEA, İsviçre ve Birleşik Krallık'ta gösterilen reklamları kapsar. Rivaline markayı ve ülkeyi doldurur, sonra TikTok'un sayfasında Search'e basarsın."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Line ailesi",
+    "title": "Aynı aileden daha fazla ücretsiz araç",
+    "tools": {
+      "hitline": {
+        "text": "Bir sitenin gerçekte hangi tracking verilerini gönderdiğini doğrudan DevTools'ta gör",
+        "open": "Hitline'ı aç"
+      },
+      "serpline": {
+        "text": "Her sayfa için teknik SEO ve AI arama kontrolleri",
+        "open": "Serpline'ı aç"
+      },
+      "foldline": {
+        "text": "Bir landing page'in dönüşüm getirmesini neyin engellediğini bul",
+        "open": "Foldline'ı aç"
+      },
+      "markline": {
+        "text": "Saniyeler içinde ekran görüntüsü al, işaretle ve geri bildirim paylaş",
+        "open": "Markline'ı aç"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Geliştiren:",
+    "privacy": "Gizlilik politikası",
+    "source": "Kaynak kodu"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Gitmene üzüldük | Rivaline",
+      "description": "Rivaline'ı neden kaldırdığını söyle. Tek bir tık sonraki sürümü daha iyi yapar."
+    },
+    "titleStart": "Rivaline kaldırıldı",
+    "titleEnd": "Neden ayrıldın?",
+    "lead": "Tek bir tık sonraki sürümü daha iyi yapar",
+    "reasonsLabel": "Neden",
+    "reasons": [
+      "Bir sitedeki araçları kaçırdı",
+      "Sadece bir kez lazımdı",
+      "Anlaması çok zor",
+      "Başka bir araç kullanıyorum"
+    ],
+    "moreLabel": "Eklemek istediğin bir şey var mı?",
+    "optional": "(isteğe bağlı)",
+    "placeholder": "Hangi siteyi ya da aracı kaçırdı?",
+    "send": "Geri bildirim gönder",
+    "sending": "Gönderiliyor...",
+    "thanks": "Teşekkürler. Geri bildirimin gönderildi.",
+    "error": "Gönderilemedi. Lütfen bir dakika sonra tekrar dene.",
+    "pickOne": "Bir neden seç ya da birkaç kelime yaz.",
+    "reinstall": "Rivaline'ı yeniden yükle",
+    "card": {
+      "eyebrow": "Kendi sitende eksikler mi gördün?",
+      "title": "Onları senin için kapatabilirim",
+      "text": "Analitik, server-side tracking, consent ve reklam pikselleri. Neyin eksik olduğunu gösteren net bir liste ve çalışan bir kurulum alırsın",
+      "cta": "Denetim ayarla",
+      "sub": "Shamistan Isayev, analitik ve tracking"
+    }
+  }
+}

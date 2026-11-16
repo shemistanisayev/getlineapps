@@ -28,9 +28,10 @@ export const toolsSchema = z
   .length(TOOL_SLUGS.length);
 
 export const sharedSchema = z.object({
-  lang: z.enum(['en', 'az']),
+  lang: z.enum(['en', 'az', 'tr', 'ru', 'ro', 'uk', 'pt', 'nl', 'es', 'fr']),
   htmlLang: text,
-  switchTo: z.object({ label: text, short: text }),
+  /** Label of the language menu (aria-label and menu heading). */
+  language: text,
   skip: text,
   nav: z.object({
     home: text,

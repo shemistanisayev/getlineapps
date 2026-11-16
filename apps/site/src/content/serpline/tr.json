@@ -1,0 +1,674 @@
+{
+  "meta": {
+    "title": "Serpline: Ücretsiz SEO Kontrolü, Google, ChatGPT ve Fazlası",
+    "description": "Ücretsiz Chrome eklentisi. Açık olan sayfa için indeksleme, teknik SEO, Core Web Vitals, JavaScript render ve AI tarayıcı kontrolleri, tek bir yan panelde.",
+    "ogAlt": "Serpline: sayfanı Google ve yapay zekâ nasıl görüyorsa öyle gör."
+  },
+  "nav": {
+    "label": "Serpline bölümleri",
+    "preview": "SERP önizleme",
+    "features": "Özellikler",
+    "how": "Nasıl çalışır",
+    "privacy": "Gizlilik",
+    "faq": "SSS"
+  },
+  "add": {
+    "nav": "Chrome'a ekle",
+    "hero": "Chrome'a ekle, ücretsiz",
+    "band": "Serpline'ı Chrome'a ekle",
+    "soonNav": "Çok yakında",
+    "soonHero": "Çok yakında Chrome'da"
+  },
+  "hero": {
+    "pill": "Ücretsiz Chrome eklentisi",
+    "titleStart": "Sayfanı",
+    "titleHighlight": "Google ve AI",
+    "titleEnd": "nasıl görüyorsa öyle gör",
+    "lead": "Açık olan sayfa için indeksleme, teknik SEO, Core Web Vitals ve AI tarayıcı kontrolleri, tek bir Chrome yan panelinde",
+    "secondary": "SERP önizlemeyi dene",
+    "trustLabel": "Serpline",
+    "trust": ["Hesap yok", "Hiçbir şey tarayıcından çıkmaz", "Açık kaynak"],
+    "mock": {
+      "url": "example.com/products/wireless-headphones-pro-x",
+      "rendered": "Render edilmiş",
+      "raw": "Ham HTML",
+      "scoreAria": "SEO skoru 56",
+      "label": "İyileştirilmeli",
+      "issues": "10 sorun bulundu",
+      "rows": [
+        {
+          "label": "Title",
+          "status": "Sığıyor",
+          "tone": "ok"
+        },
+        {
+          "label": "Description",
+          "status": "Kesiliyor",
+          "tone": "warn"
+        },
+        {
+          "label": "Canonical",
+          "status": "Bu sayfa",
+          "tone": "ok"
+        },
+        {
+          "label": "H1",
+          "status": "Sadece JS",
+          "tone": "bad"
+        },
+        {
+          "label": "Alt metin",
+          "status": "3 eksik",
+          "tone": "warn"
+        },
+        {
+          "label": "Schema",
+          "status": "Sadece JS",
+          "tone": "warn"
+        },
+        {
+          "label": "GPTBot",
+          "status": "İzinli",
+          "tone": "ok"
+        },
+        {
+          "label": "PerplexityBot",
+          "status": "Engelli",
+          "tone": "bad"
+        }
+      ]
+    },
+    "serp": {
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging",
+      "note": "Description 107 karakterden sonra kesildi"
+    },
+    "toast": {
+      "value": "91%",
+      "line1": "metnin JavaScript'e",
+      "line2": "ihtiyacı var"
+    }
+  },
+  "marquee": {
+    "title": "Arama motorlarının ve AI tarayıcılarının ne gördüğünü kontrol eder",
+    "items": [
+      {
+        "mark": "google",
+        "label": "Google önizleme"
+      },
+      {
+        "mark": "google",
+        "label": "Googlebot"
+      },
+      {
+        "mark": "eye",
+        "label": "Core Web Vitals"
+      },
+      {
+        "mark": "file",
+        "label": "sitemap.xml",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "Rich result'lar"
+      },
+      {
+        "mark": "openai",
+        "label": "GPTBot"
+      },
+      {
+        "mark": "openai",
+        "label": "OAI-SearchBot"
+      },
+      {
+        "mark": "openai",
+        "label": "ChatGPT-User"
+      },
+      {
+        "mark": "anthropic",
+        "label": "ClaudeBot"
+      },
+      {
+        "mark": "anthropic",
+        "label": "Claude-SearchBot"
+      },
+      {
+        "mark": "perplexity",
+        "label": "PerplexityBot"
+      },
+      {
+        "mark": "google",
+        "label": "Google-Extended"
+      },
+      {
+        "mark": "apple",
+        "label": "Applebot-Extended"
+      },
+      {
+        "mark": "bytedance",
+        "label": "Bytespider"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta-ExternalAgent"
+      },
+      {
+        "mark": "bot",
+        "label": "CCBot"
+      },
+      {
+        "mark": "file",
+        "label": "robots.txt",
+        "code": true
+      },
+      {
+        "mark": "file",
+        "label": "llms.txt",
+        "code": true
+      },
+      {
+        "mark": "link",
+        "label": "rel=canonical",
+        "code": true
+      },
+      {
+        "mark": "eye",
+        "label": "Meta robots"
+      },
+      {
+        "mark": "globe",
+        "label": "hreflang",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "JSON-LD"
+      },
+      {
+        "mark": "share",
+        "label": "Open Graph"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Sorun",
+    "title": "Sayfa iyi görünüyor ama tarayıcılar başka bir şey okuyor",
+    "lead": "SEO sorunlarının çoğu ekranda hiç görünmez, bu yüzden trafik düşene kadar kimse fark etmez",
+    "cards": [
+      {
+        "title": "JavaScript'e ihtiyaç duyan içerik",
+        "text": "Tarayıcın sayfanın tamamını gösterir. Bir tarayıcı botunun indirdiği HTML boş bir kabuk olabilir ve AI tarayıcılarının çoğu onu dolduran script'leri hiç çalıştırmaz"
+      },
+      {
+        "title": "Google'da kesilen snippet'ler",
+        "text": "Uzun bir title ya da description üç noktayla biter. Tıklamayı kazanması gereken satır hiç görünmez"
+      },
+      {
+        "title": "Yanlışlıkla engellenen AI tarayıcıları",
+        "text": "robots.txt'teki eski bir satır, bir siteyi aylarca ChatGPT, Claude veya Perplexity cevaplarının dışında tutabilir"
+      }
+    ],
+    "mini": {
+      "raw": "Ham HTML",
+      "rawWords": "38 kelime",
+      "after": "JavaScript sonrası",
+      "afterWords": "412 kelime",
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two",
+      "blocked": "Engelli"
+    }
+  },
+  "preview": {
+    "eyebrow": "Ücretsiz araç",
+    "title": "Google sonucunu yayınlamadan önce önizle",
+    "lead": "Bir title ve description yaz. Google'ın masaüstünde ve mobilde onları nerede kestiğini gör. Bu sayfada çalışır ve hiçbir yere bir şey gönderilmez",
+    "titleLabel": "Sayfa başlığı",
+    "titleDefault": "Wireless Headphones Pro X | Lumo",
+    "titlePlaceholder": "Wireless Headphones Pro X | Lumo",
+    "descLabel": "Meta description",
+    "descDefault": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once. Free next-day delivery and free returns within 14 days on all Lumo Audio headphones.",
+    "descPlaceholder": "Sayfa hakkında bir iki cümle",
+    "urlLabel": "URL",
+    "urlDefault": "https://example.com/products/wireless-headphones-pro-x",
+    "googlePreview": "Google önizleme",
+    "deviceLabel": "Önizleme cihazı",
+    "desktop": "Masaüstü",
+    "mobile": "Mobil",
+    "measure": "{chars} karakter, {limit} px içinden {px}",
+    "fits": "Sığıyor",
+    "cut": "{n} karakterden sonra kesiliyor",
+    "addTitle": "Bir title ekle",
+    "addDesc": "Bir description ekle",
+    "emptyTitle": "Sayfa başlığın",
+    "emptyDesc": "Google sayfadan bir metin seçecek.",
+    "note": "Limitler piksel olarak ölçülür ve yaklaşıktır. Google title ve snippet'leri yeniden yazabilir",
+    "band": "Sadece snippet'i değil, tüm sayfayı kontrol et"
+  },
+  "features": {
+    "eyebrow": "Yan panelin içinde",
+    "title": "Altı sekme, tek yan panel",
+    "tabsLabel": "Serpline sekmeleri",
+    "summary": {
+      "label": "Özet",
+      "title": "Panel açılır açılmaz bir skor, indeksleme kararı ve kontrol listesi",
+      "lead": "Google sayfayı indeksleyebilir mi, ardından title, description, H1, alt metin, yapılandırılmış veri, Open Graph ve hreflang, her biri net bir durumla",
+      "bullets": [
+        "Önceliğe göre ağırlıklandırılmış, 100 üzerinden tek bir skor",
+        "Google rich result kurallarına göre kontrol edilen yapılandırılmış veri",
+        "Masaüstü ve mobil için Google önizlemesi, artı bir denetim PDF'i"
+      ],
+      "demo": {
+        "scoreAria": "SEO skoru 56",
+        "label": "SEO skoru: iyileştirilmeli",
+        "counts": "2 yüksek, 6 orta, 2 düşük",
+        "rows": [
+          {
+            "label": "Title",
+            "status": "32 karakter",
+            "tone": "ok"
+          },
+          {
+            "label": "Meta description",
+            "status": "Google'da kesiliyor",
+            "tone": "warn"
+          },
+          {
+            "label": "H1",
+            "status": "Sadece JavaScript sonrası",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Product schema",
+            "status": "Ürün snippet'i hazır",
+            "tone": "ok"
+          }
+        ],
+        "index": {
+          "label": "Google indeksleyebilir mi?",
+          "status": "Evet",
+          "tone": "ok"
+        }
+      }
+    },
+    "headings": {
+      "label": "Başlıklar",
+      "title": "Tarayıcıların gördüğü yapı, sayfada vurgulanmış",
+      "lead": "Atlanan seviyeler ve tekrarlanan H1'lerle H1'den H6'ya başlık ağacı, artı alt metni olmayan her görsel",
+      "bullets": [
+        "Sayfadaki çerçeveler her başlığın yerini gösterir",
+        "Yalnızca JavaScript'ten sonra oluşan başlıklar işaretlenir"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "level": 1,
+            "text": "Wireless Headphones Pro X",
+            "status": "Sadece JavaScript",
+            "tone": "bad"
+          },
+          {
+            "level": 2,
+            "text": "Product details"
+          },
+          {
+            "level": 3,
+            "text": "Noise cancelling"
+          },
+          {
+            "level": 2,
+            "text": "Specifications"
+          },
+          {
+            "level": 4,
+            "text": "Bluetooth 5.3",
+            "status": "H3'ü atlıyor",
+            "tone": "warn",
+            "hl": true
+          },
+          {
+            "level": 2,
+            "text": "Reviews (128)"
+          }
+        ]
+      }
+    },
+    "links": {
+      "label": "Bağlantılar",
+      "title": "Kırık ve yönlendirilen bağlantılar, doğrudan sayfanın kendisinden",
+      "lead": "Anchor metinleriyle iç, dış ve nofollow bağlantılar. İç bağlantılar tarayıcından gerçek bir durum kontrolünden geçer",
+      "bullets": [
+        "404'ler ve yönlendirme zincirleri tek listede",
+        "Belirsiz anchor'lar ve metinsiz bağlantılar sayfada vurgulanır",
+        "Yalnızca bulunduğun siteyle iletişime geçilir"
+      ],
+      "demo": {
+        "internal": "iç",
+        "external": "dış",
+        "issues": "sorun",
+        "rows": [
+          {
+            "text": "Earbuds Mini",
+            "path": "/products/earbuds-mini-old",
+            "status": "404",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "text": "Headphones",
+            "path": "/headphones to /electronics/headphones",
+            "status": "301",
+            "tone": "warn"
+          },
+          {
+            "text": "Free returns",
+            "path": "/returns to /help/returns",
+            "status": "301",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "render": {
+      "label": "Render",
+      "title": "Ham HTML, render edilmiş sayfanın yanında",
+      "lead": "Serpline sayfa kaynağını bir kez indirir ve JavaScript'in oluşturduğuyla karşılaştırır: başlıklar, kelimeler, bağlantılar ve yapılandırılmış veri",
+      "bullets": [
+        "Hangi öğelerin JavaScript'e ihtiyaç duyduğunu tam olarak gösterir",
+        "SEO eklentilerinin çoğunun atladığı kontrol"
+      ],
+      "demo": {
+        "raw": "Ham HTML",
+        "rawValue": "38 kelime, H1 yok",
+        "rendered": "Render edilmiş",
+        "renderedValue": "412 kelime, 1 H1",
+        "words": "374 kelime"
+      }
+    },
+    "speed": {
+      "label": "Hız",
+      "title": "Core Web Vitals, görseller ve mobil, sayfada ölçülür",
+      "lead": "Ziyaretinin LCP, CLS ve INP değerleri Google eşikleriyle, sayfa ağırlığı, sunucu yanıtı ve sayfayı yavaşlatan her görsel ya da dokunma hedefi",
+      "bullets": [
+        "Ağır, büyük boyutlu, lazy ve boyutsuz görseller dosya adıyla",
+        "Viewport, yatay kaydırma, küçük metin ve dokunma hedefleri için mobil kontroller",
+        "LCP öğesi doğrudan sayfada vurgulanır"
+      ],
+      "demo": {
+        "vitals": [
+          {
+            "k": "LCP",
+            "value": "2.9 s",
+            "status": "İyileştirilmeli",
+            "tone": "warn"
+          },
+          {
+            "k": "CLS",
+            "value": "0.02",
+            "status": "İyi",
+            "tone": "ok"
+          },
+          {
+            "k": "INP",
+            "value": "120 ms",
+            "status": "İyi",
+            "tone": "ok"
+          }
+        ],
+        "rows": [
+          {
+            "label": "200 KB üzeri",
+            "status": "2 görsel",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Gösterilenden büyük",
+            "status": "4 görsel",
+            "tone": "warn"
+          },
+          {
+            "label": "Viewport meta",
+            "status": "width=device-width",
+            "tone": "ok"
+          },
+          {
+            "label": "Sıkıştırma",
+            "status": "brotli",
+            "tone": "ok"
+          }
+        ]
+      }
+    },
+    "ai": {
+      "label": "AI",
+      "title": "Hangi AI tarayıcıları siteyi okuyabilir ve ne görürler",
+      "lead": "robots.txt'ten GPTBot, ClaudeBot, PerplexityBot, Google-Extended ve diğerleri için kurallar, arama botları ve eğitim botları olarak ayrılmış, artı llms.txt",
+      "bullets": [
+        "Her engelin arkasındaki robots.txt satırı",
+        "AI tarayıcılarının gördükleri: okuyabildikleri metin oranı, başlık ve schema"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "mark": "openai",
+            "label": "GPTBot",
+            "status": "İzinli",
+            "tone": "ok"
+          },
+          {
+            "mark": "anthropic",
+            "label": "ClaudeBot",
+            "status": "İzinli",
+            "tone": "ok"
+          },
+          {
+            "mark": "perplexity",
+            "label": "PerplexityBot",
+            "status": "Engelli",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "mark": "google",
+            "label": "Google-Extended",
+            "status": "İzinli",
+            "tone": "ok"
+          },
+          {
+            "mark": "commoncrawl",
+            "label": "CCBot",
+            "status": "Engelli",
+            "tone": "bad"
+          }
+        ],
+        "llms": "llms.txt",
+        "llmsStatus": "Bulunamadı",
+        "seen": {
+          "label": "AI tarayıcılarının gördüğü metin",
+          "status": "9%",
+          "tone": "bad"
+        }
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Nasıl çalışır",
+    "title": "Üç adım, kurulum yok",
+    "steps": [
+      {
+        "title": "Serpline'ı Chrome'a ekle",
+        "text": "Chrome Web Mağazası'nda ücretsiz. Hesap açmana gerek yok"
+      },
+      {
+        "title": "Bir sayfa aç, simgeye tıkla",
+        "text": "Yan panel sayfanın yanında açılır ve sayfayı kontrol eder. Ya da",
+        "key": "Alt+Shift+S",
+        "textEnd": "tuşlarına bas"
+      },
+      {
+        "title": "Denetim PDF'ini indir",
+        "text": "Her sorun çözümüyle birlikte, bir geliştiriciye göndermeye hazır"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "Denetim PDF'i",
+    "titleStart": "Sorun mu buldun?",
+    "titleHighlight": "Düzelttir",
+    "titleEnd": "hem de Serpline'ı geliştiren kişiye",
+    "text": "Tek tık bulguları önceliklendirilmiş bir rapora çevirir. Bir geliştiriciye gönder ya da bana: teknik SEO, server-side rendering, yapılandırılmış veri ve AI aramada görünürlük sorunlarını düzeltiyorum",
+    "cta": "SEO denetimi ayarla",
+    "from": "Hazırlayan",
+    "paper": {
+      "date": "7 Kasım 2026",
+      "eyebrow": "SEO ve AI arama denetimi",
+      "host": "example.com",
+      "score": "skor",
+      "high": "yüksek",
+      "medium": "orta",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Yüksek",
+          "strong": "H1 yalnızca JavaScript'ten sonra görünüyor.",
+          "text": "Sunucuda render et."
+        },
+        {
+          "tone": "bad",
+          "label": "Yüksek",
+          "strong": "Metnin %91'i JavaScript'e ihtiyaç duyuyor.",
+          "text": ""
+        },
+        {
+          "tone": "warn",
+          "label": "Orta",
+          "strong": "PerplexityBot engelli.",
+          "text": "robots.txt'teki kuralı kaldır."
+        }
+      ],
+      "ctaText": "Bunları düzeltmek için yardım mı lazım?",
+      "ctaButton": "İletişime geç"
+    }
+  },
+  "privacy": {
+    "eyebrow": "Gizlilik",
+    "title": "Sayfaların tarayıcında kalır",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Sunucu yok",
+        "text": "Her kontrol Chrome içinde çalışır. Serpline'ın sayfa göndereceği bir backend'i yok"
+      },
+      {
+        "icon": "lock",
+        "title": "Minimum izin",
+        "text": "Aktif sekme, yan panel ve yerel ayarlar. Tüm sitelerine erişim yok"
+      },
+      {
+        "icon": "chart",
+        "title": "İçinde analitik yok",
+        "text": "Eklenti seni takip etmez. Paneli kapattığında sonuçlar silinir"
+      },
+      {
+        "icon": "code",
+        "title": "Açık kaynak",
+        "text": "Kodu oku ve bu sayfadaki her iddiayı kendin kontrol et"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "SSS",
+    "title": "Sorular",
+    "askBefore": "Başka bir soru mu var?",
+    "askLink": "Doğrudan bana sor",
+    "items": [
+      {
+        "q": "Serpline gerçekten ücretsiz mi?",
+        "a": "Evet. Ücretli plan, hesap ve kullanım limiti yok."
+      },
+      {
+        "q": "Ahrefs veya Screaming Frog'dan farkı ne?",
+        "a": "Onlar tüm siteleri bir sunucudan ya da bilgisayarından tarar. Serpline bulunduğun sayfayı tarayıcının içinde kontrol eder, JavaScript'ten sonra neyin değiştiği ve AI tarayıcılarının neyi okumasına izin verildiği dahil. Onlarla birlikte iyi çalışır."
+      },
+      {
+        "q": "AI aramayı nasıl kontrol ediyor?",
+        "a": "Sitedeki robots.txt ve llms.txt dosyalarını okur, bilinen her AI tarayıcısı için kuralları eşleştirir ve ham HTML'i render edilmiş sayfayla karşılaştırır, çünkü AI tarayıcılarının çoğu JavaScript çalıştırmaz."
+      },
+      {
+        "q": "Tüm sitemi tarıyor mu?",
+        "a": "Hayır. Açık sayfayı, sitenin robots.txt, llms.txt ve sitemap dosyalarını ve o sayfadaki iç bağlantıların durumunu kontrol eder."
+      },
+      {
+        "q": "Sayfa hızını ölçüyor mu?",
+        "a": "Evet. Hız sekmesi ziyaretinin Core Web Vitals değerlerini (LCP, CLS ve INP), sayfa ağırlığını, sunucu yanıtını, görsel sorunlarını ve mobil düzen kontrollerini gösterir. Rakamlar kendi tarayıcından gelir, bu yüzden daha yavaş telefonlardaki gerçek ziyaretçiler daha yüksek değerler görebilir."
+      },
+      {
+        "q": "Sayfalarımı bir yere gönderiyor mu?",
+        "a": "Hayır. İstekler yalnızca bulunduğun siteye, kendi tarayıcından gider. Hiçbir şey bana ya da başka birine ulaşmaz."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Line ailesi",
+    "title": "Aynı aileden daha fazla ücretsiz araç",
+    "tools": {
+      "hitline": {
+        "text": "Her tracking hit'i, GTM etiketi ve consent sinyali DevTools'ta",
+        "open": "Hitline'ı aç"
+      },
+      "rivaline": {
+        "text": "Bir rakibin teknolojileri, reklamları ve marka stili tek panelde",
+        "open": "Rivaline'ı aç"
+      },
+      "foldline": {
+        "text": "Bir landing page'in dönüşüm getirmesini neyin engellediğini bul",
+        "open": "Foldline'ı aç"
+      },
+      "markline": {
+        "text": "Saniyeler içinde ekran görüntüsü al, işaretle ve geri bildirim paylaş",
+        "open": "Markline'ı aç"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Geliştiren:",
+    "privacy": "Gizlilik politikası",
+    "source": "Kaynak kodu"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Gitmene üzüldük | Serpline",
+      "description": "Serpline'ı neden kaldırdığını söyle. Tek bir tık sonraki sürümü daha iyi yapar."
+    },
+    "titleStart": "Serpline kaldırıldı",
+    "titleEnd": "Neden ayrıldın?",
+    "lead": "Tek bir tık sonraki sürümü daha iyi yapar",
+    "reasonsLabel": "Neden",
+    "reasons": [
+      "Sitemdeki sorunları kaçırdı",
+      "Sadece bir kez lazımdı",
+      "Anlaması çok zor",
+      "Başka bir araç kullanıyorum"
+    ],
+    "moreLabel": "Eklemek istediğin bir şey var mı?",
+    "optional": "(isteğe bağlı)",
+    "placeholder": "Hangi sayfayı veya kontrolü kaçırdı?",
+    "send": "Geri bildirim gönder",
+    "sending": "Gönderiliyor...",
+    "thanks": "Teşekkürler. Geri bildirimin gönderildi.",
+    "error": "Gönderilemedi. Lütfen bir dakika sonra tekrar dene.",
+    "pickOne": "Bir neden seç ya da birkaç kelime yaz.",
+    "reinstall": "Serpline'ı yeniden yükle",
+    "card": {
+      "eyebrow": "Hâlâ bir SEO sorunun mu var?",
+      "title": "Senin için denetleyip düzeltebilirim",
+      "text": "Teknik SEO, JavaScript render, yapılandırılmış veri ve AI aramada görünürlük. Neyin bozuk olduğunu gösteren net bir liste ve geliştiricilerinin uygulayabileceği çözümler alırsın",
+      "cta": "SEO denetimi ayarla",
+      "sub": "Shamistan Isayev, teknik SEO ve analitik"
+    }
+  }
+}

@@ -79,7 +79,7 @@ export type Params = Partial<Record<LineParam, string | number>>;
 /** Pushed once before GTM loads; GTM sends it with every event, page_view included. */
 export const PAGE_PARAMS = {
   page_type: 'hub, landing, privacy, uninstall or not_found',
-  page_locale: 'en or az',
+  page_locale: 'en, az, tr, ru, ro, uk, pt, nl, es or fr',
   page_tool: 'Tool of the page, or none',
 } as const;
 export type PageContext = Record<keyof typeof PAGE_PARAMS, string>;
@@ -94,6 +94,8 @@ export interface TrackDetail {
 type DataLayerWindow = Window & { dataLayer?: unknown[] };
 
 const TOOLS = ['hitline', 'serpline', 'rivaline', 'foldline', 'markline'];
+/** Path prefixes of the site languages; English has none (apps/site/src/lib/site.ts, LOCALES). */
+const SITE_LOCALES = ['az', 'tr', 'ru', 'ro', 'uk', 'pt', 'nl', 'es', 'fr'];
 const OWNER_HOST = 'shamistanisayev.com';
 const STORE_HOST = 'chromewebstore.google.com';
 
@@ -103,8 +105,8 @@ const clip = (s: string | null | undefined, n = 100) =>
 /** page_type, page_locale and page_tool from the path. */
 export function pageContext(pathname: string, notFound = false): PageContext {
   const parts = pathname.replace(/\/+$/, '').split('/').filter(Boolean);
-  const page_locale = parts[0] === 'az' ? 'az' : 'en';
-  if (page_locale === 'az') parts.shift();
+  const page_locale = SITE_LOCALES.includes(parts[0] ?? '') ? parts[0]! : 'en';
+  if (page_locale !== 'en') parts.shift();
   const [first = '', second = ''] = parts;
   let page_type = 'not_found';
   let page_tool = 'none';

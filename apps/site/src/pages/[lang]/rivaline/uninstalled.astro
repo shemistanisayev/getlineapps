@@ -1,0 +1,12 @@
+---
+/** /<lang>/rivaline/uninstalled for the languages beyond EN and AZ (lib/site.ts, EXTRA_LOCALES). */
+import ToolUninstall from '../../../components/ToolUninstall.astro';
+import { EXTRA_LOCALES, type Locale } from '../../../lib/site.ts';
+
+export function getStaticPaths() {
+  return EXTRA_LOCALES.map((lang) => ({ params: { lang } }));
+}
+const locale = Astro.params.lang as Locale;
+---
+
+<ToolUninstall locale={locale} slug="rivaline" />

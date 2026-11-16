@@ -1,0 +1,44 @@
+{
+  "summary": "Rivaline affiche les outils marketing, les liens vers les bibliothèques publicitaires et le style de marque du site sur lequel vous êtes. Il lit cette page dans votre navigateur et ne nous envoie rien.",
+  "reads": [
+    "Les adresses des scripts, les noms des fichiers chargés, les balises meta et les noms des cookies de la page, jamais leurs valeurs. Uniquement après que vous avez cliqué sur l'icône.",
+    "Les couleurs, les polices et les styles du bouton principal de cette page.",
+    "Une capture d'écran de la partie visible de l'onglet, utilisée uniquement pour découper le logo et supprimée aussitôt après."
+  ],
+  "stores": [
+    "Paramètres sur votre ordinateur : pays par défaut et langue.",
+    "Les résultats restent dans le panneau latéral jusqu'à ce que vous le fermiez."
+  ],
+  "never": [
+    "Lire les valeurs des cookies ou ce que vous saisissez dans les formulaires",
+    "Télécharger des fichiers de police",
+    "Envoyer des pages ou des résultats à un serveur",
+    "Conserver un historique des sites que vous avez vérifiés"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Lire l'onglet actuel après que vous avez cliqué sur l'icône."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Exécuter la fonction de lecture dans cet onglet."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Afficher Rivaline à côté de la page."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Enregistrer vos paramètres sur votre ordinateur."
+    }
+  ],
+  "notes": [
+    "Les boutons des bibliothèques publicitaires ouvrent Meta, Google, TikTok et LinkedIn dans de nouveaux onglets. Ces sites ont leurs propres politiques de confidentialité.",
+    "Les exports de marque et le PDF sont créés dans votre navigateur."
+  ]
+}

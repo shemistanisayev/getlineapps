@@ -1,0 +1,44 @@
+{
+  "summary": "Foldline vérifie les problèmes de conversion de la landing page sur laquelle vous êtes. Il lit la page dans votre navigateur et ne nous envoie rien.",
+  "reads": [
+    "La mise en page, le texte, les boutons et les images de l'onglet actuel, après que vous avez cliqué sur l'icône.",
+    "Les types et les libellés des champs de formulaire, jamais ce qui y est saisi.",
+    "Les temps de chargement de cette visite, fournis par votre navigateur."
+  ],
+  "stores": [
+    "Paramètres sur votre ordinateur : vue, taille du téléphone, affichage de la ligne de flottaison et langue.",
+    "En vue Mobile, la taille de votre fenêtre pendant un court instant, pour que Foldline puisse la rétablir."
+  ],
+  "never": [
+    "Lire ce que vous saisissez dans les formulaires",
+    "Modifier la page elle-même",
+    "Envoyer des pages ou des résultats à un serveur",
+    "Conserver un historique des sites que vous avez vérifiés"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Lire l'onglet actuel après que vous avez cliqué sur l'icône."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Exécuter les contrôles et tracer la ligne de flottaison dans cet onglet."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Afficher Foldline à côté de la page."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Enregistrer vos paramètres sur votre ordinateur."
+    }
+  ],
+  "notes": [
+    "La ligne de flottaison est tracée par-dessus la page uniquement tant que le panneau est ouvert, et elle est retirée quand vous le fermez.",
+    "La vue Mobile rétrécit la fenêtre et la rétablit quand vous revenez à l'autre vue ou fermez le panneau. Cela ne nécessite aucune permission supplémentaire."
+  ]
+}

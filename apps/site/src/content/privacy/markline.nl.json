@@ -1,0 +1,39 @@
+{
+  "summary": "Markline legt de pagina waarop je bent vast zodat je er aantekeningen op kunt zetten. Opnames blijven op je computer, en Markline uploadt niets.",
+  "reads": [
+    "Het huidige tabblad, nadat je op het icoon klikt of een sneltoets voor vastleggen indrukt.",
+    "Waar e-mailadressen en telefoonnummers op de pagina staan, zodat ze kunnen worden vervaagd. Alleen hun positie wordt gebruikt.",
+    "Een afbeelding die je in de editor sleept, plakt of kiest."
+  ],
+  "stores": [
+    "Instellingen op je computer: automatisch vervagen, stijl van vervaging, standaardinstellingen voor export en taal.",
+    "Een opname wordt via de browseropslag aan het editortabblad doorgegeven en binnen enkele seconden verwijderd. Als je het editortabblad sluit, wordt de opname verwijderd."
+  ],
+  "never": [
+    "Opnames uploaden of deellinks maken",
+    "Je scherm opnemen",
+    "Pagina's, afbeeldingen of notities naar een server sturen",
+    "Een geschiedenis bijhouden van wat je hebt vastgelegd"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Het huidige tabblad vastleggen en lezen nadat je klikt of een sneltoets indrukt."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "E-mailadressen en telefoonnummers vinden om te vervagen, de kiezer voor gebied en element tonen en scrollen voor een opname van de hele pagina."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Je instellingen op je computer opslaan."
+    }
+  ],
+  "notes": [
+    "Paginagegevens (adres, browser, venstergrootte, tijd) worden alleen aan een export toegevoegd als die schakelaar aan staat.",
+    "De regel “Gemaakt met Markline” op afbeeldingen is optioneel en kan in de instellingen worden uitgezet."
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "summary": "Foldline verifică landing page-ul pe care ești pentru probleme de conversie. Citește pagina în browserul tău și nu ne trimite nimic.",
+  "reads": [
+    "Layoutul, textul, butoanele și imaginile filei curente, după ce apeși pe pictogramă.",
+    "Tipurile și etichetele câmpurilor din formulare, niciodată ce se scrie în ele.",
+    "Timpii de încărcare ai acestei vizite, din browserul tău."
+  ],
+  "stores": [
+    "Setări pe calculatorul tău: vizualizarea, dimensiunea telefonului, comutatorul pentru linia fold și limba.",
+    "În vizualizarea Mobil, dimensiunea ferestrei tale, pentru scurt timp, ca Foldline să o poată restabili."
+  ],
+  "never": [
+    "Să citească ce scrii în formulare",
+    "Să modifice pagina în sine",
+    "Să trimită pagini sau rezultate către vreun server",
+    "Să păstreze un istoric al site-urilor pe care le-ai verificat"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Citește fila curentă după ce apeși pe pictogramă."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Rulează verificările și desenează linia fold în acea filă."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Afișează Foldline lângă pagină."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvează setările tale pe calculatorul tău."
+    }
+  ],
+  "notes": [
+    "Linia fold este desenată peste pagină doar cât timp panoul este deschis și este eliminată când îl închizi.",
+    "Vizualizarea Mobil îngustează fereastra și o restabilește când revii sau închizi panoul. Pentru asta nu este nevoie de nicio permisiune suplimentară."
+  ]
+}

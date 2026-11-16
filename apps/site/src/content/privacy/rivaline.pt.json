@@ -1,0 +1,44 @@
+{
+  "summary": "O Rivaline mostra as ferramentas de marketing, os links das bibliotecas de anúncios e o estilo de marca do site em que você está. Ele lê essa página no seu navegador e não envia nada para nós.",
+  "reads": [
+    "Endereços de scripts, nomes de arquivos carregados, meta tags e os nomes dos cookies da página, nunca os valores deles. Só depois que você clica no ícone.",
+    "As cores, as fontes e os estilos do botão principal dessa página.",
+    "Uma captura de tela da parte visível da aba, usada só para recortar o logotipo e descartada logo em seguida."
+  ],
+  "stores": [
+    "Configurações no seu computador: país padrão e idioma.",
+    "Os resultados ficam no painel lateral até você fechá-lo."
+  ],
+  "never": [
+    "Ler valores de cookies ou o que você digita em formulários",
+    "Baixar arquivos de fonte",
+    "Enviar páginas ou resultados para qualquer servidor",
+    "Manter um histórico dos sites que você verificou"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Ler a aba atual depois que você clica no ícone."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Executar a função de leitura nessa aba."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Mostrar o Rivaline ao lado da página."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvar as suas configurações no seu computador."
+    }
+  ],
+  "notes": [
+    "Os botões das bibliotecas de anúncios abrem Meta, Google, TikTok e LinkedIn em novas abas. Esses sites têm as suas próprias políticas de privacidade.",
+    "As exportações da marca e o PDF são gerados no seu navegador."
+  ]
+}

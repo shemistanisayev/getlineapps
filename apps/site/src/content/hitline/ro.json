@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "title": "Hitline: Debugger de tracking gratuit GA4, Meta și altele",
+    "description": "Extensie Chrome gratuită. Vezi fiecare eveniment din GA4, Google Ads, Meta, TikTok și încă 46 de platforme, citește tagurile GTM și prinde scurgerile de consimțământ direct în Chrome DevTools.",
+    "ogAlt": "Hitline: tracking-ul tău funcționează? Dovedește-o într-un singur panou."
+  },
+  "nav": {
+    "label": "Secțiunile Hitline",
+    "features": "Funcții",
+    "how": "Cum funcționează",
+    "privacy": "Confidențialitate",
+    "faq": "Întrebări"
+  },
+  "add": {
+    "nav": "Adaugă în Chrome",
+    "hero": "Adaugă în Chrome, e gratuit",
+    "soonNav": "În curând",
+    "soonHero": "În curând în Chrome"
+  },
+  "sample": {
+    "eyebrow": "Exemplu de audit",
+    "title": "example.com, realizat cu Hitline dintr-un clic",
+    "note": "Formatul real al raportului. Nicio dată nu a părăsit browserul",
+    "download": "Descarcă PDF-ul exemplu",
+    "close": "Închide exemplul de audit"
+  },
+  "hero": {
+    "pill": "Extensie Chrome gratuită",
+    "titleStart": "Tracking-ul tău funcționează?",
+    "titleHighlight": "Dovedește-o",
+    "titleEnd": "într-un singur panou",
+    "lead": "Vezi fiecare eveniment din GA4, Google Ads, Meta, TikTok și încă 46 de platforme, identifică server-side GTM și prinde scurgerile de consimțământ, direct în Chrome DevTools",
+    "secondary": "Vezi un exemplu de audit",
+    "trust": ["Fără cont", "Nimic nu iese din browserul tău", "Open source"],
+    "mockLabel": "DevTools › Hitline",
+    "tabs": [
+      {
+        "label": "Evenimente",
+        "count": "14",
+        "warn": false
+      },
+      {
+        "label": "GTM",
+        "count": "24",
+        "warn": false
+      },
+      {
+        "label": "Consimțământ",
+        "count": "2",
+        "warn": true
+      },
+      {
+        "label": "Atribuire",
+        "count": "1",
+        "warn": true
+      }
+    ],
+    "live": "Live",
+    "rows": [
+      {
+        "time": "18.204",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "page_view",
+        "route": "sgtm"
+      },
+      {
+        "time": "18.310",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "PageView",
+        "route": "browser"
+      },
+      {
+        "time": "19.140",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "ViewContent",
+        "route": "browser"
+      },
+      {
+        "time": "31.950",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "add_to_cart",
+        "route": "sgtm"
+      },
+      {
+        "time": "32.004",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "AddToCart",
+        "route": "bad"
+      },
+      {
+        "time": "32.050",
+        "platform": "ads",
+        "name": "Google Ads",
+        "event": "conversion",
+        "route": "browser"
+      },
+      {
+        "time": "32.091",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "AddToCart",
+        "route": "browser"
+      },
+      {
+        "time": "33.420",
+        "platform": "dl",
+        "name": "dataLayer",
+        "event": "begin_checkout",
+        "route": "page"
+      }
+    ],
+    "routes": {
+      "sgtm": "sGTM",
+      "browser": "Browser",
+      "page": "Pagină",
+      "bad": "Fără valoare"
+    },
+    "sgtmTitle": "Server-side GTM",
+    "sgtmVia": "prin data.example.com",
+    "tags": "4 taguri",
+    "issueLabel": "Problemă găsită",
+    "issueText": "Meta AddToCart e trimis fără valoare"
+  },
+  "marquee": {
+    "title": "Citește 50 de platforme pe care le folosești deja",
+    "items": [
+      {
+        "platform": "ga",
+        "label": "GA4"
+      },
+      {
+        "platform": "ads",
+        "label": "Google Ads"
+      },
+      {
+        "platform": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "platform": "tt",
+        "label": "TikTok Pixel"
+      },
+      {
+        "platform": "dl",
+        "label": "Google Tag Manager"
+      },
+      {
+        "platform": "sgtm",
+        "label": "Server-side GTM"
+      },
+      {
+        "platform": "linkedin",
+        "label": "LinkedIn Insight"
+      },
+      {
+        "platform": "bing",
+        "label": "Microsoft Ads"
+      },
+      {
+        "platform": "x",
+        "label": "X Pixel"
+      },
+      {
+        "platform": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "platform": "snapchat",
+        "label": "Snapchat Pixel"
+      },
+      {
+        "platform": "reddit",
+        "label": "Reddit Pixel"
+      },
+      {
+        "platform": "hj",
+        "label": "Hotjar"
+      },
+      {
+        "platform": "clarity",
+        "label": "Microsoft Clarity"
+      },
+      {
+        "platform": "amplitude",
+        "label": "Amplitude"
+      },
+      {
+        "platform": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "platform": "segment",
+        "label": "Segment"
+      },
+      {
+        "platform": "posthog",
+        "label": "PostHog"
+      },
+      {
+        "platform": "adobe",
+        "label": "Adobe Analytics"
+      },
+      {
+        "platform": "matomo",
+        "label": "Matomo"
+      },
+      {
+        "platform": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "platform": "klaviyo",
+        "label": "Klaviyo"
+      },
+      {
+        "platform": "criteo",
+        "label": "Criteo"
+      },
+      {
+        "platform": "floodlight",
+        "label": "Floodlight"
+      },
+      {
+        "platform": "optimizely",
+        "label": "Optimizely"
+      },
+      {
+        "platform": "datalayer",
+        "label": "dataLayer"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Problema",
+    "title": "Majoritatea erorilor de tracking sunt silențioase",
+    "lead": "Bugetul se cheltuie în continuare pe cifre greșite",
+    "cards": [
+      {
+        "title": "Evenimente fără valoare",
+        "text": "Pixelul se declanșează, dashboardul arată bine, iar platforma de reclame nu află niciodată cât valora un coș"
+      },
+      {
+        "title": "Pixeli care ignoră consimțământul",
+        "text": "Un vizitator apasă „Respinge tot” și un pixel se declanșează oricum. Nimeni nu observă până nu o face un regulator sau un client"
+      },
+      {
+        "title": "Vânzări atribuite sursei greșite",
+        "text": "O pagină de plată pe alt domeniu pierde click ID-ul, iar traficul plătit apare ca referral"
+      }
+    ],
+    "mini": {
+      "ga4Event": "add_to_cart",
+      "ga4Value": "value 89.90",
+      "metaEvent": "AddToCart",
+      "metaValue": "value",
+      "reject": "Respinge tot",
+      "gclid": "gclid",
+      "host": "pay.example.net",
+      "referral": "referral"
+    }
+  },
+  "features": {
+    "eyebrow": "În panou",
+    "title": "Șase vederi. O singură întrebare: te poți baza pe cifre?",
+    "tabsLabel": "Vederile Hitline",
+    "events": {
+      "label": "Evenimente",
+      "eyebrow": "Inspector de evenimente",
+      "title": "Fiecare eveniment, fiecare parametru, fiecare platformă, una lângă alta",
+      "lead": "Hitline citește cererile a 50 de platforme de analytics, reclame, CRM și testare, plus fiecare push în dataLayer. Cele mai noi evenimente apar primele și se evidențiază când sosesc",
+      "bullets": [
+        "50 de platforme într-o singură listă, iar serviciile tale ca platforme proprii",
+        "Fiecare parametru decodat, fără query string-uri de descifrat",
+        "Live: evenimentele noi evidențiate, cele mai noi primele"
+      ],
+      "demo": {
+        "event": "add_to_cart",
+        "platform": "GA4",
+        "via": "prin sGTM",
+        "params": [
+          {
+            "k": "currency",
+            "v": "USD"
+          },
+          {
+            "k": "value",
+            "v": "89.90"
+          },
+          {
+            "k": "items[0].item_id",
+            "v": "LUMO-PRO-X"
+          },
+          {
+            "k": "items[0].price",
+            "v": "89.90"
+          }
+        ],
+        "issueStrong": "Meta AddToCart",
+        "issueText": "pe același clic nu are valoare."
+      }
+    },
+    "gtm": {
+      "label": "GTM și sGTM",
+      "eyebrow": "GTM și server-side",
+      "title": "Află dacă un site folosește server-side GTM, cu dovezi",
+      "lead": "Hitline citește chiar containerul GTM: fiecare tag cu triggerul, verificările de consimțământ și starea lui, iar pentru fiecare eveniment dataLayer, tagurile declanșate. Plus patru semnale pentru server-side GTM",
+      "bullets": [
+        "Fiecare tag cu triggerul, verificările de consimțământ și starea lui",
+        "Fiecare eveniment dataLayer cu tagurile declanșate pe el",
+        "Patru semnale server-side, nu o presupunere"
+      ],
+      "demo": {
+        "title": "Server-side GTM",
+        "detected": "Detectat",
+        "signals": [
+          "Cererile merg la data.example.com",
+          "Calea folosește formatul GA4",
+          "server_container_url este setat",
+          "Cookie-ul FPID e setat de server"
+        ]
+      }
+    },
+    "checks": {
+      "label": "Verificări",
+      "eyebrow": "Verificări de calitate a datelor",
+      "title": "Greșelile care strică rapoartele pe tăcute",
+      "lead": "Hitline verifică fiecare eveniment când sosește și explică fiecare problemă: ce se întâmplă, de ce contează și cum se rezolvă",
+      "bullets": [
+        "Adrese de e-mail trimise către platforme de reclame și analytics",
+        "Aceeași achiziție sau același lead trimis de două ori",
+        "Achiziții fără ID de comandă, evenimente fără valoare"
+      ],
+      "demo": {
+        "title": "Găsite pe această pagină",
+        "count": "3 probleme",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 page_view",
+            "status": "E-mail în URL",
+            "tone": "bad"
+          },
+          {
+            "platform": "meta",
+            "label": "Meta Purchase",
+            "status": "Trimis de două ori",
+            "tone": "warn"
+          },
+          {
+            "platform": "ga",
+            "label": "GA4 purchase",
+            "status": "Fără ID de comandă",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "consent": {
+      "label": "Consimțământ",
+      "eyebrow": "Verificarea consimțământului",
+      "title": "Apasă „Respinge tot” și vezi cine se declanșează în continuare",
+      "lead": "Hitline citește semnalele Consent Mode v2 și împarte cererile în înainte și după alegerea vizitatorului",
+      "bullets": [
+        "Semnalele implicite și cele actualizate, unele lângă altele",
+        "Scurgerile marcate cu roșu, cu soluția GTM alături",
+        "Ping-urile cookieless separate de hiturile reale"
+      ],
+      "demo": {
+        "title": "După „Respinge tot”",
+        "count": "3 cereri",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 view_item",
+            "status": "Ping cookieless",
+            "ok": true
+          },
+          {
+            "platform": "tt",
+            "label": "TikTok ViewContent",
+            "status": "Trimis după refuz",
+            "ok": false
+          },
+          {
+            "platform": "hj",
+            "label": "Hotjar",
+            "status": "Neîncărcat",
+            "ok": true
+          }
+        ]
+      }
+    },
+    "attribution": {
+      "label": "Atribuire",
+      "eyebrow": "Traseul atribuirii",
+      "title": "Urmărește UTM și gclid pagină cu pagină",
+      "lead": "Vezi exact unde se pierd parametrii de campanie, de la clicul pe reclamă până la confirmarea comenzii",
+      "bullets": [
+        "UTM, gclid și fbclid urmărite de la o pagină la alta",
+        "Întreruperile cross-domain găsite automat",
+        "Setarea GA4 care o rezolvă, numită clar"
+      ],
+      "demo": {
+        "steps": ["Landing", "Produs", "Coș", "Plată", "Confirmare"],
+        "rows": [
+          {
+            "label": "gclid",
+            "cells": [
+              {
+                "v": "da",
+                "ok": true
+              },
+              {
+                "v": "da",
+                "ok": true
+              },
+              {
+                "v": "da",
+                "ok": true
+              },
+              {
+                "v": "pierdut",
+                "ok": false
+              },
+              {
+                "v": "da",
+                "ok": true
+              }
+            ]
+          },
+          {
+            "label": "source",
+            "cells": [
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "pierdut",
+                "ok": false
+              },
+              {
+                "v": "referral",
+                "ok": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "plan": {
+      "label": "Plan de tracking",
+      "eyebrow": "Verificarea planului de tracking",
+      "title": "Planul tău față de ce trimite site-ul de fapt",
+      "lead": "Încarcă planul ca CSV. Hitline semnalează evenimentele lipsă și parametrii greșiți în timp ce navighezi",
+      "bullets": [
+        "CSV sau JSON, trei coloane",
+        "Evenimente lipsă și parametri greșiți, live",
+        "Încă nu ai un plan? Fă o schiță din sesiunea ta"
+      ],
+      "demo": {
+        "file": "lumo-tracking-plan.csv",
+        "count": "8 evenimente",
+        "bars": [
+          {
+            "label": "Potrivite",
+            "n": 4
+          },
+          {
+            "label": "Lipsă",
+            "n": 2
+          },
+          {
+            "label": "Parametri greșiți",
+            "n": 2
+          }
+        ],
+        "rows": [
+          {
+            "event": "generate_lead",
+            "status": "Lipsă",
+            "tone": "bad"
+          },
+          {
+            "event": "sign_up",
+            "status": "Parametri greșiți",
+            "tone": "warn"
+          }
+        ]
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Cum funcționează",
+    "title": "Trei pași, fără configurare",
+    "steps": [
+      {
+        "title": "Adaugă Hitline în Chrome",
+        "key": "",
+        "titleEnd": "",
+        "text": "Gratuit din Chrome Web Store. Nu trebuie să-ți faci cont"
+      },
+      {
+        "title": "Deschide un site, apasă pe pictogramă",
+        "key": "",
+        "titleEnd": "",
+        "text": "Popup-ul arată platformele, starea server-side și problemele principale"
+      },
+      {
+        "title": "Apasă",
+        "key": "F12",
+        "titleEnd": "pentru imaginea completă",
+        "text": "Fila Hitline din DevTools înregistrează live fiecare eveniment în timp ce navighezi"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "Audit PDF",
+    "titleStart": "Ai găsit ceva stricat?",
+    "titleHighlight": "Rezolvă-l",
+    "titleEnd": "cu cel care a creat Hitline",
+    "lead": "Un clic transformă constatările într-un raport cu priorități. Trimite-l unui developer sau trimite-mi-l mie: configurez GA4, server-side GTM, Consent Mode și pixeli de reclame pentru branduri în creștere",
+    "cta": "Programează un audit de tracking",
+    "from": "De la",
+    "paper": {
+      "date": "6 nov. 2026",
+      "eyebrow": "Audit de tracking",
+      "host": "example.com",
+      "high": "prioritate mare",
+      "medium": "prioritate medie",
+      "levels": {
+        "high": "Mare",
+        "medium": "Medie"
+      },
+      "items": [
+        {
+          "level": "high",
+          "strong": "Meta Pixel se declanșează înainte de consimțământ.",
+          "text": "Adaugă în GTM o verificare de consimțământ ad_storage."
+        },
+        {
+          "level": "high",
+          "strong": "Vânzările sunt atribuite site-ului de plată.",
+          "text": "Adaugă-l la „Unwanted referrals” în GA4."
+        },
+        {
+          "level": "medium",
+          "strong": "Meta AddToCart nu are valoare.",
+          "text": "Transmite value din dataLayer."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Confidențialitate",
+    "title": "Datele tale nu părăsesc niciodată browserul",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Fără server",
+        "text": "Toată analiza rulează în Chrome. Hitline nu face nicio cerere proprie"
+      },
+      {
+        "icon": "lock",
+        "title": "Permisiuni minime",
+        "text": "Panoul DevTools, fila activă și stocarea locală. Fără acces la toate site-urile tale"
+      },
+      {
+        "icon": "eye",
+        "title": "Fără analytics în extensie",
+        "text": "Extensia nu te urmărește. Rezultatele dispar când închizi fila"
+      },
+      {
+        "icon": "code",
+        "title": "Open source",
+        "text": "Citește codul și verifică singur fiecare afirmație de pe această pagină"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Întrebări frecvente",
+    "title": "Întrebări",
+    "askBefore": "Altceva?",
+    "askLink": "Întreabă-mă direct",
+    "items": [
+      {
+        "q": "Hitline e chiar gratuit?",
+        "a": "Da. Nu există plan plătit, cont sau limită de utilizare."
+      },
+      {
+        "q": "Trimite datele mele undeva?",
+        "a": "Nu. Totul se analizează în browserul tău. Se salvează doar setările tale și doar pe calculatorul tău."
+      },
+      {
+        "q": "Ce platforme citește Hitline?",
+        "a": "50 în total: analytics (GA4, Adobe, Amplitude, Mixpanel, Segment, PostHog, Matomo și altele), pixeli de reclame (Google Ads, Meta, TikTok, LinkedIn, Microsoft Ads, X, Pinterest, Snapchat, Reddit, Criteo și altele), înregistrare de sesiuni, CRM, managere de taguri, instrumente de testare A/B și dataLayer."
+      },
+      {
+        "q": "Instrumentul meu nu e pe listă. Îl poate arăta totuși Hitline?",
+        "a": "Da. Adaugă-l în Setări ca platformă proprie: un nume și o parte din URL-ul lui. Cererile care doar par a fi tracking apar și ele la „Altele”."
+      },
+      {
+        "q": "Cum detectează server-side GTM?",
+        "a": "Verifică unde merg cererile GA4, calea cererii, setarea server_container_url și cookie-urile setate de server."
+      },
+      {
+        "q": "Prin ce diferă de Tag Assistant?",
+        "a": "Tag Assistant se concentrează pe tagurile Google. Hitline arată 50 de platforme una lângă alta, citește tagurile și triggerele GTM, verifică consimțământul, atribuirea și calitatea datelor și compară evenimentele cu planul tău de tracking."
+      },
+      {
+        "q": "Trebuie să am DevTools deschis?",
+        "a": "Popup-ul funcționează și fără și se actualizează singur cât timp e deschis. Pentru fluxul complet de evenimente, deschide DevTools și fila Hitline, apoi reîncarcă pagina o dată. Chrome nu le permite extensiilor să deschidă DevTools, așa că popup-ul îți arată scurtătura, iar DevTools se deschide la evenimentul pe care ai dat clic."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Familia Line",
+    "title": "Mai multe instrumente gratuite din aceeași familie",
+    "tools": {
+      "serpline": {
+        "text": "SEO tehnic și verificări pentru căutarea AI, pe orice pagină",
+        "open": "Deschide Serpline"
+      },
+      "rivaline": {
+        "text": "Stack-ul, reclamele și stilul de brand ale unui concurent într-un singur panou",
+        "open": "Deschide Rivaline"
+      },
+      "foldline": {
+        "text": "Află ce împiedică un landing page să convertească",
+        "open": "Deschide Foldline"
+      },
+      "markline": {
+        "text": "Fă o captură, adnoteaz-o și trimite feedback în câteva secunde",
+        "open": "Deschide Markline"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Creat de",
+    "privacy": "Politica de confidențialitate",
+    "source": "Cod sursă"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Ne pare rău că pleci | Hitline",
+      "description": "Spune-ne de ce ai eliminat Hitline. Un clic ajută la o versiune următoare mai bună."
+    },
+    "titleStart": "Hitline a fost eliminat",
+    "titleEnd": "Ce te-a făcut să pleci?",
+    "lead": "Un clic ajută la o versiune următoare mai bună",
+    "reasonsLabel": "Motiv",
+    "reasons": [
+      "Nu mi-a detectat configurarea",
+      "Am avut nevoie de el o singură dată",
+      "Prea greu de înțeles",
+      "Folosesc alt instrument"
+    ],
+    "moreLabel": "Mai e ceva?",
+    "optional": "(opțional)",
+    "placeholder": "Ce site sau configurare i-a scăpat?",
+    "send": "Trimite feedback",
+    "sending": "Se trimite...",
+    "thanks": "Mulțumesc. Feedbackul tău a fost trimis.",
+    "error": "Trimiterea a eșuat. Încearcă din nou peste un minut.",
+    "pickOne": "Alege un motiv sau scrie câteva cuvinte.",
+    "reinstall": "Reinstalează Hitline",
+    "card": {
+      "eyebrow": "Încă ai o problemă de tracking?",
+      "title": "Pot s-o auditez și s-o rezolv pentru tine",
+      "text": "GA4, server-side GTM, Consent Mode și pixeli de reclame. Primești o listă clară cu ce e stricat și o configurare care funcționează",
+      "cta": "Programează un audit de tracking",
+      "sub": "Shamistan Isayev"
+    }
+  }
+}

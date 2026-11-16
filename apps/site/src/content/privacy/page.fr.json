@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Politique de confidentialité de {name} : Line apps",
+    "description": "Ce que {name} lit, ce qu'il enregistre sur votre ordinateur et ce qu'il ne fait jamais. Pas de compte, rien n'est vendu, rien ne nous est envoyé."
+  },
+  "eyebrow": "Confidentialité",
+  "title": "Politique de confidentialité",
+  "lead": "Chaque Line app a sa propre politique, car chacune lit quelque chose de différent. Choisissez un outil. La version courte est la même pour les cinq : pas de compte, rien n'est vendu, rien ne nous est envoyé.",
+  "updatedLabel": "Dernière mise à jour",
+  "updated": "10 novembre 2026",
+  "tabsLabel": "Choisir un outil",
+  "tabLabel": "Politique de confidentialité de {name}",
+  "facts": [
+    "Aucune donnée personnelle collectée",
+    "Rien n'est envoyé à nos serveurs",
+    "Rien n'est vendu ni partagé"
+  ],
+  "headings": {
+    "reads": "Ce que {name} lit, et quand",
+    "stores": "Ce qui est enregistré sur votre ordinateur",
+    "never": "Ce que {name} ne fait jamais",
+    "perms": "Permissions et leur raison",
+    "notes": "Bon à savoir",
+    "site": "Ce site web",
+    "changes": "Modifications et contact"
+  },
+  "site": [
+    "getlineapps.com ne charge aucun outil d'analyse tant que vous ne l'avez pas accepté dans la bannière des cookies. Vous pouvez modifier votre choix à tout moment depuis le lien en pied de page.",
+    "Si vous remplissez le formulaire après avoir supprimé une extension, la raison et le texte que vous écrivez me sont envoyés par e-mail afin que je puisse améliorer l'outil. Rien d'autre n'y est joint, et ces informations ne sont pas utilisées à des fins marketing."
+  ],
+  "changes": "Si cette politique change, la nouvelle version est publiée ici avec une nouvelle date. Une modification qui collecterait davantage de données serait également décrite dans les notes de version de l'extension avant sa publication.",
+  "contactBefore": "Des questions sur la confidentialité ?",
+  "contactLink": "Contacter Shamistan Isayev",
+  "contactAfter": "."
+}

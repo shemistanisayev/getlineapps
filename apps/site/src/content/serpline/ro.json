@@ -1,0 +1,674 @@
+{
+  "meta": {
+    "title": "Serpline: Audit SEO gratuit pentru Google, ChatGPT și altele",
+    "description": "Extensie Chrome gratuită. Indexare, SEO tehnic, Core Web Vitals, randare JavaScript și verificarea crawlerilor AI pentru pagina pe care ești, într-un singur panou lateral.",
+    "ogAlt": "Serpline: vezi pagina așa cum o văd Google și AI."
+  },
+  "nav": {
+    "label": "Secțiunile Serpline",
+    "preview": "Previzualizare SERP",
+    "features": "Funcții",
+    "how": "Cum funcționează",
+    "privacy": "Confidențialitate",
+    "faq": "Întrebări"
+  },
+  "add": {
+    "nav": "Adaugă în Chrome",
+    "hero": "Adaugă în Chrome, e gratuit",
+    "band": "Adaugă Serpline în Chrome",
+    "soonNav": "În curând",
+    "soonHero": "În curând în Chrome"
+  },
+  "hero": {
+    "pill": "Extensie Chrome gratuită",
+    "titleStart": "Vezi pagina așa cum",
+    "titleHighlight": "Google și AI",
+    "titleEnd": "o văd",
+    "lead": "Indexare, SEO tehnic, Core Web Vitals și verificarea crawlerilor AI pentru pagina pe care ești, într-un singur panou lateral Chrome",
+    "secondary": "Încearcă previzualizarea SERP",
+    "trustLabel": "Serpline",
+    "trust": ["Fără cont", "Nimic nu iese din browserul tău", "Open source"],
+    "mock": {
+      "url": "example.com/products/wireless-headphones-pro-x",
+      "rendered": "Randat",
+      "raw": "HTML brut",
+      "scoreAria": "Scor SEO 56",
+      "label": "De îmbunătățit",
+      "issues": "10 probleme găsite",
+      "rows": [
+        {
+          "label": "Titlu",
+          "status": "Încape",
+          "tone": "ok"
+        },
+        {
+          "label": "Descriere",
+          "status": "Tăiată",
+          "tone": "warn"
+        },
+        {
+          "label": "Canonical",
+          "status": "Această pagină",
+          "tone": "ok"
+        },
+        {
+          "label": "H1",
+          "status": "Doar JS",
+          "tone": "bad"
+        },
+        {
+          "label": "Text alt",
+          "status": "3 lipsă",
+          "tone": "warn"
+        },
+        {
+          "label": "Schema",
+          "status": "Doar JS",
+          "tone": "warn"
+        },
+        {
+          "label": "GPTBot",
+          "status": "Permis",
+          "tone": "ok"
+        },
+        {
+          "label": "PerplexityBot",
+          "status": "Blocat",
+          "tone": "bad"
+        }
+      ]
+    },
+    "serp": {
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging",
+      "note": "Descriere tăiată după 107 caractere"
+    },
+    "toast": {
+      "value": "91%",
+      "line1": "din text are nevoie de",
+      "line2": "JavaScript"
+    }
+  },
+  "marquee": {
+    "title": "Verifică ce văd motoarele de căutare și crawlerii AI",
+    "items": [
+      {
+        "mark": "google",
+        "label": "Previzualizare Google"
+      },
+      {
+        "mark": "google",
+        "label": "Googlebot"
+      },
+      {
+        "mark": "eye",
+        "label": "Core Web Vitals"
+      },
+      {
+        "mark": "file",
+        "label": "sitemap.xml",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "Rich results"
+      },
+      {
+        "mark": "openai",
+        "label": "GPTBot"
+      },
+      {
+        "mark": "openai",
+        "label": "OAI-SearchBot"
+      },
+      {
+        "mark": "openai",
+        "label": "ChatGPT-User"
+      },
+      {
+        "mark": "anthropic",
+        "label": "ClaudeBot"
+      },
+      {
+        "mark": "anthropic",
+        "label": "Claude-SearchBot"
+      },
+      {
+        "mark": "perplexity",
+        "label": "PerplexityBot"
+      },
+      {
+        "mark": "google",
+        "label": "Google-Extended"
+      },
+      {
+        "mark": "apple",
+        "label": "Applebot-Extended"
+      },
+      {
+        "mark": "bytedance",
+        "label": "Bytespider"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta-ExternalAgent"
+      },
+      {
+        "mark": "bot",
+        "label": "CCBot"
+      },
+      {
+        "mark": "file",
+        "label": "robots.txt",
+        "code": true
+      },
+      {
+        "mark": "file",
+        "label": "llms.txt",
+        "code": true
+      },
+      {
+        "mark": "link",
+        "label": "rel=canonical",
+        "code": true
+      },
+      {
+        "mark": "eye",
+        "label": "Meta robots"
+      },
+      {
+        "mark": "globe",
+        "label": "hreflang",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "JSON-LD"
+      },
+      {
+        "mark": "share",
+        "label": "Open Graph"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Problema",
+    "title": "Pagina arată bine, dar crawlerii citesc altceva",
+    "lead": "Majoritatea problemelor SEO nu se văd pe ecran, așa că nimeni nu le observă până nu scade traficul",
+    "cards": [
+      {
+        "title": "Conținut care are nevoie de JavaScript",
+        "text": "Browserul tău arată pagina completă. HTML-ul pe care îl descarcă un crawler poate fi o coajă goală, iar majoritatea crawlerilor AI nu rulează niciodată scripturile care o umplu"
+      },
+      {
+        "title": "Snippeturi tăiate în Google",
+        "text": "Un title sau o description prea lungă se termină cu trei puncte. Rândul care trebuia să câștige clicul nu apare niciodată"
+      },
+      {
+        "title": "Crawleri AI blocați din greșeală",
+        "text": "Un singur rând vechi din robots.txt poate ține un site în afara răspunsurilor ChatGPT, Claude sau Perplexity luni întregi"
+      }
+    ],
+    "mini": {
+      "raw": "HTML brut",
+      "rawWords": "38 de cuvinte",
+      "after": "După JavaScript",
+      "afterWords": "412 cuvinte",
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two",
+      "blocked": "Blocat"
+    }
+  },
+  "preview": {
+    "eyebrow": "Instrument gratuit",
+    "title": "Previzualizează rezultatul Google înainte să publici",
+    "lead": "Scrie un title și o description. Vezi unde le taie Google pe desktop și pe mobil. Totul rulează în această pagină și nu se trimite nimic nicăieri",
+    "titleLabel": "Titlul paginii",
+    "titleDefault": "Wireless Headphones Pro X | Lumo",
+    "titlePlaceholder": "Wireless Headphones Pro X | Lumo",
+    "descLabel": "Meta description",
+    "descDefault": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once. Free next-day delivery and free returns within 14 days on all Lumo Audio headphones.",
+    "descPlaceholder": "Una sau două propoziții despre pagină",
+    "urlLabel": "URL",
+    "urlDefault": "https://example.com/products/wireless-headphones-pro-x",
+    "googlePreview": "Previzualizare Google",
+    "deviceLabel": "Dispozitiv de previzualizare",
+    "desktop": "Desktop",
+    "mobile": "Mobil",
+    "measure": "{chars} caractere, {px} din {limit} px",
+    "fits": "Încape",
+    "cut": "Tăiat după {n} caractere",
+    "addTitle": "Adaugă un title",
+    "addDesc": "Adaugă o description",
+    "emptyTitle": "Titlul paginii tale",
+    "emptyDesc": "Google va alege text de pe pagină.",
+    "note": "Limitele sunt măsurate în pixeli și sunt aproximative. Google poate rescrie titlurile și snippeturile",
+    "band": "Verifică toată pagina, nu doar snippetul"
+  },
+  "features": {
+    "eyebrow": "În panoul lateral",
+    "title": "Șase file, un singur panou lateral",
+    "tabsLabel": "Filele Serpline",
+    "summary": {
+      "label": "Rezumat",
+      "title": "Un scor, un verdict de indexare și o listă de verificare imediat ce se deschide panoul",
+      "lead": "Poate Google să indexeze pagina, apoi title, description, H1, text alt, date structurate, Open Graph și hreflang, fiecare cu o stare clară",
+      "bullets": [
+        "Un singur scor din 100, ponderat după prioritate",
+        "Datele structurate verificate după regulile Google pentru rich results",
+        "Previzualizare Google pentru desktop și mobil, plus un audit PDF"
+      ],
+      "demo": {
+        "scoreAria": "Scor SEO 56",
+        "label": "Scor SEO: de îmbunătățit",
+        "counts": "2 mari, 6 medii, 2 mici",
+        "rows": [
+          {
+            "label": "Title",
+            "status": "32 de caractere",
+            "tone": "ok"
+          },
+          {
+            "label": "Meta description",
+            "status": "Tăiată în Google",
+            "tone": "warn"
+          },
+          {
+            "label": "H1",
+            "status": "Doar după JavaScript",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Product schema",
+            "status": "Gata pentru Product snippet",
+            "tone": "ok"
+          }
+        ],
+        "index": {
+          "label": "Poate Google să o indexeze?",
+          "status": "Da",
+          "tone": "ok"
+        }
+      }
+    },
+    "headings": {
+      "label": "Titluri",
+      "title": "Structura pe care o văd crawlerii, evidențiată pe pagină",
+      "lead": "Arborele de la H1 la H6, cu niveluri sărite și H1 duplicate, plus fiecare imagine fără text alt",
+      "bullets": [
+        "Contururile de pe pagină arată unde se află fiecare titlu",
+        "Titlurile care apar doar după JavaScript sunt marcate"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "level": 1,
+            "text": "Wireless Headphones Pro X",
+            "status": "Doar JavaScript",
+            "tone": "bad"
+          },
+          {
+            "level": 2,
+            "text": "Product details"
+          },
+          {
+            "level": 3,
+            "text": "Noise cancelling"
+          },
+          {
+            "level": 2,
+            "text": "Specifications"
+          },
+          {
+            "level": 4,
+            "text": "Bluetooth 5.3",
+            "status": "Sare peste H3",
+            "tone": "warn",
+            "hl": true
+          },
+          {
+            "level": 2,
+            "text": "Reviews (128)"
+          }
+        ]
+      }
+    },
+    "links": {
+      "label": "Linkuri",
+      "title": "Linkuri rupte și redirecționate, găsite direct din pagină",
+      "lead": "Linkuri interne, externe și nofollow, cu textul ancoră. Linkurile interne primesc o verificare reală a stării din browserul tău",
+      "bullets": [
+        "Erorile 404 și lanțurile de redirecționare într-o singură listă",
+        "Ancore vagi și linkuri fără text, evidențiate pe pagină",
+        "Este contactat doar site-ul pe care ești"
+      ],
+      "demo": {
+        "internal": "interne",
+        "external": "externe",
+        "issues": "probleme",
+        "rows": [
+          {
+            "text": "Earbuds Mini",
+            "path": "/products/earbuds-mini-old",
+            "status": "404",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "text": "Headphones",
+            "path": "/headphones spre /electronics/headphones",
+            "status": "301",
+            "tone": "warn"
+          },
+          {
+            "text": "Free returns",
+            "path": "/returns spre /help/returns",
+            "status": "301",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "render": {
+      "label": "Randare",
+      "title": "HTML-ul brut lângă pagina randată",
+      "lead": "Serpline descarcă o dată sursa paginii și o compară cu ce a construit JavaScript: titluri, cuvinte, linkuri și date structurate",
+      "bullets": [
+        "Arată exact ce elemente au nevoie de JavaScript",
+        "Verificarea pe care majoritatea extensiilor SEO o sar"
+      ],
+      "demo": {
+        "raw": "HTML brut",
+        "rawValue": "38 de cuvinte, fără H1",
+        "rendered": "Randat",
+        "renderedValue": "412 cuvinte, 1 H1",
+        "words": "374 de cuvinte"
+      }
+    },
+    "speed": {
+      "label": "Viteză",
+      "title": "Core Web Vitals, imagini și mobil, măsurate pe pagină",
+      "lead": "LCP, CLS și INP ale vizitei tale cu pragurile Google, greutatea paginii, răspunsul serverului și fiecare imagine sau zonă de atingere care încetinește pagina",
+      "bullets": [
+        "Imagini grele, supradimensionate, lazy sau fără dimensiuni, după numele fișierului",
+        "Verificări pentru mobil: viewport, derulare laterală, text mic și zone de atingere",
+        "Elementul LCP evidențiat direct pe pagină"
+      ],
+      "demo": {
+        "vitals": [
+          {
+            "k": "LCP",
+            "value": "2.9 s",
+            "status": "De îmbunătățit",
+            "tone": "warn"
+          },
+          {
+            "k": "CLS",
+            "value": "0.02",
+            "status": "Bun",
+            "tone": "ok"
+          },
+          {
+            "k": "INP",
+            "value": "120 ms",
+            "status": "Bun",
+            "tone": "ok"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Peste 200 KB",
+            "status": "2 imagini",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Mai mari decât sunt afișate",
+            "status": "4 imagini",
+            "tone": "warn"
+          },
+          {
+            "label": "Viewport meta",
+            "status": "width=device-width",
+            "tone": "ok"
+          },
+          {
+            "label": "Compresie",
+            "status": "brotli",
+            "tone": "ok"
+          }
+        ]
+      }
+    },
+    "ai": {
+      "label": "AI",
+      "title": "Ce crawleri AI pot citi site-ul și ce văd ei",
+      "lead": "Regulile pentru GPTBot, ClaudeBot, PerplexityBot, Google-Extended și alții din robots.txt, împărțite în boți de căutare și boți de antrenare, plus llms.txt",
+      "bullets": [
+        "Linia exactă din robots.txt din spatele fiecărei blocări",
+        "Ce văd crawlerii AI: partea din text, titlul și schema pe care le pot citi"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "mark": "openai",
+            "label": "GPTBot",
+            "status": "Permis",
+            "tone": "ok"
+          },
+          {
+            "mark": "anthropic",
+            "label": "ClaudeBot",
+            "status": "Permis",
+            "tone": "ok"
+          },
+          {
+            "mark": "perplexity",
+            "label": "PerplexityBot",
+            "status": "Blocat",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "mark": "google",
+            "label": "Google-Extended",
+            "status": "Permis",
+            "tone": "ok"
+          },
+          {
+            "mark": "commoncrawl",
+            "label": "CCBot",
+            "status": "Blocat",
+            "tone": "bad"
+          }
+        ],
+        "llms": "llms.txt",
+        "llmsStatus": "Negăsit",
+        "seen": {
+          "label": "Text văzut de crawlerii AI",
+          "status": "9%",
+          "tone": "bad"
+        }
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Cum funcționează",
+    "title": "Trei pași, fără configurare",
+    "steps": [
+      {
+        "title": "Adaugă Serpline în Chrome",
+        "text": "Gratuit din Chrome Web Store. Nu trebuie să-ți faci cont"
+      },
+      {
+        "title": "Deschide o pagină, apasă pe pictogramă",
+        "text": "Panoul lateral se deschide lângă pagină și o verifică. Sau apasă",
+        "key": "Alt+Shift+S",
+        "textEnd": ""
+      },
+      {
+        "title": "Descarcă auditul PDF",
+        "text": "Fiecare problemă cu soluția ei, gata de trimis unui developer"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "Audit PDF",
+    "titleStart": "Ai găsit probleme?",
+    "titleHighlight": "Rezolvă-le",
+    "titleEnd": "cu cel care a creat Serpline",
+    "text": "Un clic transformă constatările într-un raport cu priorități. Trimite-l unui developer sau trimite-mi-l mie: rezolv SEO tehnic, randare pe server, date structurate și vizibilitate în căutarea AI",
+    "cta": "Programează un audit SEO",
+    "from": "De la",
+    "paper": {
+      "date": "7 nov. 2026",
+      "eyebrow": "Audit SEO și de căutare AI",
+      "host": "example.com",
+      "score": "scor",
+      "high": "mari",
+      "medium": "medii",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Mare",
+          "strong": "H1 apare doar după JavaScript.",
+          "text": "Randează-l pe server."
+        },
+        {
+          "tone": "bad",
+          "label": "Mare",
+          "strong": "91% din text are nevoie de JavaScript.",
+          "text": ""
+        },
+        {
+          "tone": "warn",
+          "label": "Medie",
+          "strong": "PerplexityBot este blocat.",
+          "text": "Șterge regula din robots.txt."
+        }
+      ],
+      "ctaText": "Ai nevoie de ajutor să le rezolvi?",
+      "ctaButton": "Contactează-mă"
+    }
+  },
+  "privacy": {
+    "eyebrow": "Confidențialitate",
+    "title": "Paginile tale rămân în browserul tău",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Fără server",
+        "text": "Fiecare verificare rulează în Chrome. Serpline nu are un backend căruia să-i trimită pagini"
+      },
+      {
+        "icon": "lock",
+        "title": "Permisiuni minime",
+        "text": "Fila activă, panoul lateral și setările locale. Fără acces la toate site-urile tale"
+      },
+      {
+        "icon": "chart",
+        "title": "Fără analytics în extensie",
+        "text": "Extensia nu te urmărește. Rezultatele dispar când închizi panoul"
+      },
+      {
+        "icon": "code",
+        "title": "Open source",
+        "text": "Citește codul și verifică singur fiecare afirmație de pe această pagină"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Întrebări frecvente",
+    "title": "Întrebări",
+    "askBefore": "Altceva?",
+    "askLink": "Întreabă-mă direct",
+    "items": [
+      {
+        "q": "Serpline e chiar gratuit?",
+        "a": "Da. Nu există plan plătit, cont sau limită de utilizare."
+      },
+      {
+        "q": "Prin ce diferă de Ahrefs sau Screaming Frog?",
+        "a": "Acestea scanează site-uri întregi de pe un server sau de pe calculatorul tău. Serpline verifică pagina pe care ești, în browserul tău, inclusiv ce se schimbă după JavaScript și ce au voie să citească crawlerii AI. Merge bine alături de ele."
+      },
+      {
+        "q": "Cum verifică căutarea AI?",
+        "a": "Citește robots.txt și llms.txt de pe site, potrivește regulile pentru fiecare crawler AI cunoscut și compară HTML-ul brut cu pagina randată, pentru că majoritatea crawlerilor AI nu rulează JavaScript."
+      },
+      {
+        "q": "Îmi scanează tot site-ul?",
+        "a": "Nu. Verifică pagina deschisă, robots.txt, llms.txt și sitemap-ul site-ului, precum și starea linkurilor interne de pe acea pagină."
+      },
+      {
+        "q": "Măsoară viteza paginii?",
+        "a": "Da. Fila Viteză arată Core Web Vitals ale vizitei tale (LCP, CLS și INP), greutatea paginii, răspunsul serverului, problemele imaginilor și verificările de layout pe mobil. Cifrele vin din propriul tău browser, așa că vizitatorii reali pe telefoane mai lente pot vedea valori mai mari."
+      },
+      {
+        "q": "Îmi trimite paginile undeva?",
+        "a": "Nu. Cererile merg doar către site-ul pe care ești, din propriul tău browser. Nimic nu ajunge la mine sau la altcineva."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Familia Line",
+    "title": "Mai multe instrumente gratuite din aceeași familie",
+    "tools": {
+      "hitline": {
+        "text": "Fiecare hit de tracking, tag GTM și semnal de consimțământ, în DevTools",
+        "open": "Deschide Hitline"
+      },
+      "rivaline": {
+        "text": "Stack-ul, reclamele și stilul de brand ale unui concurent într-un singur panou",
+        "open": "Deschide Rivaline"
+      },
+      "foldline": {
+        "text": "Află ce împiedică un landing page să convertească",
+        "open": "Deschide Foldline"
+      },
+      "markline": {
+        "text": "Fă o captură, adnoteaz-o și trimite feedback în câteva secunde",
+        "open": "Deschide Markline"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Creat de",
+    "privacy": "Politica de confidențialitate",
+    "source": "Cod sursă"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Ne pare rău că pleci | Serpline",
+      "description": "Spune-ne de ce ai eliminat Serpline. Un clic ajută la o versiune următoare mai bună."
+    },
+    "titleStart": "Serpline a fost eliminat",
+    "titleEnd": "Ce te-a făcut să pleci?",
+    "lead": "Un clic ajută la o versiune următoare mai bună",
+    "reasonsLabel": "Motiv",
+    "reasons": [
+      "Nu a găsit problemele de pe site-ul meu",
+      "Am avut nevoie de el o singură dată",
+      "Prea greu de înțeles",
+      "Folosesc alt instrument"
+    ],
+    "moreLabel": "Mai e ceva?",
+    "optional": "(opțional)",
+    "placeholder": "Ce pagină sau verificare i-a scăpat?",
+    "send": "Trimite feedback",
+    "sending": "Se trimite...",
+    "thanks": "Mulțumesc. Feedbackul tău a fost trimis.",
+    "error": "Trimiterea a eșuat. Încearcă din nou peste un minut.",
+    "pickOne": "Alege un motiv sau scrie câteva cuvinte.",
+    "reinstall": "Reinstalează Serpline",
+    "card": {
+      "eyebrow": "Încă ai o problemă de SEO?",
+      "title": "Pot s-o auditez și s-o rezolv pentru tine",
+      "text": "SEO tehnic, randare JavaScript, date structurate și vizibilitate în căutarea AI. Primești o listă clară cu ce e stricat și soluții pe care developerii tăi le pot implementa",
+      "cta": "Programează un audit SEO",
+      "sub": "Shamistan Isayev, SEO tehnic și analytics"
+    }
+  }
+}

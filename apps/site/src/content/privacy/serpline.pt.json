@@ -1,0 +1,51 @@
+{
+  "summary": "O Serpline verifica o SEO e o acesso dos rastreadores de IA da página em que você está. Tudo é calculado no seu navegador, e nada é enviado para nós.",
+  "reads": [
+    "A página na aba atual, depois que você clica no ícone ou pressiona o atalho.",
+    "O HTML bruto dessa mesma página, e o robots.txt, o llms.txt e o sitemap desse site, buscados diretamente no site.",
+    "Números de velocidade que o seu navegador já guarda para a página (Core Web Vitals, tamanhos das requisições) e o tamanho das imagens e do texto dela, medidos na aba.",
+    "A página canônica e as versões em outros idiomas (hreflang) da página, quando estão no mesmo site, para verificar se funcionam e se apontam de volta.",
+    "O status dos links internos da página, só quando você pressiona Check links ou ativa essa configuração. Essas requisições vão para o mesmo site."
+  ],
+  "stores": [
+    "Configurações no seu computador: idioma, dispositivo da prévia do Google e a opção de verificação de links.",
+    "Os resultados ficam no painel lateral até você fechá-lo."
+  ],
+  "never": [
+    "Rastrear um site inteiro ou verificar páginas em que você não o abriu",
+    "Enviar páginas ou resultados para qualquer servidor",
+    "Manter um histórico dos sites que você verificou",
+    "Ler o que você digita em formulários"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Ler a aba atual depois que você clica no ícone."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Executar a função de leitura nessa aba."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Mostrar o Serpline ao lado da página."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvar as suas configurações no seu computador."
+    },
+    {
+      "name": "Acesso ao site (opcional)",
+      "manifest": "optional_host:https://*/*",
+      "why": "Solicitado para um site de cada vez, só quando você pressiona Check this page. O Chrome mostra o seu próprio aviso, e você pode removê-lo nas configurações do Chrome."
+    }
+  ],
+  "notes": [
+    "As requisições ao site que você verifica funcionam como recarregar a página: o seu navegador envia os cookies desse próprio site, como sempre faz.",
+    "O PDF de auditoria é gerado no seu navegador."
+  ]
+}

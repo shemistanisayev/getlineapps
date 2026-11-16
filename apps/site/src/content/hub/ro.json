@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "title": "Line apps: instrumente Chrome gratuite pentru marketeri",
+    "description": "Cinci extensii Chrome gratuite ca să verifici tracking-ul, SEO și conversia site-ului tău, să vezi ce folosește un concurent și să-i arăți developerului ce trebuie reparat. Fără cont, nimic nu iese din browserul tău.",
+    "ogAlt": "Line apps: instrumente Chrome gratuite ca să vezi în interiorul oricărui site"
+  },
+  "hero": {
+    "pill": "5 extensii Chrome gratuite",
+    "titleStart": "Instrumente Chrome gratuite ca să vezi",
+    "titleHighlight": "în interiorul oricărui site",
+    "titleEnd": "",
+    "lead": "Verifică tracking-ul, SEO și conversia propriului site, vezi ce folosește un concurent și arată-i developerului exact ce trebuie reparat. Fără cont, fără plan plătit și nimic nu iese din browserul tău",
+    "primary": "Vezi cele 5 instrumente",
+    "secondary": "Încearcă un instrument în browser",
+    "trust": [
+      "Gratuit, fără cont",
+      "Citește o pagină doar după clicul tău",
+      "Raport PDF de o pagină"
+    ],
+    "mockLabel": "Răspunsuri dintr-un clic",
+    "mockUrl": "any-website.com",
+    "float": "Fiecare instrument exportă un PDF de o pagină"
+  },
+  "tools": {
+    "eyebrow": "Instrumentele",
+    "title": "Cinci extensii, fiecare cu un singur rol",
+    "lead": "Patru se uită la propriul tău site, una se uită la concurenți. Fiecare se deschide lângă pagina pe care ești, răspunde bine la o singură întrebare și îți dă un raport pe care îl poți trimite",
+    "rolesTitle": "Cu ce te ocupi?",
+    "rolesLabel": "Filtrează instrumentele după rol",
+    "roles": [
+      {
+        "id": "all",
+        "label": "Arată tot",
+        "hint": "Toate cele cinci instrumente. Alege un rol ca să vezi cu ce să începi",
+        "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
+      },
+      {
+        "id": "perf",
+        "label": "Performance marketer",
+        "hint": "Începe cu Hitline, apoi verifică pagina cu Foldline și concurența cu Rivaline",
+        "tools": ["hitline", "rivaline", "foldline"]
+      },
+      {
+        "id": "seo",
+        "label": "Specialist SEO",
+        "hint": "Serpline e făcut pentru tine",
+        "tools": ["serpline"]
+      },
+      {
+        "id": "agency",
+        "label": "Agenție",
+        "hint": "Toate cinci se potrivesc pentru proiectele cu clienți. Markline e cel pe care clienții tăi îl vor vedea cel mai des",
+        "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
+      },
+      {
+        "id": "design",
+        "label": "Designer sau QA",
+        "hint": "Markline e făcut pentru tine",
+        "tools": ["markline"]
+      },
+      {
+        "id": "sales",
+        "label": "Vânzări",
+        "hint": "Pregătește-te de un apel cu Rivaline și un audit rapid Foldline al potențialului client",
+        "tools": ["rivaline", "foldline"]
+      }
+    ],
+    "cards": {
+      "hitline": {
+        "forWho": "Analiști și marketeri",
+        "surface": "DevTools",
+        "question": "Se declanșează chiar fiecare tag și eveniment?",
+        "answer": "evenimente, GTM și consimțământ, live",
+        "desc": "Urmărește evenimentele din GA4, Meta, TikTok și încă 47 de platforme pe măsură ce se declanșează, verifică GTM, server-side GTM și consimțământul, apoi exportă un audit",
+        "bullets": [
+          "Flux live de evenimente pentru fiecare platformă",
+          "Verificări GTM, server-side GTM și Consent Mode",
+          "Planul tău de tracking comparat cu ce se declanșează de fapt"
+        ]
+      },
+      "serpline": {
+        "forWho": "Specialiști SEO",
+        "surface": "Panou lateral",
+        "question": "Ce văd de fapt Google și crawlerii AI?",
+        "answer": "scor SEO, randare și boți AI",
+        "desc": "Bazele SEO cu un scor, o previzualizare Google, HTML-ul brut comparat cu pagina randată, linkuri cu starea lor și accesul crawlerilor AI",
+        "bullets": [
+          "Scor și previzualizarea rezultatului Google",
+          "HTML-ul brut comparat cu randarea JavaScript",
+          "Ce boți AI lasă robots.txt să intre"
+        ]
+      },
+      "rivaline": {
+        "forWho": "Marketeri, agenții, vânzări",
+        "surface": "Panou lateral",
+        "question": "Ce folosește acest concurent?",
+        "answer": "stack, reclame și brand kit",
+        "desc": "Stack-ul lor de marketing și golurile din el, reclamele lor în patru biblioteci de reclame, plus culorile și fonturile brandului",
+        "bullets": [
+          "Stack martech pe categorii, cu goluri",
+          "Bibliotecile de reclame Meta, Google, TikTok și LinkedIn",
+          "Culorile brandului, fonturile și butonul principal"
+        ]
+      },
+      "foldline": {
+        "forWho": "Manageri de campanii, CRO",
+        "surface": "Panou lateral",
+        "question": "De ce nu convertește acest landing page?",
+        "answer": "27 de verificări și un scor",
+        "desc": "27 de verificări pentru primul ecran, formular, încredere, mobil, viteză și contact, cu o soluție pentru fiecare problemă",
+        "bullets": [
+          "Linia fold desenată pe pagină",
+          "Scor pentru desktop și mobil",
+          "Soluții de trimis developerului"
+        ]
+      },
+      "markline": {
+        "forWho": "Agenții, QA, designeri",
+        "surface": "Popup",
+        "question": "Cum arăt exact ce trebuie schimbat?",
+        "answer": "captură, adnotare, trimitere",
+        "desc": "Fă o captură a paginii, adnoteaz-o cu săgeți, note numerotate și blur, apoi descarc-o sau copiaz-o",
+        "bullets": [
+          "Zona vizibilă, pagina întreagă, o zonă sau un element",
+          "Emailurile și numerele de telefon sunt blurate automat",
+          "PNG sau un rezumat PDF de o pagină"
+        ]
+      }
+    }
+  },
+  "together": {
+    "eyebrow": "La ce se uită fiecare instrument",
+    "title": "O pagină, cinci întrebări",
+    "lead": "Fie că e site-ul tău sau al unui concurent, fiecare pagină are aceleași cinci locuri care merită privite. Apasă pe un număr ca să vezi ce instrument îl verifică",
+    "pageLabel": "Exemplu de landing page cu cinci puncte de verificare",
+    "tellsYou": "Ce îți spune {name}",
+    "tabsLabel": "Alege un punct de verificare",
+    "page": {
+      "tab": "Reduceri de primăvară: 30% la toate plantele | Greenly",
+      "brand": "Greenly",
+      "nav": ["Plante", "Ghivece", "Îngrijire"],
+      "headline": "Plante proaspete, livrate în două zile",
+      "button": "Vezi reducerile",
+      "fold": "Fold"
+    },
+    "spots": [
+      {
+        "slug": "serpline",
+        "num": "1",
+        "pin": "titlul în Google",
+        "where": "Titlul din filă",
+        "question": "Va afișa bine Google și căutarea AI această pagină?",
+        "finds": [
+          "Unde taie Google titlul și descrierea",
+          "Dacă H1-ul și textul au nevoie de JavaScript ca să apară",
+          "Ce crawleri AI lasă robots.txt să intre"
+        ]
+      },
+      {
+        "slug": "rivaline",
+        "num": "2",
+        "pin": "brand și stack",
+        "where": "Brandul și ce rulează în spatele lui",
+        "question": "Cu ce e construit și promovat acest site?",
+        "finds": [
+          "Instrumentele lui de marketing pe categorii, cu goluri",
+          "Reclamele lui în patru biblioteci de reclame, câte un clic fiecare",
+          "Culorile, fonturile și butonul principal, gata de copiat"
+        ]
+      },
+      {
+        "slug": "markline",
+        "num": "3",
+        "pin": "feedback pe imagine",
+        "where": "Orice vrei să fie schimbat",
+        "question": "Cum îi arăt developerului exact ce trebuie reparat?",
+        "finds": [
+          "O captură a unei zone, a unui element sau a paginii întregi",
+          "Săgeți, chenare și note numerotate deasupra",
+          "Emailurile și numerele de telefon blurate înainte să trimiți"
+        ]
+      },
+      {
+        "slug": "hitline",
+        "num": "4",
+        "pin": "evenimentele de pe buton",
+        "where": "Clicul care ar trebui să conteze",
+        "question": "Ajunge acest clic la fiecare platformă de reclame?",
+        "finds": [
+          "Fiecare eveniment pe măsură ce se declanșează în GA4, Meta, TikTok și încă 47 de platforme",
+          "Ce au făcut cu el GTM, server-side GTM și consimțământul",
+          "Evenimentele pe care planul tău de tracking le așteaptă, dar nu le vede niciodată"
+        ]
+      },
+      {
+        "slug": "foldline",
+        "num": "5",
+        "pin": "ce se vede deasupra liniei fold",
+        "where": "Primul ecran",
+        "question": "Văd vizitatorii destul ca să acționeze înainte să deruleze?",
+        "finds": [
+          "Unde e linia fold pe desktop și pe telefoane",
+          "Dacă butonul principal și titlul sunt deasupra ei",
+          "Un scor și o soluție pentru fiecare problemă de pe pagină"
+        ]
+      }
+    ]
+  },
+  "promise": {
+    "eyebrow": "Aceeași promisiune în fiecare instrument",
+    "title": "Paginile tale rămân în browserul tău",
+    "items": [
+      {
+        "icon": "gift",
+        "title": "Gratuit, fără cont",
+        "text": "Fără înregistrare, fără perioadă de probă, fără plan plătit. Instalezi și folosești"
+      },
+      {
+        "icon": "click",
+        "title": "Doar după clicul tău",
+        "text": "Un instrument citește o filă când îl deschizi acolo, și nicio altă filă"
+      },
+      {
+        "icon": "lock",
+        "title": "Nimic nu e trimis",
+        "text": "Rezultatele se obțin în browserul tău. Fără servere, fără tracking în extensii"
+      },
+      {
+        "icon": "doc",
+        "title": "Un raport de trimis",
+        "text": "Fiecare instrument transformă rezultatul într-un PDF de o pagină pe care îl poți trimite"
+      }
+    ]
+  },
+  "webTools": {
+    "eyebrow": "Instrumente web gratuite",
+    "title": "Încearcă fără să instalezi nimic",
+    "lead": "Patru instrumente mici care rulează direct pe acest site, construite pe același cod ca extensiile",
+    "items": [
+      {
+        "slug": "rivaline",
+        "fragment": "finder",
+        "title": "Căutare în bibliotecile de reclame",
+        "text": "Caută un brand în bibliotecile de reclame Meta, Google, TikTok și LinkedIn deodată"
+      },
+      {
+        "slug": "foldline",
+        "fragment": "calculator",
+        "title": "Scorul landing page-ului",
+        "text": "Bifează ce are pagina ta și primește scorul pe care i l-ar da Foldline"
+      },
+      {
+        "slug": "serpline",
+        "fragment": "preview",
+        "title": "Previzualizare Google",
+        "text": "Vezi unde taie Google titlul și descrierea pe desktop și pe mobil"
+      },
+      {
+        "slug": "markline",
+        "fragment": "annotate",
+        "title": "Adnotează o imagine",
+        "text": "Trage o captură de ecran, adaugă săgeți, note și blur, apoi descarcă un PNG"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Întrebări frecvente",
+    "title": "Întrebări pe care le pun oamenii",
+    "askBefore": "Nu găsești răspunsul aici?",
+    "askLink": "Întreabă-mă direct",
+    "askAfter": "",
+    "items": [
+      {
+        "q": "Instrumentele sunt chiar gratuite?",
+        "a": "Da. Nu există plan plătit și nici perioadă de probă. Sunt gratuite pentru că arată genul de muncă pe care o fac pentru clienți: dacă ai nevoie ca problemele să fie rezolvate, știi unde să mă găsești."
+      },
+      {
+        "q": "Ce date colectează extensiile?",
+        "a": "Niciuna. Fiecare extensie își salvează doar propriile setări pe calculatorul tău. Paginile pe care le verifici sunt citite în browserul tău și nimic nu e trimis la un server."
+      },
+      {
+        "q": "Încetinesc Chrome?",
+        "a": "Nu. Nimic nu rulează în fundal. Un instrument lucrează pe o filă doar după ce apeși pe pictograma lui sau folosești scurtătura lui acolo."
+      },
+      {
+        "q": "Pe care să-l instalez primul?",
+        "a": "Alege-ți rolul în lista de instrumente de mai sus. Dacă rulezi campanii plătite, începe cu Hitline: tracking-ul stricat costă cel mai mult și e cel mai greu de observat."
+      },
+      {
+        "q": "Le pot folosi pentru proiecte cu clienți?",
+        "a": "Da. Agențiile folosesc rapoartele PDF în audituri și prezentări. Rapoartele au doar o mică linie „Made with” și nimic altceva."
+      },
+      {
+        "q": "Ce limbi suportă?",
+        "a": "Engleza și azera. Poți schimba limba din setările fiecărui instrument."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "Creat de o singură persoană",
+    "title": "Vrei ca problemele să fie rezolvate, nu doar găsite?",
+    "text": "Sunt Shamistan Isayev. Lucrez cu analytics, server-side tracking și CRO și am creat aceste instrumente pentru verificările pe care le fac la fiecare proiect. Când vrei pe cineva care să repare ce găsesc ele, programează un apel.",
+    "cta": "Programează un apel",
+    "from": "De la Shamistan Isayev"
+  }
+}

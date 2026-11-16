@@ -1,0 +1,44 @@
+{
+  "summary": "O Foldline verifica problemas de conversão na landing page em que você está. Ele lê a página no seu navegador e não envia nada para nós.",
+  "reads": [
+    "O layout, os textos, os botões e as imagens da aba atual, depois que você clica no ícone.",
+    "Os tipos e os rótulos dos campos de formulário, nunca o que é digitado neles.",
+    "Os tempos de carregamento desta visita, fornecidos pelo seu navegador."
+  ],
+  "stores": [
+    "Configurações no seu computador: visualização, tamanho de celular, botão da linha da dobra e idioma.",
+    "Na visualização Mobile, o tamanho da sua janela por um curto período, para que o Foldline possa restaurá-lo."
+  ],
+  "never": [
+    "Ler o que você digita em formulários",
+    "Alterar a própria página",
+    "Enviar páginas ou resultados para qualquer servidor",
+    "Manter um histórico dos sites que você verificou"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Ler a aba atual depois que você clica no ícone."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Executar as verificações e desenhar a linha da dobra nessa aba."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Mostrar o Foldline ao lado da página."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvar as suas configurações no seu computador."
+    }
+  ],
+  "notes": [
+    "A linha da dobra é desenhada sobre a página só enquanto o painel está aberto, e é removida quando você o fecha.",
+    "A visualização Mobile deixa a janela mais estreita e a restaura quando você volta ou fecha o painel. Isso não precisa de nenhuma permissão extra."
+  ]
+}

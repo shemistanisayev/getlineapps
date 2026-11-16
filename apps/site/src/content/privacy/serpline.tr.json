@@ -1,0 +1,51 @@
+{
+  "summary": "Serpline bulunduğun sayfanın SEO'sunu ve AI tarayıcı erişimini kontrol eder. Her şey tarayıcında hesaplanır ve hiçbir şey bize gönderilmez.",
+  "reads": [
+    "Geçerli sekmedeki sayfa; simgeye tıkladıktan ya da kısayola bastıktan sonra.",
+    "Aynı sayfanın ham HTML'i ve o sitenin robots.txt, llms.txt ve sitemap dosyaları, doğrudan siteden alınır.",
+    "Tarayıcının sayfa için zaten tuttuğu hız rakamları (Core Web Vitals, istek boyutları) ve sayfadaki görsellerin ve metnin boyutu, sekmede ölçülür.",
+    "Sayfanın canonical sayfası ve dil sürümleri (hreflang), aynı sitedeyse, çalıştıklarını ve geri link verdiklerini kontrol etmek için.",
+    "Sayfadaki iç linklerin durumu; yalnızca Check links düğmesine bastığında ya da bu ayarı açtığında. Bu istekler aynı siteye gider."
+  ],
+  "stores": [
+    "Bilgisayarındaki ayarlar: dil, Google önizleme cihazı ve link kontrolü anahtarı.",
+    "Sonuçlar sen kapatana kadar yan panelde kalır."
+  ],
+  "never": [
+    "Bütün bir siteyi taramak ya da onu açmadığın sayfaları kontrol etmek",
+    "Sayfaları ya da sonuçları herhangi bir sunucuya göndermek",
+    "Kontrol ettiğin sitelerin geçmişini tutmak",
+    "Formlara yazdıklarını okumak"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Simgeye tıkladıktan sonra geçerli sekmeyi okumak."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Okuma fonksiyonunu o sekmede çalıştırmak."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Serpline'ı sayfanın yanında göstermek."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarını bilgisayarına kaydetmek."
+    },
+    {
+      "name": "Site erişimi (isteğe bağlı)",
+      "manifest": "optional_host:https://*/*",
+      "why": "Her seferinde tek bir site için, yalnızca Check this page düğmesine bastığında istenir. Chrome kendi onay penceresini gösterir ve bu erişimi Chrome ayarlarından kaldırabilirsin."
+    }
+  ],
+  "notes": [
+    "Kontrol ettiğin siteye yapılan istekler sayfayı yenilemek gibi çalışır: tarayıcın, her zaman yaptığı gibi o sitenin kendi çerezlerini gönderir.",
+    "Denetim PDF'i tarayıcında hazırlanır."
+  ]
+}

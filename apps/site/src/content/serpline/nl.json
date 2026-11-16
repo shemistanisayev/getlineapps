@@ -1,0 +1,674 @@
+{
+  "meta": {
+    "title": "Serpline: Gratis SEO Checker voor Google, ChatGPT en Meer",
+    "description": "Gratis Chrome-extensie. Indexering, technische SEO, Core Web Vitals, JavaScript-rendering en checks voor AI-crawlers op de pagina waar je bent, in één zijpaneel.",
+    "ogAlt": "Serpline: zie je pagina zoals Google en AI hem zien."
+  },
+  "nav": {
+    "label": "Secties van Serpline",
+    "preview": "SERP-preview",
+    "features": "Functies",
+    "how": "Zo werkt het",
+    "privacy": "Privacy",
+    "faq": "Vragen"
+  },
+  "add": {
+    "nav": "Toevoegen aan Chrome",
+    "hero": "Voeg toe aan Chrome, het is gratis",
+    "band": "Voeg Serpline toe aan Chrome",
+    "soonNav": "Binnenkort",
+    "soonHero": "Binnenkort in Chrome"
+  },
+  "hero": {
+    "pill": "Gratis Chrome-extensie",
+    "titleStart": "Zie je pagina zoals",
+    "titleHighlight": "Google en AI",
+    "titleEnd": "hem zien",
+    "lead": "Indexering, technische SEO, Core Web Vitals en checks voor AI-crawlers op de pagina waar je bent, in één zijpaneel van Chrome",
+    "secondary": "Probeer de SERP-preview",
+    "trustLabel": "Serpline is",
+    "trust": ["Geen account", "Niets verlaat je browser", "Open source"],
+    "mock": {
+      "url": "example.com/products/wireless-headphones-pro-x",
+      "rendered": "Gerenderd",
+      "raw": "Ruwe HTML",
+      "scoreAria": "SEO-score 56",
+      "label": "Kan beter",
+      "issues": "10 problemen gevonden",
+      "rows": [
+        {
+          "label": "Title",
+          "status": "Past",
+          "tone": "ok"
+        },
+        {
+          "label": "Description",
+          "status": "Afgekapt",
+          "tone": "warn"
+        },
+        {
+          "label": "Canonical",
+          "status": "Deze pagina",
+          "tone": "ok"
+        },
+        {
+          "label": "H1",
+          "status": "Alleen JS",
+          "tone": "bad"
+        },
+        {
+          "label": "Alt-tekst",
+          "status": "3 ontbreken",
+          "tone": "warn"
+        },
+        {
+          "label": "Schema",
+          "status": "Alleen JS",
+          "tone": "warn"
+        },
+        {
+          "label": "GPTBot",
+          "status": "Toegestaan",
+          "tone": "ok"
+        },
+        {
+          "label": "PerplexityBot",
+          "status": "Geblokkeerd",
+          "tone": "bad"
+        }
+      ]
+    },
+    "serp": {
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging",
+      "note": "Description afgekapt na 107 tekens"
+    },
+    "toast": {
+      "value": "91%",
+      "line1": "van de tekst heeft",
+      "line2": "JavaScript nodig"
+    }
+  },
+  "marquee": {
+    "title": "Controleert wat zoekmachines en AI-crawlers zien",
+    "items": [
+      {
+        "mark": "google",
+        "label": "Google-preview"
+      },
+      {
+        "mark": "google",
+        "label": "Googlebot"
+      },
+      {
+        "mark": "eye",
+        "label": "Core Web Vitals"
+      },
+      {
+        "mark": "file",
+        "label": "sitemap.xml",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "Rich results"
+      },
+      {
+        "mark": "openai",
+        "label": "GPTBot"
+      },
+      {
+        "mark": "openai",
+        "label": "OAI-SearchBot"
+      },
+      {
+        "mark": "openai",
+        "label": "ChatGPT-User"
+      },
+      {
+        "mark": "anthropic",
+        "label": "ClaudeBot"
+      },
+      {
+        "mark": "anthropic",
+        "label": "Claude-SearchBot"
+      },
+      {
+        "mark": "perplexity",
+        "label": "PerplexityBot"
+      },
+      {
+        "mark": "google",
+        "label": "Google-Extended"
+      },
+      {
+        "mark": "apple",
+        "label": "Applebot-Extended"
+      },
+      {
+        "mark": "bytedance",
+        "label": "Bytespider"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta-ExternalAgent"
+      },
+      {
+        "mark": "bot",
+        "label": "CCBot"
+      },
+      {
+        "mark": "file",
+        "label": "robots.txt",
+        "code": true
+      },
+      {
+        "mark": "file",
+        "label": "llms.txt",
+        "code": true
+      },
+      {
+        "mark": "link",
+        "label": "rel=canonical",
+        "code": true
+      },
+      {
+        "mark": "eye",
+        "label": "Meta robots"
+      },
+      {
+        "mark": "globe",
+        "label": "hreflang",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "JSON-LD"
+      },
+      {
+        "mark": "share",
+        "label": "Open Graph"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Het probleem",
+    "title": "De pagina ziet er goed uit, maar crawlers lezen iets anders",
+    "lead": "De meeste SEO-problemen zie je nooit op het scherm, dus niemand merkt ze tot het verkeer daalt",
+    "cards": [
+      {
+        "title": "Content die JavaScript nodig heeft",
+        "text": "Je browser toont de volledige pagina. De HTML die een crawler downloadt kan een lege huls zijn, en de meeste AI-crawlers voeren de scripts die hem vullen nooit uit"
+      },
+      {
+        "title": "Snippets afgekapt in Google",
+        "text": "Een lange title of description eindigt op drie puntjes. De zin die de klik moest winnen, verschijnt nooit"
+      },
+      {
+        "title": "AI-crawlers per ongeluk geblokkeerd",
+        "text": "Eén oude regel in robots.txt kan een site maandenlang uit de antwoorden van ChatGPT, Claude of Perplexity houden"
+      }
+    ],
+    "mini": {
+      "raw": "Ruwe HTML",
+      "rawWords": "38 woorden",
+      "after": "Na JavaScript",
+      "afterWords": "412 woorden",
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two",
+      "blocked": "Geblokkeerd"
+    }
+  },
+  "preview": {
+    "eyebrow": "Gratis tool",
+    "title": "Bekijk je Google-resultaat voordat je publiceert",
+    "lead": "Typ een title en een description. Zie waar Google ze afkapt op desktop en mobiel. Het draait op deze pagina en er wordt niets verstuurd",
+    "titleLabel": "Paginatitel",
+    "titleDefault": "Wireless Headphones Pro X | Lumo",
+    "titlePlaceholder": "Wireless Headphones Pro X | Lumo",
+    "descLabel": "Meta description",
+    "descDefault": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once. Free next-day delivery and free returns within 14 days on all Lumo Audio headphones.",
+    "descPlaceholder": "Een of twee zinnen over de pagina",
+    "urlLabel": "URL",
+    "urlDefault": "https://example.com/products/wireless-headphones-pro-x",
+    "googlePreview": "Google-preview",
+    "deviceLabel": "Preview-apparaat",
+    "desktop": "Desktop",
+    "mobile": "Mobiel",
+    "measure": "{chars} tekens, {px} van {limit} px",
+    "fits": "Past",
+    "cut": "Afgekapt na {n} tekens",
+    "addTitle": "Voeg een title toe",
+    "addDesc": "Voeg een description toe",
+    "emptyTitle": "Je paginatitel",
+    "emptyDesc": "Google kiest zelf tekst van de pagina.",
+    "note": "Limieten worden in pixels gemeten en zijn bij benadering. Google kan titles en snippets herschrijven",
+    "band": "Controleer de hele pagina, niet alleen de snippet"
+  },
+  "features": {
+    "eyebrow": "In het zijpaneel",
+    "title": "Zes tabbladen, één zijpaneel",
+    "tabsLabel": "Tabbladen van Serpline",
+    "summary": {
+      "label": "Samenvatting",
+      "title": "Een score, een indexeringsoordeel en een checklist zodra het paneel opent",
+      "lead": "Kan Google de pagina indexeren, en daarna title, description, H1, alt-tekst, gestructureerde data, Open Graph en hreflang, elk met een duidelijke status",
+      "bullets": [
+        "Eén score op 100, gewogen naar prioriteit",
+        "Gestructureerde data gecontroleerd volgens de rich result-regels van Google",
+        "Google-preview voor desktop en mobiel, plus een audit-PDF"
+      ],
+      "demo": {
+        "scoreAria": "SEO-score 56",
+        "label": "SEO-score: kan beter",
+        "counts": "2 hoog, 6 gemiddeld, 2 laag",
+        "rows": [
+          {
+            "label": "Title",
+            "status": "32 tekens",
+            "tone": "ok"
+          },
+          {
+            "label": "Meta description",
+            "status": "Afgekapt in Google",
+            "tone": "warn"
+          },
+          {
+            "label": "H1",
+            "status": "Pas na JavaScript",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Product-schema",
+            "status": "Klaar voor product-snippet",
+            "tone": "ok"
+          }
+        ],
+        "index": {
+          "label": "Kan Google het indexeren?",
+          "status": "Ja",
+          "tone": "ok"
+        }
+      }
+    },
+    "headings": {
+      "label": "Koppen",
+      "title": "De structuur die crawlers zien, gemarkeerd op de pagina",
+      "lead": "De boom van H1 tot H6 met overgeslagen niveaus en dubbele H1's, plus elke afbeelding zonder alt-tekst",
+      "bullets": [
+        "Kaders op de pagina tonen waar elke kop staat",
+        "Koppen die pas na JavaScript bestaan, worden gemarkeerd"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "level": 1,
+            "text": "Wireless Headphones Pro X",
+            "status": "Alleen JavaScript",
+            "tone": "bad"
+          },
+          {
+            "level": 2,
+            "text": "Product details"
+          },
+          {
+            "level": 3,
+            "text": "Noise cancelling"
+          },
+          {
+            "level": 2,
+            "text": "Specifications"
+          },
+          {
+            "level": 4,
+            "text": "Bluetooth 5.3",
+            "status": "Slaat H3 over",
+            "tone": "warn",
+            "hl": true
+          },
+          {
+            "level": 2,
+            "text": "Reviews (128)"
+          }
+        ]
+      }
+    },
+    "links": {
+      "label": "Links",
+      "title": "Kapotte en doorverwezen links, gevonden vanaf de pagina zelf",
+      "lead": "Interne, externe en nofollow-links met ankertekst. Interne links krijgen een echte statuscheck vanuit je browser",
+      "bullets": [
+        "404's en redirectketens in één lijst",
+        "Vage ankers en links zonder tekst, gemarkeerd op de pagina",
+        "Alleen de site waarop je bent wordt benaderd"
+      ],
+      "demo": {
+        "internal": "intern",
+        "external": "extern",
+        "issues": "problemen",
+        "rows": [
+          {
+            "text": "Earbuds Mini",
+            "path": "/products/earbuds-mini-old",
+            "status": "404",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "text": "Headphones",
+            "path": "/headphones naar /electronics/headphones",
+            "status": "301",
+            "tone": "warn"
+          },
+          {
+            "text": "Free returns",
+            "path": "/returns naar /help/returns",
+            "status": "301",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "render": {
+      "label": "Rendering",
+      "title": "Ruwe HTML naast de gerenderde pagina",
+      "lead": "Serpline downloadt de broncode van de pagina één keer en vergelijkt die met wat JavaScript heeft gebouwd: koppen, woorden, links en gestructureerde data",
+      "bullets": [
+        "Toont precies welke elementen JavaScript nodig hebben",
+        "De check die de meeste SEO-extensies overslaan"
+      ],
+      "demo": {
+        "raw": "Ruwe HTML",
+        "rawValue": "38 woorden, geen H1",
+        "rendered": "Gerenderd",
+        "renderedValue": "412 woorden, 1 H1",
+        "words": "374 woorden"
+      }
+    },
+    "speed": {
+      "label": "Snelheid",
+      "title": "Core Web Vitals, afbeeldingen en mobiel, gemeten op de pagina",
+      "lead": "LCP, CLS en INP van je bezoek met de drempels van Google, paginagewicht, de serverrespons en elke afbeelding of elk tikdoel dat de pagina vertraagt",
+      "bullets": [
+        "Zware, te grote, lazy en maatloze afbeeldingen bij bestandsnaam",
+        "Mobiele checks voor viewport, horizontaal scrollen, kleine tekst en tikdoelen",
+        "Het LCP-element direct op de pagina gemarkeerd"
+      ],
+      "demo": {
+        "vitals": [
+          {
+            "k": "LCP",
+            "value": "2.9 s",
+            "status": "Kan beter",
+            "tone": "warn"
+          },
+          {
+            "k": "CLS",
+            "value": "0.02",
+            "status": "Goed",
+            "tone": "ok"
+          },
+          {
+            "k": "INP",
+            "value": "120 ms",
+            "status": "Goed",
+            "tone": "ok"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Boven 200 KB",
+            "status": "2 afbeeldingen",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Groter dan getoond",
+            "status": "4 afbeeldingen",
+            "tone": "warn"
+          },
+          {
+            "label": "Viewport-meta",
+            "status": "width=device-width",
+            "tone": "ok"
+          },
+          {
+            "label": "Compressie",
+            "status": "brotli",
+            "tone": "ok"
+          }
+        ]
+      }
+    },
+    "ai": {
+      "label": "AI",
+      "title": "Welke AI-crawlers de site mogen lezen, en wat ze zien",
+      "lead": "Regels voor GPTBot, ClaudeBot, PerplexityBot, Google-Extended en meer uit robots.txt, opgesplitst in zoekbots en trainingsbots, plus llms.txt",
+      "bullets": [
+        "De exacte robots.txt-regel achter elke blokkade",
+        "Wat AI-crawlers zien: het deel van de tekst, de kop en het schema dat ze kunnen lezen"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "mark": "openai",
+            "label": "GPTBot",
+            "status": "Toegestaan",
+            "tone": "ok"
+          },
+          {
+            "mark": "anthropic",
+            "label": "ClaudeBot",
+            "status": "Toegestaan",
+            "tone": "ok"
+          },
+          {
+            "mark": "perplexity",
+            "label": "PerplexityBot",
+            "status": "Geblokkeerd",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "mark": "google",
+            "label": "Google-Extended",
+            "status": "Toegestaan",
+            "tone": "ok"
+          },
+          {
+            "mark": "commoncrawl",
+            "label": "CCBot",
+            "status": "Geblokkeerd",
+            "tone": "bad"
+          }
+        ],
+        "llms": "llms.txt",
+        "llmsStatus": "Niet gevonden",
+        "seen": {
+          "label": "Tekst die AI-crawlers zien",
+          "status": "9%",
+          "tone": "bad"
+        }
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Zo werkt het",
+    "title": "Drie stappen, geen installatiewerk",
+    "steps": [
+      {
+        "title": "Voeg Serpline toe aan Chrome",
+        "text": "Gratis in de Chrome Web Store. Geen account nodig"
+      },
+      {
+        "title": "Open een pagina, klik op het icoon",
+        "text": "Het zijpaneel opent naast de pagina en controleert hem. Of druk op",
+        "key": "Alt+Shift+S",
+        "textEnd": ""
+      },
+      {
+        "title": "Download de audit-PDF",
+        "text": "Elk probleem met de oplossing, klaar om naar een developer te sturen"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "Audit-PDF",
+    "titleStart": "Problemen gevonden?",
+    "titleHighlight": "Laat ze oplossen",
+    "titleEnd": "door de maker van Serpline",
+    "text": "Eén klik maakt van de bevindingen een rapport op prioriteit. Stuur het naar een developer, of naar mij: ik los technische SEO, server-side rendering, gestructureerde data en zichtbaarheid in AI-zoeken op",
+    "cta": "Plan een SEO-audit",
+    "from": "Van",
+    "paper": {
+      "date": "7 nov 2026",
+      "eyebrow": "Audit van SEO en AI-zoeken",
+      "host": "example.com",
+      "score": "score",
+      "high": "hoog",
+      "medium": "gemiddeld",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Hoog",
+          "strong": "De H1 verschijnt pas na JavaScript.",
+          "text": "Render hem op de server."
+        },
+        {
+          "tone": "bad",
+          "label": "Hoog",
+          "strong": "91% van de tekst heeft JavaScript nodig.",
+          "text": ""
+        },
+        {
+          "tone": "warn",
+          "label": "Gemiddeld",
+          "strong": "PerplexityBot is geblokkeerd.",
+          "text": "Verwijder de regel in robots.txt."
+        }
+      ],
+      "ctaText": "Hulp nodig om dit op te lossen?",
+      "ctaButton": "Neem contact op"
+    }
+  },
+  "privacy": {
+    "eyebrow": "Privacy",
+    "title": "Je pagina's blijven in je browser",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Geen server",
+        "text": "Elke check draait in Chrome. Serpline heeft geen backend om pagina's naartoe te sturen"
+      },
+      {
+        "icon": "lock",
+        "title": "Minimale rechten",
+        "text": "Het actieve tabblad, het zijpaneel en lokale instellingen. Geen toegang tot al je sites"
+      },
+      {
+        "icon": "chart",
+        "title": "Geen analytics in de extensie",
+        "text": "De extensie volgt jou niet. Resultaten verdwijnen als je het paneel sluit"
+      },
+      {
+        "icon": "code",
+        "title": "Open source",
+        "text": "Lees de code en controleer zelf elke bewering op deze pagina"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Vragen",
+    "title": "Vragen",
+    "askBefore": "Nog iets anders?",
+    "askLink": "Vraag het mij direct",
+    "items": [
+      {
+        "q": "Is Serpline echt gratis?",
+        "a": "Ja. Er is geen betaald abonnement, geen account en geen gebruikslimiet."
+      },
+      {
+        "q": "Wat is het verschil met Ahrefs of Screaming Frog?",
+        "a": "Die crawlen hele sites vanaf een server of vanaf je computer. Serpline controleert de pagina waarop je bent, in je browser, inclusief wat er na JavaScript verandert en wat AI-crawlers mogen lezen. Het werkt goed naast die tools."
+      },
+      {
+        "q": "Hoe controleert het AI-zoeken?",
+        "a": "Het leest robots.txt en llms.txt van de site, past de regels toe op elke bekende AI-crawler en vergelijkt de ruwe HTML met de gerenderde pagina, omdat de meeste AI-crawlers geen JavaScript uitvoeren."
+      },
+      {
+        "q": "Crawlt het mijn hele site?",
+        "a": "Nee. Het controleert de open pagina, de robots.txt, llms.txt en sitemap van de site, en de status van de interne links op die pagina."
+      },
+      {
+        "q": "Meet het de paginasnelheid?",
+        "a": "Ja. Het tabblad Snelheid toont de Core Web Vitals van je bezoek (LCP, CLS en INP), het paginagewicht, de serverrespons, problemen met afbeeldingen en checks voor de mobiele weergave. De cijfers komen uit je eigen browser, dus echte bezoekers op tragere telefoons kunnen hogere waarden zien."
+      },
+      {
+        "q": "Stuurt het mijn pagina's ergens naartoe?",
+        "a": "Nee. Verzoeken gaan alleen naar de site waarop je bent, vanuit je eigen browser. Niets komt bij mij of bij iemand anders terecht."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "De Line-familie",
+    "title": "Meer gratis tools uit dezelfde familie",
+    "tools": {
+      "hitline": {
+        "text": "Elke tracking-hit, GTM-tag en elk consentsignaal in DevTools",
+        "open": "Hitline openen"
+      },
+      "rivaline": {
+        "text": "De techstack, advertenties en huisstijl van een concurrent in één paneel",
+        "open": "Rivaline openen"
+      },
+      "foldline": {
+        "text": "Vind wat een landingspagina tegenhoudt om te converteren",
+        "open": "Foldline openen"
+      },
+      "markline": {
+        "text": "Maak een screenshot, voeg aantekeningen toe en deel feedback in seconden",
+        "open": "Markline openen"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Gemaakt door",
+    "privacy": "Privacybeleid",
+    "source": "Broncode"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Jammer dat je gaat | Serpline",
+      "description": "Vertel ons waarom je Serpline hebt verwijderd. Eén klik helpt de volgende versie beter te maken."
+    },
+    "titleStart": "Serpline is verwijderd",
+    "titleEnd": "Waarom ben je gestopt?",
+    "lead": "Eén klik helpt de volgende versie beter te maken",
+    "reasonsLabel": "Reden",
+    "reasons": [
+      "Het miste problemen op mijn site",
+      "Ik had het maar één keer nodig",
+      "Te moeilijk te begrijpen",
+      "Ik gebruik een andere tool"
+    ],
+    "moreLabel": "Nog iets?",
+    "optional": "(optioneel)",
+    "placeholder": "Welke pagina of check werd gemist?",
+    "send": "Feedback versturen",
+    "sending": "Versturen...",
+    "thanks": "Bedankt. Je feedback is verstuurd.",
+    "error": "Versturen mislukt. Probeer het over een minuut opnieuw.",
+    "pickOne": "Kies een reden of schrijf een paar woorden.",
+    "reinstall": "Serpline opnieuw installeren",
+    "card": {
+      "eyebrow": "Nog steeds een SEO-probleem?",
+      "title": "Ik kan het voor je auditen en oplossen",
+      "text": "Technische SEO, JavaScript-rendering, gestructureerde data en zichtbaarheid in AI-zoeken. Je krijgt een duidelijke lijst van wat kapot is en oplossingen die je developers kunnen uitrollen",
+      "cta": "Plan een SEO-audit",
+      "sub": "Shamistan Isayev, technische SEO en analytics"
+    }
+  }
+}

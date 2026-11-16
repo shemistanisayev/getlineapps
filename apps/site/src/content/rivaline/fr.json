@@ -1,0 +1,504 @@
+{
+  "meta": {
+    "title": "Rivaline : veille concurrentielle gratuite Meta et plus",
+    "description": "Extension Chrome gratuite. Voyez la stack martech, les offres et les canaux d'un concurrent, ouvrez ses annonces dans quatre bibliothèques publicitaires, comparez deux sites et copiez son kit de marque.",
+    "ogAlt": "Rivaline : la stack, les annonces et la marque de n'importe quel concurrent dans un seul panneau."
+  },
+  "nav": {
+    "label": "Sections de Rivaline",
+    "features": "Fonctionnalités",
+    "finder": "Recherche d'annonces",
+    "how": "Fonctionnement",
+    "privacy": "Confidentialité",
+    "faq": "FAQ"
+  },
+  "add": {
+    "nav": "Ajouter à Chrome",
+    "hero": "Ajouter à Chrome, c'est gratuit",
+    "band": "Ajouter à Chrome",
+    "soonNav": "Bientôt disponible",
+    "soonHero": "Bientôt sur Chrome"
+  },
+  "hero": {
+    "pill": "Extension Chrome gratuite",
+    "titleStart": "La stack, les annonces et la marque de n'importe quel concurrent dans",
+    "titleHighlight": "un seul panneau",
+    "lead": "Rivaline montre les outils qu'utilise un site, ce qu'il propose, où d'autre la marque est présente et ses annonces dans quatre bibliothèques publicitaires, avec ses couleurs et ses polices. Directement dans le panneau latéral de Chrome",
+    "secondary": "Essayer la recherche d'annonces",
+    "trustLabel": "Pourquoi l'essayer sans risque",
+    "trust": ["Pas de compte", "Rien ne quitte votre navigateur", "Open source"],
+    "mock": {
+      "label": "Panneau latéral de Rivaline sur la boutique de démonstration Kova",
+      "url": "example.com",
+      "siteTitle": "Skincare that keeps it simple.",
+      "siteButton": "Shop the routine",
+      "tabs": {
+        "stack": "Stack",
+        "offer": "Offre",
+        "ads": "Annonces",
+        "brand": "Marque"
+      },
+      "host": "example.com",
+      "title": "13 outils dans 8 catégories",
+      "rows": [
+        {
+          "mark": "meta",
+          "name": "Meta Pixel",
+          "id": "4182736509…"
+        },
+        {
+          "mark": "tiktok",
+          "name": "TikTok Pixel",
+          "id": "C9H3KQ7R…"
+        },
+        {
+          "mark": "googleads",
+          "name": "Google Ads",
+          "id": "AW-11284956"
+        },
+        {
+          "mark": "googleanalytics",
+          "name": "Google Analytics 4",
+          "id": "G-8XK2LM4Q…"
+        },
+        {
+          "mark": "googletagmanager",
+          "name": "Tag Manager",
+          "id": "GTM-N4KV8R"
+        },
+        {
+          "mark": "intercom",
+          "name": "Intercom",
+          "id": "chat"
+        }
+      ]
+    },
+    "kit": {
+      "eyebrow": "Kit de marque",
+      "hint": "Survolez pour voir le HEX",
+      "headingFont": "Fraunces",
+      "headings": "titres",
+      "bodyFont": "DM Sans",
+      "body": "texte"
+    },
+    "toast": {
+      "eyebrow": "Non trouvé",
+      "text": "Pas de tracking server-side sur ce site"
+    }
+  },
+  "marquee": {
+    "title": "Reconnaît les outils qu'utilisent les marketeurs",
+    "items": [
+      {
+        "mark": "googleanalytics",
+        "label": "Google Analytics 4"
+      },
+      {
+        "mark": "googletagmanager",
+        "label": "Tag Manager"
+      },
+      {
+        "mark": "googleads",
+        "label": "Google Ads"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "mark": "tiktok",
+        "label": "TikTok Pixel"
+      },
+      {
+        "mark": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "mark": "snapchat",
+        "label": "Snap Pixel"
+      },
+      {
+        "mark": "hotjar",
+        "label": "Hotjar"
+      },
+      {
+        "mark": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "mark": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "mark": "mailchimp",
+        "label": "Mailchimp"
+      },
+      {
+        "mark": "intercom",
+        "label": "Intercom"
+      },
+      {
+        "mark": "zendesk",
+        "label": "Zendesk"
+      },
+      {
+        "mark": "shopify",
+        "label": "Shopify"
+      },
+      {
+        "mark": "wordpress",
+        "label": "WordPress"
+      },
+      {
+        "mark": "webflow",
+        "label": "Webflow"
+      },
+      {
+        "mark": "trustpilot",
+        "label": "Trustpilot"
+      },
+      {
+        "mark": "klarna",
+        "label": "Klarna"
+      },
+      {
+        "mark": "stripe",
+        "label": "Stripe"
+      },
+      {
+        "mark": "paypal",
+        "label": "PayPal"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Le problème",
+    "title": "Étudier un concurrent demande dix onglets et le code source",
+    "lead": "Les réponses sont déjà sur la page. Elles sont simplement éparpillées",
+    "cards": [
+      {
+        "title": "La stack se cache dans le code source",
+        "text": "Savoir quels pixels, quel CRM et quel chat utilise un site oblige à lire ses scripts ligne par ligne"
+      },
+      {
+        "title": "Quatre bibliothèques publicitaires, quatre recherches",
+        "text": "Meta, Google, TikTok et LinkedIn demandent chacun de retaper la marque, à chaque fois"
+      },
+      {
+        "title": "Des couleurs de marque à la pipette",
+        "text": "Inspecter, copier, coller, recommencer. Pour chaque couleur, chaque police et le style du bouton"
+      }
+    ]
+  },
+  "features": {
+    "eyebrow": "Dans le panneau",
+    "title": "Tout sur un concurrent, dans un seul panneau",
+    "tabsLabel": "Fonctionnalités de Rivaline",
+    "stack": {
+      "label": "Stack",
+      "title": "Chaque outil, regroupé selon ce qu'il fait",
+      "lead": "Analytics, pixels publicitaires, gestionnaires de balises, e-mail, chat, avis, paiements et la plateforme sous-jacente, chacun avec l'ID qu'il utilise",
+      "bullets": [
+        "Des ID comme GTM-N4KV8R et G-8XK2LM4QPZ, prêts à copier",
+        "Une preuve pour chaque détection : script, cookie ou variable globale",
+        "Les lacunes aussi : tracking server-side, consentement, CRM"
+      ],
+      "demo": {
+        "advertising": "Publicité",
+        "emailChat": "E-mail et chat",
+        "notFoundStrong": "Non trouvé :",
+        "notFound": "tracking server-side, bannière de consentement, CRM"
+      }
+    },
+    "offer": {
+      "label": "Offre",
+      "title": "Ce qu'ils vendent et où ils sont présents",
+      "lead": "Le titre principal, les offres de la page, les prix, les profils sociaux, les applications, les marchés et la façon dont le site capte des leads",
+      "bullets": [
+        "Remises, codes promo, livraison gratuite et paiement en plusieurs fois, en anglais, azerbaïdjanais, russe et turc",
+        "Instagram, TikTok, YouTube, Telegram et d'autres profils, plus l'App Store et Google Play",
+        "Les langues, les pays et la devise que sert le site"
+      ],
+      "demo": {
+        "offers": "Offres",
+        "free": "Livraison gratuite",
+        "code": "Code promo",
+        "channels": "Canaux"
+      }
+    },
+    "ads": {
+      "label": "Annonces",
+      "title": "Quatre bibliothèques publicitaires, déjà interrogées",
+      "lead": "Rivaline remplit le nom de la marque et le domaine, pour que Meta, Google, TikTok et LinkedIn s'ouvrent sur les bons résultats",
+      "bullets": [
+        "Ouvrez les quatre en un clic",
+        "Choisissez une fois votre pays par défaut dans les Paramètres",
+        "Voyez quels canaux ont un pixel sur le site"
+      ],
+      "demo": {
+        "searchesBrand": "Recherche « Kova »",
+        "searchesDomain": "Recherche example.com",
+        "openAll": "Ouvrir les 4 dans de nouveaux onglets"
+      }
+    },
+    "brand": {
+      "label": "Marque",
+      "title": "Le kit de marque, sans la pipette",
+      "lead": "Logo, couleurs avec leur rôle, noms des polices et style du bouton principal. Export en variables CSS, en palette PNG ou en JSON",
+      "bullets": [
+        "Cliquez sur une couleur pour copier son HEX",
+        "Uniquement les noms des polices, jamais les fichiers de police",
+        "Prêt pour une présentation commerciale ou une maquette"
+      ],
+      "demo": {
+        "headings": "Titres",
+        "body": "Texte"
+      }
+    },
+    "compare": {
+      "label": "Comparer",
+      "title": "Deux concurrents, côte à côte",
+      "lead": "Analysez deux sites, puis voyez quels outils, offres et canaux un seul des deux possède",
+      "bullets": [
+        "Les outils présents sur un seul site, et sur les deux",
+        "Canaux publicitaires, offres, profils sociaux et marchés dans un seul tableau",
+        "Utilise ce que Rivaline a déjà lu. Rien n'est enregistré"
+      ],
+      "demo": {
+        "tools": "Outils marketing",
+        "offers": "Offres",
+        "profiles": "Profils sociaux",
+        "only": "Uniquement example.com"
+      }
+    },
+    "report": {
+      "label": "Rapport",
+      "title": "Un PDF pour la prochaine réunion",
+      "lead": "Stack, lacunes, offre, canaux, liens vers les bibliothèques publicitaires et kit de marque dans un seul PDF, créé dans votre navigateur",
+      "bullets": [
+        "Prêt pour un appel commercial ou une proposition client",
+        "Texte sélectionnable et liens actifs",
+        "Créé sur votre ordinateur, envoyé nulle part"
+      ],
+      "demo": {
+        "date": "7 nov. 2026",
+        "eyebrow": "Rapport concurrentiel",
+        "tools": "outils",
+        "categories": "catégories",
+        "pixels": "pixels publicitaires",
+        "gaps": "lacunes",
+        "high": "Élevée",
+        "rows": [
+          {
+            "strong": "Pas de tracking server-side.",
+            "text": "Les 4 pixels envoient depuis le navigateur."
+          },
+          {
+            "strong": "Pas de bannière de consentement.",
+            "text": "Les pixels se chargent avant tout choix."
+          }
+        ]
+      }
+    }
+  },
+  "finder": {
+    "eyebrow": "Outil gratuit, sans installation",
+    "title": "Recherche dans les bibliothèques publicitaires",
+    "lead": "Saisissez une marque ou un domaine. Quatre recherches dans les bibliothèques publicitaires sont prêtes à ouvrir. L'outil fonctionne sur cette page et n'envoie rien nulle part",
+    "label": "Marque ou domaine",
+    "placeholder": "example.com ou un nom de marque",
+    "default": "example.com",
+    "brand": "Marque : {brand}",
+    "typeAbove": "saisissez ci-dessus",
+    "searchesBrand": "Recherche « {q} »",
+    "searchesDomain": "Recherche {q}",
+    "needsDomain": "Nécessite un domaine",
+    "typeBrand": "Saisissez une marque",
+    "open": "Ouvrir la recherche",
+    "opensNewTab": "s'ouvre dans un nouvel onglet",
+    "libs": {
+      "meta": "Meta Ad Library",
+      "google": "Google Ads Transparency",
+      "tiktok": "TikTok Ad Library",
+      "linkedin": "LinkedIn Ad Library"
+    },
+    "tiktokNote": "La bibliothèque de TikTok couvre les annonces diffusées en Europe",
+    "band": "Vous voulez aussi les pixels, le kit de marque et un PDF ? L'extension le fait depuis n'importe quel site"
+  },
+  "how": {
+    "eyebrow": "Fonctionnement",
+    "title": "Trois étapes, aucune configuration",
+    "steps": [
+      {
+        "title": "Ajoutez Rivaline à Chrome",
+        "text": "Gratuit sur le Chrome Web Store. Aucun compte à créer"
+      },
+      {
+        "title": "Ouvrez un site, cliquez sur l'icône",
+        "text": "Le panneau latéral s'ouvre à côté de la page. Ou appuyez sur",
+        "keys": ["Alt", "Shift", "V"]
+      },
+      {
+        "title": "Téléchargez le rapport",
+        "text": "Stack, lacunes, liens vers les annonces et kit de marque dans un seul PDF"
+      }
+    ]
+  },
+  "report": {
+    "eyebrow": "Rapport concurrentiel",
+    "titleStart": "Votre concurrent l'a et pas vous ?",
+    "titleHighlight": "Faites-le mettre en place",
+    "titleEnd": "par la personne qui a créé Rivaline",
+    "text": "Un clic transforme n'importe quel site en rapport : stack, lacunes, offre, canaux, bibliothèques publicitaires et kit de marque. Partagez-le avec votre équipe ou envoyez-le-moi. Je mets en place l'analytics, le tracking server-side, le consentement et les pixels publicitaires pour les marques en croissance",
+    "cta": "Réserver un audit",
+    "from": "De",
+    "paper": {
+      "date": "7 nov. 2026",
+      "eyebrow": "Rapport concurrentiel",
+      "host": "example.com",
+      "tools": "outils dans 8 catégories",
+      "gaps": "lacunes",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Élevée",
+          "strong": "Pas de tracking server-side.",
+          "text": "Les 4 pixels publicitaires envoient depuis le navigateur."
+        },
+        {
+          "tone": "bad",
+          "label": "Élevée",
+          "strong": "Pas de bannière de consentement.",
+          "text": "Les pixels se chargent avant tout choix."
+        },
+        {
+          "tone": "warn",
+          "label": "Moyenne",
+          "strong": "Pas de CRM sur le site.",
+          "text": "Les leads restent dans des outils séparés."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Confidentialité",
+    "title": "Vos recherches restent dans votre navigateur",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Pas de serveur",
+        "text": "Toute l'analyse se fait dans Chrome. Rivaline n'effectue aucune requête de lui-même"
+      },
+      {
+        "icon": "lock",
+        "title": "Permissions minimales",
+        "text": "Panneau latéral, onglet actif et stockage local. Aucun accès à tous vos sites"
+      },
+      {
+        "icon": "chart",
+        "title": "Pas de tracking à l'intérieur",
+        "text": "L'extension ne vous suit pas. Les résultats disparaissent quand vous fermez l'onglet"
+      },
+      {
+        "icon": "code",
+        "title": "Open source",
+        "text": "Lisez le code et vérifiez vous-même chaque affirmation de cette page"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Questions",
+    "askBefore": "Autre chose ?",
+    "askLink": "Posez-moi la question directement",
+    "items": [
+      {
+        "q": "Rivaline est-il vraiment gratuit ?",
+        "a": "Oui. Il n'y a ni offre payante, ni compte, ni limite d'utilisation."
+      },
+      {
+        "q": "Envoie-t-il mes données quelque part ?",
+        "a": "Non. Rivaline lit la page dans votre navigateur et garde le résultat en mémoire jusqu'à ce que vous fermiez l'onglet. Seuls vos paramètres sont enregistrés, et uniquement sur votre ordinateur."
+      },
+      {
+        "q": "Comment reconnaît-il les outils ?",
+        "a": "Il compare les adresses des scripts, les noms des cookies, les variables globales de la page et les balises meta à sa propre liste d'environ 160 outils marketing. Chaque détection affiche la preuve trouvée."
+      },
+      {
+        "q": "Peut-il montrer les dépenses publicitaires d'un concurrent ?",
+        "a": "Non. Les bibliothèques publicitaires montrent quelles annonces sont diffusées, pas les budgets. Rivaline ouvre ces bibliothèques avec la recherche déjà remplie."
+      },
+      {
+        "q": "Puis-je comparer deux concurrents ?",
+        "a": "Oui. Analysez chaque site dans son propre onglet, puis appuyez sur Comparer dans le panneau. Rivaline place les deux résultats côte à côte : outils, canaux publicitaires, offres, profils sociaux, marchés et couleurs de marque. Rien n'est enregistré."
+      },
+      {
+        "q": "Pourquoi dois-je recliquer sur l'icône dans un nouvel onglet ?",
+        "a": "Rivaline utilise la permission activeTab de Chrome. Il ne peut lire une page qu'après votre demande, il n'a donc jamais accès à tous les sites que vous visitez."
+      },
+      {
+        "q": "Pourquoi TikTok n'affiche-t-il que des annonces européennes ?",
+        "a": "La bibliothèque publicitaire de TikTok couvre les annonces diffusées dans l'UE, l'EEE, en Suisse et au Royaume-Uni. Rivaline remplit la marque et le pays, puis vous appuyez sur Rechercher sur la page de TikTok."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "La famille Line",
+    "title": "D'autres outils gratuits de la même famille",
+    "tools": {
+      "hitline": {
+        "text": "Voyez ce que le tracking d'un site envoie vraiment, directement dans DevTools",
+        "open": "Ouvrir Hitline"
+      },
+      "serpline": {
+        "text": "Contrôles de SEO technique et de recherche IA pour n'importe quelle page",
+        "open": "Ouvrir Serpline"
+      },
+      "foldline": {
+        "text": "Trouvez ce qui empêche une landing page de convertir",
+        "open": "Ouvrir Foldline"
+      },
+      "markline": {
+        "text": "Capturez, annotez et partagez vos retours en quelques secondes",
+        "open": "Ouvrir Markline"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Créé par",
+    "privacy": "Politique de confidentialité",
+    "source": "Code source"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Dommage de vous voir partir | Rivaline",
+      "description": "Dites-nous pourquoi vous avez supprimé Rivaline. Un clic aide à améliorer la prochaine version."
+    },
+    "titleStart": "Rivaline est supprimé",
+    "titleEnd": "Qu'est-ce qui vous a fait partir ?",
+    "lead": "Un clic aide à améliorer la prochaine version",
+    "reasonsLabel": "Raison",
+    "reasons": [
+      "Il a manqué des outils sur un site",
+      "Je n'en avais besoin qu'une fois",
+      "Trop difficile à comprendre",
+      "J'utilise un autre outil"
+    ],
+    "moreLabel": "Autre chose ?",
+    "optional": "(facultatif)",
+    "placeholder": "Quel site ou quel outil a-t-il manqué ?",
+    "send": "Envoyer mon avis",
+    "sending": "Envoi...",
+    "thanks": "Merci. Votre avis a bien été envoyé.",
+    "error": "L'envoi a échoué. Réessayez dans une minute.",
+    "pickOne": "Choisissez une raison ou écrivez quelques mots.",
+    "reinstall": "Réinstaller Rivaline",
+    "card": {
+      "eyebrow": "Vous avez vu des lacunes sur votre propre site ?",
+      "title": "Je peux les combler pour vous",
+      "text": "Analytics, tracking server-side, consentement et pixels publicitaires. Vous obtenez une liste claire de ce qui manque et une configuration qui marche",
+      "cta": "Réserver un audit",
+      "sub": "Shamistan Isayev, analytics et tracking"
+    }
+  }
+}

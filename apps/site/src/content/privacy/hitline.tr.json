@@ -1,0 +1,46 @@
+{
+  "summary": "Hitline incelediğin sayfanın tracking etiketlerini ve eventlerini gösterir. Senin ya da kontrol ettiğin sayfalar hakkında hiçbir veri toplamaz, saklamaz veya göndermez.",
+  "reads": [
+    "İncelenen sekmedeki ağ istekleri, dataLayer ve diğer sayfa veri katmanları (adobeDataLayer, digitalData, utag_data), GTM container'ları ve hangi bilinen tracking araçlarının yüklendiği, ayrıca _ga, _gcl_*, _fbp, _fbc, _ttp ve FPID tracking çerezleri; yalnızca Chrome DevTools'taki Hitline sekmesi açıkken.",
+    "Geçerli sekmedeki sayfa; yalnızca popup'ı açmak için Hitline simgesine tıkladıktan sonra ve popup açık kaldığı sürece her 2 saniyede bir yeniden.",
+    "Bir tracking planı dosyası; yalnızca yüklemeyi seçersen. Tarayıcında okunur."
+  ],
+  "stores": [
+    "Ayarların, bilgisayarındaki Chrome depolamasında: dil, kendi siten olarak listelediğin domainler, yüklediğin tracking planları (yalnızca event ve parametre adları) ve eklediğin özel platformlar (bir ad ve bir URL parçası).",
+    "Popup'ta \"DevTools'ta göster\"e tıkladığında, hangi eventin gösterileceğine dair kısa bir not, panel onu okuyana kadar Chrome'un belleğinde tutulur. Chrome kapandığında silinir.",
+    "Sonuçlar açık panelde kalır ve DevTools'u ya da popup'ı kapattığında silinir."
+  ],
+  "never": [
+    "Hitline'ı açmadığın sekmeleri okumak",
+    "Formlara yazdıklarını okumak",
+    "Eventleri, sayfaları ya da sonuçları herhangi bir sunucuya göndermek",
+    "Kontrol ettiğin sitelerin geçmişini tutmak"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Geçerli sekmeyi okumak, yalnızca simgeye tıkladıktan sonra."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Okuma fonksiyonunu o sekmede çalıştırmak."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarını bilgisayarına kaydetmek."
+    },
+    {
+      "name": "devtools_page",
+      "manifest": "key:devtools_page",
+      "why": "Hitline sekmesini DevTools'a eklemek. Chrome incelenen sekmenin isteklerini ona yalnızca DevTools açıkken verir."
+    }
+  ],
+  "notes": [
+    "Denetim PDF'i tarayıcında hazırlanır ve seçtiğin yere kaydedilir.",
+    "Hitline sekmesi açıkken ve \"Sayfayı yenile\"ye tıkladığında, Hitline o sayfanın dataLayer'ına her girdinin ne zaman push edildiğini not eden küçük bir zamanlayıcı ekler. Başka hiçbir şey okumaz ve hiçbir şey göndermez.",
+    "Hitline kendi adına hiçbir ağ isteği yapmaz."
+  ]
+}

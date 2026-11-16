@@ -4,10 +4,10 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import FooterCompact from '../components/FooterCompact.astro';
 import Icon from '../components/Icon.astro';
-import { getShared, localePath, LOCALES } from '../lib/site.ts';
+import { BASE_LOCALES, getShared, localePath } from '../lib/site.ts';
 
 const en = await getShared('en');
-const all = await Promise.all(LOCALES.map(async (l) => ({ l, t: await getShared(l) })));
+const all = await Promise.all(BASE_LOCALES.map(async (l) => ({ l, t: await getShared(l) })));
 ---
 
 <Base

@@ -1,0 +1,51 @@
+{
+  "summary": "Serpline vérifie le SEO et l'accès des robots d'IA de la page sur laquelle vous êtes. Tout est calculé dans votre navigateur, et rien ne nous est envoyé.",
+  "reads": [
+    "La page de l'onglet actuel, après que vous avez cliqué sur l'icône ou appuyé sur le raccourci.",
+    "Le HTML brut de cette même page, ainsi que les fichiers robots.txt et llms.txt et le sitemap de ce site, récupérés directement depuis le site.",
+    "Les mesures de vitesse que votre navigateur conserve déjà pour la page (Core Web Vitals, tailles des requêtes) et la taille de ses images et de son texte, mesurées dans l'onglet.",
+    "La page canonique et les versions linguistiques (hreflang) de la page, lorsqu'elles sont sur le même site, pour vérifier qu'elles fonctionnent et renvoient vers la page.",
+    "Le statut des liens internes de la page, uniquement quand vous appuyez sur Check links ou activez ce paramètre. Ces requêtes vont vers le même site."
+  ],
+  "stores": [
+    "Paramètres sur votre ordinateur : langue, appareil de l'aperçu Google et activation de la vérification des liens.",
+    "Les résultats restent dans le panneau latéral jusqu'à ce que vous le fermiez."
+  ],
+  "never": [
+    "Explorer un site entier ou vérifier des pages sur lesquelles vous ne l'avez pas ouvert",
+    "Envoyer des pages ou des résultats à un serveur",
+    "Conserver un historique des sites que vous avez vérifiés",
+    "Lire ce que vous saisissez dans les formulaires"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Lire l'onglet actuel après que vous avez cliqué sur l'icône."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Exécuter la fonction de lecture dans cet onglet."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Afficher Serpline à côté de la page."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Enregistrer vos paramètres sur votre ordinateur."
+    },
+    {
+      "name": "Accès au site (facultatif)",
+      "manifest": "optional_host:https://*/*",
+      "why": "Demandé pour un seul site à la fois, uniquement quand vous appuyez sur Check this page. Chrome affiche sa propre demande, et vous pouvez retirer cet accès dans les paramètres de Chrome."
+    }
+  ],
+  "notes": [
+    "Les requêtes vers le site que vous vérifiez fonctionnent comme un rechargement de la page : votre navigateur envoie les propres cookies de ce site, comme il le fait toujours.",
+    "Le PDF d'audit est créé dans votre navigateur."
+  ]
+}

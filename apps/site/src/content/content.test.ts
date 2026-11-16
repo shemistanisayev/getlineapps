@@ -1,5 +1,5 @@
 /**
- * Content files of getlineapps.com: schemas, EN/AZ parity, copy rules, link rules,
+ * Content files of getlineapps.com: schemas, EN/AZ parity, the extra languages, copy rules, link rules,
  * and the privacy permission lists against each SPEC (and the built manifest once it exists).
  */
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
@@ -83,7 +83,7 @@ describe('site content', () => {
   });
 
   it('hub roles and spots name real tools, and the first role shows all five', () => {
-    for (const l of ['en', 'az']) {
+    for (const l of ['en', 'az', ...EXTRA]) {
       const h = hubSchema.parse(read(`hub/${l}.json`));
       expect(h.tools.roles[0]!.tools).toEqual([...TOOL_SLUGS]);
       expect(Object.keys(h.tools.cards).sort()).toEqual([...TOOL_SLUGS].sort());
@@ -199,8 +199,8 @@ describe('rivaline landing content', () => {
 
 describe('privacy permissions', () => {
   for (const slug of TOOL_SLUGS) {
-    it(`${slug}: the page lists exactly the SPEC permissions, in both languages`, () => {
-      for (const l of ['en', 'az']) {
+    it(`${slug}: the page lists exactly the SPEC permissions, in every language`, () => {
+      for (const l of ['en', 'az', ...EXTRA]) {
         const p = privacyToolSchema.parse(read(`privacy/${slug}.${l}.json`));
         expect(p.perms.map((x) => x.manifest).sort()).toEqual([...SPEC_MANIFEST[slug]].sort());
       }
@@ -213,4 +213,82 @@ describe('privacy permissions', () => {
       expect(p.perms.map((x) => x.manifest).sort()).toEqual(manifestEntries(m));
     });
   }
+});
+
+/** Languages beyond EN and AZ (lib/site.ts, EXTRA_LOCALES): every page has them too. */
+const EXTRA = ['tr', 'ru', 'ro', 'uk', 'pt', 'nl', 'es', 'fr'] as const;
+
+/** The schema of a content file, from its folder (privacy/page.* and privacy/<slug>.* differ). */
+function schemaFor(file: string) {
+  const [folder, name] = file.split(/[\\/]/) as [string, string];
+  if (folder === 'privacy') return name.startsWith('page.') ? privacyPageSchema : privacyToolSchema;
+  return {
+    shared: sharedSchema,
+    hub: hubSchema,
+    hitline: hitlineSchema,
+    serpline: serplineSchema,
+    rivaline: rivalineSchema,
+  }[folder]!;
+}
+
+describe('extra languages', () => {
+  it('every English file has a file in each language, passing its schema with the same shape', () => {
+    const enFiles = files.filter((f) => /(^|[\\/.])en\.json$/.test(f));
+    expect(enFiles.length).toBeGreaterThanOrEqual(11);
+    for (const en of enFiles) {
+      for (const l of EXTRA) {
+        const file = en.replace(/en.json$/, `${l}.json`);
+        expect(files, `${file} is missing`).toContain(file);
+        const data = read(file) as Record<string, unknown>;
+        const base = read(en) as Record<string, unknown>;
+        schemaFor(file).parse(data);
+        if ('lang' in base) {
+          expect(data.lang, file).toBe(l);
+          delete data.lang;
+          delete base.lang;
+        }
+        expect(shape(data), file).toEqual(shape(base));
+      }
+    }
+  });
+
+  it('the Rivaline title keeps the brand first and fits 60 characters', () => {
+    for (const l of EXTRA) {
+      const t = rivalineSchema.parse(read(`rivaline/${l}.json`)).meta.title;
+      expect(t, l).toMatch(/^Rivaline ?: /);
+      expect(t.length, `${l}: ${t}`).toBeLessThanOrEqual(60);
+    }
+  });
+
+  it('Rivaline copy has no links or UTM and keeps the shortcut', () => {
+    for (const l of EXTRA) {
+      const c = rivalineSchema.parse(read(`rivaline/${l}.json`));
+      for (const x of allStrings(c)) expect(x, l).not.toMatch(/https?:|utm_/);
+      expect(c.how.steps[1]!.keys, l).toEqual(['Alt', 'Shift', 'V']);
+    }
+  });
+
+  it('landing titles keep the brand first and fit 60 characters', () => {
+    for (const l of EXTRA) {
+      const h = hitlineSchema.parse(read(`hitline/${l}.json`));
+      const s = serplineSchema.parse(read(`serpline/${l}.json`));
+      expect(h.meta.title, l).toMatch(/^Hitline ?: /);
+      expect(s.meta.title, l).toMatch(/^Serpline ?: /);
+      for (const t of [h.meta.title, s.meta.title])
+        expect(t.length, `${l}: ${t}`).toBeLessThanOrEqual(60);
+    }
+  });
+
+  it('keeps the landing rules: no links or UTM, plan count, preview demo URL', () => {
+    for (const l of EXTRA) {
+      const h = hitlineSchema.parse(read(`hitline/${l}.json`));
+      for (const x of allStrings(h)) expect(x, l).not.toMatch(/https?:|utm_/);
+      const total = h.features.plan.demo.bars.reduce((n, b) => n + b.n, 0);
+      expect(h.features.plan.demo.count, l).toMatch(new RegExp(`^${total} `));
+      const s = serplineSchema.parse(read(`serpline/${l}.json`));
+      const copy = { ...s, preview: { ...s.preview, urlDefault: '' } };
+      for (const x of allStrings(copy)) expect(x, l).not.toMatch(/https?:|utm_/);
+      expect(s.preview.urlDefault).toBe('https://example.com/products/wireless-headphones-pro-x');
+    }
+  });
 });

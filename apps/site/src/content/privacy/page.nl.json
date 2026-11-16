@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Privacybeleid van {name}: Line apps",
+    "description": "Wat {name} leest, wat het op je computer opslaat en wat het nooit doet. Geen account, niets verkocht, niets naar ons gestuurd."
+  },
+  "eyebrow": "Privacy",
+  "title": "Privacybeleid",
+  "lead": "Elke Line app heeft een eigen beleid, omdat elke app iets anders leest. Kies een tool. De korte versie is voor alle vijf hetzelfde: geen account, niets verkocht, niets naar ons gestuurd.",
+  "updatedLabel": "Laatst bijgewerkt",
+  "updated": "10 november 2026",
+  "tabsLabel": "Kies een tool",
+  "tabLabel": "Privacybeleid van {name}",
+  "facts": [
+    "Geen persoonsgegevens verzameld",
+    "Niets naar onze servers gestuurd",
+    "Niets verkocht of gedeeld"
+  ],
+  "headings": {
+    "reads": "Wat {name} leest, en wanneer",
+    "stores": "Wat er op je computer wordt opgeslagen",
+    "never": "Wat {name} nooit doet",
+    "perms": "Rechten en waarom",
+    "notes": "Goed om te weten",
+    "site": "Deze website",
+    "changes": "Wijzigingen en contact"
+  },
+  "site": [
+    "getlineapps.com laadt geen analytics totdat je die accepteert in de cookiebanner. Je kunt je keuze op elk moment wijzigen via de link in de voettekst.",
+    "Als je na het verwijderen van een extensie het formulier invult, worden de reden en de tekst die je schrijft naar mij gemaild zodat ik de tool kan verbeteren. Er wordt verder niets bijgevoegd, en het wordt niet voor marketing gebruikt."
+  ],
+  "changes": "Als dit beleid verandert, wordt de nieuwe versie hier geplaatst met een nieuwe datum. Een wijziging waarbij meer data wordt verzameld, zou ook in de release notes van de extensie worden beschreven voordat die uitkomt.",
+  "contactBefore": "Vragen over privacy?",
+  "contactLink": "Neem contact op met Shamistan Isayev",
+  "contactAfter": "."
+}

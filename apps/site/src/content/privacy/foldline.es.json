@@ -1,0 +1,44 @@
+{
+  "summary": "Foldline revisa la landing page en la que estás en busca de problemas de conversión. Lee la página en tu navegador y no nos envía nada.",
+  "reads": [
+    "El diseño, el texto, los botones y las imágenes de la pestaña actual, después de que hagas clic en el icono.",
+    "Los tipos y las etiquetas de los campos de formulario, nunca lo que se escribe en ellos.",
+    "Los tiempos de velocidad de carga de esta visita, desde tu navegador."
+  ],
+  "stores": [
+    "Ajustes en tu ordenador: vista, tamaño de teléfono, interruptor de la línea del pliegue e idioma.",
+    "En la vista Móvil, el tamaño de tu ventana durante un breve tiempo, para que Foldline pueda restaurarlo."
+  ],
+  "never": [
+    "Leer lo que escribes en los formularios",
+    "Cambiar la propia página",
+    "Enviar páginas o resultados a ningún servidor",
+    "Guardar un historial de los sitios que revisaste"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Leer la pestaña actual después de que hagas clic en el icono."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Hacer las revisiones y dibujar la línea del pliegue en esa pestaña."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Mostrar Foldline junto a la página."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Guardar tus ajustes en tu ordenador."
+    }
+  ],
+  "notes": [
+    "La línea del pliegue se dibuja sobre la página solo mientras el panel está abierto, y se quita cuando lo cierras.",
+    "La vista Móvil hace la ventana más estrecha y la restaura cuando vuelves a la otra vista o cierras el panel. Esto no necesita ningún permiso adicional."
+  ]
+}

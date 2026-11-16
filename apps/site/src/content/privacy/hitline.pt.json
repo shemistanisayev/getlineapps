@@ -1,0 +1,46 @@
+{
+  "summary": "O Hitline mostra as tags e os eventos de tracking da página que você está inspecionando. Ele não coleta, não guarda e não envia nenhum dado sobre você ou sobre as páginas que você verifica.",
+  "reads": [
+    "As requisições de rede, o dataLayer e outras camadas de dados da página (adobeDataLayer, digitalData, utag_data), os contêineres do GTM e quais ferramentas de tracking conhecidas estão carregadas na aba inspecionada, além dos cookies de tracking _ga, _gcl_*, _fbp, _fbc, _ttp e FPID, só enquanto a aba Hitline no Chrome DevTools estiver aberta.",
+    "A página na aba atual, só depois que você clica no ícone do Hitline para abrir o popup, e de novo a cada 2 segundos enquanto o popup continuar aberto.",
+    "Um arquivo de plano de tracking, só se você escolher carregar um. Ele é lido no seu navegador."
+  ],
+  "stores": [
+    "As suas configurações no armazenamento do Chrome no seu computador: o idioma, os domínios que você lista como o seu próprio site, os planos de tracking que você carrega (só nomes de eventos e de parâmetros) e as plataformas personalizadas que você adiciona (um nome e uma parte de uma URL).",
+    "Quando você clica em \"Show in DevTools\" no popup, uma nota curta de qual evento mostrar é mantida na memória do Chrome até o painel lê-la. Ela desaparece quando o Chrome é fechado.",
+    "Os resultados ficam no painel aberto e desaparecem quando você fecha o DevTools ou o popup."
+  ],
+  "never": [
+    "Ler abas em que você não abriu o Hitline",
+    "Ler o que você digita em formulários",
+    "Enviar eventos, páginas ou resultados para qualquer servidor",
+    "Manter um histórico dos sites que você verificou"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Ler a aba atual, e só depois que você clica no ícone."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Executar a função de leitura nessa aba."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvar as suas configurações no seu computador."
+    },
+    {
+      "name": "devtools_page",
+      "manifest": "key:devtools_page",
+      "why": "Adicionar a aba Hitline ao DevTools. O Chrome entrega a ela as requisições da aba inspecionada só enquanto o DevTools está aberto."
+    }
+  ],
+  "notes": [
+    "O PDF de auditoria é gerado no seu navegador e salvo onde você escolher.",
+    "Enquanto a aba Hitline está aberta, e quando você clica em \"Reload page\", o Hitline adiciona um pequeno temporizador ao dataLayer dessa página que registra quando cada entrada é enviada. Ele não lê mais nada e não envia nada.",
+    "O Hitline não faz nenhuma requisição de rede própria."
+  ]
+}

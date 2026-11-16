@@ -1,0 +1,44 @@
+{
+  "summary": "Foldline bulunduğun landing page'i dönüşüm sorunlarına karşı kontrol eder. Sayfayı tarayıcında okur ve bize hiçbir şey göndermez.",
+  "reads": [
+    "Geçerli sekmenin düzeni, metni, butonları ve görselleri; simgeye tıkladıktan sonra.",
+    "Form alanlarının türleri ve etiketleri, asla içlerine yazılanlar değil.",
+    "Bu ziyaretin yükleme hızı ölçümleri, tarayıcından."
+  ],
+  "stores": [
+    "Bilgisayarındaki ayarlar: görünüm, telefon boyutu, fold çizgisi anahtarı ve dil.",
+    "Mobil görünümde, Foldline'ın geri getirebilmesi için pencere boyutun, kısa bir süreliğine."
+  ],
+  "never": [
+    "Formlara yazdıklarını okumak",
+    "Sayfanın kendisini değiştirmek",
+    "Sayfaları ya da sonuçları herhangi bir sunucuya göndermek",
+    "Kontrol ettiğin sitelerin geçmişini tutmak"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Simgeye tıkladıktan sonra geçerli sekmeyi okumak."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Kontrolleri çalıştırmak ve fold çizgisini o sekmeye çizmek."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Foldline'ı sayfanın yanında göstermek."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarını bilgisayarına kaydetmek."
+    }
+  ],
+  "notes": [
+    "Fold çizgisi yalnızca panel açıkken sayfanın üstüne çizilir ve paneli kapattığında kaldırılır.",
+    "Mobil görünüm pencereyi daraltır ve geri döndüğünde ya da paneli kapattığında eski haline getirir. Bunun için ek bir izin gerekmez."
+  ]
+}

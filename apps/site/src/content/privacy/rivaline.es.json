@@ -1,0 +1,44 @@
+{
+  "summary": "Rivaline muestra las herramientas de marketing, los enlaces a bibliotecas de anuncios y el estilo de marca del sitio en el que estás. Lee esa página en tu navegador y no nos envía nada.",
+  "reads": [
+    "Las direcciones de los scripts, los nombres de los archivos cargados, las metaetiquetas y los nombres de las cookies de la página, nunca sus valores. Solo después de que hagas clic en el icono.",
+    "Los colores, las fuentes y los estilos del botón principal de esa página.",
+    "Una captura de la parte visible de la pestaña, usada solo para recortar el logo y descartada justo después."
+  ],
+  "stores": [
+    "Ajustes en tu ordenador: país predeterminado e idioma.",
+    "Los resultados se quedan en el panel lateral hasta que lo cierras."
+  ],
+  "never": [
+    "Leer los valores de las cookies o lo que escribes en los formularios",
+    "Descargar archivos de fuentes",
+    "Enviar páginas o resultados a ningún servidor",
+    "Guardar un historial de los sitios que revisaste"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Leer la pestaña actual después de que hagas clic en el icono."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Ejecutar la función de lectura en esa pestaña."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Mostrar Rivaline junto a la página."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Guardar tus ajustes en tu ordenador."
+    }
+  ],
+  "notes": [
+    "Los botones de las bibliotecas de anuncios abren Meta, Google, TikTok y LinkedIn en pestañas nuevas. Esos sitios tienen sus propias políticas de privacidad.",
+    "Las exportaciones de marca y el PDF se generan en tu navegador."
+  ]
+}

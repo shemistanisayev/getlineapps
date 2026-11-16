@@ -1,0 +1,53 @@
+{
+  "lang": "nl",
+  "htmlLang": "nl",
+  "language": "Taal",
+  "skip": "Naar de inhoud",
+  "nav": {
+    "home": "Line apps startpagina",
+    "main": "Hoofdmenu",
+    "tools": "Tools",
+    "together": "Wat ze controleren",
+    "webTools": "Gratis webtools",
+    "faq": "Veelgestelde vragen",
+    "cta": "Plan een gesprek",
+    "toolsLabel": "Tools"
+  },
+  "footer": {
+    "label": "Voettekst",
+    "tagline": "Gratis Chrome-tools voor marketeers, SEO-specialisten en bureaus",
+    "extensions": "Extensies",
+    "webTools": "Gratis webtools",
+    "about": "Over",
+    "privacy": "Privacybeleid",
+    "contact": "Contact",
+    "source": "Broncode",
+    "cookies": "Cookie-instellingen",
+    "allTools": "Alle tools",
+    "builtBy": "Gemaakt door",
+    "trademark": "Chrome is een handelsmerk van Google LLC."
+  },
+  "status": {
+    "soon": "Binnenkort",
+    "add": "Toevoegen aan Chrome",
+    "learnMore": "Meer info",
+    "openTool": "Tool openen"
+  },
+  "consent": {
+    "text": "Deze site gebruikt alleen analytische cookies als je ze accepteert",
+    "accept": "Accepteren",
+    "reject": "Weigeren",
+    "privacyLabel": "Privacybeleid"
+  },
+  "notFound": {
+    "metaTitle": "Pagina niet gevonden: Line apps",
+    "metaDescription": "Deze pagina bestaat niet op getlineapps.com.",
+    "code": "404",
+    "title": "Deze pagina bestaat niet",
+    "text": "De link is misschien oud of verkeerd getypt. De vijf tools en hun privacybeleid zijn één klik verwijderd.",
+    "home": "Bekijk alle tools",
+    "privacy": "Privacybeleid"
+  },
+  "ownerLogo": "Logo van Shamistan Isayev",
+  "ownerName": "Shamistan Isayev"
+}

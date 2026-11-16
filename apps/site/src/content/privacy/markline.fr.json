@@ -1,0 +1,39 @@
+{
+  "summary": "Markline capture la page sur laquelle vous êtes pour que vous puissiez l'annoter. Les captures restent sur votre ordinateur, et Markline ne met rien en ligne.",
+  "reads": [
+    "L'onglet actuel, après que vous avez cliqué sur l'icône ou appuyé sur un raccourci de capture.",
+    "L'emplacement des e-mails et des numéros de téléphone sur la page, afin de pouvoir les flouter. Seule leur position est utilisée.",
+    "Une image que vous déposez, collez ou choisissez dans l'éditeur."
+  ],
+  "stores": [
+    "Paramètres sur votre ordinateur : floutage automatique, style de flou, réglages d'export par défaut et langue.",
+    "Une capture est transmise à l'onglet de l'éditeur via le stockage du navigateur et supprimée en quelques secondes. Fermer l'onglet de l'éditeur supprime la capture."
+  ],
+  "never": [
+    "Mettre en ligne des captures ou créer des liens de partage",
+    "Enregistrer votre écran",
+    "Envoyer des pages, des images ou des notes à un serveur",
+    "Conserver un historique de ce que vous avez capturé"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Capturer et lire l'onglet actuel après que vous avez cliqué ou appuyé sur un raccourci."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Trouver les e-mails et les numéros de téléphone à flouter, afficher le sélecteur de zone et d'élément, et faire défiler la page pour une capture de page entière."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Enregistrer vos paramètres sur votre ordinateur."
+    }
+  ],
+  "notes": [
+    "Les détails de la page (adresse, navigateur, taille de la fenêtre, heure) sont ajoutés à un export uniquement si cette option est activée.",
+    "La mention « Made with Markline » sur les images est facultative et peut être désactivée dans les paramètres."
+  ]
+}

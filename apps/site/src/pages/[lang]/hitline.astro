@@ -1,0 +1,12 @@
+---
+/** /<lang>/hitline for the languages beyond EN and AZ (lib/site.ts, EXTRA_LOCALES). */
+import HitlinePage from '../../components/HitlinePage.astro';
+import { EXTRA_LOCALES, type Locale } from '../../lib/site.ts';
+
+export function getStaticPaths() {
+  return EXTRA_LOCALES.map((lang) => ({ params: { lang } }));
+}
+const locale = Astro.params.lang as Locale;
+---
+
+<HitlinePage locale={locale} />

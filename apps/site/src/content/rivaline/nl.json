@@ -1,0 +1,504 @@
+{
+  "meta": {
+    "title": "Rivaline: Gratis Concurrentieonderzoek voor Meta en Meer",
+    "description": "Gratis Chrome-extensie. Zie de martech-stack, aanbiedingen en kanalen van een concurrent, open de advertenties in vier advertentiebibliotheken, vergelijk twee sites en kopieer de huisstijl.",
+    "ogAlt": "Rivaline: zie de stack, advertenties en huisstijl van elke concurrent in één paneel."
+  },
+  "nav": {
+    "label": "Secties van Rivaline",
+    "features": "Functies",
+    "finder": "Advertentiebibliotheek-zoeker",
+    "how": "Zo werkt het",
+    "privacy": "Privacy",
+    "faq": "Vragen"
+  },
+  "add": {
+    "nav": "Toevoegen aan Chrome",
+    "hero": "Voeg toe aan Chrome, het is gratis",
+    "band": "Toevoegen aan Chrome",
+    "soonNav": "Binnenkort",
+    "soonHero": "Binnenkort in Chrome"
+  },
+  "hero": {
+    "pill": "Gratis Chrome-extensie",
+    "titleStart": "Zie de stack, advertenties en huisstijl van elke concurrent in",
+    "titleHighlight": "één paneel",
+    "lead": "Rivaline toont welke tools een site draait, wat hij aanbiedt, waar het merk nog meer te vinden is en de advertenties in vier advertentiebibliotheken, met de kleuren en lettertypen. Direct in het zijpaneel van Chrome",
+    "secondary": "Probeer de advertentiebibliotheek-zoeker",
+    "trustLabel": "Waarom je het veilig kunt proberen",
+    "trust": ["Geen account", "Niets verlaat je browser", "Open source"],
+    "mock": {
+      "label": "Zijpaneel van Rivaline op de Kova-demowinkel",
+      "url": "example.com",
+      "siteTitle": "Huidverzorging die het simpel houdt.",
+      "siteButton": "Shop de routine",
+      "tabs": {
+        "stack": "Stack",
+        "offer": "Aanbod",
+        "ads": "Advertenties",
+        "brand": "Merk"
+      },
+      "host": "example.com",
+      "title": "13 tools in 8 categorieën",
+      "rows": [
+        {
+          "mark": "meta",
+          "name": "Meta Pixel",
+          "id": "4182736509…"
+        },
+        {
+          "mark": "tiktok",
+          "name": "TikTok Pixel",
+          "id": "C9H3KQ7R…"
+        },
+        {
+          "mark": "googleads",
+          "name": "Google Ads",
+          "id": "AW-11284956"
+        },
+        {
+          "mark": "googleanalytics",
+          "name": "Google Analytics 4",
+          "id": "G-8XK2LM4Q…"
+        },
+        {
+          "mark": "googletagmanager",
+          "name": "Tag Manager",
+          "id": "GTM-N4KV8R"
+        },
+        {
+          "mark": "intercom",
+          "name": "Intercom",
+          "id": "chat"
+        }
+      ]
+    },
+    "kit": {
+      "eyebrow": "Huisstijl",
+      "hint": "Beweeg erover voor de HEX",
+      "headingFont": "Fraunces",
+      "headings": "koppen",
+      "bodyFont": "DM Sans",
+      "body": "tekst"
+    },
+    "toast": {
+      "eyebrow": "Niet gevonden",
+      "text": "Geen server-side tracking op deze site"
+    }
+  },
+  "marquee": {
+    "title": "Herkent de tools die marketeers gebruiken",
+    "items": [
+      {
+        "mark": "googleanalytics",
+        "label": "Google Analytics 4"
+      },
+      {
+        "mark": "googletagmanager",
+        "label": "Tag Manager"
+      },
+      {
+        "mark": "googleads",
+        "label": "Google Ads"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "mark": "tiktok",
+        "label": "TikTok Pixel"
+      },
+      {
+        "mark": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "mark": "snapchat",
+        "label": "Snap Pixel"
+      },
+      {
+        "mark": "hotjar",
+        "label": "Hotjar"
+      },
+      {
+        "mark": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "mark": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "mark": "mailchimp",
+        "label": "Mailchimp"
+      },
+      {
+        "mark": "intercom",
+        "label": "Intercom"
+      },
+      {
+        "mark": "zendesk",
+        "label": "Zendesk"
+      },
+      {
+        "mark": "shopify",
+        "label": "Shopify"
+      },
+      {
+        "mark": "wordpress",
+        "label": "WordPress"
+      },
+      {
+        "mark": "webflow",
+        "label": "Webflow"
+      },
+      {
+        "mark": "trustpilot",
+        "label": "Trustpilot"
+      },
+      {
+        "mark": "klarna",
+        "label": "Klarna"
+      },
+      {
+        "mark": "stripe",
+        "label": "Stripe"
+      },
+      {
+        "mark": "paypal",
+        "label": "PayPal"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Het probleem",
+    "title": "Een concurrent onderzoeken kost tien tabbladen en view-source",
+    "lead": "De antwoorden staan al op de pagina. Ze liggen alleen verspreid",
+    "cards": [
+      {
+        "title": "De stack zit verstopt in de broncode",
+        "text": "Uitzoeken welke pixels, CRM en chat een site gebruikt betekent de scripts regel voor regel lezen"
+      },
+      {
+        "title": "Vier advertentiebibliotheken, vier zoekopdrachten",
+        "text": "Meta, Google, TikTok en LinkedIn willen elk dat je het merk opnieuw typt, elke keer weer"
+      },
+      {
+        "title": "Merkkleuren met de pipet",
+        "text": "Inspecteren, kopiëren, plakken, herhalen. Voor elke kleur, elk lettertype en de knopstijl"
+      }
+    ]
+  },
+  "features": {
+    "eyebrow": "In het paneel",
+    "title": "Alles over een concurrent, in één paneel",
+    "tabsLabel": "Functies van Rivaline",
+    "stack": {
+      "label": "Stack",
+      "title": "Elke tool, gegroepeerd op wat hij doet",
+      "lead": "Analytics, advertentiepixels, tagmanagers, e-mail, chat, reviews, betalingen en het platform eronder, elk met de ID die het gebruikt",
+      "bullets": [
+        "ID's zoals GTM-N4KV8R en G-8XK2LM4QPZ, klaar om te kopiëren",
+        "Bewijs voor elke match: script, cookie of globale variabele",
+        "Ook de gaten op een rij: server-side tracking, consent, CRM"
+      ],
+      "demo": {
+        "advertising": "Adverteren",
+        "emailChat": "E-mail en chat",
+        "notFoundStrong": "Niet gevonden:",
+        "notFound": "server-side tracking, consentbanner, CRM"
+      }
+    },
+    "offer": {
+      "label": "Aanbod",
+      "title": "Wat ze verkopen en waar ze te vinden zijn",
+      "lead": "De kop, de aanbiedingen op de pagina, prijzen, socialmediaprofielen, apps, markten en hoe de site leads binnenhaalt",
+      "bullets": [
+        "Kortingen, promocodes, gratis bezorging en betalen in termijnen, in het Engels, Azerbeidzjaans, Russisch en Turks",
+        "Instagram, TikTok, YouTube, Telegram en andere profielen, plus App Store en Google Play",
+        "De talen, landen en valuta waarvoor de site werkt"
+      ],
+      "demo": {
+        "offers": "Aanbiedingen",
+        "free": "Gratis bezorging",
+        "code": "Promocode",
+        "channels": "Kanalen"
+      }
+    },
+    "ads": {
+      "label": "Advertenties",
+      "title": "Vier advertentiebibliotheken, al doorzocht",
+      "lead": "Rivaline vult de merknaam en het domein in, zodat Meta, Google, TikTok en LinkedIn openen op de juiste resultaten",
+      "bullets": [
+        "Open ze alle vier met één klik",
+        "Kies je standaardland één keer in Instellingen",
+        "Zie welke kanalen een pixel op de site hebben"
+      ],
+      "demo": {
+        "searchesBrand": "Zoekt op \"Kova\"",
+        "searchesDomain": "Zoekt op example.com",
+        "openAll": "Alle 4 openen in nieuwe tabbladen"
+      }
+    },
+    "brand": {
+      "label": "Merk",
+      "title": "De huisstijl, zonder pipet",
+      "lead": "Logo, kleuren met hun rol, namen van lettertypen en de stijl van de hoofdknop. Exporteer als CSS-variabelen, een PNG-palet of JSON",
+      "bullets": [
+        "Klik op een kleur om de HEX te kopiëren",
+        "Alleen namen van lettertypen, nooit de lettertypebestanden",
+        "Klaar voor een pitchdeck of een mockup"
+      ],
+      "demo": {
+        "headings": "Koppen",
+        "body": "Tekst"
+      }
+    },
+    "compare": {
+      "label": "Vergelijken",
+      "title": "Twee concurrenten naast elkaar",
+      "lead": "Lees twee sites en zie daarna welke tools, aanbiedingen en kanalen maar één van beide heeft",
+      "bullets": [
+        "Tools die maar op één site staan, en op allebei",
+        "Advertentiekanalen, aanbiedingen, socialmediaprofielen en markten in één tabel",
+        "Gebruikt wat Rivaline al heeft gelezen. Er wordt niets opgeslagen"
+      ],
+      "demo": {
+        "tools": "Marketingtools",
+        "offers": "Aanbiedingen",
+        "profiles": "Socialmediaprofielen",
+        "only": "Alleen example.com"
+      }
+    },
+    "report": {
+      "label": "Rapport",
+      "title": "Eén PDF voor de volgende meeting",
+      "lead": "Stack, gaten, aanbod, kanalen, links naar advertentiebibliotheken en de huisstijl in één PDF, gemaakt in je browser",
+      "bullets": [
+        "Klaar voor een salesgesprek of een pitch bij een klant",
+        "Selecteerbare tekst en werkende links",
+        "Gemaakt op je computer, nergens naartoe gestuurd"
+      ],
+      "demo": {
+        "date": "7 nov 2026",
+        "eyebrow": "Concurrentierapport",
+        "tools": "tools",
+        "categories": "categorieën",
+        "pixels": "advertentiepixels",
+        "gaps": "gaten",
+        "high": "Hoog",
+        "rows": [
+          {
+            "strong": "Geen server-side tracking.",
+            "text": "Alle 4 pixels versturen vanuit de browser."
+          },
+          {
+            "strong": "Geen consentbanner.",
+            "text": "Pixels laden voordat er een keuze is gemaakt."
+          }
+        ]
+      }
+    }
+  },
+  "finder": {
+    "eyebrow": "Gratis tool, geen installatie",
+    "title": "Advertentiebibliotheek-zoeker",
+    "lead": "Typ een merk of een domein. Vier zoekopdrachten in advertentiebibliotheken staan klaar om te openen. Het draait op deze pagina en stuurt nergens iets naartoe",
+    "label": "Merk of domein",
+    "placeholder": "example.com of een merknaam",
+    "default": "example.com",
+    "brand": "Merk: {brand}",
+    "typeAbove": "typ hierboven",
+    "searchesBrand": "Zoekt op \"{q}\"",
+    "searchesDomain": "Zoekt op {q}",
+    "needsDomain": "Heeft een domein nodig",
+    "typeBrand": "Typ een merk",
+    "open": "Zoekopdracht openen",
+    "opensNewTab": "opent in een nieuw tabblad",
+    "libs": {
+      "meta": "Meta Ad Library",
+      "google": "Google Ads Transparency",
+      "tiktok": "TikTok Ad Library",
+      "linkedin": "LinkedIn Ad Library"
+    },
+    "tiktokNote": "De bibliotheek van TikTok bevat advertenties die in Europa worden getoond",
+    "band": "Wil je ook de pixels, de huisstijl en een PDF? De extensie doet het vanaf elke site"
+  },
+  "how": {
+    "eyebrow": "Zo werkt het",
+    "title": "Drie stappen, geen installatiewerk",
+    "steps": [
+      {
+        "title": "Voeg Rivaline toe aan Chrome",
+        "text": "Gratis in de Chrome Web Store. Geen account nodig"
+      },
+      {
+        "title": "Open een site, klik op het icoon",
+        "text": "Het zijpaneel opent naast de pagina. Of druk op",
+        "keys": ["Alt", "Shift", "V"]
+      },
+      {
+        "title": "Download het rapport",
+        "text": "Stack, gaten, advertentielinks en huisstijl in één PDF"
+      }
+    ]
+  },
+  "report": {
+    "eyebrow": "Concurrentierapport",
+    "titleStart": "Je concurrent heeft het en jij niet?",
+    "titleHighlight": "Laat het opzetten",
+    "titleEnd": "door de maker van Rivaline",
+    "text": "Eén klik maakt van elke site een rapport: stack, gaten, aanbod, kanalen, advertentiebibliotheken en huisstijl. Deel het met je team, of stuur het naar mij. Ik zet analytics, server-side tracking, consent en advertentiepixels op voor groeiende merken",
+    "cta": "Plan een audit",
+    "from": "Van",
+    "paper": {
+      "date": "7 nov 2026",
+      "eyebrow": "Concurrentierapport",
+      "host": "example.com",
+      "tools": "tools in 8 categorieën",
+      "gaps": "gaten",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Hoog",
+          "strong": "Geen server-side tracking.",
+          "text": "Alle 4 advertentiepixels versturen vanuit de browser."
+        },
+        {
+          "tone": "bad",
+          "label": "Hoog",
+          "strong": "Geen consentbanner.",
+          "text": "Pixels laden voordat er een keuze is gemaakt."
+        },
+        {
+          "tone": "warn",
+          "label": "Gemiddeld",
+          "strong": "Geen CRM op de site.",
+          "text": "Leads blijven in losse tools."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Privacy",
+    "title": "Je onderzoek blijft in je browser",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Geen server",
+        "text": "Alle analyse draait in Chrome. Rivaline doet zelf geen enkel verzoek"
+      },
+      {
+        "icon": "lock",
+        "title": "Minimale rechten",
+        "text": "Zijpaneel, actief tabblad en lokale opslag. Geen toegang tot al je sites"
+      },
+      {
+        "icon": "chart",
+        "title": "Geen tracking in de extensie",
+        "text": "De extensie volgt jou niet. Resultaten verdwijnen als je het tabblad sluit"
+      },
+      {
+        "icon": "code",
+        "title": "Open source",
+        "text": "Lees de code en controleer zelf elke bewering op deze pagina"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Vragen",
+    "title": "Vragen",
+    "askBefore": "Nog iets anders?",
+    "askLink": "Vraag het mij direct",
+    "items": [
+      {
+        "q": "Is Rivaline echt gratis?",
+        "a": "Ja. Er is geen betaald abonnement, geen account en geen gebruikslimiet."
+      },
+      {
+        "q": "Stuurt het data ergens naartoe?",
+        "a": "Nee. Rivaline leest de pagina in je browser en houdt het resultaat in het geheugen tot je het tabblad sluit. Alleen je instellingen worden opgeslagen, en alleen op je eigen computer."
+      },
+      {
+        "q": "Hoe herkent het tools?",
+        "a": "Het vergelijkt scriptadressen, cookienamen, globale variabelen van de pagina en metatags met een eigen lijst van ongeveer 160 marketingtools. Bij elke match zie je het bewijs dat het vond."
+      },
+      {
+        "q": "Kan het de advertentie-uitgaven van een concurrent tonen?",
+        "a": "Nee. Advertentiebibliotheken tonen welke advertenties lopen, geen budgetten. Rivaline opent die bibliotheken met de zoekopdracht al ingevuld."
+      },
+      {
+        "q": "Kan ik twee concurrenten vergelijken?",
+        "a": "Ja. Lees elke site in een eigen tabblad en druk dan in het paneel op Vergelijken. Rivaline zet de twee resultaten naast elkaar: tools, advertentiekanalen, aanbiedingen, socialmediaprofielen, markten en merkkleuren. Er wordt niets opgeslagen."
+      },
+      {
+        "q": "Waarom moet ik in een nieuw tabblad opnieuw op het icoon klikken?",
+        "a": "Rivaline gebruikt het activeTab-recht van Chrome. Het kan een pagina pas lezen nadat jij daarom vraagt, dus het heeft nooit toegang tot elke site die je bezoekt."
+      },
+      {
+        "q": "Waarom toont TikTok alleen Europese advertenties?",
+        "a": "De advertentiebibliotheek van TikTok bevat advertenties die worden getoond in de EU, de EER, Zwitserland en het Verenigd Koninkrijk. Rivaline vult het merk en het land in, daarna druk je op Zoeken op de pagina van TikTok."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "De Line-familie",
+    "title": "Meer gratis tools uit dezelfde familie",
+    "tools": {
+      "hitline": {
+        "text": "Zie welke tracking een site echt verstuurt, direct in DevTools",
+        "open": "Hitline openen"
+      },
+      "serpline": {
+        "text": "Checks voor technische SEO en AI-zoeken op elke pagina",
+        "open": "Serpline openen"
+      },
+      "foldline": {
+        "text": "Vind wat een landingspagina tegenhoudt om te converteren",
+        "open": "Foldline openen"
+      },
+      "markline": {
+        "text": "Maak een screenshot, voeg aantekeningen toe en deel feedback in seconden",
+        "open": "Markline openen"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Gemaakt door",
+    "privacy": "Privacybeleid",
+    "source": "Broncode"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Jammer dat je gaat | Rivaline",
+      "description": "Vertel ons waarom je Rivaline hebt verwijderd. Eén klik helpt de volgende versie beter te maken."
+    },
+    "titleStart": "Rivaline is verwijderd",
+    "titleEnd": "Waarom ben je gestopt?",
+    "lead": "Eén klik helpt de volgende versie beter te maken",
+    "reasonsLabel": "Reden",
+    "reasons": [
+      "Het miste tools op een site",
+      "Ik had het maar één keer nodig",
+      "Te moeilijk te begrijpen",
+      "Ik gebruik een andere tool"
+    ],
+    "moreLabel": "Nog iets?",
+    "optional": "(optioneel)",
+    "placeholder": "Welke site of tool werd gemist?",
+    "send": "Feedback versturen",
+    "sending": "Versturen...",
+    "thanks": "Bedankt. Je feedback is verstuurd.",
+    "error": "Versturen mislukt. Probeer het over een minuut opnieuw.",
+    "pickOne": "Kies een reden of schrijf een paar woorden.",
+    "reinstall": "Rivaline opnieuw installeren",
+    "card": {
+      "eyebrow": "Gaten gezien op je eigen site?",
+      "title": "Ik kan ze voor je dichten",
+      "text": "Analytics, server-side tracking, consent en advertentiepixels. Je krijgt een duidelijke lijst van wat er ontbreekt en een werkende setup",
+      "cta": "Plan een audit",
+      "sub": "Shamistan Isayev, analytics en tracking"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "summary": "Rivaline bulunduğun sitenin pazarlama araçlarını, reklam kütüphanesi linklerini ve marka stilini gösterir. O sayfayı tarayıcında okur ve bize hiçbir şey göndermez.",
+  "reads": [
+    "Sayfadaki script adresleri, yüklenen dosya adları, meta etiketleri ve çerezlerin adları, asla değerleri değil. Yalnızca simgeye tıkladıktan sonra.",
+    "O sayfanın renkleri, fontları ve ana buton stilleri.",
+    "Sekmenin görünen kısmının bir ekran görüntüsü; yalnızca logoyu kesip çıkarmak için kullanılır ve hemen ardından silinir."
+  ],
+  "stores": [
+    "Bilgisayarındaki ayarlar: varsayılan ülke ve dil.",
+    "Sonuçlar sen kapatana kadar yan panelde kalır."
+  ],
+  "never": [
+    "Çerez değerlerini ya da formlara yazdıklarını okumak",
+    "Font dosyalarını indirmek",
+    "Sayfaları ya da sonuçları herhangi bir sunucuya göndermek",
+    "Kontrol ettiğin sitelerin geçmişini tutmak"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Simgeye tıkladıktan sonra geçerli sekmeyi okumak."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Okuma fonksiyonunu o sekmede çalıştırmak."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Rivaline'ı sayfanın yanında göstermek."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarını bilgisayarına kaydetmek."
+    }
+  ],
+  "notes": [
+    "Reklam kütüphanesi butonları Meta, Google, TikTok ve LinkedIn'i yeni sekmelerde açar. Bu sitelerin kendi gizlilik politikaları vardır.",
+    "Marka dışa aktarımları ve PDF tarayıcında hazırlanır."
+  ]
+}

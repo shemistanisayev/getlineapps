@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "title": "Hitline: безкоштовний налагоджувач трекінгу GA4, Meta та ін.",
+    "description": "Безкоштовне розширення для Chrome. Бачте кожну подію GA4, Google Ads, Meta, TikTok і ще 46 платформ, читайте теги GTM і знаходьте витоки згоди просто в Chrome DevTools.",
+    "ogAlt": "Hitline: ваш трекінг працює? Доведіть це в одній панелі."
+  },
+  "nav": {
+    "label": "Розділи Hitline",
+    "features": "Можливості",
+    "how": "Як це працює",
+    "privacy": "Приватність",
+    "faq": "Питання"
+  },
+  "add": {
+    "nav": "Додати в Chrome",
+    "hero": "Додати в Chrome безкоштовно",
+    "soonNav": "Незабаром",
+    "soonHero": "Незабаром у Chrome"
+  },
+  "sample": {
+    "eyebrow": "Приклад аудиту",
+    "title": "example.com, зроблено в Hitline одним кліком",
+    "note": "Справжній макет звіту. Жодні дані не покинули браузер",
+    "download": "Завантажити приклад PDF",
+    "close": "Закрити приклад аудиту"
+  },
+  "hero": {
+    "pill": "Безкоштовне розширення для Chrome",
+    "titleStart": "Ваш трекінг працює?",
+    "titleHighlight": "Доведіть це",
+    "titleEnd": "в одній панелі",
+    "lead": "Бачте кожну подію GA4, Google Ads, Meta, TikTok і ще 46 платформ, розпізнавайте server-side GTM і знаходьте витоки згоди просто в Chrome DevTools",
+    "secondary": "Переглянути приклад аудиту",
+    "trust": ["Без акаунта", "Дані не залишають браузер", "Відкритий код"],
+    "mockLabel": "DevTools › Hitline",
+    "tabs": [
+      {
+        "label": "Події",
+        "count": "14",
+        "warn": false
+      },
+      {
+        "label": "GTM",
+        "count": "24",
+        "warn": false
+      },
+      {
+        "label": "Згода",
+        "count": "2",
+        "warn": true
+      },
+      {
+        "label": "Атрибуція",
+        "count": "1",
+        "warn": true
+      }
+    ],
+    "live": "Наживо",
+    "rows": [
+      {
+        "time": "18.204",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "page_view",
+        "route": "sgtm"
+      },
+      {
+        "time": "18.310",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "PageView",
+        "route": "browser"
+      },
+      {
+        "time": "19.140",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "ViewContent",
+        "route": "browser"
+      },
+      {
+        "time": "31.950",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "add_to_cart",
+        "route": "sgtm"
+      },
+      {
+        "time": "32.004",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "AddToCart",
+        "route": "bad"
+      },
+      {
+        "time": "32.050",
+        "platform": "ads",
+        "name": "Google Ads",
+        "event": "conversion",
+        "route": "browser"
+      },
+      {
+        "time": "32.091",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "AddToCart",
+        "route": "browser"
+      },
+      {
+        "time": "33.420",
+        "platform": "dl",
+        "name": "dataLayer",
+        "event": "begin_checkout",
+        "route": "page"
+      }
+    ],
+    "routes": {
+      "sgtm": "sGTM",
+      "browser": "Браузер",
+      "page": "Сторінка",
+      "bad": "Без цінності"
+    },
+    "sgtmTitle": "Server-side GTM",
+    "sgtmVia": "через data.example.com",
+    "tags": "4 теги",
+    "issueLabel": "Знайдено проблему",
+    "issueText": "Meta AddToCart надсилається без цінності"
+  },
+  "marquee": {
+    "title": "Читає 50 платформ, якими ви вже користуєтеся",
+    "items": [
+      {
+        "platform": "ga",
+        "label": "GA4"
+      },
+      {
+        "platform": "ads",
+        "label": "Google Ads"
+      },
+      {
+        "platform": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "platform": "tt",
+        "label": "TikTok Pixel"
+      },
+      {
+        "platform": "dl",
+        "label": "Google Tag Manager"
+      },
+      {
+        "platform": "sgtm",
+        "label": "Server-side GTM"
+      },
+      {
+        "platform": "linkedin",
+        "label": "LinkedIn Insight"
+      },
+      {
+        "platform": "bing",
+        "label": "Microsoft Ads"
+      },
+      {
+        "platform": "x",
+        "label": "X Pixel"
+      },
+      {
+        "platform": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "platform": "snapchat",
+        "label": "Snapchat Pixel"
+      },
+      {
+        "platform": "reddit",
+        "label": "Reddit Pixel"
+      },
+      {
+        "platform": "hj",
+        "label": "Hotjar"
+      },
+      {
+        "platform": "clarity",
+        "label": "Microsoft Clarity"
+      },
+      {
+        "platform": "amplitude",
+        "label": "Amplitude"
+      },
+      {
+        "platform": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "platform": "segment",
+        "label": "Segment"
+      },
+      {
+        "platform": "posthog",
+        "label": "PostHog"
+      },
+      {
+        "platform": "adobe",
+        "label": "Adobe Analytics"
+      },
+      {
+        "platform": "matomo",
+        "label": "Matomo"
+      },
+      {
+        "platform": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "platform": "klaviyo",
+        "label": "Klaviyo"
+      },
+      {
+        "platform": "criteo",
+        "label": "Criteo"
+      },
+      {
+        "platform": "floodlight",
+        "label": "Floodlight"
+      },
+      {
+        "platform": "optimizely",
+        "label": "Optimizely"
+      },
+      {
+        "platform": "datalayer",
+        "label": "dataLayer"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Проблема",
+    "title": "Більшість помилок трекінгу непомітні",
+    "lead": "Бюджет і далі витрачається на хибні цифри",
+    "cards": [
+      {
+        "title": "Події без цінності",
+        "text": "Піксель спрацьовує, дашборд виглядає нормально, а рекламна платформа так і не дізнається, скільки коштував кошик"
+      },
+      {
+        "title": "Пікселі, що ігнорують згоду",
+        "text": "Відвідувач натискає «Відхилити все», а піксель однаково спрацьовує. Ніхто не помічає, доки цього не помітить регулятор або клієнт"
+      },
+      {
+        "title": "Продажі зараховано не тому джерелу",
+        "text": "Сторінка оплати на іншому домені втрачає ID кліку, і платний трафік показується як реферал"
+      }
+    ],
+    "mini": {
+      "ga4Event": "add_to_cart",
+      "ga4Value": "value 89.90",
+      "metaEvent": "AddToCart",
+      "metaValue": "value",
+      "reject": "Відхилити все",
+      "gclid": "gclid",
+      "host": "pay.example.net",
+      "referral": "referral"
+    }
+  },
+  "features": {
+    "eyebrow": "Усередині панелі",
+    "title": "Шість розділів. Одне питання: чи можна довіряти цифрам?",
+    "tabsLabel": "Розділи Hitline",
+    "events": {
+      "label": "Події",
+      "eyebrow": "Інспектор подій",
+      "title": "Кожна подія, кожен параметр, кожна платформа поруч",
+      "lead": "Hitline читає запити 50 платформ аналітики, реклами, CRM і тестування, а також кожен push у dataLayer. Нові події йдуть зверху й підсвічуються, щойно з'являються",
+      "bullets": [
+        "50 платформ в одному списку, а ваші власні сервіси як користувацькі платформи",
+        "Кожен параметр розшифровано, не треба читати query-рядки",
+        "Наживо: нові події підсвічено, найновіші зверху"
+      ],
+      "demo": {
+        "event": "add_to_cart",
+        "platform": "GA4",
+        "via": "через sGTM",
+        "params": [
+          {
+            "k": "currency",
+            "v": "USD"
+          },
+          {
+            "k": "value",
+            "v": "89.90"
+          },
+          {
+            "k": "items[0].item_id",
+            "v": "LUMO-PRO-X"
+          },
+          {
+            "k": "items[0].price",
+            "v": "89.90"
+          }
+        ],
+        "issueStrong": "Meta AddToCart",
+        "issueText": "на тому самому кліку не має цінності."
+      }
+    },
+    "gtm": {
+      "label": "GTM і sGTM",
+      "eyebrow": "GTM і server-side",
+      "title": "Дізнайтеся, чи працює на сайті server-side GTM, з доказами",
+      "lead": "Hitline читає сам контейнер GTM: кожен тег із тригером, перевірками згоди та статусом, а для кожної події dataLayer теги, що на ній спрацювали. Плюс чотири сигнали server-side GTM",
+      "bullets": [
+        "Кожен тег із тригером, перевірками згоди та статусом",
+        "Кожна подія dataLayer із тегами, що на ній спрацювали",
+        "Чотири server-side сигнали, а не здогадка"
+      ],
+      "demo": {
+        "title": "Server-side GTM",
+        "detected": "Виявлено",
+        "signals": [
+          "Запити йдуть на data.example.com",
+          "Шлях у форматі GA4",
+          "server_container_url задано",
+          "Cookie FPID встановлює сервер"
+        ]
+      }
+    },
+    "checks": {
+      "label": "Перевірки",
+      "eyebrow": "Перевірки якості даних",
+      "title": "Помилки, які непомітно ламають звіти",
+      "lead": "Hitline перевіряє кожну подію, щойно вона надходить, і пояснює кожну проблему: що відбувається, чому це важливо і як це виправити",
+      "bullets": [
+        "Адреси e-mail, надіслані в рекламні й аналітичні платформи",
+        "Та сама покупка чи лід, надіслані двічі",
+        "Покупки без ID замовлення, події без цінності"
+      ],
+      "demo": {
+        "title": "Знайдено на цій сторінці",
+        "count": "3 проблеми",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 page_view",
+            "status": "E-mail в URL",
+            "tone": "bad"
+          },
+          {
+            "platform": "meta",
+            "label": "Meta Purchase",
+            "status": "Надіслано двічі",
+            "tone": "warn"
+          },
+          {
+            "platform": "ga",
+            "label": "GA4 purchase",
+            "status": "Без ID замовлення",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "consent": {
+      "label": "Згода",
+      "eyebrow": "Перевірка згоди",
+      "title": "Натисніть «Відхилити все» і подивіться, хто далі спрацьовує",
+      "lead": "Hitline читає сигнали Consent Mode v2 і ділить запити на ті, що до вибору відвідувача, і ті, що після",
+      "bullets": [
+        "Типові й оновлені сигнали поруч",
+        "Витоки позначено червоним, поруч виправлення в GTM",
+        "Cookieless-пінги відрізняються від справжніх хітів"
+      ],
+      "demo": {
+        "title": "Після «Відхилити все»",
+        "count": "3 запити",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 view_item",
+            "status": "Cookieless-пінг",
+            "ok": true
+          },
+          {
+            "platform": "tt",
+            "label": "TikTok ViewContent",
+            "status": "Надіслано після відмови",
+            "ok": false
+          },
+          {
+            "platform": "hj",
+            "label": "Hotjar",
+            "status": "Не завантажено",
+            "ok": true
+          }
+        ]
+      }
+    },
+    "attribution": {
+      "label": "Атрибуція",
+      "eyebrow": "Шлях атрибуції",
+      "title": "Відстежуйте UTM і gclid від сторінки до сторінки",
+      "lead": "Побачте, де саме губляться параметри кампанії, від кліку на рекламу до підтвердження замовлення",
+      "bullets": [
+        "UTM, gclid і fbclid відстежуються між сторінками",
+        "Розриви cross-domain знаходяться автоматично",
+        "Названо налаштування GA4, яке це виправляє"
+      ],
+      "demo": {
+        "steps": ["Лендинг", "Товар", "Кошик", "Оплата", "Підтвердження"],
+        "rows": [
+          {
+            "label": "gclid",
+            "cells": [
+              {
+                "v": "є",
+                "ok": true
+              },
+              {
+                "v": "є",
+                "ok": true
+              },
+              {
+                "v": "є",
+                "ok": true
+              },
+              {
+                "v": "втрачено",
+                "ok": false
+              },
+              {
+                "v": "є",
+                "ok": true
+              }
+            ]
+          },
+          {
+            "label": "source",
+            "cells": [
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "втрачено",
+                "ok": false
+              },
+              {
+                "v": "referral",
+                "ok": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "plan": {
+      "label": "План трекінгу",
+      "eyebrow": "Перевірка плану трекінгу",
+      "title": "Ваш план проти того, що сайт надсилає насправді",
+      "lead": "Завантажте свій план у CSV. Hitline позначає відсутні події та хибні параметри, поки ви переходите сайтом",
+      "bullets": [
+        "CSV або JSON, три колонки",
+        "Відсутні події та хибні параметри наживо",
+        "Плану ще немає? Створіть чернетку зі своєї сесії"
+      ],
+      "demo": {
+        "file": "lumo-tracking-plan.csv",
+        "count": "8 подій",
+        "bars": [
+          {
+            "label": "Збіг",
+            "n": 4
+          },
+          {
+            "label": "Відсутні",
+            "n": 2
+          },
+          {
+            "label": "Хибні параметри",
+            "n": 2
+          }
+        ],
+        "rows": [
+          {
+            "event": "generate_lead",
+            "status": "Відсутня",
+            "tone": "bad"
+          },
+          {
+            "event": "sign_up",
+            "status": "Хибні параметри",
+            "tone": "warn"
+          }
+        ]
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Як це працює",
+    "title": "Три кроки без налаштування",
+    "steps": [
+      {
+        "title": "Додайте Hitline в Chrome",
+        "key": "",
+        "titleEnd": "",
+        "text": "Безкоштовно в Chrome Web Store. Акаунт не потрібен"
+      },
+      {
+        "title": "Відкрийте сайт, натисніть на іконку",
+        "key": "",
+        "titleEnd": "",
+        "text": "Спливаюче вікно показує платформи, статус server-side і головні проблеми"
+      },
+      {
+        "title": "Натисніть",
+        "key": "F12",
+        "titleEnd": "для повної картини",
+        "text": "Вкладка Hitline у DevTools записує кожну подію наживо, поки ви переглядаєте сайт"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "PDF-аудит",
+    "titleStart": "Знайшли щось зламане?",
+    "titleHighlight": "Виправте це",
+    "titleEnd": "з автором Hitline",
+    "lead": "Один клік перетворює знахідки на звіт за пріоритетами. Надішліть його розробнику або мені: я налаштовую GA4, server-side GTM, Consent Mode і рекламні пікселі для брендів, що ростуть",
+    "cta": "Замовити аудит трекінгу",
+    "from": "Від",
+    "paper": {
+      "date": "6 лист. 2026",
+      "eyebrow": "Аудит трекінгу",
+      "host": "example.com",
+      "high": "високий пріоритет",
+      "medium": "середній пріоритет",
+      "levels": {
+        "high": "Високий",
+        "medium": "Середній"
+      },
+      "items": [
+        {
+          "level": "high",
+          "strong": "Meta Pixel спрацьовує до згоди.",
+          "text": "Додайте в GTM перевірку згоди ad_storage."
+        },
+        {
+          "level": "high",
+          "strong": "Продажі зараховуються сайту оплати.",
+          "text": "Додайте його в «Небажані реферали» в GA4."
+        },
+        {
+          "level": "medium",
+          "strong": "Meta AddToCart не має цінності.",
+          "text": "Передавайте value з dataLayer."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Приватність",
+    "title": "Ваші дані ніколи не залишають браузер",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Без сервера",
+        "text": "Увесь аналіз відбувається в Chrome. Hitline сам не робить жодних запитів"
+      },
+      {
+        "icon": "lock",
+        "title": "Мінімум дозволів",
+        "text": "Панель DevTools, активна вкладка й локальне сховище. Немає доступу до всіх ваших сайтів"
+      },
+      {
+        "icon": "eye",
+        "title": "Без аналітики всередині",
+        "text": "Розширення не стежить за вами. Результати зникають, щойно ви закриваєте вкладку"
+      },
+      {
+        "icon": "code",
+        "title": "Відкритий код",
+        "text": "Прочитайте код і самі перевірте кожне твердження на цій сторінці"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Питання",
+    "title": "Запитання",
+    "askBefore": "Щось інше?",
+    "askLink": "Запитайте мене напряму",
+    "items": [
+      {
+        "q": "Hitline справді безкоштовний?",
+        "a": "Так. Немає платного тарифу, акаунта й лімітів використання."
+      },
+      {
+        "q": "Він кудись надсилає мої дані?",
+        "a": "Ні. Усе аналізується у вашому браузері. Зберігаються лише ваші налаштування, і лише на вашому комп'ютері."
+      },
+      {
+        "q": "Які платформи читає Hitline?",
+        "a": "50 платформ: аналітика (GA4, Adobe, Amplitude, Mixpanel, Segment, PostHog, Matomo та інші), рекламні пікселі (Google Ads, Meta, TikTok, LinkedIn, Microsoft Ads, X, Pinterest, Snapchat, Reddit, Criteo та інші), запис сесій, CRM, менеджери тегів, інструменти A/B-тестів і dataLayer."
+      },
+      {
+        "q": "Мого інструмента немає в списку. Hitline однаково його покаже?",
+        "a": "Так. Додайте його в налаштуваннях як власну платформу: назву й частину її URL. Запити, які лише схожі на трекінг, також показуються в розділі «Інше»."
+      },
+      {
+        "q": "Як він розпізнає server-side GTM?",
+        "a": "Він перевіряє, куди йдуть запити GA4, шлях запиту, налаштування server_container_url і cookie, які встановлює сервер."
+      },
+      {
+        "q": "Чим він відрізняється від Tag Assistant?",
+        "a": "Tag Assistant зосереджений на тегах Google. Hitline показує 50 платформ поруч, читає ваші теги й тригери GTM, перевіряє згоду, атрибуцію та якість даних і порівнює події з вашим планом трекінгу."
+      },
+      {
+        "q": "Чи потрібно відкривати DevTools?",
+        "a": "Спливаюче вікно працює і без них та оновлюється само, поки відкрите. Для повного потоку подій відкрийте DevTools і вкладку Hitline, а потім один раз перезавантажте сторінку. Chrome не дозволяє розширенням відкривати DevTools, тому спливаюче вікно показує комбінацію клавіш, а DevTools відкриваються на події, яку ви натиснули."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Сімейство Line",
+    "title": "Більше безкоштовних інструментів із того самого сімейства",
+    "tools": {
+      "serpline": {
+        "text": "Технічне SEO й перевірки AI-пошуку для будь-якої сторінки",
+        "open": "Відкрити Serpline"
+      },
+      "rivaline": {
+        "text": "Технології, реклама й фірмовий стиль конкурента в одній панелі",
+        "open": "Відкрити Rivaline"
+      },
+      "foldline": {
+        "text": "Знайдіть, що заважає лендингу конвертувати",
+        "open": "Відкрити Foldline"
+      },
+      "markline": {
+        "text": "Знімок екрана, позначки й відгук за лічені секунди",
+        "open": "Відкрити Markline"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Автор:",
+    "privacy": "Політика конфіденційності",
+    "source": "Вихідний код"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Шкода, що ви йдете | Hitline",
+      "description": "Розкажіть, чому ви видалили Hitline. Один клік допоможе зробити наступну версію кращою."
+    },
+    "titleStart": "Hitline видалено",
+    "titleEnd": "Чому ви пішли?",
+    "lead": "Один клік допоможе зробити наступну версію кращою",
+    "reasonsLabel": "Причина",
+    "reasons": [
+      "Він не розпізнав мій трекінг",
+      "Він був потрібен лише раз",
+      "Надто складно зрозуміти",
+      "Я користуюся іншим інструментом"
+    ],
+    "moreLabel": "Щось іще?",
+    "optional": "(необов'язково)",
+    "placeholder": "Який сайт чи налаштування він пропустив?",
+    "send": "Надіслати відгук",
+    "sending": "Надсилаємо...",
+    "thanks": "Дякуємо. Ваш відгук надіслано.",
+    "error": "Не вдалося надіслати. Спробуйте ще раз за хвилину.",
+    "pickOne": "Оберіть причину або напишіть кілька слів.",
+    "reinstall": "Встановити Hitline знову",
+    "card": {
+      "eyebrow": "Проблема з трекінгом лишилася?",
+      "title": "Я можу провести аудит і виправити її",
+      "text": "GA4, server-side GTM, Consent Mode і рекламні пікселі. Ви отримаєте чіткий список того, що зламано, і робоче налаштування",
+      "cta": "Замовити аудит трекінгу",
+      "sub": "Shamistan Isayev"
+    }
+  }
+}

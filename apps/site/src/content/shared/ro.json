@@ -1,0 +1,53 @@
+{
+  "lang": "ro",
+  "htmlLang": "ro",
+  "language": "Limbă",
+  "skip": "Sari la conținut",
+  "nav": {
+    "home": "Pagina principală Line apps",
+    "main": "Principal",
+    "tools": "Instrumente",
+    "together": "Ce verifică",
+    "webTools": "Instrumente web gratuite",
+    "faq": "Întrebări",
+    "cta": "Programează un apel",
+    "toolsLabel": "Instrumente"
+  },
+  "footer": {
+    "label": "Subsol",
+    "tagline": "Instrumente Chrome gratuite pentru marketeri, specialiști SEO și agenții",
+    "extensions": "Extensii",
+    "webTools": "Instrumente web gratuite",
+    "about": "Despre",
+    "privacy": "Politica de confidențialitate",
+    "contact": "Contact",
+    "source": "Cod sursă",
+    "cookies": "Setări cookie",
+    "allTools": "Toate instrumentele",
+    "builtBy": "Creat de",
+    "trademark": "Chrome este o marcă comercială a Google LLC."
+  },
+  "status": {
+    "soon": "În curând",
+    "add": "Adaugă în Chrome",
+    "learnMore": "Află mai multe",
+    "openTool": "Deschide instrumentul"
+  },
+  "consent": {
+    "text": "Acest site folosește cookie-uri de analytics doar dacă le accepți",
+    "accept": "Accept",
+    "reject": "Refuz",
+    "privacyLabel": "Politica de confidențialitate"
+  },
+  "notFound": {
+    "metaTitle": "Pagina nu a fost găsită: Line apps",
+    "metaDescription": "Această pagină nu există pe getlineapps.com.",
+    "code": "404",
+    "title": "Această pagină nu există",
+    "text": "Linkul poate fi vechi sau scris greșit. Cele cinci instrumente și politicile lor de confidențialitate sunt la un clic distanță.",
+    "home": "Vezi toate instrumentele",
+    "privacy": "Politica de confidențialitate"
+  },
+  "ownerLogo": "Logo Shamistan Isayev",
+  "ownerName": "Shamistan Isayev"
+}

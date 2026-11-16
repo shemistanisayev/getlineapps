@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "title": "Line apps: gratis Chrome-tools voor marketeers",
+    "description": "Vijf gratis Chrome-extensies om de tracking, SEO en conversie van je site te checken, te zien wat een concurrent draait en je developer te laten zien wat er moet worden opgelost. Geen account, niets verlaat je browser.",
+    "ogAlt": "Line apps: gratis Chrome-tools om in elke website te kijken"
+  },
+  "hero": {
+    "pill": "5 gratis Chrome-extensies",
+    "titleStart": "Gratis Chrome-tools om",
+    "titleHighlight": "in elke website te kijken",
+    "titleEnd": "",
+    "lead": "Check de tracking, SEO en conversie van je eigen site, zie wat een concurrent draait en laat je developer precies zien wat er moet worden opgelost. Geen account, geen betaald abonnement en niets verlaat je browser",
+    "primary": "Bekijk de 5 tools",
+    "secondary": "Probeer een tool in de browser",
+    "trust": [
+      "Gratis, geen account",
+      "Leest een pagina pas na je klik",
+      "PDF-rapport van één pagina"
+    ],
+    "mockLabel": "Antwoord met één klik",
+    "mockUrl": "elke-website.nl",
+    "float": "Elke tool exporteert een PDF van één pagina"
+  },
+  "tools": {
+    "eyebrow": "De tools",
+    "title": "Vijf extensies, elk met één taak",
+    "lead": "Vier kijken naar je eigen site, één kijkt naar je concurrenten. Elke tool opent naast de pagina waarop je bent, beantwoordt één vraag goed en geeft je een rapport dat je kunt versturen",
+    "rolesTitle": "Wat doe jij?",
+    "rolesLabel": "Filter tools op rol",
+    "roles": [
+      {
+        "id": "all",
+        "label": "Alles tonen",
+        "hint": "Alle vijf tools. Kies een rol om te zien waar je begint",
+        "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
+      },
+      {
+        "id": "perf",
+        "label": "Performance marketeer",
+        "hint": "Begin met Hitline, check daarna de pagina met Foldline en de concurrentie met Rivaline",
+        "tools": ["hitline", "rivaline", "foldline"]
+      },
+      {
+        "id": "seo",
+        "label": "SEO-specialist",
+        "hint": "Serpline is voor jou gemaakt",
+        "tools": ["serpline"]
+      },
+      {
+        "id": "agency",
+        "label": "Bureau",
+        "hint": "Alle vijf passen bij klantwerk. Markline is degene die je klanten het vaakst zien",
+        "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
+      },
+      {
+        "id": "design",
+        "label": "Designer of QA",
+        "hint": "Markline is voor jou gemaakt",
+        "tools": ["markline"]
+      },
+      {
+        "id": "sales",
+        "label": "Sales",
+        "hint": "Bereid een gesprek voor met Rivaline en een snelle Foldline-audit van de prospect",
+        "tools": ["rivaline", "foldline"]
+      }
+    ],
+    "cards": {
+      "hitline": {
+        "forWho": "Analisten en marketeers",
+        "surface": "DevTools",
+        "question": "Gaat elke tag en elk event echt af?",
+        "answer": "events, GTM en consent, live",
+        "desc": "Volg events van GA4, Meta, TikTok en 47 andere platforms terwijl ze afgaan, check GTM, server-side GTM en consent en exporteer daarna een audit",
+        "bullets": [
+          "Live eventfeed per platform",
+          "Checks voor GTM, server-side GTM en Consent Mode",
+          "Je trackingplan naast wat er echt afgaat"
+        ]
+      },
+      "serpline": {
+        "forWho": "SEO-specialisten",
+        "surface": "Zijpaneel",
+        "question": "Wat zien Google en AI-crawlers echt?",
+        "answer": "SEO-score, rendering en AI-bots",
+        "desc": "SEO-basis met een score, een Google-voorbeeld, ruwe HTML naast de gerenderde pagina, links met status en toegang voor AI-crawlers",
+        "bullets": [
+          "Score en voorbeeld van het Google-resultaat",
+          "Ruwe HTML naast de JavaScript-rendering",
+          "Welke AI-bots robots.txt toelaat"
+        ]
+      },
+      "rivaline": {
+        "forWho": "Marketeers, bureaus, sales",
+        "surface": "Zijpaneel",
+        "question": "Wat draait deze concurrent?",
+        "answer": "stack, advertenties en huisstijl",
+        "desc": "Hun marketingstack en de gaten daarin, hun advertenties in vier advertentiebibliotheken en hun merkkleuren en lettertypen",
+        "bullets": [
+          "Martech-stack per categorie, met gaten",
+          "Advertentiebibliotheken van Meta, Google, TikTok en LinkedIn",
+          "Merkkleuren, lettertypen en hoofdknop"
+        ]
+      },
+      "foldline": {
+        "forWho": "Campagnemanagers, CRO",
+        "surface": "Zijpaneel",
+        "question": "Waarom converteert deze landingspagina niet?",
+        "answer": "27 checks en een score",
+        "desc": "27 checks op het eerste scherm, formulier, vertrouwen, mobiel, snelheid en contact, met een oplossing voor elk probleem",
+        "bullets": [
+          "Foldlijn op de pagina getekend",
+          "Score voor desktop en mobiel",
+          "Oplossingen om naar je developer te sturen"
+        ]
+      },
+      "markline": {
+        "forWho": "Bureaus, QA, designers",
+        "surface": "Popup",
+        "question": "Hoe laat ik precies zien wat er moet veranderen?",
+        "answer": "vastleggen, aantekenen, delen",
+        "desc": "Leg de pagina vast, zet er pijlen, genummerde notities en vervaging op en download of kopieer het daarna",
+        "bullets": [
+          "Zichtbaar deel, hele pagina, gebied of element",
+          "E-mailadressen en telefoonnummers automatisch vervaagd",
+          "PNG of een samenvatting als PDF van één pagina"
+        ]
+      }
+    }
+  },
+  "together": {
+    "eyebrow": "Waar elke tool naar kijkt",
+    "title": "Eén pagina, vijf vragen",
+    "lead": "Of het nu je eigen site is of die van een concurrent, elke pagina heeft dezelfde vijf plekken die het bekijken waard zijn. Klik op een nummer om te zien welke tool het controleert",
+    "pageLabel": "Voorbeeld van een landingspagina met vijf controlepunten",
+    "tellsYou": "Wat {name} je vertelt",
+    "tabsLabel": "Kies een controlepunt",
+    "page": {
+      "tab": "Voorjaarsactie: 30% korting op alle planten | Greenly",
+      "brand": "Greenly",
+      "nav": ["Planten", "Potten", "Verzorging"],
+      "headline": "Verse planten, binnen twee dagen bezorgd",
+      "button": "Shop de actie",
+      "fold": "Fold"
+    },
+    "spots": [
+      {
+        "slug": "serpline",
+        "num": "1",
+        "pin": "titel in Google",
+        "where": "De titel in het tabblad",
+        "question": "Toont Google en AI-zoeken deze pagina goed?",
+        "finds": [
+          "Waar Google de titel en beschrijving afkapt",
+          "Of de H1 en de tekst JavaScript nodig hebben om te verschijnen",
+          "Welke AI-crawlers robots.txt toelaat"
+        ]
+      },
+      {
+        "slug": "rivaline",
+        "num": "2",
+        "pin": "merk en stack",
+        "where": "Het merk en wat erachter draait",
+        "question": "Waarmee is deze site gebouwd en waarmee adverteert hij?",
+        "finds": [
+          "De marketingtools per categorie, met de gaten",
+          "De advertenties in vier advertentiebibliotheken, elk met één klik",
+          "De kleuren, lettertypen en hoofdknop, klaar om te kopiëren"
+        ]
+      },
+      {
+        "slug": "markline",
+        "num": "3",
+        "pin": "feedback op de afbeelding",
+        "where": "Alles wat je anders wilt",
+        "question": "Hoe laat ik de developer precies zien wat er moet worden opgelost?",
+        "finds": [
+          "Een opname van het gebied, het element of de hele pagina",
+          "Pijlen, kaders en genummerde notities erbovenop",
+          "E-mailadressen en telefoonnummers vervaagd voordat je deelt"
+        ]
+      },
+      {
+        "slug": "hitline",
+        "num": "4",
+        "pin": "events op de knop",
+        "where": "De klik die moet tellen",
+        "question": "Bereikt deze klik elk advertentieplatform?",
+        "finds": [
+          "Elk event terwijl het afgaat in GA4, Meta, TikTok en 47 andere platforms",
+          "Wat GTM, server-side GTM en consent ermee deden",
+          "Events die je trackingplan verwacht maar nooit ziet"
+        ]
+      },
+      {
+        "slug": "foldline",
+        "num": "5",
+        "pin": "wat boven de fold staat",
+        "where": "Het eerste scherm",
+        "question": "Zien bezoekers genoeg om iets te doen voordat ze scrollen?",
+        "finds": [
+          "Waar de fold ligt op desktop en op telefoons",
+          "Of de hoofdknop en de kop erboven staan",
+          "Een score en een oplossing voor elk probleem op de pagina"
+        ]
+      }
+    ]
+  },
+  "promise": {
+    "eyebrow": "Dezelfde belofte in elke tool",
+    "title": "Je pagina's blijven in je browser",
+    "items": [
+      {
+        "icon": "gift",
+        "title": "Gratis, geen account",
+        "text": "Geen aanmelding, geen proefperiode, geen betaald abonnement. Installeren en gebruiken"
+      },
+      {
+        "icon": "click",
+        "title": "Pas na je klik",
+        "text": "Een tool leest een tabblad als je hem daar opent, en geen ander tabblad"
+      },
+      {
+        "icon": "lock",
+        "title": "Er wordt niets verstuurd",
+        "text": "Resultaten worden in je browser gemaakt. Geen servers, geen tracking in de extensies"
+      },
+      {
+        "icon": "doc",
+        "title": "Een rapport om te versturen",
+        "text": "Elke tool maakt van het resultaat een PDF van één pagina die je kunt delen"
+      }
+    ]
+  },
+  "webTools": {
+    "eyebrow": "Gratis webtools",
+    "title": "Probeer het zonder iets te installeren",
+    "lead": "Vier kleine tools die direct op deze site draaien, gebouwd op dezelfde code als de extensies",
+    "items": [
+      {
+        "slug": "rivaline",
+        "fragment": "finder",
+        "title": "Advertentiebibliotheek-zoeker",
+        "text": "Zoek één merk tegelijk in de advertentiebibliotheken van Meta, Google, TikTok en LinkedIn"
+      },
+      {
+        "slug": "foldline",
+        "fragment": "calculator",
+        "title": "Score voor landingspagina's",
+        "text": "Vink aan wat je pagina heeft en krijg de score die Foldline zou geven"
+      },
+      {
+        "slug": "serpline",
+        "fragment": "preview",
+        "title": "Google-voorbeeld",
+        "text": "Zie waar Google je titel en beschrijving afkapt op desktop en mobiel"
+      },
+      {
+        "slug": "markline",
+        "fragment": "annotate",
+        "title": "Aantekeningen op een afbeelding",
+        "text": "Sleep een screenshot hierheen, voeg pijlen, notities en vervaging toe en download daarna een PNG"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Vragen",
+    "title": "Vragen die mensen stellen",
+    "askBefore": "Staat je vraag er niet bij?",
+    "askLink": "Vraag het mij direct",
+    "askAfter": "",
+    "items": [
+      {
+        "q": "Zijn de tools echt gratis?",
+        "a": "Ja. Er is geen betaald abonnement en geen proefperiode. Ze zijn gratis omdat ze het soort werk laten zien dat ik voor klanten doe: als je wilt dat de problemen worden opgelost, weet je me te vinden."
+      },
+      {
+        "q": "Welke data verzamelen de extensies?",
+        "a": "Geen. Elke extensie slaat alleen haar eigen instellingen op je computer op. De pagina's die je controleert worden in je browser gelezen en er wordt niets naar een server gestuurd."
+      },
+      {
+        "q": "Maken ze Chrome trager?",
+        "a": "Nee. Er draait niets op de achtergrond. Een tool werkt pas op een tabblad nadat je daar op het icoon klikt of de sneltoets indrukt."
+      },
+      {
+        "q": "Welke moet ik als eerste installeren?",
+        "a": "Kies je rol in de lijst met tools hierboven. Als je betaalde campagnes draait, begin dan met Hitline: kapotte tracking kost het meest en is het moeilijkst te zien."
+      },
+      {
+        "q": "Kan ik ze gebruiken voor klantwerk?",
+        "a": "Ja. Bureaus gebruiken de PDF-rapporten in audits en pitches. De rapporten bevatten een kleine regel \"Gemaakt met\" en verder niets."
+      },
+      {
+        "q": "Welke talen ondersteunen ze?",
+        "a": "Engels en Azerbeidzjaans. Je kunt de taal wijzigen in de instellingen van elke tool."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "Gemaakt door één persoon",
+    "title": "Wil je de problemen laten oplossen, niet alleen vinden?",
+    "text": "Ik ben Shamistan Isayev. Ik werk aan analytics, server-side tracking en CRO, en ik heb deze tools gemaakt voor de checks die ik bij elk project doe. Wil je dat iemand oplost wat ze vinden, plan dan een gesprek.",
+    "cta": "Plan een gesprek",
+    "from": "Van Shamistan Isayev"
+  }
+}

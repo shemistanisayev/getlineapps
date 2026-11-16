@@ -1,0 +1,46 @@
+{
+  "summary": "Hitline arată tagurile și evenimentele de tracking ale paginii pe care o inspectezi. Nu colectează, nu păstrează și nu trimite date despre tine sau despre paginile pe care le verifici.",
+  "reads": [
+    "Cererile de rețea, dataLayer și celelalte data layers ale paginii (adobeDataLayer, digitalData, utag_data), containerele GTM și instrumentele de tracking cunoscute încărcate în fila inspectată, plus cookie-urile de tracking _ga, _gcl_*, _fbp, _fbc, _ttp și FPID, doar cât timp fila Hitline din Chrome DevTools este deschisă.",
+    "Pagina din fila curentă, doar după ce apeși pe pictograma Hitline ca să deschizi popup-ul, și din nou la fiecare 2 secunde cât timp popup-ul rămâne deschis.",
+    "Un fișier cu planul de tracking, doar dacă alegi să încarci unul. Este citit în browserul tău."
+  ],
+  "stores": [
+    "Setările tale în stocarea Chrome de pe calculatorul tău: limba, domeniile pe care le listezi ca fiind site-ul tău, planurile de tracking pe care le încarci (doar numele evenimentelor și ale parametrilor) și platformele proprii pe care le adaugi (un nume și o parte dintr-un URL).",
+    "Când apeși „Show in DevTools” în popup, o scurtă notă despre evenimentul care trebuie afișat este păstrată în memoria Chrome până când panoul o citește. Dispare când Chrome se închide.",
+    "Rezultatele rămân în panoul deschis și dispar când închizi DevTools sau popup-ul."
+  ],
+  "never": [
+    "Să citească file în care nu ai deschis Hitline",
+    "Să citească ce scrii în formulare",
+    "Să trimită evenimente, pagini sau rezultate către vreun server",
+    "Să păstreze un istoric al site-urilor pe care le-ai verificat"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Citește fila curentă, și doar după ce apeși pe pictogramă."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Rulează funcția de citire în acea filă."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvează setările tale pe calculatorul tău."
+    },
+    {
+      "name": "devtools_page",
+      "manifest": "key:devtools_page",
+      "why": "Adaugă fila Hitline în DevTools. Chrome îi dă cererile filei inspectate doar cât timp DevTools este deschis."
+    }
+  ],
+  "notes": [
+    "Auditul PDF este creat în browserul tău și salvat unde alegi tu.",
+    "Cât timp fila Hitline este deschisă și când apeși „Reload page”, Hitline adaugă la dataLayer-ul acelei pagini un mic cronometru care notează când este adăugată fiecare intrare. Nu citește nimic altceva și nu trimite nimic.",
+    "Hitline nu face nicio cerere de rețea proprie."
+  ]
+}

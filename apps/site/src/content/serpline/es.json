@@ -1,0 +1,674 @@
+{
+  "meta": {
+    "title": "Serpline: Analizador SEO Gratis para Google, ChatGPT y Más",
+    "description": "Extensión gratis de Chrome. Indexación, SEO técnico, Core Web Vitals, renderizado JavaScript y revisión de rastreadores de IA para la página abierta, en un panel lateral.",
+    "ogAlt": "Serpline: mira tu página como la ven Google y la IA."
+  },
+  "nav": {
+    "label": "Secciones de Serpline",
+    "preview": "Vista previa SERP",
+    "features": "Funciones",
+    "how": "Cómo funciona",
+    "privacy": "Privacidad",
+    "faq": "Preguntas frecuentes"
+  },
+  "add": {
+    "nav": "Añadir a Chrome",
+    "hero": "Añadir a Chrome, es gratis",
+    "band": "Añade Serpline a Chrome",
+    "soonNav": "Próximamente",
+    "soonHero": "Muy pronto en Chrome"
+  },
+  "hero": {
+    "pill": "Extensión gratis de Chrome",
+    "titleStart": "Mira tu página como",
+    "titleHighlight": "Google y la IA",
+    "titleEnd": "la ven",
+    "lead": "Indexación, SEO técnico, Core Web Vitals y revisión de rastreadores de IA para la página en la que estás, en un panel lateral de Chrome",
+    "secondary": "Prueba la vista previa SERP",
+    "trustLabel": "Serpline es",
+    "trust": ["Sin cuenta", "Nada sale de tu navegador", "Código abierto"],
+    "mock": {
+      "url": "example.com/products/wireless-headphones-pro-x",
+      "rendered": "Renderizado",
+      "raw": "HTML sin procesar",
+      "scoreAria": "Puntuación SEO 56",
+      "label": "Necesita mejoras",
+      "issues": "10 problemas encontrados",
+      "rows": [
+        {
+          "label": "Title",
+          "status": "Cabe",
+          "tone": "ok"
+        },
+        {
+          "label": "Description",
+          "status": "Cortada",
+          "tone": "warn"
+        },
+        {
+          "label": "Canonical",
+          "status": "Esta página",
+          "tone": "ok"
+        },
+        {
+          "label": "H1",
+          "status": "Solo JS",
+          "tone": "bad"
+        },
+        {
+          "label": "Texto alt",
+          "status": "Faltan 3",
+          "tone": "warn"
+        },
+        {
+          "label": "Schema",
+          "status": "Solo JS",
+          "tone": "warn"
+        },
+        {
+          "label": "GPTBot",
+          "status": "Permitido",
+          "tone": "ok"
+        },
+        {
+          "label": "PerplexityBot",
+          "status": "Bloqueado",
+          "tone": "bad"
+        }
+      ]
+    },
+    "serp": {
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging",
+      "note": "Description cortada a los 107 caracteres"
+    },
+    "toast": {
+      "value": "91%",
+      "line1": "del texto necesita",
+      "line2": "JavaScript"
+    }
+  },
+  "marquee": {
+    "title": "Revisa lo que ven los buscadores y los rastreadores de IA",
+    "items": [
+      {
+        "mark": "google",
+        "label": "Vista previa de Google"
+      },
+      {
+        "mark": "google",
+        "label": "Googlebot"
+      },
+      {
+        "mark": "eye",
+        "label": "Core Web Vitals"
+      },
+      {
+        "mark": "file",
+        "label": "sitemap.xml",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "Resultados enriquecidos"
+      },
+      {
+        "mark": "openai",
+        "label": "GPTBot"
+      },
+      {
+        "mark": "openai",
+        "label": "OAI-SearchBot"
+      },
+      {
+        "mark": "openai",
+        "label": "ChatGPT-User"
+      },
+      {
+        "mark": "anthropic",
+        "label": "ClaudeBot"
+      },
+      {
+        "mark": "anthropic",
+        "label": "Claude-SearchBot"
+      },
+      {
+        "mark": "perplexity",
+        "label": "PerplexityBot"
+      },
+      {
+        "mark": "google",
+        "label": "Google-Extended"
+      },
+      {
+        "mark": "apple",
+        "label": "Applebot-Extended"
+      },
+      {
+        "mark": "bytedance",
+        "label": "Bytespider"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta-ExternalAgent"
+      },
+      {
+        "mark": "bot",
+        "label": "CCBot"
+      },
+      {
+        "mark": "file",
+        "label": "robots.txt",
+        "code": true
+      },
+      {
+        "mark": "file",
+        "label": "llms.txt",
+        "code": true
+      },
+      {
+        "mark": "link",
+        "label": "rel=canonical",
+        "code": true
+      },
+      {
+        "mark": "eye",
+        "label": "Meta robots"
+      },
+      {
+        "mark": "globe",
+        "label": "hreflang",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "JSON-LD"
+      },
+      {
+        "mark": "share",
+        "label": "Open Graph"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "El problema",
+    "title": "La página se ve bien, pero los rastreadores leen otra cosa",
+    "lead": "La mayoría de los problemas de SEO nunca se ven en pantalla, así que nadie los nota hasta que cae el tráfico",
+    "cards": [
+      {
+        "title": "Contenido que necesita JavaScript",
+        "text": "Tu navegador muestra la página completa. El HTML que descarga un rastreador puede ser un cascarón vacío, y la mayoría de los rastreadores de IA nunca ejecutan los scripts que lo llenan"
+      },
+      {
+        "title": "Snippets cortados en Google",
+        "text": "Un title o una description largos terminan en tres puntos. La frase que debía ganar el clic nunca se ve"
+      },
+      {
+        "title": "Rastreadores de IA bloqueados por error",
+        "text": "Una línea antigua en robots.txt puede dejar un sitio fuera de las respuestas de ChatGPT, Claude o Perplexity durante meses"
+      }
+    ],
+    "mini": {
+      "raw": "HTML sin procesar",
+      "rawWords": "38 palabras",
+      "after": "Después de JavaScript",
+      "afterWords": "412 palabras",
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two",
+      "blocked": "Bloqueado"
+    }
+  },
+  "preview": {
+    "eyebrow": "Herramienta gratis",
+    "title": "Mira tu resultado en Google antes de publicar",
+    "lead": "Escribe un title y una description. Mira dónde los corta Google en escritorio y en móvil. Funciona en esta página y no se envía nada a ningún sitio",
+    "titleLabel": "Title de la página",
+    "titleDefault": "Wireless Headphones Pro X | Lumo",
+    "titlePlaceholder": "Wireless Headphones Pro X | Lumo",
+    "descLabel": "Meta description",
+    "descDefault": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once. Free next-day delivery and free returns within 14 days on all Lumo Audio headphones.",
+    "descPlaceholder": "Una o dos frases sobre la página",
+    "urlLabel": "URL",
+    "urlDefault": "https://example.com/products/wireless-headphones-pro-x",
+    "googlePreview": "Vista previa de Google",
+    "deviceLabel": "Dispositivo de la vista previa",
+    "desktop": "Escritorio",
+    "mobile": "Móvil",
+    "measure": "{chars} caracteres, {px} de {limit} px",
+    "fits": "Cabe",
+    "cut": "Cortado a los {n} caracteres",
+    "addTitle": "Añade un title",
+    "addDesc": "Añade una description",
+    "emptyTitle": "El title de tu página",
+    "emptyDesc": "Google elegirá un texto de la página.",
+    "note": "Los límites se miden en píxeles y son aproximados. Google puede reescribir los titles y los snippets",
+    "band": "Revisa toda la página, no solo el snippet"
+  },
+  "features": {
+    "eyebrow": "Dentro del panel lateral",
+    "title": "Seis pestañas, un panel lateral",
+    "tabsLabel": "Pestañas de Serpline",
+    "summary": {
+      "label": "Resumen",
+      "title": "Una puntuación, un veredicto de indexación y una checklist en cuanto se abre el panel",
+      "lead": "Si Google puede indexar la página, y luego title, description, H1, texto alt, datos estructurados, Open Graph y hreflang, cada uno con un estado claro",
+      "bullets": [
+        "Una sola puntuación sobre 100, ponderada por prioridad",
+        "Datos estructurados revisados con las reglas de resultados enriquecidos de Google",
+        "Vista previa de Google para escritorio y móvil, más un PDF de auditoría"
+      ],
+      "demo": {
+        "scoreAria": "Puntuación SEO 56",
+        "label": "Puntuación SEO: necesita mejoras",
+        "counts": "2 altos, 6 medios, 2 bajos",
+        "rows": [
+          {
+            "label": "Title",
+            "status": "32 caracteres",
+            "tone": "ok"
+          },
+          {
+            "label": "Meta description",
+            "status": "Cortada en Google",
+            "tone": "warn"
+          },
+          {
+            "label": "H1",
+            "status": "Solo después de JavaScript",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Schema de Product",
+            "status": "Listo para snippet de producto",
+            "tone": "ok"
+          }
+        ],
+        "index": {
+          "label": "¿Google puede indexarla?",
+          "status": "Sí",
+          "tone": "ok"
+        }
+      }
+    },
+    "headings": {
+      "label": "Encabezados",
+      "title": "La estructura que ven los rastreadores, resaltada en la página",
+      "lead": "El árbol de H1 a H6 con niveles saltados y H1 duplicados, más cada imagen sin texto alt",
+      "bullets": [
+        "Los contornos en la página muestran dónde está cada encabezado",
+        "Se marcan los encabezados que solo existen después de JavaScript"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "level": 1,
+            "text": "Wireless Headphones Pro X",
+            "status": "Solo JavaScript",
+            "tone": "bad"
+          },
+          {
+            "level": 2,
+            "text": "Product details"
+          },
+          {
+            "level": 3,
+            "text": "Noise cancelling"
+          },
+          {
+            "level": 2,
+            "text": "Specifications"
+          },
+          {
+            "level": 4,
+            "text": "Bluetooth 5.3",
+            "status": "Salta H3",
+            "tone": "warn",
+            "hl": true
+          },
+          {
+            "level": 2,
+            "text": "Reviews (128)"
+          }
+        ]
+      }
+    },
+    "links": {
+      "label": "Enlaces",
+      "title": "Enlaces rotos y redirigidos, encontrados desde la propia página",
+      "lead": "Enlaces internos, externos y nofollow con su texto ancla. Los enlaces internos reciben una comprobación real de estado desde tu navegador",
+      "bullets": [
+        "Errores 404 y cadenas de redirecciones en una sola lista",
+        "Anclas vagas y enlaces sin texto, resaltados en la página",
+        "Solo se contacta con el sitio en el que estás"
+      ],
+      "demo": {
+        "internal": "internos",
+        "external": "externos",
+        "issues": "problemas",
+        "rows": [
+          {
+            "text": "Earbuds Mini",
+            "path": "/products/earbuds-mini-old",
+            "status": "404",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "text": "Headphones",
+            "path": "/headphones a /electronics/headphones",
+            "status": "301",
+            "tone": "warn"
+          },
+          {
+            "text": "Free returns",
+            "path": "/returns a /help/returns",
+            "status": "301",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "render": {
+      "label": "Renderizado",
+      "title": "El HTML sin procesar junto a la página renderizada",
+      "lead": "Serpline descarga el código fuente de la página una vez y lo compara con lo que construyó JavaScript: encabezados, palabras, enlaces y datos estructurados",
+      "bullets": [
+        "Muestra exactamente qué elementos necesitan JavaScript",
+        "La comprobación que se saltan la mayoría de las extensiones SEO"
+      ],
+      "demo": {
+        "raw": "HTML sin procesar",
+        "rawValue": "38 palabras, sin H1",
+        "rendered": "Renderizado",
+        "renderedValue": "412 palabras, 1 H1",
+        "words": "374 palabras"
+      }
+    },
+    "speed": {
+      "label": "Velocidad",
+      "title": "Core Web Vitals, imágenes y móvil, medidos en la página",
+      "lead": "LCP, CLS e INP de tu visita con los umbrales de Google, el peso de la página, la respuesta del servidor y cada imagen o área táctil que ralentiza la página",
+      "bullets": [
+        "Imágenes pesadas, sobredimensionadas, con lazy-load o sin tamaño, por nombre de archivo",
+        "Comprobaciones móviles de viewport, scroll lateral, texto pequeño y áreas táctiles",
+        "El elemento LCP resaltado directamente en la página"
+      ],
+      "demo": {
+        "vitals": [
+          {
+            "k": "LCP",
+            "value": "2.9 s",
+            "status": "Necesita mejoras",
+            "tone": "warn"
+          },
+          {
+            "k": "CLS",
+            "value": "0.02",
+            "status": "Bueno",
+            "tone": "ok"
+          },
+          {
+            "k": "INP",
+            "value": "120 ms",
+            "status": "Bueno",
+            "tone": "ok"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Más de 200 KB",
+            "status": "2 imágenes",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Más grandes de lo que se muestran",
+            "status": "4 imágenes",
+            "tone": "warn"
+          },
+          {
+            "label": "Meta viewport",
+            "status": "width=device-width",
+            "tone": "ok"
+          },
+          {
+            "label": "Compresión",
+            "status": "brotli",
+            "tone": "ok"
+          }
+        ]
+      }
+    },
+    "ai": {
+      "label": "IA",
+      "title": "Qué rastreadores de IA pueden leer el sitio y qué ven",
+      "lead": "Reglas de robots.txt para GPTBot, ClaudeBot, PerplexityBot, Google-Extended y más, separadas en bots de búsqueda y bots de entrenamiento, además de llms.txt",
+      "bullets": [
+        "La línea exacta del robots.txt detrás de cada bloqueo",
+        "Lo que ven los rastreadores de IA: la parte del texto, el encabezado y el schema que pueden leer"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "mark": "openai",
+            "label": "GPTBot",
+            "status": "Permitido",
+            "tone": "ok"
+          },
+          {
+            "mark": "anthropic",
+            "label": "ClaudeBot",
+            "status": "Permitido",
+            "tone": "ok"
+          },
+          {
+            "mark": "perplexity",
+            "label": "PerplexityBot",
+            "status": "Bloqueado",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "mark": "google",
+            "label": "Google-Extended",
+            "status": "Permitido",
+            "tone": "ok"
+          },
+          {
+            "mark": "commoncrawl",
+            "label": "CCBot",
+            "status": "Bloqueado",
+            "tone": "bad"
+          }
+        ],
+        "llms": "llms.txt",
+        "llmsStatus": "No encontrado",
+        "seen": {
+          "label": "Texto que ven los rastreadores de IA",
+          "status": "9%",
+          "tone": "bad"
+        }
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Cómo funciona",
+    "title": "Tres pasos, sin configuración",
+    "steps": [
+      {
+        "title": "Añade Serpline a Chrome",
+        "text": "Gratis en la Chrome Web Store. Sin crear ninguna cuenta"
+      },
+      {
+        "title": "Abre una página y haz clic en el icono",
+        "text": "El panel lateral se abre junto a la página y la revisa. O pulsa",
+        "key": "Alt+Shift+S",
+        "textEnd": ""
+      },
+      {
+        "title": "Descarga el PDF de auditoría",
+        "text": "Cada problema con su solución, listo para enviar a un desarrollador"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "PDF de auditoría",
+    "titleStart": "¿Encontraste problemas?",
+    "titleHighlight": "Haz que los arregle",
+    "titleEnd": "quien creó Serpline",
+    "text": "Un clic convierte los hallazgos en un informe por prioridad. Envíaselo a un desarrollador o envíamelo a mí: corrijo SEO técnico, renderizado en el servidor, datos estructurados y visibilidad en búsqueda con IA",
+    "cta": "Reserva una auditoría SEO",
+    "from": "De",
+    "paper": {
+      "date": "7 nov 2026",
+      "eyebrow": "Auditoría de SEO y búsqueda con IA",
+      "host": "example.com",
+      "score": "puntuación",
+      "high": "altos",
+      "medium": "medios",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Alta",
+          "strong": "El H1 solo aparece después de JavaScript.",
+          "text": "Renderízalo en el servidor."
+        },
+        {
+          "tone": "bad",
+          "label": "Alta",
+          "strong": "El 91% del texto necesita JavaScript.",
+          "text": ""
+        },
+        {
+          "tone": "warn",
+          "label": "Media",
+          "strong": "PerplexityBot está bloqueado.",
+          "text": "Elimina la regla en robots.txt."
+        }
+      ],
+      "ctaText": "¿Necesitas ayuda para corregirlos?",
+      "ctaButton": "Contacta conmigo"
+    }
+  },
+  "privacy": {
+    "eyebrow": "Privacidad",
+    "title": "Tus páginas se quedan en tu navegador",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Sin servidor",
+        "text": "Cada comprobación se hace dentro de Chrome. Serpline no tiene backend al que enviar páginas"
+      },
+      {
+        "icon": "lock",
+        "title": "Permisos mínimos",
+        "text": "La pestaña activa, el panel lateral y los ajustes locales. Sin acceso a todos tus sitios"
+      },
+      {
+        "icon": "chart",
+        "title": "Sin analítica dentro",
+        "text": "La extensión no te rastrea. Los resultados desaparecen al cerrar el panel"
+      },
+      {
+        "icon": "code",
+        "title": "Código abierto",
+        "text": "Lee el código y comprueba tú mismo cada afirmación de esta página"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Preguntas frecuentes",
+    "title": "Preguntas",
+    "askBefore": "¿Algo más?",
+    "askLink": "Pregúntame directamente",
+    "items": [
+      {
+        "q": "¿Serpline es gratis de verdad?",
+        "a": "Sí. No hay plan de pago, ni cuenta, ni límite de uso."
+      },
+      {
+        "q": "¿En qué se diferencia de Ahrefs o Screaming Frog?",
+        "a": "Esas herramientas rastrean sitios completos desde un servidor o desde tu ordenador. Serpline revisa la página en la que estás, dentro de tu navegador, incluido lo que cambia después de JavaScript y lo que los rastreadores de IA pueden leer. Funciona bien junto a ellas."
+      },
+      {
+        "q": "¿Cómo revisa la búsqueda con IA?",
+        "a": "Lee el robots.txt y el llms.txt del sitio, aplica las reglas de cada rastreador de IA conocido y compara el HTML sin procesar con la página renderizada, porque la mayoría de los rastreadores de IA no ejecutan JavaScript."
+      },
+      {
+        "q": "¿Rastrea todo mi sitio?",
+        "a": "No. Revisa la página abierta, el robots.txt, el llms.txt y el sitemap del sitio, y el estado de los enlaces internos de esa página."
+      },
+      {
+        "q": "¿Mide la velocidad de la página?",
+        "a": "Sí. La pestaña Velocidad muestra los Core Web Vitals de tu visita (LCP, CLS e INP), el peso de la página, la respuesta del servidor, los problemas de imágenes y las comprobaciones del diseño en móvil. Los números salen de tu propio navegador, así que los visitantes reales con móviles más lentos pueden ver valores más altos."
+      },
+      {
+        "q": "¿Envía mis páginas a algún sitio?",
+        "a": "No. Las peticiones van solo al sitio en el que estás, desde tu propio navegador. Nada me llega a mí ni a nadie más."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "La familia Line",
+    "title": "Más herramientas gratis de la misma familia",
+    "tools": {
+      "hitline": {
+        "text": "Cada hit de tracking, etiqueta de GTM y señal de consentimiento en DevTools",
+        "open": "Abrir Hitline"
+      },
+      "rivaline": {
+        "text": "El stack, los anuncios y el estilo de marca de un competidor en un solo panel",
+        "open": "Abrir Rivaline"
+      },
+      "foldline": {
+        "text": "Descubre qué impide que una landing page convierta",
+        "open": "Abrir Foldline"
+      },
+      "markline": {
+        "text": "Haz una captura, márcala y comparte feedback en segundos",
+        "open": "Abrir Markline"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Creado por",
+    "privacy": "Política de privacidad",
+    "source": "Código fuente"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Lamentamos que te vayas | Serpline",
+      "description": "Cuéntanos por qué quitaste Serpline. Un clic ayuda a mejorar la próxima versión."
+    },
+    "titleStart": "Serpline se ha eliminado",
+    "titleEnd": "¿Por qué te vas?",
+    "lead": "Un clic ayuda a mejorar la próxima versión",
+    "reasonsLabel": "Motivo",
+    "reasons": [
+      "No encontró los problemas de mi sitio",
+      "Solo lo necesitaba una vez",
+      "Demasiado difícil de entender",
+      "Uso otra herramienta"
+    ],
+    "moreLabel": "¿Algo más?",
+    "optional": "(opcional)",
+    "placeholder": "¿Qué página o comprobación se le escapó?",
+    "send": "Enviar comentarios",
+    "sending": "Enviando...",
+    "thanks": "Gracias. Tus comentarios se enviaron.",
+    "error": "No se pudo enviar. Vuelve a intentarlo en un minuto.",
+    "pickOne": "Elige un motivo o escribe unas palabras.",
+    "reinstall": "Reinstalar Serpline",
+    "card": {
+      "eyebrow": "¿Sigues con un problema de SEO?",
+      "title": "Puedo auditarlo y arreglarlo por ti",
+      "text": "SEO técnico, renderizado JavaScript, datos estructurados y visibilidad en búsqueda con IA. Recibes una lista clara de lo que está roto y soluciones que tus desarrolladores pueden aplicar",
+      "cta": "Reserva una auditoría SEO",
+      "sub": "Shamistan Isayev, SEO técnico y analítica"
+    }
+  }
+}

@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "title": "Hitline: Depurador de Tracking Grátis para GA4, Meta e Mais",
+    "description": "Extensão grátis para Chrome. Veja cada evento do GA4, Google Ads, Meta, TikTok e mais 46 plataformas, leia as tags do GTM e encontre vazamentos de consentimento no Chrome DevTools.",
+    "ogAlt": "Hitline: o seu tracking está funcionando? Prove em um único painel."
+  },
+  "nav": {
+    "label": "Seções do Hitline",
+    "features": "Recursos",
+    "how": "Como funciona",
+    "privacy": "Privacidade",
+    "faq": "Perguntas"
+  },
+  "add": {
+    "nav": "Adicionar ao Chrome",
+    "hero": "Adicionar ao Chrome, é grátis",
+    "soonNav": "Em breve",
+    "soonHero": "Em breve no Chrome"
+  },
+  "sample": {
+    "eyebrow": "Exemplo de auditoria",
+    "title": "example.com, feito com o Hitline em um clique",
+    "note": "Layout real do relatório. Nenhum dado saiu do navegador",
+    "download": "Baixar PDF de exemplo",
+    "close": "Fechar exemplo de auditoria"
+  },
+  "hero": {
+    "pill": "Extensão grátis para Chrome",
+    "titleStart": "O seu tracking está funcionando?",
+    "titleHighlight": "Prove",
+    "titleEnd": "em um único painel",
+    "lead": "Veja cada evento do GA4, Google Ads, Meta, TikTok e mais 46 plataformas, identifique o server-side GTM e encontre vazamentos de consentimento, direto no Chrome DevTools",
+    "secondary": "Ver um exemplo de auditoria",
+    "trust": ["Sem conta", "Nada sai do seu navegador", "Código aberto"],
+    "mockLabel": "DevTools › Hitline",
+    "tabs": [
+      {
+        "label": "Eventos",
+        "count": "14",
+        "warn": false
+      },
+      {
+        "label": "GTM",
+        "count": "24",
+        "warn": false
+      },
+      {
+        "label": "Consentimento",
+        "count": "2",
+        "warn": true
+      },
+      {
+        "label": "Atribuição",
+        "count": "1",
+        "warn": true
+      }
+    ],
+    "live": "Ao vivo",
+    "rows": [
+      {
+        "time": "18.204",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "page_view",
+        "route": "sgtm"
+      },
+      {
+        "time": "18.310",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "PageView",
+        "route": "browser"
+      },
+      {
+        "time": "19.140",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "ViewContent",
+        "route": "browser"
+      },
+      {
+        "time": "31.950",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "add_to_cart",
+        "route": "sgtm"
+      },
+      {
+        "time": "32.004",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "AddToCart",
+        "route": "bad"
+      },
+      {
+        "time": "32.050",
+        "platform": "ads",
+        "name": "Google Ads",
+        "event": "conversion",
+        "route": "browser"
+      },
+      {
+        "time": "32.091",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "AddToCart",
+        "route": "browser"
+      },
+      {
+        "time": "33.420",
+        "platform": "dl",
+        "name": "dataLayer",
+        "event": "begin_checkout",
+        "route": "page"
+      }
+    ],
+    "routes": {
+      "sgtm": "sGTM",
+      "browser": "Navegador",
+      "page": "Página",
+      "bad": "Sem valor"
+    },
+    "sgtmTitle": "Server-side GTM",
+    "sgtmVia": "via data.example.com",
+    "tags": "4 tags",
+    "issueLabel": "Problema encontrado",
+    "issueText": "O AddToCart da Meta é enviado sem value"
+  },
+  "marquee": {
+    "title": "Lê 50 plataformas que você já usa",
+    "items": [
+      {
+        "platform": "ga",
+        "label": "GA4"
+      },
+      {
+        "platform": "ads",
+        "label": "Google Ads"
+      },
+      {
+        "platform": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "platform": "tt",
+        "label": "TikTok Pixel"
+      },
+      {
+        "platform": "dl",
+        "label": "Google Tag Manager"
+      },
+      {
+        "platform": "sgtm",
+        "label": "Server-side GTM"
+      },
+      {
+        "platform": "linkedin",
+        "label": "LinkedIn Insight"
+      },
+      {
+        "platform": "bing",
+        "label": "Microsoft Ads"
+      },
+      {
+        "platform": "x",
+        "label": "X Pixel"
+      },
+      {
+        "platform": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "platform": "snapchat",
+        "label": "Snapchat Pixel"
+      },
+      {
+        "platform": "reddit",
+        "label": "Reddit Pixel"
+      },
+      {
+        "platform": "hj",
+        "label": "Hotjar"
+      },
+      {
+        "platform": "clarity",
+        "label": "Microsoft Clarity"
+      },
+      {
+        "platform": "amplitude",
+        "label": "Amplitude"
+      },
+      {
+        "platform": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "platform": "segment",
+        "label": "Segment"
+      },
+      {
+        "platform": "posthog",
+        "label": "PostHog"
+      },
+      {
+        "platform": "adobe",
+        "label": "Adobe Analytics"
+      },
+      {
+        "platform": "matomo",
+        "label": "Matomo"
+      },
+      {
+        "platform": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "platform": "klaviyo",
+        "label": "Klaviyo"
+      },
+      {
+        "platform": "criteo",
+        "label": "Criteo"
+      },
+      {
+        "platform": "floodlight",
+        "label": "Floodlight"
+      },
+      {
+        "platform": "optimizely",
+        "label": "Optimizely"
+      },
+      {
+        "platform": "datalayer",
+        "label": "dataLayer"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "O problema",
+    "title": "A maioria dos erros de tracking é silenciosa",
+    "lead": "O orçamento continua sendo gasto com base em números errados",
+    "cards": [
+      {
+        "title": "Eventos sem valor",
+        "text": "O pixel dispara, o dashboard parece certo e a plataforma de anúncios nunca descobre quanto valia um carrinho"
+      },
+      {
+        "title": "Pixels que ignoram o consentimento",
+        "text": "O visitante clica em \"Rejeitar tudo\" e um pixel dispara mesmo assim. Ninguém percebe até que um órgão regulador ou um cliente perceba"
+      },
+      {
+        "title": "Vendas atribuídas à origem errada",
+        "text": "Uma página de pagamento em outro domínio perde o ID do clique, e o tráfego pago aparece como referral"
+      }
+    ],
+    "mini": {
+      "ga4Event": "add_to_cart",
+      "ga4Value": "value 89.90",
+      "metaEvent": "AddToCart",
+      "metaValue": "value",
+      "reject": "Rejeitar tudo",
+      "gclid": "gclid",
+      "host": "pay.example.net",
+      "referral": "referral"
+    }
+  },
+  "features": {
+    "eyebrow": "Dentro do painel",
+    "title": "Seis visões. Uma pergunta: dá para confiar nos números?",
+    "tabsLabel": "Visões do Hitline",
+    "events": {
+      "label": "Eventos",
+      "eyebrow": "Inspetor de eventos",
+      "title": "Cada evento, cada parâmetro, cada plataforma lado a lado",
+      "lead": "O Hitline lê as requisições de 50 plataformas de analytics, anúncios, CRM e testes, além de cada push no dataLayer. Os eventos mais novos vêm primeiro e os novos se destacam ao chegar",
+      "bullets": [
+        "50 plataformas em uma só lista, e os seus próprios serviços como plataformas personalizadas",
+        "Cada parâmetro decodificado, sem query strings para ler",
+        "Ao vivo: novos eventos destacados, os mais novos primeiro"
+      ],
+      "demo": {
+        "event": "add_to_cart",
+        "platform": "GA4",
+        "via": "via sGTM",
+        "params": [
+          {
+            "k": "currency",
+            "v": "USD"
+          },
+          {
+            "k": "value",
+            "v": "89.90"
+          },
+          {
+            "k": "items[0].item_id",
+            "v": "LUMO-PRO-X"
+          },
+          {
+            "k": "items[0].price",
+            "v": "89.90"
+          }
+        ],
+        "issueStrong": "Meta AddToCart",
+        "issueText": "no mesmo clique não tem value."
+      }
+    },
+    "gtm": {
+      "label": "GTM e sGTM",
+      "eyebrow": "GTM e server-side",
+      "title": "Saiba se um site usa server-side GTM, com a prova",
+      "lead": "O Hitline lê o próprio contêiner do GTM: cada tag com o acionador, as verificações de consentimento e o status, e para cada evento do dataLayer as tags disparadas nele. E ainda quatro sinais de server-side GTM",
+      "bullets": [
+        "Cada tag com o acionador, as verificações de consentimento e o status",
+        "Cada evento do dataLayer com as tags disparadas nele",
+        "Quatro sinais de server-side, não um palpite"
+      ],
+      "demo": {
+        "title": "Server-side GTM",
+        "detected": "Detectado",
+        "signals": [
+          "As requisições vão para data.example.com",
+          "O caminho usa o formato do GA4",
+          "server_container_url está definido",
+          "Cookie FPID definido pelo servidor"
+        ]
+      }
+    },
+    "checks": {
+      "label": "Verificações",
+      "eyebrow": "Verificações de qualidade de dados",
+      "title": "Os erros que quebram os relatórios em silêncio",
+      "lead": "O Hitline verifica cada evento assim que ele chega e explica cada problema: o que acontece, por que importa e como corrigir",
+      "bullets": [
+        "Endereços de e-mail enviados a plataformas de anúncios e analytics",
+        "A mesma compra ou lead enviado duas vezes",
+        "Compras sem ID de pedido, eventos sem valor"
+      ],
+      "demo": {
+        "title": "Encontrado nesta página",
+        "count": "3 problemas",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 page_view",
+            "status": "E-mail na URL",
+            "tone": "bad"
+          },
+          {
+            "platform": "meta",
+            "label": "Meta Purchase",
+            "status": "Enviado duas vezes",
+            "tone": "warn"
+          },
+          {
+            "platform": "ga",
+            "label": "GA4 purchase",
+            "status": "Sem ID de pedido",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "consent": {
+      "label": "Consentimento",
+      "eyebrow": "Verificação de consentimento",
+      "title": "Clique em \"Rejeitar tudo\" e veja quem continua disparando",
+      "lead": "O Hitline lê os sinais do Consent Mode v2 e separa as requisições em antes e depois da escolha do visitante",
+      "bullets": [
+        "Sinais padrão e atualizados lado a lado",
+        "Vazamentos marcados em vermelho, com a correção no GTM ao lado",
+        "Pings sem cookies separados dos hits reais"
+      ],
+      "demo": {
+        "title": "Depois de \"Rejeitar tudo\"",
+        "count": "3 requisições",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 view_item",
+            "status": "Ping sem cookies",
+            "ok": true
+          },
+          {
+            "platform": "tt",
+            "label": "TikTok ViewContent",
+            "status": "Enviado após a recusa",
+            "ok": false
+          },
+          {
+            "platform": "hj",
+            "label": "Hotjar",
+            "status": "Não carregado",
+            "ok": true
+          }
+        ]
+      }
+    },
+    "attribution": {
+      "label": "Atribuição",
+      "eyebrow": "Caminho da atribuição",
+      "title": "Siga UTM e gclid página a página",
+      "lead": "Veja exatamente onde os parâmetros de campanha se perdem, do clique no anúncio à confirmação do pedido",
+      "bullets": [
+        "UTM, gclid e fbclid acompanhados entre as páginas",
+        "Quebras de cross-domain encontradas automaticamente",
+        "A configuração do GA4 que resolve, indicada pelo nome"
+      ],
+      "demo": {
+        "steps": ["Landing", "Produto", "Carrinho", "Pagamento", "Confirmação"],
+        "rows": [
+          {
+            "label": "gclid",
+            "cells": [
+              {
+                "v": "sim",
+                "ok": true
+              },
+              {
+                "v": "sim",
+                "ok": true
+              },
+              {
+                "v": "sim",
+                "ok": true
+              },
+              {
+                "v": "perdido",
+                "ok": false
+              },
+              {
+                "v": "sim",
+                "ok": true
+              }
+            ]
+          },
+          {
+            "label": "source",
+            "cells": [
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "perdido",
+                "ok": false
+              },
+              {
+                "v": "referral",
+                "ok": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "plan": {
+      "label": "Plano de tracking",
+      "eyebrow": "Verificação do plano de tracking",
+      "title": "O seu plano comparado com o que o site realmente envia",
+      "lead": "Carregue o seu plano em CSV. O Hitline aponta eventos que faltam e parâmetros errados enquanto você navega",
+      "bullets": [
+        "CSV ou JSON, três colunas",
+        "Eventos que faltam e parâmetros errados, ao vivo",
+        "Ainda sem plano? Crie um rascunho a partir da sua sessão"
+      ],
+      "demo": {
+        "file": "lumo-tracking-plan.csv",
+        "count": "8 eventos",
+        "bars": [
+          {
+            "label": "Corretos",
+            "n": 4
+          },
+          {
+            "label": "Faltando",
+            "n": 2
+          },
+          {
+            "label": "Parâmetros errados",
+            "n": 2
+          }
+        ],
+        "rows": [
+          {
+            "event": "generate_lead",
+            "status": "Faltando",
+            "tone": "bad"
+          },
+          {
+            "event": "sign_up",
+            "status": "Parâmetros errados",
+            "tone": "warn"
+          }
+        ]
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Como funciona",
+    "title": "Três passos, sem configuração",
+    "steps": [
+      {
+        "title": "Adicione o Hitline ao Chrome",
+        "key": "",
+        "titleEnd": "",
+        "text": "Grátis na Chrome Web Store. Sem conta para criar"
+      },
+      {
+        "title": "Abra um site e clique no ícone",
+        "key": "",
+        "titleEnd": "",
+        "text": "O popup mostra as plataformas, o status do server-side e os principais problemas"
+      },
+      {
+        "title": "Pressione",
+        "key": "F12",
+        "titleEnd": "para ver o quadro completo",
+        "text": "A aba Hitline no DevTools registra cada evento ao vivo enquanto você navega"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "PDF de auditoria",
+    "titleStart": "Encontrou algo quebrado?",
+    "titleHighlight": "Peça a correção",
+    "titleEnd": "a quem criou o Hitline",
+    "lead": "Um clique transforma os achados em um relatório por prioridade. Envie para um desenvolvedor ou para mim: eu configuro GA4, server-side GTM, Consent Mode e pixels de anúncios para marcas em crescimento",
+    "cta": "Agendar uma auditoria de tracking",
+    "from": "De",
+    "paper": {
+      "date": "6 nov. 2026",
+      "eyebrow": "Auditoria de tracking",
+      "host": "example.com",
+      "high": "prioridade alta",
+      "medium": "prioridade média",
+      "levels": {
+        "high": "Alta",
+        "medium": "Média"
+      },
+      "items": [
+        {
+          "level": "high",
+          "strong": "O Meta Pixel dispara antes do consentimento.",
+          "text": "Adicione uma verificação de consentimento ad_storage no GTM."
+        },
+        {
+          "level": "high",
+          "strong": "As vendas são atribuídas ao site de pagamento.",
+          "text": "Adicione-o às \"Referências indesejadas\" no GA4."
+        },
+        {
+          "level": "medium",
+          "strong": "O AddToCart da Meta não tem value.",
+          "text": "Envie o value a partir do dataLayer."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Privacidade",
+    "title": "Os seus dados nunca saem do seu navegador",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Sem servidor",
+        "text": "Toda a análise acontece dentro do Chrome. O Hitline não faz nenhuma requisição própria"
+      },
+      {
+        "icon": "lock",
+        "title": "Permissões mínimas",
+        "text": "Painel do DevTools, aba ativa e armazenamento local. Sem acesso a todos os seus sites"
+      },
+      {
+        "icon": "eye",
+        "title": "Sem analytics dentro",
+        "text": "A extensão não rastreia você. Os resultados somem quando você fecha a aba"
+      },
+      {
+        "icon": "code",
+        "title": "Código aberto",
+        "text": "Leia o código e confira você mesmo cada afirmação desta página"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Perguntas",
+    "title": "Perguntas",
+    "askBefore": "Mais alguma dúvida?",
+    "askLink": "Pergunte diretamente para mim",
+    "items": [
+      {
+        "q": "O Hitline é mesmo grátis?",
+        "a": "Sim. Não há plano pago, conta nem limite de uso."
+      },
+      {
+        "q": "Ele envia os meus dados para algum lugar?",
+        "a": "Não. Tudo é analisado no seu navegador. Só as suas configurações são salvas, e só no seu computador."
+      },
+      {
+        "q": "Quais plataformas o Hitline lê?",
+        "a": "50 no total: analytics (GA4, Adobe, Amplitude, Mixpanel, Segment, PostHog, Matomo e outras), pixels de anúncios (Google Ads, Meta, TikTok, LinkedIn, Microsoft Ads, X, Pinterest, Snapchat, Reddit, Criteo e outros), gravação de sessão, CRM, gerenciadores de tags, ferramentas de teste A/B e o dataLayer."
+      },
+      {
+        "q": "A minha ferramenta não está na lista. O Hitline ainda consegue mostrá-la?",
+        "a": "Sim. Adicione-a nas Configurações como plataforma personalizada: um nome e uma parte da URL. Requisições que apenas parecem tracking também aparecem em \"Outros\"."
+      },
+      {
+        "q": "Como ele detecta o server-side GTM?",
+        "a": "Ele verifica para onde vão as requisições do GA4, o caminho da requisição, a configuração server_container_url e os cookies definidos pelo servidor."
+      },
+      {
+        "q": "Qual a diferença para o Tag Assistant?",
+        "a": "O Tag Assistant foca nas tags do Google. O Hitline mostra 50 plataformas lado a lado, lê as tags e os acionadores do seu GTM, verifica consentimento, atribuição e qualidade dos dados e compara os eventos com o seu plano de tracking."
+      },
+      {
+        "q": "Preciso deixar o DevTools aberto?",
+        "a": "O popup funciona sem ele e se atualiza sozinho enquanto está aberto. Para o fluxo completo de eventos, abra o DevTools e a aba Hitline e recarregue a página uma vez. O Chrome não permite que extensões abram o DevTools, então o popup mostra o atalho e o DevTools abre no evento em que você clicou."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "A família Line",
+    "title": "Mais ferramentas grátis da mesma família",
+    "tools": {
+      "serpline": {
+        "text": "Verificações de SEO técnico e busca com IA para qualquer página",
+        "open": "Abrir o Serpline"
+      },
+      "rivaline": {
+        "text": "Stack, anúncios e estilo de marca de um concorrente em um único painel",
+        "open": "Abrir o Rivaline"
+      },
+      "foldline": {
+        "text": "Descubra o que impede uma landing page de converter",
+        "open": "Abrir o Foldline"
+      },
+      "markline": {
+        "text": "Capture a tela, faça anotações e compartilhe feedback em segundos",
+        "open": "Abrir o Markline"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Criado por",
+    "privacy": "Política de privacidade",
+    "source": "Código-fonte"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Que pena ver você partir | Hitline",
+      "description": "Conte por que você removeu o Hitline. Um clique ajuda a melhorar a próxima versão."
+    },
+    "titleStart": "O Hitline foi removido",
+    "titleEnd": "Por que você saiu?",
+    "lead": "Um clique ajuda a melhorar a próxima versão",
+    "reasonsLabel": "Motivo",
+    "reasons": [
+      "Não detectou a minha configuração",
+      "Só precisei dele uma vez",
+      "Difícil demais de entender",
+      "Uso outra ferramenta"
+    ],
+    "moreLabel": "Algo mais?",
+    "optional": "(opcional)",
+    "placeholder": "Qual site ou configuração ele não detectou?",
+    "send": "Enviar feedback",
+    "sending": "Enviando...",
+    "thanks": "Obrigado. O seu feedback foi enviado.",
+    "error": "O envio falhou. Tente de novo em um minuto.",
+    "pickOne": "Escolha um motivo ou escreva algumas palavras.",
+    "reinstall": "Reinstalar o Hitline",
+    "card": {
+      "eyebrow": "Ainda tem um problema de tracking?",
+      "title": "Posso auditar e corrigir para você",
+      "text": "GA4, server-side GTM, Consent Mode e pixels de anúncios. Você recebe uma lista clara do que está quebrado e uma configuração que funciona",
+      "cta": "Agendar uma auditoria de tracking",
+      "sub": "Shamistan Isayev"
+    }
+  }
+}

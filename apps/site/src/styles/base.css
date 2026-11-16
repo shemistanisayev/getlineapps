@@ -382,3 +382,11 @@ svg {
     display: none;
   }
 }
+
+/* Long words in some languages (nl, ru, uk, de-style compounds) wrap instead of overflowing. */
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}

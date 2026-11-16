@@ -1,0 +1,504 @@
+{
+  "meta": {
+    "title": "Rivaline: Analiza gratuită a concurenței pe Meta și altele",
+    "description": "Extensie Chrome gratuită. Vezi stack-ul martech, ofertele și canalele unui concurent, deschide-i reclamele în patru biblioteci de reclame, compară două site-uri și copiază-i brand kitul.",
+    "ogAlt": "Rivaline: vezi stack-ul, reclamele și brandul oricărui concurent într-un singur panou."
+  },
+  "nav": {
+    "label": "Secțiunile Rivaline",
+    "features": "Funcții",
+    "finder": "Căutare în bibliotecile de reclame",
+    "how": "Cum funcționează",
+    "privacy": "Confidențialitate",
+    "faq": "Întrebări"
+  },
+  "add": {
+    "nav": "Adaugă în Chrome",
+    "hero": "Adaugă în Chrome, e gratuit",
+    "band": "Adaugă în Chrome",
+    "soonNav": "În curând",
+    "soonHero": "În curând în Chrome"
+  },
+  "hero": {
+    "pill": "Extensie Chrome gratuită",
+    "titleStart": "Vezi stack-ul, reclamele și brandul oricărui concurent",
+    "titleHighlight": "într-un panou",
+    "lead": "Rivaline arată instrumentele pe care le folosește un site, ce oferă, unde mai e prezent brandul și reclamele lui în patru biblioteci de reclame, cu culorile și fonturile lui. Direct în panoul lateral din Chrome",
+    "secondary": "Încearcă căutarea în bibliotecile de reclame",
+    "trustLabel": "De ce e sigur să-l încerci",
+    "trust": ["Fără cont", "Nimic nu iese din browserul tău", "Open source"],
+    "mock": {
+      "label": "Panoul lateral Rivaline pe magazinul demo Kova",
+      "url": "example.com",
+      "siteTitle": "Skincare that keeps it simple.",
+      "siteButton": "Shop the routine",
+      "tabs": {
+        "stack": "Stack",
+        "offer": "Ofertă",
+        "ads": "Reclame",
+        "brand": "Brand"
+      },
+      "host": "example.com",
+      "title": "13 instrumente în 8 categorii",
+      "rows": [
+        {
+          "mark": "meta",
+          "name": "Meta Pixel",
+          "id": "4182736509…"
+        },
+        {
+          "mark": "tiktok",
+          "name": "TikTok Pixel",
+          "id": "C9H3KQ7R…"
+        },
+        {
+          "mark": "googleads",
+          "name": "Google Ads",
+          "id": "AW-11284956"
+        },
+        {
+          "mark": "googleanalytics",
+          "name": "Google Analytics 4",
+          "id": "G-8XK2LM4Q…"
+        },
+        {
+          "mark": "googletagmanager",
+          "name": "Tag Manager",
+          "id": "GTM-N4KV8R"
+        },
+        {
+          "mark": "intercom",
+          "name": "Intercom",
+          "id": "chat"
+        }
+      ]
+    },
+    "kit": {
+      "eyebrow": "Brand kit",
+      "hint": "Treci cu mouse-ul ca să vezi HEX",
+      "headingFont": "Fraunces",
+      "headings": "titluri",
+      "bodyFont": "DM Sans",
+      "body": "text"
+    },
+    "toast": {
+      "eyebrow": "Nu a fost găsit",
+      "text": "Fără server-side tracking pe acest site"
+    }
+  },
+  "marquee": {
+    "title": "Recunoaște instrumentele pe care le folosesc marketerii",
+    "items": [
+      {
+        "mark": "googleanalytics",
+        "label": "Google Analytics 4"
+      },
+      {
+        "mark": "googletagmanager",
+        "label": "Tag Manager"
+      },
+      {
+        "mark": "googleads",
+        "label": "Google Ads"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "mark": "tiktok",
+        "label": "TikTok Pixel"
+      },
+      {
+        "mark": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "mark": "snapchat",
+        "label": "Snap Pixel"
+      },
+      {
+        "mark": "hotjar",
+        "label": "Hotjar"
+      },
+      {
+        "mark": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "mark": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "mark": "mailchimp",
+        "label": "Mailchimp"
+      },
+      {
+        "mark": "intercom",
+        "label": "Intercom"
+      },
+      {
+        "mark": "zendesk",
+        "label": "Zendesk"
+      },
+      {
+        "mark": "shopify",
+        "label": "Shopify"
+      },
+      {
+        "mark": "wordpress",
+        "label": "WordPress"
+      },
+      {
+        "mark": "webflow",
+        "label": "Webflow"
+      },
+      {
+        "mark": "trustpilot",
+        "label": "Trustpilot"
+      },
+      {
+        "mark": "klarna",
+        "label": "Klarna"
+      },
+      {
+        "mark": "stripe",
+        "label": "Stripe"
+      },
+      {
+        "mark": "paypal",
+        "label": "PayPal"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Problema",
+    "title": "Analiza unui concurent înseamnă zece file și view-source",
+    "lead": "Răspunsurile sunt deja pe pagină. Doar că sunt împrăștiate",
+    "cards": [
+      {
+        "title": "Stack-ul se ascunde în codul sursă",
+        "text": "Ca să afli ce pixeli, CRM și chat folosește un site, trebuie să-i citești scripturile rând cu rând"
+      },
+      {
+        "title": "Patru biblioteci de reclame, patru căutări",
+        "text": "Meta, Google, TikTok și LinkedIn îți cer fiecare să scrii din nou brandul, de fiecare dată"
+      },
+      {
+        "title": "Culorile brandului cu pipeta",
+        "text": "Inspect, copiezi, lipești, repeți. Pentru fiecare culoare, fiecare font și stilul butonului"
+      }
+    ]
+  },
+  "features": {
+    "eyebrow": "În panou",
+    "title": "Tot ce contează despre un concurent, într-un singur panou",
+    "tabsLabel": "Funcțiile Rivaline",
+    "stack": {
+      "label": "Stack",
+      "title": "Fiecare instrument, grupat după ce face",
+      "lead": "Analytics, pixeli de reclame, managere de taguri, email, chat, recenzii, plăți și platforma de dedesubt, fiecare cu ID-ul pe care îl folosește",
+      "bullets": [
+        "ID-uri ca GTM-N4KV8R și G-8XK2LM4QPZ, gata de copiat",
+        "Dovezi pentru fiecare potrivire: script, cookie sau variabilă globală",
+        "Și golurile sunt listate: server-side tracking, consimțământ, CRM"
+      ],
+      "demo": {
+        "advertising": "Publicitate",
+        "emailChat": "Email și chat",
+        "notFoundStrong": "Nu a fost găsit:",
+        "notFound": "server-side tracking, banner de consimțământ, CRM"
+      }
+    },
+    "offer": {
+      "label": "Ofertă",
+      "title": "Ce vând și unde sunt prezenți",
+      "lead": "Titlul, ofertele de pe pagină, prețurile, profilurile sociale, aplicațiile, piețele și felul în care site-ul colectează leaduri",
+      "bullets": [
+        "Reduceri, coduri promoționale, livrare gratuită și plata în rate, în engleză, azeră, rusă și turcă",
+        "Instagram, TikTok, YouTube, Telegram și alte profiluri, plus App Store și Google Play",
+        "Limbile, țările și moneda pe care le servește site-ul"
+      ],
+      "demo": {
+        "offers": "Oferte",
+        "free": "Livrare gratuită",
+        "code": "Cod promoțional",
+        "channels": "Canale"
+      }
+    },
+    "ads": {
+      "label": "Reclame",
+      "title": "Patru biblioteci de reclame, deja căutate",
+      "lead": "Rivaline completează numele brandului și domeniul, așa că Meta, Google, TikTok și LinkedIn se deschid direct la rezultatele potrivite",
+      "bullets": [
+        "Le deschizi pe toate patru dintr-un clic",
+        "Îți alegi o singură dată țara implicită în Setări",
+        "Vezi ce canale au un pixel pe site"
+      ],
+      "demo": {
+        "searchesBrand": "Caută „Kova”",
+        "searchesDomain": "Caută example.com",
+        "openAll": "Deschide toate 4 în file noi"
+      }
+    },
+    "brand": {
+      "label": "Brand",
+      "title": "Brand kitul, fără pipetă",
+      "lead": "Logo, culori cu rolurile lor, numele fonturilor și stilul butonului principal. Exportă ca variabile CSS, paletă PNG sau JSON",
+      "bullets": [
+        "Apasă pe orice culoare ca să-i copiezi HEX-ul",
+        "Doar numele fonturilor, niciodată fișierele lor",
+        "Gata pentru o prezentare sau un mockup"
+      ],
+      "demo": {
+        "headings": "Titluri",
+        "body": "Text"
+      }
+    },
+    "compare": {
+      "label": "Comparare",
+      "title": "Doi concurenți, unul lângă altul",
+      "lead": "Citește două site-uri, apoi vezi ce instrumente, oferte și canale are doar unul dintre ele",
+      "bullets": [
+        "Instrumente doar pe un site și pe amândouă",
+        "Canale de reclame, oferte, profiluri sociale și piețe într-un singur tabel",
+        "Folosește ce a citit deja Rivaline. Nimic nu se salvează"
+      ],
+      "demo": {
+        "tools": "Instrumente de marketing",
+        "offers": "Oferte",
+        "profiles": "Profiluri sociale",
+        "only": "Doar example.com"
+      }
+    },
+    "report": {
+      "label": "Raport",
+      "title": "Un PDF pentru următoarea întâlnire",
+      "lead": "Stack, goluri, ofertă, canale, linkuri către bibliotecile de reclame și brand kitul într-un singur PDF, generat în browserul tău",
+      "bullets": [
+        "Gata pentru un apel de vânzări sau o prezentare pentru client",
+        "Text selectabil și linkuri care funcționează",
+        "Generat pe calculatorul tău, nu e trimis nicăieri"
+      ],
+      "demo": {
+        "date": "7 nov. 2026",
+        "eyebrow": "Raport despre concurent",
+        "tools": "instrumente",
+        "categories": "categorii",
+        "pixels": "pixeli de reclame",
+        "gaps": "goluri",
+        "high": "Mare",
+        "rows": [
+          {
+            "strong": "Fără server-side tracking.",
+            "text": "Toți cei 4 pixeli trimit din browser."
+          },
+          {
+            "strong": "Fără banner de consimțământ.",
+            "text": "Pixelii se încarcă înainte de orice alegere."
+          }
+        ]
+      }
+    }
+  },
+  "finder": {
+    "eyebrow": "Instrument gratuit, fără instalare",
+    "title": "Căutare în bibliotecile de reclame",
+    "lead": "Scrie un brand sau un domeniu. Patru căutări în biblioteci de reclame sunt gata de deschis. Rulează pe această pagină și nu trimite nimic nicăieri",
+    "label": "Brand sau domeniu",
+    "placeholder": "example.com sau numele unui brand",
+    "default": "example.com",
+    "brand": "Brand: {brand}",
+    "typeAbove": "scrie mai sus",
+    "searchesBrand": "Caută „{q}”",
+    "searchesDomain": "Caută {q}",
+    "needsDomain": "Necesită un domeniu",
+    "typeBrand": "Scrie un brand",
+    "open": "Deschide căutarea",
+    "opensNewTab": "se deschide într-o filă nouă",
+    "libs": {
+      "meta": "Meta Ad Library",
+      "google": "Google Ads Transparency",
+      "tiktok": "TikTok Ad Library",
+      "linkedin": "LinkedIn Ad Library"
+    },
+    "tiktokNote": "Biblioteca TikTok acoperă reclamele afișate în Europa",
+    "band": "Vrei și pixelii, brand kitul și un PDF? Extensia face asta pe orice site"
+  },
+  "how": {
+    "eyebrow": "Cum funcționează",
+    "title": "Trei pași, fără configurare",
+    "steps": [
+      {
+        "title": "Adaugă Rivaline în Chrome",
+        "text": "Gratuit din Chrome Web Store. Nu trebuie să-ți faci cont"
+      },
+      {
+        "title": "Deschide un site, apasă pe pictogramă",
+        "text": "Panoul lateral se deschide lângă pagină. Sau apasă",
+        "keys": ["Alt", "Shift", "V"]
+      },
+      {
+        "title": "Descarcă raportul",
+        "text": "Stack, goluri, linkuri de reclame și brand kit într-un singur PDF"
+      }
+    ]
+  },
+  "report": {
+    "eyebrow": "Raport despre concurent",
+    "titleStart": "Concurentul tău are asta și tu nu?",
+    "titleHighlight": "Configurează-l",
+    "titleEnd": "cu cel care a creat Rivaline",
+    "text": "Un clic transformă orice site într-un raport: stack, goluri, ofertă, canale, biblioteci de reclame și brand kit. Trimite-l echipei tale sau trimite-mi-l mie. Configurez analytics, server-side tracking, consimțământ și pixeli de reclame pentru branduri în creștere",
+    "cta": "Programează un audit",
+    "from": "De la",
+    "paper": {
+      "date": "7 nov. 2026",
+      "eyebrow": "Raport despre concurent",
+      "host": "example.com",
+      "tools": "instrumente în 8 categorii",
+      "gaps": "goluri",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Mare",
+          "strong": "Fără server-side tracking.",
+          "text": "Toți cei 4 pixeli de reclame trimit din browser."
+        },
+        {
+          "tone": "bad",
+          "label": "Mare",
+          "strong": "Fără banner de consimțământ.",
+          "text": "Pixelii se încarcă înainte de orice alegere."
+        },
+        {
+          "tone": "warn",
+          "label": "Medie",
+          "strong": "Fără CRM pe site.",
+          "text": "Leadurile rămân în instrumente separate."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Confidențialitate",
+    "title": "Cercetarea ta rămâne în browserul tău",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Fără server",
+        "text": "Toată analiza rulează în Chrome. Rivaline nu face nicio cerere proprie"
+      },
+      {
+        "icon": "lock",
+        "title": "Permisiuni minime",
+        "text": "Panoul lateral, fila activă și stocarea locală. Fără acces la toate site-urile tale"
+      },
+      {
+        "icon": "chart",
+        "title": "Fără tracking în extensie",
+        "text": "Extensia nu te urmărește. Rezultatele dispar când închizi fila"
+      },
+      {
+        "icon": "code",
+        "title": "Open source",
+        "text": "Citește codul și verifică singur fiecare afirmație de pe această pagină"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Întrebări frecvente",
+    "title": "Întrebări",
+    "askBefore": "Altceva?",
+    "askLink": "Întreabă-mă direct",
+    "items": [
+      {
+        "q": "Rivaline e chiar gratuit?",
+        "a": "Da. Nu există plan plătit, cont sau limită de utilizare."
+      },
+      {
+        "q": "Trimite date undeva?",
+        "a": "Nu. Rivaline citește pagina în browserul tău și păstrează rezultatul în memorie până închizi fila. Se salvează doar setările tale și doar pe calculatorul tău."
+      },
+      {
+        "q": "Cum recunoaște instrumentele?",
+        "a": "Compară adresele scripturilor, numele cookie-urilor, variabilele globale ale paginii și meta tagurile cu propria listă de aproximativ 160 de instrumente de marketing. Fiecare potrivire arată dovada găsită."
+      },
+      {
+        "q": "Poate arăta cât cheltuiește un concurent pe reclame?",
+        "a": "Nu. Bibliotecile de reclame arată ce reclame rulează, nu bugetele. Rivaline deschide aceste biblioteci cu căutarea deja completată."
+      },
+      {
+        "q": "Pot compara doi concurenți?",
+        "a": "Da. Citește fiecare site în fila lui, apoi apasă Comparare în panou. Rivaline pune cele două rezultate unul lângă altul: instrumente, canale de reclame, oferte, profiluri sociale, piețe și culorile brandului. Nimic nu se salvează."
+      },
+      {
+        "q": "De ce trebuie să apăs din nou pe pictogramă într-o filă nouă?",
+        "a": "Rivaline folosește permisiunea activeTab din Chrome. Poate citi o pagină doar după ce îi ceri, așa că nu are niciodată acces la fiecare site pe care îl vizitezi."
+      },
+      {
+        "q": "De ce arată TikTok doar reclame europene?",
+        "a": "Biblioteca de reclame TikTok acoperă reclamele afișate în UE, SEE, Elveția și Regatul Unit. Rivaline completează brandul și țara, apoi apeși Search pe pagina TikTok."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Familia Line",
+    "title": "Mai multe instrumente gratuite din aceeași familie",
+    "tools": {
+      "hitline": {
+        "text": "Vezi ce tracking trimite de fapt un site, direct în DevTools",
+        "open": "Deschide Hitline"
+      },
+      "serpline": {
+        "text": "SEO tehnic și verificări pentru căutarea AI, pe orice pagină",
+        "open": "Deschide Serpline"
+      },
+      "foldline": {
+        "text": "Află ce împiedică un landing page să convertească",
+        "open": "Deschide Foldline"
+      },
+      "markline": {
+        "text": "Fă o captură, adnoteaz-o și trimite feedback în câteva secunde",
+        "open": "Deschide Markline"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Creat de",
+    "privacy": "Politica de confidențialitate",
+    "source": "Cod sursă"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Ne pare rău că pleci | Rivaline",
+      "description": "Spune-ne de ce ai eliminat Rivaline. Un clic ajută la o versiune următoare mai bună."
+    },
+    "titleStart": "Rivaline a fost eliminat",
+    "titleEnd": "Ce te-a făcut să pleci?",
+    "lead": "Un clic ajută la o versiune următoare mai bună",
+    "reasonsLabel": "Motiv",
+    "reasons": [
+      "Nu a găsit instrumentele de pe un site",
+      "Am avut nevoie de el o singură dată",
+      "Prea greu de înțeles",
+      "Folosesc alt instrument"
+    ],
+    "moreLabel": "Mai e ceva?",
+    "optional": "(opțional)",
+    "placeholder": "Ce site sau instrument i-a scăpat?",
+    "send": "Trimite feedback",
+    "sending": "Se trimite...",
+    "thanks": "Mulțumesc. Feedbackul tău a fost trimis.",
+    "error": "Trimiterea a eșuat. Încearcă din nou peste un minut.",
+    "pickOne": "Alege un motiv sau scrie câteva cuvinte.",
+    "reinstall": "Reinstalează Rivaline",
+    "card": {
+      "eyebrow": "Ai văzut goluri pe propriul site?",
+      "title": "Le pot acoperi pentru tine",
+      "text": "Analytics, server-side tracking, consimțământ și pixeli de reclame. Primești o listă clară cu ce lipsește și o configurare care funcționează",
+      "cta": "Programează un audit",
+      "sub": "Shamistan Isayev, analytics și tracking"
+    }
+  }
+}

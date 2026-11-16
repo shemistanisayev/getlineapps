@@ -73,7 +73,69 @@ test.describe('site', () => {
       'href',
       'https://getlineapps.com/',
     );
-    await expect(page.getByRole('link', { name: 'In English' })).toHaveAttribute('href', '/');
+    await page.locator('[data-lang-menu] summary').click();
+    await expect(page.getByRole('link', { name: /^English/ })).toHaveAttribute('href', '/');
+  });
+
+  test('language menu: 10 languages, keyboard and Escape, on every kind of page', async ({
+    page,
+  }) => {
+    const LANGS = ['en', 'az', 'tr', 'ru', 'ro', 'uk', 'pt', 'nl', 'es', 'fr'];
+    for (const path of ['/', '/hitline', '/serpline', '/rivaline', '/privacy/hitline']) {
+      for (const l of LANGS) {
+        const url = l === 'en' ? path : path === '/' ? `/${l}` : `/${l}${path}`;
+        const res = await page.goto(`${SITE}${url}`);
+        expect(res?.status(), url).toBe(200);
+        await expect(page.locator('html'), url).toHaveAttribute('lang', l);
+        await expect(page.locator('link[rel=alternate][hreflang]'), url).toHaveCount(11);
+      }
+    }
+    await page.goto(`${SITE}/tr/hitline`);
+    const menu = page.locator('[data-lang-menu]');
+    await menu.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await expect(menu.locator('.lm-item')).toHaveCount(10);
+    await expect(menu.locator('[aria-current=page]')).toHaveAttribute('href', '/tr/hitline');
+    await expect(menu.getByRole('link', { name: /^Français/ })).toHaveAttribute(
+      'href',
+      '/fr/hitline',
+    );
+    await page.keyboard.press('Escape');
+    await expect(menu).not.toHaveAttribute('open', '');
+    await expect(menu.locator('summary')).toBeFocused();
+  });
+
+  test('no heading runs out of its box and no sideways scroll, in any language', async ({
+    page,
+  }) => {
+    test.setTimeout(180_000);
+    const LANGS = ['', 'az/', 'tr/', 'ru/', 'ro/', 'uk/', 'pt/', 'nl/', 'es/', 'fr/'];
+    const bad: string[] = [];
+    for (const width of [1440, 390]) {
+      await page.setViewportSize({ width, height: 900 });
+      for (const path of ['', 'hitline', 'serpline', 'rivaline', 'privacy/serpline']) {
+        for (const l of LANGS) {
+          await page.goto(`${SITE}/${l}${path}`);
+          await page.evaluate(() => document.fonts.ready);
+          const found = await page.evaluate(() => {
+            const out: string[] = [];
+            for (const h of document.querySelectorAll('h1,h2,h3')) {
+              const r = h.getBoundingClientRect();
+              if (r.width <= 2) continue;
+              const range = document.createRange();
+              range.selectNodeContents(h);
+              const over = range.getBoundingClientRect().right - r.right;
+              if (over > 2) out.push(`${h.tagName} +${Math.round(over)}px`);
+            }
+            const side = document.documentElement.scrollWidth - innerWidth;
+            if (side > 0) out.push(`page +${side}px`);
+            return out;
+          });
+          for (const f of found) bad.push(`${width} /${l}${path}: ${f}`);
+        }
+      }
+    }
+    expect(bad).toEqual([]);
   });
 
   for (const slug of TOOL_SLUGS) {

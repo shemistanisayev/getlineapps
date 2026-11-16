@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { LINE_SITE_URL, TOOL_SLUGS } from '@line/core/site';
-import { hasLanding, localePath, LOCALES } from '../lib/site.ts';
+import { hasLanding, localePath, pageLocales } from '../lib/site.ts';
 
 /** Every indexable page, with its language versions (hreflang). */
 export function sitemapPaths(): string[] {
@@ -13,10 +13,12 @@ const abs = (p: string) => (p === '/' ? `${LINE_SITE_URL}/` : `${LINE_SITE_URL}$
 
 export const GET: APIRoute = () => {
   const urls = sitemapPaths().flatMap((path) =>
-    LOCALES.map((locale) => {
-      const alts = LOCALES.map(
-        (l) => `<xhtml:link rel="alternate" hreflang="${l}" href="${abs(localePath(l, path))}"/>`,
-      ).join('');
+    pageLocales(path).map((locale) => {
+      const alts = pageLocales(path)
+        .map(
+          (l) => `<xhtml:link rel="alternate" hreflang="${l}" href="${abs(localePath(l, path))}"/>`,
+        )
+        .join('');
       const xd = `<xhtml:link rel="alternate" hreflang="x-default" href="${abs(path)}"/>`;
       return `<url><loc>${abs(localePath(locale, path))}</loc>${alts}${xd}</url>`;
     }),

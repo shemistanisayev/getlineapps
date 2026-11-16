@@ -1,0 +1,44 @@
+{
+  "summary": "Rivaline arată instrumentele de marketing, linkurile către bibliotecile de reclame și stilul de brand ale site-ului pe care ești. Citește acea pagină în browserul tău și nu ne trimite nimic.",
+  "reads": [
+    "Adresele scripturilor, numele fișierelor încărcate, meta tagurile și numele cookie-urilor de pe pagină, niciodată valorile lor. Doar după ce apeși pe pictogramă.",
+    "Culorile, fonturile și stilurile butonului principal ale acelei pagini.",
+    "O captură de ecran a părții vizibile a filei, folosită doar pentru a decupa logoul și ștearsă imediat după."
+  ],
+  "stores": [
+    "Setări pe calculatorul tău: țara implicită și limba.",
+    "Rezultatele rămân în panoul lateral până îl închizi."
+  ],
+  "never": [
+    "Să citească valorile cookie-urilor sau ce scrii în formulare",
+    "Să descarce fișiere de fonturi",
+    "Să trimită pagini sau rezultate către vreun server",
+    "Să păstreze un istoric al site-urilor pe care le-ai verificat"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Citește fila curentă după ce apeși pe pictogramă."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Rulează funcția de citire în acea filă."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Afișează Rivaline lângă pagină."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvează setările tale pe calculatorul tău."
+    }
+  ],
+  "notes": [
+    "Butoanele pentru bibliotecile de reclame deschid Meta, Google, TikTok și LinkedIn în file noi. Aceste site-uri au propriile politici de confidențialitate.",
+    "Exporturile de brand și PDF-ul sunt create în browserul tău."
+  ]
+}

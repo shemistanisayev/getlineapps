@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "{name} gizlilik politikası: Line apps",
+    "description": "{name} neyi okur, bilgisayarına neyi kaydeder ve asla neyi yapmaz. Hesap yok, hiçbir şey satılmaz, hiçbir şey bize gönderilmez."
+  },
+  "eyebrow": "Gizlilik",
+  "title": "Gizlilik politikası",
+  "lead": "Her Line app'in kendi politikası var, çünkü her biri farklı bir şey okur. Bir araç seç. Kısa özet beşi için de aynı: hesap yok, hiçbir şey satılmaz, hiçbir şey bize gönderilmez.",
+  "updatedLabel": "Son güncelleme",
+  "updated": "10 Kasım 2026",
+  "tabsLabel": "Bir araç seç",
+  "tabLabel": "{name} gizlilik politikası",
+  "facts": [
+    "Kişisel veri toplanmaz",
+    "Sunucularımıza hiçbir şey gönderilmez",
+    "Hiçbir şey satılmaz ya da paylaşılmaz"
+  ],
+  "headings": {
+    "reads": "{name} neyi, ne zaman okur",
+    "stores": "Bilgisayarına ne kaydedilir",
+    "never": "{name} asla ne yapmaz",
+    "perms": "İzinler ve nedenleri",
+    "notes": "Bilmekte fayda var",
+    "site": "Bu web sitesi",
+    "changes": "Değişiklikler ve iletişim"
+  },
+  "site": [
+    "getlineapps.com, çerez banner'ında kabul etmediğin sürece hiçbir analitik yüklemez. Seçimini istediğin zaman alt bilgideki bağlantıdan değiştirebilirsin.",
+    "Bir eklentiyi kaldırdıktan sonra formu doldurursan, seçtiğin neden ve yazdığın metin aracı geliştirebilmem için bana e-postayla gönderilir. Başka hiçbir şey eklenmez ve pazarlama için kullanılmaz."
+  ],
+  "changes": "Bu politika değişirse yeni sürüm yeni bir tarihle burada yayımlanır. Daha fazla veri toplayan bir değişiklik, yayımlanmadan önce eklentinin sürüm notlarında da açıklanır.",
+  "contactBefore": "Gizlilikle ilgili soruların mı var?",
+  "contactLink": "Shamistan Isayev ile iletişime geç",
+  "contactAfter": "."
+}

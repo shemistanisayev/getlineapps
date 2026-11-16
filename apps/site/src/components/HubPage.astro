@@ -10,6 +10,7 @@ import OwnerMark from './OwnerMark.astro';
 import { BRANDS } from '@line/ui/brand';
 import { faqPageJsonLd, websiteJsonLd } from '@line/site-kit/seo';
 import {
+  alternatesFor,
   SOURCE_URL,
   contact,
   fill,
@@ -60,7 +61,7 @@ const seo = {
   description: h.meta.description,
   path: lp('/'),
   imageAlt: h.meta.ogAlt,
-  alternates: { en: '/', az: '/az' },
+  alternates: alternatesFor('/'),
   jsonLd: [
     websiteJsonLd(h.meta.description),
     faqPageJsonLd(h.faq.items.map((i) => ({ q: i.q, a: i.a }))),

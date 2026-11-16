@@ -1,0 +1,53 @@
+{
+  "lang": "pt",
+  "htmlLang": "pt",
+  "language": "Idioma",
+  "skip": "Pular para o conteúdo",
+  "nav": {
+    "home": "Página inicial do Line apps",
+    "main": "Principal",
+    "tools": "Ferramentas",
+    "together": "O que verificam",
+    "webTools": "Ferramentas web grátis",
+    "faq": "Perguntas",
+    "cta": "Agendar uma conversa",
+    "toolsLabel": "Ferramentas"
+  },
+  "footer": {
+    "label": "Rodapé",
+    "tagline": "Ferramentas grátis para Chrome para profissionais de marketing, especialistas em SEO e agências",
+    "extensions": "Extensões",
+    "webTools": "Ferramentas web grátis",
+    "about": "Sobre",
+    "privacy": "Política de privacidade",
+    "contact": "Contato",
+    "source": "Código-fonte",
+    "cookies": "Configurações de cookies",
+    "allTools": "Todas as ferramentas",
+    "builtBy": "Criado por",
+    "trademark": "Chrome é uma marca registrada da Google LLC."
+  },
+  "status": {
+    "soon": "Em breve",
+    "add": "Adicionar ao Chrome",
+    "learnMore": "Saiba mais",
+    "openTool": "Abrir ferramenta"
+  },
+  "consent": {
+    "text": "Este site só usa cookies de analytics se você aceitar",
+    "accept": "Aceitar",
+    "reject": "Recusar",
+    "privacyLabel": "Política de privacidade"
+  },
+  "notFound": {
+    "metaTitle": "Página não encontrada: Line apps",
+    "metaDescription": "Esta página não existe em getlineapps.com.",
+    "code": "404",
+    "title": "Esta página não existe",
+    "text": "O link pode ser antigo ou estar digitado errado. As cinco ferramentas e as suas políticas de privacidade estão a um clique.",
+    "home": "Ver todas as ferramentas",
+    "privacy": "Política de privacidade"
+  },
+  "ownerLogo": "Logotipo de Shamistan Isayev",
+  "ownerName": "Shamistan Isayev"
+}

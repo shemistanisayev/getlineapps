@@ -1,7 +1,7 @@
 {
   "lang": "az",
   "htmlLang": "az",
-  "switchTo": { "label": "In English", "short": "EN" },
+  "language": "Dil",
   "skip": "Məzmuna keç",
   "nav": {
     "home": "Line apps ana səhifə",

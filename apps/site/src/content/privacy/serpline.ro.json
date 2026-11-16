@@ -1,0 +1,51 @@
+{
+  "summary": "Serpline verifică SEO și accesul crawlerilor AI pentru pagina pe care ești. Totul se calculează în browserul tău și nimic nu ne este trimis.",
+  "reads": [
+    "Pagina din fila curentă, după ce apeși pe pictogramă sau folosești scurtătura.",
+    "HTML-ul brut al aceleiași pagini, precum și robots.txt, llms.txt și sitemap-ul acelui site, preluate direct de pe site.",
+    "Cifrele de viteză pe care browserul tău le păstrează deja pentru pagină (Core Web Vitals, dimensiunile cererilor) și dimensiunea imaginilor și a textului, măsurate în filă.",
+    "Pagina canonică și versiunile lingvistice (hreflang) ale paginii, când sunt pe același site, ca să verifice că funcționează și că trimit înapoi la pagină.",
+    "Starea linkurilor interne de pe pagină, doar când apeși Check links sau activezi acea setare. Aceste cereri merg către același site."
+  ],
+  "stores": [
+    "Setări pe calculatorul tău: limba, dispozitivul pentru previzualizarea Google și comutatorul pentru verificarea linkurilor.",
+    "Rezultatele rămân în panoul lateral până îl închizi."
+  ],
+  "never": [
+    "Să scaneze un site întreg sau să verifice pagini în care nu l-ai deschis",
+    "Să trimită pagini sau rezultate către vreun server",
+    "Să păstreze un istoric al site-urilor pe care le-ai verificat",
+    "Să citească ce scrii în formulare"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Citește fila curentă după ce apeși pe pictogramă."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Rulează funcția de citire în acea filă."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Afișează Serpline lângă pagină."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvează setările tale pe calculatorul tău."
+    },
+    {
+      "name": "Acces la site (opțional)",
+      "manifest": "optional_host:https://*/*",
+      "why": "Se cere pentru câte un singur site, doar când apeși Check this page. Chrome afișează propria solicitare, iar accesul îl poți elimina din setările Chrome."
+    }
+  ],
+  "notes": [
+    "Cererile către site-ul pe care îl verifici funcționează ca reîncărcarea paginii: browserul tău trimite cookie-urile proprii ale acelui site, ca întotdeauna.",
+    "Auditul PDF este creat în browserul tău."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "summary": "Markline face o captură a paginii pe care ești ca să o poți adnota. Capturile rămân pe calculatorul tău, iar Markline nu încarcă nimic.",
+  "reads": [
+    "Fila curentă, după ce apeși pe pictogramă sau folosești o scurtătură de captură.",
+    "Locul în care se află emailurile și numerele de telefon pe pagină, ca să poată fi blurate. Se folosește doar poziția lor.",
+    "O imagine pe care o tragi, o lipești sau o alegi în editor."
+  ],
+  "stores": [
+    "Setări pe calculatorul tău: blur automat, stilul blurului, opțiunile implicite de export și limba.",
+    "O captură este transmisă filei editorului prin stocarea browserului și ștearsă în câteva secunde. Închiderea filei editorului elimină captura."
+  ],
+  "never": [
+    "Să încarce capturi sau să creeze linkuri de partajare",
+    "Să înregistreze ecranul tău",
+    "Să trimită pagini, imagini sau note către vreun server",
+    "Să păstreze un istoric al capturilor tale"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Capturează și citește fila curentă după ce apeși pe pictogramă sau folosești o scurtătură."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Găsește emailurile și numerele de telefon de blurat, afișează selectorul de zonă și de element și derulează pentru o captură a paginii întregi."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvează setările tale pe calculatorul tău."
+    }
+  ],
+  "notes": [
+    "Detaliile paginii (adresa, browserul, dimensiunea ferestrei, ora) sunt adăugate la un export doar dacă acel comutator este activat.",
+    "Linia „Made with Markline” de pe imagini este opțională și poate fi dezactivată din setări."
+  ]
+}

@@ -7,6 +7,7 @@
  */
 import '../styles/serpline.css';
 import Base from '../layouts/Base.astro';
+import LangMenu from './LangMenu.astro';
 import Logo from './Logo.astro';
 import Mark from './Mark.astro';
 import { BRANDS } from '@line/ui/brand';
@@ -15,6 +16,7 @@ import { fitDescription, fitTitle, siteName, urlLine } from '@line/core/serpline
 import { faqPageJsonLd, softwareApplicationJsonLd } from '@line/site-kit/seo';
 import {
   SOURCE_URL,
+  alternatesFor,
   fill,
   getSerpline,
   getShared,
@@ -32,7 +34,6 @@ const c = await getSerpline(locale);
 const t = await getShared(locale);
 const tool = await getTool('serpline');
 const live = tool.status === 'live' && Boolean(tool.storeUrl);
-const other: Locale = locale === 'en' ? 'az' : 'en';
 const cta = (campaign: 'audit_cta' | 'faq' | 'footer') =>
   contactUrl({ source: 'serpline', medium: 'landing', campaign });
 const ogImage = '/og/serpline.png';
@@ -43,7 +44,7 @@ const seo = {
   path: localePath(locale, '/serpline'),
   image: ogImage,
   imageAlt: c.meta.ogAlt,
-  alternates: { en: '/serpline', az: '/az/serpline' },
+  alternates: alternatesFor('/serpline'),
   jsonLd: [
     softwareApplicationJsonLd({
       name: 'Serpline',
@@ -137,10 +138,7 @@ const indent = (level: number) => (level === 1 ? 16 : 16 + (level - 1) * 18);
           </a>
         </nav>
         <span class="grow"></span>
-        <a class="nl lang" href={localePath(other, '/serpline')} hreflang={other} lang={other}>
-          <span aria-hidden="true">{t.switchTo.short}</span>
-          <span class="sr-only">{t.switchTo.label}</span>
-        </a>
+        <LangMenu locale={locale} path="/serpline" label={t.language} />
         {live ? (
           <a class="btn btn-p btn-nav" href={tool.storeUrl!} target="_blank" rel="noopener">
             {c.add.nav}

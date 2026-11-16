@@ -7,6 +7,7 @@
  */
 import '../styles/rivaline.css';
 import Base from '../layouts/Base.astro';
+import LangMenu from './LangMenu.astro';
 import Logo from './Logo.astro';
 import Mark from './Mark.astro';
 import { BRANDS } from '@line/ui/brand';
@@ -21,6 +22,7 @@ import {
 import { faqPageJsonLd, softwareApplicationJsonLd } from '@line/site-kit/seo';
 import {
   SOURCE_URL,
+  alternatesFor,
   fill,
   getRivaline,
   getShared,
@@ -38,7 +40,6 @@ const c = await getRivaline(locale);
 const t = await getShared(locale);
 const tool = await getTool('rivaline');
 const live = tool.status === 'live' && Boolean(tool.storeUrl);
-const other: Locale = locale === 'en' ? 'az' : 'en';
 const cta = (campaign: 'audit_cta' | 'faq' | 'footer') =>
   contactUrl({ source: 'rivaline', medium: 'landing', campaign });
 const ogImage = '/og/rivaline.png';
@@ -49,7 +50,7 @@ const seo = {
   path: localePath(locale, '/rivaline'),
   image: ogImage,
   imageAlt: c.meta.ogAlt,
-  alternates: { en: '/rivaline', az: '/az/rivaline' },
+  alternates: alternatesFor('/rivaline'),
   jsonLd: [
     softwareApplicationJsonLd({
       name: 'Rivaline',
@@ -173,10 +174,7 @@ const finderTexts = JSON.stringify({
           </a>
         </nav>
         <span class="grow"></span>
-        <a class="nl lang" href={localePath(other, '/rivaline')} hreflang={other} lang={other}>
-          <span aria-hidden="true">{t.switchTo.short}</span>
-          <span class="sr-only">{t.switchTo.label}</span>
-        </a>
+        <LangMenu locale={locale} path="/rivaline" label={t.language} />
         {live ? (
           <a class="btn btn-p btn-nav" href={tool.storeUrl!} target="_blank" rel="noopener">
             {c.add.nav}

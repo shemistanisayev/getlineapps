@@ -1,0 +1,44 @@
+{
+  "summary": "Foldline controleert de landingspagina waarop je bent op conversieproblemen. Het leest de pagina in je browser en stuurt niets naar ons.",
+  "reads": [
+    "De lay-out, tekst, knoppen en afbeeldingen van het huidige tabblad, nadat je op het icoon klikt.",
+    "Typen en labels van formuliervelden, nooit wat erin wordt getypt.",
+    "Laadtijden van dit bezoek, uit je browser."
+  ],
+  "stores": [
+    "Instellingen op je computer: weergave, telefoonformaat, schakelaar voor de foldlijn en taal.",
+    "In de mobiele weergave kort de grootte van je venster, zodat Foldline die kan terugzetten."
+  ],
+  "never": [
+    "Lezen wat je in formulieren typt",
+    "De pagina zelf veranderen",
+    "Pagina's of resultaten naar een server sturen",
+    "Een geschiedenis bijhouden van de sites die je hebt gecontroleerd"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Het huidige tabblad lezen nadat je op het icoon klikt."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "De checks uitvoeren en de foldlijn in dat tabblad tekenen."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Foldline naast de pagina tonen."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Je instellingen op je computer opslaan."
+    }
+  ],
+  "notes": [
+    "De foldlijn wordt alleen over de pagina getekend zolang het paneel open is, en verwijderd als je het sluit.",
+    "De mobiele weergave maakt het venster smaller en zet het terug als je terugschakelt of het paneel sluit. Daarvoor is geen extra recht nodig."
+  ]
+}

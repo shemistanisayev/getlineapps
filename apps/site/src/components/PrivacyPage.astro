@@ -12,6 +12,7 @@ import Icon from './Icon.astro';
 import { BRANDS } from '@line/ui/brand';
 import { privacyUrl, type ToolSlug } from '@line/core/site';
 import {
+  alternatesFor,
   contact,
   fill,
   getPrivacy,
@@ -48,7 +49,7 @@ const seo = {
   title: fill(pg.meta.title, { name }),
   description: fill(pg.meta.description, { name }),
   path: localePath(locale, path),
-  alternates: { en: path, az: `/az${path}` },
+  alternates: alternatesFor(path),
 };
 ---
 

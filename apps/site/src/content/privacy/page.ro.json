@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Politica de confidențialitate {name}: Line apps",
+    "description": "Ce citește {name}, ce salvează pe calculatorul tău și ce nu face niciodată. Fără cont, nimic vândut, nimic trimis către noi."
+  },
+  "eyebrow": "Confidențialitate",
+  "title": "Politica de confidențialitate",
+  "lead": "Fiecare aplicație Line are propria politică, pentru că fiecare citește ceva diferit. Alege un instrument. Pe scurt, e la fel pentru toate cinci: fără cont, nimic vândut, nimic trimis către noi.",
+  "updatedLabel": "Ultima actualizare",
+  "updated": "10 noiembrie 2026",
+  "tabsLabel": "Alege un instrument",
+  "tabLabel": "Politica de confidențialitate {name}",
+  "facts": [
+    "Nu se colectează date personale",
+    "Nimic nu e trimis către serverele noastre",
+    "Nimic nu e vândut sau partajat"
+  ],
+  "headings": {
+    "reads": "Ce citește {name} și când",
+    "stores": "Ce se salvează pe calculatorul tău",
+    "never": "Ce nu face niciodată {name}",
+    "perms": "Permisiuni și de ce",
+    "notes": "Bine de știut",
+    "site": "Acest site",
+    "changes": "Modificări și contact"
+  },
+  "site": [
+    "getlineapps.com nu încarcă niciun instrument de analytics până nu îl accepți în bannerul de cookie-uri. Îți poți schimba alegerea oricând din linkul din subsol.",
+    "Dacă completezi formularul după ce elimini o extensie, motivul și textul pe care îl scrii îmi sunt trimise pe email ca să pot îmbunătăți instrumentul. Nu se atașează nimic altceva și nu sunt folosite pentru marketing."
+  ],
+  "changes": "Dacă această politică se schimbă, noua versiune este publicată aici cu o dată nouă. O modificare prin care s-ar colecta mai multe date ar fi descrisă și în notele de lansare ale extensiei, înainte de publicare.",
+  "contactBefore": "Întrebări despre confidențialitate?",
+  "contactLink": "Contactează-l pe Shamistan Isayev",
+  "contactAfter": "."
+}

@@ -2,16 +2,46 @@
 import { getCollection, getEntry } from 'astro:content';
 import { TOOL_SLUGS, contactUrl, type ToolSlug } from '@line/core/site';
 
-export type Locale = 'en' | 'az';
-export const LOCALES: Locale[] = ['en', 'az'];
+/** Every site language. English lives at the root, the others under /<code>. */
+export const LOCALES = ['en', 'az', 'tr', 'ru', 'ro', 'uk', 'pt', 'nl', 'es', 'fr'] as const;
+export type Locale = (typeof LOCALES)[number];
 
 export const SOURCE_URL = 'https://github.com/shemistanisayev/getlineapps';
 
-/** A site path in the given language: English at the root, Azerbaijani under /az. */
+/** The first two languages: their routes are files under pages/ and pages/az/. The 404 shows both. */
+export const BASE_LOCALES: readonly Locale[] = ['en', 'az'];
+/** The other languages (the Chrome Web Store ones): their routes are pages/[lang]/. */
+export const EXTRA_LOCALES = LOCALES.filter((l) => !BASE_LOCALES.includes(l));
+
+/** Each language's own name, for the language menu (the same in every UI language). */
+export const LANGUAGE_NAMES: Record<Locale, string> = {
+  en: 'English',
+  az: 'Azərbaycan',
+  tr: 'Türkçe',
+  ru: 'Русский',
+  ro: 'Română',
+  uk: 'Українська',
+  pt: 'Português',
+  nl: 'Nederlands',
+  es: 'Español',
+  fr: 'Français',
+};
+
+/** The languages a page exists in: every page has all of them. */
+export function pageLocales(_path: string): readonly Locale[] {
+  return LOCALES;
+}
+
+/** A site path in the given language: English at the root, the others under /<code>. */
 export function localePath(locale: Locale, path: string): string {
   const p = path.startsWith('/') ? path : `/${path}`;
   if (locale === 'en') return p;
-  return p === '/' ? '/az' : `/az${p}`;
+  return p === '/' ? `/${locale}` : `/${locale}${p}`;
+}
+
+/** hreflang alternates of a page: every language it exists in. */
+export function alternatesFor(path: string): Partial<Record<Locale, string>> {
+  return Object.fromEntries(pageLocales(path).map((l) => [l, localePath(l, path)]));
 }
 
 /** Replace {name} style holes. */

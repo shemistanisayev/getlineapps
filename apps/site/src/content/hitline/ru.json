@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "title": "Hitline: бесплатный отладчик трекинга GA4, Meta и др.",
+    "description": "Бесплатное расширение для Chrome. Все события GA4, Google Ads, Meta, TikTok и ещё 46 платформ, теги GTM и утечки согласия прямо в Chrome DevTools.",
+    "ogAlt": "Hitline: ваш трекинг работает? Докажите это в одной панели."
+  },
+  "nav": {
+    "label": "Разделы Hitline",
+    "features": "Возможности",
+    "how": "Как это работает",
+    "privacy": "Приватность",
+    "faq": "Вопросы"
+  },
+  "add": {
+    "nav": "Добавить в Chrome",
+    "hero": "Добавить в Chrome бесплатно",
+    "soonNav": "Скоро",
+    "soonHero": "Скоро в Chrome"
+  },
+  "sample": {
+    "eyebrow": "Пример аудита",
+    "title": "example.com, сделано в Hitline в один клик",
+    "note": "Настоящий макет отчёта. Данные не покидали браузер",
+    "download": "Скачать пример PDF",
+    "close": "Закрыть пример аудита"
+  },
+  "hero": {
+    "pill": "Бесплатное расширение для Chrome",
+    "titleStart": "Ваш трекинг работает?",
+    "titleHighlight": "Докажите это",
+    "titleEnd": "в одной панели",
+    "lead": "Все события GA4, Google Ads, Meta, TikTok и ещё 46 платформ, server-side GTM и утечки согласия прямо в Chrome DevTools",
+    "secondary": "Посмотреть пример аудита",
+    "trust": ["Без аккаунта", "Данные не покидают браузер", "Открытый код"],
+    "mockLabel": "DevTools › Hitline",
+    "tabs": [
+      {
+        "label": "События",
+        "count": "14",
+        "warn": false
+      },
+      {
+        "label": "GTM",
+        "count": "24",
+        "warn": false
+      },
+      {
+        "label": "Согласие",
+        "count": "2",
+        "warn": true
+      },
+      {
+        "label": "Атрибуция",
+        "count": "1",
+        "warn": true
+      }
+    ],
+    "live": "Вживую",
+    "rows": [
+      {
+        "time": "18.204",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "page_view",
+        "route": "sgtm"
+      },
+      {
+        "time": "18.310",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "PageView",
+        "route": "browser"
+      },
+      {
+        "time": "19.140",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "ViewContent",
+        "route": "browser"
+      },
+      {
+        "time": "31.950",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "add_to_cart",
+        "route": "sgtm"
+      },
+      {
+        "time": "32.004",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "AddToCart",
+        "route": "bad"
+      },
+      {
+        "time": "32.050",
+        "platform": "ads",
+        "name": "Google Ads",
+        "event": "conversion",
+        "route": "browser"
+      },
+      {
+        "time": "32.091",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "AddToCart",
+        "route": "browser"
+      },
+      {
+        "time": "33.420",
+        "platform": "dl",
+        "name": "dataLayer",
+        "event": "begin_checkout",
+        "route": "page"
+      }
+    ],
+    "routes": {
+      "sgtm": "sGTM",
+      "browser": "Браузер",
+      "page": "Страница",
+      "bad": "Нет ценности"
+    },
+    "sgtmTitle": "Server-side GTM",
+    "sgtmVia": "через data.example.com",
+    "tags": "4 тега",
+    "issueLabel": "Найдена проблема",
+    "issueText": "Meta AddToCart отправляется без ценности"
+  },
+  "marquee": {
+    "title": "Читает 50 платформ, которыми вы уже пользуетесь",
+    "items": [
+      {
+        "platform": "ga",
+        "label": "GA4"
+      },
+      {
+        "platform": "ads",
+        "label": "Google Ads"
+      },
+      {
+        "platform": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "platform": "tt",
+        "label": "TikTok Pixel"
+      },
+      {
+        "platform": "dl",
+        "label": "Google Tag Manager"
+      },
+      {
+        "platform": "sgtm",
+        "label": "Server-side GTM"
+      },
+      {
+        "platform": "linkedin",
+        "label": "LinkedIn Insight"
+      },
+      {
+        "platform": "bing",
+        "label": "Microsoft Ads"
+      },
+      {
+        "platform": "x",
+        "label": "X Pixel"
+      },
+      {
+        "platform": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "platform": "snapchat",
+        "label": "Snapchat Pixel"
+      },
+      {
+        "platform": "reddit",
+        "label": "Reddit Pixel"
+      },
+      {
+        "platform": "hj",
+        "label": "Hotjar"
+      },
+      {
+        "platform": "clarity",
+        "label": "Microsoft Clarity"
+      },
+      {
+        "platform": "amplitude",
+        "label": "Amplitude"
+      },
+      {
+        "platform": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "platform": "segment",
+        "label": "Segment"
+      },
+      {
+        "platform": "posthog",
+        "label": "PostHog"
+      },
+      {
+        "platform": "adobe",
+        "label": "Adobe Analytics"
+      },
+      {
+        "platform": "matomo",
+        "label": "Matomo"
+      },
+      {
+        "platform": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "platform": "klaviyo",
+        "label": "Klaviyo"
+      },
+      {
+        "platform": "criteo",
+        "label": "Criteo"
+      },
+      {
+        "platform": "floodlight",
+        "label": "Floodlight"
+      },
+      {
+        "platform": "optimizely",
+        "label": "Optimizely"
+      },
+      {
+        "platform": "datalayer",
+        "label": "dataLayer"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Проблема",
+    "title": "Большинство ошибок трекинга незаметны",
+    "lead": "А бюджет продолжает тратиться на основе неверных цифр",
+    "cards": [
+      {
+        "title": "События без ценности",
+        "text": "Пиксель срабатывает, дашборд выглядит нормально, а рекламная платформа так и не узнаёт, сколько стоила корзина"
+      },
+      {
+        "title": "Пиксели, которые игнорируют согласие",
+        "text": "Посетитель нажимает «Отклонить все», а пиксель всё равно срабатывает. Никто не замечает, пока это не заметит регулятор или клиент"
+      },
+      {
+        "title": "Продажи приписаны не тому источнику",
+        "text": "Страница оплаты на другом домене теряет click ID, и платный трафик отображается как реферальный"
+      }
+    ],
+    "mini": {
+      "ga4Event": "add_to_cart",
+      "ga4Value": "value 89.90",
+      "metaEvent": "AddToCart",
+      "metaValue": "value",
+      "reject": "Отклонить все",
+      "gclid": "gclid",
+      "host": "pay.example.net",
+      "referral": "referral"
+    }
+  },
+  "features": {
+    "eyebrow": "Внутри панели",
+    "title": "Шесть экранов. Один вопрос: можно ли доверять цифрам?",
+    "tabsLabel": "Экраны Hitline",
+    "events": {
+      "label": "События",
+      "eyebrow": "Инспектор событий",
+      "title": "Каждое событие, каждый параметр, все платформы рядом",
+      "lead": "Hitline читает запросы 50 платформ аналитики, рекламы, CRM и тестирования, а также каждый push в dataLayer. Новые события идут сверху и подсвечиваются при появлении",
+      "bullets": [
+        "50 платформ в одном списке и ваши собственные сервисы как свои платформы",
+        "Все параметры расшифрованы, читать query string не нужно",
+        "Вживую: новые события подсвечены, новые сверху"
+      ],
+      "demo": {
+        "event": "add_to_cart",
+        "platform": "GA4",
+        "via": "через sGTM",
+        "params": [
+          {
+            "k": "currency",
+            "v": "USD"
+          },
+          {
+            "k": "value",
+            "v": "89.90"
+          },
+          {
+            "k": "items[0].item_id",
+            "v": "LUMO-PRO-X"
+          },
+          {
+            "k": "items[0].price",
+            "v": "89.90"
+          }
+        ],
+        "issueStrong": "Meta AddToCart",
+        "issueText": "на том же клике без ценности."
+      }
+    },
+    "gtm": {
+      "label": "GTM и sGTM",
+      "eyebrow": "GTM и server-side",
+      "title": "Узнайте, работает ли на сайте server-side GTM, с доказательствами",
+      "lead": "Hitline читает сам контейнер GTM: каждый тег с триггером, проверками согласия и статусом, а для каждого события dataLayer теги, которые на нём сработали. Плюс четыре сигнала server-side GTM",
+      "bullets": [
+        "Каждый тег с триггером, проверками согласия и статусом",
+        "Каждое событие dataLayer с тегами, которые на нём сработали",
+        "Четыре сигнала server-side, а не догадка"
+      ],
+      "demo": {
+        "title": "Server-side GTM",
+        "detected": "Обнаружен",
+        "signals": [
+          "Запросы уходят на data.example.com",
+          "Путь в формате GA4",
+          "Задан server_container_url",
+          "Cookie FPID установлен сервером"
+        ]
+      }
+    },
+    "checks": {
+      "label": "Проверки",
+      "eyebrow": "Проверки качества данных",
+      "title": "Ошибки, которые незаметно ломают отчёты",
+      "lead": "Hitline проверяет каждое событие при появлении и объясняет каждую проблему: что происходит, почему это важно и как это исправить",
+      "bullets": [
+        "Адреса e-mail, отправленные в рекламные и аналитические платформы",
+        "Одна и та же покупка или лид, отправленные дважды",
+        "Покупки без ID заказа, события без ценности"
+      ],
+      "demo": {
+        "title": "Найдено на этой странице",
+        "count": "3 проблемы",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 page_view",
+            "status": "E-mail в URL",
+            "tone": "bad"
+          },
+          {
+            "platform": "meta",
+            "label": "Meta Purchase",
+            "status": "Отправлено дважды",
+            "tone": "warn"
+          },
+          {
+            "platform": "ga",
+            "label": "GA4 purchase",
+            "status": "Нет ID заказа",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "consent": {
+      "label": "Согласие",
+      "eyebrow": "Проверка согласия",
+      "title": "Нажмите «Отклонить все» и посмотрите, кто продолжает срабатывать",
+      "lead": "Hitline читает сигналы Consent Mode v2 и делит запросы на «до» и «после» выбора посетителя",
+      "bullets": [
+        "Сигналы по умолчанию и обновлённые сигналы рядом",
+        "Утечки отмечены красным, рядом исправление в GTM",
+        "Cookieless-пинги отделены от настоящих хитов"
+      ],
+      "demo": {
+        "title": "После «Отклонить все»",
+        "count": "3 запроса",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 view_item",
+            "status": "Cookieless-пинг",
+            "ok": true
+          },
+          {
+            "platform": "tt",
+            "label": "TikTok ViewContent",
+            "status": "Отправлено после отказа",
+            "ok": false
+          },
+          {
+            "platform": "hj",
+            "label": "Hotjar",
+            "status": "Не загружен",
+            "ok": true
+          }
+        ]
+      }
+    },
+    "attribution": {
+      "label": "Атрибуция",
+      "eyebrow": "Путь атрибуции",
+      "title": "Следите за UTM и gclid от страницы к странице",
+      "lead": "Смотрите, где именно теряются параметры кампании, от клика по объявлению до подтверждения заказа",
+      "bullets": [
+        "UTM, gclid и fbclid отслеживаются между страницами",
+        "Разрывы cross-domain находятся автоматически",
+        "Названа настройка GA4, которая это исправляет"
+      ],
+      "demo": {
+        "steps": ["Лендинг", "Товар", "Корзина", "Оплата", "Подтверждение"],
+        "rows": [
+          {
+            "label": "gclid",
+            "cells": [
+              {
+                "v": "есть",
+                "ok": true
+              },
+              {
+                "v": "есть",
+                "ok": true
+              },
+              {
+                "v": "есть",
+                "ok": true
+              },
+              {
+                "v": "потерян",
+                "ok": false
+              },
+              {
+                "v": "есть",
+                "ok": true
+              }
+            ]
+          },
+          {
+            "label": "source",
+            "cells": [
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "потерян",
+                "ok": false
+              },
+              {
+                "v": "referral",
+                "ok": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "plan": {
+      "label": "План трекинга",
+      "eyebrow": "Проверка плана трекинга",
+      "title": "Ваш план против того, что сайт отправляет на самом деле",
+      "lead": "Загрузите план в CSV. Hitline отмечает недостающие события и неверные параметры, пока вы проходите по сайту",
+      "bullets": [
+        "CSV или JSON, три колонки",
+        "Недостающие события и неверные параметры вживую",
+        "Плана ещё нет? Составьте черновик по своей сессии"
+      ],
+      "demo": {
+        "file": "lumo-tracking-plan.csv",
+        "count": "8 событий",
+        "bars": [
+          {
+            "label": "Совпадает",
+            "n": 4
+          },
+          {
+            "label": "Нет",
+            "n": 2
+          },
+          {
+            "label": "Неверные параметры",
+            "n": 2
+          }
+        ],
+        "rows": [
+          {
+            "event": "generate_lead",
+            "status": "Нет",
+            "tone": "bad"
+          },
+          {
+            "event": "sign_up",
+            "status": "Неверные параметры",
+            "tone": "warn"
+          }
+        ]
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Как это работает",
+    "title": "Три шага без настройки",
+    "steps": [
+      {
+        "title": "Добавьте Hitline в Chrome",
+        "key": "",
+        "titleEnd": "",
+        "text": "Бесплатно в Chrome Web Store. Аккаунт не нужен"
+      },
+      {
+        "title": "Откройте сайт и нажмите на иконку",
+        "key": "",
+        "titleEnd": "",
+        "text": "Во всплывающем окне видны платформы, статус server-side и главные проблемы"
+      },
+      {
+        "title": "Нажмите",
+        "key": "F12",
+        "titleEnd": "для полной картины",
+        "text": "Вкладка Hitline в DevTools записывает каждое событие вживую, пока вы ходите по сайту"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "PDF-аудит",
+    "titleStart": "Нашли поломку?",
+    "titleHighlight": "Её исправит",
+    "titleEnd": "автор Hitline",
+    "lead": "Один клик превращает находки в отчёт с приоритетами. Отправьте его разработчику или мне: я настраиваю GA4, server-side GTM, Consent Mode и рекламные пиксели для растущих брендов",
+    "cta": "Заказать аудит трекинга",
+    "from": "От",
+    "paper": {
+      "date": "6 нояб. 2026",
+      "eyebrow": "Аудит трекинга",
+      "host": "example.com",
+      "high": "высокий приоритет",
+      "medium": "средний приоритет",
+      "levels": {
+        "high": "Высокий",
+        "medium": "Средний"
+      },
+      "items": [
+        {
+          "level": "high",
+          "strong": "Meta Pixel срабатывает до согласия.",
+          "text": "Добавьте в GTM проверку согласия ad_storage."
+        },
+        {
+          "level": "high",
+          "strong": "Продажи приписываются сайту оплаты.",
+          "text": "Добавьте его в «Нежелательные рефералы» в GA4."
+        },
+        {
+          "level": "medium",
+          "strong": "Meta AddToCart без ценности.",
+          "text": "Передавайте value из dataLayer."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Приватность",
+    "title": "Ваши данные не покидают браузер",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Без сервера",
+        "text": "Весь анализ идёт внутри Chrome. Hitline сам не делает никаких запросов"
+      },
+      {
+        "icon": "lock",
+        "title": "Минимум разрешений",
+        "text": "Панель DevTools, активная вкладка и локальное хранилище. Нет доступа ко всем вашим сайтам"
+      },
+      {
+        "icon": "eye",
+        "title": "Без аналитики внутри",
+        "text": "Расширение не отслеживает вас. Результаты исчезают, когда вы закрываете вкладку"
+      },
+      {
+        "icon": "code",
+        "title": "Открытый код",
+        "text": "Прочитайте код и проверьте каждое утверждение на этой странице сами"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Вопросы",
+    "title": "Вопросы",
+    "askBefore": "Что-то ещё?",
+    "askLink": "Спросите меня напрямую",
+    "items": [
+      {
+        "q": "Hitline правда бесплатный?",
+        "a": "Да. Нет платного тарифа, аккаунта и лимитов на использование."
+      },
+      {
+        "q": "Он куда-то отправляет мои данные?",
+        "a": "Нет. Всё анализируется в вашем браузере. Сохраняются только ваши настройки, и только на вашем компьютере."
+      },
+      {
+        "q": "Какие платформы читает Hitline?",
+        "a": "50 платформ: аналитика (GA4, Adobe, Amplitude, Mixpanel, Segment, PostHog, Matomo и другие), рекламные пиксели (Google Ads, Meta, TikTok, LinkedIn, Microsoft Ads, X, Pinterest, Snapchat, Reddit, Criteo и другие), запись сессий, CRM, менеджеры тегов, инструменты A/B-тестов и dataLayer."
+      },
+      {
+        "q": "Моего инструмента нет в списке. Hitline всё равно его покажет?",
+        "a": "Да. Добавьте его в настройках как свою платформу: название и часть его URL. Запросы, которые только похожи на трекинг, тоже попадают в список, в раздел «Другое»."
+      },
+      {
+        "q": "Как он определяет server-side GTM?",
+        "a": "Он проверяет, куда уходят запросы GA4, путь запроса, настройку server_container_url и cookie, установленные сервером."
+      },
+      {
+        "q": "Чем он отличается от Tag Assistant?",
+        "a": "Tag Assistant сосредоточен на тегах Google. Hitline показывает 50 платформ рядом, читает ваши теги и триггеры GTM, проверяет согласие, атрибуцию и качество данных и сравнивает события с вашим планом трекинга."
+      },
+      {
+        "q": "Нужно ли открывать DevTools?",
+        "a": "Всплывающее окно работает и без них и само обновляется, пока открыто. Для полного потока событий откройте DevTools и вкладку Hitline, затем один раз перезагрузите страницу. Chrome не позволяет расширениям открывать DevTools, поэтому всплывающее окно показывает сочетание клавиш, и DevTools открывается на событии, по которому вы нажали."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Семейство Line",
+    "title": "Другие бесплатные инструменты из того же семейства",
+    "tools": {
+      "serpline": {
+        "text": "Технический SEO и проверка AI-поиска для любой страницы",
+        "open": "Открыть Serpline"
+      },
+      "rivaline": {
+        "text": "Стек, реклама и фирменный стиль конкурента в одной панели",
+        "open": "Открыть Rivaline"
+      },
+      "foldline": {
+        "text": "Найдите, что мешает лендингу конвертировать",
+        "open": "Открыть Foldline"
+      },
+      "markline": {
+        "text": "Скриншот, пометки и отзыв за секунды",
+        "open": "Открыть Markline"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Автор:",
+    "privacy": "Политика конфиденциальности",
+    "source": "Исходный код"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Жаль, что вы уходите | Hitline",
+      "description": "Расскажите, почему вы удалили Hitline. Один клик поможет сделать следующую версию лучше."
+    },
+    "titleStart": "Hitline удалён",
+    "titleEnd": "Почему вы ушли?",
+    "lead": "Один клик поможет сделать следующую версию лучше",
+    "reasonsLabel": "Причина",
+    "reasons": [
+      "Не распознал мою настройку",
+      "Он нужен был мне только один раз",
+      "Слишком сложно разобраться",
+      "Я пользуюсь другим инструментом"
+    ],
+    "moreLabel": "Что-то ещё?",
+    "optional": "(необязательно)",
+    "placeholder": "Какой сайт или какую настройку он пропустил?",
+    "send": "Отправить отзыв",
+    "sending": "Отправка...",
+    "thanks": "Спасибо. Ваш отзыв отправлен.",
+    "error": "Не удалось отправить. Попробуйте ещё раз через минуту.",
+    "pickOne": "Выберите причину или напишите пару слов.",
+    "reinstall": "Установить Hitline снова",
+    "card": {
+      "eyebrow": "Проблема с трекингом осталась?",
+      "title": "Я могу провести аудит и всё исправить",
+      "text": "GA4, server-side GTM, Consent Mode и рекламные пиксели. Вы получите понятный список того, что сломано, и рабочую настройку",
+      "cta": "Заказать аудит трекинга",
+      "sub": "Shamistan Isayev"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "summary": "Hitline affiche les balises et les événements de tracking de la page que vous inspectez. Il ne collecte, ne conserve et n'envoie aucune donnée vous concernant ni concernant les pages que vous vérifiez.",
+  "reads": [
+    "Les requêtes réseau, le dataLayer et les autres couches de données de la page (adobeDataLayer, digitalData, utag_data), les conteneurs GTM et les outils de tracking connus chargés dans l'onglet inspecté, ainsi que les cookies de tracking _ga, _gcl_*, _fbp, _fbc, _ttp et FPID, uniquement tant que l'onglet Hitline est ouvert dans Chrome DevTools.",
+    "La page de l'onglet actuel, uniquement après que vous avez cliqué sur l'icône Hitline pour ouvrir la popup, puis à nouveau toutes les 2 secondes tant que la popup reste ouverte.",
+    "Un fichier de plan de tracking, uniquement si vous choisissez d'en charger un. Il est lu dans votre navigateur."
+  ],
+  "stores": [
+    "Vos paramètres dans le stockage de Chrome sur votre ordinateur : la langue, les domaines que vous indiquez comme étant votre propre site, les plans de tracking que vous chargez (noms d'événements et de paramètres uniquement) et les plateformes personnalisées que vous ajoutez (un nom et une partie d'une URL).",
+    "Quand vous cliquez sur « Show in DevTools » dans la popup, une courte note indiquant quel événement afficher est conservée dans la mémoire de Chrome jusqu'à ce que le panneau la lise. Elle disparaît à la fermeture de Chrome.",
+    "Les résultats restent dans le panneau ouvert et disparaissent quand vous fermez DevTools ou la popup."
+  ],
+  "never": [
+    "Lire les onglets sur lesquels vous n'avez pas ouvert Hitline",
+    "Lire ce que vous saisissez dans les formulaires",
+    "Envoyer des événements, des pages ou des résultats à un serveur",
+    "Conserver un historique des sites que vous avez vérifiés"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Lire l'onglet actuel, et uniquement après que vous avez cliqué sur l'icône."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Exécuter la fonction de lecture dans cet onglet."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Enregistrer vos paramètres sur votre ordinateur."
+    },
+    {
+      "name": "devtools_page",
+      "manifest": "key:devtools_page",
+      "why": "Ajouter l'onglet Hitline à DevTools. Chrome lui transmet les requêtes de l'onglet inspecté uniquement tant que DevTools est ouvert."
+    }
+  ],
+  "notes": [
+    "Le PDF d'audit est créé dans votre navigateur et enregistré à l'endroit que vous choisissez.",
+    "Tant que l'onglet Hitline est ouvert, et quand vous cliquez sur « Reload page », Hitline ajoute au dataLayer de cette page un petit minuteur qui note le moment où chaque entrée est ajoutée. Il ne lit rien d'autre et n'envoie rien.",
+    "Hitline n'effectue aucune requête réseau de lui-même."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "summary": "O Markline captura a página em que você está para que você possa fazer anotações nela. As capturas ficam no seu computador, e o Markline não faz upload de nada.",
+  "reads": [
+    "A aba atual, depois que você clica no ícone ou pressiona um atalho de captura.",
+    "Onde ficam os e-mails e os números de telefone na página, para que possam ser desfocados. Só a posição deles é usada.",
+    "Uma imagem que você solta, cola ou escolhe no editor."
+  ],
+  "stores": [
+    "Configurações no seu computador: desfoque automático, estilo de desfoque, padrões de exportação e idioma.",
+    "Uma captura é passada para a aba do editor pelo armazenamento do navegador e excluída em segundos. Fechar a aba do editor remove a captura."
+  ],
+  "never": [
+    "Fazer upload de capturas ou criar links de compartilhamento",
+    "Gravar a sua tela",
+    "Enviar páginas, imagens ou notas para qualquer servidor",
+    "Manter um histórico do que você capturou"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Capturar e ler a aba atual depois que você clica ou pressiona um atalho."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Encontrar e-mails e números de telefone para desfocar, mostrar o seletor de região e de elemento e rolar a página para uma captura da página inteira."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Salvar as suas configurações no seu computador."
+    }
+  ],
+  "notes": [
+    "Os detalhes da página (endereço, navegador, tamanho da janela, horário) só são adicionados a uma exportação se essa opção estiver ativada.",
+    "A linha “Made with Markline” nas imagens é opcional e pode ser desativada nas configurações."
+  ]
+}

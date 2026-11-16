@@ -11,6 +11,7 @@ import { HONEYPOT_FIELD } from '@line/site-kit/feedback';
 import { contactUrl } from '@line/core/site';
 import type { Uninstall } from '../content/schemas.ts';
 import {
+  alternatesFor,
   getHitline,
   getRivaline,
   getSerpline,
@@ -48,7 +49,7 @@ const seo = {
   title: u.meta.title,
   description: u.meta.description,
   path: localePath(locale, `/${slug}/uninstalled`),
-  alternates: { en: `/${slug}/uninstalled`, az: `/az/${slug}/uninstalled` },
+  alternates: alternatesFor(`/${slug}/uninstalled`),
   noindex: true,
 };
 ---

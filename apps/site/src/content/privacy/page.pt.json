@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Política de privacidade do {name}: Line apps",
+    "description": "O que o {name} lê, o que ele salva no seu computador e o que ele nunca faz. Sem conta, nada vendido, nada enviado para nós."
+  },
+  "eyebrow": "Privacidade",
+  "title": "Política de privacidade",
+  "lead": "Cada Line app tem a sua própria política, porque cada um lê algo diferente. Escolha uma ferramenta. A versão curta é a mesma para os cinco: sem conta, nada vendido, nada enviado para nós.",
+  "updatedLabel": "Última atualização",
+  "updated": "10 de novembro de 2026",
+  "tabsLabel": "Escolha uma ferramenta",
+  "tabLabel": "Política de privacidade do {name}",
+  "facts": [
+    "Nenhum dado pessoal coletado",
+    "Nada enviado aos nossos servidores",
+    "Nada vendido ou compartilhado"
+  ],
+  "headings": {
+    "reads": "O que o {name} lê, e quando",
+    "stores": "O que é salvo no seu computador",
+    "never": "O que o {name} nunca faz",
+    "perms": "Permissões e por quê",
+    "notes": "Bom saber",
+    "site": "Este site",
+    "changes": "Alterações e contato"
+  },
+  "site": [
+    "getlineapps.com não carrega nenhum analytics até você aceitá-lo no banner de cookies. Você pode mudar a sua escolha a qualquer momento pelo link no rodapé.",
+    "Se você preencher o formulário depois de remover uma extensão, o motivo e o texto que você escrever são enviados por e-mail para mim, para que eu possa melhorar a ferramenta. Nada mais é anexado, e isso não é usado para marketing."
+  ],
+  "changes": "Se esta política mudar, a nova versão será publicada aqui com uma nova data. Uma alteração que colete mais dados também seria descrita nas notas de versão da extensão antes de ser lançada.",
+  "contactBefore": "Dúvidas sobre privacidade?",
+  "contactLink": "Fale com Shamistan Isayev",
+  "contactAfter": "."
+}

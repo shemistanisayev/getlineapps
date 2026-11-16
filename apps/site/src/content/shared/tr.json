@@ -1,0 +1,53 @@
+{
+  "lang": "tr",
+  "htmlLang": "tr",
+  "language": "Dil",
+  "skip": "İçeriğe geç",
+  "nav": {
+    "home": "Line apps ana sayfa",
+    "main": "Ana menü",
+    "tools": "Araçlar",
+    "together": "Neyi kontrol ederler",
+    "webTools": "Ücretsiz web araçları",
+    "faq": "SSS",
+    "cta": "Görüşme ayarla",
+    "toolsLabel": "Araçlar"
+  },
+  "footer": {
+    "label": "Alt bilgi",
+    "tagline": "Pazarlamacılar, SEO uzmanları ve ajanslar için ücretsiz Chrome araçları",
+    "extensions": "Eklentiler",
+    "webTools": "Ücretsiz web araçları",
+    "about": "Hakkında",
+    "privacy": "Gizlilik politikası",
+    "contact": "İletişim",
+    "source": "Kaynak kodu",
+    "cookies": "Çerez ayarları",
+    "allTools": "Tüm araçlar",
+    "builtBy": "Geliştiren:",
+    "trademark": "Chrome, Google LLC'nin ticari markasıdır."
+  },
+  "status": {
+    "soon": "Çok yakında",
+    "add": "Chrome'a ekle",
+    "learnMore": "Daha fazla bilgi",
+    "openTool": "Aracı aç"
+  },
+  "consent": {
+    "text": "Bu site analitik çerezlerini yalnızca kabul edersen kullanır",
+    "accept": "Kabul et",
+    "reject": "Reddet",
+    "privacyLabel": "Gizlilik politikası"
+  },
+  "notFound": {
+    "metaTitle": "Sayfa bulunamadı: Line apps",
+    "metaDescription": "Bu sayfa getlineapps.com'da yok.",
+    "code": "404",
+    "title": "Bu sayfa yok",
+    "text": "Bağlantı eski ya da yanlış yazılmış olabilir. Beş araç ve gizlilik politikaları bir tık uzağında.",
+    "home": "Tüm araçları gör",
+    "privacy": "Gizlilik politikası"
+  },
+  "ownerLogo": "Shamistan Isayev logosu",
+  "ownerName": "Shamistan Isayev"
+}

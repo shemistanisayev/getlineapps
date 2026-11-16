@@ -1,0 +1,39 @@
+{
+  "summary": "Markline bulunduğun sayfayı işaretleyebilmen için yakalar. Yakalamalar bilgisayarında kalır ve Markline hiçbir şey yüklemez.",
+  "reads": [
+    "Geçerli sekme; simgeye tıkladıktan ya da bir yakalama kısayoluna bastıktan sonra.",
+    "Bulanıklaştırılabilmeleri için e-postaların ve telefon numaralarının sayfadaki konumu. Yalnızca konumları kullanılır.",
+    "Düzenleyicide bıraktığın, yapıştırdığın ya da seçtiğin bir görsel."
+  ],
+  "stores": [
+    "Bilgisayarındaki ayarlar: otomatik bulanıklaştırma, bulanıklık stili, dışa aktarma varsayılanları ve dil.",
+    "Bir yakalama, tarayıcı depolaması üzerinden düzenleyici sekmesine aktarılır ve saniyeler içinde silinir. Düzenleyici sekmesini kapatmak yakalamayı kaldırır."
+  ],
+  "never": [
+    "Yakalamaları yüklemek ya da paylaşım linkleri oluşturmak",
+    "Ekranını kaydetmek",
+    "Sayfaları, görselleri ya da notları herhangi bir sunucuya göndermek",
+    "Yakaladıklarının geçmişini tutmak"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Tıkladıktan ya da bir kısayola bastıktan sonra geçerli sekmeyi yakalamak ve okumak."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Bulanıklaştırılacak e-postaları ve telefon numaralarını bulmak, bölge ve öğe seçiciyi göstermek ve tam sayfa yakalama için kaydırmak."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Ayarlarını bilgisayarına kaydetmek."
+    }
+  ],
+  "notes": [
+    "Sayfa ayrıntıları (adres, tarayıcı, pencere boyutu, saat) bir dışa aktarıma yalnızca o anahtar açıksa eklenir.",
+    "Görsellerdeki “Made with Markline” satırı isteğe bağlıdır ve ayarlardan kapatılabilir."
+  ]
+}

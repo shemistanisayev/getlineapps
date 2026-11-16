@@ -1,0 +1,51 @@
+{
+  "summary": "Serpline controleert de SEO en de toegang voor AI-crawlers van de pagina waarop je bent. Alles wordt in je browser uitgerekend, en er wordt niets naar ons gestuurd.",
+  "reads": [
+    "De pagina in het huidige tabblad, nadat je op het icoon klikt of de sneltoets indrukt.",
+    "De ruwe HTML van diezelfde pagina, en de robots.txt, llms.txt en sitemap van die site, rechtstreeks van de site opgehaald.",
+    "Snelheidscijfers die je browser al voor de pagina bijhoudt (Core Web Vitals, grootte van verzoeken) en de grootte van de afbeeldingen en tekst, gemeten in het tabblad.",
+    "De canonieke pagina en de taalversies (hreflang) van de pagina, als die op dezelfde site staan, om te controleren of ze werken en terug linken.",
+    "De status van interne links op de pagina, alleen als je op Links controleren drukt of die instelling aanzet. Deze verzoeken gaan naar dezelfde site."
+  ],
+  "stores": [
+    "Instellingen op je computer: taal, apparaat voor het Google-voorbeeld en de schakelaar voor de linkcontrole.",
+    "Resultaten blijven in het zijpaneel tot je het sluit."
+  ],
+  "never": [
+    "Een hele site crawlen of pagina's controleren waarop je het niet hebt geopend",
+    "Pagina's of resultaten naar een server sturen",
+    "Een geschiedenis bijhouden van de sites die je hebt gecontroleerd",
+    "Lezen wat je in formulieren typt"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Het huidige tabblad lezen nadat je op het icoon klikt."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "De leesfunctie in dat tabblad uitvoeren."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Serpline naast de pagina tonen."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Je instellingen op je computer opslaan."
+    },
+    {
+      "name": "Toegang tot site (optioneel)",
+      "manifest": "optional_host:https://*/*",
+      "why": "Wordt per site gevraagd, alleen als je op Deze pagina controleren drukt. Chrome toont een eigen melding, en je kunt de toegang verwijderen in de instellingen van Chrome."
+    }
+  ],
+  "notes": [
+    "Verzoeken naar de site die je controleert werken als het opnieuw laden van de pagina: je browser stuurt de eigen cookies van die site mee, zoals altijd.",
+    "De audit-PDF wordt in je browser gemaakt."
+  ]
+}

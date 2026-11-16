@@ -1,0 +1,46 @@
+{
+  "summary": "Hitline toont de trackingtags en events van de pagina die je inspecteert. Het verzamelt, bewaart en verstuurt geen data over jou of over de pagina's die je controleert.",
+  "reads": [
+    "De netwerkverzoeken, de dataLayer en andere datalagen van de pagina (adobeDataLayer, digitalData, utag_data), de GTM-containers en welke bekende trackingtools op het geïnspecteerde tabblad zijn geladen, plus de trackingcookies _ga, _gcl_*, _fbp, _fbc, _ttp en FPID, alleen zolang het tabblad Hitline in Chrome DevTools open is.",
+    "De pagina in het huidige tabblad, alleen nadat je op het Hitline-icoon klikt om de popup te openen, en daarna opnieuw elke 2 seconden zolang de popup open blijft.",
+    "Een trackingplanbestand, alleen als je ervoor kiest er een te laden. Het wordt in je browser gelezen."
+  ],
+  "stores": [
+    "Je instellingen in de Chrome-opslag op je computer: de taal, de domeinen die je als je eigen site opgeeft, de trackingplannen die je laadt (alleen namen van events en parameters) en de eigen platforms die je toevoegt (een naam en een deel van een URL).",
+    "Als je in de popup op \"Tonen in DevTools\" klikt, wordt een korte notitie over welk event moet worden getoond in het geheugen van Chrome bewaard tot het paneel die leest. Die is weg zodra Chrome wordt gesloten.",
+    "Resultaten blijven in het open paneel en zijn weg als je DevTools of de popup sluit."
+  ],
+  "never": [
+    "Tabbladen lezen waarop je Hitline niet hebt geopend",
+    "Lezen wat je in formulieren typt",
+    "Events, pagina's of resultaten naar een server sturen",
+    "Een geschiedenis bijhouden van de sites die je hebt gecontroleerd"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Het huidige tabblad lezen, en alleen nadat je op het icoon klikt."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "De leesfunctie in dat tabblad uitvoeren."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Je instellingen op je computer opslaan."
+    },
+    {
+      "name": "devtools_page",
+      "manifest": "key:devtools_page",
+      "why": "Het tabblad Hitline aan DevTools toevoegen. Chrome geeft het de verzoeken van het geïnspecteerde tabblad alleen zolang DevTools open is."
+    }
+  ],
+  "notes": [
+    "De audit-PDF wordt in je browser gemaakt en opgeslagen waar jij kiest.",
+    "Zolang het tabblad Hitline open is, en als je op \"Pagina opnieuw laden\" klikt, voegt Hitline een kleine timer toe aan de dataLayer van die pagina die noteert wanneer elk item wordt gepusht. Het leest verder niets en verstuurt niets.",
+    "Hitline doet zelf geen netwerkverzoeken."
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "lang": "en",
   "htmlLang": "en",
-  "switchTo": { "label": "Azərbaycan dilində", "short": "AZ" },
+  "language": "Language",
   "skip": "Skip to content",
   "nav": {
     "home": "Line apps home",

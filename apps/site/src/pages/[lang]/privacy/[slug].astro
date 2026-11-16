@@ -1,0 +1,14 @@
+---
+/** /<lang>/privacy/<slug> for the languages beyond EN and AZ (lib/site.ts, EXTRA_LOCALES). */
+import { TOOL_SLUGS, type ToolSlug } from '@line/core/site';
+import PrivacyPage from '../../../components/PrivacyPage.astro';
+import { EXTRA_LOCALES, type Locale } from '../../../lib/site.ts';
+
+export function getStaticPaths() {
+  return EXTRA_LOCALES.flatMap((lang) => TOOL_SLUGS.map((slug) => ({ params: { lang, slug } })));
+}
+const locale = Astro.params.lang as Locale;
+const slug = Astro.params.slug as ToolSlug;
+---
+
+<PrivacyPage locale={locale} slug={slug} />

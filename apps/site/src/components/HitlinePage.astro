@@ -5,6 +5,7 @@
  */
 import '../styles/hitline.css';
 import Base from '../layouts/Base.astro';
+import LangMenu from './LangMenu.astro';
 import Logo from './Logo.astro';
 import Pf from './Pf.astro';
 import ReportMock from './ReportMock.astro';
@@ -13,6 +14,7 @@ import { contactUrl } from '@line/core/site';
 import { faqPageJsonLd, softwareApplicationJsonLd } from '@line/site-kit/seo';
 import {
   SOURCE_URL,
+  alternatesFor,
   getHitline,
   getShared,
   getTool,
@@ -29,7 +31,6 @@ const c = await getHitline(locale);
 const t = await getShared(locale);
 const tool = await getTool('hitline');
 const live = tool.status === 'live' && Boolean(tool.storeUrl);
-const other: Locale = locale === 'en' ? 'az' : 'en';
 const cta = (campaign: 'audit_cta' | 'faq' | 'footer') =>
   contactUrl({ source: 'hitline', medium: 'landing', campaign });
 const samplePdf = '/hitline/sample-audit.pdf';
@@ -41,7 +42,7 @@ const seo = {
   path: localePath(locale, '/hitline'),
   image: ogImage,
   imageAlt: c.meta.ogAlt,
-  alternates: { en: '/hitline', az: '/az/hitline' },
+  alternates: alternatesFor('/hitline'),
   jsonLd: [
     softwareApplicationJsonLd({
       name: 'Hitline',
@@ -146,10 +147,7 @@ const marquee = [...c.marquee.items, ...c.marquee.items];
           </a>
         </nav>
         <span class="grow"></span>
-        <a class="nl lang" href={localePath(other, '/hitline')} hreflang={other} lang={other}>
-          <span aria-hidden="true">{t.switchTo.short}</span>
-          <span class="sr-only">{t.switchTo.label}</span>
-        </a>
+        <LangMenu locale={locale} path="/hitline" label={t.language} />
         {live ? (
           <a class="btn btn-p btn-nav" href={tool.storeUrl!} target="_blank" rel="noopener">
             {c.add.nav}

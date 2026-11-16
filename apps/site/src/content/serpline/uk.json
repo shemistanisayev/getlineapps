@@ -1,0 +1,674 @@
+{
+  "meta": {
+    "title": "Serpline: безкоштовний SEO-аудит для Google, ChatGPT та ін.",
+    "description": "Безкоштовне розширення для Chrome. Індексація, технічне SEO, Core Web Vitals, рендер JavaScript і перевірка AI-краулерів для відкритої сторінки в одній бічній панелі.",
+    "ogAlt": "Serpline: дивіться на сторінку так, як її бачать Google і ШІ."
+  },
+  "nav": {
+    "label": "Розділи Serpline",
+    "preview": "Прев'ю в пошуку",
+    "features": "Можливості",
+    "how": "Як це працює",
+    "privacy": "Приватність",
+    "faq": "Питання"
+  },
+  "add": {
+    "nav": "Додати в Chrome",
+    "hero": "Додати в Chrome безкоштовно",
+    "band": "Додати Serpline в Chrome",
+    "soonNav": "Незабаром",
+    "soonHero": "Незабаром у Chrome"
+  },
+  "hero": {
+    "pill": "Безкоштовне розширення для Chrome",
+    "titleStart": "Дивіться, як",
+    "titleHighlight": "Google і ШІ",
+    "titleEnd": "бачать вашу сторінку",
+    "lead": "Індексація, технічне SEO, Core Web Vitals і перевірка AI-краулерів для відкритої сторінки в одній бічній панелі Chrome",
+    "secondary": "Спробувати прев'ю в пошуку",
+    "trustLabel": "Serpline це",
+    "trust": ["Без акаунта", "Дані не залишають браузер", "Відкритий код"],
+    "mock": {
+      "url": "example.com/products/wireless-headphones-pro-x",
+      "rendered": "Після рендеру",
+      "raw": "Вихідний HTML",
+      "scoreAria": "SEO-оцінка 56",
+      "label": "Варто покращити",
+      "issues": "Знайдено 10 проблем",
+      "rows": [
+        {
+          "label": "Title",
+          "status": "Вміщується",
+          "tone": "ok"
+        },
+        {
+          "label": "Description",
+          "status": "Обрізано",
+          "tone": "warn"
+        },
+        {
+          "label": "Canonical",
+          "status": "Ця сторінка",
+          "tone": "ok"
+        },
+        {
+          "label": "H1",
+          "status": "Лише JS",
+          "tone": "bad"
+        },
+        {
+          "label": "Alt-текст",
+          "status": "Бракує 3",
+          "tone": "warn"
+        },
+        {
+          "label": "Schema",
+          "status": "Лише JS",
+          "tone": "warn"
+        },
+        {
+          "label": "GPTBot",
+          "status": "Дозволено",
+          "tone": "ok"
+        },
+        {
+          "label": "PerplexityBot",
+          "status": "Заблоковано",
+          "tone": "bad"
+        }
+      ]
+    },
+    "serp": {
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging",
+      "note": "Description обрізано після 107 символів"
+    },
+    "toast": {
+      "value": "91%",
+      "line1": "тексту потребує",
+      "line2": "JavaScript"
+    }
+  },
+  "marquee": {
+    "title": "Перевіряє, що бачать пошукові системи й AI-краулери",
+    "items": [
+      {
+        "mark": "google",
+        "label": "Прев'ю в Google"
+      },
+      {
+        "mark": "google",
+        "label": "Googlebot"
+      },
+      {
+        "mark": "eye",
+        "label": "Core Web Vitals"
+      },
+      {
+        "mark": "file",
+        "label": "sitemap.xml",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "Розширені результати"
+      },
+      {
+        "mark": "openai",
+        "label": "GPTBot"
+      },
+      {
+        "mark": "openai",
+        "label": "OAI-SearchBot"
+      },
+      {
+        "mark": "openai",
+        "label": "ChatGPT-User"
+      },
+      {
+        "mark": "anthropic",
+        "label": "ClaudeBot"
+      },
+      {
+        "mark": "anthropic",
+        "label": "Claude-SearchBot"
+      },
+      {
+        "mark": "perplexity",
+        "label": "PerplexityBot"
+      },
+      {
+        "mark": "google",
+        "label": "Google-Extended"
+      },
+      {
+        "mark": "apple",
+        "label": "Applebot-Extended"
+      },
+      {
+        "mark": "bytedance",
+        "label": "Bytespider"
+      },
+      {
+        "mark": "meta",
+        "label": "Meta-ExternalAgent"
+      },
+      {
+        "mark": "bot",
+        "label": "CCBot"
+      },
+      {
+        "mark": "file",
+        "label": "robots.txt",
+        "code": true
+      },
+      {
+        "mark": "file",
+        "label": "llms.txt",
+        "code": true
+      },
+      {
+        "mark": "link",
+        "label": "rel=canonical",
+        "code": true
+      },
+      {
+        "mark": "eye",
+        "label": "Meta robots"
+      },
+      {
+        "mark": "globe",
+        "label": "hreflang",
+        "code": true
+      },
+      {
+        "mark": "braces",
+        "label": "JSON-LD"
+      },
+      {
+        "mark": "share",
+        "label": "Open Graph"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Проблема",
+    "title": "Сторінка виглядає добре, але краулери читають інше",
+    "lead": "Більшість SEO-проблем ніколи не видно на екрані, тож їх ніхто не помічає, доки не впаде трафік",
+    "cards": [
+      {
+        "title": "Вміст, якому потрібен JavaScript",
+        "text": "Ваш браузер показує повну сторінку. HTML, який завантажує краулер, може бути порожньою оболонкою, а більшість AI-краулерів ніколи не запускають скрипти, що її наповнюють"
+      },
+      {
+        "title": "Обрізані сніпети в Google",
+        "text": "Довгий title чи description закінчується трьома крапками. Рядок, який мав здобути клік, так і не з'являється"
+      },
+      {
+        "title": "AI-краулери, заблоковані випадково",
+        "text": "Один старий рядок у robots.txt може місяцями тримати сайт поза відповідями ChatGPT, Claude чи Perplexity"
+      }
+    ],
+    "mini": {
+      "raw": "Вихідний HTML",
+      "rawWords": "38 слів",
+      "after": "Після JavaScript",
+      "afterWords": "412 слів",
+      "crumb": "example.com › products",
+      "title": "Wireless Headphones Pro X | Lumo",
+      "desc": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two",
+      "blocked": "Заблоковано"
+    }
+  },
+  "preview": {
+    "eyebrow": "Безкоштовний інструмент",
+    "title": "Перегляньте свій результат у Google до публікації",
+    "lead": "Введіть title і description. Побачте, де Google обрізає їх на десктопі й на мобільному. Усе працює на цій сторінці, і нічого нікуди не надсилається",
+    "titleLabel": "Title сторінки",
+    "titleDefault": "Wireless Headphones Pro X | Lumo",
+    "titlePlaceholder": "Wireless Headphones Pro X | Lumo",
+    "descLabel": "Meta description",
+    "descDefault": "Active noise cancelling, 30-hour battery and fast charging. Bluetooth 5.3 connects to two devices at once. Free next-day delivery and free returns within 14 days on all Lumo Audio headphones.",
+    "descPlaceholder": "Одне-два речення про сторінку",
+    "urlLabel": "URL",
+    "urlDefault": "https://example.com/products/wireless-headphones-pro-x",
+    "googlePreview": "Прев'ю в Google",
+    "deviceLabel": "Пристрій прев'ю",
+    "desktop": "Десктоп",
+    "mobile": "Мобільний",
+    "measure": "{chars} символів, {px} з {limit} px",
+    "fits": "Вміщується",
+    "cut": "Обрізано після {n} символів",
+    "addTitle": "Додайте title",
+    "addDesc": "Додайте description",
+    "emptyTitle": "Title вашої сторінки",
+    "emptyDesc": "Google сам вибере текст зі сторінки.",
+    "note": "Ліміти вимірюються в пікселях і приблизні. Google може переписувати title і сніпети",
+    "band": "Перевірте всю сторінку, а не лише сніпет"
+  },
+  "features": {
+    "eyebrow": "У бічній панелі",
+    "title": "Шість вкладок, одна бічна панель",
+    "tabsLabel": "Вкладки Serpline",
+    "summary": {
+      "label": "Підсумок",
+      "title": "Оцінка, вердикт щодо індексації та чекліст, щойно відкривається панель",
+      "lead": "Чи може Google проіндексувати сторінку, а далі title, description, H1, alt-текст, структуровані дані, Open Graph і hreflang, кожен із чітким статусом",
+      "bullets": [
+        "Одна оцінка зі 100, зважена за пріоритетом",
+        "Структуровані дані перевірено за правилами розширених результатів Google",
+        "Прев'ю в Google для десктопа й мобільних, а також PDF-аудит"
+      ],
+      "demo": {
+        "scoreAria": "SEO-оцінка 56",
+        "label": "SEO-оцінка: варто покращити",
+        "counts": "2 високі, 6 середніх, 2 низькі",
+        "rows": [
+          {
+            "label": "Title",
+            "status": "32 символи",
+            "tone": "ok"
+          },
+          {
+            "label": "Meta description",
+            "status": "Обрізано в Google",
+            "tone": "warn"
+          },
+          {
+            "label": "H1",
+            "status": "Лише після JavaScript",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Schema Product",
+            "status": "Сніпет товару готовий",
+            "tone": "ok"
+          }
+        ],
+        "index": {
+          "label": "Чи може Google проіндексувати?",
+          "status": "Так",
+          "tone": "ok"
+        }
+      }
+    },
+    "headings": {
+      "label": "Заголовки",
+      "title": "Структура, яку бачать краулери, з підсвіткою на сторінці",
+      "lead": "Дерево від H1 до H6 із пропущеними рівнями та повторюваними H1, а також кожне зображення без alt-тексту",
+      "bullets": [
+        "Рамки на сторінці показують, де стоїть кожен заголовок",
+        "Позначено заголовки, що з'являються лише після JavaScript"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "level": 1,
+            "text": "Wireless Headphones Pro X",
+            "status": "Лише JavaScript",
+            "tone": "bad"
+          },
+          {
+            "level": 2,
+            "text": "Product details"
+          },
+          {
+            "level": 3,
+            "text": "Noise cancelling"
+          },
+          {
+            "level": 2,
+            "text": "Specifications"
+          },
+          {
+            "level": 4,
+            "text": "Bluetooth 5.3",
+            "status": "Пропущено H3",
+            "tone": "warn",
+            "hl": true
+          },
+          {
+            "level": 2,
+            "text": "Reviews (128)"
+          }
+        ]
+      }
+    },
+    "links": {
+      "label": "Посилання",
+      "title": "Биті посилання й редиректи, знайдені просто зі сторінки",
+      "lead": "Внутрішні, зовнішні та nofollow-посилання з анкорами. Внутрішні посилання проходять реальну перевірку статусу з вашого браузера",
+      "bullets": [
+        "Помилки 404 і ланцюжки редиректів в одному списку",
+        "Розмиті анкори й посилання без тексту підсвічено на сторінці",
+        "Запити йдуть лише на сайт, який ви відкрили"
+      ],
+      "demo": {
+        "internal": "внутрішні",
+        "external": "зовнішні",
+        "issues": "проблеми",
+        "rows": [
+          {
+            "text": "Earbuds Mini",
+            "path": "/products/earbuds-mini-old",
+            "status": "404",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "text": "Headphones",
+            "path": "/headphones → /electronics/headphones",
+            "status": "301",
+            "tone": "warn"
+          },
+          {
+            "text": "Free returns",
+            "path": "/returns → /help/returns",
+            "status": "301",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "render": {
+      "label": "Рендер",
+      "title": "Вихідний HTML поруч із відрендереною сторінкою",
+      "lead": "Serpline один раз завантажує код сторінки й порівнює його з тим, що побудував JavaScript: заголовки, слова, посилання та структуровані дані",
+      "bullets": [
+        "Показує, яким саме елементам потрібен JavaScript",
+        "Перевірка, яку пропускає більшість SEO-розширень"
+      ],
+      "demo": {
+        "raw": "Вихідний HTML",
+        "rawValue": "38 слів, без H1",
+        "rendered": "Після рендеру",
+        "renderedValue": "412 слів, 1 H1",
+        "words": "374 слова"
+      }
+    },
+    "speed": {
+      "label": "Швидкість",
+      "title": "Core Web Vitals, зображення й мобільна версія, виміряні на сторінці",
+      "lead": "LCP, CLS і INP вашого візиту з порогами Google, вага сторінки, відповідь сервера та кожне зображення чи зона натискання, що сповільнює сторінку",
+      "bullets": [
+        "Важкі, завеликі, ліниві й зображення без розмірів, з назвами файлів",
+        "Мобільні перевірки: viewport, горизонтальне прокручування, дрібний текст і зони натискання",
+        "Елемент LCP підсвічено просто на сторінці"
+      ],
+      "demo": {
+        "vitals": [
+          {
+            "k": "LCP",
+            "value": "2.9 s",
+            "status": "Варто покращити",
+            "tone": "warn"
+          },
+          {
+            "k": "CLS",
+            "value": "0.02",
+            "status": "Добре",
+            "tone": "ok"
+          },
+          {
+            "k": "INP",
+            "value": "120 ms",
+            "status": "Добре",
+            "tone": "ok"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Понад 200 KB",
+            "status": "2 зображення",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "label": "Більші, ніж показано",
+            "status": "4 зображення",
+            "tone": "warn"
+          },
+          {
+            "label": "Viewport meta",
+            "status": "width=device-width",
+            "tone": "ok"
+          },
+          {
+            "label": "Стиснення",
+            "status": "brotli",
+            "tone": "ok"
+          }
+        ]
+      }
+    },
+    "ai": {
+      "label": "ШІ",
+      "title": "Які AI-краулери можуть читати сайт і що вони бачать",
+      "lead": "Правила для GPTBot, ClaudeBot, PerplexityBot, Google-Extended та інших із robots.txt, з поділом на пошукових і навчальних ботів, а також llms.txt",
+      "bullets": [
+        "Точний рядок robots.txt за кожним блокуванням",
+        "Що бачать AI-краулери: частку тексту, заголовок і schema, які вони можуть прочитати"
+      ],
+      "demo": {
+        "rows": [
+          {
+            "mark": "openai",
+            "label": "GPTBot",
+            "status": "Дозволено",
+            "tone": "ok"
+          },
+          {
+            "mark": "anthropic",
+            "label": "ClaudeBot",
+            "status": "Дозволено",
+            "tone": "ok"
+          },
+          {
+            "mark": "perplexity",
+            "label": "PerplexityBot",
+            "status": "Заблоковано",
+            "tone": "bad",
+            "hl": true
+          },
+          {
+            "mark": "google",
+            "label": "Google-Extended",
+            "status": "Дозволено",
+            "tone": "ok"
+          },
+          {
+            "mark": "commoncrawl",
+            "label": "CCBot",
+            "status": "Заблоковано",
+            "tone": "bad"
+          }
+        ],
+        "llms": "llms.txt",
+        "llmsStatus": "Не знайдено",
+        "seen": {
+          "label": "Текст, який бачать AI-краулери",
+          "status": "9%",
+          "tone": "bad"
+        }
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Як це працює",
+    "title": "Три кроки без налаштування",
+    "steps": [
+      {
+        "title": "Додайте Serpline в Chrome",
+        "text": "Безкоштовно в Chrome Web Store. Акаунт не потрібен"
+      },
+      {
+        "title": "Відкрийте сторінку, натисніть на іконку",
+        "text": "Бічна панель відкривається поруч зі сторінкою й перевіряє її. Або натисніть",
+        "key": "Alt+Shift+S",
+        "textEnd": ""
+      },
+      {
+        "title": "Завантажте PDF-аудит",
+        "text": "Кожна проблема з рішенням, готово для надсилання розробнику"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "PDF-аудит",
+    "titleStart": "Знайшли проблеми?",
+    "titleHighlight": "Виправте їх",
+    "titleEnd": "з автором Serpline",
+    "text": "Один клік перетворює знахідки на звіт за пріоритетами. Надішліть його розробнику або мені: я виправляю технічне SEO, server-side рендеринг, структуровані дані та видимість в AI-пошуку",
+    "cta": "Замовити SEO-аудит",
+    "from": "Від",
+    "paper": {
+      "date": "7 лист. 2026",
+      "eyebrow": "Аудит SEO та AI-пошуку",
+      "host": "example.com",
+      "score": "оцінка",
+      "high": "високі",
+      "medium": "середні",
+      "rows": [
+        {
+          "tone": "bad",
+          "label": "Високий",
+          "strong": "H1 з'являється лише після JavaScript.",
+          "text": "Рендерте його на сервері."
+        },
+        {
+          "tone": "bad",
+          "label": "Високий",
+          "strong": "91% тексту потребує JavaScript.",
+          "text": ""
+        },
+        {
+          "tone": "warn",
+          "label": "Середній",
+          "strong": "PerplexityBot заблоковано.",
+          "text": "Видаліть правило в robots.txt."
+        }
+      ],
+      "ctaText": "Потрібна допомога з виправленням?",
+      "ctaButton": "Зв'язатися"
+    }
+  },
+  "privacy": {
+    "eyebrow": "Приватність",
+    "title": "Ваші сторінки лишаються у вашому браузері",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Без сервера",
+        "text": "Кожна перевірка виконується в Chrome. У Serpline немає бекенду, куди надсилати сторінки"
+      },
+      {
+        "icon": "lock",
+        "title": "Мінімум дозволів",
+        "text": "Активна вкладка, бічна панель і локальні налаштування. Немає доступу до всіх ваших сайтів"
+      },
+      {
+        "icon": "chart",
+        "title": "Без аналітики всередині",
+        "text": "Розширення не стежить за вами. Результати зникають, щойно ви закриваєте панель"
+      },
+      {
+        "icon": "code",
+        "title": "Відкритий код",
+        "text": "Прочитайте код і самі перевірте кожне твердження на цій сторінці"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Питання",
+    "title": "Запитання",
+    "askBefore": "Щось інше?",
+    "askLink": "Запитайте мене напряму",
+    "items": [
+      {
+        "q": "Serpline справді безкоштовний?",
+        "a": "Так. Немає платного тарифу, акаунта й лімітів використання."
+      },
+      {
+        "q": "Чим він відрізняється від Ahrefs чи Screaming Frog?",
+        "a": "Вони сканують цілі сайти із сервера або з вашого комп'ютера. Serpline перевіряє відкриту сторінку у вашому браузері, зокрема те, що змінюється після JavaScript, і те, що дозволено читати AI-краулерам. Він добре працює разом із ними."
+      },
+      {
+        "q": "Як він перевіряє AI-пошук?",
+        "a": "Він читає robots.txt і llms.txt сайту, зіставляє правила для кожного відомого AI-краулера й порівнює вихідний HTML із відрендереною сторінкою, бо більшість AI-краулерів не запускають JavaScript."
+      },
+      {
+        "q": "Він сканує весь мій сайт?",
+        "a": "Ні. Він перевіряє відкриту сторінку, robots.txt, llms.txt і sitemap сайту, а також статус внутрішніх посилань на цій сторінці."
+      },
+      {
+        "q": "Він вимірює швидкість сторінки?",
+        "a": "Так. Вкладка «Швидкість» показує Core Web Vitals вашого візиту (LCP, CLS і INP), вагу сторінки, відповідь сервера, проблеми із зображеннями та перевірки мобільної верстки. Цифри беруться з вашого власного браузера, тож у реальних відвідувачів на повільніших телефонах вони можуть бути вищими."
+      },
+      {
+        "q": "Він кудись надсилає мої сторінки?",
+        "a": "Ні. Запити йдуть лише на сайт, який ви відкрили, і лише з вашого браузера. Ні до мене, ні до когось іншого нічого не потрапляє."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Сімейство Line",
+    "title": "Більше безкоштовних інструментів із того самого сімейства",
+    "tools": {
+      "hitline": {
+        "text": "Кожен хіт трекінгу, тег GTM і сигнал згоди в DevTools",
+        "open": "Відкрити Hitline"
+      },
+      "rivaline": {
+        "text": "Технології, реклама й фірмовий стиль конкурента в одній панелі",
+        "open": "Відкрити Rivaline"
+      },
+      "foldline": {
+        "text": "Знайдіть, що заважає лендингу конвертувати",
+        "open": "Відкрити Foldline"
+      },
+      "markline": {
+        "text": "Знімок екрана, позначки й відгук за лічені секунди",
+        "open": "Відкрити Markline"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Автор:",
+    "privacy": "Політика конфіденційності",
+    "source": "Вихідний код"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Шкода, що ви йдете | Serpline",
+      "description": "Розкажіть, чому ви видалили Serpline. Один клік допоможе зробити наступну версію кращою."
+    },
+    "titleStart": "Serpline видалено",
+    "titleEnd": "Чому ви пішли?",
+    "lead": "Один клік допоможе зробити наступну версію кращою",
+    "reasonsLabel": "Причина",
+    "reasons": [
+      "Він пропустив проблеми на моєму сайті",
+      "Він був потрібен лише раз",
+      "Надто складно зрозуміти",
+      "Я користуюся іншим інструментом"
+    ],
+    "moreLabel": "Щось іще?",
+    "optional": "(необов'язково)",
+    "placeholder": "Яку сторінку чи перевірку він пропустив?",
+    "send": "Надіслати відгук",
+    "sending": "Надсилаємо...",
+    "thanks": "Дякуємо. Ваш відгук надіслано.",
+    "error": "Не вдалося надіслати. Спробуйте ще раз за хвилину.",
+    "pickOne": "Оберіть причину або напишіть кілька слів.",
+    "reinstall": "Встановити Serpline знову",
+    "card": {
+      "eyebrow": "SEO-проблема лишилася?",
+      "title": "Я можу провести аудит і виправити її",
+      "text": "Технічне SEO, рендеринг JavaScript, структуровані дані та видимість в AI-пошуку. Ви отримаєте чіткий список того, що зламано, і виправлення, які ваші розробники зможуть впровадити",
+      "cta": "Замовити SEO-аудит",
+      "sub": "Shamistan Isayev, технічне SEO та аналітика"
+    }
+  }
+}

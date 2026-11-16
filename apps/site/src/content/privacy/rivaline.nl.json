@@ -1,0 +1,44 @@
+{
+  "summary": "Rivaline toont de marketingtools, links naar advertentiebibliotheken en de huisstijl van de site waarop je bent. Het leest die pagina in je browser en stuurt niets naar ons.",
+  "reads": [
+    "Scriptadressen, namen van geladen bestanden, metatags en de namen van cookies op de pagina, nooit hun waarden. Alleen nadat je op het icoon klikt.",
+    "Kleuren, lettertypen en de stijlen van de hoofdknop van die pagina.",
+    "Een screenshot van het zichtbare deel van het tabblad, alleen gebruikt om het logo uit te knippen en direct daarna weggegooid."
+  ],
+  "stores": [
+    "Instellingen op je computer: standaardland en taal.",
+    "Resultaten blijven in het zijpaneel tot je het sluit."
+  ],
+  "never": [
+    "Cookiewaarden lezen of lezen wat je in formulieren typt",
+    "Lettertypebestanden downloaden",
+    "Pagina's of resultaten naar een server sturen",
+    "Een geschiedenis bijhouden van de sites die je hebt gecontroleerd"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Het huidige tabblad lezen nadat je op het icoon klikt."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "De leesfunctie in dat tabblad uitvoeren."
+    },
+    {
+      "name": "sidePanel",
+      "manifest": "permission:sidePanel",
+      "why": "Rivaline naast de pagina tonen."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Je instellingen op je computer opslaan."
+    }
+  ],
+  "notes": [
+    "De knoppen voor advertentiebibliotheken openen Meta, Google, TikTok en LinkedIn in nieuwe tabbladen. Die sites hebben hun eigen privacybeleid.",
+    "Exports van de huisstijl en de PDF worden in je browser gemaakt."
+  ]
+}

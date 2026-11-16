@@ -1,7 +1,21 @@
 /** SEO head for getlineapps.com: title, description, canonical, hreflang, Open Graph, Twitter, JSON-LD. */
 import { LINE_SITE_URL, OWNER_SITE_URL } from '@line/core/site';
 
-export type SiteLocale = 'en' | 'az';
+export type SiteLocale = 'en' | 'az' | 'tr' | 'ru' | 'ro' | 'uk' | 'pt' | 'nl' | 'es' | 'fr';
+
+/** Open Graph locale per site language. */
+export const OG_LOCALES: Record<SiteLocale, string> = {
+  en: 'en_US',
+  az: 'az_AZ',
+  tr: 'tr_TR',
+  ru: 'ru_RU',
+  ro: 'ro_RO',
+  uk: 'uk_UA',
+  pt: 'pt_BR',
+  nl: 'nl_NL',
+  es: 'es_ES',
+  fr: 'fr_FR',
+};
 
 export interface SeoInput {
   title: string;
@@ -49,7 +63,7 @@ export function seoTags(input: SeoInput): HeadTag[] {
     { tag: 'meta', attrs: { property: 'og:url', content: url } },
     {
       tag: 'meta',
-      attrs: { property: 'og:locale', content: input.locale === 'az' ? 'az_AZ' : 'en_US' },
+      attrs: { property: 'og:locale', content: OG_LOCALES[input.locale ?? 'en'] },
     },
     { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
   ];

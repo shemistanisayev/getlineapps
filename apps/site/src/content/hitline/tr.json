@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "title": "Hitline: Ücretsiz Tag Debugger, GA4, Meta, TikTok ve Fazlası",
+    "description": "Ücretsiz Chrome eklentisi. GA4, Google Ads, Meta, TikTok ve diğer 46 platformun tüm eventlerini gör, GTM etiketlerini oku ve consent sızıntılarını Chrome DevTools'ta yakala.",
+    "ogAlt": "Hitline: tracking'in çalışıyor mu? Tek panelde kanıtla."
+  },
+  "nav": {
+    "label": "Hitline bölümleri",
+    "features": "Özellikler",
+    "how": "Nasıl çalışır",
+    "privacy": "Gizlilik",
+    "faq": "SSS"
+  },
+  "add": {
+    "nav": "Chrome'a ekle",
+    "hero": "Chrome'a ekle, ücretsiz",
+    "soonNav": "Çok yakında",
+    "soonHero": "Çok yakında Chrome'da"
+  },
+  "sample": {
+    "eyebrow": "Örnek denetim",
+    "title": "example.com, Hitline ile tek tıkla hazırlandı",
+    "note": "Gerçek rapor düzeni. Hiçbir veri tarayıcıdan çıkmadı",
+    "download": "Örnek PDF'i indir",
+    "close": "Örnek denetimi kapat"
+  },
+  "hero": {
+    "pill": "Ücretsiz Chrome eklentisi",
+    "titleStart": "Tracking'in çalışıyor mu?",
+    "titleHighlight": "Tek panelde",
+    "titleEnd": "kanıtla",
+    "lead": "GA4, Google Ads, Meta, TikTok ve diğer 46 platformun tüm eventlerini gör, server-side GTM'i tespit et ve consent sızıntılarını doğrudan Chrome DevTools'ta yakala",
+    "secondary": "Örnek denetimi gör",
+    "trust": ["Hesap yok", "Hiçbir şey tarayıcından çıkmaz", "Açık kaynak"],
+    "mockLabel": "DevTools › Hitline",
+    "tabs": [
+      {
+        "label": "Eventler",
+        "count": "14",
+        "warn": false
+      },
+      {
+        "label": "GTM",
+        "count": "24",
+        "warn": false
+      },
+      {
+        "label": "Consent",
+        "count": "2",
+        "warn": true
+      },
+      {
+        "label": "Attribution",
+        "count": "1",
+        "warn": true
+      }
+    ],
+    "live": "Canlı",
+    "rows": [
+      {
+        "time": "18.204",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "page_view",
+        "route": "sgtm"
+      },
+      {
+        "time": "18.310",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "PageView",
+        "route": "browser"
+      },
+      {
+        "time": "19.140",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "ViewContent",
+        "route": "browser"
+      },
+      {
+        "time": "31.950",
+        "platform": "ga",
+        "name": "GA4",
+        "event": "add_to_cart",
+        "route": "sgtm"
+      },
+      {
+        "time": "32.004",
+        "platform": "meta",
+        "name": "Meta",
+        "event": "AddToCart",
+        "route": "bad"
+      },
+      {
+        "time": "32.050",
+        "platform": "ads",
+        "name": "Google Ads",
+        "event": "conversion",
+        "route": "browser"
+      },
+      {
+        "time": "32.091",
+        "platform": "tt",
+        "name": "TikTok",
+        "event": "AddToCart",
+        "route": "browser"
+      },
+      {
+        "time": "33.420",
+        "platform": "dl",
+        "name": "dataLayer",
+        "event": "begin_checkout",
+        "route": "page"
+      }
+    ],
+    "routes": {
+      "sgtm": "sGTM",
+      "browser": "Tarayıcı",
+      "page": "Sayfa",
+      "bad": "Değer yok"
+    },
+    "sgtmTitle": "Server-side GTM",
+    "sgtmVia": "data.example.com üzerinden",
+    "tags": "4 etiket",
+    "issueLabel": "Sorun bulundu",
+    "issueText": "Meta AddToCart değer olmadan gönderiliyor"
+  },
+  "marquee": {
+    "title": "Zaten kullandığın 50 platformu okur",
+    "items": [
+      {
+        "platform": "ga",
+        "label": "GA4"
+      },
+      {
+        "platform": "ads",
+        "label": "Google Ads"
+      },
+      {
+        "platform": "meta",
+        "label": "Meta Pixel"
+      },
+      {
+        "platform": "tt",
+        "label": "TikTok Pixel"
+      },
+      {
+        "platform": "dl",
+        "label": "Google Tag Manager"
+      },
+      {
+        "platform": "sgtm",
+        "label": "Server-side GTM"
+      },
+      {
+        "platform": "linkedin",
+        "label": "LinkedIn Insight"
+      },
+      {
+        "platform": "bing",
+        "label": "Microsoft Ads"
+      },
+      {
+        "platform": "x",
+        "label": "X Pixel"
+      },
+      {
+        "platform": "pinterest",
+        "label": "Pinterest Tag"
+      },
+      {
+        "platform": "snapchat",
+        "label": "Snapchat Pixel"
+      },
+      {
+        "platform": "reddit",
+        "label": "Reddit Pixel"
+      },
+      {
+        "platform": "hj",
+        "label": "Hotjar"
+      },
+      {
+        "platform": "clarity",
+        "label": "Microsoft Clarity"
+      },
+      {
+        "platform": "amplitude",
+        "label": "Amplitude"
+      },
+      {
+        "platform": "mixpanel",
+        "label": "Mixpanel"
+      },
+      {
+        "platform": "segment",
+        "label": "Segment"
+      },
+      {
+        "platform": "posthog",
+        "label": "PostHog"
+      },
+      {
+        "platform": "adobe",
+        "label": "Adobe Analytics"
+      },
+      {
+        "platform": "matomo",
+        "label": "Matomo"
+      },
+      {
+        "platform": "hubspot",
+        "label": "HubSpot"
+      },
+      {
+        "platform": "klaviyo",
+        "label": "Klaviyo"
+      },
+      {
+        "platform": "criteo",
+        "label": "Criteo"
+      },
+      {
+        "platform": "floodlight",
+        "label": "Floodlight"
+      },
+      {
+        "platform": "optimizely",
+        "label": "Optimizely"
+      },
+      {
+        "platform": "datalayer",
+        "label": "dataLayer"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Sorun",
+    "title": "Tracking hatalarının çoğu sessizdir",
+    "lead": "Bütçe yanlış rakamlar üzerine harcanmaya devam eder",
+    "cards": [
+      {
+        "title": "Değeri olmayan eventler",
+        "text": "Piksel çalışır, dashboard iyi görünür ve reklam platformu bir sepetin ne kadar ettiğini asla öğrenmez"
+      },
+      {
+        "title": "Consent'i yok sayan pikseller",
+        "text": "Ziyaretçi \"Tümünü reddet\"e tıklar ve bir piksel yine de çalışır. Bir denetçi ya da müşteri fark edene kadar kimse görmez"
+      },
+      {
+        "title": "Yanlış kaynağa yazılan satışlar",
+        "text": "Başka bir domaindeki ödeme sayfası tıklama ID'sini düşürür ve ücretli trafik referral olarak görünür"
+      }
+    ],
+    "mini": {
+      "ga4Event": "add_to_cart",
+      "ga4Value": "value 89.90",
+      "metaEvent": "AddToCart",
+      "metaValue": "value",
+      "reject": "Tümünü reddet",
+      "gclid": "gclid",
+      "host": "pay.example.net",
+      "referral": "referral"
+    }
+  },
+  "features": {
+    "eyebrow": "Panelin içinde",
+    "title": "Altı görünüm. Tek soru: rakamlara güvenebilir misin?",
+    "tabsLabel": "Hitline görünümleri",
+    "events": {
+      "label": "Eventler",
+      "eyebrow": "Event inceleyici",
+      "title": "Her event, her parametre, her platform yan yana",
+      "lead": "Hitline 50 analitik, reklam, CRM ve test platformunun isteklerini ve her dataLayer push'unu okur. En yeni eventler en üstte, yenileri geldikçe vurgulanır",
+      "bullets": [
+        "Tek listede 50 platform, kendi servislerin de özel platform olarak",
+        "Her parametre çözülmüş, okunacak query string yok",
+        "Canlı: yeni eventler vurgulanır, en yenisi üstte"
+      ],
+      "demo": {
+        "event": "add_to_cart",
+        "platform": "GA4",
+        "via": "sGTM üzerinden",
+        "params": [
+          {
+            "k": "currency",
+            "v": "USD"
+          },
+          {
+            "k": "value",
+            "v": "89.90"
+          },
+          {
+            "k": "items[0].item_id",
+            "v": "LUMO-PRO-X"
+          },
+          {
+            "k": "items[0].price",
+            "v": "89.90"
+          }
+        ],
+        "issueStrong": "Meta AddToCart",
+        "issueText": "aynı tıklamada değer olmadan gitti."
+      }
+    },
+    "gtm": {
+      "label": "GTM ve sGTM",
+      "eyebrow": "GTM ve server-side",
+      "title": "Bir sitenin server-side GTM kullanıp kullanmadığını kanıtıyla öğren",
+      "lead": "Hitline GTM container'ının kendisini okur: her etiket tetikleyicisi, consent kontrolleri ve durumuyla, her dataLayer eventi de üzerinde çalışan etiketlerle. Bir de server-side GTM için dört sinyal",
+      "bullets": [
+        "Her etiket tetikleyicisi, consent kontrolleri ve durumuyla",
+        "Her dataLayer eventi, üzerinde çalışan etiketlerle",
+        "Tahmin değil, dört server-side sinyali"
+      ],
+      "demo": {
+        "title": "Server-side GTM",
+        "detected": "Tespit edildi",
+        "signals": [
+          "İstekler data.example.com'a gidiyor",
+          "Yol GA4 formatında",
+          "server_container_url ayarlı",
+          "FPID çerezi sunucu tarafından yazılmış"
+        ]
+      }
+    },
+    "checks": {
+      "label": "Kontroller",
+      "eyebrow": "Veri kalitesi kontrolleri",
+      "title": "Raporları sessizce bozan hatalar",
+      "lead": "Hitline her eventi geldiği anda kontrol eder ve her sorunu açıklar: ne oluyor, neden önemli ve nasıl düzeltilir",
+      "bullets": [
+        "Reklam ve analitik platformlarına giden e-posta adresleri",
+        "İki kez gönderilen aynı satın alma veya lead",
+        "Sipariş ID'si olmayan satın almalar, değeri olmayan eventler"
+      ],
+      "demo": {
+        "title": "Bu sayfada bulunanlar",
+        "count": "3 sorun",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 page_view",
+            "status": "URL'de e-posta",
+            "tone": "bad"
+          },
+          {
+            "platform": "meta",
+            "label": "Meta Purchase",
+            "status": "İki kez gönderildi",
+            "tone": "warn"
+          },
+          {
+            "platform": "ga",
+            "label": "GA4 purchase",
+            "status": "Sipariş ID'si yok",
+            "tone": "warn"
+          }
+        ]
+      }
+    },
+    "consent": {
+      "label": "Consent",
+      "eyebrow": "Consent kontrolü",
+      "title": "\"Tümünü reddet\"e tıkla, kimin çalışmaya devam ettiğini gör",
+      "lead": "Hitline Consent Mode v2 sinyallerini okur ve istekleri ziyaretçinin seçiminden önce ve sonra diye ayırır",
+      "bullets": [
+        "Varsayılan ve güncellenen sinyaller yan yana",
+        "Sızıntılar kırmızıyla işaretli, yanında GTM çözümü",
+        "Çerezsiz ping'ler gerçek hit'lerden ayrılır"
+      ],
+      "demo": {
+        "title": "\"Tümünü reddet\" sonrası",
+        "count": "3 istek",
+        "rows": [
+          {
+            "platform": "ga",
+            "label": "GA4 view_item",
+            "status": "Çerezsiz ping",
+            "ok": true
+          },
+          {
+            "platform": "tt",
+            "label": "TikTok ViewContent",
+            "status": "Retten sonra gönderildi",
+            "ok": false
+          },
+          {
+            "platform": "hj",
+            "label": "Hotjar",
+            "status": "Yüklenmedi",
+            "ok": true
+          }
+        ]
+      }
+    },
+    "attribution": {
+      "label": "Attribution",
+      "eyebrow": "Attribution yolu",
+      "title": "UTM ve gclid'i sayfa sayfa takip et",
+      "lead": "Kampanya parametrelerinin reklam tıklamasından sipariş onayına kadar tam olarak nerede kaybolduğunu gör",
+      "bullets": [
+        "UTM, gclid ve fbclid sayfalar boyunca izlenir",
+        "Cross-domain kopmaları otomatik bulunur",
+        "Düzelten GA4 ayarı adıyla belirtilir"
+      ],
+      "demo": {
+        "steps": ["Giriş", "Ürün", "Sepet", "Ödeme", "Onay"],
+        "rows": [
+          {
+            "label": "gclid",
+            "cells": [
+              {
+                "v": "var",
+                "ok": true
+              },
+              {
+                "v": "var",
+                "ok": true
+              },
+              {
+                "v": "var",
+                "ok": true
+              },
+              {
+                "v": "kayıp",
+                "ok": false
+              },
+              {
+                "v": "var",
+                "ok": true
+              }
+            ]
+          },
+          {
+            "label": "source",
+            "cells": [
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "cpc",
+                "ok": true
+              },
+              {
+                "v": "kayıp",
+                "ok": false
+              },
+              {
+                "v": "referral",
+                "ok": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "plan": {
+      "label": "Tracking planı",
+      "eyebrow": "Tracking planı kontrolü",
+      "title": "Planın ile sitenin gerçekte gönderdikleri karşı karşıya",
+      "lead": "Planını CSV olarak yükle. Sen sitede gezindikçe Hitline eksik eventleri ve yanlış parametreleri işaretler",
+      "bullets": [
+        "CSV veya JSON, üç sütun",
+        "Eksik eventler ve yanlış parametreler, canlı",
+        "Henüz planın yok mu? Oturumundan bir taslak çıkar"
+      ],
+      "demo": {
+        "file": "lumo-tracking-plan.csv",
+        "count": "8 event",
+        "bars": [
+          {
+            "label": "Eşleşiyor",
+            "n": 4
+          },
+          {
+            "label": "Eksik",
+            "n": 2
+          },
+          {
+            "label": "Yanlış parametreler",
+            "n": 2
+          }
+        ],
+        "rows": [
+          {
+            "event": "generate_lead",
+            "status": "Eksik",
+            "tone": "bad"
+          },
+          {
+            "event": "sign_up",
+            "status": "Yanlış parametreler",
+            "tone": "warn"
+          }
+        ]
+      }
+    }
+  },
+  "how": {
+    "eyebrow": "Nasıl çalışır",
+    "title": "Üç adım, kurulum yok",
+    "steps": [
+      {
+        "title": "Hitline'ı Chrome'a ekle",
+        "key": "",
+        "titleEnd": "",
+        "text": "Chrome Web Mağazası'nda ücretsiz. Hesap açmana gerek yok"
+      },
+      {
+        "title": "Bir site aç, simgeye tıkla",
+        "key": "",
+        "titleEnd": "",
+        "text": "Popup platformları, server-side durumunu ve öne çıkan sorunları gösterir"
+      },
+      {
+        "title": "Tüm resim için",
+        "key": "F12",
+        "titleEnd": "tuşuna bas",
+        "text": "DevTools'taki Hitline sekmesi sen gezindikçe her eventi canlı kaydeder"
+      }
+    ]
+  },
+  "audit": {
+    "eyebrow": "Denetim PDF'i",
+    "titleStart": "Bozuk bir şey mi buldun?",
+    "titleHighlight": "Düzelttir",
+    "titleEnd": "hem de Hitline'ı geliştiren kişiye",
+    "lead": "Tek tık bulguları önceliklendirilmiş bir rapora çevirir. Bir geliştiriciye gönder ya da bana: büyüyen markalar için GA4, server-side GTM, Consent Mode ve reklam piksellerini kuruyorum",
+    "cta": "Tracking denetimi ayarla",
+    "from": "Hazırlayan",
+    "paper": {
+      "date": "6 Kasım 2026",
+      "eyebrow": "Tracking denetimi",
+      "host": "example.com",
+      "high": "yüksek öncelik",
+      "medium": "orta öncelik",
+      "levels": {
+        "high": "Yüksek",
+        "medium": "Orta"
+      },
+      "items": [
+        {
+          "level": "high",
+          "strong": "Meta Pixel consent'ten önce çalışıyor.",
+          "text": "GTM'de ad_storage consent kontrolü ekle."
+        },
+        {
+          "level": "high",
+          "strong": "Satışlar ödeme sitesine yazılıyor.",
+          "text": "GA4'te \"İstenmeyen referral'lar\" listesine ekle."
+        },
+        {
+          "level": "medium",
+          "strong": "Meta AddToCart'ta değer yok.",
+          "text": "value'yu dataLayer'dan gönder."
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "eyebrow": "Gizlilik",
+    "title": "Verilerin asla tarayıcından çıkmaz",
+    "items": [
+      {
+        "icon": "server",
+        "title": "Sunucu yok",
+        "text": "Tüm analiz Chrome içinde çalışır. Hitline kendi adına hiçbir istek yapmaz"
+      },
+      {
+        "icon": "lock",
+        "title": "Minimum izin",
+        "text": "DevTools paneli, aktif sekme ve yerel depolama. Tüm sitelerine erişim yok"
+      },
+      {
+        "icon": "eye",
+        "title": "İçinde analitik yok",
+        "text": "Eklenti seni takip etmez. Sekmeyi kapattığında sonuçlar silinir"
+      },
+      {
+        "icon": "code",
+        "title": "Açık kaynak",
+        "text": "Kodu oku ve bu sayfadaki her iddiayı kendin kontrol et"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "SSS",
+    "title": "Sorular",
+    "askBefore": "Başka bir soru mu var?",
+    "askLink": "Doğrudan bana sor",
+    "items": [
+      {
+        "q": "Hitline gerçekten ücretsiz mi?",
+        "a": "Evet. Ücretli plan, hesap ve kullanım limiti yok."
+      },
+      {
+        "q": "Verilerimi bir yere gönderiyor mu?",
+        "a": "Hayır. Her şey tarayıcında analiz edilir. Yalnızca ayarların kaydedilir, o da sadece kendi bilgisayarında."
+      },
+      {
+        "q": "Hitline hangi platformları okur?",
+        "a": "50 platform: analitik (GA4, Adobe, Amplitude, Mixpanel, Segment, PostHog, Matomo ve diğerleri), reklam pikselleri (Google Ads, Meta, TikTok, LinkedIn, Microsoft Ads, X, Pinterest, Snapchat, Reddit, Criteo ve diğerleri), oturum kaydı, CRM, etiket yöneticileri, A/B test araçları ve dataLayer."
+      },
+      {
+        "q": "Kullandığım araç listede yok. Hitline yine de gösterebilir mi?",
+        "a": "Evet. Ayarlar'da özel platform olarak ekle: bir ad ve URL'sinin bir parçası. Sadece tracking'e benzeyen istekler de \"Diğer\" altında listelenir."
+      },
+      {
+        "q": "Server-side GTM'i nasıl tespit ediyor?",
+        "a": "GA4 isteklerinin nereye gittiğine, istek yoluna, server_container_url ayarına ve sunucunun yazdığı çerezlere bakar."
+      },
+      {
+        "q": "Tag Assistant'tan farkı ne?",
+        "a": "Tag Assistant Google etiketlerine odaklanır. Hitline 50 platformu yan yana gösterir, GTM etiketlerini ve tetikleyicilerini okur, consent, attribution ve veri kalitesini kontrol eder, eventleri tracking planınla karşılaştırır."
+      },
+      {
+        "q": "DevTools'un açık olması gerekiyor mu?",
+        "a": "Popup onsuz da çalışır ve açık kaldıkça kendini günceller. Tüm event akışı için DevTools'u ve Hitline sekmesini aç, sonra sayfayı bir kez yenile. Chrome eklentilerin DevTools'u açmasına izin vermez, bu yüzden popup kısayolu gösterir ve DevTools tıkladığın eventte açılır."
+      }
+    ]
+  },
+  "more": {
+    "eyebrow": "Line ailesi",
+    "title": "Aynı aileden daha fazla ücretsiz araç",
+    "tools": {
+      "serpline": {
+        "text": "Her sayfa için teknik SEO ve AI arama kontrolleri",
+        "open": "Serpline'ı aç"
+      },
+      "rivaline": {
+        "text": "Bir rakibin teknolojileri, reklamları ve marka stili tek panelde",
+        "open": "Rivaline'ı aç"
+      },
+      "foldline": {
+        "text": "Bir landing page'in dönüşüm getirmesini neyin engellediğini bul",
+        "open": "Foldline'ı aç"
+      },
+      "markline": {
+        "text": "Saniyeler içinde ekran görüntüsü al, işaretle ve geri bildirim paylaş",
+        "open": "Markline'ı aç"
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Geliştiren:",
+    "privacy": "Gizlilik politikası",
+    "source": "Kaynak kodu"
+  },
+  "uninstall": {
+    "meta": {
+      "title": "Gitmene üzüldük | Hitline",
+      "description": "Hitline'ı neden kaldırdığını söyle. Tek bir tık sonraki sürümü daha iyi yapar."
+    },
+    "titleStart": "Hitline kaldırıldı",
+    "titleEnd": "Neden ayrıldın?",
+    "lead": "Tek bir tık sonraki sürümü daha iyi yapar",
+    "reasonsLabel": "Neden",
+    "reasons": [
+      "Kurulumumu tespit etmedi",
+      "Sadece bir kez lazımdı",
+      "Anlaması çok zor",
+      "Başka bir araç kullanıyorum"
+    ],
+    "moreLabel": "Eklemek istediğin bir şey var mı?",
+    "optional": "(isteğe bağlı)",
+    "placeholder": "Hangi siteyi veya kurulumu kaçırdı?",
+    "send": "Geri bildirim gönder",
+    "sending": "Gönderiliyor...",
+    "thanks": "Teşekkürler. Geri bildirimin gönderildi.",
+    "error": "Gönderilemedi. Lütfen bir dakika sonra tekrar dene.",
+    "pickOne": "Bir neden seç ya da birkaç kelime yaz.",
+    "reinstall": "Hitline'ı yeniden yükle",
+    "card": {
+      "eyebrow": "Hâlâ bir tracking sorunun mu var?",
+      "title": "Senin için denetleyip düzeltebilirim",
+      "text": "GA4, server-side GTM, Consent Mode ve reklam pikselleri. Neyin bozuk olduğunu gösteren net bir liste ve çalışan bir kurulum alırsın",
+      "cta": "Tracking denetimi ayarla",
+      "sub": "Shamistan Isayev"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "summary": "Markline captura la página en la que estás para que puedas marcarla. Las capturas se quedan en tu ordenador y Markline no sube nada.",
+  "reads": [
+    "La pestaña actual, después de que hagas clic en el icono o pulses un atajo de captura.",
+    "Dónde están los emails y los números de teléfono en la página, para poder desenfocarlos. Solo se usa su posición.",
+    "Una imagen que sueltas, pegas o eliges en el editor."
+  ],
+  "stores": [
+    "Ajustes en tu ordenador: desenfoque automático, estilo de desenfoque, opciones de exportación predeterminadas e idioma.",
+    "Una captura se pasa a la pestaña del editor a través del almacenamiento del navegador y se borra en segundos. Al cerrar la pestaña del editor se elimina la captura."
+  ],
+  "never": [
+    "Subir capturas o crear enlaces para compartir",
+    "Grabar tu pantalla",
+    "Enviar páginas, imágenes o notas a ningún servidor",
+    "Guardar un historial de lo que capturaste"
+  ],
+  "perms": [
+    {
+      "name": "activeTab",
+      "manifest": "permission:activeTab",
+      "why": "Capturar y leer la pestaña actual después de que hagas clic o pulses un atajo."
+    },
+    {
+      "name": "scripting",
+      "manifest": "permission:scripting",
+      "why": "Encontrar emails y números de teléfono para desenfocarlos, mostrar el selector de área y de elemento, y hacer scroll para una captura de página completa."
+    },
+    {
+      "name": "storage",
+      "manifest": "permission:storage",
+      "why": "Guardar tus ajustes en tu ordenador."
+    }
+  ],
+  "notes": [
+    "Los datos de la página (dirección, navegador, tamaño de ventana, hora) se añaden a una exportación solo si ese interruptor está activado.",
+    "La línea “Made with Markline” en las imágenes es opcional y se puede desactivar en los ajustes."
+  ]
+}

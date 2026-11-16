@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "title": "Line apps : outils Chrome gratuits pour les marketeurs",
+    "description": "Cinq extensions Chrome gratuites pour vérifier le tracking, le SEO et la conversion de votre site, voir ce qu'utilise un concurrent et montrer à votre développeur quoi corriger. Pas de compte, rien ne quitte votre navigateur.",
+    "ogAlt": "Line apps : des outils Chrome gratuits pour voir l'intérieur de n'importe quel site"
+  },
+  "hero": {
+    "pill": "5 extensions Chrome gratuites",
+    "titleStart": "Des outils Chrome gratuits pour voir",
+    "titleHighlight": "l'intérieur de n'importe quel site",
+    "titleEnd": "",
+    "lead": "Vérifiez le tracking, le SEO et la conversion de votre site, voyez ce qu'utilise un concurrent et montrez à votre développeur exactement quoi corriger. Pas de compte, pas d'offre payante, et rien ne quitte votre navigateur",
+    "primary": "Voir les 5 outils",
+    "secondary": "Essayer un outil dans le navigateur",
+    "trust": [
+      "Gratuit, sans compte",
+      "Lit une page uniquement après votre clic",
+      "Rapport PDF d'une page"
+    ],
+    "mockLabel": "Des réponses en un clic",
+    "mockUrl": "any-website.com",
+    "float": "Chaque outil exporte un PDF d'une page"
+  },
+  "tools": {
+    "eyebrow": "Les outils",
+    "title": "Cinq extensions, une mission chacune",
+    "lead": "Quatre examinent votre propre site, une examine vos concurrents. Chacune s'ouvre à côté de la page où vous êtes, répond bien à une question et vous donne un rapport à envoyer",
+    "rolesTitle": "Quel est votre métier ?",
+    "rolesLabel": "Filtrer les outils par métier",
+    "roles": [
+      {
+        "id": "all",
+        "label": "Tout afficher",
+        "hint": "Les cinq outils. Choisissez un métier pour savoir par où commencer",
+        "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
+      },
+      {
+        "id": "perf",
+        "label": "Marketeur à la performance",
+        "hint": "Commencez par Hitline, puis vérifiez la page avec Foldline et la concurrence avec Rivaline",
+        "tools": ["hitline", "rivaline", "foldline"]
+      },
+      {
+        "id": "seo",
+        "label": "Spécialiste SEO",
+        "hint": "Serpline est fait pour vous",
+        "tools": ["serpline"]
+      },
+      {
+        "id": "agency",
+        "label": "Agence",
+        "hint": "Les cinq conviennent au travail client. Markline est celui que vos clients verront le plus",
+        "tools": ["hitline", "serpline", "rivaline", "foldline", "markline"]
+      },
+      {
+        "id": "design",
+        "label": "Designer ou QA",
+        "hint": "Markline est fait pour vous",
+        "tools": ["markline"]
+      },
+      {
+        "id": "sales",
+        "label": "Commercial",
+        "hint": "Préparez un appel avec Rivaline et un audit Foldline rapide du prospect",
+        "tools": ["rivaline", "foldline"]
+      }
+    ],
+    "cards": {
+      "hitline": {
+        "forWho": "Analystes et marketeurs",
+        "surface": "DevTools",
+        "question": "Chaque balise et chaque événement se déclenchent-ils vraiment ?",
+        "answer": "événements, GTM et consentement, en direct",
+        "desc": "Suivez les événements de GA4, Meta, TikTok et 47 autres plateformes au moment où ils se déclenchent, vérifiez GTM, le server-side GTM et le consentement, puis exportez un audit",
+        "bullets": [
+          "Flux d'événements en direct pour chaque plateforme",
+          "Contrôles GTM, server-side GTM et Consent Mode",
+          "Votre plan de tracking comparé à ce qui se déclenche vraiment"
+        ]
+      },
+      "serpline": {
+        "forWho": "Spécialistes SEO",
+        "surface": "Panneau latéral",
+        "question": "Que voient vraiment Google et les robots d'IA ?",
+        "answer": "score SEO, rendu et robots d'IA",
+        "desc": "Les bases du SEO avec un score, un aperçu Google, le HTML brut face à la page rendue, les liens avec leur statut et l'accès des robots d'IA",
+        "bullets": [
+          "Score et aperçu du résultat Google",
+          "HTML brut face au rendu JavaScript",
+          "Les robots d'IA que le robots.txt laisse entrer"
+        ]
+      },
+      "rivaline": {
+        "forWho": "Marketeurs, agences, commerciaux",
+        "surface": "Panneau latéral",
+        "question": "Qu'utilise ce concurrent ?",
+        "answer": "stack, annonces et kit de marque",
+        "desc": "Sa stack marketing et ses lacunes, ses annonces dans quatre bibliothèques publicitaires, ses couleurs et polices de marque",
+        "bullets": [
+          "Stack martech par catégorie, avec les lacunes",
+          "Bibliothèques publicitaires Meta, Google, TikTok et LinkedIn",
+          "Couleurs de marque, polices et bouton principal"
+        ]
+      },
+      "foldline": {
+        "forWho": "Responsables de campagne, CRO",
+        "surface": "Panneau latéral",
+        "question": "Pourquoi cette landing page ne convertit-elle pas ?",
+        "answer": "27 contrôles et un score",
+        "desc": "27 contrôles sur le premier écran, le formulaire, la confiance, le mobile, la vitesse et le contact, avec une correction pour chaque problème",
+        "bullets": [
+          "Ligne de flottaison tracée sur la page",
+          "Score ordinateur et mobile",
+          "Des corrections à envoyer à votre développeur"
+        ]
+      },
+      "markline": {
+        "forWho": "Agences, QA, designers",
+        "surface": "Popup",
+        "question": "Comment montrer exactement quoi changer ?",
+        "answer": "capturer, annoter, partager",
+        "desc": "Capturez la page, annotez-la avec des flèches, des notes numérotées et du flou, puis téléchargez-la ou copiez-la",
+        "bullets": [
+          "Zone visible, page entière, zone ou élément",
+          "E-mails et numéros de téléphone floutés pour vous",
+          "PNG ou résumé PDF d'une page"
+        ]
+      }
+    }
+  },
+  "together": {
+    "eyebrow": "Ce que regarde chaque outil",
+    "title": "Une page, cinq questions",
+    "lead": "Votre site ou celui d'un concurrent, chaque page a les cinq mêmes endroits qui méritent un coup d'œil. Cliquez sur un numéro pour voir quel outil le vérifie",
+    "pageLabel": "Exemple de landing page avec cinq points de contrôle",
+    "tellsYou": "Ce que {name} vous apprend",
+    "tabsLabel": "Choisir un point de contrôle",
+    "page": {
+      "tab": "Soldes de printemps : -30 % sur toutes les plantes | Greenly",
+      "brand": "Greenly",
+      "nav": ["Plantes", "Pots", "Entretien"],
+      "headline": "Des plantes fraîches, livrées en deux jours",
+      "button": "Voir les soldes",
+      "fold": "Fold"
+    },
+    "spots": [
+      {
+        "slug": "serpline",
+        "num": "1",
+        "pin": "titre dans Google",
+        "where": "Le titre dans l'onglet",
+        "question": "Google et la recherche IA afficheront-ils bien cette page ?",
+        "finds": [
+          "Où Google coupe le titre et la description",
+          "Si le H1 et le texte ont besoin de JavaScript pour apparaître",
+          "Les robots d'IA que le robots.txt laisse entrer"
+        ]
+      },
+      {
+        "slug": "rivaline",
+        "num": "2",
+        "pin": "marque et stack",
+        "where": "La marque et ce qui tourne derrière",
+        "question": "Avec quoi ce site est-il construit et promu ?",
+        "finds": [
+          "Ses outils marketing par catégorie, avec les lacunes",
+          "Ses annonces dans quatre bibliothèques publicitaires, en un clic chacune",
+          "Ses couleurs, polices et bouton principal, prêts à copier"
+        ]
+      },
+      {
+        "slug": "markline",
+        "num": "3",
+        "pin": "retours sur l'image",
+        "where": "Tout ce que vous voulez faire changer",
+        "question": "Comment montrer au développeur exactement quoi corriger ?",
+        "finds": [
+          "Une capture de la zone, de l'élément ou de la page entière",
+          "Flèches, cadres et notes numérotées par-dessus",
+          "E-mails et numéros de téléphone floutés avant le partage"
+        ]
+      },
+      {
+        "slug": "hitline",
+        "num": "4",
+        "pin": "événements sur le bouton",
+        "where": "Le clic qui devrait compter",
+        "question": "Ce clic atteint-il chaque plateforme publicitaire ?",
+        "finds": [
+          "Chaque événement au moment où il se déclenche dans GA4, Meta, TikTok et 47 autres plateformes",
+          "Ce que GTM, le server-side GTM et le consentement en ont fait",
+          "Les événements attendus par votre plan de tracking mais jamais vus"
+        ]
+      },
+      {
+        "slug": "foldline",
+        "num": "5",
+        "pin": "ce qui s'affiche avant la ligne de flottaison",
+        "where": "Le premier écran",
+        "question": "Les visiteurs en voient-ils assez pour agir avant de faire défiler ?",
+        "finds": [
+          "Où se trouve la ligne de flottaison sur ordinateur et sur téléphone",
+          "Si le bouton principal et le titre sont au-dessus",
+          "Un score et une correction pour chaque problème de la page"
+        ]
+      }
+    ]
+  },
+  "promise": {
+    "eyebrow": "La même promesse dans chaque outil",
+    "title": "Vos pages restent dans votre navigateur",
+    "items": [
+      {
+        "icon": "gift",
+        "title": "Gratuit, sans compte",
+        "text": "Pas d'inscription, pas d'essai, pas d'offre payante. Installez et utilisez"
+      },
+      {
+        "icon": "click",
+        "title": "Uniquement après votre clic",
+        "text": "Un outil lit un onglet quand vous l'y ouvrez, et aucun autre onglet"
+      },
+      {
+        "icon": "lock",
+        "title": "Rien n'est envoyé",
+        "text": "Les résultats sont produits dans votre navigateur. Pas de serveur, pas de tracking dans les extensions"
+      },
+      {
+        "icon": "doc",
+        "title": "Un rapport à envoyer",
+        "text": "Chaque outil transforme son résultat en un PDF d'une page à partager"
+      }
+    ]
+  },
+  "webTools": {
+    "eyebrow": "Outils web gratuits",
+    "title": "Essayez sans rien installer",
+    "lead": "Quatre petits outils qui tournent directement sur ce site, construits sur le même code que les extensions",
+    "items": [
+      {
+        "slug": "rivaline",
+        "fragment": "finder",
+        "title": "Recherche dans les bibliothèques publicitaires",
+        "text": "Cherchez une marque dans les bibliothèques publicitaires Meta, Google, TikTok et LinkedIn en une fois"
+      },
+      {
+        "slug": "foldline",
+        "fragment": "calculator",
+        "title": "Score de landing page",
+        "text": "Cochez ce que contient votre page et obtenez le score que Foldline lui donnerait"
+      },
+      {
+        "slug": "serpline",
+        "fragment": "preview",
+        "title": "Aperçu Google",
+        "text": "Voyez où Google coupe votre titre et votre description sur ordinateur et sur mobile"
+      },
+      {
+        "slug": "markline",
+        "fragment": "annotate",
+        "title": "Annoter une image",
+        "text": "Déposez une capture d'écran, ajoutez des flèches, des notes et du flou, puis téléchargez un PNG"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Les questions qu'on nous pose",
+    "askBefore": "Pas de réponse ici ?",
+    "askLink": "Posez-moi la question directement",
+    "askAfter": "",
+    "items": [
+      {
+        "q": "Les outils sont-ils vraiment gratuits ?",
+        "a": "Oui. Il n'y a ni offre payante ni essai. Ils sont gratuits parce qu'ils montrent le type de travail que je fais pour mes clients : si vous avez besoin que les corrections soient faites, vous savez où me trouver."
+      },
+      {
+        "q": "Quelles données les extensions collectent-elles ?",
+        "a": "Aucune. Chaque extension n'enregistre que ses propres paramètres sur votre ordinateur. Les pages que vous vérifiez sont lues dans votre navigateur et rien n'est envoyé à un serveur."
+      },
+      {
+        "q": "Ralentissent-elles Chrome ?",
+        "a": "Non. Rien ne tourne en arrière-plan. Un outil ne fonctionne sur un onglet qu'après que vous avez cliqué sur son icône ou appuyé sur son raccourci dans cet onglet."
+      },
+      {
+        "q": "Laquelle installer en premier ?",
+        "a": "Choisissez votre métier dans la liste des outils ci-dessus. Si vous gérez des campagnes payantes, commencez par Hitline : un tracking cassé coûte le plus cher et c'est le plus difficile à voir."
+      },
+      {
+        "q": "Puis-je les utiliser pour mes clients ?",
+        "a": "Oui. Les agences utilisent les rapports PDF dans leurs audits et leurs propositions. Les rapports portent une petite mention « Made with » et rien d'autre."
+      },
+      {
+        "q": "Quelles langues prennent-elles en charge ?",
+        "a": "L'anglais et l'azerbaïdjanais. Vous pouvez changer de langue dans les paramètres de chaque outil."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "Créé par une seule personne",
+    "title": "Besoin que les problèmes soient corrigés, pas seulement trouvés ?",
+    "text": "Je suis Shamistan Isayev. Je travaille sur l'analytics, le tracking server-side et le CRO, et j'ai créé ces outils pour les contrôles que je fais sur chaque projet. Si vous voulez que quelqu'un corrige ce qu'ils trouvent, réservez un appel.",
+    "cta": "Réserver un appel",
+    "from": "De Shamistan Isayev"
+  }
+}
