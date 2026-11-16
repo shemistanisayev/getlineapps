@@ -10,6 +10,10 @@ Site only. Extensions never load analytics (CLAUDE.md, non-negotiable rules).
 | GA4 property `getlineapps.com` | property 564536076 | analytics.google.com, account 414782240 |
 | GA4 web stream `getlineapps.com web` | `G-WX35DJ8R7K` | stream 16353580008 |
 | Site build variable | `PUBLIC_GTM_ID=GTM-WNZQGVXL` | GitHub repo variable, read by the deploy job in `.github/workflows/ci.yml` |
+| Search Console domain property `getlineapps.com` | `sc-domain:getlineapps.com` | search.google.com/search-console, verified by a DNS TXT record `google-site-verification=...` on the root in Cloudflare (keep it) |
+
+Search Console: sitemap `https://getlineapps.com/sitemap.xml` submitted (also listed in
+`robots.txt`), linked to the GA4 web stream (GA4 > Admin > Product links > Search Console links).
 
 GA4 settings: time zone Baku, event data retention 14 months, enhanced measurement off (the site
 sends its own events below, so nothing is counted twice; page_view comes from the Google tag).
