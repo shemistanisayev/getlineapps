@@ -82,12 +82,11 @@ export function buildGtmContainer(measurementId: string, publicId = 'GTM-XXXXXXX
         {
           type: 'LIST',
           key: 'configSettingsTable',
-          list: [row('send_page_view', 'true')],
-        },
-        {
-          type: 'LIST',
-          key: 'eventSettingsTable',
-          list: Object.keys(PAGE_PARAMS).map((p) => row(p, `{{${dlvName(p)}}}`)),
+          // Configuration parameters go with page_view too (shared event settings did not).
+          list: [
+            row('send_page_view', 'true'),
+            ...Object.keys(PAGE_PARAMS).map((p) => row(p, `{{${dlvName(p)}}}`)),
+          ],
         },
       ],
       firingTriggerId: [ALL_PAGES],

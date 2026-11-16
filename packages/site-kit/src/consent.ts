@@ -42,9 +42,14 @@ function writeConsent(storage: Pick<Storage, 'setItem'> | null, v: ConsentChoice
 }
 
 function gtag(win: DataLayerWindow, ...args: unknown[]) {
-  win.dataLayer = win.dataLayer ?? [];
-  // GTM expects the arguments object shape, like the gtag() snippet.
-  win.dataLayer.push(args);
+  const dl = (win.dataLayer = win.dataLayer ?? []);
+  // GTM reads consent commands only as an Arguments object, like the gtag() snippet.
+  // A plain array is ignored, and GA4 would keep sending "denied" pings (gcs=G100).
+  function push(..._args: unknown[]) {
+    // eslint-disable-next-line prefer-rest-params
+    dl.push(arguments);
+  }
+  push(...args);
 }
 
 export function loadGtm(id: string, doc: Document = document) {

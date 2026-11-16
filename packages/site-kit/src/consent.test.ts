@@ -40,6 +40,19 @@ describe('consent banner', () => {
     expect(gtmScripts()).toHaveLength(1);
     expect(readConsent(localStorage)).toBe('granted');
     expect(document.querySelector('.line-consent')).toBeNull();
+    // The consent update must be an Arguments object (GTM ignores arrays), before gtm.js.
+    const dl = (window as { dataLayer?: unknown[] }).dataLayer!;
+    const update = dl.find((e) => (e as IArguments)[1] === 'update') as IArguments;
+    expect(Array.isArray(update)).toBe(false);
+    expect(Object.prototype.toString.call(update)).toBe('[object Arguments]');
+    expect([...update]).toEqual([
+      'consent',
+      'update',
+      expect.objectContaining({ analytics_storage: 'granted' }),
+    ]);
+    expect(dl.indexOf(update)).toBeLessThan(
+      dl.findIndex((e) => (e as { event?: string }).event === 'gtm.js'),
+    );
     // Next page view: no banner, GTM loads straight away (once).
     document.head.innerHTML = '';
     expect(mountConsentBanner({ gtmId: 'GTM-ABC123', texts })).toBeNull();
