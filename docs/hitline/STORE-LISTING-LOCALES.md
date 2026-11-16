@@ -1,6 +1,6 @@
 # Hitline: Chrome Web Store listing in 10 languages
 
-Texts for the localized store listings of Hitline 1.2.2. The English detailed description is in `docs/hitline/STORE-LISTING.md`; this file adds Turkish, Russian, Romanian, Ukrainian, Portuguese, Dutch, Spanish and French. Screenshots and promo tiles per language are in `store/hitline/locales/<code>/` (made by `pnpm store:hitline` from `scripts/store-copy.ts`).
+Texts for the localized store listings of Hitline 1.2.2. The English detailed description is in `docs/hitline/STORE-LISTING.md`; this file adds Turkish, Russian, Romanian, Ukrainian, Portuguese, Dutch, Spanish and French. Screenshots per language are in `store/hitline/locales/<code>/screenshots/` (the dashboard takes promo tiles once for all languages, so only the English ones are used) (made by `pnpm store:hitline` from `scripts/store-copy.ts`).
 
 **How the store uses them.** The listing title and the short description come from the manifest, localized through `apps/hitline/extension/public/_locales/<code>/messages.json` (`extName`, `extDescription`). The detailed description is typed per language in the dashboard ("Store listing", language picker).
 
