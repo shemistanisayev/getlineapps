@@ -17,11 +17,13 @@ export default defineConfig({
   // pdf-lib is one large chunk, loaded only when an audit PDF is made.
   vite: () => ({ build: { chunkSizeWarningLimit: 1600 } }),
   manifest: {
-    // Store title (max 75): brand first, then what people search for. Toolbar and menus use short_name.
-    name: 'Serpline: SEO Checker & AI Crawler Audit for Google, ChatGPT & More',
+    // Store title (max 75) and short description per language: public/_locales/<code>/messages.json
+    // (docs/serpline/STORE-LISTING-LOCALES.md). Chrome has no Azerbaijani locale, so AZ users see English.
+    // Toolbar and menus use short_name.
+    default_locale: 'en',
+    name: '__MSG_extName__',
     short_name: 'Serpline',
-    description:
-      "Technical SEO, JavaScript render and AI crawler checks for the page you're on. Free, no data collected.",
+    description: '__MSG_extDescription__',
     permissions: ['activeTab', 'scripting', 'sidePanel', 'storage'],
     optional_host_permissions: ['https://*/*', 'http://*/*'],
     icons: { 16: 'icon-16.png', 32: 'icon-32.png', 48: 'icon-48.png', 128: 'icon-128.png' },

@@ -1,16 +1,16 @@
 # Hitline: Chrome Web Store listing
 
-Everything to paste into the Chrome Web Store Developer Dashboard for Hitline 1.2.1. The files to upload are in `store/hitline/` (see `store/hitline/README.md`).
+Everything to paste into the Chrome Web Store Developer Dashboard for Hitline 1.2.2. The files to upload are in `store/hitline/` (see `store/hitline/README.md`).
 
 ## Package
 
 | Field | Value |
 |---|---|
-| File | `store/hitline/hitline-1.2.1.zip` |
+| File | `store/hitline/hitline-1.2.2.zip` |
 | Name | Hitline: Tracking Debugger for GA4, Meta, TikTok & More (manifest name; short name Hitline) |
-| Version | 1.2.1 |
+| Version | 1.2.2 |
 | Category | Developer Tools |
-| Language | English (default), Azerbaijani (second listing language) |
+| Language | English (default) plus tr, ru, ro, uk, pt_BR, pt_PT, nl, es, fr (`_locales`, texts in `docs/hitline/STORE-LISTING-LOCALES.md`). Chrome has no Azerbaijani locale, so the Azerbaijani listing below cannot be added |
 
 ## Store listing (English, default)
 
@@ -179,6 +179,12 @@ https://getlineapps.com/privacy/hitline
 ## After approval
 
 Send the listing link (`https://chromewebstore.google.com/detail/...`) to the agent. It sets Hitline to `live` with that `storeUrl` in `apps/site/src/content/tools.json`, so every "Add to Chrome" button on getlineapps.com points to the listing.
+
+## What changed in 1.2.2 (for the "What's new" note, optional)
+
+```
+The store listing, name and short description now come in 9 languages: English, Turkish, Russian, Romanian, Ukrainian, Portuguese, Dutch, Spanish and French.
+```
 
 ## What changed in 1.2.1 (for the "What's new" note, optional)
 

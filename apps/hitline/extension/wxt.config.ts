@@ -17,11 +17,13 @@ export default defineConfig({
   // pdf-lib is one large chunk, loaded only when an audit PDF is made.
   vite: () => ({ build: { chunkSizeWarningLimit: 1600 } }),
   manifest: {
-    // Store title (max 75): brand first, then what people search for. Toolbar and menus use short_name.
-    name: 'Hitline: Tracking Debugger for GA4, Meta, TikTok & More',
+    // Store title (max 75) and short description per language: public/_locales/<code>/messages.json
+    // (docs/hitline/STORE-LISTING-LOCALES.md). Chrome has no Azerbaijani locale, so AZ users see English.
+    // Toolbar and menus use short_name.
+    default_locale: 'en',
+    name: '__MSG_extName__',
     short_name: 'Hitline',
-    description:
-      'See events from GA4, Meta, TikTok and 47 more platforms, read GTM tags and catch consent leaks in Chrome DevTools.',
+    description: '__MSG_extDescription__',
     permissions: ['activeTab', 'scripting', 'storage'],
     icons: { 16: 'icon-16.png', 32: 'icon-32.png', 48: 'icon-48.png', 128: 'icon-128.png' },
     action: {

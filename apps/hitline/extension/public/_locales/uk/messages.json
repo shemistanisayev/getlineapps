@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Hitline: налагоджувач трекінгу для GA4, Meta, TikTok та інших",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "Події GA4, Meta, TikTok та ще 47 платформ, теги GTM і витоки згоди (consent) просто в Chrome DevTools.",
+    "description": "Store short description (max 132)"
+  }
+}

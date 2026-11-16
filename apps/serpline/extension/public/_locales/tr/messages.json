@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Serpline: SEO Kontrol ve AI Tarayıcı Denetimi, Google, ChatGPT ve Fazlası",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "Açık olan sayfa için teknik SEO, JavaScript render ve AI tarayıcı kontrolleri. Ücretsiz, hiçbir veri toplanmaz.",
+    "description": "Store short description (max 132)"
+  }
+}

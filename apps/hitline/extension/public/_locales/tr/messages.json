@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Hitline: İzleme Hata Ayıklayıcı, GA4, Meta, TikTok ve Daha Fazlası",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "GA4, Meta, TikTok ve diğer 47 platformun eventlerini gör, GTM etiketlerini oku, consent sızıntılarını DevTools'ta yakala.",
+    "description": "Store short description (max 132)"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Serpline: Verificador SEO e Auditoria de IA para Google, ChatGPT e Mais",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "SEO técnico, renderização JavaScript e verificação de rastreadores de IA na página aberta. Grátis, sem coleta de dados.",
+    "description": "Store short description (max 132)"
+  }
+}

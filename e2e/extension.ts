@@ -1,6 +1,6 @@
 /** Load a built Line extension unpacked in Playwright Chromium. Shared by every tool's e2e suite. */
 import { chromium, test, type BrowserContext, type Worker } from '@playwright/test';
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -64,4 +64,18 @@ export async function loadExtension(
       rmSync(profile, { recursive: true, force: true });
     },
   };
+}
+
+/** Store locales every Line extension ships (Chrome has no Azerbaijani locale). */
+export const STORE_LOCALES = ['en', 'es', 'fr', 'nl', 'pt_BR', 'pt_PT', 'ro', 'ru', 'tr', 'uk'];
+
+/** The built `_locales/<code>/messages.json` files, keyed by locale. */
+export function readLocales(slug: string): Record<string, Record<string, { message: string }>> {
+  const dir = join(extensionDir(slug), '_locales');
+  return Object.fromEntries(
+    readdirSync(dir).map((code) => [
+      code,
+      JSON.parse(readFileSync(join(dir, code, 'messages.json'), 'utf8')),
+    ]),
+  );
 }

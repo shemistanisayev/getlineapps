@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Hitline: Debugger de tracking pentru GA4, Meta, TikTok și altele",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "Evenimente GA4, Meta, TikTok și încă 47 de platforme, taguri GTM și scurgeri de consimțământ, direct în Chrome DevTools.",
+    "description": "Store short description (max 132)"
+  }
+}

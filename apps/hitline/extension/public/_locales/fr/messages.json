@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Hitline : débogueur de tracking pour GA4, Meta, TikTok et plus",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "Voyez les événements GA4, Meta, TikTok et 47 autres plateformes, lisez les balises GTM et repérez les fuites de consentement.",
+    "description": "Store short description (max 132)"
+  }
+}

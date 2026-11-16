@@ -1,16 +1,16 @@
 # Serpline: Chrome Web Store listing
 
-Everything to paste into the Chrome Web Store Developer Dashboard for Serpline 1.1.1. The files to upload are in `store/serpline/` (see `store/serpline/README.md`).
+Everything to paste into the Chrome Web Store Developer Dashboard for Serpline 1.1.2. The files to upload are in `store/serpline/` (see `store/serpline/README.md`).
 
 ## Package
 
 | Field | Value |
 |---|---|
-| File | `store/serpline/serpline-1.1.1.zip` |
+| File | `store/serpline/serpline-1.1.2.zip` |
 | Name | Serpline: SEO Checker & AI Crawler Audit for Google, ChatGPT & More (manifest name; short name Serpline) |
-| Version | 1.1.1 |
+| Version | 1.1.2 |
 | Category | Developer Tools |
-| Language | English (default), Azerbaijani (second listing language) |
+| Language | English (default) plus tr, ru, ro, uk, pt_BR, pt_PT, nl, es, fr (`_locales`, texts in `docs/serpline/STORE-LISTING-LOCALES.md`). Chrome has no Azerbaijani locale, so the Azerbaijani listing below cannot be added |
 
 ## Store listing (English, default)
 
@@ -218,6 +218,12 @@ https://getlineapps.com/privacy/serpline
 ## After approval
 
 Send the listing link (`https://chromewebstore.google.com/detail/...`) to the agent. It sets Serpline to `live` with that `storeUrl` in `apps/site/src/content/tools.json`, so every "Add to Chrome" button on getlineapps.com points to the listing.
+
+## What changed in 1.1.2 (for the "What's new" note, optional)
+
+```
+The store listing, name and short description now come in 9 languages: English, Turkish, Russian, Romanian, Ukrainian, Portuguese, Dutch, Spanish and French.
+```
 
 ## What changed in 1.1.1 (for the "What's new" note, optional)
 

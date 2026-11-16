@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Serpline: Verificator SEO și Audit AI pentru Google, ChatGPT și altele",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "SEO tehnic, randare JavaScript și verificarea crawlerilor AI pentru pagina deschisă. Gratuit, fără colectare de date.",
+    "description": "Store short description (max 132)"
+  }
+}

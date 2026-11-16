@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Hitline: отладчик трекинга для GA4, Meta, TikTok и не только",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "События GA4, Meta, TikTok и ещё 47 платформ, теги GTM и утечки согласия (consent) прямо в Chrome DevTools.",
+    "description": "Store short description (max 132)"
+  }
+}

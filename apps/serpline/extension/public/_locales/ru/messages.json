@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Serpline: SEO-проверка и аудит AI-краулеров для Google, ChatGPT и др.",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "Технический SEO, рендер JavaScript и проверка AI-краулеров для открытой страницы. Бесплатно, без сбора данных.",
+    "description": "Store short description (max 132)"
+  }
+}

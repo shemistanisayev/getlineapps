@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { expect, test } from '@playwright/test';
 import { hostResolverArgs, SERPLINE_PORT, serplineUrl } from '../apps/fixture/hosts.ts';
-import { readManifest, requireBuilt } from './extension.ts';
+import { readLocales, readManifest, requireBuilt, STORE_LOCALES } from './extension.ts';
 import { loadExtensionCdp, type CdpExtension } from './extension-cdp.ts';
 
 const SHOTS = process.env.SHOTS_DIR;
@@ -27,10 +27,22 @@ test.describe('serpline extension', () => {
   test('manifest has exactly the SPEC permissions and no host access', () => {
     const m = readManifest('serpline');
     expect(m.manifest_version).toBe(3);
-    expect(m.name).toBe('Serpline: SEO Checker & AI Crawler Audit for Google, ChatGPT & More');
-    expect(String(m.name).length).toBeLessThanOrEqual(75);
+    // Title and short description come from _locales (store listing per language).
+    expect(m.default_locale).toBe('en');
+    expect(m.name).toBe('__MSG_extName__');
+    expect(m.description).toBe('__MSG_extDescription__');
+    const locales = readLocales('serpline');
+    expect(Object.keys(locales).sort()).toEqual(STORE_LOCALES);
+    expect(locales.en!.extName!.message).toBe(
+      'Serpline: SEO Checker & AI Crawler Audit for Google, ChatGPT & More',
+    );
+    for (const [code, msg] of Object.entries(locales)) {
+      expect(msg.extName!.message.length, code).toBeLessThanOrEqual(75);
+      expect(msg.extName!.message.startsWith('Serpline'), code).toBe(true);
+      expect(msg.extDescription!.message.length, code).toBeLessThanOrEqual(132);
+      expect(msg.extDescription!.message, code).not.toMatch(/—/);
+    }
     expect(m.short_name).toBe('Serpline');
-    expect(String(m.description).length).toBeLessThanOrEqual(132);
     expect(m.permissions).toEqual(['activeTab', 'scripting', 'sidePanel', 'storage']);
     expect(m.optional_host_permissions).toEqual(['https://*/*', 'http://*/*']);
     expect(m.side_panel).toEqual({ default_path: 'sidepanel.html' });
@@ -410,7 +422,7 @@ test.describe('serpline extension', () => {
       'Check internal links on open',
       'Clear all settings',
       'MORE FREE TOOLS',
-      'Version 1.1.1',
+      'Version 1.1.2',
     ])
       expect(set).toContain(s);
     const hrefs = await ext.evalIn<string[]>(

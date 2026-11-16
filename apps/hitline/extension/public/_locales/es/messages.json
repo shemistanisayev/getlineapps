@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Hitline: Depurador de Tracking para GA4, Meta, TikTok y Más",
+    "description": "Store title and extension name (max 75)"
+  },
+  "extDescription": {
+    "message": "Ve eventos de GA4, Meta, TikTok y 47 plataformas más, lee las etiquetas de GTM y detecta fugas de consentimiento en DevTools.",
+    "description": "Store short description (max 132)"
+  }
+}

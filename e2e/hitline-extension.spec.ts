@@ -1,6 +1,13 @@
 /** Hitline extension, loaded unpacked from apps/hitline/extension/.output (run `pnpm build` first). */
 import { expect, test } from '@playwright/test';
-import { loadExtension, readManifest, requireBuilt, type LoadedExtension } from './extension.ts';
+import {
+  loadExtension,
+  readLocales,
+  readManifest,
+  requireBuilt,
+  STORE_LOCALES,
+  type LoadedExtension,
+} from './extension.ts';
 
 const SHOTS = process.env.SHOTS_DIR;
 
@@ -17,8 +24,21 @@ test.describe('hitline extension', () => {
   test('manifest has exactly the SPEC permissions and no host access', () => {
     const m = readManifest('hitline');
     expect(m.manifest_version).toBe(3);
-    expect(m.name).toBe('Hitline: Tracking Debugger for GA4, Meta, TikTok & More');
-    expect(String(m.name).length).toBeLessThanOrEqual(75);
+    // Title and short description come from _locales (store listing per language).
+    expect(m.default_locale).toBe('en');
+    expect(m.name).toBe('__MSG_extName__');
+    expect(m.description).toBe('__MSG_extDescription__');
+    const locales = readLocales('hitline');
+    expect(Object.keys(locales).sort()).toEqual(STORE_LOCALES);
+    expect(locales.en!.extName!.message).toBe(
+      'Hitline: Tracking Debugger for GA4, Meta, TikTok & More',
+    );
+    for (const [code, msg] of Object.entries(locales)) {
+      expect(msg.extName!.message.length, code).toBeLessThanOrEqual(75);
+      expect(msg.extName!.message.startsWith('Hitline'), code).toBe(true);
+      expect(msg.extDescription!.message.length, code).toBeLessThanOrEqual(132);
+      expect(msg.extDescription!.message, code).not.toMatch(/—/);
+    }
     expect(m.short_name).toBe('Hitline');
     expect(m.permissions).toEqual(['activeTab', 'scripting', 'storage']);
     expect(m.devtools_page).toBe('devtools.html');
@@ -30,7 +50,6 @@ test.describe('hitline extension', () => {
     ]) {
       expect(m[key]).toBeUndefined();
     }
-    expect(String(m.description).length).toBeLessThanOrEqual(132);
   });
 
   test('install opens the welcome page', async () => {
