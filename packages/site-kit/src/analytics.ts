@@ -353,14 +353,7 @@ export function initAnalytics({
   flagged.__lineAnalytics = true;
   const ctx = pageContext(win.location.pathname, notFound);
   win.dataLayer = win.dataLayer ?? [];
-  const dl = win.dataLayer;
-  dl.push({ ...ctx });
-  // The same context as a gtag('set') command, so the Google tag adds it to every hit,
-  // page_view included. GTM reads gtag commands only as an Arguments object.
-  (function set(..._args: unknown[]) {
-    // eslint-disable-next-line prefer-rest-params
-    dl.push(arguments);
-  })('set', { ...ctx });
+  win.dataLayer.push({ ...ctx });
 
   const send = (t: Tracked | null) => {
     if (t) track(t.event, t.params, win);

@@ -3,8 +3,7 @@
  * container can never drift from the site code. `pnpm --filter @line/site gen:gtm` writes the
  * import file (docs/analytics/gtm-container.json): GTM > Admin > Import container.
  *
- * Contents: one Google tag (GA4, All Pages, sends page_view; the page context comes from the
- * gtag('set') command initAnalytics pushes),
+ * Contents: one Google tag (GA4, All Pages, sends page_view),
  * one GA4 event tag that forwards every event in EVENTS with all its parameters,
  * one custom-event trigger and one Data Layer Variable per parameter.
  */
@@ -83,8 +82,8 @@ export function buildGtmContainer(measurementId: string, publicId = 'GTM-XXXXXXX
         {
           type: 'LIST',
           key: 'configSettingsTable',
-          // page_view comes from here; page_type, page_locale and page_tool reach it (and every
-          // other hit) through gtag('set') pushed by initAnalytics.
+          // GA4 sends page_view itself and ignores custom parameters on it; the page context is
+          // on every Line event instead, and on page_view the page path already says it.
           list: [row('send_page_view', 'true')],
         },
       ],

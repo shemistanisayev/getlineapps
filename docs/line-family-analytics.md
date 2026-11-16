@@ -18,13 +18,12 @@ sends its own events below, so nothing is counted twice; page_view comes from th
 
 1. `Base.astro` (only when `PUBLIC_GTM_ID` is set) writes Consent Mode v2 defaults (all denied) in `<head>`.
 2. `initAnalytics()` (`packages/site-kit/src/analytics.ts`) pushes the page context
-   `{ page_type, page_locale, page_tool }` (as a data layer object for GTM variables and as
-   `gtag('set', ...)` so the Google tag adds it to every hit, page_view included) and starts one delegated listener for clicks, inputs,
+   `{ page_type, page_locale, page_tool }` and starts one delegated listener for clicks, inputs,
    section visibility and scroll depth.
 3. The consent banner loads GTM only after "Accept" and sends the Consent Mode update first, as an
    Arguments object (GTM ignores arrays; GA4 would then keep sending denied pings, gcs=G100).
    Until then `track()` pushes nothing.
-4. GTM: tag `GA4 - Google tag` (All Pages, sends `page_view` with the page context) and tag
+4. GTM: tag `GA4 - Google tag` (All Pages, sends `page_view`) and tag
    `GA4 - Line events` (trigger `CE - Line events`, event name `{{Event}}`, every parameter below).
 
 No personal data: no form text, no emails, no IDs. The uninstall form sends only the picked reason
@@ -38,7 +37,7 @@ parameter names where one exists (`link_url`, `link_domain`, `link_text`, `file_
 
 | Event | When | Parameters |
 | --- | --- | --- |
-| `page_view` | Every page (GA4 Google tag) | page_type, page_locale, page_tool |
+| `page_view` | Every page (GA4 Google tag) | GA4 defaults (page_location, page_title, ...). GA4 drops custom parameters on its own page_view, so use Page path for page type and language |
 | ★ `install_click` | Chrome Web Store button anywhere (hero, nav, band, hub cards, reinstall) | tool_slug, cta_location, link_url, link_text |
 | ★ `contact_click` | Any link to shamistanisayev.com | tool_slug, cta_location (= the link's utm_campaign: hub_nav, hub_cta, audit_cta, faq, footer, privacy, uninstall), link_url, link_text |
 | `select_content` | Link to a tool landing or a free web tool | content_type (tool_landing, web_tool), content_id (hitline, serpline_preview, rivaline_finder, ...), tool_slug, link_text, cta_location |
@@ -58,7 +57,7 @@ parameter names where one exists (`link_url`, `link_domain`, `link_text`, `file_
 | `feedback_error` | Uninstall feedback failed | tool_slug, error_type (validation, network) |
 | `cookie_settings_open` | "Cookie settings" link | cta_location |
 
-Page context on every event: `page_type` (hub, landing, privacy, uninstall, not_found),
+Page context on every event except page_view: `page_type` (hub, landing, privacy, uninstall, not_found),
 `page_locale` (en, az), `page_tool` (tool slug or none).
 
 `cta_location` is automatic: `data-track-loc` if an element sets it, else `dialog`, `header`,

@@ -1,6 +1,6 @@
 {
   "exportFormatVersion": 2,
-  "exportTime": "2026-11-16 18:21:33",
+  "exportTime": "2026-11-16 18:29:27",
   "containerVersion": {
     "path": "accounts/0/containers/0/versions/0",
     "accountId": "0",
@@ -15,7 +15,7 @@
       "usageContext": [
         "WEB"
       ],
-      "fingerprint": "1794853293823",
+      "fingerprint": "1794853767196",
       "tagManagerUrl": "",
       "features": {},
       "tagIds": [
@@ -67,7 +67,7 @@
         "consentSettings": {
           "consentStatus": "NOT_SET"
         },
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -498,7 +498,7 @@
         "consentSettings": {
           "consentStatus": "NOT_SET"
         },
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       }
     ],
     "trigger": [
@@ -525,7 +525,7 @@
             ]
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       }
     ],
     "variable": [
@@ -542,7 +542,7 @@
             "value": "G-WX35DJ8R7K"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -567,7 +567,7 @@
             "value": "page_type"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -592,7 +592,7 @@
             "value": "page_locale"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -617,7 +617,7 @@
             "value": "page_tool"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -642,7 +642,7 @@
             "value": "tool_slug"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -667,7 +667,7 @@
             "value": "cta_location"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -692,7 +692,7 @@
             "value": "link_url"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -717,7 +717,7 @@
             "value": "link_domain"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -742,7 +742,7 @@
             "value": "link_text"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -767,7 +767,7 @@
             "value": "content_type"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -792,7 +792,7 @@
             "value": "content_id"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -817,7 +817,7 @@
             "value": "language_to"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -842,7 +842,7 @@
             "value": "section_id"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -867,7 +867,7 @@
             "value": "faq_question"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -892,7 +892,7 @@
             "value": "faq_index"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -917,7 +917,7 @@
             "value": "tab_id"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -942,7 +942,7 @@
             "value": "role_id"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -967,7 +967,7 @@
             "value": "checkpoint_id"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -992,7 +992,7 @@
             "value": "web_tool"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -1017,7 +1017,7 @@
             "value": "tool_action"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -1042,7 +1042,7 @@
             "value": "tool_item"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -1067,7 +1067,7 @@
             "value": "file_name"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -1092,7 +1092,7 @@
             "value": "file_extension"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -1117,7 +1117,7 @@
             "value": "percent_scrolled"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -1142,7 +1142,7 @@
             "value": "feedback_reason"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -1167,7 +1167,7 @@
             "value": "has_message"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       },
       {
         "accountId": "0",
@@ -1192,7 +1192,7 @@
             "value": "error_type"
           }
         ],
-        "fingerprint": "1794853293823"
+        "fingerprint": "1794853767196"
       }
     ],
     "builtInVariable": [
@@ -1227,6 +1227,6 @@
         "name": "Event"
       }
     ],
-    "fingerprint": "1794853293823"
+    "fingerprint": "1794853767196"
   }
 }
