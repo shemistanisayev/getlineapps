@@ -12,6 +12,7 @@
     "pages:dev": "wrangler pages dev dist --port 8788",
     "deploy": "wrangler pages deploy dist --project-name getlineapps --branch main",
     "gen:og": "tsx scripts/og.ts",
+    "gen:gtm": "tsx scripts/gtm.ts",
     "screens": "tsx scripts/screens.ts",
     "gen:hitline": "tsx scripts/hitline-assets.ts",
     "gen:serpline": "tsx scripts/serpline-assets.ts",

@@ -392,6 +392,10 @@ const seo = {
     const status = form.querySelector<HTMLElement>('.status')!;
     const button = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
     const label = button.textContent ?? '';
+    // Analytics (docs/line-family-analytics.md): only the picked reason, never the message.
+    const report = (event: string, params: Record<string, string>) =>
+      document.dispatchEvent(new CustomEvent('line:track', { detail: { event, params } }));
+    const tool = form.querySelector<HTMLInputElement>('input[name=tool]')?.value ?? '';
     const say = (text: string, tone: 'ok' | 'bad' | '') => {
       status.textContent = text;
       status.dataset.tone = tone;
@@ -401,6 +405,7 @@ const seo = {
       const data = Object.fromEntries(new FormData(form).entries());
       if (!data.reason && !String(data.message ?? '').trim()) {
         say(form.dataset.pick ?? '', 'bad');
+        report('feedback_error', { tool_slug: tool, error_type: 'validation' });
         return;
       }
       button.disabled = true;
@@ -417,10 +422,16 @@ const seo = {
         form.querySelector('textarea')!.setAttribute('disabled', '');
         button.textContent = label;
         say(form.dataset.thanks ?? '', 'ok');
+        report('feedback_submit', {
+          tool_slug: tool,
+          feedback_reason: String(data.reason ?? 'none'),
+          has_message: String(data.message ?? '').trim() ? 'yes' : 'no',
+        });
       } catch {
         button.disabled = false;
         button.textContent = label;
         say(form.dataset.error ?? '', 'bad');
+        report('feedback_error', { tool_slug: tool, error_type: 'network' });
       }
     });
   }

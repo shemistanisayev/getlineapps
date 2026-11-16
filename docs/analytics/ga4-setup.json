@@ -1,0 +1,111 @@
+{
+  "measurementId": "G-WX35DJ8R7K",
+  "gtmId": "GTM-WNZQGVXL",
+  "events": {
+    "install_click": "Chrome Web Store button (install or reinstall)",
+    "contact_click": "Link to shamistanisayev.com (contact, audit, footer)",
+    "select_content": "Link to a tool landing or a free web tool on getlineapps.com",
+    "outbound_click": "Any other link that leaves getlineapps.com (GitHub, ad libraries)",
+    "nav_click": "In-page jump link (header menu, hero buttons)",
+    "language_switch": "EN / AZ switch",
+    "faq_open": "FAQ question opened",
+    "feature_tab_view": "Feature tab picked on a landing",
+    "role_filter": "Role filter on the hub tool cards",
+    "checkpoint_view": "Check point picked on the hub example page",
+    "sample_report_open": "Sample audit opened (Hitline)",
+    "sample_download": "Sample PDF downloaded",
+    "web_tool_use": "Free web tool used (SERP preview, ad library finder)",
+    "section_view": "A page section was at least half on screen (once per page)",
+    "scroll_depth": "Page scrolled to 25, 50, 75 or 90 percent (once each)",
+    "feedback_submit": "Uninstall feedback sent",
+    "feedback_error": "Uninstall feedback failed (validation or network)",
+    "cookie_settings_open": "Cookie settings link in the footer"
+  },
+  "keyEvents": [
+    "install_click",
+    "contact_click",
+    "feedback_submit"
+  ],
+  "customDimensions": [
+    {
+      "name": "page_type",
+      "about": "hub, landing, privacy, uninstall or not_found"
+    },
+    {
+      "name": "page_locale",
+      "about": "en or az"
+    },
+    {
+      "name": "page_tool",
+      "about": "Tool of the page, or none"
+    },
+    {
+      "name": "tool_slug",
+      "about": "Tool the click is about (hitline, serpline, ...)"
+    },
+    {
+      "name": "cta_location",
+      "about": "Where on the page: header, hero, footer, section id, utm_campaign"
+    },
+    {
+      "name": "content_type",
+      "about": "tool_landing or web_tool"
+    },
+    {
+      "name": "content_id",
+      "about": "Tool slug or web tool id"
+    },
+    {
+      "name": "language_to",
+      "about": "en or az"
+    },
+    {
+      "name": "section_id",
+      "about": "Section id (features, how, faq, ...)"
+    },
+    {
+      "name": "faq_question",
+      "about": "FAQ question text, max 100 characters"
+    },
+    {
+      "name": "faq_index",
+      "about": "FAQ position, 1 based"
+    },
+    {
+      "name": "tab_id",
+      "about": "Feature tab id"
+    },
+    {
+      "name": "role_id",
+      "about": "Hub role filter id"
+    },
+    {
+      "name": "checkpoint_id",
+      "about": "Hub check point (tool slug)"
+    },
+    {
+      "name": "web_tool",
+      "about": "serp_preview or ad_finder"
+    },
+    {
+      "name": "tool_action",
+      "about": "edit_title, edit_desc, edit_url, device_mobile, search, open_library, ..."
+    },
+    {
+      "name": "tool_item",
+      "about": "Ad library (meta, google, tiktok, linkedin)"
+    },
+    {
+      "name": "feedback_reason",
+      "about": "Reason picked in the uninstall form (never the message)"
+    },
+    {
+      "name": "has_message",
+      "about": "yes or no: the uninstall form had a message"
+    },
+    {
+      "name": "error_type",
+      "about": "validation or network"
+    }
+  ]
+}

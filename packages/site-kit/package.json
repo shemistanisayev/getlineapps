@@ -8,6 +8,8 @@
     ".": "./src/index.ts",
     "./feedback": "./src/feedback.ts",
     "./consent": "./src/consent.ts",
+    "./analytics": "./src/analytics.ts",
+    "./gtm-container": "./src/gtm-container.ts",
     "./seo": "./src/seo.ts",
     "./consent.css": "./src/consent.css"
   },
